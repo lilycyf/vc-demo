@@ -112,3 +112,21 @@ Current git status:
 ```
 
 Note: scaffold files and smoke-test outputs are currently on the RunPod volume. They have not been pushed back to GitHub.
+
+## C-Stage Update
+
+B-stage real K562 demo is now available. It uses real Norman/Weissman K562 data but one-hot perturbation features. The next agent should not treat this as a full paper reproduction.
+
+Next handoff file:
+
+```bash
+cat C_EMBEDDING_FEATURES_HANDOFF.md
+```
+
+Immediate next task:
+
+1. Audit current K562 NPZ dataset with `scripts/audit_real_dataset.py`.
+2. Build a new K562 NPZ dataset with non-one-hot biological features.
+3. Validate and train one upgraded-feature baseline.
+4. Run a short 3-5 node MCTS search using `--root-config`.
+5. Write a comparison summary: one-hot baseline vs upgraded-feature baseline.

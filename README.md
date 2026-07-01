@@ -75,3 +75,20 @@ python -m vc_demo.train \
 
 See `data/README.md` and `B_REAL_CELLLINE_HANDOFF.md` for the data contract and
 handoff instructions.
+
+## C-stage feature upgrade
+
+The current real K562 demo uses one-hot perturbation features. This is enough to prove
+that the harness works on real cell-line data, but it is still below the paper's feature
+setting. The next upgrade is to keep the same `real_npz` labels/splits and replace
+`features` with biological perturbation features such as protein embeddings, STRING/GNN
+features, or concatenated multimodal embeddings.
+
+Start with:
+
+```bash
+cat C_EMBEDDING_FEATURES_HANDOFF.md
+python scripts/audit_real_dataset.py \
+  --data-dir data/cell_lines/k562 \
+  --output experiments/real_k562_dataset_audit.json
+```
