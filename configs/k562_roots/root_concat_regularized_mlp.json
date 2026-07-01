@@ -1,0 +1,26 @@
+{
+  "node_name": "root_concat_regularized_mlp",
+  "data": {
+    "dataset_type": "real_npz",
+    "cell_line": "K562",
+    "data_dir": "data/cell_lines/k562_concat",
+    "feature_key": "features",
+    "label_key": "labels",
+    "split_key": "split",
+    "n_classes": 3
+  },
+  "model": {
+    "input_dim": "auto",
+    "hidden_dim": 384,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.2,
+    "depth": 3
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 8,
+    "lr": 0.0002,
+    "weight_decay": 0.0005
+  }
+}
