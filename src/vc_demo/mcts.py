@@ -23,13 +23,29 @@ def propose_child_config(parent_config: dict, child_index: int, rng: random.Rand
     child.setdefault("model", {})
     child.setdefault("training", {})
 
-    mutation = rng.choice(["hidden_dim", "dropout", "depth", "lr", "weight_decay"])
-    if mutation == "hidden_dim":
+    mutation = rng.choice([
+        "model_type",
+        "model_type",
+        "hidden_dim",
+        "dropout",
+        "depth",
+        "low_rank_dim",
+        "lr",
+        "weight_decay",
+    ])
+    if mutation == "model_type":
+        child["model"]["model_type"] = rng.choice(["mlp", "residual_mlp", "gated_mlp", "low_rank_mlp"])
+        if child["model"]["model_type"] == "low_rank_mlp":
+            child["model"]["low_rank_dim"] = rng.choice([16, 32, 64, 128])
+    elif mutation == "hidden_dim":
         child["model"]["hidden_dim"] = rng.choice([128, 192, 256, 384, 512])
     elif mutation == "dropout":
         child["model"]["dropout"] = rng.choice([0.0, 0.05, 0.1, 0.2, 0.35])
     elif mutation == "depth":
         child["model"]["depth"] = rng.choice([1, 2, 3, 4])
+    elif mutation == "low_rank_dim":
+        child["model"]["model_type"] = "low_rank_mlp"
+        child["model"]["low_rank_dim"] = rng.choice([16, 32, 64, 128])
     elif mutation == "lr":
         child["training"]["lr"] = rng.choice([1e-4, 2e-4, 3e-4, 5e-4, 8e-4])
     elif mutation == "weight_decay":

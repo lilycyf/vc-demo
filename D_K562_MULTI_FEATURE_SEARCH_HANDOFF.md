@@ -122,3 +122,15 @@ Even after this search, remaining paper-level gaps are:
 - no ESM2/AIDO/scFoundation/STRING embeddings yet; `delta` and `concat` are stronger local biological features but not foundation-model modules
 - only K562, not four cell lines
 - simplified DEG label rule and target-gene selection
+
+## Larger Node Differences
+
+The search space now includes architectural changes, not only hyperparameter mutations.
+Candidate nodes can use:
+
+- `mlp`: dense baseline head
+- `residual_mlp`: residual hidden blocks
+- `gated_mlp`: input-conditioned gating over hidden representation
+- `low_rank_mlp`: factorized target-gene output head with `low_rank_dim`
+
+`scripts/make_k562_root_configs.py` now writes architecture-diverse roots, and `propose_child_config` can mutate `model_type` or `low_rank_dim`. This makes a node closer to a candidate model design rather than a small learning-rate tweak.

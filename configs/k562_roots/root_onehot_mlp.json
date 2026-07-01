@@ -11,6 +11,7 @@
   },
   "model": {
     "input_dim": "auto",
+    "model_type": "mlp",
     "hidden_dim": 256,
     "n_targets": "auto",
     "n_classes": "auto",

@@ -1,5 +1,5 @@
 {
-  "node_name": "root_concat_mlp",
+  "node_name": "root_concat_gated_mlp",
   "data": {
     "dataset_type": "real_npz",
     "cell_line": "K562",
@@ -11,7 +11,7 @@
   },
   "model": {
     "input_dim": "auto",
-    "model_type": "mlp",
+    "model_type": "gated_mlp",
     "hidden_dim": 384,
     "n_targets": "auto",
     "n_classes": "auto",

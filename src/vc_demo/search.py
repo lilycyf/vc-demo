@@ -99,9 +99,11 @@ def rows_for_summary(tree: dict) -> list[dict]:
                 "node": name,
                 "parent": node.get("parent", ""),
                 "data_dir": data_cfg.get("data_dir", "synthetic"),
+                "model_type": model_cfg.get("model_type", "mlp"),
                 "hidden_dim": model_cfg.get("hidden_dim"),
                 "depth": model_cfg.get("depth"),
                 "dropout": model_cfg.get("dropout"),
+                "low_rank_dim": model_cfg.get("low_rank_dim", ""),
                 "lr": training_cfg.get("lr"),
                 "weight_decay": training_cfg.get("weight_decay"),
                 "val": float(node["best_val_macro_f1"]),
@@ -140,10 +142,10 @@ def write_summary(tree: dict, summary_path: Path, failures: list[dict], stop_rea
     for row in roots:
         lines.append(f"| `{row['node']}` | `{row['data_dir']}` | {row['val']:.4f} | {row['test']:.4f} |")
 
-    lines.extend(["", "## All Trained Nodes", "", "| Iter | Node | Parent | Data dir | Hidden | Depth | Dropout | LR | Weight decay | Val | Test |", "|---:|---|---|---|---:|---:|---:|---:|---:|---:|---:|"])
+    lines.extend(["", "## All Trained Nodes", "", "| Iter | Node | Parent | Data dir | Model | Hidden | Depth | Dropout | Rank | LR | Weight decay | Val | Test |", "|---:|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|"])
     for row in rows:
         lines.append(
-            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | `{row['data_dir']}` | {row['hidden_dim']} | {row['depth']} | {row['dropout']} | {row['lr']} | {row['weight_decay']} | {row['val']:.4f} | {row['test']:.4f} |"
+            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | `{row['data_dir']}` | {row['model_type']} | {row['hidden_dim']} | {row['depth']} | {row['dropout']} | {row['low_rank_dim']} | {row['lr']} | {row['weight_decay']} | {row['val']:.4f} | {row['test']:.4f} |"
         )
 
     lines.extend(["", "## Best-So-Far Curve", "", "| Iter | Best val Macro-F1 |", "|---:|---:|"])

@@ -13,3 +13,4 @@ experiments/nodes/
 data/**
 !data/
 !data/README.md
+experiments/**/nodes/

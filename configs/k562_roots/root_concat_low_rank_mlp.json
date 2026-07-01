@@ -1,5 +1,5 @@
 {
-  "node_name": "root_concat_mlp",
+  "node_name": "root_concat_low_rank_mlp",
   "data": {
     "dataset_type": "real_npz",
     "cell_line": "K562",
@@ -11,12 +11,13 @@
   },
   "model": {
     "input_dim": "auto",
-    "model_type": "mlp",
+    "model_type": "low_rank_mlp",
     "hidden_dim": 384,
     "n_targets": "auto",
     "n_classes": "auto",
     "dropout": 0.1,
-    "depth": 2
+    "depth": 2,
+    "low_rank_dim": 64
   },
   "training": {
     "batch_size": 16,
