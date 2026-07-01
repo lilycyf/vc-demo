@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import importlib.util
+import hashlib
 from dataclasses import dataclass
+from pathlib import Path
 
 import torch
 from torch import nn
@@ -130,11 +133,43 @@ MODEL_TYPES = {
 }
 
 
+def _model_spec_from_config(model_cfg: dict) -> ModelSpec:
+    allowed = set(ModelSpec.__dataclass_fields__)
+    return ModelSpec(**{key: value for key, value in model_cfg.items() if key in allowed})
+
+
+def _load_custom_program_model(model_cfg: dict, spec: ModelSpec) -> nn.Module:
+    try:
+        model_path = Path(str(model_cfg["custom_model_path"]))
+    except KeyError as exc:
+        raise ValueError("custom_program model requires model.custom_model_path") from exc
+    class_name = str(model_cfg.get("custom_model_class", "GeneratedModel"))
+    if not model_path.exists():
+        raise FileNotFoundError(f"custom program model file does not exist: {model_path}")
+
+    digest = hashlib.sha1(str(model_path.resolve()).encode("utf-8")).hexdigest()[:12]
+    module_name = f"vc_demo_dynamic_model_{digest}"
+    module_spec = importlib.util.spec_from_file_location(module_name, model_path)
+    if module_spec is None or module_spec.loader is None:
+        raise ImportError(f"cannot import custom model from {model_path}")
+    module = importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(module)
+    try:
+        model_cls = getattr(module, class_name)
+    except AttributeError as exc:
+        raise AttributeError(f"custom model {model_path} does not define class {class_name!r}") from exc
+    return model_cls(spec)
+
+
 def build_model(config: dict) -> nn.Module:
     model_cfg = dict(config.get("model", {}))
-    spec = ModelSpec(**model_cfg)
+    model_type = str(model_cfg.get("model_type", "mlp"))
+    spec = _model_spec_from_config(model_cfg)
+    if model_type == "custom_program":
+        return _load_custom_program_model(model_cfg, spec)
     try:
         model_cls = MODEL_TYPES[spec.model_type]
     except KeyError as exc:
-        raise ValueError(f"unknown model_type {spec.model_type!r}; choose from {sorted(MODEL_TYPES)}") from exc
+        choices = sorted([*MODEL_TYPES, "custom_program"])
+        raise ValueError(f"unknown model_type {spec.model_type!r}; choose from {choices}") from exc
     return model_cls(spec)

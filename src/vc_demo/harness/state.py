@@ -26,6 +26,7 @@ def metrics_path(run_dir: Path, node_name: str) -> Path:
 def reset_run_dir(run_dir: Path) -> None:
     shutil.rmtree(run_dir / "nodes", ignore_errors=True)
     shutil.rmtree(run_dir / "proposals", ignore_errors=True)
+    shutil.rmtree(run_dir / "programs", ignore_errors=True)
     for name in ["tree.json", "search_summary.md", "failures.json"]:
         path = run_dir / name
         if path.exists():
