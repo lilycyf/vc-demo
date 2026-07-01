@@ -45,3 +45,33 @@ curve. Checkpoints and per-node metrics remain local under `experiments/nodes/`.
 ## Typical next step
 
 Replace `SyntheticPerturbationDataset` in `src/vc_demo/data.py` with a real one-cell-line perturbation dataset loader, then let the agent generate child configs and model variants while keeping the train/evaluate interface stable.
+
+## B-stage real cell-line scaffold
+
+The repo now includes a real-data interface without committing large biological files.
+Use `dataset_type: "real_npz"` to train on a local one-cell-line dataset laid out as
+`manifest.json` plus NPZ split files.
+
+Framework validation with a tiny generated fixture:
+
+```bash
+python scripts/make_fake_real_dataset.py --data-dir data/cell_lines/k562_demo
+python scripts/validate_real_dataset.py --data-dir data/cell_lines/k562_demo
+python -m vc_demo.train \
+  --config configs/real_k562_demo_fixture.json \
+  --output-dir experiments/nodes/real_k562_demo_fixture \
+  --max-epochs 1
+```
+
+Real K562 template:
+
+```bash
+python scripts/validate_real_dataset.py --data-dir data/cell_lines/k562
+python -m vc_demo.train \
+  --config configs/real_k562_template.json \
+  --output-dir experiments/nodes/real_k562_template_mlp \
+  --max-epochs 1
+```
+
+See `data/README.md` and `B_REAL_CELLLINE_HANDOFF.md` for the data contract and
+handoff instructions.

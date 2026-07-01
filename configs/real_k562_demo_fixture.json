@@ -1,0 +1,26 @@
+{
+  "node_name": "real_k562_demo_fixture",
+  "data": {
+    "dataset_type": "real_npz",
+    "cell_line": "K562_demo_fixture",
+    "data_dir": "data/cell_lines/k562_demo",
+    "feature_key": "features",
+    "label_key": "labels",
+    "split_key": "split",
+    "n_classes": 3
+  },
+  "model": {
+    "input_dim": "auto",
+    "hidden_dim": 128,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.1,
+    "depth": 2
+  },
+  "training": {
+    "batch_size": 8,
+    "epochs": 2,
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  }
+}

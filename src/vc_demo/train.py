@@ -9,7 +9,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
-from vc_demo.data import SyntheticPerturbationDataset, SyntheticSpec
+from vc_demo.data import build_datasets
 from vc_demo.metrics import macro_f1
 from vc_demo.models import build_model
 
@@ -39,18 +39,32 @@ def evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> dict
     return {"loss": float(sum(losses) / max(len(losses), 1)), "macro_f1": macro_f1(pred, target)}
 
 
+def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> dict:
+    config = json.loads(json.dumps(config))
+    model_cfg = config.setdefault("model", {})
+    x = sample["x"]
+    y = sample["y"]
+    if model_cfg.get("input_dim", "auto") == "auto":
+        model_cfg["input_dim"] = int(x.shape[-1])
+    if model_cfg.get("n_targets", "auto") == "auto":
+        model_cfg["n_targets"] = int(y.shape[-1])
+    if model_cfg.get("n_classes", "auto") == "auto":
+        model_cfg["n_classes"] = int(config.get("data", {}).get("n_classes", 3))
+    return config
+
+
 def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
-    data_cfg = config.get("data", {})
-    spec = SyntheticSpec(**data_cfg)
     batch_size = int(config.get("training", {}).get("batch_size", 16))
     epochs = int(max_epochs or config.get("training", {}).get("epochs", 8))
     lr = float(config.get("training", {}).get("lr", 3e-4))
     weight_decay = float(config.get("training", {}).get("weight_decay", 1e-4))
 
-    train_loader = DataLoader(SyntheticPerturbationDataset("train", spec), batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(SyntheticPerturbationDataset("val", spec), batch_size=batch_size)
-    test_loader = DataLoader(SyntheticPerturbationDataset("test", spec), batch_size=batch_size)
+    train_dataset, val_dataset, test_dataset = build_datasets(config)
+    config = resolve_model_dimensions(config, train_dataset[0])
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = build_model(config).to(device)
@@ -83,6 +97,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     test = evaluate(model, test_loader, device)
     result = {
         "node_name": config.get("node_name", output_dir.name),
+        "dataset_type": config.get("data", {}).get("dataset_type", "synthetic"),
         "device": str(device),
         "best_val_macro_f1": best_val,
         "test_macro_f1": test["macro_f1"],

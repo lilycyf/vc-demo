@@ -60,6 +60,34 @@ B. Replace `SyntheticPerturbationDataset` with a real one-cell-line dataset load
 
 For the requested demo path, start with A.
 
+## B-Stage Update
+
+The real-data framework is now prepared. The next Codex window should read:
+
+```bash
+cat B_REAL_CELLLINE_HANDOFF.md
+cat data/README.md
+```
+
+The repo supports `dataset_type: "real_npz"` through:
+
+- `configs/real_k562_template.json`
+- `configs/real_k562_demo_fixture.json`
+- `scripts/validate_real_dataset.py`
+- `scripts/make_fake_real_dataset.py`
+
+The immediate next step is to convert one real cell-line dataset into:
+
+```text
+data/cell_lines/k562/
+  manifest.json
+  train.npz
+  val.npz
+  test.npz
+```
+
+Do not commit real data or checkpoint outputs.
+
 ## Smoke Test Result
 
 Status: passed on CUDA/L4.

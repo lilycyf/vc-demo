@@ -10,3 +10,6 @@ __pycache__/
 experiments/nodes/
 *.pt
 *.ckpt
+data/**
+!data/
+!data/README.md
