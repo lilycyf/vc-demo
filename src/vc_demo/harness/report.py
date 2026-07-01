@@ -52,7 +52,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "# VCHarness-Style K562 Search Summary",
         "",
         "This run separates the search loop into MCTS parent selection, an agent-style proposal step, node execution, and report generation.",
-        "The current agent is a rule-based stub that proposes larger config-level pipeline changes; it is not a live coding agent editing Python source.",
+        "The proposal agent is a task-aware rule policy: it uses K562 feature/model priors plus parent validation results to propose config-level child pipelines without changing data, splits, or metric semantics.",
         "",
         f"- Stop reason: {stop_reason}",
         f"- Trained nodes: {len(rows)}",
@@ -114,7 +114,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "",
         "- One node means one complete trainable candidate pipeline: data representation, model type, model hyperparameters, optimizer settings, and training run.",
         "- MCTS decides which already-trained parent is worth expanding next using UCT.",
-        "- The agent stub decides how to modify that parent into one executable child config.",
+        "- The proposal agent decides how to modify that parent into one executable child config.",
         "- The node workspace under `nodes/` is intentionally ignored by git; committed summaries live in `tree.json`, `search_summary.md`, and `proposals/`.",
     ])
     summary_path.parent.mkdir(parents=True, exist_ok=True)

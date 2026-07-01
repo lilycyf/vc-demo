@@ -1,0 +1,47 @@
+{
+  "agent_type": "codex_task_aware_rule_agent",
+  "parent": "root_concat_regularized_mlp",
+  "child": "root_concat_regularized_mlp_c1_optimizer_refine_833289e9",
+  "strategy": "optimizer_refine",
+  "parent_val_macro_f1": 0.6086194515228271,
+  "hypothesis": "K562 concat models may be optimization-limited at short epoch budgets; coordinated lr and weight-decay changes can improve validation Macro-F1.",
+  "changes": [
+    "optimizer:lr 0.0002->0.0005, wd 0.0005->1e-05"
+  ],
+  "limits": "Config-level proposal agent; data, split, metric semantics, and historical results are not modified.",
+  "mcts_selected_parent": "root_concat_regularized_mlp",
+  "mcts_candidates": [
+    {
+      "node": "root_concat_regularized_mlp",
+      "uct": 1.786870077912453
+    },
+    {
+      "node": "root_delta_mlp",
+      "uct": 1.7763251221820147
+    },
+    {
+      "node": "root_onehot_mlp",
+      "uct": 1.773781195943001
+    },
+    {
+      "node": "root_concat_low_rank_mlp",
+      "uct": 1.7386036074801714
+    },
+    {
+      "node": "root_concat_gated_mlp_c1_optimizer_refine_4a943707",
+      "uct": 1.5039997020369367
+    },
+    {
+      "node": "root_concat_gated_mlp",
+      "uct": 1.5009971776610211
+    },
+    {
+      "node": "root_concat_mlp_c1_optimizer_refine_cc45c6cb",
+      "uct": 1.4852596440916852
+    },
+    {
+      "node": "root_concat_mlp",
+      "uct": 1.4814600268011884
+    }
+  ]
+}

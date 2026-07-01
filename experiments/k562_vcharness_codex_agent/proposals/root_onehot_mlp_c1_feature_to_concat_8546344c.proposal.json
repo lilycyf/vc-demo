@@ -1,0 +1,48 @@
+{
+  "agent_type": "codex_task_aware_rule_agent",
+  "parent": "root_onehot_mlp",
+  "child": "root_onehot_mlp_c1_feature_to_concat_8546344c",
+  "strategy": "feature_to_concat",
+  "parent_val_macro_f1": 0.5955305695533752,
+  "hypothesis": "Concat features combine perturbation identity with expression delta signal and should improve weak onehot/delta parents.",
+  "changes": [
+    "feature_source:onehot->concat",
+    "hidden_dim:256->384"
+  ],
+  "limits": "Config-level proposal agent; data, split, metric semantics, and historical results are not modified.",
+  "mcts_selected_parent": "root_onehot_mlp",
+  "mcts_candidates": [
+    {
+      "node": "root_onehot_mlp",
+      "uct": 1.835043443954155
+    },
+    {
+      "node": "root_concat_low_rank_mlp",
+      "uct": 1.7998658554913254
+    },
+    {
+      "node": "root_concat_gated_mlp_c1_optimizer_refine_4a943707",
+      "uct": 1.5473186530363556
+    },
+    {
+      "node": "root_concat_gated_mlp",
+      "uct": 1.54431612866044
+    },
+    {
+      "node": "root_concat_mlp_c1_optimizer_refine_cc45c6cb",
+      "uct": 1.5285785950911042
+    },
+    {
+      "node": "root_concat_mlp",
+      "uct": 1.5247789778006073
+    },
+    {
+      "node": "root_delta_mlp_c1_feature_to_concat_46d0e002",
+      "uct": 1.5121648468267914
+    },
+    {
+      "node": "root_concat_residual_mlp_c1_optimizer_refine_c49bd80c",
+      "uct": 1.5112891949903962
+    }
+  ]
+}
