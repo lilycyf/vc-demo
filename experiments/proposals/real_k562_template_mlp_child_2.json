@@ -1,0 +1,27 @@
+{
+  "node_name": "real_k562_template_mlp_child_2",
+  "data": {
+    "dataset_type": "real_npz",
+    "cell_line": "K562",
+    "data_dir": "data/cell_lines/k562",
+    "feature_key": "features",
+    "label_key": "labels",
+    "split_key": "split",
+    "n_classes": 3
+  },
+  "model": {
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.1,
+    "depth": 2
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 8,
+    "lr": 0.0005,
+    "weight_decay": 0.0001
+  },
+  "proposal_note": "mutated lr from parent real_k562_template_mlp"
+}

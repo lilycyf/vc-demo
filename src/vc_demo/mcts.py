@@ -62,9 +62,7 @@ def read_metrics(path: Path) -> dict | None:
     return json.loads(path.read_text())
 
 
-def ensure_root_trained(nodes: dict, run_dir: Path, max_epochs: int | None) -> dict:
-    root_name = "root_mlp"
-    root_cfg_path = Path("configs/root_mlp.json")
+def ensure_root_trained(nodes: dict, run_dir: Path, root_name: str, root_cfg_path: Path, max_epochs: int | None) -> dict:
     root = nodes.setdefault(
         root_name,
         {"config": str(root_cfg_path), "visits": 0, "value": 0.0, "children": [], "status": "pending"},
@@ -152,10 +150,20 @@ def write_summary(tree: dict, summary_path: Path) -> None:
         best = max(best, row["val"])
         curve.append(f"{row['iteration']}:{best:.4f}")
 
+    root_cfg = json.loads(Path(tree["nodes"][tree["root"]]["config"]).read_text())
+    dataset_type = root_cfg.get("data", {}).get("dataset_type", "synthetic")
+    if dataset_type == "real_npz":
+        cell_line = root_cfg.get("data", {}).get("cell_line", "real cell line")
+        title = f"# Real {cell_line} MCTS Demo Summary"
+        description = "This run uses a real NPZ-backed perturbation dataset. Each MCTS iteration selects a trained node, generates one child config, trains that child, reads its metrics, and backpropagates validation Macro-F1 through the tree."
+    else:
+        title = "# Synthetic MCTS Demo Summary"
+        description = "This run uses only the deterministic synthetic perturbation dataset. Each MCTS iteration selects a trained node, generates one child config, trains that child, reads its metrics, and backpropagates validation Macro-F1 through the tree."
+
     lines = [
-        "# Synthetic MCTS Demo Summary",
+        title,
         "",
-        "This run uses only the deterministic synthetic perturbation dataset. Each MCTS iteration selects a trained node, generates one child config, trains that child, reads its metrics, and backpropagates validation Macro-F1 through the tree.",
+        description,
         "",
         f"- Trained nodes: {len(rows)}",
         f"- Best validation Macro-F1: {max((row['val'] for row in rows), default=0.0):.4f}",
@@ -221,6 +229,8 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--max-children", type=int, default=3)
+    parser.add_argument("--root-config", type=Path, default=Path("configs/root_mlp.json"))
+    parser.add_argument("--root-name", default=None)
     parser.add_argument("--summary", type=Path, default=Path("experiments/synthetic_mcts_summary.md"))
     parser.add_argument("--reset", action="store_true", help="Start from a clean synthetic demo tree and node outputs.")
     args = parser.parse_args()
@@ -237,11 +247,13 @@ def main() -> None:
     proposal_dir = run_dir / "proposals"
     proposal_dir.mkdir(parents=True, exist_ok=True)
 
-    root_cfg_path = Path("configs/root_mlp.json")
+    root_cfg_path = args.root_config
+    root_cfg = json.loads(root_cfg_path.read_text())
+    root_name = args.root_name or str(root_cfg.get("node_name", root_cfg_path.stem))
     nodes = tree.setdefault("nodes", {})
-    nodes.setdefault("root_mlp", {"config": str(root_cfg_path), "visits": 0, "value": 0.0, "children": []})
-    tree["root"] = "root_mlp"
-    ensure_root_trained(nodes, run_dir, args.max_epochs)
+    nodes.setdefault(root_name, {"config": str(root_cfg_path), "visits": 0, "value": 0.0, "children": []})
+    tree["root"] = root_name
+    ensure_root_trained(nodes, run_dir, root_name, root_cfg_path, args.max_epochs)
 
     created: list[str] = []
     for step in range(1, args.steps + 1):

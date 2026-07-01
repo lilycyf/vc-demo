@@ -1,0 +1,56 @@
+{
+  "root": "real_k562_template_mlp",
+  "nodes": {
+    "real_k562_template_mlp": {
+      "config": "configs/real_k562_template.json",
+      "visits": 4,
+      "value": 1.725249022245407,
+      "children": [
+        "real_k562_template_mlp_child_1",
+        "real_k562_template_mlp_child_2"
+      ],
+      "status": "trained",
+      "metrics": "experiments/nodes/real_k562_template_mlp/metrics.json",
+      "best_val_macro_f1": 0.32068774104118347,
+      "test_macro_f1": 0.31881624460220337
+    },
+    "real_k562_template_mlp_child_1": {
+      "config": "experiments/proposals/real_k562_template_mlp_child_1.json",
+      "parent": "real_k562_template_mlp",
+      "visits": 2,
+      "value": 1.0042907297611237,
+      "children": [
+        "real_k562_template_mlp_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 1,
+      "metrics": "experiments/nodes/real_k562_template_mlp_child_1/metrics.json",
+      "best_val_macro_f1": 0.5106738805770874,
+      "test_macro_f1": 0.4777604341506958
+    },
+    "real_k562_template_mlp_child_2": {
+      "config": "experiments/proposals/real_k562_template_mlp_child_2.json",
+      "parent": "real_k562_template_mlp",
+      "visits": 1,
+      "value": 0.4002705514431,
+      "children": [],
+      "status": "trained",
+      "iteration": 2,
+      "metrics": "experiments/nodes/real_k562_template_mlp_child_2/metrics.json",
+      "best_val_macro_f1": 0.4002705514431,
+      "test_macro_f1": 0.3781386613845825
+    },
+    "real_k562_template_mlp_child_1_child_1": {
+      "config": "experiments/proposals/real_k562_template_mlp_child_1_child_1.json",
+      "parent": "real_k562_template_mlp_child_1",
+      "visits": 1,
+      "value": 0.49361684918403625,
+      "children": [],
+      "status": "trained",
+      "iteration": 3,
+      "metrics": "experiments/nodes/real_k562_template_mlp_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.49361684918403625,
+      "test_macro_f1": 0.45694828033447266
+    }
+  }
+}
