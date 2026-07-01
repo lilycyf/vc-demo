@@ -71,3 +71,28 @@ python -m vc_demo.harness.program_run   --experiment k562_program_node_search   
 ```
 
 This is still not the full paper system, but the search unit is now a code-backed architecture program selected from an extensible model blueprint manifest.
+
+## On-Demand Implementation Mode
+
+Planned blueprints are not pre-implemented. They can be selected only when the runner is explicitly allowed to materialize planned designs:
+
+```bash
+python -m vc_demo.harness.program_run   --experiment k562_on_demand_blueprint_demo   --root-configs configs/k562_roots/root_concat_residual_mlp.json   --run-dir experiments/k562_on_demand_blueprint_demo   --budget-nodes 1   --max-epochs 1   --allow-planned-blueprints   --force-blueprint film_conditioned_residual   --reset
+```
+
+When a planned blueprint is selected, the harness does not train it. Instead it writes:
+
+```text
+experiments/<experiment>/programs/<node>/IMPLEMENTATION_REQUEST.md
+experiments/<experiment>/programs/<node>/base_config.json
+experiments/<experiment>/programs/<node>/proposal.json
+experiments/<experiment>/implementation_queue.json
+```
+
+The tree records that child as:
+
+```text
+status = needs_implementation
+```
+
+A Codex agent can then open `IMPLEMENTATION_REQUEST.md`, implement `model.py`, run smoke validation, and only then train/evaluate the node. This is closer to the paper-style workflow: the manifest defines a broad design space, and code is implemented on demand when search asks for that design.

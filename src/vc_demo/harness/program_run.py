@@ -18,6 +18,17 @@ def reward(metrics: dict[str, Any]) -> float:
     return float(metrics["best_val_macro_f1"])
 
 
+def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], config_path: Path, name: str) -> None:
+    node["agent_type"] = proposal.get("agent_type")
+    node["node_kind"] = proposal.get("node_kind")
+    node["strategy"] = proposal.get("strategy")
+    node["proposal"] = str(config_path.parent / f"{name}.proposal.json")
+    node["program_dir"] = proposal.get("program_dir")
+    node["program_model_path"] = proposal.get("program_model_path")
+    node["implementation_request_path"] = proposal.get("implementation_request_path", "")
+    node["requires_implementation"] = bool(proposal.get("requires_implementation"))
+
+
 def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, metrics: dict[str, Any], proposal: dict[str, Any] | None = None) -> None:
     node = {
         "config": str(config_path),
@@ -32,17 +43,19 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "value": reward(metrics),
     }
     if proposal:
-        node["agent_type"] = proposal.get("agent_type")
-        node["node_kind"] = proposal.get("node_kind")
-        node["strategy"] = proposal.get("strategy")
-        node["proposal"] = str(config_path.parent / f"{name}.proposal.json")
-        node["program_dir"] = proposal.get("program_dir")
-        node["program_model_path"] = proposal.get("program_model_path")
+        enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
     if parent:
         tree["nodes"][parent].setdefault("children", []).append(name)
     else:
         tree.setdefault("root_nodes", []).append(name)
+
+
+def add_pending_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, proposal: dict[str, Any]) -> None:
+    node = {"config": str(config_path), "parent": parent, "children": [], "status": "needs_implementation", "iteration": iteration, "visits": 0, "value": 0.0}
+    enrich_node_from_proposal(node, proposal, config_path, name)
+    tree["nodes"][name] = node
+    tree["nodes"][parent].setdefault("children", []).append(name)
 
 
 def train_roots(root_configs: list[Path], run_dir: Path, tree: dict[str, Any], max_epochs: int | None) -> None:
@@ -53,9 +66,18 @@ def train_roots(root_configs: list[Path], run_dir: Path, tree: dict[str, Any], m
         add_trained_node(tree, name, root_config, parent="", iteration=0, metrics=metrics)
 
 
+def implementation_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "strategy": node.get("strategy")}
+        for name, node in tree.get("nodes", {}).items()
+        if node.get("status") == "needs_implementation"
+    ]
+
+
 def write_tree_and_failures(run_dir: Path, tree: dict[str, Any], failures: list[dict[str, Any]]) -> None:
     write_json(run_dir / "tree.json", tree)
     write_json(run_dir / "failures.json", {"failures": failures})
+    write_json(run_dir / "implementation_queue.json", {"items": implementation_queue(tree)})
 
 
 def run_search(args: argparse.Namespace) -> dict[str, Any]:
@@ -76,6 +98,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     train_roots(root_configs, run_dir, tree, args.max_epochs)
     best_val = max(node["best_val_macro_f1"] for node in tree["nodes"].values())
     no_improve = 0
+    pending_count = 0
     stop_reason = "budget exhausted"
     write_tree_and_failures(run_dir, tree, failures)
 
@@ -84,7 +107,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))
         child_index = len(parent_node.get("children", [])) + 1
-        child_config, proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root)
+        child_config, proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint)
         child_name = str(child_config["node_name"])
         child_config_path = proposal_dir / f"{child_name}.json"
         proposal_path = proposal_dir / f"{child_name}.proposal.json"
@@ -92,8 +115,17 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         proposal["mcts_candidates"] = scored[: min(8, len(scored))]
         write_json(child_config_path, child_config)
         write_json(proposal_path, proposal)
+        tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node", "requires_implementation": proposal.get("requires_implementation", False)})
 
-        tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node"})
+        if proposal.get("requires_implementation"):
+            add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
+            pending_count += 1
+            write_tree_and_failures(run_dir, tree, failures)
+            if pending_count >= args.max_pending_implementations:
+                stop_reason = f"pending implementation limit reached ({pending_count})"
+                break
+            continue
+
         try:
             metrics = run_node(child_config, run_dir, proposal=proposal, max_epochs=args.max_epochs)
             add_trained_node(tree, child_name, child_config_path, parent_name, iteration, metrics, proposal)
@@ -107,21 +139,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         except Exception as exc:
             error = "".join(traceback.format_exception_only(type(exc), exc)).strip()
             tree["nodes"][parent_name].setdefault("children", []).append(child_name)
-            tree["nodes"][child_name] = {
-                "config": str(child_config_path),
-                "parent": parent_name,
-                "children": [],
-                "status": "failed",
-                "iteration": iteration,
-                "agent_type": proposal.get("agent_type"),
-                "node_kind": proposal.get("node_kind"),
-                "strategy": proposal.get("strategy"),
-                "program_dir": proposal.get("program_dir"),
-                "program_model_path": proposal.get("program_model_path"),
-                "error": error,
-                "visits": 0,
-                "value": 0.0,
-            }
+            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "error": error, "visits": 0, "value": 0.0}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             no_improve += 1
 
@@ -132,13 +150,13 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "stop_reason": stop_reason, "failures": len(failures)}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
     print(json.dumps(result, indent=2))
     return result
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run a VCHarness-style search where each child is a generated model program.")
+    parser = argparse.ArgumentParser(description="Run a VCHarness-style search where each child is a generated or on-demand model program.")
     parser.add_argument("--experiment", required=True)
     parser.add_argument("--root-configs", nargs="+", required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
@@ -150,6 +168,9 @@ def main() -> None:
     parser.add_argument("--stop-no-improve", type=int, default=6)
     parser.add_argument("--min-delta", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=11)
+    parser.add_argument("--allow-planned-blueprints", action="store_true")
+    parser.add_argument("--max-pending-implementations", type=int, default=1)
+    parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:
