@@ -1,0 +1,24 @@
+{
+  "node_name": "root_mlp",
+  "data": {
+    "n_perturbations": 240,
+    "n_targets": 664,
+    "n_features": 128,
+    "n_classes": 3,
+    "seed": 7
+  },
+  "model": {
+    "input_dim": 128,
+    "hidden_dim": 256,
+    "n_targets": 664,
+    "n_classes": 3,
+    "dropout": 0.1,
+    "depth": 2
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 8,
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  }
+}

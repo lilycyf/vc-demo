@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+.env
+
+# Large/local experiment artifacts
+experiments/nodes/
+*.pt
+*.ckpt
