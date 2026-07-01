@@ -86,27 +86,31 @@ def ensure_root_trained(nodes: dict, run_dir: Path, max_epochs: int | None) -> d
     return metrics
 
 
-def select_path(tree: dict, exploration: float) -> list[str]:
+def trained_children(nodes: dict, node: dict) -> list[str]:
+    return [
+        child
+        for child in node.get("children", [])
+        if nodes.get(child, {}).get("status") == "trained" and int(nodes[child].get("visits", 0)) > 0
+    ]
+
+
+def select_path(tree: dict, exploration: float, max_children: int) -> list[str]:
     nodes = tree["nodes"]
     path = [tree["root"]]
     while True:
         current = nodes[path[-1]]
-        trained_children = [
-            child
-            for child in current.get("children", [])
-            if nodes.get(child, {}).get("status") == "trained" and int(nodes[child].get("visits", 0)) > 0
-        ]
-        if not trained_children:
+
+        # Progressive widening: expand a promising parent until it has a small
+        # portfolio of children, then use UCT to decide which child to exploit.
+        if len(current.get("children", [])) < max_children:
+            return path
+
+        child_names = trained_children(nodes, current)
+        if not child_names:
             return path
 
         parent_visits = max(int(current.get("visits", 1)), 1)
-        best_child = max(trained_children, key=lambda name: uct_score(nodes[name], parent_visits, exploration))
-        best_score = uct_score(nodes[best_child], parent_visits, exploration)
-        current_score = float(current.get("value", 0.0)) / max(int(current.get("visits", 1)), 1)
-
-        # Expand below a strong child; otherwise keep exploring the current node.
-        if best_score <= current_score:
-            return path
+        best_child = max(child_names, key=lambda name: uct_score(nodes[name], parent_visits, exploration))
         path.append(best_child)
 
 
@@ -140,6 +144,7 @@ def write_summary(tree: dict, summary_path: Path) -> None:
             }
         )
     rows.sort(key=lambda row: (row["iteration"], row["node"]))
+    row_by_name = {row["node"]: row for row in rows}
 
     best = -1.0
     curve: list[str] = []
@@ -156,9 +161,34 @@ def write_summary(tree: dict, summary_path: Path) -> None:
         f"- Best validation Macro-F1: {max((row['val'] for row in rows), default=0.0):.4f}",
         f"- Best-so-far curve: `{', '.join(curve)}`",
         "",
-        "| Iter | Node | Parent | Hidden | Depth | Dropout | LR | Weight decay | Val Macro-F1 | Test Macro-F1 | Note |",
-        "|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---|",
+        "## Tree Structure",
+        "",
+        "Each parent can keep multiple trained children before UCT descends further, so the demo shows breadth near the root and selective deeper expansion.",
+        "",
     ]
+
+    def append_tree(name: str, depth: int) -> None:
+        row = row_by_name.get(name)
+        node = tree["nodes"][name]
+        label = f"{'  ' * depth}- `{name}`"
+        if row is not None:
+            label += f" val={row['val']:.4f} test={row['test']:.4f}"
+        label += f" visits={int(node.get('visits', 0))} children={len(node.get('children', []))}"
+        lines.append(label)
+        for child in node.get("children", []):
+            append_tree(child, depth + 1)
+
+    append_tree(tree["root"], 0)
+
+    lines.extend(
+        [
+            "",
+            "## Node Metrics",
+            "",
+            "| Iter | Node | Parent | Hidden | Depth | Dropout | LR | Weight decay | Val Macro-F1 | Test Macro-F1 | Note |",
+            "|---:|---|---|---:|---:|---:|---:|---:|---:|---:|---|",
+        ]
+    )
     for row in rows:
         lines.append(
             "| {iteration} | `{node}` | `{parent}` | {hidden_dim} | {depth} | {dropout} | {lr} | {weight_decay} | {val:.4f} | {test:.4f} | {note} |".format(
@@ -190,6 +220,7 @@ def main() -> None:
     parser.add_argument("--exploration", type=float, default=1.2)
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--max-epochs", type=int, default=None)
+    parser.add_argument("--max-children", type=int, default=3)
     parser.add_argument("--summary", type=Path, default=Path("experiments/synthetic_mcts_summary.md"))
     parser.add_argument("--reset", action="store_true", help="Start from a clean synthetic demo tree and node outputs.")
     args = parser.parse_args()
@@ -214,7 +245,7 @@ def main() -> None:
 
     created: list[str] = []
     for step in range(1, args.steps + 1):
-        path = select_path(tree, args.exploration)
+        path = select_path(tree, args.exploration, args.max_children)
         parent_name = path[-1]
         parent = nodes[parent_name]
         parent_config = json.loads(Path(parent["config"]).read_text())

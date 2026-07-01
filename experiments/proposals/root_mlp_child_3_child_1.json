@@ -1,5 +1,5 @@
 {
-  "node_name": "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1",
+  "node_name": "root_mlp_child_3_child_1",
   "data": {
     "n_perturbations": 240,
     "n_targets": 664,
@@ -9,7 +9,7 @@
   },
   "model": {
     "input_dim": 128,
-    "hidden_dim": 384,
+    "hidden_dim": 256,
     "n_targets": 664,
     "n_classes": 3,
     "dropout": 0.05,
@@ -18,8 +18,8 @@
   "training": {
     "batch_size": 16,
     "epochs": 8,
-    "lr": 0.0005,
-    "weight_decay": 1e-05
+    "lr": 0.0003,
+    "weight_decay": 0.001
   },
-  "proposal_note": "mutated hidden_dim from parent root_mlp_child_1_child_1_child_1_child_1_child_1_child_1"
+  "proposal_note": "mutated dropout from parent root_mlp_child_3"
 }

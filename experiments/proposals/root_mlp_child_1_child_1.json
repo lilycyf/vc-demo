@@ -18,8 +18,8 @@
   "training": {
     "batch_size": 16,
     "epochs": 8,
-    "lr": 0.0005,
-    "weight_decay": 0.0001
+    "lr": 0.0008,
+    "weight_decay": 1e-05
   },
-  "proposal_note": "mutated lr from parent root_mlp_child_1"
+  "proposal_note": "mutated weight_decay from parent root_mlp_child_1"
 }
