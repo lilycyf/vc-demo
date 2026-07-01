@@ -1,247 +1,206 @@
-# Codex VCHarness-Style K562 Experiment Runbook
+# Codex Agent Search Runbook
 
-This document is the instruction sheet for the next Codex agent. The goal is to run one K562 cell-line experiment in a VCHarness-style loop, where the same Codex session acts as the agent that proposes larger child-node changes.
+This runbook is a generic protocol for running a VCHarness-style model search with Codex acting as the proposal agent. It intentionally does not define the scientific topic. The topic, dataset, metric, experiment name, and command should be supplied in the user task that points Codex to this document.
 
-## Starting Point
+## Purpose
 
-Work only on the RunPod machine.
+Use a repeatable search loop to improve a model/pipeline for a user-specified research question:
 
-```bash
-cd /workspace/vc-demo
-git pull --ff-only
-```
+1. Train one or more root candidate pipelines.
+2. Use MCTS or another configured search policy to select which trained parent node to expand.
+3. Use Codex-agent judgment to propose the next child node within the allowed edit boundary.
+4. Train/evaluate the child node.
+5. Record the proposal, result, and search-tree state.
+6. Stop by the task-defined budget or stopping rule.
+7. Produce a final conclusion tied to the user's research question.
 
-Expected current code includes:
+## Required Inputs From The User Task
 
-- `src/vc_demo/harness/run.py`: orchestration CLI
-- `src/vc_demo/harness/mcts.py`: MCTS parent selection
-- `src/vc_demo/harness/agent.py`: current rule-based proposal stub
-- `src/vc_demo/harness/executor.py`: node training executor
-- `src/vc_demo/harness/report.py`: summary writer
-- `configs/k562_roots/*.json`: root candidate configs
-- real K562 data under ignored `data/cell_lines/`
+Before running, identify these fields from the user's task. If any are missing and cannot be inferred from the repo, ask before starting the formal run.
 
-## Role of This Codex Session
+- Research question: what scientific or modeling question is being tested.
+- Dataset and split: where the data lives and which train/validation/test split must be preserved.
+- Target metric: the metric used for search reward and final comparison.
+- Baseline/root configs: which initial candidates must be trained first.
+- Experiment name and run directory.
+- Search budget: node budget, epoch budget, time/cost limit if any.
+- Stop rule: no-improvement threshold, max nodes, or other user-defined stop condition.
+- Allowed edits: which files Codex may change before/during the experiment.
+- Forbidden edits: data, splits, metric semantics, previous results, or any other protected surface.
+- Final deliverables: summary files, conclusion file, commit/push expectations.
 
-You are not only running the search. You are also the agent that improves the proposal behavior.
+## Role Of The Codex Agent
 
-The existing `rule_based_vcharness_stub` is allowed to be edited by you before the formal run. Your job is to make the child proposals meaningfully different, closer to the paper's idea that each node is a different executable model/pipeline hypothesis.
+Codex has two roles:
 
-MCTS should remain responsible for parent selection. Codex-agent logic should remain responsible for child design.
+- Experiment runner: execute the configured harness command and monitor outputs.
+- Proposal agent: when allowed by the user task, improve or implement the proposal policy that generates child nodes.
 
-## What You May Change
+The search policy should choose which parent to expand. The proposal agent should decide how to turn that parent into a valid child candidate. Keep those responsibilities separate unless the user explicitly asks to redesign the search algorithm.
 
-You may edit:
+## Node Definition
 
-- `src/vc_demo/harness/agent.py`
-- `src/vc_demo/harness/report.py`
-- `src/vc_demo/harness/run.py`, only if needed for logging or handoff quality
-- `src/vc_demo/models.py`, only if adding a clearly named model family and keeping old models compatible
-- `configs/k562_roots/*.json`, only if adding a new root config without breaking existing roots
-- documentation files for reporting
+A node is one complete executable candidate pipeline. Depending on the project, this may include:
 
-You may create:
+- data representation or feature source
+- model family or architecture
+- fusion/head design
+- training objective or loss variant
+- optimizer and regularization settings
+- training schedule or budget
+- any task-specific preprocessing that is allowed by the user
 
-- new proposal strategy names
-- new config-level mutation policies
-- new model families if they are small enough to train on this pod
-- `experiments/k562_vcharness_codex_agent/notes.md`
-- final report markdown files
+A child node must be valid, trainable, and comparable to its parent under the same target metric. Do not create changes that make the result incomparable unless the user explicitly asks for exploratory, non-comparable runs.
 
-## What You Must Not Change
+## Allowed And Forbidden Changes
 
-Do not change:
+Follow the user's task-specific allowed/forbidden lists. If the lists are absent, use this conservative default:
 
-- raw data under `data/raw/`
-- processed dataset contents under `data/cell_lines/`
-- train/validation/test split definitions
-- metric meaning: validation Macro-F1 remains selection reward
-- gitignore rules that keep large node artifacts out of git
-- the core claim boundary: this is a one-cell-line approximation, not full paper reproduction
+Allowed by default:
 
-Do not delete previous committed experiment summaries.
+- proposal policy code
+- small model definitions that remain compatible with existing configs
+- experiment configs
+- report/conclusion documents
+- logging improvements
 
-Do not commit checkpoints, `nodes/`, pycache, raw data, or processed data.
+Forbidden by default:
 
-## Required Node Meaning
+- raw data
+- processed data and split definitions
+- metric semantics
+- previous committed results
+- large binary outputs
+- checkpoint files
+- ignored node workspaces unless explicitly requested
 
-Each node must represent one complete trainable candidate pipeline, not a tiny isolated hyperparameter tweak.
+## Required Records Per Node
 
-A child node should change at least one major dimension, preferably two or more:
-
-- feature source: onehot, delta, concat
-- model family: mlp, residual_mlp, gated_mlp, low_rank_mlp, or a new compatible family
-- head design: dense head vs low-rank/factorized head
-- capacity: width/depth together
-- regularization/optimization: dropout, learning rate, weight decay together
-- training budget, only if explicitly documented
-
-Avoid generating many children that differ only by learning rate.
-
-## Required Records Per Child Node
-
-For every child proposal, make sure the run writes or preserves:
+For every attempted child node, preserve or generate records containing:
 
 - parent node id
 - child node id
-- MCTS candidate scores at selection time
-- proposal strategy name
-- hypothesis in plain English
-- concrete config changes
-- validation Macro-F1
-- test Macro-F1
-- whether it improved over parent
-- whether it improved over best root
-- failure reason if failed
+- parent-selection score or rationale
+- proposal strategy or change category
+- hypothesis
+- concrete config/code changes
+- validation metric
+- test metric, if part of the task protocol
+- comparison to parent
+- comparison to best root/baseline
+- failure reason and traceback summary if failed
 
-The current harness already writes proposal JSON files under:
+Prefer machine-readable proposal files plus a human-readable summary.
 
-```text
-experiments/<experiment>/proposals/
-```
+## Running The Experiment
 
-and summary/tree files under:
+Use the command provided in the user task. If the repo provides a harness CLI, prefer it over ad hoc scripts.
 
-```text
-experiments/<experiment>/tree.json
-experiments/<experiment>/search_summary.md
-experiments/<experiment>/failures.json
-```
-
-Node workspaces under `experiments/<experiment>/nodes/` are ignored by git and should not be committed.
-
-## Formal Run Command
-
-After any agent/proposal improvements are complete, run:
+Before the formal run:
 
 ```bash
-cd /workspace/vc-demo
-python -m vc_demo.harness.run \
-  --experiment k562_vcharness_codex_agent \
-  --root-configs configs/k562_roots/*.json \
-  --run-dir experiments/k562_vcharness_codex_agent \
-  --budget-nodes 30 \
-  --max-epochs 4 \
-  --max-children 3 \
-  --stop-no-improve 8 \
-  --exploration 0.7 \
-  --seed 7 \
-  --reset
+git pull --ff-only
+git status --short --ignored
 ```
 
-If the run is too slow or GPU availability is poor, use this smaller fallback and clearly label it as a pilot:
+If the task permits proposal-agent edits, make those edits first, then run a small smoke test when feasible. The smoke test should verify that the loop can train roots, expand at least one child, and write tree/summary/proposal files. Do not treat smoke-test metrics as scientific results.
 
-```bash
-cd /workspace/vc-demo
-python -m vc_demo.harness.run \
-  --experiment k562_vcharness_codex_agent_pilot \
-  --root-configs configs/k562_roots/*.json \
-  --run-dir experiments/k562_vcharness_codex_agent_pilot \
-  --budget-nodes 12 \
-  --max-epochs 2 \
-  --max-children 3 \
-  --stop-no-improve 5 \
-  --exploration 0.7 \
-  --seed 7 \
-  --reset
-```
+During the formal run:
 
-## Stopping Conditions
+- keep the train/validation/test split fixed
+- use the target metric as the search reward
+- do not stop only because early children underperform
+- record failures instead of silently dropping them
+- preserve enough metadata for another Codex/user to inspect the search path
 
-Stop the experiment when one of these happens:
+## Stopping
 
-- harness stops automatically with `no improvement for 8 nodes`
-- 30 child nodes have been attempted
-- repeated infrastructure failure prevents meaningful training
-- GPU cost/time budget is explicitly stopped by the user
+Stop only when one of the user-task stopping conditions is met, such as:
 
-Do not stop merely because an early child is worse than its parent. That is expected in tree search.
+- maximum node budget reached
+- no improvement for the configured number of nodes
+- time/cost/GPU budget reached
+- repeated infrastructure failure blocks meaningful progress
+- explicit user stop instruction
 
-## Final Conclusion Required
+If the harness stops automatically, report its exact stop reason.
 
-At the end, create a final conclusion document:
+## Final Conclusion
 
-```text
-experiments/k562_vcharness_codex_agent/final_conclusion.md
-```
+Create the final deliverable requested by the user task. If no exact format is supplied, write a markdown conclusion containing:
 
-If you ran the pilot instead, use the pilot experiment directory.
-
-The conclusion must include:
-
-1. Run setup
+1. Research question and setup
    - command used
-   - GPU/device reported by metrics
-   - budget nodes
-   - max epochs
-   - stop reason
+   - dataset/split
+   - target metric
+   - budget and stop reason
 
 2. Best result
-   - best root val/test Macro-F1
-   - best overall node val/test Macro-F1
-   - improvement over best root
+   - best baseline/root result
+   - best overall node result
+   - improvement over best baseline/root
    - path from root to best node
 
 3. Search behavior
-   - how many nodes trained
-   - how many failed
-   - which proposal strategies appeared useful
-   - whether MCTS expanded multiple branches or concentrated on one branch
+   - nodes trained
+   - nodes failed
+   - branches explored
+   - proposal categories that helped or failed
 
-4. Biological/ML interpretation
-   - which feature source worked best
-   - which model family worked best
-   - whether the result suggests representation, architecture, or optimization mattered most
+4. Interpretation
+   - what appears to matter most for the research question
+   - whether evidence supports the user-specified hypothesis
+   - limits of the run
 
-5. Gap to paper
-   - clearly state this is one-cell-line K562 only
-   - clearly state whether Codex edited proposal/model code before the run
-   - clearly state that this is not the full four-cell-line VCHarness benchmark
+5. Reproducibility and artifacts
+   - summary path
+   - tree path
+   - proposal path
+   - any uncommitted/ignored artifact locations
 
-## Git Commit Requirements
+## Git Hygiene
 
-Commit and push only code, configs, proposal JSONs, summaries, and conclusion files.
-
-Before committing, check:
+Before committing:
 
 ```bash
 git status --short --ignored
 ```
 
-Allowed to commit:
-
-- `src/vc_demo/...`
-- `configs/...`
-- `experiments/k562_vcharness_codex_agent/tree.json`
-- `experiments/k562_vcharness_codex_agent/search_summary.md`
-- `experiments/k562_vcharness_codex_agent/failures.json`
-- `experiments/k562_vcharness_codex_agent/proposals/*.json`
-- `experiments/k562_vcharness_codex_agent/final_conclusion.md`
+Commit only source code, configs, small JSON/markdown summaries, proposal metadata, and final conclusions requested by the task.
 
 Do not commit:
 
-- `experiments/**/nodes/`
-- `data/`
-- `*.pt`
-- `__pycache__/`
-- `*.egg-info/`
+- raw or processed datasets unless the repo explicitly tracks them
+- training node directories containing checkpoints or bulky artifacts
+- checkpoint files
+- pycache
+- package build artifacts
+- secrets or tokens
 
-Suggested commit message:
-
-```bash
-git add src/vc_demo configs experiments/k562_vcharness_codex_agent E_CODEX_AGENT_EXPERIMENT_RUNBOOK.md
-git commit -m "Run Codex-agent K562 harness experiment"
-git push origin master
-```
-
-If only the runbook is being committed before the experiment, use:
+Commit message should describe the actual task performed, for example:
 
 ```bash
-git add E_CODEX_AGENT_EXPERIMENT_RUNBOOK.md
-git commit -m "Add Codex-agent experiment runbook"
-git push origin master
+git add <allowed files>
+git commit -m "Run <experiment-name> agent search"
+git push origin <branch>
 ```
 
-## One-Sentence Mission
+## Task Instruction Template
 
-Use MCTS to choose which trained K562 candidate to expand, use Codex-agent judgment to generate larger child pipeline changes, train each child, stop by budget/no-improvement, and produce a final conclusion that says whether the search found a better one-cell-line model than the roots.
+Use this template when assigning a concrete experiment to Codex:
+
+```text
+请连接实验机器，在 <repo_path> 中执行 git pull --ff-only，然后完整阅读 <runbook_path>。
+
+本次研究课题是：<research_question>。
+
+数据与 split：<dataset_and_split>。
+目标指标：<metric>，搜索 reward 使用 <reward_metric>。
+baseline/root configs：<root_configs>。
+实验名与目录：<experiment_name>, <run_dir>。
+预算与停止条件：<budget_and_stop_rule>。
+
+你在本次任务中既是实验 runner，也是 proposal agent。你可以修改：<allowed_edits>。你不可以修改：<forbidden_edits>。
+
+请先确认当前代码和数据是否满足任务要求；如需改 proposal policy，请在允许范围内修改并做小 smoke test；然后运行正式实验。结束后生成 <final_deliverable>，总结 best root、best overall、提升幅度、最佳路径、失败节点、搜索行为和结论。最后只提交允许提交的文件并 push。
+```
