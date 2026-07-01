@@ -34,7 +34,8 @@ class SyntheticPerturbationDataset(Dataset):
         features = rng.normal(size=(self.spec.n_perturbations, self.spec.n_features)).astype("float32")
 
         gene_weights = rng.normal(size=(self.spec.n_features, self.spec.n_targets)).astype("float32")
-        logits = features @ gene_weights / np.sqrt(self.spec.n_features)
+        logits = np.einsum("pf,ft->pt", features, gene_weights, optimize=False) / np.sqrt(float(self.spec.n_features))
+        logits = logits.astype("float32")
         logits += 0.35 * rng.normal(size=logits.shape).astype("float32")
 
         labels = np.ones_like(logits, dtype="int64")

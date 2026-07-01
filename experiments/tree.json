@@ -3,35 +3,125 @@
   "nodes": {
     "root_mlp": {
       "config": "configs/root_mlp.json",
-      "visits": 2,
-      "value": 0.0,
+      "visits": 9,
+      "value": 2.871597170829773,
       "children": [
         "root_mlp_child_1"
-      ]
+      ],
+      "status": "trained",
+      "metrics": "experiments/nodes/root_mlp/metrics.json",
+      "best_val_macro_f1": 0.3308824300765991,
+      "test_macro_f1": 0.3366108238697052
     },
     "root_mlp_child_1": {
       "config": "experiments/proposals/root_mlp_child_1.json",
-      "visits": 2,
-      "value": 0.0,
+      "parent": "root_mlp",
+      "visits": 8,
+      "value": 2.540714740753174,
       "children": [
-        "root_mlp_child_1_child_1",
-        "root_mlp_child_1_child_2"
+        "root_mlp_child_1_child_1"
       ],
-      "status": "proposed"
+      "status": "trained",
+      "iteration": 1,
+      "metrics": "experiments/nodes/root_mlp_child_1/metrics.json",
+      "best_val_macro_f1": 0.29568812251091003,
+      "test_macro_f1": 0.2934776246547699
     },
     "root_mlp_child_1_child_1": {
       "config": "experiments/proposals/root_mlp_child_1_child_1.json",
-      "visits": 0,
-      "value": 0.0,
-      "children": [],
-      "status": "proposed"
+      "parent": "root_mlp_child_1",
+      "visits": 7,
+      "value": 2.245026618242264,
+      "children": [
+        "root_mlp_child_1_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 2,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.3304040729999542,
+      "test_macro_f1": 0.32641318440437317
     },
-    "root_mlp_child_1_child_2": {
-      "config": "experiments/proposals/root_mlp_child_1_child_2.json",
-      "visits": 0,
-      "value": 0.0,
+    "root_mlp_child_1_child_1_child_1": {
+      "config": "experiments/proposals/root_mlp_child_1_child_1_child_1.json",
+      "parent": "root_mlp_child_1_child_1",
+      "visits": 6,
+      "value": 1.9146225452423096,
+      "children": [
+        "root_mlp_child_1_child_1_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 3,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.32397228479385376,
+      "test_macro_f1": 0.33233723044395447
+    },
+    "root_mlp_child_1_child_1_child_1_child_1": {
+      "config": "experiments/proposals/root_mlp_child_1_child_1_child_1_child_1.json",
+      "parent": "root_mlp_child_1_child_1_child_1",
+      "visits": 5,
+      "value": 1.5906502604484558,
+      "children": [
+        "root_mlp_child_1_child_1_child_1_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 4,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.3263089060783386,
+      "test_macro_f1": 0.3273102641105652
+    },
+    "root_mlp_child_1_child_1_child_1_child_1_child_1": {
+      "config": "experiments/proposals/root_mlp_child_1_child_1_child_1_child_1_child_1.json",
+      "parent": "root_mlp_child_1_child_1_child_1_child_1",
+      "visits": 4,
+      "value": 1.2643413543701172,
+      "children": [
+        "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 5,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1_child_1_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.3308182656764984,
+      "test_macro_f1": 0.3242000937461853
+    },
+    "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1": {
+      "config": "experiments/proposals/root_mlp_child_1_child_1_child_1_child_1_child_1_child_1.json",
+      "parent": "root_mlp_child_1_child_1_child_1_child_1_child_1",
+      "visits": 3,
+      "value": 0.9335230886936188,
+      "children": [
+        "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 6,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1_child_1_child_1_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.33280524611473083,
+      "test_macro_f1": 0.3236442804336548
+    },
+    "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1": {
+      "config": "experiments/proposals/root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1.json",
+      "parent": "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1",
+      "visits": 2,
+      "value": 0.6007178425788879,
+      "children": [
+        "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1_child_1"
+      ],
+      "status": "trained",
+      "iteration": 7,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.29908668994903564,
+      "test_macro_f1": 0.2951599061489105
+    },
+    "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1_child_1": {
+      "config": "experiments/proposals/root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1_child_1.json",
+      "parent": "root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1",
+      "visits": 1,
+      "value": 0.3016311526298523,
       "children": [],
-      "status": "proposed"
+      "status": "trained",
+      "iteration": 8,
+      "metrics": "experiments/nodes/root_mlp_child_1_child_1_child_1_child_1_child_1_child_1_child_1_child_1/metrics.json",
+      "best_val_macro_f1": 0.3016311526298523,
+      "test_macro_f1": 0.3025324046611786
     }
   }
 }
