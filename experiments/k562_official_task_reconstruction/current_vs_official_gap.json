@@ -1,0 +1,30 @@
+{
+  "status": "framework_aligned_not_numeric_reproduction",
+  "official_observed": {
+    "total_nodes": 153,
+    "best_score": 0.512766198238068,
+    "best_node": "node2-1-1-1-1-1",
+    "n_genes": 6640,
+    "n_classes": 3,
+    "training_samples_evidence": 1388,
+    "best_model_family": "AIDO.Cell-100M LoRA + STRING_GNN K=16 multi-head neighborhood attention"
+  },
+  "current_repo_observed": {
+    "n_perturbations": 105,
+    "n_target_genes": 1000,
+    "split_sizes": {
+      "train": 73,
+      "val": 16,
+      "test": 16
+    },
+    "feature_set": "onehot_plus_delta_expression_plus_ESM2_D1280"
+  },
+  "required_before_numeric_reproduction": [
+    "official train.tsv/val.tsv/test.tsv reconstruction",
+    "exact 6640 target-gene list and order",
+    "official split and label rule",
+    "AIDO.Cell-100M artifact",
+    "STRING_GNN pretrained artifact, not only STRING graph edges",
+    "official TSV datamodule/model interface"
+  ]
+}
