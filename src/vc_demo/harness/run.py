@@ -83,7 +83,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     write_tree_and_failures(run_dir, tree, failures)
 
     for iteration in range(1, args.budget_nodes + 1):
-        parent_name, scored = select_parent(tree, args.exploration, args.max_children)
+        parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))
         child_index = len(parent_node.get("children", [])) + 1
@@ -92,6 +92,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         child_config_path = proposal_dir / f"{child_name}.json"
         proposal_path = proposal_dir / f"{child_name}.proposal.json"
         proposal["mcts_selected_parent"] = parent_name
+        proposal["mcts_selection_policy"] = args.selection_policy
         proposal["mcts_candidates"] = scored[: min(8, len(scored))]
         write_json(child_config_path, child_config)
         write_json(proposal_path, proposal)
@@ -147,6 +148,7 @@ def main() -> None:
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--max-children", type=int, default=3)
     parser.add_argument("--exploration", type=float, default=0.7)
+    parser.add_argument("--selection-policy", choices=["uct", "puct"], default="puct")
     parser.add_argument("--stop-no-improve", type=int, default=8)
     parser.add_argument("--min-delta", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=7)

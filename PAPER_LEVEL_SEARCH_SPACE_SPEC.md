@@ -178,6 +178,52 @@ Planned options:
 
 Training-only changes are allowed, but must be labeled Level 1.
 
+## MCTS Selection Contract
+
+The harness must expose auditable MCTS statistics rather than only saying that it is MCTS-like.
+
+Selection supports two formulas:
+
+```text
+UCT(parent) = Q(parent) + c * sqrt(log(N) / n(parent))
+```
+
+```text
+PUCT(parent) = Q(parent) + c_puct * P(parent) * sqrt(N) / (1 + n(parent))
+```
+
+Where:
+
+- `Q(parent)` is the mean rollout reward backpropagated through that node.
+- `N` is the total visit count among selectable parents.
+- `n(parent)` is the visit count of the candidate parent.
+- `P(parent)` is an explicit node prior when available, otherwise a normalized weak empirical prior from validation reward.
+- reward is validation Macro-F1 unless the task file says otherwise.
+
+Each selection must record:
+
+- selected parent
+- selection policy: `uct` or `puct`
+- score
+- exploitation/Q term
+- exploration term
+- prior
+- visits
+- candidate list
+
+Each completed rollout must backpropagate exactly one reward from leaf to root and update:
+
+- visits
+- total value
+- mean reward
+- squared value
+- reward variance
+- best reward
+- last reward
+- rollout reward history
+
+If the paper does not publish a more specific formula, this repo treats the above as the paper-compatible MCTS contract. Do not claim exact formula identity beyond the public paper details available to the run.
+
 ## On-Demand Implementation Contract
 
 The blueprint registry may contain many planned models. Planned means selectable, not already executable.

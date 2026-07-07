@@ -39,8 +39,11 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "metrics": str(config_path.parent.parent / "nodes" / name / "metrics.json") if "proposals" in config_path.parts else "",
         "best_val_macro_f1": metrics["best_val_macro_f1"],
         "test_macro_f1": metrics["test_macro_f1"],
-        "visits": 1,
-        "value": reward(metrics),
+        "visits": 1 if not parent else 0,
+        "value": reward(metrics) if not parent else 0.0,
+        "squared_value": reward(metrics) * reward(metrics) if not parent else 0.0,
+        "mean_reward": reward(metrics) if not parent else 0.0,
+        "best_reward": reward(metrics) if not parent else 0.0,
     }
     if proposal:
         enrich_node_from_proposal(node, proposal, config_path, name)
@@ -103,7 +106,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     write_tree_and_failures(run_dir, tree, failures)
 
     for iteration in range(1, args.budget_nodes + 1):
-        parent_name, scored = select_parent(tree, args.exploration, args.max_children)
+        parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))
         child_index = len(parent_node.get("children", [])) + 1
@@ -112,6 +115,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         child_config_path = proposal_dir / f"{child_name}.json"
         proposal_path = proposal_dir / f"{child_name}.proposal.json"
         proposal["mcts_selected_parent"] = parent_name
+        proposal["mcts_selection_policy"] = args.selection_policy
         proposal["mcts_candidates"] = scored[: min(8, len(scored))]
         write_json(child_config_path, child_config)
         write_json(proposal_path, proposal)
@@ -165,6 +169,7 @@ def main() -> None:
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--max-children", type=int, default=3)
     parser.add_argument("--exploration", type=float, default=0.7)
+    parser.add_argument("--selection-policy", choices=["uct", "puct"], default="puct")
     parser.add_argument("--stop-no-improve", type=int, default=6)
     parser.add_argument("--min-delta", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=11)

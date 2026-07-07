@@ -50,6 +50,7 @@ For a small serious run, target at least:
 - 2 planned blueprints implemented on demand
 - at least one Level 4 or Level 5 child
 - explicit recording of missing artifacts, fallbacks, costs, and wall time
+- auditable MCTS selection using UCT or PUCT score components and rollout/backpropagation statistics
 
 If the user asks for a shorter smoke run, record that the run validates the loop but does not validate paper-scale model discovery.
 
@@ -58,7 +59,7 @@ If the user asks for a shorter smoke run, record that the run validates the loop
 Start with a run that allows planned blueprints to materialize implementation requests:
 
 ```bash
-python -m vc_demo.harness.program_run   --experiment k562_program_node_agent_search   --root-configs configs/k562_roots/*.json   --run-dir experiments/k562_program_node_agent_search   --budget-nodes 30   --max-epochs 4   --max-children 3   --stop-no-improve 12   --exploration 0.7   --seed 11   --allow-planned-blueprints   --max-pending-implementations 2   --reset
+python -m vc_demo.harness.program_run   --experiment k562_program_node_agent_search   --root-configs configs/k562_roots/*.json   --run-dir experiments/k562_program_node_agent_search   --budget-nodes 30   --max-epochs 4   --max-children 3   --stop-no-improve 12   --exploration 0.7   --selection-policy puct   --seed 11   --allow-planned-blueprints   --max-pending-implementations 2   --reset
 ```
 
 ## If A Planned Blueprint Is Selected

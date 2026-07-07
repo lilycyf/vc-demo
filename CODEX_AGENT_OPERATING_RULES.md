@@ -104,6 +104,13 @@ class GeneratedModel(nn.Module):
 
 The model should use only fields available on `ModelSpec` unless the implementation request explicitly provides more data.
 
+## MCTS Audit Rules
+
+For program-node searches, parent selection must use the harness MCTS layer rather than hand-picked parents. The proposal for each child must preserve the `mcts_selected_parent`, `mcts_selection_policy`, and `mcts_candidates` fields.
+
+The default serious-search policy is `puct`. Use `uct` only for ablations or when the task explicitly requests it. Final reports should mention whether the run used UCT or PUCT and should summarize the selected-parent path for the best node.
+
+
 ## Experiment Loop
 
 Use this loop for program-node experiments:
