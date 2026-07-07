@@ -114,6 +114,67 @@
         "checkpoint or rejected-blueprint decision",
         "registry update if real artifact is acquired"
       ]
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "resolver": "download_from_known_huggingface_dataset",
+      "expected_path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "command": "python scripts/download_foundation_artifact.py --path essential/essential_deg_with_split.h5ad --output data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python scripts/build_official_k562_task.py build && python scripts/build_official_k562_task.py validate"
+    },
+    {
+      "id": "official_k562_aido_cell_100m_embedding_h5ad",
+      "resolver": "download_from_known_huggingface_dataset",
+      "expected_path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+      "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad --output data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "official_string_gnn_keep20_graph",
+      "resolver": "download_from_known_huggingface_dataset",
+      "expected_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "command": "python scripts/download_foundation_artifact.py --path gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt --output data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "official_aido_cell_100m_model_dir",
+      "resolver": "codex_research_download_from_official_genbio_or_aido_source",
+      "expected_path": "/home/Models/AIDO.Cell-100M",
+      "source": "Exact AutoModel directory expected by official VCHarness public node code.",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Is /home/Models/AIDO.Cell-100M publicly downloadable as a HuggingFace model or GenBio release?",
+        "What tokenizer/model revision matches the public VCHarness generated code?",
+        "Can the downloaded h5ad embedding replace this checkpoint for an embedding-only baseline, and how should that limitation be recorded?"
+      ],
+      "required_outputs": [
+        "model directory or explicit blocker report",
+        "source URL/revision/checksum",
+        "registry update"
+      ]
+    },
+    {
+      "id": "official_string_gnn_model_dir",
+      "resolver": "codex_research_download_from_official_genbio_or_string_gnn_source",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact STRING_GNN model directory expected by official VCHarness public node code.",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Is /home/Models/STRING_GNN publicly downloadable, or must it be trained from gnn/9606...keep20 graph?",
+        "What node embedding dimensionality and vocabulary are expected by VCHarness K562 best node?",
+        "How should the repo distinguish STRING graph source data from trained STRING_GNN checkpoint?"
+      ],
+      "required_outputs": [
+        "model directory or explicit blocker report",
+        "source/build procedure",
+        "registry update"
+      ]
     }
   ]
 }

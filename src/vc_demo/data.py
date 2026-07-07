@@ -8,6 +8,8 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 
+from vc_demo.official_k562.dataset import OfficialK562TSVDataset, OfficialK562TSVSpec
+
 Split = Literal["train", "val", "test"]
 
 
@@ -157,6 +159,17 @@ def build_datasets(config: dict) -> tuple[Dataset, Dataset, Dataset]:
             SyntheticPerturbationDataset("train", spec),
             SyntheticPerturbationDataset("val", spec),
             SyntheticPerturbationDataset("test", spec),
+        )
+    if dataset_type == "official_k562_tsv":
+        spec = OfficialK562TSVSpec(
+            data_dir=str(data_cfg["data_dir"]),
+            embedding_h5ad=data_cfg.get("embedding_h5ad"),
+            n_classes=int(data_cfg.get("n_classes", 3)),
+        )
+        return (
+            OfficialK562TSVDataset("train", spec),
+            OfficialK562TSVDataset("val", spec),
+            OfficialK562TSVDataset("test", spec),
         )
     if dataset_type == "real_npz":
         spec = RealNPZSpec(

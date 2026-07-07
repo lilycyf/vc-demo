@@ -9,7 +9,8 @@ description = "Minimal VCHarness-style one-cell-line demo scaffold"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.24",
-  "tqdm>=4.66"
+  "tqdm>=4.66",
+  "h5py>=3.10"
 ]
 
 [tool.setuptools.packages.find]
