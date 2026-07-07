@@ -1,0 +1,228 @@
+{
+  "status": "blocked",
+  "blockers": [
+    "AIDO model dir: no tokenizer files detected, but public VCHarness node calls AutoTokenizer.from_pretrained",
+    "STRING_GNN model dir: model directory missing",
+    "STRING_GNN model dir: no common model weight file detected",
+    "STRING_GNN model dir: STRING_GNN directory absent; public HF model repo currently exposes no weights",
+    "auto_config failed: ValueError: The checkpoint you are trying to load has model type `cellfoundation` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date.",
+    "auto_tokenizer failed: ValueError: The checkpoint you are trying to load has model type `cellfoundation` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date."
+  ],
+  "checks": {
+    "official_code": {
+      "path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+      "required": true,
+      "exists": true,
+      "bytes": 40969,
+      "is_dir": false
+    },
+    "official_constants": {
+      "N_GENES": 6640,
+      "N_CLASSES": 3,
+      "AIDO_GENES": 19264,
+      "AIDO_MODEL_DIR": "/home/Models/AIDO.Cell-100M",
+      "STRING_MODEL_DIR": "/home/Models/STRING_GNN",
+      "AIDO_HIDDEN": 640,
+      "STRING_HIDDEN": 256,
+      "NEIGHBOR_K": 16,
+      "N_ATTN_HEADS": 2,
+      "CLASS_FREQ": [
+        0.0429,
+        0.9251,
+        0.032
+      ]
+    },
+    "task": {
+      "path": "data/cell_lines/official_k562_cls",
+      "files": {
+        "train.tsv": {
+          "path": "data/cell_lines/official_k562_cls/train.tsv",
+          "required": true,
+          "exists": true,
+          "bytes": 18873398,
+          "is_dir": false
+        },
+        "val.tsv": {
+          "path": "data/cell_lines/official_k562_cls/val.tsv",
+          "required": true,
+          "exists": true,
+          "bytes": 2081358,
+          "is_dir": false
+        },
+        "test.tsv": {
+          "path": "data/cell_lines/official_k562_cls/test.tsv",
+          "required": true,
+          "exists": true,
+          "bytes": 5691037,
+          "is_dir": false
+        },
+        "target_genes.tsv": {
+          "path": "data/cell_lines/official_k562_cls/target_genes.tsv",
+          "required": true,
+          "exists": true,
+          "bytes": 186852,
+          "is_dir": false
+        },
+        "manifest.json": {
+          "path": "data/cell_lines/official_k562_cls/manifest.json",
+          "required": true,
+          "exists": true,
+          "bytes": 1959,
+          "is_dir": false
+        }
+      },
+      "manifest_summary": {
+        "format": "official_k562_tsv",
+        "split_sizes": {
+          "train": 1388,
+          "val": 154,
+          "test": 421
+        },
+        "n_target_genes": 6640,
+        "alignment": {
+          "matches_n_genes_6640": true,
+          "matches_train_rows_1388": true,
+          "matches_train_pool_rows_1542": true,
+          "tsv_columns_match_public_node_code": [
+            "pert_id",
+            "symbol",
+            "label"
+          ]
+        }
+      }
+    },
+    "aido_model_dir": {
+      "path": "/home/Models/AIDO.Cell-100M",
+      "expected_repo": "genbio-ai/AIDO.Cell-100M",
+      "exists": true,
+      "files": [
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "model.safetensors"
+      ],
+      "has_config": true,
+      "has_weight": true,
+      "tokenizer_files": [],
+      "warnings": [
+        "no tokenizer files detected, but public VCHarness node calls AutoTokenizer.from_pretrained"
+      ]
+    },
+    "string_gnn_model_dir": {
+      "path": "/home/Models/STRING_GNN",
+      "expected_repo": "genbio-ai/STRING_GNN",
+      "exists": false,
+      "files": [],
+      "has_config": false,
+      "has_weight": false,
+      "tokenizer_files": [],
+      "warnings": [
+        "model directory missing",
+        "no common model weight file detected",
+        "STRING_GNN directory absent; public HF model repo currently exposes no weights"
+      ]
+    },
+    "modelgenerator_aido_source": {
+      "path": "/workspace/_external/ModelGenerator/huggingface/aido.cell",
+      "required": true,
+      "exists": true,
+      "bytes": null,
+      "is_dir": true
+    },
+    "imports": [
+      {
+        "name": "torch",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/torch/__init__.py"
+      },
+      {
+        "name": "numpy",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/numpy/__init__.py"
+      },
+      {
+        "name": "pandas",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/pandas/__init__.py"
+      },
+      {
+        "name": "anndata",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/anndata/__init__.py"
+      },
+      {
+        "name": "scanpy",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/scanpy/__init__.py"
+      },
+      {
+        "name": "lightning",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/lightning/__init__.py"
+      },
+      {
+        "name": "lightning.pytorch",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/lightning/pytorch/__init__.py"
+      },
+      {
+        "name": "transformers",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/transformers/__init__.py"
+      },
+      {
+        "name": "peft",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/peft/__init__.py"
+      },
+      {
+        "name": "safetensors",
+        "available": true,
+        "origin": "/usr/local/lib/python3.11/dist-packages/safetensors/__init__.py"
+      }
+    ],
+    "transformers_api": {
+      "version": "4.46.3",
+      "available": true,
+      "has_find_pruneable_heads_and_indices": true
+    },
+    "transformers_load": {
+      "attempted": true,
+      "entrypoint": "transformers.Auto*",
+      "transformers_version": "4.46.3",
+      "auto_config": {
+        "ok": false,
+        "error": "ValueError: The checkpoint you are trying to load has model type `cellfoundation` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date."
+      },
+      "auto_tokenizer": {
+        "ok": false,
+        "error": "ValueError: The checkpoint you are trying to load has model type `cellfoundation` but Transformers does not recognize this architecture. This could be because of an issue with the checkpoint, or because your version of Transformers is out of date."
+      }
+    },
+    "modelgenerator_aido_load": {
+      "attempted": true,
+      "entrypoint": "ModelGenerator aido_cell CellFoundation* classes",
+      "source_dir": "/workspace/_external/ModelGenerator/huggingface/aido.cell",
+      "source_dir_exists": true,
+      "config": {
+        "ok": true,
+        "model_type": "cellfoundation",
+        "hidden_size": 640,
+        "num_hidden_layers": 18,
+        "num_attention_heads": 20,
+        "max_position_embeddings": 19264
+      },
+      "CellFoundationModel": {
+        "ok": true,
+        "class": "CellFoundationModel"
+      },
+      "CellFoundationForMaskedLM": {
+        "ok": true,
+        "class": "CellFoundationForMaskedLM"
+      },
+      "status": "ok"
+    }
+  },
+  "interpretation": "This is a pre-training compatibility check. It distinguishes the public best-node AutoModel/AutoTokenizer entrypoint from the official ModelGenerator AIDO.Cell direct classes. Passing the direct AIDO load is necessary but not sufficient to run the public best node unchanged."
+}

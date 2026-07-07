@@ -1,0 +1,17 @@
+# Optional dependencies for official VCHarness K562 best-node compatibility work.
+# Keep separate from requirements.txt so the lightweight demo environment stays small.
+#
+# Verified on RunPod for:
+# - ModelGenerator AIDO.Cell-100M direct loading
+# - public best-node compatibility checks
+#
+# transformers 5.x removes APIs used by the current ModelGenerator AIDO.Cell source.
+transformers==4.46.3
+tokenizers<0.21
+
+anndata
+scanpy
+lightning
+peft
+pandas
+safetensors
