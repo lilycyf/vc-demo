@@ -18,6 +18,7 @@ Split = Literal["train", "val", "test"]
 class OfficialK562TSVSpec:
     data_dir: str
     embedding_h5ad: str | None = None
+    embedding_h5ads: tuple[str, ...] = ()
     n_classes: int = 3
 
 
@@ -111,24 +112,35 @@ class OfficialK562TSVDataset(Dataset):
                 self.symbols.append(row["symbol"])
                 labels.append([int(x) + 1 for x in json.loads(row["label"])])
         self.labels = torch.tensor(labels, dtype=torch.long)
-        table = _load_embedding_table(spec.embedding_h5ad)
-        if table is None:
-            eye = torch.eye(len(self.pert_ids), dtype=torch.float32)
-            self.features = eye
+        embedding_paths = tuple(spec.embedding_h5ads) or ((spec.embedding_h5ad,) if spec.embedding_h5ad else ())
+        if not embedding_paths:
+            self.features = torch.eye(len(self.pert_ids), dtype=torch.float32)
             self.embedding_coverage = 0.0
+            self.embedding_coverages = {}
         else:
-            id_to_idx, embeddings = table
-            rows = []
-            matched = 0
-            for pert_id in self.pert_ids:
-                idx = id_to_idx.get(pert_id)
-                if idx is None:
-                    rows.append(torch.zeros(embeddings.shape[1], dtype=torch.float32))
-                else:
-                    matched += 1
-                    rows.append(embeddings[idx])
-            self.features = torch.stack(rows)
-            self.embedding_coverage = matched / max(len(self.pert_ids), 1)
+            feature_blocks: list[torch.Tensor] = []
+            coverages: dict[str, float] = {}
+            for embedding_path in embedding_paths:
+                table = _load_embedding_table(embedding_path)
+                if table is None:
+                    continue
+                id_to_idx, embeddings = table
+                rows = []
+                matched = 0
+                for pert_id in self.pert_ids:
+                    idx = id_to_idx.get(pert_id)
+                    if idx is None:
+                        rows.append(torch.zeros(embeddings.shape[1], dtype=torch.float32))
+                    else:
+                        matched += 1
+                        rows.append(embeddings[idx])
+                feature_blocks.append(torch.stack(rows))
+                coverages[str(embedding_path)] = matched / max(len(self.pert_ids), 1)
+            if not feature_blocks:
+                raise ValueError("no usable official K562 embedding tables were loaded")
+            self.features = torch.cat(feature_blocks, dim=1) if len(feature_blocks) > 1 else feature_blocks[0]
+            self.embedding_coverages = coverages
+            self.embedding_coverage = min(coverages.values()) if coverages else 0.0
 
     def __len__(self) -> int:
         return len(self.pert_ids)

@@ -164,6 +164,7 @@ def build_datasets(config: dict) -> tuple[Dataset, Dataset, Dataset]:
         spec = OfficialK562TSVSpec(
             data_dir=str(data_cfg["data_dir"]),
             embedding_h5ad=data_cfg.get("embedding_h5ad"),
+            embedding_h5ads=tuple(str(p) for p in data_cfg.get("embedding_h5ads", [])),
             n_classes=int(data_cfg.get("n_classes", 3)),
         )
         return (

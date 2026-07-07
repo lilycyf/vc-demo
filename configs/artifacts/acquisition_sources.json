@@ -175,6 +175,15 @@
         "source/build procedure",
         "registry update"
       ]
+    },
+    {
+      "id": "official_gnn_simple_embedding_h5ad",
+      "resolver": "download_from_known_huggingface_dataset",
+      "expected_path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+      "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/GNN_Simple_Official_(D=256).h5ad --output data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
     }
   ]
 }
