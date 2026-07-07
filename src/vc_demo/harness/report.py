@@ -117,7 +117,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "## Reproducibility Notes",
         "",
         "- One node means one complete trainable candidate pipeline: data representation, model type, model hyperparameters, optimizer settings, and training run.",
-        "- MCTS decides which already-trained parent is worth expanding next using UCT.",
+        "- MCTS decides which already-trained parent is worth expanding next using UCT/PUCT.",
         "- The proposal agent decides how to modify that parent into one executable child config or node-local model program.",
         "- The node workspace under `nodes/` is intentionally ignored by git; committed summaries live in `tree.json`, `search_summary.md`, and `proposals/`.",
     ])

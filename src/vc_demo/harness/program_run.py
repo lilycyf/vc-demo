@@ -91,21 +91,32 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     program_root = run_dir / "programs"
     program_root.mkdir(parents=True, exist_ok=True)
 
-    tree = empty_tree(args.experiment)
-    failures: list[dict[str, Any]] = []
-    rng = random.Random(args.seed)
+    tree_path = run_dir / "tree.json"
+    failures_path = run_dir / "failures.json"
+    resume = (not args.reset) and tree_path.exists()
+    if resume:
+        tree = read_json(tree_path)
+        failures = read_json(failures_path).get("failures", []) if failures_path.exists() else []
+    else:
+        tree = empty_tree(args.experiment)
+        failures: list[dict[str, Any]] = []
+    rng = random.Random(args.seed + len(tree.get("events", [])))
     proposal_dir = run_dir / "proposals"
     proposal_dir.mkdir(parents=True, exist_ok=True)
 
-    root_configs = [Path(path) for path in args.root_configs]
-    train_roots(root_configs, run_dir, tree, args.max_epochs)
-    best_val = max(node["best_val_macro_f1"] for node in tree["nodes"].values())
+    if not resume:
+        root_configs = [Path(path) for path in args.root_configs]
+        train_roots(root_configs, run_dir, tree, args.max_epochs)
+    trained_values = [node["best_val_macro_f1"] for node in tree["nodes"].values() if node.get("status") == "trained"]
+    best_val = max(trained_values) if trained_values else -1.0
     no_improve = 0
-    pending_count = 0
+    pending_count = len(implementation_queue(tree))
     stop_reason = "budget exhausted"
     write_tree_and_failures(run_dir, tree, failures)
 
-    for iteration in range(1, args.budget_nodes + 1):
+    start_iteration = max([0, *[int(node.get("iteration", 0)) for node in tree["nodes"].values()]]) + 1
+    end_iteration = start_iteration + args.budget_nodes - 1
+    for iteration in range(start_iteration, end_iteration + 1):
         parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))

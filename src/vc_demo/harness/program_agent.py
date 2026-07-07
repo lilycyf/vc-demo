@@ -18,7 +18,8 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         raise ValueError(f"planned blueprint {blueprint_id!r} selected without include_planned=True")
 
     digest = hashlib.sha1(f"{parent_name}:{child_index}:{blueprint_id}".encode("utf-8")).hexdigest()[:8]
-    child_name = f"{parent_name.split('_child_')[0]}_p{child_index}_{blueprint_id}_{digest}"
+    parent_root = parent_name.split("_p")[0]
+    child_name = f"{parent_root}_p{child_index}_{blueprint_id}_{digest}"
     child_dir = program_root / child_name
     child_dir.mkdir(parents=True, exist_ok=True)
 
