@@ -2,9 +2,12 @@ from __future__ import annotations
 
 import importlib.util
 import hashlib
-from dataclasses import dataclass
+import json
+from dataclasses import dataclass, field
 from pathlib import Path
+from typing import Any
 
+import numpy as np
 import torch
 from torch import nn
 
@@ -19,6 +22,11 @@ class ModelSpec:
     depth: int = 2
     model_type: str = "mlp"
     low_rank_dim: int = 64
+    artifact_manifest_path: str = ""
+    source_feature_dim: int = 0
+    perturbation_embedding_dim: int = 0
+    target_gene_embedding_dim: int = 0
+    artifacts: dict[str, Any] = field(default_factory=dict)
 
 
 def mlp_block(in_dim: int, out_dim: int, dropout: float) -> list[nn.Module]:
@@ -125,11 +133,85 @@ class LowRankPerturbationMLP(nn.Module):
         return logits + self.bias.unsqueeze(0)
 
 
+
+def _load_npz_array(path: str | Path, key: str) -> torch.Tensor:
+    if not path:
+        raise ValueError(f"artifact key {key!r} requires a non-empty path")
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"artifact array path does not exist: {path}")
+    with np.load(path) as data:
+        if key not in data.files:
+            raise KeyError(f"artifact array {path} does not contain key {key!r}; available={data.files}")
+        return torch.from_numpy(np.asarray(data[key], dtype="float32"))
+
+
+def load_artifact_manifest(path: str | Path) -> dict[str, Any]:
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"artifact manifest does not exist: {path}")
+    with path.open() as f:
+        manifest = json.load(f)
+    manifest.setdefault("manifest_path", str(path))
+    return manifest
+
+
+class TargetAwareBilinearFusion(nn.Module):
+    """Use frozen target-gene artifacts as the prediction head geometry.
+
+    The input vector still carries perturbation/cell-line features, including any
+    perturbation-gene embedding already appended by the dataset builder. The head
+    separately loads an aligned target-gene embedding table and scores each target
+    through a factorized bilinear interaction. This is intentionally closer to a
+    paper-level biological-prior node than a dense `[hidden -> all targets]` head.
+    """
+
+    def __init__(self, spec: ModelSpec) -> None:
+        super().__init__()
+        manifest_path = spec.artifact_manifest_path or spec.artifacts.get("artifact_manifest_path", "")
+        if not manifest_path:
+            raise ValueError("target_aware_bilinear requires model.artifact_manifest_path")
+        manifest = load_artifact_manifest(manifest_path)
+        target_info = manifest.get("target_gene_embeddings", {})
+        target_embeddings = _load_npz_array(target_info.get("path", ""), str(target_info.get("key", "target_gene_embeddings")))
+        if target_embeddings.ndim != 2:
+            raise ValueError(f"target embeddings must be 2-D [n_targets, dim], got {tuple(target_embeddings.shape)}")
+        if int(target_embeddings.shape[0]) != int(spec.n_targets):
+            raise ValueError(f"target embedding rows {target_embeddings.shape[0]} do not match n_targets {spec.n_targets}")
+
+        hidden = int(spec.hidden_dim)
+        rank = max(16, min(int(spec.low_rank_dim), hidden, 128))
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        layers: list[nn.Module] = [nn.Linear(spec.input_dim, hidden), nn.LayerNorm(hidden), nn.GELU(), nn.Dropout(spec.dropout)]
+        for _ in range(max(0, int(spec.depth) - 1)):
+            layers.extend(mlp_block(hidden, hidden, spec.dropout))
+        self.encoder = nn.Sequential(*layers)
+        self.context_rank = nn.Linear(hidden, rank * self.n_classes)
+        self.target_projection = nn.Sequential(
+            nn.LayerNorm(int(target_embeddings.shape[1])),
+            nn.Linear(int(target_embeddings.shape[1]), rank),
+        )
+        self.target_residual = nn.Linear(int(target_embeddings.shape[1]), self.n_classes)
+        self.bias = nn.Parameter(torch.zeros(self.n_targets, self.n_classes))
+        self.register_buffer("target_embeddings", target_embeddings, persistent=False)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        context = self.encoder(x)
+        context_rank = self.context_rank(context).view(x.shape[0], -1, self.n_classes)
+        target_embeddings = self.target_embeddings.to(device=x.device, dtype=x.dtype)
+        target_rank = self.target_projection(target_embeddings)
+        logits = torch.einsum("brc,nr->bnc", context_rank, target_rank)
+        residual = self.target_residual(target_embeddings).unsqueeze(0)
+        return logits + residual + self.bias.unsqueeze(0)
+
+
 MODEL_TYPES = {
     "mlp": PerturbationMLP,
     "residual_mlp": ResidualPerturbationMLP,
     "gated_mlp": GatedPerturbationMLP,
     "low_rank_mlp": LowRankPerturbationMLP,
+    "target_aware_bilinear": TargetAwareBilinearFusion,
 }
 
 

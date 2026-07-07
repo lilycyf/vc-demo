@@ -37,8 +37,10 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     model_cfg["hidden_dim"] = _bounded_hidden(model_cfg.get("hidden_dim", 256), blueprint_id)
     model_cfg["depth"] = min(max(int(model_cfg.get("depth", 2) or 2), 1), 3)
     model_cfg["dropout"] = float(model_cfg.get("dropout", 0.1) if model_cfg.get("dropout") is not None else 0.1)
-    if blueprint_id in {"dual_path_gated_low_rank", "target_factor_router"}:
-        model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 64) or 64), 32), 96)
+    if blueprint_id in {"dual_path_gated_low_rank", "target_factor_router", "target_gene_embedding_bilinear"}:
+        model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 64) or 64), 32), 128)
+    if blueprint_id == "target_gene_embedding_bilinear":
+        model_cfg["artifact_manifest_path"] = "auto"
     train_cfg["lr"] = min(float(train_cfg.get("lr", 3e-4) or 3e-4), 3e-4)
     train_cfg["weight_decay"] = min(float(train_cfg.get("weight_decay", 1e-4) or 1e-4), 1e-4)
 
@@ -131,12 +133,13 @@ def hypothesis_for(blueprint_id: str, blueprint: dict[str, Any]) -> str:
     mapping = {
         "dual_path_gated_low_rank": "A dual-path encoder with input-conditioned gating and a low-rank target head may share target-gene response structure while preserving perturbation-specific signal.",
         "mixture_of_experts": "A compact router over multiple experts may specialize decision surfaces for different perturbation feature regimes.",
+        "target_gene_embedding_bilinear": "A frozen target-gene artifact table may give the classifier target-specific biological geometry instead of learning every target head from scratch.",
     }
     return mapping.get(blueprint_id, blueprint.get("role", f"Implement and test blueprint {blueprint_id}."))
 
 
 def render_program_source(blueprint_id: str) -> str:
-    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS}
+    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR}
     try:
         return sources[blueprint_id]
     except KeyError as exc:
@@ -200,4 +203,64 @@ class GeneratedModel(nn.Module):
         z = torch.sum(stacked * weights.unsqueeze(-1), dim=1)
         logits = self.head(self.norm(z))
         return logits.view(x.shape[0], self.n_targets, self.n_classes)
+"""
+
+
+TARGET_GENE_EMBEDDING_BILINEAR = """from __future__ import annotations
+
+import json
+from pathlib import Path
+
+import numpy as np
+import torch
+from torch import nn
+
+
+def mlp_block(in_dim: int, out_dim: int, dropout: float) -> list[nn.Module]:
+    return [nn.Linear(in_dim, out_dim), nn.LayerNorm(out_dim), nn.GELU(), nn.Dropout(dropout)]
+
+
+def load_npz_array(path: str | Path, key: str) -> torch.Tensor:
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"artifact array path does not exist: {path}")
+    with np.load(path) as data:
+        if key not in data.files:
+            raise KeyError(f"artifact array {path} missing key {key!r}; available={data.files}")
+        return torch.from_numpy(np.asarray(data[key], dtype="float32"))
+
+
+class GeneratedModel(nn.Module):
+    def __init__(self, spec) -> None:
+        super().__init__()
+        manifest_path = getattr(spec, "artifact_manifest_path", "") or getattr(spec, "artifacts", {}).get("artifact_manifest_path", "")
+        if not manifest_path:
+            raise ValueError("target_gene_embedding_bilinear requires model.artifact_manifest_path or auto-bound artifact manifest")
+        with Path(manifest_path).open() as f:
+            manifest = json.load(f)
+        target_info = manifest.get("target_gene_embeddings", {})
+        target_embeddings = load_npz_array(target_info.get("path", ""), target_info.get("key", "target_gene_embeddings"))
+        if target_embeddings.shape[0] != int(spec.n_targets):
+            raise ValueError(f"target embedding rows {target_embeddings.shape[0]} != n_targets {spec.n_targets}")
+        hidden = int(spec.hidden_dim)
+        rank = max(16, min(int(getattr(spec, "low_rank_dim", 64)), hidden, 128))
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        layers: list[nn.Module] = [nn.Linear(spec.input_dim, hidden), nn.LayerNorm(hidden), nn.GELU(), nn.Dropout(spec.dropout)]
+        for _ in range(max(0, int(spec.depth) - 1)):
+            layers.extend(mlp_block(hidden, hidden, spec.dropout))
+        self.encoder = nn.Sequential(*layers)
+        self.context_rank = nn.Linear(hidden, rank * self.n_classes)
+        self.target_projection = nn.Sequential(nn.LayerNorm(target_embeddings.shape[1]), nn.Linear(target_embeddings.shape[1], rank))
+        self.target_residual = nn.Linear(target_embeddings.shape[1], self.n_classes)
+        self.bias = nn.Parameter(torch.zeros(self.n_targets, self.n_classes))
+        self.register_buffer("target_embeddings", target_embeddings, persistent=False)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        context = self.encoder(x)
+        context_rank = self.context_rank(context).view(x.shape[0], -1, self.n_classes)
+        target_embeddings = self.target_embeddings.to(device=x.device, dtype=x.dtype)
+        target_rank = self.target_projection(target_embeddings)
+        logits = torch.einsum("brc,nr->bnc", context_rank, target_rank)
+        return logits + self.target_residual(target_embeddings).unsqueeze(0) + self.bias.unsqueeze(0)
 """

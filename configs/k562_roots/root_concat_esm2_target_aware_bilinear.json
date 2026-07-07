@@ -1,0 +1,29 @@
+{
+  "node_name": "root_concat_esm2_target_aware_bilinear",
+  "data": {
+    "dataset_type": "real_npz",
+    "cell_line": "K562",
+    "data_dir": "data/cell_lines/k562_concat_esm2_gene_embedding",
+    "feature_key": "features",
+    "label_key": "labels",
+    "split_key": "split",
+    "n_classes": 3
+  },
+  "model": {
+    "input_dim": "auto",
+    "model_type": "target_aware_bilinear",
+    "hidden_dim": 384,
+    "low_rank_dim": 96,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.12,
+    "depth": 2,
+    "artifact_manifest_path": "auto"
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 8,
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  }
+}

@@ -42,6 +42,7 @@ def evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> dict
 def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> dict:
     config = json.loads(json.dumps(config))
     model_cfg = config.setdefault("model", {})
+    data_cfg = config.get("data", {})
     x = sample["x"]
     y = sample["y"]
     if model_cfg.get("input_dim", "auto") == "auto":
@@ -49,7 +50,15 @@ def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> d
     if model_cfg.get("n_targets", "auto") == "auto":
         model_cfg["n_targets"] = int(y.shape[-1])
     if model_cfg.get("n_classes", "auto") == "auto":
-        model_cfg["n_classes"] = int(config.get("data", {}).get("n_classes", 3))
+        model_cfg["n_classes"] = int(data_cfg.get("n_classes", 3))
+
+    data_dir = Path(str(data_cfg.get("data_dir", "")))
+    artifact_manifest = data_dir / "artifact_manifest.json"
+    if model_cfg.get("artifact_manifest_path") == "auto" and artifact_manifest.exists():
+        model_cfg["artifact_manifest_path"] = str(artifact_manifest)
+    if artifact_manifest.exists() and not model_cfg.get("artifacts"):
+        with artifact_manifest.open() as f:
+            model_cfg["artifacts"] = json.load(f)
     return config
 
 
