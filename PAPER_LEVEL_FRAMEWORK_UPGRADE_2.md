@@ -84,3 +84,7 @@ A Codex experiment agent must not claim a node uses ESM2/AIDO/scFoundation/STRIN
 ## Strict Artifact Mode
 
 Formal testing uses strict artifact mode by default. `program_run` blocks and stops when a selected blueprint requires a missing artifact according to the registry. `train_pending` also refuses to train a pending node with missing artifacts unless `--allow-missing-artifact-fallbacks` is explicitly passed for a separate ablation. This prevents fallback models from contaminating artifact-search conclusions.
+
+## Artifact Acquisition Queue
+
+Strict artifact mode now distinguishes missing-artifact acquisition from fallback. When a selected blueprint requires a missing artifact, `program_run` writes `acquisition_queue.json` and stops with `requires_artifact_acquisition`. The correct next step is to search/download/build the real artifact, update the registry, rerun audit, and resume strict search.

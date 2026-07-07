@@ -84,14 +84,14 @@ def add_blocked_missing_artifact_node(
         "config": str(config_path),
         "parent": parent,
         "children": [],
-        "status": "blocked_missing_artifact",
+        "status": "requires_artifact_acquisition",
         "iteration": iteration,
         "visits": 0,
         "value": 0.0,
         "Q_v": 0.0,
         "Exploitation": 0.0,
         "stage": "blocked",
-        "blocked_reason": "required artifact missing; strict artifact mode does not allow fallback training",
+        "blocked_reason": "required artifact missing; strict artifact mode requires artifact acquisition before training",
         "missing_required_artifacts": missing_summary.get("missing_required_artifacts", []),
         "missing_required_artifact_paths": missing_summary.get("missing_required_artifact_paths", []),
         "missing_required_artifact_sources": missing_summary.get("missing_required_artifact_sources", []),
@@ -117,10 +117,32 @@ def implementation_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
     ]
 
 
+def acquisition_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
+    items: list[dict[str, Any]] = []
+    for name, node in tree.get("nodes", {}).items():
+        if node.get("status") not in {"requires_artifact_acquisition", "blocked_missing_artifact"}:
+            continue
+        missing = node.get("missing_required_artifacts", []) or []
+        paths = node.get("missing_required_artifact_paths", []) or []
+        sources = node.get("missing_required_artifact_sources", []) or []
+        for idx, artifact_id in enumerate(missing):
+            items.append({
+                "node": name,
+                "strategy": node.get("strategy"),
+                "artifact_id": artifact_id,
+                "expected_path": paths[idx] if idx < len(paths) else "",
+                "source": sources[idx] if idx < len(sources) else "",
+                "action": "search_download_or_build_real_artifact",
+                "resume_after": "update registry, rerun artifact audit, then resume search without fallback",
+            })
+    return items
+
+
 def write_tree_and_failures(run_dir: Path, tree: dict[str, Any], failures: list[dict[str, Any]]) -> None:
     write_json(run_dir / "tree.json", tree)
     write_json(run_dir / "failures.json", {"failures": failures})
     write_json(run_dir / "implementation_queue.json", {"items": implementation_queue(tree)})
+    write_json(run_dir / "acquisition_queue.json", {"items": acquisition_queue(tree)})
 
 
 def run_search(args: argparse.Namespace) -> dict[str, Any]:
@@ -184,12 +206,12 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             failures.append({
                 "node": child_name,
                 "parent": parent_name,
-                "error": "blocked_missing_artifact",
+                "error": "requires_artifact_acquisition",
                 "strategy": proposal.get("strategy"),
                 "missing_required_artifacts": proposal["missing_required_artifacts"],
                 "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
             })
-            stop_reason = f"blocked missing artifact for {proposal.get('strategy')}: {', '.join(proposal['missing_required_artifacts'])}"
+            stop_reason = f"requires artifact acquisition for {proposal.get('strategy')}: {', '.join(proposal['missing_required_artifacts'])}"
             write_tree_and_failures(run_dir, tree, failures)
             break
 
@@ -226,7 +248,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
     print(json.dumps(result, indent=2))
     return result
 

@@ -28,3 +28,6 @@ At the end, write the requested final_conclusion.md, commit only allowed files, 
 
 
 Strict artifact rule: in formal testing, do not implement fallback models for missing AIDO/scFoundation/STRING/pathway/pretrained artifacts. If the registry says a required artifact is missing, stop and record `blocked_missing_artifact`. Use `--allow-missing-artifact-fallbacks` only when the user explicitly asks for a separate ablation.
+
+
+Artifact acquisition rule: if strict search stops with `requires_artifact_acquisition`, read `acquisition_queue.json`, search/download/build the real source-backed artifact, update the registry, rerun artifact audit, and resume strict search. Do not train fallback models in formal tests.

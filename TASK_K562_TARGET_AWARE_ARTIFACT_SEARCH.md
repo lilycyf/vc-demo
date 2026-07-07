@@ -12,7 +12,8 @@ For one-cell-line K562 CRISPR perturbation DEG classification, can Codex + UCT/M
 4. `CODEX_AGENT_OPERATING_RULES.md`
 5. `TARGET_AWARE_ARTIFACT_MODEL_SPACE.md`
 6. `PAPER_LEVEL_FRAMEWORK_UPGRADE_2.md`
-7. `TASK_K562_TARGET_AWARE_ARTIFACT_SEARCH.md`
+7. `ARTIFACT_ACQUISITION_RUNBOOK.md`
+8. `TASK_K562_TARGET_AWARE_ARTIFACT_SEARCH.md`
 
 ## Required Artifacts
 
@@ -89,7 +90,7 @@ python -m vc_demo.harness.program_run \
   --reset
 ```
 
-If pending nodes appear, first confirm that all required artifacts are present. If any required artifact is missing, stop and write the blocked conclusion. Only implement selected node-local `model.py` files when the required real artifacts are present, then continue with:
+If pending nodes appear, first confirm that all required artifacts are present. If any required artifact is missing, stop, read `acquisition_queue.json`, and acquire the real artifact before training. Only implement selected node-local `model.py` files when the required real artifacts are present, then continue with:
 
 ```bash
 python -m vc_demo.harness.train_pending --run-dir experiments/k562_target_aware_artifact_search
@@ -116,3 +117,7 @@ Do not commit `data/`, `experiments/**/nodes/`, checkpoints, `.h5ad`, `.npz`, py
 ## Strict Artifact Testing Rule
 
 This formal testing task runs in strict artifact mode. If MCTS selects AIDO, scFoundation, STRING, pathway, or any other artifact-dependent blueprint and the required real artifact is missing, stop the search and record the node as `blocked_missing_artifact`. Do not implement or train a fallback model in the formal test. Fallbacks are allowed only in a separate ablation run with `--allow-missing-artifact-fallbacks`, and must not be counted as paper-aligned artifact usage.
+
+## Artifact Acquisition Rule
+
+If strict search stops with `requires_artifact_acquisition`, read `<run_dir>/acquisition_queue.json` and follow `ARTIFACT_ACQUISITION_RUNBOOK.md`. The next action is to search/download/build the real artifact from a source-backed public or approved location, update the registry, audit it, and rerun strict search. Do not implement or train fallback models.
