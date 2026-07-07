@@ -46,3 +46,6 @@ Codex execution model: do not add internal Codex/OpenAI API calls to the repo fo
 
 
 Paper alignment layers rule: before a formal run, read `PAPER_ALIGNMENT_LAYERS_1_4.md`. Use `preflight.json` for grammar/artifact readiness, `search_memory.json` for prior motifs and duplicate context, and `final_analysis.md` to explain whether architecture, training strategy, or artifact-backed biology drove the result.
+
+
+Paper alignment layers 5-8 rule: before a formal run, create `artifact_readiness.json`, `benchmark_audit.json`, `scale_plan.json`, and `preflight.json`. After the run, generate repair tasks for failures if needed and write `final_analysis.md` before `final_conclusion.md`.

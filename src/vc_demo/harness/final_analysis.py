@@ -19,6 +19,9 @@ def build_analysis(run_dir: Path) -> str:
     memory = read_json(run_dir / "search_memory.json") if (run_dir / "search_memory.json").exists() else {}
     manifest = read_json(run_dir / "run_manifest.json") if (run_dir / "run_manifest.json").exists() else {}
     failures = read_json(run_dir / "failures.json").get("failures", []) if (run_dir / "failures.json").exists() else []
+    benchmark = read_json(run_dir / "benchmark_audit.json") if (run_dir / "benchmark_audit.json").exists() else {}
+    scale_plan = read_json(run_dir / "scale_plan.json") if (run_dir / "scale_plan.json").exists() else {}
+    repair_report = read_json(run_dir / "repair_tasks" / "repair_tasks.json") if (run_dir / "repair_tasks" / "repair_tasks.json").exists() else {}
     trained = _trained(tree)
     roots = [(name, node) for name, node in trained if not node.get("parent")]
     best = max(trained, key=lambda item: float(item[1].get("best_val_macro_f1", -1)), default=("", {}))
@@ -43,6 +46,22 @@ def build_analysis(run_dir: Path) -> str:
         improvement = float(best[1].get("best_val_macro_f1", 0)) - float(best_root[1].get("best_val_macro_f1", 0))
         lines.append(f"- Best root: `{best_root[0]}` val={float(best_root[1].get('best_val_macro_f1', 0)):.4f} test={float(best_root[1].get('test_macro_f1', 0)):.4f}")
         lines.append(f"- Improvement over best root: {improvement:.4f} validation Macro-F1")
+    lines += ["", "## Benchmark Alignment", ""]
+    if benchmark:
+        lines.append(f"- Benchmark status: {benchmark.get('alignment_status')}")
+        lines.append(f"- Benchmark issues: {len(benchmark.get('issues', []))}")
+        for question in benchmark.get("remaining_paper_alignment_questions", []):
+            lines.append(f"- Remaining question: {question}")
+    else:
+        lines.append("- Benchmark audit missing; run `python -m vc_demo.harness.benchmark_audit` before claiming paper-level numeric reproduction.")
+    lines += ["", "## Search Scale", ""]
+    if scale_plan:
+        settings = scale_plan.get("profile_settings", {})
+        lines.append(f"- Scale profile: {scale_plan.get('profile')} ({settings.get('purpose')})")
+        lines.append(f"- Planned budget nodes: {settings.get('budget_nodes')}")
+        lines.append(f"- Planned max epochs: {settings.get('max_epochs')}")
+    else:
+        lines.append("- Scale plan missing; run `python -m vc_demo.harness.scale_plan` to document whether this is smoke/demo/single-cellline-small/medium/paper-scale.")
     lines += ["", "## Strategy Families", "", "| Strategy | N | Best val | Best test | Grammar alignment |", "|---|---:|---:|---:|---|"]
     for strategy, rows in sorted(by_strategy.items()):
         best_row = max(rows, key=lambda row: float(row.get("val") or -1))
@@ -59,6 +78,15 @@ def build_analysis(run_dir: Path) -> str:
     motifs = memory.get("motifs", {})
     lines.append(f"- Promising: {', '.join(motifs.get('promising', [])) or 'none recorded'}")
     lines.append(f"- Discouraged: {', '.join(motifs.get('discouraged', [])) or 'none recorded'}")
+    lines += ["", "## Repair Readiness", ""]
+    if failures:
+        lines.append(f"- Failed nodes needing repair triage: {len(failures)}")
+        if repair_report:
+            lines.append(f"- Repair task files generated: {len(repair_report.get('tasks', []))}")
+        else:
+            lines.append("- Repair tasks not generated; run `python -m vc_demo.harness.repair_workflow`.")
+    else:
+        lines.append("- No failed nodes recorded.")
     lines += ["", "## Next Search Recommendations", ""]
     if artifacts.get("missing_artifacts"):
         lines.append("- Acquire or explicitly reject missing high-value artifacts before claiming paper-level model-space coverage.")

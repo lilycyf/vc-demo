@@ -74,3 +74,7 @@ python scripts/generate_codex_experiment_prompt.py   --branch framework-autonomo
 ## Paper Alignment Layers 1-4
 
 See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execution layer, MCTS/proposal policy, model-space grammar, and artifact readiness layer.
+
+## Paper Alignment Layers 5-8
+
+See `PAPER_ALIGNMENT_LAYERS_5_8.md` for benchmark audit, search scale planning, failure repair workflow, and paper-style final analysis.
