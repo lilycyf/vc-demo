@@ -1,0 +1,105 @@
+{
+  "format": "vc_demo_artifact_readiness.v1",
+  "registry": "configs/artifacts/k562_registry.json",
+  "sources": "configs/artifacts/acquisition_sources.json",
+  "present_artifacts": [
+    "esm2_gene_embedding_h5ad",
+    "esm2_k562_target_manifest",
+    "string_k562_gene_graph",
+    "pathway_membership_matrix"
+  ],
+  "missing_artifacts": [
+    "aido_gene_or_cell_embeddings",
+    "scfoundation_cell_embeddings"
+  ],
+  "rows": [
+    {
+      "artifact_id": "esm2_gene_embedding_h5ad",
+      "provider": "ESM2",
+      "family": "gene_embedding",
+      "present": true,
+      "expected_path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "resolver": "download_from_known_huggingface_dataset",
+      "can_execute_automatically": true,
+      "action": "use_existing",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+      "required_for_blueprints": [
+        "esm2_gene_projection",
+        "target_gene_embedding_bilinear",
+        "cross_attention_gene_perturbation"
+      ]
+    },
+    {
+      "artifact_id": "esm2_k562_target_manifest",
+      "provider": "ESM2",
+      "family": "artifact_manifest",
+      "present": true,
+      "expected_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+      "resolver": "derive_from_known_esm2_embedding",
+      "can_execute_automatically": true,
+      "action": "use_existing",
+      "source": "derived_by:scripts/build_target_gene_artifact.py",
+      "required_for_blueprints": [
+        "target_gene_embedding_bilinear",
+        "cross_attention_gene_perturbation"
+      ]
+    },
+    {
+      "artifact_id": "aido_gene_or_cell_embeddings",
+      "provider": "AIDO",
+      "family": "foundation_embedding",
+      "present": false,
+      "expected_path": "data/artifacts/aido",
+      "resolver": "codex_research_download_from_official_genbio_or_aido_source",
+      "can_execute_automatically": false,
+      "action": "codex_search_official_source",
+      "source": "public GenBio artifact if available; exact file must be recorded before use",
+      "required_for_blueprints": [
+        "aido_embedding_fusion"
+      ]
+    },
+    {
+      "artifact_id": "scfoundation_cell_embeddings",
+      "provider": "scFoundation",
+      "family": "cell_embedding",
+      "present": false,
+      "expected_path": "data/artifacts/scfoundation",
+      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+      "can_execute_automatically": false,
+      "action": "codex_search_official_source",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+      "required_for_blueprints": [
+        "scfoundation_cell_encoder"
+      ]
+    },
+    {
+      "artifact_id": "string_k562_gene_graph",
+      "provider": "STRING",
+      "family": "gene_graph",
+      "present": true,
+      "expected_path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "resolver": "build_from_official_string_api",
+      "can_execute_automatically": true,
+      "action": "use_existing",
+      "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+      "required_for_blueprints": [
+        "ppi_graph_message_passing",
+        "string_gnn_perturbation_propagator"
+      ]
+    },
+    {
+      "artifact_id": "pathway_membership_matrix",
+      "provider": "Reactome",
+      "family": "pathway_prior",
+      "present": true,
+      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "resolver": "build_from_official_reactome_gmt",
+      "can_execute_automatically": true,
+      "action": "use_existing",
+      "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+      "required_for_blueprints": [
+        "pathway_pooling_encoder"
+      ]
+    }
+  ]
+}

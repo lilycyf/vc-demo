@@ -72,6 +72,11 @@ def autonomous_loop(args: argparse.Namespace) -> dict[str, Any]:
         if impl and args.auto_implement_pending:
             impl_report = implement_pending(run_dir, max_nodes=args.max_auto_implement_nodes, train=True, max_epochs=args.max_epochs, repair_attempts=args.repair_attempts)
             cycle_row["implementation_agent"] = impl_report
+            statuses = {str(item.get("status")) for item in impl_report.get("items", [])}
+            if any(status != "implemented" for status in statuses):
+                cycle_row["status"] = "requires_external_codex_implementation"
+                cycles.append(cycle_row)
+                break
             cycles.append(cycle_row)
             args.reset = False
             continue

@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "node": "root_concat_gated_mlp_p5_esm2_gene_projection_5abd7cf5",
+      "strategy": "esm2_gene_projection",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_esm2_gene_projection_5abd7cf5",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_esm2_gene_projection_5abd7cf5/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_esm2_gene_projection_5abd7cf5/model.py",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "requires_external_codex",
+          "strategy": "esm2_gene_projection",
+          "task_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_esm2_gene_projection_5abd7cf5/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_esm2_gene_projection_5abd7cf5/model.py"
+        }
+      ]
+    }
+  ],
+  "trained": true
+}

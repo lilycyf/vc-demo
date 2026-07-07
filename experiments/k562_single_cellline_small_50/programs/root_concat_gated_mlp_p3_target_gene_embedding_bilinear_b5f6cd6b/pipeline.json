@@ -1,0 +1,49 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "target_gene_embedding_bilinear",
+  "model_entrypoint": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/model.py",
+  "training": {
+    "loss_type": "cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "artifact_manifest",
+    "target_gene_embeddings",
+    "perturbation_context_features"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "ESM2",
+      "sides": [
+        "perturbation_gene",
+        "target_gene"
+      ],
+      "frozen_by_default": true
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "target_gene_aware_gene_embedding",
+  "pipeline_program": {
+    "blueprint": "target_gene_embedding_bilinear",
+    "representation": "esm2_augmented_context",
+    "perturbation_side": "perturbation_or_context_features",
+    "target_side": "esm2_target_gene_embeddings",
+    "fusion": "bilinear_context_target",
+    "prior": "frozen_gene_embedding",
+    "head": "factorized_target_head",
+    "training_strategy": "cross_entropy",
+    "fine_tuning": "frozen_artifact",
+    "required_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest"
+    ],
+    "paper_alignment": "explicit perturbed/context and target-gene artifact geometry"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "node_name": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+  "data": {
+    "dataset_type": "real_npz",
+    "cell_line": "K562",
+    "data_dir": "data/cell_lines/k562_concat",
+    "feature_key": "features",
+    "label_key": "labels",
+    "split_key": "split",
+    "n_classes": 3
+  },
+  "model": {
+    "input_dim": "auto",
+    "model_type": "custom_program",
+    "hidden_dim": 384,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.1,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "target_gene_embedding_bilinear",
+    "artifacts": {
+      "string_graph_edges_path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "data_dir": "data/cell_lines/k562_concat"
+    },
+    "low_rank_dim": 64,
+    "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json"
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 8,
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  },
+  "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/pipeline.json",
+  "proposal_note": "codex_program_agent blueprint=target_gene_embedding_bilinear; program_model:custom_program->target_gene_embedding_bilinear; blueprint_status:implemented; custom_model_path:experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/model.py; hidden_dim:384->384; depth:2->2; lr:0.0003->0.0003"
+}

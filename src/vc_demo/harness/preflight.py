@@ -22,7 +22,11 @@ def _check_data_dir(data_dir: Path) -> dict[str, Any]:
         if path.exists():
             with np.load(path, allow_pickle=True) as z:
                 item["keys"] = list(z.files)
-                item["n_rows"] = int(z["X"].shape[0]) if "X" in z.files else None
+                feature_key = "X" if "X" in z.files else "features" if "features" in z.files else ""
+                label_key = "y" if "y" in z.files else "labels" if "labels" in z.files else ""
+                item["feature_key"] = feature_key or None
+                item["label_key"] = label_key or None
+                item["n_rows"] = int(z[feature_key].shape[0]) if feature_key else None
                 item["n_targets"] = int(len(z["target_genes"])) if "target_genes" in z.files else None
         row["splits"][split] = item
     return row

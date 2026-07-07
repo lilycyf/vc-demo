@@ -100,6 +100,8 @@ def artifact_usage_from_config(config: dict[str, Any], proposal: dict[str, Any] 
         sides.append("target_gene")
     if strategy in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"}:
         sides.append("gene_graph")
+    if strategy == "pathway_pooling_encoder":
+        sides.append("pathway_membership")
     if strategy == "scfoundation_cell_encoder":
         sides.append("cell_state")
     return {

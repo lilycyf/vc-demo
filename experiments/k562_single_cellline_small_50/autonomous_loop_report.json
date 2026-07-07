@@ -1,0 +1,23 @@
+{
+  "format": "vc_demo_autonomous_loop.v1",
+  "cycles": [
+    {
+      "cycle": 1,
+      "search": {
+        "tree": "experiments/k562_single_cellline_small_50/tree.json",
+        "summary": "experiments/k562_single_cellline_small_50/search_summary.md",
+        "implementation_queue": "experiments/k562_single_cellline_small_50/implementation_queue.json",
+        "acquisition_queue": "experiments/k562_single_cellline_small_50/acquisition_queue.json",
+        "artifact_acquisition_command": "python -m vc_demo.harness.artifact_acquisition --queue experiments/k562_single_cellline_small_50/acquisition_queue.json --registry configs/artifacts/k562_registry.json --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir experiments/k562_single_cellline_small_50/artifact_acquisition --execute-known",
+        "run_manifest": "experiments/k562_single_cellline_small_50/run_manifest.json",
+        "search_memory": "experiments/k562_single_cellline_small_50/search_memory.json",
+        "stop_reason": "no improvement for 10 nodes",
+        "failures": 0,
+        "pending_implementations": 0
+      },
+      "implementation_items": 0,
+      "acquisition_items": 0,
+      "status": "complete_or_budget_exhausted"
+    }
+  ]
+}

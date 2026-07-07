@@ -1,0 +1,1331 @@
+{
+  "experiment": "k562_single_cellline_small_50",
+  "root_nodes": [
+    "root_concat_gated_mlp",
+    "root_concat_esm2_gene_embedding_gated_mlp",
+    "root_concat_esm2_target_aware_bilinear"
+  ],
+  "nodes": {
+    "root_concat_gated_mlp": {
+      "config": "configs/k562_roots/root_concat_gated_mlp.json",
+      "parent": "",
+      "children": [
+        "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392"
+      ],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.6556010842323303,
+      "test_macro_f1": 0.6019660234451294,
+      "visits": 8,
+      "value": 4.259551703929901,
+      "Q_v": 4.259551703929901,
+      "squared_value": 2.361593076262542,
+      "mean_reward": 0.5324439629912376,
+      "Exploitation": 0.5324439629912376,
+      "stage": "draft",
+      "best_reward": 0.6581824421882629,
+      "duration_seconds": 1.3369438648223877,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": false,
+        "artifact_sides": [],
+        "artifact_manifest_path": "",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      },
+      "reward_variance": 0.011702560807003326,
+      "reward_std": 0.10817837495083445,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.3846048414707184,
+        0.41417333483695984,
+        0.41420090198516846,
+        0.6442002058029175,
+        0.6581824421882629,
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp": {
+      "config": "configs/k562_roots/root_concat_esm2_gene_embedding_gated_mlp.json",
+      "parent": "",
+      "children": [
+        "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456"
+      ],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.6685063242912292,
+      "test_macro_f1": 0.6137420535087585,
+      "visits": 3,
+      "value": 1.4508859515190125,
+      "Q_v": 1.4508859515190125,
+      "squared_value": 0.7532748904036488,
+      "mean_reward": 0.48362865050633747,
+      "Exploitation": 0.48362865050633747,
+      "stage": "draft",
+      "best_reward": 0.6685063242912292,
+      "duration_seconds": 0.49371957778930664,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      },
+      "reward_variance": 0.01719495854396849,
+      "reward_std": 0.1311295487064929,
+      "last_reward": 0.378635048866272,
+      "rollout_rewards": [
+        0.40374457836151123,
+        0.378635048866272
+      ]
+    },
+    "root_concat_esm2_target_aware_bilinear": {
+      "config": "configs/k562_roots/root_concat_esm2_target_aware_bilinear.json",
+      "parent": "",
+      "children": [
+        "root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841"
+      ],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.41031014919281006,
+      "test_macro_f1": 0.3937353789806366,
+      "visits": 2,
+      "value": 0.7695755064487457,
+      "Q_v": 0.7695755064487457,
+      "squared_value": 0.29742601545486114,
+      "mean_reward": 0.38478775322437286,
+      "Exploitation": 0.38478775322437286,
+      "stage": "draft",
+      "best_reward": 0.41031014919281006,
+      "duration_seconds": 0.5495140552520752,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      },
+      "reward_variance": 0.0006513926959696992,
+      "reward_std": 0.025522395968437195,
+      "last_reward": 0.35926535725593567,
+      "rollout_rewards": [
+        0.35926535725593567
+      ]
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456.json",
+      "parent": "root_concat_esm2_gene_embedding_gated_mlp",
+      "children": [
+        "root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50"
+      ],
+      "status": "trained",
+      "iteration": 1,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456/metrics.json",
+      "best_val_macro_f1": 0.40374457836151123,
+      "test_macro_f1": 0.3837500810623169,
+      "visits": 2,
+      "value": 0.7823796272277832,
+      "Q_v": 0.7823796272277832,
+      "squared_value": 0.30637418478627865,
+      "mean_reward": 0.3911898136138916,
+      "Exploitation": 0.3911898136138916,
+      "stage": "improve",
+      "best_reward": 0.40374457836151123,
+      "duration_seconds": 1.3588950634002686,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "ppi_graph_message_passing",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "gene_graph",
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "string_k562_gene_graph"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "ppi_graph_message_passing",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "gene_graph"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "STRING",
+          "sides": [
+            "gene_graph"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.00015762211786807256,
+      "reward_std": 0.012554764747619629,
+      "last_reward": 0.378635048866272,
+      "rollout_rewards": [
+        0.40374457836151123,
+        0.378635048866272
+      ]
+    },
+    "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392.json",
+      "parent": "root_concat_gated_mlp",
+      "children": [
+        "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b"
+      ],
+      "status": "trained",
+      "iteration": 2,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392/metrics.json",
+      "best_val_macro_f1": 0.3846048414707184,
+      "test_macro_f1": 0.370403915643692,
+      "visits": 7,
+      "value": 3.603950619697571,
+      "Q_v": 3.603950619697571,
+      "squared_value": 1.931780294615935,
+      "mean_reward": 0.5148500885282244,
+      "Exploitation": 0.5148500885282244,
+      "stage": "improve",
+      "best_reward": 0.6581824421882629,
+      "duration_seconds": 2.1068367958068848,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "ppi_graph_message_passing",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "gene_graph"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "string_k562_gene_graph"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "ppi_graph_message_passing",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "gene_graph"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "STRING",
+          "sides": [
+            "gene_graph"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.010897999859041607,
+      "reward_std": 0.1043934857117129,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.3846048414707184,
+        0.41417333483695984,
+        0.41420090198516846,
+        0.6442002058029175,
+        0.6581824421882629,
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841.json",
+      "parent": "root_concat_esm2_target_aware_bilinear",
+      "children": [],
+      "status": "trained",
+      "iteration": 3,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841/metrics.json",
+      "best_val_macro_f1": 0.35926535725593567,
+      "test_macro_f1": 0.37227141857147217,
+      "visits": 1,
+      "value": 0.35926535725593567,
+      "Q_v": 0.35926535725593567,
+      "squared_value": 0.1290715969242351,
+      "mean_reward": 0.35926535725593567,
+      "Exploitation": 0.35926535725593567,
+      "stage": "improve",
+      "best_reward": 0.35926535725593567,
+      "duration_seconds": 2.045419216156006,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "string_gnn_perturbation_propagator",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "gene_graph",
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "string_k562_gene_graph"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "string_gnn_perturbation_propagator",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "string_graph_edges",
+        "gene_ids"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "STRING",
+          "sides": [
+            "gene_graph"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "last_reward": 0.35926535725593567,
+      "rollout_rewards": [
+        0.35926535725593567
+      ]
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50.json",
+      "parent": "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456",
+      "children": [],
+      "status": "trained",
+      "iteration": 4,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50/metrics.json",
+      "best_val_macro_f1": 0.378635048866272,
+      "test_macro_f1": 0.3639472723007202,
+      "visits": 1,
+      "value": 0.378635048866272,
+      "Q_v": 0.378635048866272,
+      "squared_value": 0.14336450022996416,
+      "mean_reward": 0.378635048866272,
+      "Exploitation": 0.378635048866272,
+      "stage": "improve",
+      "best_reward": 0.378635048866272,
+      "duration_seconds": 1.3443922996520996,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "string_gnn_perturbation_propagator",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "gene_graph",
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "string_k562_gene_graph"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "string_gnn_perturbation_propagator",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "string_graph_edges",
+        "gene_ids"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "STRING",
+          "sides": [
+            "gene_graph"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "last_reward": 0.378635048866272,
+      "rollout_rewards": [
+        0.378635048866272
+      ]
+    },
+    "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b.json",
+      "parent": "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+      "children": [
+        "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558"
+      ],
+      "status": "trained",
+      "iteration": 5,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/metrics.json",
+      "best_val_macro_f1": 0.41417333483695984,
+      "test_macro_f1": 0.39612826704978943,
+      "visits": 6,
+      "value": 3.2193457782268524,
+      "Q_v": 3.2193457782268524,
+      "squared_value": 1.7838594105332186,
+      "mean_reward": 0.5365576297044754,
+      "Exploitation": 0.5365576297044754,
+      "stage": "improve",
+      "best_reward": 0.6581824421882629,
+      "duration_seconds": 0.3933067321777344,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "target_gene_embedding_bilinear",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "esm2_gene_embedding_h5ad",
+          "esm2_k562_target_manifest"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "target_gene_embedding_bilinear",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "artifact_manifest",
+        "target_gene_embeddings",
+        "perturbation_context_features"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "ESM2",
+          "sides": [
+            "perturbation_gene",
+            "target_gene"
+          ],
+          "frozen_by_default": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.009415811761451509,
+      "reward_std": 0.09703510581975736,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.41417333483695984,
+        0.41420090198516846,
+        0.6442002058029175,
+        0.6581824421882629,
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558.json",
+      "parent": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+      "children": [
+        "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3"
+      ],
+      "status": "trained",
+      "iteration": 6,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558/metrics.json",
+      "best_val_macro_f1": 0.41420090198516846,
+      "test_macro_f1": 0.41105854511260986,
+      "visits": 5,
+      "value": 2.8051724433898926,
+      "Q_v": 2.8051724433898926,
+      "squared_value": 1.6123198592432502,
+      "mean_reward": 0.5610344886779786,
+      "Exploitation": 0.5610344886779786,
+      "stage": "improve",
+      "best_reward": 0.6581824421882629,
+      "duration_seconds": 0.47955822944641113,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "target_gene_embedding_bilinear",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "esm2_gene_embedding_h5ad",
+          "esm2_k562_target_manifest"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "target_gene_embedding_bilinear",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "artifact_manifest",
+        "target_gene_embeddings",
+        "perturbation_context_features"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "ESM2",
+          "sides": [
+            "perturbation_gene",
+            "target_gene"
+          ],
+          "frozen_by_default": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.007704274362489216,
+      "reward_std": 0.08777399593552304,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.41420090198516846,
+        0.6442002058029175,
+        0.6581824421882629,
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3.json",
+      "parent": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558",
+      "children": [
+        "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2"
+      ],
+      "status": "trained",
+      "iteration": 7,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3/metrics.json",
+      "best_val_macro_f1": 0.6442002058029175,
+      "test_macro_f1": 0.5889981985092163,
+      "visits": 4,
+      "value": 2.390971541404724,
+      "Q_v": 2.390971541404724,
+      "squared_value": 1.440757472037923,
+      "mean_reward": 0.597742885351181,
+      "Exploitation": 0.597742885351181,
+      "stage": "improve",
+      "best_reward": 0.6581824421882629,
+      "duration_seconds": 0.8109269142150879,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "esm2_gene_projection",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "esm2_gene_embedding_h5ad"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "esm2_gene_projection",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "protein_sequences_or_esm2_embeddings"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "ESM2",
+          "sides": [
+            "perturbation_gene",
+            "target_gene"
+          ],
+          "frozen_by_default": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.0028928110215256098,
+      "reward_std": 0.05378485866417806,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.6442002058029175,
+        0.6581824421882629,
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2.json",
+      "parent": "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3",
+      "children": [
+        "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7"
+      ],
+      "status": "trained",
+      "iteration": 8,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2/metrics.json",
+      "best_val_macro_f1": 0.6581824421882629,
+      "test_macro_f1": 0.5915077328681946,
+      "visits": 3,
+      "value": 1.7467713356018066,
+      "Q_v": 1.7467713356018066,
+      "squared_value": 1.0257635668814018,
+      "mean_reward": 0.5822571118672689,
+      "Exploitation": 0.5822571118672689,
+      "stage": "improve",
+      "best_reward": 0.6581824421882629,
+      "duration_seconds": 0.5077488422393799,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "esm2_gene_projection",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "esm2_gene_embedding_h5ad"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "esm2_gene_projection",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "protein_sequences_or_esm2_embeddings"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "ESM2",
+          "sides": [
+            "perturbation_gene",
+            "target_gene"
+          ],
+          "frozen_by_default": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.0028978446404539504,
+      "reward_std": 0.05383163234060389,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.6581824421882629,
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7.json",
+      "parent": "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2",
+      "children": [
+        "root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0"
+      ],
+      "status": "trained",
+      "iteration": 9,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7/metrics.json",
+      "best_val_macro_f1": 0.5394700169563293,
+      "test_macro_f1": 0.49863365292549133,
+      "visits": 2,
+      "value": 1.0885888934135437,
+      "Q_v": 1.0885888934135437,
+      "squared_value": 0.5925594396764957,
+      "mean_reward": 0.5442944467067719,
+      "Exploitation": 0.5442944467067719,
+      "stage": "improve",
+      "best_reward": 0.5491188764572144,
+      "duration_seconds": 0.8252878189086914,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "pathway_pooling_encoder",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "pathway_membership",
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "pathway_membership_matrix"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "pathway_pooling_encoder",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "pathway_memberships"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "pathway_db",
+          "sides": [
+            "pathway_pooling"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 2.327512241695473e-05,
+      "reward_std": 0.004824429750442505,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.5394700169563293,
+        0.5491188764572144
+      ]
+    },
+    "root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0": {
+      "config": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0.json",
+      "parent": "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+      "children": [],
+      "status": "trained",
+      "iteration": 10,
+      "metrics": "experiments/k562_single_cellline_small_50/nodes/root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0/metrics.json",
+      "best_val_macro_f1": 0.5491188764572144,
+      "test_macro_f1": 0.5139760375022888,
+      "visits": 1,
+      "value": 0.5491188764572144,
+      "Q_v": 0.5491188764572144,
+      "squared_value": 0.30153154048163344,
+      "mean_reward": 0.5491188764572144,
+      "Exploitation": 0.5491188764572144,
+      "stage": "improve",
+      "best_reward": 0.5491188764572144,
+      "duration_seconds": 0.8074121475219727,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "pathway_pooling_encoder",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "pathway_membership",
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [
+          "pathway_membership_matrix"
+        ],
+        "missing_required_artifacts": []
+      },
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "pathway_pooling_encoder",
+      "proposal": "experiments/k562_single_cellline_small_50/proposals/root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0.proposal.json",
+      "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0",
+      "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0/model.py",
+      "implementation_request_path": "",
+      "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "pathway_memberships"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "pathway_db",
+          "sides": [
+            "pathway_pooling"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": false,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "last_reward": 0.5491188764572144,
+      "rollout_rewards": [
+        0.5491188764572144
+      ]
+    }
+  },
+  "events": [
+    {
+      "iteration": 1,
+      "selected_parent": "root_concat_esm2_gene_embedding_gated_mlp",
+      "child": "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456",
+      "strategy": "ppi_graph_message_passing",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 2,
+      "selected_parent": "root_concat_gated_mlp",
+      "child": "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+      "strategy": "ppi_graph_message_passing",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 3,
+      "selected_parent": "root_concat_esm2_target_aware_bilinear",
+      "child": "root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841",
+      "strategy": "string_gnn_perturbation_propagator",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 4,
+      "selected_parent": "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456",
+      "child": "root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50",
+      "strategy": "string_gnn_perturbation_propagator",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 5,
+      "selected_parent": "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+      "child": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+      "strategy": "target_gene_embedding_bilinear",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 6,
+      "selected_parent": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+      "child": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558",
+      "strategy": "target_gene_embedding_bilinear",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 7,
+      "selected_parent": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558",
+      "child": "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3",
+      "strategy": "esm2_gene_projection",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 8,
+      "selected_parent": "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3",
+      "child": "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2",
+      "strategy": "esm2_gene_projection",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 9,
+      "selected_parent": "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2",
+      "child": "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+      "strategy": "pathway_pooling_encoder",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 10,
+      "selected_parent": "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+      "child": "root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0",
+      "strategy": "pathway_pooling_encoder",
+      "node_kind": "program_node",
+      "requires_implementation": false,
+      "missing_required_artifacts": []
+    }
+  ],
+  "artifact_registry": {
+    "registry_version": "vc_demo_artifact_registry.v1",
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "cell_line": "K562",
+    "artifacts": [
+      {
+        "id": "esm2_gene_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "ESM2",
+        "status": "expected_present",
+        "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene"
+        ],
+        "required_for_blueprints": [
+          "esm2_gene_projection",
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "esm2_k562_target_manifest",
+        "family": "artifact_manifest",
+        "provider": "ESM2",
+        "status": "derived_if_built",
+        "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "source": "derived_by:scripts/build_target_gene_artifact.py",
+        "usable_for": [
+          "target_gene",
+          "model_head_geometry"
+        ],
+        "required_for_blueprints": [
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "ESM2_D1280",
+        "artifact_family": "gene_embedding",
+        "target_gene_coverage": 0.921,
+        "n_target_genes": 1000,
+        "target_embedding_dim": 1280,
+        "missing_target_genes_count": 79
+      },
+      {
+        "id": "aido_gene_or_cell_embeddings",
+        "family": "foundation_embedding",
+        "provider": "AIDO",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/aido",
+        "source": "public GenBio artifact if available; exact file must be recorded before use",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene",
+          "cell_state"
+        ],
+        "required_for_blueprints": [
+          "aido_embedding_fusion"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "scfoundation_cell_embeddings",
+        "family": "cell_embedding",
+        "provider": "scFoundation",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/scfoundation",
+        "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+        "usable_for": [
+          "cell_state",
+          "expression_encoder"
+        ],
+        "required_for_blueprints": [
+          "scfoundation_cell_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "string_k562_gene_graph",
+        "family": "gene_graph",
+        "provider": "STRING",
+        "status": "expected_present",
+        "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+        "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+        "usable_for": [
+          "gene_graph",
+          "target_gene",
+          "perturbation_propagation"
+        ],
+        "required_for_blueprints": [
+          "ppi_graph_message_passing",
+          "string_gnn_perturbation_propagator"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://version-12-0.string-db.org/api/tsv/network",
+        "mapping_url": "https://version-12-0.string-db.org/api/tsv/get_string_ids",
+        "version": {
+          "string_version": "12.0",
+          "stable_address": "https://version-12-0.string-db.org"
+        },
+        "filtering_rule": "Map K562 perturbation and target gene symbols to STRING protein IDs, query the official STRING v12.0 network API for the union, keep induced-subgraph edges where both endpoints map back to K562 genes and combined score >= 0.4.",
+        "score_threshold": 0.4,
+        "raw_edge_count": 135802,
+        "filtered_edge_count": 36550,
+        "node_count": 1054,
+        "perturbation_gene_graph_coverage": 0.9047619047619048,
+        "target_gene_graph_coverage": 0.966,
+        "summary_path": "experiments/k562_string_graph_artifact_summary.json",
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "pathway_membership_matrix",
+        "family": "pathway_prior",
+        "provider": "Reactome",
+        "status": "expected_present",
+        "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+        "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+        "usable_for": [
+          "target_gene",
+          "pathway_pooling"
+        ],
+        "required_for_blueprints": [
+          "pathway_pooling_encoder"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+        "source_file": "ReactomePathways.gmt inside ReactomePathways.gmt.zip",
+        "source_sha256": "8c1dbc8578431da5d2d5118262718c60b553a9be3398e93658daa069e4a9afd4",
+        "source_bytes": 298479,
+        "species_filter": "Homo sapiens pathways only, identified by R-HSA stable IDs",
+        "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact K562 target-gene list.",
+        "n_source_pathways": 2868,
+        "n_kept_pathways": 1139,
+        "membership_shape": [
+          1000,
+          1139
+        ],
+        "covered_target_gene_count": 742,
+        "target_gene_coverage": 0.742,
+        "mean_pathways_per_target_gene": 18.097,
+        "summary_path": "experiments/k562_pathway_membership_artifact_summary.json",
+        "present": true,
+        "resolved_status": "present"
+      }
+    ],
+    "present_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "string_k562_gene_graph",
+      "pathway_membership_matrix"
+    ],
+    "missing_artifacts": [
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings"
+    ]
+  },
+  "mcts": {
+    "last_selection": {
+      "node": "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+      "policy": "uct",
+      "score": 3.2268173754659153,
+      "uct": 3.2268173754659153,
+      "puct": null,
+      "q": 0.5394700169563293,
+      "Q_v": 0.5394700169563293,
+      "exploitation": 0.5394700169563293,
+      "Exploitation": 0.5394700169563293,
+      "exploration": 2.687347358509586,
+      "Exploration": 2.687347358509586,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 37,
+      "children": 0,
+      "best_val_macro_f1": 0.5394700169563293,
+      "stage": "improve"
+    },
+    "last_candidates": [
+      {
+        "node": "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+        "policy": "uct",
+        "score": 3.2268173754659153,
+        "uct": 3.2268173754659153,
+        "puct": null,
+        "q": 0.5394700169563293,
+        "Q_v": 0.5394700169563293,
+        "exploitation": 0.5394700169563293,
+        "Exploitation": 0.5394700169563293,
+        "exploration": 2.687347358509586,
+        "Exploration": 2.687347358509586,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 37,
+        "children": 0,
+        "best_val_macro_f1": 0.5394700169563293,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_esm2_gene_embedding_gated_mlp_p2_string_gnn_perturbation_propagator_77f9aa50",
+        "policy": "uct",
+        "score": 3.065982407375858,
+        "uct": 3.065982407375858,
+        "puct": null,
+        "q": 0.378635048866272,
+        "Q_v": 0.378635048866272,
+        "exploitation": 0.378635048866272,
+        "Exploitation": 0.378635048866272,
+        "exploration": 2.687347358509586,
+        "Exploration": 2.687347358509586,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 37,
+        "children": 0,
+        "best_val_macro_f1": 0.378635048866272,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_esm2_target_aware_bilinear_p2_string_gnn_perturbation_propagator_8c1fa841",
+        "policy": "uct",
+        "score": 3.0466127157655216,
+        "uct": 3.0466127157655216,
+        "puct": null,
+        "q": 0.35926535725593567,
+        "Q_v": 0.35926535725593567,
+        "exploitation": 0.35926535725593567,
+        "Exploitation": 0.35926535725593567,
+        "exploration": 2.687347358509586,
+        "Exploration": 2.687347358509586,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 37,
+        "children": 0,
+        "best_val_macro_f1": 0.35926535725593567,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2",
+        "policy": "uct",
+        "score": 2.4990677701781805,
+        "uct": 2.4990677701781805,
+        "puct": null,
+        "q": 0.5988262295722961,
+        "Q_v": 1.1976524591445923,
+        "exploitation": 0.5988262295722961,
+        "Exploitation": 0.5988262295722961,
+        "exploration": 1.9002415406058843,
+        "Exploration": 1.9002415406058843,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.6581824421882629,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456",
+        "policy": "uct",
+        "score": 2.291431354219776,
+        "uct": 2.291431354219776,
+        "puct": null,
+        "q": 0.3911898136138916,
+        "Q_v": 0.7823796272277832,
+        "exploitation": 0.3911898136138916,
+        "Exploitation": 0.3911898136138916,
+        "exploration": 1.9002415406058843,
+        "Exploration": 1.9002415406058843,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.40374457836151123,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_esm2_target_aware_bilinear",
+        "policy": "uct",
+        "score": 2.285029293830257,
+        "uct": 2.285029293830257,
+        "puct": null,
+        "q": 0.38478775322437286,
+        "Q_v": 0.7695755064487457,
+        "exploitation": 0.38478775322437286,
+        "Exploitation": 0.38478775322437286,
+        "exploration": 1.9002415406058843,
+        "Exploration": 1.9002415406058843,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.41031014919281006,
+        "stage": "draft"
+      },
+      {
+        "node": "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3",
+        "policy": "uct",
+        "score": 2.165491609157376,
+        "uct": 2.165491609157376,
+        "puct": null,
+        "q": 0.6139508883158366,
+        "Q_v": 1.8418526649475098,
+        "exploitation": 0.6139508883158366,
+        "Exploitation": 0.6139508883158366,
+        "exploration": 1.5515407208415393,
+        "Exploration": 1.5515407208415393,
+        "prior": 0.0,
+        "visits": 3,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.6442002058029175,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_esm2_gene_embedding_gated_mlp",
+        "policy": "uct",
+        "score": 2.0351693713478767,
+        "uct": 2.0351693713478767,
+        "puct": null,
+        "q": 0.48362865050633747,
+        "Q_v": 1.4508859515190125,
+        "exploitation": 0.48362865050633747,
+        "Exploitation": 0.48362865050633747,
+        "exploration": 1.5515407208415393,
+        "Exploration": 1.5515407208415393,
+        "prior": 0.0,
+        "visits": 3,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.6685063242912292,
+        "stage": "draft"
+      },
+      {
+        "node": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558",
+        "policy": "uct",
+        "score": 1.9076870709879625,
+        "uct": 1.9076870709879625,
+        "puct": null,
+        "q": 0.5640133917331696,
+        "Q_v": 2.2560535669326782,
+        "exploitation": 0.5640133917331696,
+        "Exploitation": 0.5640133917331696,
+        "exploration": 1.343673679254793,
+        "Exploration": 1.343673679254793,
+        "prior": 0.0,
+        "visits": 4,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.41420090198516846,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+        "policy": "uct",
+        "score": 1.7358636549103141,
+        "uct": 1.7358636549103141,
+        "puct": null,
+        "q": 0.5340453803539276,
+        "Q_v": 2.670226901769638,
+        "exploitation": 0.5340453803539276,
+        "Exploitation": 0.5340453803539276,
+        "exploration": 1.2018182745563866,
+        "Exploration": 1.2018182745563866,
+        "prior": 0.0,
+        "visits": 5,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.41417333483695984,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+        "policy": "uct",
+        "score": 1.6062435888675095,
+        "uct": 1.6062435888675095,
+        "puct": null,
+        "q": 0.5091386238733927,
+        "Q_v": 3.0548317432403564,
+        "exploitation": 0.5091386238733927,
+        "Exploitation": 0.5091386238733927,
+        "exploration": 1.0971049649941167,
+        "Exploration": 1.0971049649941167,
+        "prior": 0.0,
+        "visits": 6,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.3846048414707184,
+        "stage": "improve"
+      },
+      {
+        "node": "root_concat_gated_mlp",
+        "policy": "uct",
+        "score": 1.5457836606479125,
+        "uct": 1.5457836606479125,
+        "puct": null,
+        "q": 0.5300618324960981,
+        "Q_v": 3.7104328274726868,
+        "exploitation": 0.5300618324960981,
+        "Exploitation": 0.5300618324960981,
+        "exploration": 1.0157218281518146,
+        "Exploration": 1.0157218281518146,
+        "prior": 0.0,
+        "visits": 7,
+        "parent_visits": 37,
+        "children": 1,
+        "best_val_macro_f1": 0.6556010842323303,
+        "stage": "draft"
+      }
+    ],
+    "selection_policy": "uct",
+    "exploration_c": 1.4142135623730951,
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension",
+    "last_backpropagation": {
+      "leaf": "root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0",
+      "reward": 0.5491188764572144,
+      "path": [
+        "root_concat_gated_mlp_p5_pathway_pooling_encoder_6a5480b0",
+        "root_concat_gated_mlp_p5_pathway_pooling_encoder_985689b7",
+        "root_concat_gated_mlp_p4_esm2_gene_projection_b3c74ee2",
+        "root_concat_gated_mlp_p4_esm2_gene_projection_c51f3ec3",
+        "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_c0efe558",
+        "root_concat_gated_mlp_p3_target_gene_embedding_bilinear_b5f6cd6b",
+        "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+        "root_concat_gated_mlp"
+      ],
+      "path_length": 8
+    }
+  }
+}

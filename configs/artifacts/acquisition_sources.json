@@ -45,10 +45,10 @@
     },
     {
       "id": "pathway_membership_matrix",
-      "resolver": "codex_research_or_build_from_primary_pathway_source",
+      "resolver": "build_from_official_reactome_gmt",
       "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "source": "Reactome/MSigDB/GO or another documented public pathway source aligned to exact K562 target genes",
-      "can_execute_automatically": false,
+      "source": "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes",
+      "can_execute_automatically": true,
       "research_questions": [
         "Which public pathway source can be used without license ambiguity for this repo?",
         "What version/date/source URL is used?",
@@ -57,9 +57,11 @@
       ],
       "required_outputs": [
         "membership npz",
-        "pathway names json/tsv",
-        "summary json with source/version/coverage/filtering"
-      ]
+        "summary json with Reactome source/version/coverage/filtering",
+        "registry metadata update"
+      ],
+      "command": "python scripts/build_k562_pathway_membership.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --output data/artifacts/pathways/k562_target_pathway_membership.npz --summary experiments/k562_pathway_membership_artifact_summary.json",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
     },
     {
       "id": "scfoundation_cell_embeddings",

@@ -25,11 +25,16 @@ def _split_summary(path: Path) -> dict[str, Any]:
         return row
     with np.load(path, allow_pickle=True) as z:
         row["keys"] = list(z.files)
-        if "X" in z.files:
-            row["n_rows"] = int(z["X"].shape[0])
-            row["input_dim"] = int(z["X"].shape[1])
-        if "y" in z.files:
-            y = z["y"]
+        feature_key = "X" if "X" in z.files else "features" if "features" in z.files else ""
+        label_key = "y" if "y" in z.files else "labels" if "labels" in z.files else ""
+        if feature_key:
+            x = z[feature_key]
+            row["feature_key"] = feature_key
+            row["n_rows"] = int(x.shape[0])
+            row["input_dim"] = int(x.shape[1])
+        if label_key:
+            y = z[label_key]
+            row["label_key"] = label_key
             row["label_shape"] = list(y.shape)
             row["label_classes_observed"] = sorted(int(v) for v in np.unique(y))
             values, counts = np.unique(y, return_counts=True)
@@ -74,6 +79,12 @@ def audit(root_configs: list[Path], output: Path) -> dict[str, Any]:
         "data_dirs": data_dirs,
         "issues": issues,
         "alignment_status": "ready_for_single_cell_line_formal_search" if not issues else "blocked_or_needs_review",
+        "paper_repo_alignment": {
+            "paper_case_study": "VCHarness Essential dataset four classification tracks include K562, HepG2, Jurkat, and hTERT-RPE1.",
+            "repo_task_scope": "This audit covers only the K562 single-cell-line CRISPR_KO_DEG_classification track.",
+            "data_source_in_this_repo": "NormanWeissman2019_filtered.h5ad from scPerturb Zenodo record 7041849, with repo-local top-1000 target-gene and percentile DEG label construction.",
+            "numeric_reproduction_status": "framework-aligned but not certified numerically identical to the paper until exact VCHarness K562 split, target universe, label rule, and expert baseline configs are matched."
+        },
         "remaining_paper_alignment_questions": [
             "Confirm the public paper's exact K562 split policy if claiming numeric reproduction rather than framework reproduction.",
             "Confirm DEG label construction and target gene universe against the paper artifact if available.",

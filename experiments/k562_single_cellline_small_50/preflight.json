@@ -1,0 +1,803 @@
+{
+  "format": "vc_demo_preflight.v1",
+  "roots": [
+    {
+      "path": "configs/k562_roots/root_concat_gated_mlp.json",
+      "present": true,
+      "node_name": "root_concat_gated_mlp",
+      "data_dir": "data/cell_lines/k562_concat",
+      "model_type": "gated_mlp"
+    },
+    {
+      "path": "configs/k562_roots/root_concat_esm2_gene_embedding_gated_mlp.json",
+      "present": true,
+      "node_name": "root_concat_esm2_gene_embedding_gated_mlp",
+      "data_dir": "data/cell_lines/k562_concat_esm2_gene_embedding",
+      "model_type": "gated_mlp"
+    },
+    {
+      "path": "configs/k562_roots/root_concat_esm2_target_aware_bilinear.json",
+      "present": true,
+      "node_name": "root_concat_esm2_target_aware_bilinear",
+      "data_dir": "data/cell_lines/k562_concat_esm2_gene_embedding",
+      "model_type": "target_aware_bilinear"
+    }
+  ],
+  "data_dirs": {
+    "data/cell_lines/k562_concat": {
+      "data_dir": "data/cell_lines/k562_concat",
+      "present": true,
+      "splits": {
+        "train": {
+          "path": "data/cell_lines/k562_concat/train.npz",
+          "present": true,
+          "keys": [
+            "labels",
+            "perturbations",
+            "target_genes",
+            "delta_mean",
+            "features"
+          ],
+          "feature_key": "features",
+          "label_key": "labels",
+          "n_rows": 73,
+          "n_targets": 1000
+        },
+        "val": {
+          "path": "data/cell_lines/k562_concat/val.npz",
+          "present": true,
+          "keys": [
+            "labels",
+            "perturbations",
+            "target_genes",
+            "delta_mean",
+            "features"
+          ],
+          "feature_key": "features",
+          "label_key": "labels",
+          "n_rows": 16,
+          "n_targets": 1000
+        },
+        "test": {
+          "path": "data/cell_lines/k562_concat/test.npz",
+          "present": true,
+          "keys": [
+            "labels",
+            "perturbations",
+            "target_genes",
+            "delta_mean",
+            "features"
+          ],
+          "feature_key": "features",
+          "label_key": "labels",
+          "n_rows": 16,
+          "n_targets": 1000
+        }
+      }
+    },
+    "data/cell_lines/k562_concat_esm2_gene_embedding": {
+      "data_dir": "data/cell_lines/k562_concat_esm2_gene_embedding",
+      "present": true,
+      "splits": {
+        "train": {
+          "path": "data/cell_lines/k562_concat_esm2_gene_embedding/train.npz",
+          "present": true,
+          "keys": [
+            "labels",
+            "perturbations",
+            "target_genes",
+            "delta_mean",
+            "features",
+            "gene_embedding_features"
+          ],
+          "feature_key": "features",
+          "label_key": "labels",
+          "n_rows": 73,
+          "n_targets": 1000
+        },
+        "val": {
+          "path": "data/cell_lines/k562_concat_esm2_gene_embedding/val.npz",
+          "present": true,
+          "keys": [
+            "labels",
+            "perturbations",
+            "target_genes",
+            "delta_mean",
+            "features",
+            "gene_embedding_features"
+          ],
+          "feature_key": "features",
+          "label_key": "labels",
+          "n_rows": 16,
+          "n_targets": 1000
+        },
+        "test": {
+          "path": "data/cell_lines/k562_concat_esm2_gene_embedding/test.npz",
+          "present": true,
+          "keys": [
+            "labels",
+            "perturbations",
+            "target_genes",
+            "delta_mean",
+            "features",
+            "gene_embedding_features"
+          ],
+          "feature_key": "features",
+          "label_key": "labels",
+          "n_rows": 16,
+          "n_targets": 1000
+        }
+      }
+    }
+  },
+  "artifact_registry": {
+    "registry_version": "vc_demo_artifact_registry.v1",
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "cell_line": "K562",
+    "artifacts": [
+      {
+        "id": "esm2_gene_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "ESM2",
+        "status": "expected_present",
+        "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene"
+        ],
+        "required_for_blueprints": [
+          "esm2_gene_projection",
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "esm2_k562_target_manifest",
+        "family": "artifact_manifest",
+        "provider": "ESM2",
+        "status": "derived_if_built",
+        "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "source": "derived_by:scripts/build_target_gene_artifact.py",
+        "usable_for": [
+          "target_gene",
+          "model_head_geometry"
+        ],
+        "required_for_blueprints": [
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "ESM2_D1280",
+        "artifact_family": "gene_embedding",
+        "target_gene_coverage": 0.921,
+        "n_target_genes": 1000,
+        "target_embedding_dim": 1280,
+        "missing_target_genes_count": 79
+      },
+      {
+        "id": "aido_gene_or_cell_embeddings",
+        "family": "foundation_embedding",
+        "provider": "AIDO",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/aido",
+        "source": "public GenBio artifact if available; exact file must be recorded before use",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene",
+          "cell_state"
+        ],
+        "required_for_blueprints": [
+          "aido_embedding_fusion"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "scfoundation_cell_embeddings",
+        "family": "cell_embedding",
+        "provider": "scFoundation",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/scfoundation",
+        "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+        "usable_for": [
+          "cell_state",
+          "expression_encoder"
+        ],
+        "required_for_blueprints": [
+          "scfoundation_cell_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "string_k562_gene_graph",
+        "family": "gene_graph",
+        "provider": "STRING",
+        "status": "expected_present",
+        "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+        "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+        "usable_for": [
+          "gene_graph",
+          "target_gene",
+          "perturbation_propagation"
+        ],
+        "required_for_blueprints": [
+          "ppi_graph_message_passing",
+          "string_gnn_perturbation_propagator"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://version-12-0.string-db.org/api/tsv/network",
+        "mapping_url": "https://version-12-0.string-db.org/api/tsv/get_string_ids",
+        "version": {
+          "string_version": "12.0",
+          "stable_address": "https://version-12-0.string-db.org"
+        },
+        "filtering_rule": "Map K562 perturbation and target gene symbols to STRING protein IDs, query the official STRING v12.0 network API for the union, keep induced-subgraph edges where both endpoints map back to K562 genes and combined score >= 0.4.",
+        "score_threshold": 0.4,
+        "raw_edge_count": 135802,
+        "filtered_edge_count": 36550,
+        "node_count": 1054,
+        "perturbation_gene_graph_coverage": 0.9047619047619048,
+        "target_gene_graph_coverage": 0.966,
+        "summary_path": "experiments/k562_string_graph_artifact_summary.json",
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "pathway_membership_matrix",
+        "family": "pathway_prior",
+        "provider": "Reactome",
+        "status": "expected_present",
+        "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+        "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+        "usable_for": [
+          "target_gene",
+          "pathway_pooling"
+        ],
+        "required_for_blueprints": [
+          "pathway_pooling_encoder"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+        "source_file": "ReactomePathways.gmt inside ReactomePathways.gmt.zip",
+        "source_sha256": "8c1dbc8578431da5d2d5118262718c60b553a9be3398e93658daa069e4a9afd4",
+        "source_bytes": 298479,
+        "species_filter": "Homo sapiens pathways only, identified by R-HSA stable IDs",
+        "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact K562 target-gene list.",
+        "n_source_pathways": 2868,
+        "n_kept_pathways": 1139,
+        "membership_shape": [
+          1000,
+          1139
+        ],
+        "covered_target_gene_count": 742,
+        "target_gene_coverage": 0.742,
+        "mean_pathways_per_target_gene": 18.097,
+        "summary_path": "experiments/k562_pathway_membership_artifact_summary.json",
+        "present": true,
+        "resolved_status": "present"
+      }
+    ],
+    "present_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "string_k562_gene_graph",
+      "pathway_membership_matrix"
+    ],
+    "missing_artifacts": [
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings"
+    ]
+  },
+  "artifact_readiness": {
+    "format": "vc_demo_artifact_readiness.v1",
+    "registry": "configs/artifacts/k562_registry.json",
+    "sources": "configs/artifacts/acquisition_sources.json",
+    "present_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "string_k562_gene_graph",
+      "pathway_membership_matrix"
+    ],
+    "missing_artifacts": [
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings"
+    ],
+    "rows": [
+      {
+        "artifact_id": "esm2_gene_embedding_h5ad",
+        "provider": "ESM2",
+        "family": "gene_embedding",
+        "present": true,
+        "expected_path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "resolver": "download_from_known_huggingface_dataset",
+        "can_execute_automatically": true,
+        "action": "use_existing",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+        "required_for_blueprints": [
+          "esm2_gene_projection",
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ]
+      },
+      {
+        "artifact_id": "esm2_k562_target_manifest",
+        "provider": "ESM2",
+        "family": "artifact_manifest",
+        "present": true,
+        "expected_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "resolver": "derive_from_known_esm2_embedding",
+        "can_execute_automatically": true,
+        "action": "use_existing",
+        "source": "derived_by:scripts/build_target_gene_artifact.py",
+        "required_for_blueprints": [
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ]
+      },
+      {
+        "artifact_id": "aido_gene_or_cell_embeddings",
+        "provider": "AIDO",
+        "family": "foundation_embedding",
+        "present": false,
+        "expected_path": "data/artifacts/aido",
+        "resolver": "codex_research_download_from_official_genbio_or_aido_source",
+        "can_execute_automatically": false,
+        "action": "codex_search_official_source",
+        "source": "public GenBio artifact if available; exact file must be recorded before use",
+        "required_for_blueprints": [
+          "aido_embedding_fusion"
+        ]
+      },
+      {
+        "artifact_id": "scfoundation_cell_embeddings",
+        "provider": "scFoundation",
+        "family": "cell_embedding",
+        "present": false,
+        "expected_path": "data/artifacts/scfoundation",
+        "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+        "can_execute_automatically": false,
+        "action": "codex_search_official_source",
+        "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+        "required_for_blueprints": [
+          "scfoundation_cell_encoder"
+        ]
+      },
+      {
+        "artifact_id": "string_k562_gene_graph",
+        "provider": "STRING",
+        "family": "gene_graph",
+        "present": true,
+        "expected_path": "data/artifacts/string/k562_target_graph_edges.tsv",
+        "resolver": "build_from_official_string_api",
+        "can_execute_automatically": true,
+        "action": "use_existing",
+        "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+        "required_for_blueprints": [
+          "ppi_graph_message_passing",
+          "string_gnn_perturbation_propagator"
+        ]
+      },
+      {
+        "artifact_id": "pathway_membership_matrix",
+        "provider": "Reactome",
+        "family": "pathway_prior",
+        "present": true,
+        "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+        "resolver": "build_from_official_reactome_gmt",
+        "can_execute_automatically": true,
+        "action": "use_existing",
+        "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+        "required_for_blueprints": [
+          "pathway_pooling_encoder"
+        ]
+      }
+    ]
+  },
+  "pipeline_grammar_dimensions": {
+    "representation": [
+      "cell_state_embedding",
+      "esm2_augmented_context",
+      "foundation_embedding",
+      "mixed_context",
+      "pretrained_encoder",
+      "tabular_context",
+      "tabular_or_esm2_context",
+      "unchanged"
+    ],
+    "perturbation_side": [
+      "cell_state",
+      "encoder_features",
+      "input_features",
+      "perturbation_context_tokens",
+      "perturbation_gene_embedding",
+      "perturbation_gene_esm2_features",
+      "perturbation_gene_signal",
+      "perturbation_or_context_features",
+      "unchanged"
+    ],
+    "target_side": [
+      "encoder_or_target_features",
+      "esm2_target_gene_embeddings",
+      "learned_or_artifact_targets",
+      "learned_target_factors",
+      "optional_artifact_features",
+      "pathway_membership_targets",
+      "target_gene_logits",
+      "target_gene_tokens",
+      "target_or_cell_embedding",
+      "unchanged"
+    ],
+    "fusion": [
+      "adapter",
+      "bilinear_context_target",
+      "calibrated_logits",
+      "cell_state_fusion",
+      "cross_attention",
+      "film_residual",
+      "gated_dual_path",
+      "graph_propagation",
+      "learned_gates",
+      "logit_message_passing",
+      "multimodal_gate",
+      "pathway_pooling",
+      "route_conditioned_factors",
+      "router_experts",
+      "two_branch_projection",
+      "unchanged"
+    ],
+    "prior": [
+      "aido",
+      "frozen_gene_embedding",
+      "none",
+      "optional",
+      "pathway_membership",
+      "pretrained_encoder",
+      "scfoundation",
+      "string_ppi_graph"
+    ],
+    "head": [
+      "adapter_head",
+      "class_balanced_head",
+      "dense_target_head",
+      "factorized_target_head",
+      "graph_smoothed_target_head",
+      "low_rank_target_head",
+      "pathway_target_head",
+      "propagated_target_head",
+      "target_classifier",
+      "target_token_classifier",
+      "temperature_scaled_head",
+      "unchanged"
+    ],
+    "training_strategy": [
+      "cross_entropy",
+      "focal_loss",
+      "weighted_or_balanced_loss"
+    ],
+    "fine_tuning": [
+      "frozen_artifact",
+      "frozen_or_adapter",
+      "none",
+      "selective_adapter"
+    ]
+  },
+  "pipeline_grammar_readiness": [
+    {
+      "blueprint": "dual_path_gated_low_rank",
+      "representation": "tabular_context",
+      "perturbation_side": "input_features",
+      "target_side": "learned_target_factors",
+      "fusion": "gated_dual_path",
+      "prior": "none",
+      "head": "low_rank_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "compact architecture/head search baseline",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "mixture_of_experts",
+      "representation": "tabular_context",
+      "perturbation_side": "input_features",
+      "target_side": "learned_target_factors",
+      "fusion": "router_experts",
+      "prior": "none",
+      "head": "dense_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "conditional computation / expert routing",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "film_conditioned_residual",
+      "representation": "tabular_context",
+      "perturbation_side": "input_features",
+      "target_side": "learned_target_factors",
+      "fusion": "film_residual",
+      "prior": "none",
+      "head": "dense_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "conditional computation over perturbation context",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "target_factor_router",
+      "representation": "tabular_context",
+      "perturbation_side": "input_features",
+      "target_side": "learned_target_factors",
+      "fusion": "route_conditioned_factors",
+      "prior": "none",
+      "head": "low_rank_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "target-head program search",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "esm2_gene_projection",
+      "representation": "esm2_augmented_context",
+      "perturbation_side": "perturbation_gene_esm2_features",
+      "target_side": "learned_target_factors",
+      "fusion": "two_branch_projection",
+      "prior": "frozen_gene_embedding",
+      "head": "dense_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "frozen_artifact",
+      "required_artifacts": [
+        "esm2_gene_embedding_h5ad"
+      ],
+      "paper_alignment": "perturbation-side ESM2 feature projection",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "target_gene_embedding_bilinear",
+      "representation": "esm2_augmented_context",
+      "perturbation_side": "perturbation_or_context_features",
+      "target_side": "esm2_target_gene_embeddings",
+      "fusion": "bilinear_context_target",
+      "prior": "frozen_gene_embedding",
+      "head": "factorized_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "frozen_artifact",
+      "required_artifacts": [
+        "esm2_gene_embedding_h5ad",
+        "esm2_k562_target_manifest"
+      ],
+      "paper_alignment": "explicit perturbed/context and target-gene artifact geometry",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "cross_attention_gene_perturbation",
+      "representation": "esm2_augmented_context",
+      "perturbation_side": "perturbation_context_tokens",
+      "target_side": "target_gene_tokens",
+      "fusion": "cross_attention",
+      "prior": "frozen_gene_embedding",
+      "head": "target_token_classifier",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "frozen_artifact",
+      "required_artifacts": [
+        "esm2_gene_embedding_h5ad",
+        "esm2_k562_target_manifest"
+      ],
+      "paper_alignment": "multimodal target-gene/perturbation fusion",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "ppi_graph_message_passing",
+      "representation": "tabular_or_esm2_context",
+      "perturbation_side": "input_features",
+      "target_side": "target_gene_logits",
+      "fusion": "logit_message_passing",
+      "prior": "string_ppi_graph",
+      "head": "graph_smoothed_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [
+        "string_k562_gene_graph"
+      ],
+      "paper_alignment": "STRING/PPI target-gene graph prior",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "string_gnn_perturbation_propagator",
+      "representation": "tabular_or_esm2_context",
+      "perturbation_side": "perturbation_gene_signal",
+      "target_side": "target_gene_logits",
+      "fusion": "graph_propagation",
+      "prior": "string_ppi_graph",
+      "head": "propagated_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [
+        "string_k562_gene_graph"
+      ],
+      "paper_alignment": "perturbation signal propagation through STRING graph",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "pathway_pooling_encoder",
+      "representation": "tabular_or_esm2_context",
+      "perturbation_side": "input_features",
+      "target_side": "pathway_membership_targets",
+      "fusion": "pathway_pooling",
+      "prior": "pathway_membership",
+      "head": "pathway_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [
+        "pathway_membership_matrix"
+      ],
+      "paper_alignment": "pathway prior over target genes",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "scfoundation_cell_encoder",
+      "representation": "cell_state_embedding",
+      "perturbation_side": "cell_state",
+      "target_side": "learned_or_artifact_targets",
+      "fusion": "cell_state_fusion",
+      "prior": "scfoundation",
+      "head": "target_classifier",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "frozen_or_adapter",
+      "required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "paper_alignment": "single-cell foundation model cell-state encoder",
+      "missing_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "all_required_present": false,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "aido_embedding_fusion",
+      "representation": "foundation_embedding",
+      "perturbation_side": "perturbation_gene_embedding",
+      "target_side": "target_or_cell_embedding",
+      "fusion": "multimodal_gate",
+      "prior": "aido",
+      "head": "target_classifier",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "frozen_or_adapter",
+      "required_artifacts": [
+        "aido_gene_or_cell_embeddings"
+      ],
+      "paper_alignment": "AIDO/foundation embedding fusion",
+      "missing_artifacts": [
+        "aido_gene_or_cell_embeddings"
+      ],
+      "all_required_present": false,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "selective_adapter_finetune",
+      "representation": "pretrained_encoder",
+      "perturbation_side": "encoder_features",
+      "target_side": "encoder_or_target_features",
+      "fusion": "adapter",
+      "prior": "pretrained_encoder",
+      "head": "adapter_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "selective_adapter",
+      "required_artifacts": [
+        "pretrained_encoder"
+      ],
+      "paper_alignment": "selective fine-tuning / adapter search",
+      "missing_artifacts": [
+        "pretrained_encoder"
+      ],
+      "all_required_present": false,
+      "artifact_backed": true
+    },
+    {
+      "blueprint": "focal_loss_training_strategy",
+      "representation": "unchanged",
+      "perturbation_side": "unchanged",
+      "target_side": "unchanged",
+      "fusion": "unchanged",
+      "prior": "none",
+      "head": "unchanged",
+      "training_strategy": "focal_loss",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "training-strategy node, not architecture discovery",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "class_balanced_deg_classifier",
+      "representation": "unchanged",
+      "perturbation_side": "unchanged",
+      "target_side": "unchanged",
+      "fusion": "unchanged",
+      "prior": "none",
+      "head": "class_balanced_head",
+      "training_strategy": "weighted_or_balanced_loss",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "classification-head/imbalance handling",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "uncertainty_calibrated_head",
+      "representation": "tabular_context",
+      "perturbation_side": "input_features",
+      "target_side": "learned_target_factors",
+      "fusion": "calibrated_logits",
+      "prior": "none",
+      "head": "temperature_scaled_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "calibration-aware prediction head",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    },
+    {
+      "blueprint": "gated_multimodal_fusion",
+      "representation": "mixed_context",
+      "perturbation_side": "input_features",
+      "target_side": "optional_artifact_features",
+      "fusion": "learned_gates",
+      "prior": "optional",
+      "head": "dense_target_head",
+      "training_strategy": "cross_entropy",
+      "fine_tuning": "none",
+      "required_artifacts": [],
+      "paper_alignment": "multimodal fusion grammar placeholder",
+      "missing_artifacts": [],
+      "all_required_present": true,
+      "artifact_backed": false
+    }
+  ],
+  "artifact_aware_blueprint_preview": [
+    "ppi_graph_message_passing",
+    "pathway_pooling_encoder",
+    "target_gene_embedding_bilinear",
+    "dual_path_gated_low_rank",
+    "film_conditioned_residual",
+    "scfoundation_cell_encoder"
+  ],
+  "issues": [],
+  "ready": true
+}

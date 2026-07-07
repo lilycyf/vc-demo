@@ -1,0 +1,31 @@
+{
+  "format": "vc_demo_scale_plan.v1",
+  "profile": "single_cellline_small",
+  "profile_settings": {
+    "budget_nodes": 50,
+    "max_epochs": 4,
+    "max_cycles": 8,
+    "stop_no_improve": 10,
+    "purpose": "small paper-style single-cell-line search"
+  },
+  "experiment": "k562_single_cellline_small_50",
+  "run_dir": "experiments/k562_single_cellline_small_50",
+  "root_configs": [
+    "configs/k562_roots/root_concat_gated_mlp.json",
+    "configs/k562_roots/root_concat_esm2_gene_embedding_gated_mlp.json",
+    "configs/k562_roots/root_concat_esm2_target_aware_bilinear.json"
+  ],
+  "command": "python -m vc_demo.harness.autonomous_run \\\n  --experiment k562_single_cellline_small_50 \\\n  --root-configs configs/k562_roots/root_concat_gated_mlp.json configs/k562_roots/root_concat_esm2_gene_embedding_gated_mlp.json configs/k562_roots/root_concat_esm2_target_aware_bilinear.json \\\n  --run-dir experiments/k562_single_cellline_small_50 \\\n  --budget-nodes 50 \\\n  --max-epochs 4 \\\n  --max-children 3 \\\n  --stop-no-improve 10 \\\n  --exploration 1.4142135623730951 \\\n  --selection-policy uct \\\n  --artifact-registry configs/artifacts/k562_registry.json \\\n  --seed 53 \\\n  --allow-planned-blueprints \\\n  --auto-implement-pending \\\n  --auto-acquire-known \\\n  --max-auto-implement-nodes 1 \\\n  --repair-attempts 2 \\\n  --max-cycles 8 \\\n  --reset",
+  "records_to_preserve": [
+    "preflight.json",
+    "benchmark_audit.json",
+    "artifact_readiness.json",
+    "tree.json",
+    "search_memory.json",
+    "run_manifest.json",
+    "search_summary.md",
+    "final_analysis.md",
+    "final_conclusion.md"
+  ],
+  "scale_note": "The original paper reports 600+ models across a broader system. This profile scopes a single-cell-line approximation."
+}

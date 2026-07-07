@@ -1,0 +1,159 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "root_concat_gated_mlp",
+  "child": "root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+  "strategy": "ppi_graph_message_passing",
+  "blueprint": {
+    "id": "ppi_graph_message_passing",
+    "status": "implemented",
+    "category": "biological_prior",
+    "paper_family": "graph_prior",
+    "change_level": 5,
+    "role": "Use a STRING/PPI-like graph prior for target-gene message passing.",
+    "requires": [
+      "gene_graph"
+    ],
+    "implementation_notes": "Implemented as a node-local compact STRING graph smoother. Requires data/artifacts/string/k562_target_graph_edges.tsv and the data split target_genes. The model predicts target-level logits and mixes them over the normalized target-gene STRING adjacency; if the graph artifact is absent, strict search must acquire it rather than fake edges.",
+    "acceptance": [
+      "Documents graph source",
+      "Loads STRING edge TSV through spec.artifacts",
+      "Handles target genes absent from graph with self-loops",
+      "Forward returns [batch, n_targets, n_classes] logits"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Use a STRING/PPI-like graph prior for target-gene message passing.",
+  "changes": [
+    "program_model:gated_mlp->ppi_graph_message_passing",
+    "blueprint_status:implemented",
+    "custom_model_path:experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392/model.py",
+    "hidden_dim:384->384",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392",
+  "program_model_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392/model.py",
+  "pipeline_manifest_path": "experiments/k562_single_cellline_small_50/programs/root_concat_gated_mlp_p1_ppi_graph_message_passing_a20f1392/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "gene_graph"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "STRING",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "ppi_graph_message_passing",
+    "representation": "tabular_or_esm2_context",
+    "perturbation_side": "input_features",
+    "target_side": "target_gene_logits",
+    "fusion": "logit_message_passing",
+    "prior": "string_ppi_graph",
+    "head": "graph_smoothed_target_head",
+    "training_strategy": "cross_entropy",
+    "fine_tuning": "none",
+    "required_artifacts": [
+      "string_k562_gene_graph"
+    ],
+    "paper_alignment": "STRING/PPI target-gene graph prior"
+  },
+  "implementation_request_path": "",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "artifact_aware_blueprint_ranking",
+    "required_artifacts": [
+      "string_k562_gene_graph"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  },
+  "mcts_selected_parent": "root_concat_gated_mlp",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "root_concat_gated_mlp",
+      "policy": "uct",
+      "score": 2.4497236622264316,
+      "uct": 2.4497236622264316,
+      "puct": null,
+      "q": 0.6556010842323303,
+      "Q_v": 0.6556010842323303,
+      "exploitation": 0.6556010842323303,
+      "Exploitation": 0.6556010842323303,
+      "exploration": 1.7941225779941015,
+      "Exploration": 1.7941225779941015,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 5,
+      "children": 0,
+      "best_val_macro_f1": 0.6556010842323303,
+      "stage": "draft"
+    },
+    {
+      "node": "root_concat_esm2_target_aware_bilinear",
+      "policy": "uct",
+      "score": 2.2044327271869113,
+      "uct": 2.2044327271869113,
+      "puct": null,
+      "q": 0.41031014919281006,
+      "Q_v": 0.41031014919281006,
+      "exploitation": 0.41031014919281006,
+      "Exploitation": 0.41031014919281006,
+      "exploration": 1.7941225779941015,
+      "Exploration": 1.7941225779941015,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 5,
+      "children": 0,
+      "best_val_macro_f1": 0.41031014919281006,
+      "stage": "draft"
+    },
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp_p1_ppi_graph_message_passing_28553456",
+      "policy": "uct",
+      "score": 2.1978671563556125,
+      "uct": 2.1978671563556125,
+      "puct": null,
+      "q": 0.40374457836151123,
+      "Q_v": 0.40374457836151123,
+      "exploitation": 0.40374457836151123,
+      "Exploitation": 0.40374457836151123,
+      "exploration": 1.7941225779941015,
+      "Exploration": 1.7941225779941015,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 5,
+      "children": 0,
+      "best_val_macro_f1": 0.40374457836151123,
+      "stage": "improve"
+    },
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp",
+      "policy": "uct",
+      "score": 1.80476169250589,
+      "uct": 1.80476169250589,
+      "puct": null,
+      "q": 0.5361254513263702,
+      "Q_v": 1.0722509026527405,
+      "exploitation": 0.5361254513263702,
+      "Exploitation": 0.5361254513263702,
+      "exploration": 1.2686362411795198,
+      "Exploration": 1.2686362411795198,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 5,
+      "children": 1,
+      "best_val_macro_f1": 0.6685063242912292,
+      "stage": "draft"
+    }
+  ],
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [],
+  "missing_required_artifact_paths": []
+}

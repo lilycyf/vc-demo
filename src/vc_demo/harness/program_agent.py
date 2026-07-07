@@ -42,11 +42,22 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     model_cfg["dropout"] = float(model_cfg.get("dropout", 0.1) if model_cfg.get("dropout") is not None else 0.1)
     if blueprint_id in {"dual_path_gated_low_rank", "target_factor_router", "target_gene_embedding_bilinear"}:
         model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 64) or 64), 32), 128)
+    if blueprint_id == "esm2_gene_projection":
+        esm2_data_dir = Path("data/cell_lines/k562_concat_esm2_gene_embedding")
+        if esm2_data_dir.exists():
+            child.setdefault("data", {})["data_dir"] = str(esm2_data_dir)
+            model_cfg["input_dim"] = "auto"
+            model_cfg["perturbation_embedding_dim"] = 1280
+            model_cfg["source_feature_dim"] = 1105
     if blueprint_id == "target_gene_embedding_bilinear":
-        model_cfg["artifact_manifest_path"] = "auto"
+        model_cfg["artifact_manifest_path"] = "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json"
     if blueprint_id in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"}:
         model_cfg.setdefault("artifacts", {})
         model_cfg["artifacts"].setdefault("string_graph_edges_path", "data/artifacts/string/k562_target_graph_edges.tsv")
+        model_cfg["artifacts"].setdefault("data_dir", child.get("data", {}).get("data_dir", ""))
+    if blueprint_id == "pathway_pooling_encoder":
+        model_cfg.setdefault("artifacts", {})
+        model_cfg["artifacts"].setdefault("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
         model_cfg["artifacts"].setdefault("data_dir", child.get("data", {}).get("data_dir", ""))
     if blueprint_id == "focal_loss_training_strategy":
         train_cfg["loss_type"] = "focal_loss"
@@ -240,7 +251,7 @@ def hypothesis_for(blueprint_id: str, blueprint: dict[str, Any]) -> str:
 
 
 def render_program_source(blueprint_id: str) -> str:
-    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING}
+    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "esm2_gene_projection": ESM2_GENE_PROJECTION, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING, "string_gnn_perturbation_propagator": STRING_GNN_PERTURBATION_PROPAGATOR, "pathway_pooling_encoder": PATHWAY_POOLING_ENCODER}
     try:
         return sources[blueprint_id]
     except KeyError as exc:
@@ -335,6 +346,8 @@ class GeneratedModel(nn.Module):
     def __init__(self, spec) -> None:
         super().__init__()
         manifest_path = getattr(spec, "artifact_manifest_path", "") or getattr(spec, "artifacts", {}).get("artifact_manifest_path", "")
+        if manifest_path == "auto":
+            manifest_path = "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json"
         if not manifest_path:
             raise ValueError("target_gene_embedding_bilinear requires model.artifact_manifest_path or auto-bound artifact manifest")
         with Path(manifest_path).open() as f:
@@ -444,4 +457,225 @@ class GeneratedModel(nn.Module):
         propagated = torch.einsum("ij,bjc->bic", adj, base)
         mix = torch.sigmoid(self.mix_logit)
         return mix * propagated + (1.0 - mix) * base
+"""
+
+
+
+PATHWAY_POOLING_ENCODER = """from __future__ import annotations
+
+from pathlib import Path
+
+import numpy as np
+import torch
+from torch import nn
+
+
+def _load_target_genes(data_dir: str) -> list[str]:
+    if not data_dir:
+        raise ValueError("pathway pooling node requires spec.artifacts['data_dir']")
+    path = Path(data_dir) / "train.npz"
+    if not path.exists():
+        raise FileNotFoundError(f"cannot load target genes from {path}")
+    with np.load(path, allow_pickle=True) as z:
+        return [str(x) for x in z["target_genes"].tolist()]
+
+
+def _load_membership(path: str, target_genes: list[str]) -> torch.Tensor:
+    artifact_path = Path(path)
+    if not artifact_path.exists():
+        raise FileNotFoundError(f"pathway membership artifact does not exist: {artifact_path}")
+    with np.load(artifact_path, allow_pickle=True) as z:
+        membership = np.asarray(z["membership"], dtype="float32")
+        artifact_genes = [str(x) for x in z["target_genes"].tolist()]
+    if artifact_genes != list(target_genes):
+        raise ValueError("pathway membership target genes are not aligned to the current split target_genes")
+    if membership.ndim != 2:
+        raise ValueError(f"membership must be [n_targets, n_pathways], got {membership.shape}")
+    row_sum = membership.sum(axis=1, keepdims=True)
+    row_norm = np.divide(membership, np.maximum(row_sum, 1.0), dtype=np.float32)
+    return torch.from_numpy(row_norm)
+
+
+class GeneratedModel(nn.Module):
+    artifact_usage = "pathway_membership_matrix"
+
+    def __init__(self, spec) -> None:
+        super().__init__()
+        artifacts = dict(getattr(spec, "artifacts", {}) or {})
+        target_genes = _load_target_genes(str(artifacts.get("data_dir", "")))
+        if len(target_genes) != int(spec.n_targets):
+            raise ValueError(f"target gene count {len(target_genes)} does not match n_targets {spec.n_targets}")
+        membership_path = str(artifacts.get("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz"))
+        membership = _load_membership(membership_path, target_genes)
+        hidden = int(spec.hidden_dim)
+        n_pathways = int(membership.shape[1])
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        self.encoder = nn.Sequential(
+            nn.Linear(int(spec.input_dim), hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+            nn.Dropout(float(spec.dropout)),
+            nn.Linear(hidden, hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+        )
+        self.pathway_head = nn.Linear(hidden, n_pathways * self.n_classes)
+        self.direct_head = nn.Linear(hidden, self.n_targets * self.n_classes)
+        self.mix_logit = nn.Parameter(torch.tensor(0.0))
+        self.register_buffer("target_pathway", membership, persistent=False)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.encoder(x)
+        pathway_logits = self.pathway_head(z).view(x.shape[0], -1, self.n_classes)
+        target_pathway = self.target_pathway.to(device=x.device, dtype=x.dtype)
+        pooled = torch.einsum("np,bpc->bnc", target_pathway, pathway_logits)
+        direct = self.direct_head(z).view(x.shape[0], self.n_targets, self.n_classes)
+        mix = torch.sigmoid(self.mix_logit)
+        return mix * pooled + (1.0 - mix) * direct
+"""
+
+
+
+STRING_GNN_PERTURBATION_PROPAGATOR = """from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+import numpy as np
+import torch
+from torch import nn
+
+
+def _load_target_genes(data_dir: str) -> list[str]:
+    if not data_dir:
+        raise ValueError("STRING GNN node requires spec.artifacts['data_dir']")
+    path = Path(data_dir) / "train.npz"
+    if not path.exists():
+        raise FileNotFoundError(f"cannot load target genes from {path}")
+    with np.load(path, allow_pickle=True) as z:
+        return [str(x) for x in z["target_genes"].tolist()]
+
+
+def _load_adjacency(path: str, target_genes: list[str], power: int = 2) -> torch.Tensor:
+    edge_path = Path(path)
+    if not edge_path.exists():
+        raise FileNotFoundError(f"STRING graph edge artifact does not exist: {edge_path}")
+    index = {gene: i for i, gene in enumerate(target_genes)}
+    adj = torch.eye(len(target_genes), dtype=torch.float32)
+    with edge_path.open() as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        for row in reader:
+            a = row.get("source_gene", "")
+            b = row.get("target_gene", "")
+            if a not in index or b not in index:
+                continue
+            score = float(row.get("score", 1.0) or 1.0)
+            i = index[a]
+            j = index[b]
+            adj[i, j] = max(adj[i, j], score)
+            adj[j, i] = max(adj[j, i], score)
+    deg = adj.sum(dim=1).clamp_min(1e-6)
+    norm = adj / deg.unsqueeze(1)
+    propagated = norm
+    for _ in range(max(1, power) - 1):
+        propagated = torch.matmul(propagated, norm)
+    propagated = 0.5 * norm + 0.5 * propagated
+    propagated = propagated / propagated.sum(dim=1, keepdim=True).clamp_min(1e-6)
+    return propagated
+
+
+class GeneratedModel(nn.Module):
+    artifact_usage = "string_k562_gene_graph"
+
+    def __init__(self, spec) -> None:
+        super().__init__()
+        artifacts = dict(getattr(spec, "artifacts", {}) or {})
+        target_genes = _load_target_genes(str(artifacts.get("data_dir", "")))
+        if len(target_genes) != int(spec.n_targets):
+            raise ValueError(f"target gene count {len(target_genes)} does not match n_targets {spec.n_targets}")
+        graph_path = str(artifacts.get("string_graph_edges_path", "data/artifacts/string/k562_target_graph_edges.tsv"))
+        adjacency = _load_adjacency(graph_path, target_genes)
+        hidden = int(spec.hidden_dim)
+        rank = max(16, min(int(getattr(spec, "low_rank_dim", 64)), hidden, 128))
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        self.encoder = nn.Sequential(
+            nn.Linear(int(spec.input_dim), hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+            nn.Dropout(float(spec.dropout)),
+            nn.Linear(hidden, hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+        )
+        self.rank_head = nn.Linear(hidden, rank * self.n_classes)
+        self.target_factors = nn.Parameter(torch.empty(self.n_targets, rank))
+        nn.init.normal_(self.target_factors, std=0.02)
+        self.direct = nn.Linear(hidden, self.n_targets * self.n_classes)
+        self.mix_logit = nn.Parameter(torch.tensor(0.0))
+        self.register_buffer("target_adjacency", adjacency, persistent=False)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.encoder(x)
+        rank_logits = self.rank_head(z).view(x.shape[0], -1, self.n_classes)
+        factor_logits = torch.einsum("brc,nr->bnc", rank_logits, self.target_factors)
+        direct = self.direct(z).view(x.shape[0], self.n_targets, self.n_classes)
+        base = 0.5 * factor_logits + 0.5 * direct
+        adj = self.target_adjacency.to(device=x.device, dtype=x.dtype)
+        propagated = torch.einsum("ij,bjc->bic", adj, base)
+        mix = torch.sigmoid(self.mix_logit)
+        return mix * propagated + (1.0 - mix) * base
+"""
+
+
+
+ESM2_GENE_PROJECTION = """from __future__ import annotations
+
+import torch
+from torch import nn
+
+
+class GeneratedModel(nn.Module):
+    artifact_usage = "esm2_gene_embedding_h5ad_via_k562_esm2_feature_dataset"
+
+    def __init__(self, spec) -> None:
+        super().__init__()
+        hidden = int(spec.hidden_dim)
+        input_dim = int(spec.input_dim)
+        emb_dim = int(getattr(spec, "perturbation_embedding_dim", 1280) or 1280)
+        if input_dim <= emb_dim:
+            emb_dim = input_dim
+        context_dim = input_dim - emb_dim
+        if context_dim <= 0:
+            context_dim = input_dim
+            emb_dim = input_dim
+        self.context_dim = context_dim
+        self.emb_dim = emb_dim
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        dropout = float(spec.dropout)
+        self.context_encoder = nn.Sequential(
+            nn.Linear(context_dim, hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+            nn.Dropout(dropout),
+        )
+        self.esm2_encoder = nn.Sequential(
+            nn.Linear(emb_dim, hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+            nn.Dropout(dropout),
+        )
+        self.gate = nn.Sequential(nn.Linear(hidden * 2, hidden), nn.GELU(), nn.Linear(hidden, hidden), nn.Sigmoid())
+        self.head = nn.Linear(hidden, self.n_targets * self.n_classes)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        context = x[:, : self.context_dim]
+        esm2 = x[:, -self.emb_dim :]
+        c = self.context_encoder(context)
+        e = self.esm2_encoder(esm2)
+        gate = self.gate(torch.cat([c, e], dim=-1))
+        z = c * (1.0 - gate) + e * gate
+        return self.head(z).view(x.shape[0], self.n_targets, self.n_classes)
 """
