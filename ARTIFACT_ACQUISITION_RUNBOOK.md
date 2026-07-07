@@ -61,3 +61,9 @@ When `acquisition_queue.json` is non-empty, the Codex agent must:
 ## Resume Rule
 
 After acquisition, rerun the same strict search command without `--allow-missing-artifact-fallbacks`. If the artifact is now present, MCTS can implement/train the selected node. If another artifact is missing, produce the next acquisition queue item.
+
+## Pre-Test Hardening
+
+- `program_run` now writes `run_manifest.json` with commit, search parameters, artifact audit, queue paths, MCTS state, and best-node summary.
+- Blueprint choice is artifact-aware by default: executable blueprints whose required artifacts are present are ranked before blueprints that would immediately require acquisition. Use `--no-artifact-aware-blueprint-policy` only for ablation.
+- `ppi_graph_message_passing` is an implemented STRING/PPI graph smoother when `string_k562_gene_graph` is present. It reads `data/artifacts/string/k562_target_graph_edges.tsv` through `spec.artifacts` and does not fabricate edges.

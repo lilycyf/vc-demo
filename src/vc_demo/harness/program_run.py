@@ -12,6 +12,7 @@ from vc_demo.harness.executor import run_node
 from vc_demo.harness.mcts import backpropagate, select_parent
 from vc_demo.harness.program_agent import propose_program_child
 from vc_demo.harness.report import write_summary
+from vc_demo.harness.run_manifest import write_run_manifest
 from vc_demo.harness.state import empty_tree, read_json, reset_run_dir, write_json
 
 
@@ -186,7 +187,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))
         child_index = len(parent_node.get("children", [])) + 1
-        child_config, proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint)
+        child_config, proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy)
         child_name = str(child_config["node_name"])
         child_config_path = proposal_dir / f"{child_name}.json"
         proposal_path = proposal_dir / f"{child_name}.proposal.json"
@@ -248,7 +249,8 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
+    run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
     print(json.dumps(result, indent=2))
     return result
 
@@ -271,6 +273,7 @@ def main() -> None:
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--artifact-registry", type=Path, default=None)
+    parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Prefer executable blueprints whose required artifacts are already present before blueprints that would trigger acquisition.")
     parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true", help="Allow planned artifact blueprints to train explicit fallback models when required artifacts are missing. Default is strict: block and stop.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()

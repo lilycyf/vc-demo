@@ -6,14 +6,15 @@ import random
 from pathlib import Path
 from typing import Any
 
+from vc_demo.harness.artifact_registry import missing_requirements_for_blueprint, requirements_for_blueprint
 from vc_demo.harness.model_blueprints import blueprint_by_id, selectable_blueprint_ids
 from vc_demo.harness.pipeline import default_pipeline_manifest, write_pipeline_manifest
 from vc_demo.harness.state import write_json
 
 
-def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True) -> tuple[dict[str, Any], dict[str, Any]]:
     parent_name = str(parent_config.get("node_name", parent_node.get("name", "node")))
-    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned)
+    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware)
     blueprint = blueprint_by_id(blueprint_id)
     if blueprint["status"] == "planned" and not include_planned and force_blueprint is None:
         raise ValueError(f"planned blueprint {blueprint_id!r} selected without include_planned=True")
@@ -42,6 +43,10 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 64) or 64), 32), 128)
     if blueprint_id == "target_gene_embedding_bilinear":
         model_cfg["artifact_manifest_path"] = "auto"
+    if blueprint_id in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"}:
+        model_cfg.setdefault("artifacts", {})
+        model_cfg["artifacts"].setdefault("string_graph_edges_path", "data/artifacts/string/k562_target_graph_edges.tsv")
+        model_cfg["artifacts"].setdefault("data_dir", child.get("data", {}).get("data_dir", ""))
     if blueprint_id == "focal_loss_training_strategy":
         train_cfg["loss_type"] = "focal_loss"
         train_cfg.setdefault("focal_gamma", 2.0)
@@ -88,6 +93,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         "artifact_usage_claims": pipeline_manifest.get("artifact_usage_claims", []),
         "implementation_request_path": str(child_dir / "IMPLEMENTATION_REQUEST.md") if requires_implementation else "",
         "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+        "artifact_selection": artifact_selection_summary(blueprint_id, registry_audit),
     }
     child["proposal_note"] = f"codex_program_agent blueprint={blueprint_id}; " + "; ".join(changes)
     write_json(child_dir / "proposal.json", proposal)
@@ -118,15 +124,28 @@ def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: d
     return manifest
 
 
-def _choose_blueprint(parent_name: str, parent_node: dict[str, Any], child_index: int, rng: random.Random, include_planned: bool) -> str:
+def _choose_blueprint(
+    parent_name: str,
+    parent_node: dict[str, Any],
+    child_index: int,
+    rng: random.Random,
+    include_planned: bool,
+    registry_audit: dict[str, Any] | None = None,
+    artifact_aware: bool = True,
+) -> str:
     choices = selectable_blueprint_ids(include_planned)
     if not choices:
         raise ValueError("no selectable model blueprints are available")
+    if artifact_aware and registry_audit:
+        choices = rank_blueprint_choices(choices, registry_audit)
     if child_index == 1 and not include_planned:
         if "residual" in parent_name and "mixture_of_experts" in choices:
             return "mixture_of_experts"
         if "gated" in parent_name and "dual_path_gated_low_rank" in choices:
             return "dual_path_gated_low_rank"
+    if artifact_aware and registry_audit:
+        if child_index <= len(choices):
+            return choices[child_index - 1]
     parent_offset = int(hashlib.sha1(parent_name.encode("utf-8")).hexdigest(), 16) % len(choices)
     if child_index <= len(choices):
         return choices[(parent_offset + child_index - 1) % len(choices)]
@@ -134,6 +153,41 @@ def _choose_blueprint(parent_name: str, parent_node: dict[str, Any], child_index
     if parent_val >= 0.60 and "dual_path_gated_low_rank" in choices and rng.random() < 0.65:
         return "dual_path_gated_low_rank"
     return rng.choice(choices)
+
+
+def artifact_selection_summary(blueprint_id: str, registry_audit: dict[str, Any] | None) -> dict[str, Any]:
+    if not registry_audit:
+        return {"policy": "unavailable"}
+    required = requirements_for_blueprint(registry_audit, blueprint_id)
+    missing = [item for item in required if not item.get("present")]
+    return {
+        "policy": "artifact_aware_blueprint_ranking",
+        "required_artifacts": [item.get("id") for item in required],
+        "missing_required_artifacts": [item.get("id") for item in missing],
+        "all_required_present": bool(required) and not missing,
+    }
+
+
+def rank_blueprint_choices(choices: list[str], registry_audit: dict[str, Any]) -> list[str]:
+    indexed = list(enumerate(choices))
+
+    def key(item: tuple[int, str]) -> tuple[int, int, int, int, int]:
+        index, blueprint_id = item
+        blueprint = blueprint_by_id(blueprint_id)
+        required = requirements_for_blueprint(registry_audit, blueprint_id)
+        missing = missing_requirements_for_blueprint(registry_audit, blueprint_id)
+        external_required = [r for r in required if r.get("family") not in {"tabular", "metadata"}]
+        if external_required and not missing:
+            availability_bucket = 0
+        elif not missing:
+            availability_bucket = 1
+        else:
+            availability_bucket = 3
+        status_bucket = 0 if blueprint.get("status") == "implemented" else 1
+        domain_bucket = 0 if blueprint_id in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"} else 1
+        return (availability_bucket, domain_bucket, status_bucket, -int(blueprint.get("change_level", 0) or 0), index)
+
+    return [blueprint_id for _, blueprint_id in sorted(indexed, key=key)]
 
 
 def _bounded_hidden(current: Any, blueprint_id: str) -> int:
@@ -177,7 +231,7 @@ def hypothesis_for(blueprint_id: str, blueprint: dict[str, Any]) -> str:
 
 
 def render_program_source(blueprint_id: str) -> str:
-    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR}
+    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING}
     try:
         return sources[blueprint_id]
     except KeyError as exc:
@@ -301,4 +355,84 @@ class GeneratedModel(nn.Module):
         target_rank = self.target_projection(target_embeddings)
         logits = torch.einsum("brc,nr->bnc", context_rank, target_rank)
         return logits + self.target_residual(target_embeddings).unsqueeze(0) + self.bias.unsqueeze(0)
+"""
+
+
+
+STRING_GRAPH_MESSAGE_PASSING = """from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+import numpy as np
+import torch
+from torch import nn
+
+
+def _load_target_genes(data_dir: str) -> list[str]:
+    if not data_dir:
+        raise ValueError("STRING graph node requires spec.artifacts['data_dir']")
+    path = Path(data_dir) / "train.npz"
+    if not path.exists():
+        raise FileNotFoundError(f"cannot load target genes from {path}")
+    with np.load(path, allow_pickle=True) as z:
+        return [str(x) for x in z["target_genes"].tolist()]
+
+
+def _load_adjacency(path: str, target_genes: list[str]) -> torch.Tensor:
+    edge_path = Path(path)
+    if not edge_path.exists():
+        raise FileNotFoundError(f"STRING graph edge artifact does not exist: {edge_path}")
+    index = {gene: i for i, gene in enumerate(target_genes)}
+    adj = torch.eye(len(target_genes), dtype=torch.float32)
+    with edge_path.open() as f:
+        reader = csv.DictReader(f, delimiter="\t")
+        for row in reader:
+            a = row.get("source_gene", "")
+            b = row.get("target_gene", "")
+            if a not in index or b not in index:
+                continue
+            score = float(row.get("score", 1.0) or 1.0)
+            i = index[a]
+            j = index[b]
+            adj[i, j] = max(adj[i, j], score)
+            adj[j, i] = max(adj[j, i], score)
+    deg = adj.sum(dim=1).clamp_min(1e-6)
+    return adj / deg.unsqueeze(1)
+
+
+class GeneratedModel(nn.Module):
+    artifact_usage = "string_k562_gene_graph"
+
+    def __init__(self, spec) -> None:
+        super().__init__()
+        artifacts = dict(getattr(spec, "artifacts", {}) or {})
+        target_genes = _load_target_genes(str(artifacts.get("data_dir", "")))
+        if len(target_genes) != int(spec.n_targets):
+            raise ValueError(f"target gene count {len(target_genes)} does not match n_targets {spec.n_targets}")
+        graph_path = str(artifacts.get("string_graph_edges_path", "data/artifacts/string/k562_target_graph_edges.tsv"))
+        adjacency = _load_adjacency(graph_path, target_genes)
+        hidden = int(spec.hidden_dim)
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        self.encoder = nn.Sequential(
+            nn.Linear(int(spec.input_dim), hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+            nn.Dropout(float(spec.dropout)),
+            nn.Linear(hidden, hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+        )
+        self.base_head = nn.Linear(hidden, self.n_targets * self.n_classes)
+        self.mix_logit = nn.Parameter(torch.tensor(0.0))
+        self.register_buffer("target_adjacency", adjacency, persistent=False)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.encoder(x)
+        base = self.base_head(z).view(x.shape[0], self.n_targets, self.n_classes)
+        adj = self.target_adjacency.to(device=x.device, dtype=x.dtype)
+        propagated = torch.einsum("ij,bjc->bic", adj, base)
+        mix = torch.sigmoid(self.mix_logit)
+        return mix * propagated + (1.0 - mix) * base
 """

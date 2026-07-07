@@ -91,3 +91,9 @@ Strict artifact mode now distinguishes missing-artifact acquisition from fallbac
 
 
 Artifact acquisition is now resolver-backed: `src/vc_demo/harness/artifact_acquisition.py` consumes `acquisition_queue.json`, verifies or executes known source-backed artifact builders from `configs/artifacts/acquisition_sources.json`, and generates strict Codex acquisition tasks for artifacts that require official-source research. This keeps strict searches active without allowing fallback artifacts.
+
+## Pre-Test Hardening
+
+- `program_run` now writes `run_manifest.json` with commit, search parameters, artifact audit, queue paths, MCTS state, and best-node summary.
+- Blueprint choice is artifact-aware by default: executable blueprints whose required artifacts are present are ranked before blueprints that would immediately require acquisition. Use `--no-artifact-aware-blueprint-policy` only for ablation.
+- `ppi_graph_message_passing` is an implemented STRING/PPI graph smoother when `string_k562_gene_graph` is present. It reads `data/artifacts/string/k562_target_graph_edges.tsv` through `spec.artifacts` and does not fabricate edges.
