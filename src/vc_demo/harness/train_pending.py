@@ -8,6 +8,7 @@ from typing import Any
 from vc_demo.harness.executor import run_node
 from vc_demo.harness.mcts import backpropagate
 from vc_demo.harness.report import write_summary
+from vc_demo.harness.search_memory import rebuild_memory_from_tree
 from vc_demo.harness.state import read_json, write_json
 
 
@@ -92,8 +93,9 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
         }
     )
     backpropagate(tree, node_name, reward(metrics))
-    write_json(tree_path, tree)
     failures = load_failures(run_dir)
+    rebuild_memory_from_tree(run_dir, tree, failures)
+    write_json(tree_path, tree)
     write_queue(run_dir, tree)
     if summary is None:
         summary = run_dir / "search_summary.md"

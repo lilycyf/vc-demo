@@ -13,6 +13,7 @@ from vc_demo.harness.mcts import backpropagate, select_parent
 from vc_demo.harness.program_agent import propose_program_child
 from vc_demo.harness.report import write_summary
 from vc_demo.harness.run_manifest import write_run_manifest
+from vc_demo.harness.search_memory import is_duplicate_proposal, rebuild_memory_from_tree, record_event
 from vc_demo.harness.state import empty_tree, read_json, reset_run_dir, write_json
 
 
@@ -169,6 +170,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     registry_audit = audit_registry(load_registry(args.artifact_registry, "K562"))
     write_json(run_dir / "artifact_registry_audit.json", registry_audit)
     tree.setdefault("artifact_registry", registry_audit)
+    memory = rebuild_memory_from_tree(run_dir, tree, failures)
 
     if not resume:
         root_configs = [Path(path) for path in args.root_configs]
@@ -186,8 +188,25 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))
-        child_index = len(parent_node.get("children", [])) + 1
-        child_config, proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy)
+        child_config = None
+        proposal = None
+        child_name = ""
+        duplicate_skips: list[dict[str, Any]] = []
+        for duplicate_attempt in range(1, args.max_duplicate_proposal_attempts + 1):
+            child_index = len(parent_node.get("children", [])) + duplicate_attempt
+            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy)
+            duplicate, reason = is_duplicate_proposal(memory, parent_name, str(candidate_proposal.get("strategy", "")), args.max_blueprint_repeats, allow_parent_duplicate=args.allow_parent_duplicate_blueprints)
+            if duplicate and not args.force_blueprint:
+                duplicate_skips.append({"child": candidate_config.get("node_name"), "strategy": candidate_proposal.get("strategy"), "reason": reason})
+                record_event(run_dir, "duplicate_proposal_skipped", {"iteration": iteration, "parent": parent_name, **duplicate_skips[-1]})
+                continue
+            child_config, proposal = candidate_config, candidate_proposal
+            break
+        if child_config is None or proposal is None:
+            tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "event": "all_candidate_blueprints_duplicate", "skips": duplicate_skips})
+            no_improve += 1
+            write_tree_and_failures(run_dir, tree, failures)
+            continue
         child_name = str(child_config["node_name"])
         child_config_path = proposal_dir / f"{child_name}.json"
         proposal_path = proposal_dir / f"{child_name}.proposal.json"
@@ -242,15 +261,17 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             no_improve += 1
 
+        memory = rebuild_memory_from_tree(run_dir, tree, failures)
         write_tree_and_failures(run_dir, tree, failures)
         if args.stop_no_improve and no_improve >= args.stop_no_improve:
             stop_reason = f"no improvement for {no_improve} nodes"
             break
 
+    memory = rebuild_memory_from_tree(run_dir, tree, failures)
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
     run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
     print(json.dumps(result, indent=2))
     return result
 
@@ -275,6 +296,9 @@ def main() -> None:
     parser.add_argument("--artifact-registry", type=Path, default=None)
     parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Prefer executable blueprints whose required artifacts are already present before blueprints that would trigger acquisition.")
     parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true", help="Allow planned artifact blueprints to train explicit fallback models when required artifacts are missing. Default is strict: block and stop.")
+    parser.add_argument("--max-blueprint-repeats", type=int, default=2, help="Global repeat limit per blueprint; -1 disables the global duplicate guard.")
+    parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true", help="Allow the same parent to generate the same blueprint more than once.")
+    parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8, help="How many candidate blueprints to try before skipping an iteration as duplicate-only.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:

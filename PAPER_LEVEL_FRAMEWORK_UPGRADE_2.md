@@ -97,3 +97,7 @@ Artifact acquisition is now resolver-backed: `src/vc_demo/harness/artifact_acqui
 - `program_run` now writes `run_manifest.json` with commit, search parameters, artifact audit, queue paths, MCTS state, and best-node summary.
 - Blueprint choice is artifact-aware by default: executable blueprints whose required artifacts are present are ranked before blueprints that would immediately require acquisition. Use `--no-artifact-aware-blueprint-policy` only for ablation.
 - `ppi_graph_message_passing` is an implemented STRING/PPI graph smoother when `string_k562_gene_graph` is present. It reads `data/artifacts/string/k562_target_graph_edges.tsv` through `spec.artifacts` and does not fabricate edges.
+
+## Autonomous Agent Loop
+
+See `AUTONOMOUS_AGENT_LOOP_UPGRADE.md`. The framework now includes `preflight`, `autonomous_run`, `implementation_agent`, duplicate/memory guards, `search_memory.json`, and bounded automatic implementation/training cycles for safe node-local model templates.
