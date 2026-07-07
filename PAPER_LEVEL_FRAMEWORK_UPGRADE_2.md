@@ -105,3 +105,7 @@ See `AUTONOMOUS_AGENT_LOOP_UPGRADE.md`. The framework now includes `preflight`, 
 ## Codex Agent Cookbook
 
 Formal runs use the user-launched Codex window as the coding/research agent. The repo must not call Codex/OpenAI APIs internally. See `CODEX_AGENT_COOKBOOK.md` for what Codex may change, must not change, and when official-source search is required.
+
+## Paper Alignment Layers 1-4
+
+See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execution layer, MCTS/proposal policy, model-space grammar, and artifact readiness layer.

@@ -8,6 +8,8 @@ from typing import Any
 import numpy as np
 
 from vc_demo.harness.artifact_registry import audit_registry, load_registry
+from vc_demo.harness.artifact_readiness import readiness as artifact_readiness
+from vc_demo.harness.pipeline_grammar import grammar_dimensions, grammar_readiness
 from vc_demo.harness.program_agent import rank_blueprint_choices
 from vc_demo.harness.state import read_json, write_json
 
@@ -56,11 +58,15 @@ def run_preflight(root_configs: list[Path], artifact_registry: Path, output: Pat
                 issues.append(f"missing split {split}: {item['path']}")
     if "string_k562_gene_graph" not in audit.get("present_artifacts", []):
         issues.append("STRING graph artifact is not present; graph blueprints will require acquisition")
+    artifact_ready = artifact_readiness(artifact_registry, Path("configs/artifacts/acquisition_sources.json"), cell_line)
     report = {
         "format": "vc_demo_preflight.v1",
         "roots": roots,
         "data_dirs": data_dirs,
         "artifact_registry": audit,
+        "artifact_readiness": artifact_ready,
+        "pipeline_grammar_dimensions": grammar_dimensions(),
+        "pipeline_grammar_readiness": grammar_readiness(audit.get("present_artifacts", [])),
         "artifact_aware_blueprint_preview": ranked,
         "issues": issues,
         "ready": not issues,

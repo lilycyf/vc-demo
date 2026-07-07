@@ -70,3 +70,7 @@ python scripts/generate_codex_experiment_prompt.py   --branch framework-autonomo
 - No fallback model in strict search unless explicitly running an ablation.
 - No changes to data splits, labels, or metric semantics during node implementation.
 - Do not commit raw data, checkpoints, `nodes/`, cache files, or secrets.
+
+## Paper Alignment Layers 1-4
+
+See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execution layer, MCTS/proposal policy, model-space grammar, and artifact readiness layer.

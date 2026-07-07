@@ -43,3 +43,6 @@ Autonomous loop rule: prefer `python -m vc_demo.harness.autonomous_run` for form
 
 
 Codex execution model: do not add internal Codex/OpenAI API calls to the repo for formal runs. The user-launched Codex window is the agent. The repo should emit queues, task files, audits, and guardrails; Codex should read them and make direct repo edits on RunPod within the cookbook boundaries.
+
+
+Paper alignment layers rule: before a formal run, read `PAPER_ALIGNMENT_LAYERS_1_4.md`. Use `preflight.json` for grammar/artifact readiness, `search_memory.json` for prior motifs and duplicate context, and `final_analysis.md` to explain whether architecture, training strategy, or artifact-backed biology drove the result.

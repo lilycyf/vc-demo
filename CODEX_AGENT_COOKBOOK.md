@@ -94,3 +94,7 @@ Every formal run should preserve:
 - `failures.json`
 - `proposals/*.json`
 - `final_conclusion.md`
+
+## Paper Alignment Layers 1-4
+
+See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execution layer, MCTS/proposal policy, model-space grammar, and artifact readiness layer.
