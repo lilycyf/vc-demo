@@ -1,0 +1,68 @@
+{
+  "data_dir": "data/cell_lines/k562_concat_esm2_gene_embedding",
+  "cell_line": "K562",
+  "source": {
+    "name": "NormanWeissman2019_filtered.h5ad from scPerturb Zenodo record 7041849",
+    "url": "https://zenodo.org/records/7041849",
+    "doi": "10.5281/zenodo.7041849",
+    "h5ad_file": "data/raw/scperturb/NormanWeissman2019_filtered.h5ad"
+  },
+  "label_rule": "per perturbation, delta vs control mean expression; <=5th percentile down, >=95th percentile up, otherwise unchanged",
+  "target_gene_selection": "top 1000 genes by ncells then ncounts among expressed genes",
+  "splits": {
+    "train": {
+      "file": "train.npz",
+      "n_perturbations": 73,
+      "feature_dim": 2385,
+      "n_targets": 1000,
+      "feature_dtype": "float32",
+      "label_dtype": "int64",
+      "feature_min": -6.052358627319336,
+      "feature_max": 7.761183261871338,
+      "is_one_hot_features": false,
+      "class_counts": {
+        "0": 3650,
+        "1": 65700,
+        "2": 3650
+      }
+    },
+    "val": {
+      "file": "val.npz",
+      "n_perturbations": 16,
+      "feature_dim": 2385,
+      "n_targets": 1000,
+      "feature_dtype": "float32",
+      "label_dtype": "int64",
+      "feature_min": -5.990274429321289,
+      "feature_max": 29.72996711730957,
+      "is_one_hot_features": false,
+      "class_counts": {
+        "0": 800,
+        "1": 14400,
+        "2": 800
+      }
+    },
+    "test": {
+      "file": "test.npz",
+      "n_perturbations": 16,
+      "feature_dim": 2385,
+      "n_targets": 1000,
+      "feature_dtype": "float32",
+      "label_dtype": "int64",
+      "feature_min": -4.6076459884643555,
+      "feature_max": 12.526897430419922,
+      "is_one_hot_features": false,
+      "class_counts": {
+        "0": 800,
+        "1": 14400,
+        "2": 800
+      }
+    }
+  },
+  "total_class_counts": {
+    "0": 5250,
+    "1": 94500,
+    "2": 5250
+  },
+  "all_splits_one_hot_features": false
+}
