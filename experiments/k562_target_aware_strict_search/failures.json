@@ -1,0 +1,16 @@
+{
+  "failures": [
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+      "status": "blocked_missing_artifact",
+      "strategy": "selective_adapter_finetune",
+      "artifact_requirements": [
+        "pretrained_encoder"
+      ],
+      "missing_artifacts": [
+        "pretrained_encoder"
+      ],
+      "message": "Strict artifact mode: required artifact is absent, so no fallback model.py was implemented or trained."
+    }
+  ]
+}

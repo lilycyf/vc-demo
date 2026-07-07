@@ -1,0 +1,418 @@
+{
+  "experiment": "k562_target_aware_strict_search",
+  "root_nodes": [
+    "root_concat_gated_mlp",
+    "root_concat_esm2_gene_embedding_gated_mlp",
+    "root_concat_esm2_target_aware_bilinear"
+  ],
+  "nodes": {
+    "root_concat_gated_mlp": {
+      "config": "configs/k562_roots/root_concat_gated_mlp.json",
+      "parent": "",
+      "children": [],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.6622336506843567,
+      "test_macro_f1": 0.6163509488105774,
+      "visits": 1,
+      "value": 0.6622336506843567,
+      "Q_v": 0.6622336506843567,
+      "squared_value": 0.43855340809873056,
+      "mean_reward": 0.6622336506843567,
+      "Exploitation": 0.6622336506843567,
+      "stage": "draft",
+      "best_reward": 0.6622336506843567,
+      "duration_seconds": 1.7127952575683594,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": false,
+        "artifact_sides": [],
+        "artifact_manifest_path": "",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      }
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp": {
+      "config": "configs/k562_roots/root_concat_esm2_gene_embedding_gated_mlp.json",
+      "parent": "",
+      "children": [
+        "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+        "root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57"
+      ],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.6643866300582886,
+      "test_macro_f1": 0.6208324432373047,
+      "visits": 1,
+      "value": 0.6643866300582886,
+      "Q_v": 0.6643866300582886,
+      "squared_value": 0.4414095942002092,
+      "mean_reward": 0.6643866300582886,
+      "Exploitation": 0.6643866300582886,
+      "stage": "draft",
+      "best_reward": 0.6643866300582886,
+      "duration_seconds": 0.8556613922119141,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      }
+    },
+    "root_concat_esm2_target_aware_bilinear": {
+      "config": "configs/k562_roots/root_concat_esm2_target_aware_bilinear.json",
+      "parent": "",
+      "children": [],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.3804990351200104,
+      "test_macro_f1": 0.3722938001155853,
+      "visits": 1,
+      "value": 0.3804990351200104,
+      "Q_v": 0.3804990351200104,
+      "squared_value": 0.1447795157272589,
+      "mean_reward": 0.3804990351200104,
+      "Exploitation": 0.3804990351200104,
+      "stage": "draft",
+      "best_reward": 0.3804990351200104,
+      "duration_seconds": 1.4580967426300049,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      }
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f": {
+      "config": "experiments/k562_target_aware_strict_search/proposals/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f.json",
+      "parent": "root_concat_esm2_gene_embedding_gated_mlp",
+      "children": [],
+      "status": "blocked_missing_artifact",
+      "iteration": 1,
+      "visits": 0,
+      "value": 0.0,
+      "Q_v": 0.0,
+      "Exploitation": 0.0,
+      "stage": "improve",
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "selective_adapter_finetune",
+      "proposal": "experiments/k562_target_aware_strict_search/proposals/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f.proposal.json",
+      "program_dir": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+      "program_model_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/model.py",
+      "implementation_request_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/IMPLEMENTATION_REQUEST.md",
+      "pipeline_manifest_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "pretrained_encoder"
+      ],
+      "artifact_usage_claims": [],
+      "requires_implementation": false,
+      "blocked_reason": "Strict artifact mode: required artifact is absent, so no fallback model.py was implemented or trained.",
+      "missing_artifacts": [
+        "pretrained_encoder"
+      ]
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57": {
+      "config": "experiments/k562_target_aware_strict_search/proposals/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57.json",
+      "parent": "root_concat_esm2_gene_embedding_gated_mlp",
+      "children": [],
+      "status": "not_trained_strict_stop",
+      "iteration": 2,
+      "visits": 0,
+      "value": 0.0,
+      "Q_v": 0.0,
+      "Exploitation": 0.0,
+      "stage": "improve",
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "focal_loss_training_strategy",
+      "proposal": "experiments/k562_target_aware_strict_search/proposals/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57.proposal.json",
+      "program_dir": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57",
+      "program_model_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57/model.py",
+      "implementation_request_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57/IMPLEMENTATION_REQUEST.md",
+      "pipeline_manifest_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "class_distribution"
+      ],
+      "artifact_usage_claims": [],
+      "requires_implementation": true,
+      "blocked_reason": "Strict run stopped before implementation because another queued planned node required a missing artifact."
+    }
+  },
+  "events": [
+    {
+      "iteration": 1,
+      "selected_parent": "root_concat_esm2_gene_embedding_gated_mlp",
+      "child": "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+      "strategy": "selective_adapter_finetune",
+      "node_kind": "program_node",
+      "requires_implementation": true,
+      "missing_required_artifacts": []
+    },
+    {
+      "iteration": 2,
+      "selected_parent": "root_concat_esm2_gene_embedding_gated_mlp",
+      "child": "root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57",
+      "strategy": "focal_loss_training_strategy",
+      "node_kind": "program_node",
+      "requires_implementation": true,
+      "missing_required_artifacts": []
+    }
+  ],
+  "artifact_registry": {
+    "registry_version": "vc_demo_artifact_registry.v1",
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "cell_line": "K562",
+    "artifacts": [
+      {
+        "id": "esm2_gene_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "ESM2",
+        "status": "expected_present",
+        "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene"
+        ],
+        "required_for_blueprints": [
+          "esm2_gene_projection",
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "esm2_k562_target_manifest",
+        "family": "artifact_manifest",
+        "provider": "ESM2",
+        "status": "derived_if_built",
+        "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "source": "derived_by:scripts/build_target_gene_artifact.py",
+        "usable_for": [
+          "target_gene",
+          "model_head_geometry"
+        ],
+        "required_for_blueprints": [
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "ESM2_D1280",
+        "artifact_family": "gene_embedding",
+        "target_gene_coverage": 0.921,
+        "n_target_genes": 1000,
+        "target_embedding_dim": 1280,
+        "missing_target_genes_count": 79
+      },
+      {
+        "id": "aido_gene_or_cell_embeddings",
+        "family": "foundation_embedding",
+        "provider": "AIDO",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/aido",
+        "source": "public GenBio artifact if available; exact file must be recorded before use",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene",
+          "cell_state"
+        ],
+        "required_for_blueprints": [
+          "aido_embedding_fusion"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "scfoundation_cell_embeddings",
+        "family": "cell_embedding",
+        "provider": "scFoundation",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/scfoundation",
+        "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+        "usable_for": [
+          "cell_state",
+          "expression_encoder"
+        ],
+        "required_for_blueprints": [
+          "scfoundation_cell_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "string_k562_gene_graph",
+        "family": "gene_graph",
+        "provider": "STRING",
+        "status": "missing_until_built",
+        "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+        "source": "STRING/PPI edges aligned to K562 perturbation and target genes",
+        "usable_for": [
+          "gene_graph",
+          "target_gene",
+          "perturbation_propagation"
+        ],
+        "required_for_blueprints": [
+          "ppi_graph_message_passing",
+          "string_gnn_perturbation_propagator"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "pathway_membership_matrix",
+        "family": "pathway_prior",
+        "provider": "pathway_db",
+        "status": "missing_until_built",
+        "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+        "source": "pathway membership matrix aligned to K562 target genes",
+        "usable_for": [
+          "target_gene",
+          "pathway_pooling"
+        ],
+        "required_for_blueprints": [
+          "pathway_pooling_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      }
+    ],
+    "present_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest"
+    ],
+    "missing_artifacts": [
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "string_k562_gene_graph",
+      "pathway_membership_matrix"
+    ]
+  },
+  "mcts": {
+    "last_selection": {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp",
+      "policy": "uct",
+      "score": 2.1466904374258,
+      "uct": 2.1466904374258,
+      "puct": null,
+      "q": 0.6643866300582886,
+      "Q_v": 0.6643866300582886,
+      "exploitation": 0.6643866300582886,
+      "Exploitation": 0.6643866300582886,
+      "exploration": 1.4823038073675114,
+      "Exploration": 1.4823038073675114,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 3,
+      "children": 1,
+      "best_val_macro_f1": 0.6643866300582886,
+      "stage": "draft"
+    },
+    "last_candidates": [
+      {
+        "node": "root_concat_esm2_gene_embedding_gated_mlp",
+        "policy": "uct",
+        "score": 2.1466904374258,
+        "uct": 2.1466904374258,
+        "puct": null,
+        "q": 0.6643866300582886,
+        "Q_v": 0.6643866300582886,
+        "exploitation": 0.6643866300582886,
+        "Exploitation": 0.6643866300582886,
+        "exploration": 1.4823038073675114,
+        "Exploration": 1.4823038073675114,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 3,
+        "children": 1,
+        "best_val_macro_f1": 0.6643866300582886,
+        "stage": "draft"
+      },
+      {
+        "node": "root_concat_gated_mlp",
+        "policy": "uct",
+        "score": 2.144537458051868,
+        "uct": 2.144537458051868,
+        "puct": null,
+        "q": 0.6622336506843567,
+        "Q_v": 0.6622336506843567,
+        "exploitation": 0.6622336506843567,
+        "Exploitation": 0.6622336506843567,
+        "exploration": 1.4823038073675114,
+        "Exploration": 1.4823038073675114,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 3,
+        "children": 0,
+        "best_val_macro_f1": 0.6622336506843567,
+        "stage": "draft"
+      },
+      {
+        "node": "root_concat_esm2_target_aware_bilinear",
+        "policy": "uct",
+        "score": 1.8628028424875218,
+        "uct": 1.8628028424875218,
+        "puct": null,
+        "q": 0.3804990351200104,
+        "Q_v": 0.3804990351200104,
+        "exploitation": 0.3804990351200104,
+        "Exploitation": 0.3804990351200104,
+        "exploration": 1.4823038073675114,
+        "Exploration": 1.4823038073675114,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 3,
+        "children": 0,
+        "best_val_macro_f1": 0.3804990351200104,
+        "stage": "draft"
+      }
+    ],
+    "selection_policy": "uct",
+    "exploration_c": 1.4142135623730951,
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension"
+  },
+  "stop_reason": "blocked_missing_artifact",
+  "strict_artifact_mode": true,
+  "blocked_missing_artifact": [
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+      "status": "blocked_missing_artifact",
+      "strategy": "selective_adapter_finetune",
+      "artifact_requirements": [
+        "pretrained_encoder"
+      ],
+      "missing_artifacts": [
+        "pretrained_encoder"
+      ],
+      "message": "Strict artifact mode: required artifact is absent, so no fallback model.py was implemented or trained."
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "root_concat_esm2_gene_embedding_gated_mlp",
+  "child": "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+  "strategy": "selective_adapter_finetune",
+  "blueprint": {
+    "id": "selective_adapter_finetune",
+    "status": "planned",
+    "category": "fine_tuning",
+    "paper_family": "selective_finetuning",
+    "change_level": 5,
+    "role": "Freeze a base encoder and train small adapters/LoRA-style modules.",
+    "requires": [
+      "pretrained_encoder"
+    ],
+    "implementation_notes": "Requires a pretrained encoder. Generate a request unless the encoder is already present in the repo.",
+    "acceptance": [
+      "Documents frozen/trainable parameter groups",
+      "Does not silently train a huge model"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Freeze a base encoder and train small adapters/LoRA-style modules.",
+  "changes": [
+    "program_model:gated_mlp->selective_adapter_finetune",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/model.py",
+    "hidden_dim:384->384",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+  "program_model_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/model.py",
+  "pipeline_manifest_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "pretrained_encoder"
+  ],
+  "artifact_usage_claims": [],
+  "implementation_request_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/IMPLEMENTATION_REQUEST.md",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "mcts_selected_parent": "root_concat_esm2_gene_embedding_gated_mlp",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp",
+      "policy": "uct",
+      "score": 2.1466904374258,
+      "uct": 2.1466904374258,
+      "puct": null,
+      "q": 0.6643866300582886,
+      "Q_v": 0.6643866300582886,
+      "exploitation": 0.6643866300582886,
+      "Exploitation": 0.6643866300582886,
+      "exploration": 1.4823038073675114,
+      "Exploration": 1.4823038073675114,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 3,
+      "children": 0,
+      "best_val_macro_f1": 0.6643866300582886,
+      "stage": "draft"
+    },
+    {
+      "node": "root_concat_gated_mlp",
+      "policy": "uct",
+      "score": 2.144537458051868,
+      "uct": 2.144537458051868,
+      "puct": null,
+      "q": 0.6622336506843567,
+      "Q_v": 0.6622336506843567,
+      "exploitation": 0.6622336506843567,
+      "Exploitation": 0.6622336506843567,
+      "exploration": 1.4823038073675114,
+      "Exploration": 1.4823038073675114,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 3,
+      "children": 0,
+      "best_val_macro_f1": 0.6622336506843567,
+      "stage": "draft"
+    },
+    {
+      "node": "root_concat_esm2_target_aware_bilinear",
+      "policy": "uct",
+      "score": 1.8628028424875218,
+      "uct": 1.8628028424875218,
+      "puct": null,
+      "q": 0.3804990351200104,
+      "Q_v": 0.3804990351200104,
+      "exploitation": 0.3804990351200104,
+      "Exploitation": 0.3804990351200104,
+      "exploration": 1.4823038073675114,
+      "Exploration": 1.4823038073675114,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 3,
+      "children": 0,
+      "best_val_macro_f1": 0.3804990351200104,
+      "stage": "draft"
+    }
+  ],
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [],
+  "missing_required_artifact_paths": []
+}

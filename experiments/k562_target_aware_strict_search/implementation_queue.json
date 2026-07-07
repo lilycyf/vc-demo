@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+      "program_dir": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f",
+      "implementation_request_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/IMPLEMENTATION_REQUEST.md",
+      "program_model_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/model.py",
+      "pipeline_manifest_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_8e61c57f/pipeline.json",
+      "strategy": "selective_adapter_finetune",
+      "artifact_requirements": [
+        "pretrained_encoder"
+      ],
+      "status": "blocked_missing_artifact",
+      "missing_artifacts": [
+        "pretrained_encoder"
+      ]
+    },
+    {
+      "node": "root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57",
+      "program_dir": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57",
+      "implementation_request_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57/IMPLEMENTATION_REQUEST.md",
+      "program_model_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57/model.py",
+      "pipeline_manifest_path": "experiments/k562_target_aware_strict_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p2_focal_loss_training_strategy_549bfc57/pipeline.json",
+      "strategy": "focal_loss_training_strategy",
+      "artifact_requirements": [
+        "class_distribution"
+      ],
+      "status": "not_trained_strict_stop",
+      "missing_artifacts": []
+    }
+  ]
+}
