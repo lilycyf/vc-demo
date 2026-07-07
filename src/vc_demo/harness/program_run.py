@@ -41,8 +41,11 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "test_macro_f1": metrics["test_macro_f1"],
         "visits": 1 if not parent else 0,
         "value": reward(metrics) if not parent else 0.0,
+        "Q_v": reward(metrics) if not parent else 0.0,
         "squared_value": reward(metrics) * reward(metrics) if not parent else 0.0,
         "mean_reward": reward(metrics) if not parent else 0.0,
+        "Exploitation": reward(metrics) if not parent else 0.0,
+        "stage": "draft" if not parent else "improve",
         "best_reward": reward(metrics) if not parent else 0.0,
     }
     if proposal:
@@ -55,7 +58,7 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
 
 
 def add_pending_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, proposal: dict[str, Any]) -> None:
-    node = {"config": str(config_path), "parent": parent, "children": [], "status": "needs_implementation", "iteration": iteration, "visits": 0, "value": 0.0}
+    node = {"config": str(config_path), "parent": parent, "children": [], "status": "needs_implementation", "iteration": iteration, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
     enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
     tree["nodes"][parent].setdefault("children", []).append(name)
@@ -154,7 +157,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         except Exception as exc:
             error = "".join(traceback.format_exception_only(type(exc), exc)).strip()
             tree["nodes"][parent_name].setdefault("children", []).append(child_name)
-            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "error": error, "visits": 0, "value": 0.0}
+            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             no_improve += 1
 
@@ -179,8 +182,8 @@ def main() -> None:
     parser.add_argument("--budget-nodes", type=int, default=12)
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--max-children", type=int, default=3)
-    parser.add_argument("--exploration", type=float, default=0.7)
-    parser.add_argument("--selection-policy", choices=["uct", "puct"], default="puct")
+    parser.add_argument("--exploration", type=float, default=1.4142135623730951)
+    parser.add_argument("--selection-policy", choices=["uct", "puct"], default="uct")
     parser.add_argument("--stop-no-improve", type=int, default=6)
     parser.add_argument("--min-delta", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=11)

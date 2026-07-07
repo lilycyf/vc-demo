@@ -92,18 +92,15 @@ def select_parent(
     tree: dict[str, Any],
     exploration: float,
     max_children: int,
-    policy: SelectionPolicy = "puct",
+    policy: SelectionPolicy = "uct",
 ) -> tuple[str, list[dict[str, Any]]]:
     """Select the next trained parent node to expand.
 
-    This is a paper-compatible MCTS selection step:
-
-    - UCT uses accumulated rollout rewards only.
-    - PUCT additionally uses a normalized prior. In this repo the prior is
-      either explicitly attached to a node or derived weakly from validation
-      reward when no learned policy network exists.
-    - Returned rows include score components so proposals and reports can audit
-      why a parent was chosen.
+    The paper-aligned default is UCT because the public VCHarness tree
+    artifacts expose visits, Q_v, Exploitation, Exploration, and uct fields.
+    PUCT is retained as an optional implementation extension/ablation for cases
+    where a caller supplies or accepts an empirical prior. Returned rows include
+    score components so proposals and reports can audit why a parent was chosen.
     """
     candidates = candidate_parents(tree, max_children)
     if not candidates:
@@ -122,6 +119,7 @@ def select_parent(
             components = puct_score(node, parent_visits, exploration, priors[name])
         else:
             raise ValueError(f"unknown MCTS selection policy {policy!r}")
+        value = _as_float(node.get("value"), 0.0)
         scored.append(
             {
                 "node": name,
@@ -130,13 +128,17 @@ def select_parent(
                 "uct": components["score"] if policy == "uct" else None,
                 "puct": components["score"] if policy == "puct" else None,
                 "q": components["q"],
+                "Q_v": value,
                 "exploitation": components["exploitation"],
+                "Exploitation": components["exploitation"],
                 "exploration": components["exploration"],
+                "Exploration": components["exploration"],
                 "prior": components["prior"],
                 "visits": int(components["visits"]),
                 "parent_visits": int(components["parent_visits"]),
                 "children": len(node.get("children", [])),
                 "best_val_macro_f1": _as_float(node.get("best_val_macro_f1"), 0.0),
+                "stage": node.get("stage", "draft" if not node.get("parent") else "improve"),
             }
         )
     scored.sort(key=lambda row: (row["score"], row["best_val_macro_f1"]), reverse=True)
@@ -144,6 +146,8 @@ def select_parent(
     tree["mcts"]["last_selection"] = scored[0]
     tree["mcts"]["last_candidates"] = scored[: min(16, len(scored))]
     tree["mcts"]["selection_policy"] = policy
+    tree["mcts"]["exploration_c"] = exploration
+    tree["mcts"]["public_artifact_alignment"] = "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension"
     return scored[0]["node"], scored
 
 
@@ -153,8 +157,10 @@ def _update_rollout_stats(node: dict[str, Any], reward: float) -> None:
     squared = _as_float(node.get("squared_value"), 0.0) + reward * reward
     node["visits"] = visits
     node["value"] = value
+    node["Q_v"] = value
     node["squared_value"] = squared
     node["mean_reward"] = value / visits
+    node["Exploitation"] = node["mean_reward"]
     variance = max(squared / visits - node["mean_reward"] ** 2, 0.0)
     node["reward_variance"] = variance
     node["reward_std"] = math.sqrt(variance)

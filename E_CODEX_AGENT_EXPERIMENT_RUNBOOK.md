@@ -7,7 +7,7 @@ This runbook is a generic protocol for running a VCHarness-style model search wi
 Use a repeatable search loop to improve a model/pipeline for a user-specified research question:
 
 1. Train one or more root candidate pipelines.
-2. Use MCTS or another configured search policy to select which trained parent node to expand.
+2. Use the configured search policy to select which trained parent node to expand. For VCHarness-aligned runs, default to UCT unless the task explicitly requests another policy.
 3. Use Codex-agent judgment to propose the next child node within the allowed edit boundary.
 4. Train/evaluate the child node.
 5. Record the proposal, result, and search-tree state.
@@ -80,7 +80,7 @@ For every attempted child node, preserve or generate records containing:
 
 - parent node id
 - child node id
-- parent-selection score or rationale
+- parent-selection score or rationale, including UCT fields when running in paper-aligned mode
 - proposal strategy or change category
 - hypothesis
 - concrete config/code changes
@@ -108,6 +108,8 @@ If the task permits proposal-agent edits, make those edits first, then run a sma
 During the formal run:
 
 - keep the train/validation/test split fixed
+- use paper-specified behavior where public artifacts define it
+- label any missing operational detail as an implementation completion rather than a paper-confirmed mechanism
 - use the target metric as the search reward
 - do not stop only because early children underperform
 - record failures instead of silently dropping them

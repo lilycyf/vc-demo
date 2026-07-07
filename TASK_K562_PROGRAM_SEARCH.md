@@ -50,7 +50,7 @@ For a small serious run, target at least:
 - 2 planned blueprints implemented on demand
 - at least one Level 4 or Level 5 child
 - explicit recording of missing artifacts, fallbacks, costs, and wall time
-- auditable MCTS selection using UCT or PUCT score components and rollout/backpropagation statistics
+- auditable paper-aligned UCT selection with rollout/backpropagation statistics; PUCT may only be used as an explicitly labeled optional extension/ablation
 
 If the user asks for a shorter smoke run, record that the run validates the loop but does not validate paper-scale model discovery.
 
@@ -59,7 +59,7 @@ If the user asks for a shorter smoke run, record that the run validates the loop
 Start with a run that allows planned blueprints to materialize implementation requests:
 
 ```bash
-python -m vc_demo.harness.program_run   --experiment k562_program_node_agent_search   --root-configs configs/k562_roots/*.json   --run-dir experiments/k562_program_node_agent_search   --budget-nodes 30   --max-epochs 4   --max-children 3   --stop-no-improve 12   --exploration 0.7   --selection-policy puct   --seed 11   --allow-planned-blueprints   --max-pending-implementations 2   --reset
+python -m vc_demo.harness.program_run   --experiment k562_program_node_agent_search   --root-configs configs/k562_roots/*.json   --run-dir experiments/k562_program_node_agent_search   --budget-nodes 30   --max-epochs 4   --max-children 3   --stop-no-improve 12   --exploration 1.4142135623730951   --selection-policy uct   --seed 11   --allow-planned-blueprints   --max-pending-implementations 2   --reset
 ```
 
 ## If A Planned Blueprint Is Selected
@@ -105,7 +105,7 @@ It must state:
 - which blueprints were used
 - which planned blueprints were implemented on demand
 - failed/pending nodes
-- limitations versus the paper
+- limitations versus the paper and which details are repo-specific implementation completions
 - which child nodes were Level 1/2/3/4/5 changes
 - whether any foundation-model or graph-prior blueprint was blocked by missing artifacts
 - wall-time and GPU-hour estimate when available

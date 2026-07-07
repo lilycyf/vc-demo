@@ -16,8 +16,9 @@ Before touching code or running experiments, read these files in order:
 1. `E_CODEX_AGENT_EXPERIMENT_RUNBOOK.md`
 2. `F_PROGRAM_NODE_HARNESS_UPGRADE.md`
 3. `PAPER_LEVEL_SEARCH_SPACE_SPEC.md`
-4. `CODEX_AGENT_OPERATING_RULES.md`
-5. the concrete task file supplied by the user, for example `TASK_K562_PROGRAM_SEARCH.md`
+4. `PUBLIC_ARTIFACT_ALIGNMENT.md`
+5. `CODEX_AGENT_OPERATING_RULES.md`
+6. the concrete task file supplied by the user, for example `TASK_K562_PROGRAM_SEARCH.md`
 
 ## Reusable Framework Files
 
@@ -108,7 +109,11 @@ The model should use only fields available on `ModelSpec` unless the implementat
 
 For program-node searches, parent selection must use the harness MCTS layer rather than hand-picked parents. The proposal for each child must preserve the `mcts_selected_parent`, `mcts_selection_policy`, and `mcts_candidates` fields.
 
-The default serious-search policy is `puct`. Use `uct` only for ablations or when the task explicitly requests it. Final reports should mention whether the run used UCT or PUCT and should summarize the selected-parent path for the best node.
+The paper-aligned serious-search policy is `uct` with `exploration_c = sqrt(2) = 1.4142135623730951`, because the public VCHarness K562 tree artifacts expose UCT-style fields (`visits`, `Q_v`, `Exploitation`, `Exploration`, `uct`, and `stage`). PUCT remains available only as a repo-specific optional extension or ablation. Final reports must mention whether the run used UCT or PUCT and must not describe optional extensions as paper-confirmed behavior.
+
+## Paper-Alignment Rule
+
+When public paper artifacts define a mechanism, follow it. When they do not define a mechanism but the runnable loop needs one, implement the missing piece as an explicit repo-specific completion and record that status in the proposal/final report. Do not invent hidden paper details.
 
 
 ## Experiment Loop
