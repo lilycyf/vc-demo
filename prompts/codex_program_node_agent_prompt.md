@@ -12,12 +12,13 @@ git pull --ff-only
 Then read, in order:
 1. E_CODEX_AGENT_EXPERIMENT_RUNBOOK.md
 2. F_PROGRAM_NODE_HARNESS_UPGRADE.md
-3. CODEX_AGENT_OPERATING_RULES.md
-4. <TASK_FILE>.md
+3. PAPER_LEVEL_SEARCH_SPACE_SPEC.md
+4. CODEX_AGENT_OPERATING_RULES.md
+5. <TASK_FILE>.md
 
-Follow the task file exactly. You are both the experiment runner and the implementation agent. Use the harness files already in the repo instead of writing ad hoc search scripts.
+Follow the task file exactly. You are both the experiment runner and the implementation agent. Use the harness files already in the repo instead of writing ad hoc search scripts. Treat PAPER_LEVEL_SEARCH_SPACE_SPEC.md as the search-space contract: do not pre-implement all planned models, but do consider the planned biological-prior, foundation-embedding, graph, and multimodal-fusion blueprints when the search selects them.
 
-If program_run produces needs_implementation nodes, read implementation_queue.json and the node's IMPLEMENTATION_REQUEST.md. Implement only the requested node-local model.py, run compile/smoke checks, then train it with python -m vc_demo.harness.train_pending.
+If program_run produces needs_implementation nodes, read implementation_queue.json and the node's IMPLEMENTATION_REQUEST.md. Implement only selected node-local model.py files, run compile/smoke checks, then train them with python -m vc_demo.harness.train_pending. Record any missing external artifact or fallback instead of faking AIDO/ESM2/scFoundation/STRING data.
 
 Keep data, splits, and metric semantics unchanged. Do not commit data, nodes, checkpoints, pycache, egg-info, secrets, or tokens.
 

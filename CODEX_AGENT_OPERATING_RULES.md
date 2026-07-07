@@ -15,8 +15,9 @@ Before touching code or running experiments, read these files in order:
 
 1. `E_CODEX_AGENT_EXPERIMENT_RUNBOOK.md`
 2. `F_PROGRAM_NODE_HARNESS_UPGRADE.md`
-3. `CODEX_AGENT_OPERATING_RULES.md`
-4. the concrete task file supplied by the user, for example `TASK_K562_PROGRAM_SEARCH.md`
+3. `PAPER_LEVEL_SEARCH_SPACE_SPEC.md`
+4. `CODEX_AGENT_OPERATING_RULES.md`
+5. the concrete task file supplied by the user, for example `TASK_K562_PROGRAM_SEARCH.md`
 
 ## Reusable Framework Files
 
@@ -50,6 +51,22 @@ Do not commit:
 - `__pycache__/`
 - `*.egg-info/`
 - secrets or tokens
+
+## Paper-Level Search-Space Rules
+
+`PAPER_LEVEL_SEARCH_SPACE_SPEC.md` is part of the operating contract for serious VCHarness-style runs. It expands the search target from demo-scale architecture tweaks to a paper-level design space without requiring every model to be pre-implemented.
+
+For serious runs, prefer nodes that make meaningful design-space moves:
+
+- Level 1: training-only refinement
+- Level 2: compact architecture change
+- Level 3: representation change
+- Level 4: multimodal fusion change
+- Level 5: biological prior or foundation-model module
+
+Do not spend most of a serious-search budget on Level 1 changes. When planned blueprints are selected, implement only the requested node-local `model.py` and record any missing external artifact or fallback explicitly.
+
+A serious one-cell-line run should aim for at least 30 trained nodes, multiple root families, at least two on-demand planned-blueprint implementations, and at least one Level 4 or Level 5 child unless the user provides a smaller budget.
 
 ## Blueprint Rules
 
