@@ -1,0 +1,395 @@
+{
+  "experiment": "k562_string_aware_strict_search",
+  "root_nodes": [
+    "root_concat_gated_mlp",
+    "root_concat_esm2_gene_embedding_gated_mlp",
+    "root_concat_esm2_target_aware_bilinear"
+  ],
+  "nodes": {
+    "root_concat_gated_mlp": {
+      "config": "configs/k562_roots/root_concat_gated_mlp.json",
+      "parent": "",
+      "children": [
+        "root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e"
+      ],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.6616330742835999,
+      "test_macro_f1": 0.6122969388961792,
+      "visits": 1,
+      "value": 0.6616330742835999,
+      "Q_v": 0.6616330742835999,
+      "squared_value": 0.43775832498596756,
+      "mean_reward": 0.6616330742835999,
+      "Exploitation": 0.6616330742835999,
+      "stage": "draft",
+      "best_reward": 0.6616330742835999,
+      "duration_seconds": 3.1172194480895996,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": false,
+        "artifact_sides": [],
+        "artifact_manifest_path": "",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      }
+    },
+    "root_concat_esm2_gene_embedding_gated_mlp": {
+      "config": "configs/k562_roots/root_concat_esm2_gene_embedding_gated_mlp.json",
+      "parent": "",
+      "children": [],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.6511828303337097,
+      "test_macro_f1": 0.6044631600379944,
+      "visits": 1,
+      "value": 0.6511828303337097,
+      "Q_v": 0.6511828303337097,
+      "squared_value": 0.424039078521421,
+      "mean_reward": 0.6511828303337097,
+      "Exploitation": 0.6511828303337097,
+      "stage": "draft",
+      "best_reward": 0.6511828303337097,
+      "duration_seconds": 1.0900115966796875,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      }
+    },
+    "root_concat_esm2_target_aware_bilinear": {
+      "config": "configs/k562_roots/root_concat_esm2_target_aware_bilinear.json",
+      "parent": "",
+      "children": [],
+      "status": "trained",
+      "iteration": 0,
+      "metrics": "",
+      "best_val_macro_f1": 0.41560816764831543,
+      "test_macro_f1": 0.40729644894599915,
+      "visits": 1,
+      "value": 0.41560816764831543,
+      "Q_v": 0.41560816764831543,
+      "squared_value": 0.17273014901599026,
+      "mean_reward": 0.41560816764831543,
+      "Exploitation": 0.41560816764831543,
+      "stage": "draft",
+      "best_reward": 0.41560816764831543,
+      "duration_seconds": 2.0206029415130615,
+      "pipeline": {
+        "pipeline_kind": "model_only",
+        "pipeline_strategy": "root",
+        "loss_type": "cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context",
+          "target_gene"
+        ],
+        "artifact_manifest_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "required_artifacts": [],
+        "missing_required_artifacts": []
+      }
+    },
+    "root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e": {
+      "config": "experiments/k562_string_aware_strict_search/proposals/root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e.json",
+      "parent": "root_concat_gated_mlp",
+      "children": [],
+      "status": "requires_artifact_acquisition",
+      "iteration": 1,
+      "visits": 0,
+      "value": 0.0,
+      "Q_v": 0.0,
+      "Exploitation": 0.0,
+      "stage": "blocked",
+      "blocked_reason": "required artifact missing; strict artifact mode requires artifact acquisition before training",
+      "missing_required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "missing_required_artifact_paths": [
+        "data/artifacts/scfoundation"
+      ],
+      "missing_required_artifact_sources": [
+        "precomputed scFoundation cell-state embedding or approved encoder output"
+      ],
+      "agent_type": "codex_program_node_agent",
+      "node_kind": "program_node",
+      "strategy": "scfoundation_cell_encoder",
+      "proposal": "experiments/k562_string_aware_strict_search/proposals/root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e.proposal.json",
+      "program_dir": "experiments/k562_string_aware_strict_search/programs/root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e",
+      "program_model_path": "experiments/k562_string_aware_strict_search/programs/root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e/model.py",
+      "implementation_request_path": "experiments/k562_string_aware_strict_search/programs/root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e/IMPLEMENTATION_REQUEST.md",
+      "pipeline_manifest_path": "experiments/k562_string_aware_strict_search/programs/root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e/pipeline.json",
+      "pipeline_kind": "pipeline_program_node",
+      "artifact_requirements": [
+        "scfoundation_embeddings_or_encoder"
+      ],
+      "artifact_usage_claims": [
+        {
+          "provider": "scFoundation",
+          "sides": [
+            "cell_state"
+          ],
+          "requires_present_artifact": true
+        }
+      ],
+      "requires_implementation": true
+    }
+  },
+  "events": [
+    {
+      "iteration": 1,
+      "selected_parent": "root_concat_gated_mlp",
+      "child": "root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e",
+      "strategy": "scfoundation_cell_encoder",
+      "node_kind": "program_node",
+      "requires_implementation": true,
+      "missing_required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ]
+    }
+  ],
+  "artifact_registry": {
+    "registry_version": "vc_demo_artifact_registry.v1",
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "cell_line": "K562",
+    "artifacts": [
+      {
+        "id": "esm2_gene_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "ESM2",
+        "status": "expected_present",
+        "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene"
+        ],
+        "required_for_blueprints": [
+          "esm2_gene_projection",
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "esm2_k562_target_manifest",
+        "family": "artifact_manifest",
+        "provider": "ESM2",
+        "status": "derived_if_built",
+        "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "source": "derived_by:scripts/build_target_gene_artifact.py",
+        "usable_for": [
+          "target_gene",
+          "model_head_geometry"
+        ],
+        "required_for_blueprints": [
+          "target_gene_embedding_bilinear",
+          "cross_attention_gene_perturbation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "ESM2_D1280",
+        "artifact_family": "gene_embedding",
+        "target_gene_coverage": 0.921,
+        "n_target_genes": 1000,
+        "target_embedding_dim": 1280,
+        "missing_target_genes_count": 79
+      },
+      {
+        "id": "aido_gene_or_cell_embeddings",
+        "family": "foundation_embedding",
+        "provider": "AIDO",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/aido",
+        "source": "public GenBio artifact if available; exact file must be recorded before use",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene",
+          "cell_state"
+        ],
+        "required_for_blueprints": [
+          "aido_embedding_fusion"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "scfoundation_cell_embeddings",
+        "family": "cell_embedding",
+        "provider": "scFoundation",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/scfoundation",
+        "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+        "usable_for": [
+          "cell_state",
+          "expression_encoder"
+        ],
+        "required_for_blueprints": [
+          "scfoundation_cell_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "string_k562_gene_graph",
+        "family": "gene_graph",
+        "provider": "STRING",
+        "status": "expected_present",
+        "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+        "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+        "usable_for": [
+          "gene_graph",
+          "target_gene",
+          "perturbation_propagation"
+        ],
+        "required_for_blueprints": [
+          "ppi_graph_message_passing",
+          "string_gnn_perturbation_propagator"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://version-12-0.string-db.org/api/tsv/network",
+        "mapping_url": "https://version-12-0.string-db.org/api/tsv/get_string_ids",
+        "version": {
+          "string_version": "12.0",
+          "stable_address": "https://version-12-0.string-db.org"
+        },
+        "filtering_rule": "Map K562 perturbation and target gene symbols to STRING protein IDs, query the official STRING v12.0 network API for the union, keep induced-subgraph edges where both endpoints map back to K562 genes and combined score >= 0.4.",
+        "score_threshold": 0.4,
+        "raw_edge_count": 135802,
+        "filtered_edge_count": 36550,
+        "node_count": 1054,
+        "perturbation_gene_graph_coverage": 0.9047619047619048,
+        "target_gene_graph_coverage": 0.966,
+        "summary_path": "experiments/k562_string_graph_artifact_summary.json",
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "pathway_membership_matrix",
+        "family": "pathway_prior",
+        "provider": "pathway_db",
+        "status": "missing_until_built",
+        "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+        "source": "pathway membership matrix aligned to K562 target genes",
+        "usable_for": [
+          "target_gene",
+          "pathway_pooling"
+        ],
+        "required_for_blueprints": [
+          "pathway_pooling_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      }
+    ],
+    "present_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "string_k562_gene_graph"
+    ],
+    "missing_artifacts": [
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "pathway_membership_matrix"
+    ]
+  },
+  "mcts": {
+    "last_selection": {
+      "node": "root_concat_gated_mlp",
+      "policy": "uct",
+      "score": 2.1439368816511113,
+      "uct": 2.1439368816511113,
+      "puct": null,
+      "q": 0.6616330742835999,
+      "Q_v": 0.6616330742835999,
+      "exploitation": 0.6616330742835999,
+      "Exploitation": 0.6616330742835999,
+      "exploration": 1.4823038073675114,
+      "Exploration": 1.4823038073675114,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 3,
+      "children": 0,
+      "best_val_macro_f1": 0.6616330742835999,
+      "stage": "draft"
+    },
+    "last_candidates": [
+      {
+        "node": "root_concat_gated_mlp",
+        "policy": "uct",
+        "score": 2.1439368816511113,
+        "uct": 2.1439368816511113,
+        "puct": null,
+        "q": 0.6616330742835999,
+        "Q_v": 0.6616330742835999,
+        "exploitation": 0.6616330742835999,
+        "Exploitation": 0.6616330742835999,
+        "exploration": 1.4823038073675114,
+        "Exploration": 1.4823038073675114,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 3,
+        "children": 0,
+        "best_val_macro_f1": 0.6616330742835999,
+        "stage": "draft"
+      },
+      {
+        "node": "root_concat_esm2_gene_embedding_gated_mlp",
+        "policy": "uct",
+        "score": 2.133486637701221,
+        "uct": 2.133486637701221,
+        "puct": null,
+        "q": 0.6511828303337097,
+        "Q_v": 0.6511828303337097,
+        "exploitation": 0.6511828303337097,
+        "Exploitation": 0.6511828303337097,
+        "exploration": 1.4823038073675114,
+        "Exploration": 1.4823038073675114,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 3,
+        "children": 0,
+        "best_val_macro_f1": 0.6511828303337097,
+        "stage": "draft"
+      },
+      {
+        "node": "root_concat_esm2_target_aware_bilinear",
+        "policy": "uct",
+        "score": 1.8979119750158269,
+        "uct": 1.8979119750158269,
+        "puct": null,
+        "q": 0.41560816764831543,
+        "Q_v": 0.41560816764831543,
+        "exploitation": 0.41560816764831543,
+        "Exploitation": 0.41560816764831543,
+        "exploration": 1.4823038073675114,
+        "Exploration": 1.4823038073675114,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 3,
+        "children": 0,
+        "best_val_macro_f1": 0.41560816764831543,
+        "stage": "draft"
+      }
+    ],
+    "selection_policy": "uct",
+    "exploration_c": 1.4142135623730951,
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension"
+  }
+}

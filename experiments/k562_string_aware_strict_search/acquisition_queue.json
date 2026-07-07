@@ -1,0 +1,13 @@
+{
+  "items": [
+    {
+      "node": "root_concat_gated_mlp_p1_scfoundation_cell_encoder_c117ca5e",
+      "strategy": "scfoundation_cell_encoder",
+      "artifact_id": "scfoundation_cell_embeddings",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    }
+  ]
+}
