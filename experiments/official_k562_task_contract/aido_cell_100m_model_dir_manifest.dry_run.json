@@ -1,0 +1,27 @@
+{
+  "repo_id": "genbio-ai/AIDO.Cell-100M",
+  "sha": "b14a88b962758102e618289f4340f989bd6eebe5",
+  "selected": [
+    {
+      "filename": "config.json",
+      "bytes": 889
+    },
+    {
+      "filename": "generation_config.json",
+      "bytes": 96
+    },
+    {
+      "filename": "model.safetensors",
+      "bytes": 399481732
+    },
+    {
+      "filename": "README.md",
+      "bytes": 4064
+    },
+    {
+      "filename": "LICENSE",
+      "bytes": 10687
+    }
+  ],
+  "dry_run": true
+}

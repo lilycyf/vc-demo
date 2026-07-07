@@ -144,10 +144,10 @@
     },
     {
       "id": "official_aido_cell_100m_model_dir",
-      "resolver": "codex_research_download_from_official_genbio_or_aido_source",
+      "resolver": "download_selected_files_from_public_huggingface_model",
       "expected_path": "/home/Models/AIDO.Cell-100M",
       "source": "Exact AutoModel directory expected by official VCHarness public node code.",
-      "can_execute_automatically": false,
+      "can_execute_automatically": true,
       "research_questions": [
         "Is /home/Models/AIDO.Cell-100M publicly downloadable as a HuggingFace model or GenBio release?",
         "What tokenizer/model revision matches the public VCHarness generated code?",
@@ -157,13 +157,15 @@
         "model directory or explicit blocker report",
         "source URL/revision/checksum",
         "registry update"
-      ]
+      ],
+      "command": "python scripts/download_hf_model_snapshot.py --repo-id genbio-ai/AIDO.Cell-100M --output-dir /home/Models/AIDO.Cell-100M --include config.json generation_config.json model.safetensors README.md LICENSE --manifest experiments/official_k562_task_contract/aido_cell_100m_model_dir_manifest.json",
+      "post_acquisition_audit": "python scripts/validate_official_model_dirs.py --output experiments/official_k562_task_contract/model_dir_validation.json"
     },
     {
       "id": "official_string_gnn_model_dir",
       "resolver": "codex_research_download_from_official_genbio_or_string_gnn_source",
       "expected_path": "/home/Models/STRING_GNN",
-      "source": "Exact STRING_GNN model directory expected by official VCHarness public node code.",
+      "source": "Hugging Face model repo genbio-ai/STRING_GNN exists, but API currently lists only .gitattributes; exact model weights remain unavailable.",
       "can_execute_automatically": false,
       "research_questions": [
         "Is /home/Models/STRING_GNN publicly downloadable, or must it be trained from gnn/9606...keep20 graph?",
