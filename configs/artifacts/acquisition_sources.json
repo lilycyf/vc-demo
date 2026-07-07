@@ -1,0 +1,117 @@
+{
+  "schema_version": "vc_demo_artifact_acquisition_sources.v1",
+  "cell_line": "K562",
+  "default_policy": {
+    "formal_search": "never_fabricate_artifacts",
+    "when_missing": "verify_existing_then_execute_known_resolver_then_generate_codex_research_task",
+    "source_priority": [
+      "official_or_primary_source",
+      "published_author_dataset",
+      "approved_public_repository"
+    ],
+    "forbidden": [
+      "random_embeddings",
+      "synthetic_graph_edges",
+      "unversioned_downloads_marked_as_real"
+    ]
+  },
+  "artifacts": [
+    {
+      "id": "esm2_gene_embedding_h5ad",
+      "resolver": "download_from_known_huggingface_dataset",
+      "expected_path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+      "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/ESM2_(D=1280).h5ad --output data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "esm2_k562_target_manifest",
+      "resolver": "derive_from_known_esm2_embedding",
+      "expected_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+      "source": "derived_by:scripts/build_target_gene_artifact.py from ESM2_D1280.h5ad and K562 data split target genes",
+      "command": "python scripts/build_target_gene_artifact.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --embedding-h5ad data/artifacts/gene_embeddings/ESM2_D1280.h5ad --artifact-name ESM2_D1280 --gene-column symbol --summary experiments/k562_target_aware_artifact_manifest_summary.json",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "string_k562_gene_graph",
+      "resolver": "build_from_official_string_api",
+      "expected_path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "source": "STRING official API v12 stable endpoint; K562 perturbation+target induced subgraph",
+      "command": "python scripts/build_k562_string_graph.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --output data/artifacts/string/k562_target_graph_edges.tsv --summary experiments/k562_string_graph_artifact_summary.json",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "pathway_membership_matrix",
+      "resolver": "codex_research_or_build_from_primary_pathway_source",
+      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "source": "Reactome/MSigDB/GO or another documented public pathway source aligned to exact K562 target genes",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Which public pathway source can be used without license ambiguity for this repo?",
+        "What version/date/source URL is used?",
+        "How are pathway identifiers and target gene symbols aligned?",
+        "What is target gene coverage and pathway count?"
+      ],
+      "required_outputs": [
+        "membership npz",
+        "pathway names json/tsv",
+        "summary json with source/version/coverage/filtering"
+      ]
+    },
+    {
+      "id": "scfoundation_cell_embeddings",
+      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output; exact source must be documented before use",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Is there an official/public scFoundation artifact matching these K562 perturbation rows?",
+        "If not precomputed, what official checkpoint/code can encode the exact train/val/test cells?",
+        "What input normalization and gene vocabulary are required?",
+        "What file layout should the repo read at data/artifacts/scfoundation?"
+      ],
+      "required_outputs": [
+        "embedding files or encoder output",
+        "summary json with source/checkpoint/vocabulary/coverage",
+        "registry update"
+      ]
+    },
+    {
+      "id": "aido_gene_or_cell_embeddings",
+      "resolver": "codex_research_download_from_official_genbio_or_aido_source",
+      "expected_path": "data/artifacts/aido",
+      "source": "official/public AIDO artifact if available; exact file and source must be recorded",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Which AIDO artifact family is required for the selected blueprint: gene, protein, cell, or multimodal?",
+        "Is a public GenBio AI/HuggingFace artifact available?",
+        "How is it aligned to perturbation genes, target genes, or cell rows?"
+      ],
+      "required_outputs": [
+        "artifact files",
+        "alignment summary",
+        "registry update"
+      ]
+    },
+    {
+      "id": "pretrained_encoder",
+      "resolver": "definition_required_before_acquisition",
+      "expected_path": "data/artifacts/pretrained_encoder",
+      "source": "must be specified by blueprint before use; can be local pretraining output or official checkpoint",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Which encoder architecture/checkpoint is intended by selective_adapter_finetune?",
+        "Is this a pretrained cell encoder, perturbation encoder, gene encoder, or previous root checkpoint?",
+        "What tensor contract does the adapter expect?"
+      ],
+      "required_outputs": [
+        "definition note",
+        "checkpoint or rejected-blueprint decision",
+        "registry update if real artifact is acquired"
+      ]
+    }
+  ]
+}

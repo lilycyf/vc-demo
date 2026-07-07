@@ -88,3 +88,6 @@ Formal testing uses strict artifact mode by default. `program_run` blocks and st
 ## Artifact Acquisition Queue
 
 Strict artifact mode now distinguishes missing-artifact acquisition from fallback. When a selected blueprint requires a missing artifact, `program_run` writes `acquisition_queue.json` and stops with `requires_artifact_acquisition`. The correct next step is to search/download/build the real artifact, update the registry, rerun audit, and resume strict search.
+
+
+Artifact acquisition is now resolver-backed: `src/vc_demo/harness/artifact_acquisition.py` consumes `acquisition_queue.json`, verifies or executes known source-backed artifact builders from `configs/artifacts/acquisition_sources.json`, and generates strict Codex acquisition tasks for artifacts that require official-source research. This keeps strict searches active without allowing fallback artifacts.

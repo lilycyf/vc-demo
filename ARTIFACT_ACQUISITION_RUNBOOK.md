@@ -8,6 +8,22 @@ Formal searches run in strict artifact mode. If a selected blueprint needs a mis
 
 This is not a final scientific failure. It is the handoff into artifact acquisition.
 
+## Resolver Command
+
+Before doing manual research, run the acquisition resolver. It verifies already-present artifacts, executes known deterministic builders when allowed, and creates a strict Codex research task for artifacts whose public source must be investigated.
+
+```bash
+python -m vc_demo.harness.artifact_acquisition \
+  --queue <run_dir>/acquisition_queue.json \
+  --registry configs/artifacts/k562_registry.json \
+  --sources configs/artifacts/acquisition_sources.json \
+  --cell-line K562 \
+  --output-dir <run_dir>/artifact_acquisition \
+  --execute-known
+```
+
+If this writes `ACQUIRE_<artifact>.md`, follow `ARTIFACT_ACQUISITION_AGENT_PROMPT.md` and the generated task. The correct behavior is active source-backed acquisition, not waiting passively and not training a fallback.
+
 ## Required Behavior
 
 When `acquisition_queue.json` is non-empty, the Codex agent must:

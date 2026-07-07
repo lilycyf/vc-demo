@@ -248,7 +248,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
     print(json.dumps(result, indent=2))
     return result
 
