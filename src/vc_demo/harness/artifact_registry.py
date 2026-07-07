@@ -66,6 +66,19 @@ def requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str
     return [artifact for artifact in registry_audit.get("artifacts", []) if blueprint_id in artifact.get("required_for_blueprints", [])]
 
 
+def missing_requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str) -> list[dict[str, Any]]:
+    return [artifact for artifact in requirements_for_blueprint(registry_audit, blueprint_id) if not artifact.get("present")]
+
+def summarize_missing_requirements(registry_audit: dict[str, Any], blueprint_id: str) -> dict[str, Any]:
+    missing = missing_requirements_for_blueprint(registry_audit, blueprint_id)
+    return {
+        "strategy": blueprint_id,
+        "missing_required_artifacts": [item.get("id") for item in missing],
+        "missing_required_artifact_paths": [item.get("path") for item in missing],
+        "missing_required_artifact_sources": [item.get("source") for item in missing],
+    }
+
+
 def artifact_usage_from_config(config: dict[str, Any], proposal: dict[str, Any] | None = None) -> dict[str, Any]:
     data_cfg = config.get("data", {})
     model_cfg = config.get("model", {})

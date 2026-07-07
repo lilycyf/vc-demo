@@ -80,3 +80,7 @@ This makes it possible to distinguish:
 ## Agent Rule
 
 A Codex experiment agent must not claim a node uses ESM2/AIDO/scFoundation/STRING/pathway unless the node's pipeline audit or artifact registry supports that claim. Missing artifacts should be recorded as missing or blocked, not replaced silently.
+
+## Strict Artifact Mode
+
+Formal testing uses strict artifact mode by default. `program_run` blocks and stops when a selected blueprint requires a missing artifact according to the registry. `train_pending` also refuses to train a pending node with missing artifacts unless `--allow-missing-artifact-fallbacks` is explicitly passed for a separate ablation. This prevents fallback models from contaminating artifact-search conclusions.

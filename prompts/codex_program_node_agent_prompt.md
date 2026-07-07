@@ -25,3 +25,6 @@ Keep data, splits, and metric semantics unchanged. Do not commit data, nodes, ch
 
 At the end, write the requested final_conclusion.md, commit only allowed files, and push to the task branch. Do not push to master.
 ```
+
+
+Strict artifact rule: in formal testing, do not implement fallback models for missing AIDO/scFoundation/STRING/pathway/pretrained artifacts. If the registry says a required artifact is missing, stop and record `blocked_missing_artifact`. Use `--allow-missing-artifact-fallbacks` only when the user explicitly asks for a separate ablation.

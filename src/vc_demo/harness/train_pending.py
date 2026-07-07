@@ -40,7 +40,18 @@ def write_queue(run_dir: Path, tree: dict[str, Any]) -> None:
     write_json(run_dir / "implementation_queue.json", {"items": items})
 
 
-def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, summary: Path | None = None) -> dict[str, Any]:
+def missing_artifacts_for_pending(node: dict[str, Any], proposal: dict[str, Any] | None, config: dict[str, Any]) -> list[str]:
+    missing: list[str] = []
+    for source in [node, proposal or {}]:
+        missing.extend(str(item) for item in source.get("missing_required_artifacts", []) or [])
+    pipeline_path = config.get("pipeline_manifest_path") or config.get("pipeline", {}).get("manifest_path")
+    if pipeline_path and Path(str(pipeline_path)).exists():
+        payload = read_json(Path(str(pipeline_path)))
+        missing.extend(str(item) for item in payload.get("missing_artifacts", []) or [])
+    return sorted(set(item for item in missing if item))
+
+
+def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, summary: Path | None = None, allow_missing_artifact_fallbacks: bool = False) -> dict[str, Any]:
     tree_path = run_dir / "tree.json"
     if not tree_path.exists():
         raise FileNotFoundError(f"missing tree file: {tree_path}")
@@ -59,6 +70,13 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
 
     proposal_path = Path(str(node.get("proposal", "")))
     proposal = read_json(proposal_path) if proposal_path.exists() else None
+    missing = missing_artifacts_for_pending(node, proposal, config)
+    if missing and not allow_missing_artifact_fallbacks:
+        raise RuntimeError(
+            "pending node requires missing artifacts and strict artifact mode forbids fallback training: "
+            + ", ".join(missing)
+            + "; rerun only after adding real artifacts, or pass --allow-missing-artifact-fallbacks for an explicit ablation"
+        )
     metrics = run_node(config, run_dir, proposal=proposal, max_epochs=max_epochs)
     node.update(
         {
@@ -91,8 +109,9 @@ def main() -> None:
     parser.add_argument("--node", required=True)
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--summary", type=Path, default=None)
+    parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true")
     args = parser.parse_args()
-    train_pending_node(args.run_dir, args.node, args.max_epochs, args.summary)
+    train_pending_node(args.run_dir, args.node, args.max_epochs, args.summary, args.allow_missing_artifact_fallbacks)
 
 
 if __name__ == "__main__":

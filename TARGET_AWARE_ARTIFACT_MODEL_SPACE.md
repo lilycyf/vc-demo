@@ -57,3 +57,7 @@ python scripts/build_target_gene_artifact.py \
   --artifact-name ESM2_D1280 \
   --gene-column symbol
 ```
+
+## No-Fallback Formal Testing
+
+For formal tests, missing AIDO, scFoundation, STRING, pathway, pretrained encoder, or other required artifacts must produce a blocked node, not a fallback model. A fallback can be useful for engineering ablations, but it must be run separately and labeled as non-paper-aligned.

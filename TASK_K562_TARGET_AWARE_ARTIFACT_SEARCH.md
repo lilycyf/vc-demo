@@ -89,7 +89,7 @@ python -m vc_demo.harness.program_run \
   --reset
 ```
 
-If pending nodes appear, implement only selected node-local `model.py` files, then continue with:
+If pending nodes appear, first confirm that all required artifacts are present. If any required artifact is missing, stop and write the blocked conclusion. Only implement selected node-local `model.py` files when the required real artifacts are present, then continue with:
 
 ```bash
 python -m vc_demo.harness.train_pending --run-dir experiments/k562_target_aware_artifact_search
@@ -112,3 +112,7 @@ It must answer:
 - Were failures due to model quality, artifact coverage, missing artifacts, or implementation issues?
 
 Do not commit `data/`, `experiments/**/nodes/`, checkpoints, `.h5ad`, `.npz`, pycache, egg-info, secrets, or tokens.
+
+## Strict Artifact Testing Rule
+
+This formal testing task runs in strict artifact mode. If MCTS selects AIDO, scFoundation, STRING, pathway, or any other artifact-dependent blueprint and the required real artifact is missing, stop the search and record the node as `blocked_missing_artifact`. Do not implement or train a fallback model in the formal test. Fallbacks are allowed only in a separate ablation run with `--allow-missing-artifact-fallbacks`, and must not be counted as paper-aligned artifact usage.

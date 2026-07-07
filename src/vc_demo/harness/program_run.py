@@ -7,7 +7,7 @@ import traceback
 from pathlib import Path
 from typing import Any
 
-from vc_demo.harness.artifact_registry import audit_registry, load_registry
+from vc_demo.harness.artifact_registry import audit_registry, load_registry, summarize_missing_requirements
 from vc_demo.harness.executor import run_node
 from vc_demo.harness.mcts import backpropagate, select_parent
 from vc_demo.harness.program_agent import propose_program_child
@@ -66,6 +66,36 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
 
 def add_pending_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, proposal: dict[str, Any]) -> None:
     node = {"config": str(config_path), "parent": parent, "children": [], "status": "needs_implementation", "iteration": iteration, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
+    enrich_node_from_proposal(node, proposal, config_path, name)
+    tree["nodes"][name] = node
+    tree["nodes"][parent].setdefault("children", []).append(name)
+
+
+def add_blocked_missing_artifact_node(
+    tree: dict[str, Any],
+    name: str,
+    config_path: Path,
+    parent: str,
+    iteration: int,
+    proposal: dict[str, Any],
+    missing_summary: dict[str, Any],
+) -> None:
+    node = {
+        "config": str(config_path),
+        "parent": parent,
+        "children": [],
+        "status": "blocked_missing_artifact",
+        "iteration": iteration,
+        "visits": 0,
+        "value": 0.0,
+        "Q_v": 0.0,
+        "Exploitation": 0.0,
+        "stage": "blocked",
+        "blocked_reason": "required artifact missing; strict artifact mode does not allow fallback training",
+        "missing_required_artifacts": missing_summary.get("missing_required_artifacts", []),
+        "missing_required_artifact_paths": missing_summary.get("missing_required_artifact_paths", []),
+        "missing_required_artifact_sources": missing_summary.get("missing_required_artifact_sources", []),
+    }
     enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
     tree["nodes"][parent].setdefault("children", []).append(name)
@@ -141,9 +171,27 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         proposal["mcts_selected_parent"] = parent_name
         proposal["mcts_selection_policy"] = args.selection_policy
         proposal["mcts_candidates"] = scored[: min(8, len(scored))]
+        missing_summary = summarize_missing_requirements(registry_audit, str(proposal.get("strategy", "")))
+        proposal["strict_artifact_mode"] = not args.allow_missing_artifact_fallbacks
+        proposal["missing_required_artifacts"] = missing_summary.get("missing_required_artifacts", [])
+        proposal["missing_required_artifact_paths"] = missing_summary.get("missing_required_artifact_paths", [])
         write_json(child_config_path, child_config)
         write_json(proposal_path, proposal)
-        tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node", "requires_implementation": proposal.get("requires_implementation", False)})
+        tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node", "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
+
+        if proposal["missing_required_artifacts"] and not args.allow_missing_artifact_fallbacks:
+            add_blocked_missing_artifact_node(tree, child_name, child_config_path, parent_name, iteration, proposal, missing_summary)
+            failures.append({
+                "node": child_name,
+                "parent": parent_name,
+                "error": "blocked_missing_artifact",
+                "strategy": proposal.get("strategy"),
+                "missing_required_artifacts": proposal["missing_required_artifacts"],
+                "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
+            })
+            stop_reason = f"blocked missing artifact for {proposal.get('strategy')}: {', '.join(proposal['missing_required_artifacts'])}"
+            write_tree_and_failures(run_dir, tree, failures)
+            break
 
         if proposal.get("requires_implementation"):
             add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
@@ -201,6 +249,7 @@ def main() -> None:
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--artifact-registry", type=Path, default=None)
+    parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true", help="Allow planned artifact blueprints to train explicit fallback models when required artifacts are missing. Default is strict: block and stop.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:
