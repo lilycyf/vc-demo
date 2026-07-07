@@ -3,11 +3,36 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from vc_demo.harness.artifact_registry import artifact_usage_from_config
 from vc_demo.harness.state import read_json
 
 
 def _config_for(node: dict[str, Any]) -> dict[str, Any]:
     return read_json(Path(node["config"]))
+
+
+def _pipeline_summary(node: dict[str, Any], cfg: dict[str, Any]) -> dict[str, Any]:
+    pipeline = node.get("pipeline") or cfg.get("pipeline", {}) or {}
+    if pipeline:
+        return {
+            "pipeline_kind": pipeline.get("pipeline_kind") or pipeline.get("kind", node.get("pipeline_kind", "model_only")),
+            "loss_type": pipeline.get("loss_type", cfg.get("training", {}).get("loss_type", "cross_entropy")),
+            "uses_real_artifact": bool(pipeline.get("uses_real_artifact")),
+            "artifact_sides": pipeline.get("artifact_sides", []),
+            "artifact_manifest_path": pipeline.get("artifact_manifest_path", ""),
+            "missing_required_artifacts": pipeline.get("missing_required_artifacts", []),
+            "required_artifacts": pipeline.get("required_artifacts", []),
+        }
+    usage = artifact_usage_from_config(cfg, {"strategy": node.get("strategy", "")})
+    return {
+        "pipeline_kind": node.get("pipeline_kind", "model_only"),
+        "loss_type": usage.get("loss_type", cfg.get("training", {}).get("loss_type", "cross_entropy")),
+        "uses_real_artifact": bool(usage.get("uses_real_artifact")),
+        "artifact_sides": usage.get("artifact_sides", []),
+        "artifact_manifest_path": usage.get("artifact_manifest_path", ""),
+        "missing_required_artifacts": [],
+        "required_artifacts": [],
+    }
 
 
 def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
@@ -19,6 +44,7 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
         data_cfg = cfg.get("data", {})
         model_cfg = cfg.get("model", {})
         training_cfg = cfg.get("training", {})
+        pipeline_summary = _pipeline_summary(node, cfg)
         rows.append(
             {
                 "iteration": int(node.get("iteration", 0)),
@@ -28,6 +54,15 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
                 "strategy": node.get("strategy", "root"),
                 "node_kind": node.get("node_kind", "config_node" if node.get("parent") else "root"),
                 "program_model_path": node.get("program_model_path", model_cfg.get("custom_model_path", "")),
+                "pipeline_manifest_path": node.get("pipeline_manifest_path", cfg.get("pipeline_manifest_path", "")),
+                "pipeline_kind": pipeline_summary.get("pipeline_kind", "model_only"),
+                "loss_type": pipeline_summary.get("loss_type", "cross_entropy"),
+                "uses_real_artifact": pipeline_summary.get("uses_real_artifact", False),
+                "artifact_sides": ",".join(pipeline_summary.get("artifact_sides", [])),
+                "artifact_manifest_path": pipeline_summary.get("artifact_manifest_path", ""),
+                "missing_required_artifacts": ",".join(pipeline_summary.get("missing_required_artifacts", [])),
+                "required_artifacts": ",".join(pipeline_summary.get("required_artifacts", [])),
+                "duration_seconds": node.get("duration_seconds"),
                 "data_dir": data_cfg.get("data_dir", "synthetic"),
                 "model_type": model_cfg.get("model_type", "mlp"),
                 "hidden_dim": model_cfg.get("hidden_dim"),
@@ -74,13 +109,21 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "",
         "## All Trained Nodes",
         "",
-        "| Iter | Node | Parent | Kind | Agent | Strategy | Data dir | Model | Program | Hidden | Depth | Dropout | Rank | LR | WD | Val | Test |",
-        "|---:|---|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| Iter | Node | Parent | Kind | Strategy | Pipeline | Loss | Artifact sides | Missing req. | Sec | Model | Val | Test |",
+        "|---:|---|---|---|---|---|---|---|---|---:|---|---:|---:|",
     ])
     for row in rows:
+        sec = "" if row["duration_seconds"] is None else f"{float(row['duration_seconds']):.1f}"
+        missing = row["missing_required_artifacts"] or ""
+        sides = row["artifact_sides"] or "none"
         lines.append(
-            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['agent_type']} | {row['strategy']} | `{row['data_dir']}` | {row['model_type']} | `{row['program_model_path']}` | {row['hidden_dim']} | {row['depth']} | {row['dropout']} | {row['low_rank_dim']} | {row['lr']} | {row['weight_decay']} | {row['val']:.4f} | {row['test']:.4f} |"
+            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['strategy']} | {row['pipeline_kind']} | {row['loss_type']} | {sides} | {missing} | {sec} | {row['model_type']} | {row['val']:.4f} | {row['test']:.4f} |"
         )
+
+    lines.extend(["", "## Artifact And Pipeline Audit", "", "| Node | Uses artifact | Artifact sides | Required artifacts | Missing required | Manifest | Loss |", "|---|---:|---|---|---|---|---|"])
+    for row in rows:
+        manifest = row["artifact_manifest_path"] or ""
+        lines.append(f"| `{row['node']}` | {str(row['uses_real_artifact']).lower()} | {row['artifact_sides'] or 'none'} | {row['required_artifacts']} | {row['missing_required_artifacts']} | `{manifest}` | {row['loss_type']} |")
 
     lines.extend(["", "## Best-So-Far Curve", "", "| Iter | Best val Macro-F1 |", "|---:|---:|"])
     best_so_far = -1.0
@@ -99,6 +142,10 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
             label += f" strategy={node['strategy']}"
         if node.get("program_model_path"):
             label += f" program={node['program_model_path']}"
+        if node.get("pipeline_kind"):
+            label += f" pipeline={node['pipeline_kind']}"
+        if node.get("pipeline", {}).get("artifact_sides"):
+            label += f" artifacts={','.join(node['pipeline']['artifact_sides'])}"
         lines.append(label)
         for child in node.get("children", []):
             append_tree(child, depth + 1)
@@ -119,6 +166,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "- One node means one complete trainable candidate pipeline: data representation, model type, model hyperparameters, optimizer settings, and training run.",
         "- MCTS decides which already-trained parent is worth expanding next. The paper-aligned default is UCT; PUCT is retained only as an optional implementation extension/ablation.",
         "- Tree/proposal records preserve UCT-style audit fields when available: visits, Q_v, Exploitation, Exploration, uct, stage, and selected-parent candidates.",
+        "- Pipeline records preserve model, training/loss, artifact requirements, artifact usage claims, duration, and missing-artifact status for each node.",
         "- The proposal agent decides how to modify that parent into one executable child config or node-local model program.",
         "- The node workspace under `nodes/` is intentionally ignored by git; committed summaries live in `tree.json`, `search_summary.md`, and `proposals/`.",
     ])

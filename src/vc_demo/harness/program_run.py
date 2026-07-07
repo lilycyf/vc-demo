@@ -7,6 +7,7 @@ import traceback
 from pathlib import Path
 from typing import Any
 
+from vc_demo.harness.artifact_registry import audit_registry, load_registry
 from vc_demo.harness.executor import run_node
 from vc_demo.harness.mcts import backpropagate, select_parent
 from vc_demo.harness.program_agent import propose_program_child
@@ -26,6 +27,10 @@ def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], co
     node["program_dir"] = proposal.get("program_dir")
     node["program_model_path"] = proposal.get("program_model_path")
     node["implementation_request_path"] = proposal.get("implementation_request_path", "")
+    node["pipeline_manifest_path"] = proposal.get("pipeline_manifest_path", "")
+    node["pipeline_kind"] = proposal.get("pipeline_kind", "")
+    node["artifact_requirements"] = proposal.get("artifact_requirements", [])
+    node["artifact_usage_claims"] = proposal.get("artifact_usage_claims", [])
     node["requires_implementation"] = bool(proposal.get("requires_implementation"))
 
 
@@ -47,6 +52,8 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "Exploitation": reward(metrics) if not parent else 0.0,
         "stage": "draft" if not parent else "improve",
         "best_reward": reward(metrics) if not parent else 0.0,
+        "duration_seconds": metrics.get("duration_seconds"),
+        "pipeline": metrics.get("pipeline", {}),
     }
     if proposal:
         enrich_node_from_proposal(node, proposal, config_path, name)
@@ -74,7 +81,7 @@ def train_roots(root_configs: list[Path], run_dir: Path, tree: dict[str, Any], m
 
 def implementation_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
     return [
-        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "strategy": node.get("strategy")}
+        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "pipeline_manifest_path": node.get("pipeline_manifest_path"), "strategy": node.get("strategy"), "artifact_requirements": node.get("artifact_requirements", [])}
         for name, node in tree.get("nodes", {}).items()
         if node.get("status") == "needs_implementation"
     ]
@@ -106,6 +113,9 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     rng = random.Random(args.seed + len(tree.get("events", [])))
     proposal_dir = run_dir / "proposals"
     proposal_dir.mkdir(parents=True, exist_ok=True)
+    registry_audit = audit_registry(load_registry(args.artifact_registry, "K562"))
+    write_json(run_dir / "artifact_registry_audit.json", registry_audit)
+    tree.setdefault("artifact_registry", registry_audit)
 
     if not resume:
         root_configs = [Path(path) for path in args.root_configs]
@@ -157,7 +167,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         except Exception as exc:
             error = "".join(traceback.format_exception_only(type(exc), exc)).strip()
             tree["nodes"][parent_name].setdefault("children", []).append(child_name)
-            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
+            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "pipeline_manifest_path": proposal.get("pipeline_manifest_path"), "pipeline_kind": proposal.get("pipeline_kind"), "artifact_requirements": proposal.get("artifact_requirements", []), "artifact_usage_claims": proposal.get("artifact_usage_claims", []), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             no_improve += 1
 
@@ -190,6 +200,7 @@ def main() -> None:
     parser.add_argument("--allow-planned-blueprints", action="store_true")
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--force-blueprint", default=None)
+    parser.add_argument("--artifact-registry", type=Path, default=None)
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:

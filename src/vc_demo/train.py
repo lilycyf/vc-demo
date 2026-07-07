@@ -19,9 +19,9 @@ def load_config(path: Path) -> dict:
         return json.load(f)
 
 
-def evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> dict[str, float]:
+def evaluate(model: nn.Module, loader: DataLoader, device: torch.device, config: dict) -> dict[str, float]:
     model.eval()
-    loss_fn = nn.CrossEntropyLoss()
+    loss_fn = build_loss(config, device)
     losses: list[float] = []
     preds: list[torch.Tensor] = []
     targets: list[torch.Tensor] = []
@@ -37,6 +37,33 @@ def evaluate(model: nn.Module, loader: DataLoader, device: torch.device) -> dict
     pred = torch.cat(preds)
     target = torch.cat(targets)
     return {"loss": float(sum(losses) / max(len(losses), 1)), "macro_f1": macro_f1(pred, target)}
+
+
+class FocalLoss(nn.Module):
+    def __init__(self, gamma: float = 2.0, weight: torch.Tensor | None = None) -> None:
+        super().__init__()
+        self.gamma = gamma
+        self.weight = weight
+
+    def forward(self, logits: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+        ce = nn.functional.cross_entropy(logits, target, weight=self.weight, reduction="none")
+        pt = torch.exp(-ce)
+        return (((1.0 - pt) ** self.gamma) * ce).mean()
+
+
+def build_loss(config: dict, device: torch.device) -> nn.Module:
+    training_cfg = config.get("training", {})
+    loss_type = str(training_cfg.get("loss_type", "cross_entropy"))
+    if loss_type == "cross_entropy":
+        return nn.CrossEntropyLoss()
+    if loss_type == "weighted_cross_entropy":
+        weights = training_cfg.get("class_weights", [1.0, 1.0, 1.0])
+        return nn.CrossEntropyLoss(weight=torch.tensor(weights, dtype=torch.float32, device=device))
+    if loss_type == "focal_loss":
+        weights = training_cfg.get("class_weights")
+        weight_tensor = torch.tensor(weights, dtype=torch.float32, device=device) if weights else None
+        return FocalLoss(gamma=float(training_cfg.get("focal_gamma", 2.0)), weight=weight_tensor)
+    raise ValueError(f"unknown training.loss_type {loss_type!r}")
 
 
 def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> dict:
@@ -78,7 +105,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = build_model(config).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
-    loss_fn = nn.CrossEntropyLoss()
+    loss_fn = build_loss(config, device)
 
     best_val = -1.0
     history: list[dict] = []
@@ -94,7 +121,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
             loss.backward()
             optimizer.step()
             running += loss.item()
-        val = evaluate(model, val_loader, device)
+        val = evaluate(model, val_loader, device, config)
         row = {"epoch": epoch, "train_loss": running / max(len(train_loader), 1), "val_loss": val["loss"], "val_macro_f1": val["macro_f1"]}
         history.append(row)
         if val["macro_f1"] > best_val:
@@ -103,7 +130,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
 
     best = torch.load(output_dir / "best.pt", map_location=device)
     model.load_state_dict(best["model"])
-    test = evaluate(model, test_loader, device)
+    test = evaluate(model, test_loader, device, config)
     result = {
         "node_name": config.get("node_name", output_dir.name),
         "dataset_type": config.get("data", {}).get("dataset_type", "synthetic"),
@@ -112,6 +139,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
         "test_macro_f1": test["macro_f1"],
         "test_loss": test["loss"],
         "history": history,
+        "training": {"epochs": epochs, "batch_size": batch_size, "lr": lr, "weight_decay": weight_decay, "loss_type": config.get("training", {}).get("loss_type", "cross_entropy")},
     }
     (output_dir / "metrics.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
     memory = (

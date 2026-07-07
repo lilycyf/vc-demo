@@ -11,7 +11,8 @@ For one-cell-line K562 CRISPR perturbation DEG classification, can Codex + UCT/M
 3. `PUBLIC_ARTIFACT_ALIGNMENT.md`
 4. `CODEX_AGENT_OPERATING_RULES.md`
 5. `TARGET_AWARE_ARTIFACT_MODEL_SPACE.md`
-6. `TASK_K562_TARGET_AWARE_ARTIFACT_SEARCH.md`
+6. `PAPER_LEVEL_FRAMEWORK_UPGRADE_2.md`
+7. `TASK_K562_TARGET_AWARE_ARTIFACT_SEARCH.md`
 
 ## Required Artifacts
 
@@ -81,6 +82,7 @@ python -m vc_demo.harness.program_run \
   --stop-no-improve 8 \
   --exploration 1.4142135623730951 \
   --selection-policy uct \
+  --artifact-registry configs/artifacts/k562_registry.json \
   --seed 23 \
   --allow-planned-blueprints \
   --max-pending-implementations 2 \

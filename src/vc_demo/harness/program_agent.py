@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from vc_demo.harness.model_blueprints import blueprint_by_id, selectable_blueprint_ids
+from vc_demo.harness.pipeline import default_pipeline_manifest, write_pipeline_manifest
 from vc_demo.harness.state import write_json
 
 
@@ -41,8 +42,16 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 64) or 64), 32), 128)
     if blueprint_id == "target_gene_embedding_bilinear":
         model_cfg["artifact_manifest_path"] = "auto"
+    if blueprint_id == "focal_loss_training_strategy":
+        train_cfg["loss_type"] = "focal_loss"
+        train_cfg.setdefault("focal_gamma", 2.0)
+        train_cfg.setdefault("class_weights", [2.0, 0.5, 2.0])
     train_cfg["lr"] = min(float(train_cfg.get("lr", 3e-4) or 3e-4), 3e-4)
     train_cfg["weight_decay"] = min(float(train_cfg.get("weight_decay", 1e-4) or 1e-4), 1e-4)
+
+    pipeline_path = child_dir / "pipeline.json"
+    child["pipeline_manifest_path"] = str(pipeline_path)
+    pipeline_manifest = render_pipeline_manifest(child, proposal_blueprint=blueprint)
 
     requires_implementation = blueprint["status"] != "implemented"
     if requires_implementation:
@@ -50,6 +59,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     else:
         (child_dir / "model.py").write_text(render_program_source(blueprint_id), encoding="utf-8")
     (child_dir / "README.md").write_text(render_program_readme(child_name, blueprint, parent_name, requires_implementation), encoding="utf-8")
+    write_pipeline_manifest(pipeline_path, pipeline_manifest)
     write_json(child_dir / "base_config.json", child)
 
     changes = [
@@ -72,12 +82,40 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         "changes": changes,
         "program_dir": str(child_dir),
         "program_model_path": str(child_dir / "model.py"),
+        "pipeline_manifest_path": str(pipeline_path),
+        "pipeline_kind": pipeline_manifest.get("kind"),
+        "artifact_requirements": pipeline_manifest.get("artifact_requirements", []),
+        "artifact_usage_claims": pipeline_manifest.get("artifact_usage_claims", []),
         "implementation_request_path": str(child_dir / "IMPLEMENTATION_REQUEST.md") if requires_implementation else "",
         "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
     }
     child["proposal_note"] = f"codex_program_agent blueprint={blueprint_id}; " + "; ".join(changes)
     write_json(child_dir / "proposal.json", proposal)
     return child, proposal
+
+
+def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: dict[str, Any]) -> dict[str, Any]:
+    manifest = default_pipeline_manifest(child_config, {"strategy": proposal_blueprint["id"]})
+    blueprint_id = proposal_blueprint["id"]
+    manifest["kind"] = "pipeline_program_node"
+    manifest["change_level"] = proposal_blueprint.get("change_level")
+    manifest["paper_family"] = proposal_blueprint.get("paper_family")
+    manifest["artifact_requirements"] = list(proposal_blueprint.get("requires", []))
+    manifest["artifact_usage_claims"] = []
+    if blueprint_id in {"esm2_gene_projection", "target_gene_embedding_bilinear", "cross_attention_gene_perturbation"}:
+        manifest["artifact_usage_claims"].append({"provider": "ESM2", "sides": ["perturbation_gene", "target_gene"], "frozen_by_default": True})
+    if blueprint_id == "aido_embedding_fusion":
+        manifest["artifact_usage_claims"].append({"provider": "AIDO", "sides": ["perturbation_gene", "target_gene", "cell_state"], "requires_present_artifact": True})
+    if blueprint_id == "scfoundation_cell_encoder":
+        manifest["artifact_usage_claims"].append({"provider": "scFoundation", "sides": ["cell_state"], "requires_present_artifact": True})
+    if blueprint_id in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"}:
+        manifest["artifact_usage_claims"].append({"provider": "STRING", "sides": ["gene_graph"], "requires_present_artifact": True})
+    if blueprint_id == "pathway_pooling_encoder":
+        manifest["artifact_usage_claims"].append({"provider": "pathway_db", "sides": ["pathway_pooling"], "requires_present_artifact": True})
+    if blueprint_id == "focal_loss_training_strategy":
+        manifest["training"] = {"loss_type": "focal_loss", "loss_notes": "Node-level training strategy patch for class-imbalanced DEG labels."}
+        manifest["patches"] = {"training": {"loss_type": "focal_loss", "focal_gamma": 2.0, "class_weights": [2.0, 0.5, 2.0]}}
+    return manifest
 
 
 def _choose_blueprint(parent_name: str, parent_node: dict[str, Any], child_index: int, rng: random.Random, include_planned: bool) -> str:

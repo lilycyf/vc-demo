@@ -30,7 +30,9 @@ def write_queue(run_dir: Path, tree: dict[str, Any]) -> None:
             "program_dir": node.get("program_dir"),
             "implementation_request_path": node.get("implementation_request_path"),
             "program_model_path": node.get("program_model_path"),
+            "pipeline_manifest_path": node.get("pipeline_manifest_path"),
             "strategy": node.get("strategy"),
+            "artifact_requirements": node.get("artifact_requirements", []),
         }
         for name, node in tree.get("nodes", {}).items()
         if node.get("status") == "needs_implementation"
@@ -67,6 +69,8 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
             "visits": 1,
             "value": reward(metrics),
             "requires_implementation": False,
+            "duration_seconds": metrics.get("duration_seconds"),
+            "pipeline": metrics.get("pipeline", {}),
         }
     )
     backpropagate(tree, node_name, reward(metrics))

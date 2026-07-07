@@ -286,3 +286,7 @@ Do not make the repo large by pre-implementing everything. Make the search contr
 The repo now supports a stronger artifact contract documented in `TARGET_AWARE_ARTIFACT_MODEL_SPACE.md`. For foundation-model routes such as ESM2, AIDO, scFoundation, and STRING, a paper-level child should prefer explicit target-gene or graph-aware use when the artifact exists. The minimum executable example is `model_type: target_aware_bilinear`, which reads `model.artifact_manifest_path` and loads an aligned `target_gene_embeddings.npz` table.
 
 A node should not be described as using a biological foundation artifact merely because a dense model receives appended row-level embedding features. Record whether it uses perturbation-side features only, target-side artifacts, graph edges, or both.
+
+## Pipeline-Level Nodes And Artifact Registry
+
+The framework now supports `configs/artifacts/k562_registry.json` and node-local `pipeline.json` manifests. A child node may change model, training/loss, and artifact binding through guarded pipeline patches. Reports must distinguish real artifact use, missing required artifacts, and training-only changes. See `PAPER_LEVEL_FRAMEWORK_UPGRADE_2.md`.
