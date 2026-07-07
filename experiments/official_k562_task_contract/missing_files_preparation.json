@@ -1,0 +1,62 @@
+{
+  "aido": {
+    "aido_dir": "/home/Models/AIDO.Cell-100M",
+    "copied_or_written": [
+      "/home/Models/AIDO.Cell-100M/configuration_cellfoundation.py",
+      "/home/Models/AIDO.Cell-100M/modeling_cellfoundation.py",
+      "/home/Models/AIDO.Cell-100M/OS_scRNA_gene_index.19264.tsv",
+      "/home/Models/AIDO.Cell-100M/tokenization_cellfoundation.py",
+      "/home/Models/AIDO.Cell-100M/gene_id_to_aido_index.json",
+      "/home/Models/AIDO.Cell-100M/tokenizer_config.json"
+    ],
+    "gene_map_entries": 38132
+  },
+  "string_gnn": {
+    "string_dir": "/home/Models/STRING_GNN",
+    "node_count": 18866,
+    "embedding_shape": [
+      18866,
+      256
+    ],
+    "raw_edges": 393006,
+    "kept_undirected_pairs": 392832,
+    "edge_index_shape": [
+      2,
+      785664
+    ],
+    "source_embedding_h5ad": "/workspace/vc-demo/data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+    "source_edge_tsv": "/workspace/vc-demo/data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+  },
+  "smoke_test": {
+    "aido_auto_config": {
+      "ok": true,
+      "class": "CellFoundationConfig"
+    },
+    "aido_auto_tokenizer": {
+      "ok": true,
+      "class": "CellFoundationTokenizer",
+      "input_shape": [
+        1,
+        19266
+      ],
+      "attention_shape": [
+        1,
+        19266
+      ]
+    },
+    "aido_auto_model": {
+      "ok": true,
+      "class": "CellFoundationModel"
+    },
+    "string_auto_model": {
+      "ok": true,
+      "class": "StringGNNCompatModel",
+      "last_hidden_state_shape": [
+        18866,
+        256
+      ]
+    },
+    "status": "ok"
+  },
+  "status": "ok"
+}
