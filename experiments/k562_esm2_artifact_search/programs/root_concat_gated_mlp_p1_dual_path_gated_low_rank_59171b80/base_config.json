@@ -1,0 +1,32 @@
+{
+  "node_name": "root_concat_gated_mlp_p1_dual_path_gated_low_rank_59171b80",
+  "data": {
+    "dataset_type": "real_npz",
+    "cell_line": "K562",
+    "data_dir": "data/cell_lines/k562_concat_esm2_gene_embedding",
+    "feature_key": "features",
+    "label_key": "labels",
+    "split_key": "split",
+    "n_classes": 3
+  },
+  "model": {
+    "input_dim": "auto",
+    "model_type": "custom_program",
+    "hidden_dim": 384,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.1,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_esm2_artifact_search/programs/root_concat_gated_mlp_p1_dual_path_gated_low_rank_59171b80/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "dual_path_gated_low_rank",
+    "low_rank_dim": 64
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 8,
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  },
+  "proposal_note": "codex_program_agent blueprint=dual_path_gated_low_rank; program_model:custom_program->dual_path_gated_low_rank; blueprint_status:implemented; custom_model_path:experiments/k562_esm2_artifact_search/programs/root_concat_gated_mlp_p1_dual_path_gated_low_rank_632e7a18/model.py; hidden_dim:384->384; depth:2->2; lr:0.0003->0.0003"
+}

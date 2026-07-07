@@ -1,0 +1,38 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "root_concat_gated_mlp",
+  "child": "root_concat_gated_mlp_p2_aido_embedding_fusion_05efdf53",
+  "strategy": "aido_embedding_fusion",
+  "blueprint": {
+    "id": "aido_embedding_fusion",
+    "status": "planned",
+    "category": "foundation_model_fusion",
+    "paper_family": "biological_foundation_model",
+    "change_level": 5,
+    "role": "Fuse AIDO-style biological foundation embeddings with perturbation and expression features.",
+    "requires": [
+      "aido_embeddings"
+    ],
+    "implementation_notes": "Requires precomputed AIDO embeddings or an approved loader. Missing artifacts must be reported explicitly.",
+    "acceptance": [
+      "Documents AIDO artifact source",
+      "Does not silently substitute random embeddings",
+      "Keeps large foundation model frozen unless task allows fine-tuning"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Fuse AIDO-style biological foundation embeddings with perturbation and expression features.",
+  "changes": [
+    "program_model:gated_mlp->aido_embedding_fusion",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_esm2_artifact_search/programs/root_concat_gated_mlp_p2_aido_embedding_fusion_05efdf53/model.py",
+    "hidden_dim:384->384",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_esm2_artifact_search/programs/root_concat_gated_mlp_p2_aido_embedding_fusion_05efdf53",
+  "program_model_path": "experiments/k562_esm2_artifact_search/programs/root_concat_gated_mlp_p2_aido_embedding_fusion_05efdf53/model.py",
+  "implementation_request_path": "experiments/k562_esm2_artifact_search/programs/root_concat_gated_mlp_p2_aido_embedding_fusion_05efdf53/IMPLEMENTATION_REQUEST.md",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable."
+}

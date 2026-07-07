@@ -1,0 +1,37 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "root_concat_esm2_gene_embedding_gated_mlp_p1_mixture_of_experts_568d46e0",
+  "child": "root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_d110bf14",
+  "strategy": "selective_adapter_finetune",
+  "blueprint": {
+    "id": "selective_adapter_finetune",
+    "status": "planned",
+    "category": "fine_tuning",
+    "paper_family": "selective_finetuning",
+    "change_level": 5,
+    "role": "Freeze a base encoder and train small adapters/LoRA-style modules.",
+    "requires": [
+      "pretrained_encoder"
+    ],
+    "implementation_notes": "Requires a pretrained encoder. Generate a request unless the encoder is already present in the repo.",
+    "acceptance": [
+      "Documents frozen/trainable parameter groups",
+      "Does not silently train a huge model"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Freeze a base encoder and train small adapters/LoRA-style modules.",
+  "changes": [
+    "program_model:custom_program->selective_adapter_finetune",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_esm2_artifact_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_d110bf14/model.py",
+    "hidden_dim:384->384",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_esm2_artifact_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_d110bf14",
+  "program_model_path": "experiments/k562_esm2_artifact_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_d110bf14/model.py",
+  "implementation_request_path": "experiments/k562_esm2_artifact_search/programs/root_concat_esm2_gene_embedding_gated_mlp_p1_selective_adapter_finetune_d110bf14/IMPLEMENTATION_REQUEST.md",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable."
+}
