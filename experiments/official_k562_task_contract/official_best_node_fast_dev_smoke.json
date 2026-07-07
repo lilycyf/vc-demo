@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "date": "2026-07-07",
+  "public_node": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+  "command": "PYTHONPATH=/workspace/_external/ModelGenerator/huggingface/aido.cell python node2-1-1-1-1-1_code.py --fast-dev-run --micro-batch-size 1 --global-batch-size 1 --num-workers 0 --max-epochs 1",
+  "gpu": "NVIDIA L4",
+  "train_batches": 1,
+  "validation_batches": 1,
+  "test_batches": 1,
+  "metrics": {
+    "train_loss_observed": 1.370,
+    "val_f1_observed": 0.333,
+    "test_loss": 1.2349580526351929,
+    "test_prediction_rows": 1
+  },
+  "aido_weight_prefix_fix": {
+    "required": true,
+    "original_checkpoint_backup": "/home/Models/AIDO.Cell-100M/model.original_with_bert_prefix.safetensors",
+    "compatible_checkpoint": "/home/Models/AIDO.Cell-100M/model.safetensors",
+    "auto_model_missing_keys": 0,
+    "auto_model_unexpected_keys": 0
+  },
+  "caveat": "Connectivity and numerical-stability smoke only; not full score reproduction. STRING_GNN remains a public-artifact compatibility reconstruction."
+}

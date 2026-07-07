@@ -7,6 +7,7 @@
       "/home/Models/AIDO.Cell-100M/OS_scRNA_gene_index.19264.tsv",
       "/home/Models/AIDO.Cell-100M/tokenization_cellfoundation.py",
       "/home/Models/AIDO.Cell-100M/gene_id_to_aido_index.json",
+      "/home/Models/AIDO.Cell-100M/model.safetensors",
       "/home/Models/AIDO.Cell-100M/tokenizer_config.json"
     ],
     "gene_map_entries": 38132

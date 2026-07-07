@@ -10,6 +10,7 @@ from typing import Any
 import h5py
 import numpy as np
 import torch
+from safetensors.torch import load_file, save_file
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -233,17 +234,23 @@ def prepare_aido_dir(aido_dir: Path, source_dir: Path, aido_embedding_h5ad: Path
         shutil.copy2(src, dst)
         if dst.name == "modeling_cellfoundation.py":
             text = dst.read_text()
-            marker = "        return BaseModelOutputWithPoolingAndCrossAttentions(\n"
+            text = text.replace(
+                "            encoder_input += position_emb.transpose(0, 1)",
+                "            encoder_input = encoder_input + position_emb.transpose(0, 1)",
+            )
+            text = text.replace("    base_model_prefix = \"bert\"", "    base_model_prefix = \"\"")
+            anchor = "\n\n@add_start_docstrings(\n    \"\"\"\n    CellFoundation Model with two heads"
             alias = (
-                "    @property\n"
+                "\n\n    @property\n"
                 "    def bert(self):\n"
                 "        # Compatibility alias for public VCHarness nodes that expect\n"
                 "        # AutoModel(AIDO).bert.gene_embedding. ModelGenerator exposes\n"
                 "        # gene_embedding directly on CellFoundationModel.\n"
-                "        return self\n\n"
+                "        return self\n"
             )
             if alias.strip() not in text:
-                dst.write_text(text.replace(marker, alias + marker))
+                text = text.replace(anchor, alias + anchor, 1)
+            dst.write_text(text)
         copied.append(str(dst))
     gene_list_src = source_dir / "models/gene_lists/OS_scRNA_gene_index.19264.tsv"
     gene_list_dst = aido_dir / "OS_scRNA_gene_index.19264.tsv"
@@ -279,6 +286,26 @@ def prepare_aido_dir(aido_dir: Path, source_dir: Path, aido_embedding_h5ad: Path
     )
     config["auto_map"] = auto_map
     config_path.write_text(json.dumps(config, indent=2) + "\n")
+
+    # AutoModel loads CellFoundationModel directly, whose keys do not include
+    # the original checkpoint's bert prefix. Preserve the original file and
+    # write an AutoModel-compatible safetensors file with stripped keys.
+    weights_path = aido_dir / "model.safetensors"
+    original_weights_path = aido_dir / "model.original_with_bert_prefix.safetensors"
+    if weights_path.exists():
+        if not original_weights_path.exists():
+            weights_path.rename(original_weights_path)
+        raw = load_file(str(original_weights_path))
+        converted = {}
+        for key, value in raw.items():
+            if key.startswith("bert."):
+                converted[key[len("bert."):]] = value
+            elif key.startswith("cls."):
+                continue
+            else:
+                converted[key] = value
+        save_file(converted, str(weights_path), metadata={"format": "pt"})
+        copied.append(str(weights_path))
 
     tokenizer_config = {
         "tokenizer_class": "CellFoundationTokenizer",

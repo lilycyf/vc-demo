@@ -40,6 +40,8 @@ The script prepares `/home/Models/AIDO.Cell-100M` by adding:
 
 The AIDO model code is copied from official ModelGenerator source. The tokenizer is a compatibility shim for public VCHarness nodes that pass dictionaries such as `{"gene_ids": ["ENSG..."], "expression": [1.0]}`. It returns fixed-length AIDO expression tensors of shape `[batch, 19266]`.
 
+The script also preserves the original AIDO checkpoint as `model.original_with_bert_prefix.safetensors` and writes an AutoModel-compatible `model.safetensors` with stripped `bert.` prefixes. This is required because the public node uses `AutoModel`, which resolves to direct `CellFoundationModel` keys, while the published AIDO checkpoint stores backbone weights under `bert.*`. Without this conversion, the model loads uninitialized backbone parameters and the first forward pass produces NaN.
+
 The script prepares `/home/Models/STRING_GNN` by reconstructing a compatibility directory from public artifacts:
 
 - `GNN_Simple_Official_D256.h5ad`
@@ -66,6 +68,7 @@ After preparation:
 - `AutoModel.from_pretrained("/home/Models/AIDO.Cell-100M", trust_remote_code=True)`: pass
 - `AutoModel.from_pretrained("/home/Models/STRING_GNN", trust_remote_code=True)`: pass
 - Public best node `AIDOCellStringMultiHeadK16FusionModel(max_epochs=1).setup(stage="fit")`: pass
+- Public best node fast-dev train/validation/test smoke with one batch each: pass
 
 The strict compatibility checker now reports `status = compatible` with no blockers in:
 

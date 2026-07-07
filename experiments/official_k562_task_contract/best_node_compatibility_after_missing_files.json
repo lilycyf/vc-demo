@@ -97,6 +97,7 @@
         "configuration_cellfoundation.py",
         "gene_id_to_aido_index.json",
         "generation_config.json",
+        "model.original_with_bert_prefix.safetensors",
         "model.safetensors",
         "modeling_cellfoundation.py",
         "tokenization_cellfoundation.py",
