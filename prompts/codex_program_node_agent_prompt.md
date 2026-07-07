@@ -15,7 +15,8 @@ Then read, in order:
 3. PAPER_LEVEL_SEARCH_SPACE_SPEC.md
 4. PUBLIC_ARTIFACT_ALIGNMENT.md
 5. CODEX_AGENT_OPERATING_RULES.md
-6. <TASK_FILE>.md
+6. CODEX_AGENT_COOKBOOK.md
+7. <TASK_FILE>.md
 
 Follow the task file exactly. You are both the experiment runner and the implementation agent. Use public paper-aligned behavior where specified; when a detail is missing but required for the loop, implement it as an explicit repo-specific completion and record it. Use the harness files already in the repo instead of writing ad hoc search scripts. Treat PAPER_LEVEL_SEARCH_SPACE_SPEC.md as the search-space contract: do not pre-implement all planned models, but do consider the planned biological-prior, foundation-embedding, graph, and multimodal-fusion blueprints when the search selects them. Also read TARGET_AWARE_ARTIFACT_MODEL_SPACE.md and PAPER_LEVEL_FRAMEWORK_UPGRADE_2.md when the task involves ESM2/AIDO/scFoundation/STRING artifacts; prefer target-aware artifact use over simply appending a foundation embedding to tabular features.
 
@@ -39,3 +40,6 @@ Run manifest rule: every formal run must preserve `run_manifest.json` together w
 
 
 Autonomous loop rule: prefer `python -m vc_demo.harness.autonomous_run` for formal single-cell-line experiments. It must preserve `search_memory.json`, `run_manifest.json`, queues, proposals, and summaries. If it emits `CODEX_IMPLEMENTATION_TASK.md` or `ACQUIRE_<artifact>.md`, complete that task without changing data splits, labels, metrics, or fabricating artifacts.
+
+
+Codex execution model: do not add internal Codex/OpenAI API calls to the repo for formal runs. The user-launched Codex window is the agent. The repo should emit queues, task files, audits, and guardrails; Codex should read them and make direct repo edits on RunPod within the cookbook boundaries.

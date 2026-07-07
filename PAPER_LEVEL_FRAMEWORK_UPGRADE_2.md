@@ -101,3 +101,7 @@ Artifact acquisition is now resolver-backed: `src/vc_demo/harness/artifact_acqui
 ## Autonomous Agent Loop
 
 See `AUTONOMOUS_AGENT_LOOP_UPGRADE.md`. The framework now includes `preflight`, `autonomous_run`, `implementation_agent`, duplicate/memory guards, `search_memory.json`, and bounded automatic implementation/training cycles for safe node-local model templates.
+
+## Codex Agent Cookbook
+
+Formal runs use the user-launched Codex window as the coding/research agent. The repo must not call Codex/OpenAI APIs internally. See `CODEX_AGENT_COOKBOOK.md` for what Codex may change, must not change, and when official-source search is required.

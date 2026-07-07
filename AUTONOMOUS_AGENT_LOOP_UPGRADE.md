@@ -1,6 +1,10 @@
 # Autonomous Agent Loop Upgrade
 
-This repo now supports a bounded single-cell-line VCHarness-style autonomous loop.
+This repo now supports a bounded single-cell-line VCHarness-style autonomous loop. It does not call the Codex API internally; the active Codex window is the coding agent, and the repo provides queues, state, prompts, audits, and runnable commands.
+
+## Codex Execution Model
+
+Read `CODEX_AGENT_COOKBOOK.md` before formal runs. The harness may generate `IMPLEMENTATION_REQUEST.md`, `CODEX_IMPLEMENTATION_TASK.md`, or `ACQUIRE_<artifact>.md`; the active Codex agent executes those tasks directly in the repo. Do not add internal Codex/OpenAI API calls for the formal experiment path.
 
 ## Closed Loop
 
@@ -56,8 +60,8 @@ python scripts/generate_codex_experiment_prompt.py   --branch framework-autonomo
 
 ## What Still Requires External Codex Or Human Review
 
-- Blueprints without a safe built-in template produce `CODEX_IMPLEMENTATION_TASK.md`.
-- Missing artifacts with uncertain public sources produce `ACQUIRE_<artifact>.md`.
+- Blueprints without a safe built-in template produce `CODEX_IMPLEMENTATION_TASK.md` for the active Codex agent to implement directly.
+- Missing artifacts with uncertain public sources produce `ACQUIRE_<artifact>.md`; the active Codex agent must search official/primary sources or stop with a blocker.
 - Large external model downloads, license-gated resources, and underspecified pretrained encoders must stop for review.
 
 ## Formal-Test Guardrails
