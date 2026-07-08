@@ -1,0 +1,116 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-08T05:24:51.440210+00:00",
+  "updated_at": "2026-07-08T05:26:59.411028+00:00",
+  "events": [],
+  "blueprint_counts": {
+    "official_aido_string_fusion": 1,
+    "official_string_gnn_attention": 1,
+    "official_aido_lora_adapter": 1,
+    "official_target_gene_head": 1,
+    "official_pathway_pooling_reactome": 3,
+    "official_aido_string_cross_attention": 3,
+    "official_string_neighborhood_attention": 2
+  },
+  "parent_blueprints": {
+    "official_k562_native_public_best_reimplementation": [
+      "official_aido_string_fusion"
+    ],
+    "official_k562_native_p1_official_aido_string_fusion_66a588f9": [
+      "official_string_gnn_attention"
+    ],
+    "official_k562_native_p1_official_string_gnn_attention_7ec267ae": [
+      "official_aido_lora_adapter"
+    ],
+    "official_k562_native_p1_official_aido_lora_adapter_d757c78c": [
+      "official_target_gene_head"
+    ],
+    "official_k562_native_p1_official_target_gene_head_477d0ebb": [
+      "official_aido_string_cross_attention",
+      "official_pathway_pooling_reactome",
+      "official_string_neighborhood_attention"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_string_cross_attention",
+      "official_pathway_pooling_reactome",
+      "official_string_neighborhood_attention"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_aido_string_cross_attention",
+      "official_pathway_pooling_reactome"
+    ]
+  },
+  "family_counts": {
+    "AIDO_STRING_fusion": 1,
+    "STRING_GNN_attention": 1,
+    "AIDO_adapter": 1,
+    "target_gene_aware_head": 1,
+    "Reactome_pathway_pooling": 3,
+    "AIDO_STRING_cross_attention": 3,
+    "STRING_neighborhood_attention": 2
+  },
+  "structural_signature_counts": {
+    "1dc910599699c0679f99b36e869d73da668a9260": 1,
+    "c095311789cedc0e8615880ade41302ae796fcfe": 1,
+    "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 1,
+    "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4": 1,
+    "e07394402b248323a71213361dcf92f42875beb8": 1,
+    "4caa6750c81268bdb8e8c388e893105377abf3d6": 1,
+    "91ae899c274c46ad0ef6bd5bfe4e30045e44db02": 1,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 1,
+    "deba82298c3d004b00e18f313793047749e3e865": 1,
+    "9e51bea477de47d5e3ab3aa2ad7badd177e78b20": 1,
+    "59a4826c3fb4d2e52897a61623e9369af783aede": 1,
+    "376d420d6696ac2b221b323c85ccc467688fae23": 1
+  },
+  "replicate_nodes": [],
+  "successes": [
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+      "strategy": "official_aido_string_fusion",
+      "family": "AIDO_STRING_fusion",
+      "structural_relation": "structural_variant",
+      "val": 0.4884769916534424,
+      "test": 0.518327534198761,
+      "parent": "official_k562_native_public_best_reimplementation"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
+      "strategy": "official_aido_lora_adapter",
+      "family": "AIDO_adapter",
+      "structural_relation": "structural_variant",
+      "val": 0.4741170108318329,
+      "test": 0.5233038067817688,
+      "parent": "official_k562_native_p1_official_string_gnn_attention_7ec267ae"
+    },
+    {
+      "node": "official_k562_native_p1_official_target_gene_head_477d0ebb",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.45515310764312744,
+      "test": 0.5265136361122131,
+      "parent": "official_k562_native_p1_official_aido_lora_adapter_d757c78c"
+    },
+    {
+      "node": "official_k562_native_p1_official_string_gnn_attention_7ec267ae",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.44139811396598816,
+      "test": 0.5046269297599792,
+      "parent": "official_k562_native_p1_official_aido_string_fusion_66a588f9"
+    }
+  ],
+  "failures": [],
+  "blocked_artifacts": [],
+  "motifs": {
+    "promising": [
+      "official_aido_string_fusion: unspecified + unspecified val=0.4885",
+      "official_string_gnn_attention: unspecified + unspecified val=0.4414",
+      "official_aido_lora_adapter: unspecified + unspecified val=0.4741",
+      "official_target_gene_head: unspecified + unspecified val=0.4552"
+    ],
+    "discouraged": []
+  }
+}
