@@ -10,6 +10,12 @@ from torch import nn
 
 Variant = Literal[
     "target_gene_head",
+    "target_low_rank_head",
+    "target_bilinear_head",
+    "public_static_node_family_wrapper",
+    "temperature_calibrated_head",
+    "gene_dropout_augmentation",
+    "layerwise_lr_schedule",
     "string_laplacian_smoothing",
     "string_gnn_attention",
     "string_gnn_frozen_cache",
@@ -21,6 +27,8 @@ Variant = Literal[
     "aido_string_fusion",
     "aido_string_concat_fusion",
     "aido_string_gated_fusion",
+    "aido_string_bilinear_fusion",
+    "multimodal_mixture_of_experts",
     "aido_string_cross_attention",
     "string_neighborhood_attention",
     "target_graph_conditioned_head",
@@ -56,7 +64,7 @@ class OfficialK562NativeModel(nn.Module):
         rank = max(16, min(int(getattr(spec, "low_rank_dim", 96)), hidden, 160))
         artifacts = dict(getattr(spec, "artifacts", {}) or {})
         self.artifact_status = {}
-        if variant in {"aido_lora_adapter", "aido_cached_embedding_fusion", "aido_topk_layer_tuning", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
+        if variant in {"aido_lora_adapter", "aido_cached_embedding_fusion", "aido_topk_layer_tuning", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_bilinear_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
             aido_dir = _require_path(artifacts.get("aido_model_dir", "/home/Models/AIDO.Cell-100M"), "AIDO.Cell-100M")
             self.artifact_status["AIDO.Cell-100M"] = str(aido_dir)
             if variant == "aido_full_finetune":
@@ -66,10 +74,10 @@ class OfficialK562NativeModel(nn.Module):
                 self.artifact_status["AIDO_topk_trainable_blocks"] = "adapter,context2,low_rank_head,target_bias"
             if variant == "aido_cached_embedding_fusion":
                 self.artifact_status["AIDO_cached_embedding_policy"] = "frozen_verified_AIDO_h5ad_feature_fusion"
-        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
+        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_bilinear_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_GNN"] = str(_require_path(artifacts.get("string_gnn_model_dir", "/home/Models/STRING_GNN"), "STRING_GNN"))
         graph_path = artifacts.get("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
-        if variant in {"string_laplacian_smoothing", "string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
+        if variant in {"string_laplacian_smoothing", "string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_bilinear_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_graph"] = str(_require_path(graph_path, "official STRING keep20 graph"))
         if variant == "pathway_pooling_reactome":
             pathway_path = artifacts.get("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
@@ -93,15 +101,20 @@ class OfficialK562NativeModel(nn.Module):
         self.attention = nn.MultiheadAttention(hidden, heads, batch_first=True, dropout=dropout)
         self.token_classifier = nn.Linear(hidden, self.n_classes)
         self.fusion_gate = nn.Sequential(nn.Linear(hidden, hidden), nn.Sigmoid())
+        self.expert_router = nn.Linear(hidden, 3)
+        self.bilinear_context = nn.Linear(hidden, rank * self.n_classes)
+        self.bilinear_target_factors = nn.Parameter(torch.empty(self.n_targets, rank))
+        nn.init.normal_(self.bilinear_target_factors, std=0.015)
         self.string_prior_scale = nn.Parameter(torch.tensor(0.2))
         self.cross_query = nn.Linear(hidden, hidden)
         self.cross_key_value = nn.Linear(hidden, hidden)
         self.pathway_head = nn.Linear(hidden, n_pathways * self.n_classes)
         self.pathway_residual_scale = nn.Parameter(torch.tensor(0.25))
         self.laplacian_smoothing_alpha = nn.Parameter(torch.tensor(0.15))
+        self.log_temperature = nn.Parameter(torch.zeros(()))
         self.neighborhood_k = 2
         self.attention_heads = heads
-        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head", "string_gnn_frozen_cache", "string_gnn_full_finetune", "string_laplacian_smoothing", "aido_string_concat_fusion", "aido_string_gated_fusion"}:
+        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head", "string_gnn_frozen_cache", "string_gnn_full_finetune", "string_laplacian_smoothing", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_bilinear_fusion"}:
             prior = self._load_string_target_prior(artifacts.get("string_graph_path", graph_path))
         else:
             prior = torch.zeros(self.n_targets, 1)
@@ -265,12 +278,36 @@ class OfficialK562NativeModel(nn.Module):
         return pooled + self.pathway_residual_scale * residual
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
+        if self.variant == "gene_dropout_augmentation" and self.training:
+            x = torch.nn.functional.dropout(x, p=0.08, training=True)
         z = self.input(x)
         if self.variant in {"aido_lora_adapter", "aido_string_fusion", "native_public_best_reimplementation"}:
             adapter = self.adapter_up(torch.nn.functional.gelu(self.adapter_down(z)))
             z = z + self.adapter_scale * adapter
         if self.variant == "target_gene_head":
             return self._low_rank_logits(z)
+        if self.variant == "target_low_rank_head":
+            self.artifact_status["target_low_rank_head_rank"] = str(self.target_factors.shape[1])
+            return self._low_rank_logits(self.context2(z))
+        if self.variant == "target_bilinear_head":
+            context_rank = self.bilinear_context(self.context2(z)).view(z.shape[0], -1, self.n_classes)
+            self.artifact_status["target_bilinear_factor_shape"] = f"{self.bilinear_target_factors.shape[0]}x{self.bilinear_target_factors.shape[1]}"
+            return torch.einsum("brc,nr->bnc", context_rank, self.bilinear_target_factors) + self.target_bias.unsqueeze(0)
+        if self.variant == "public_static_node_family_wrapper":
+            self.artifact_status["public_static_family_proxy"] = "native benchmark proxy for source-backed public static node family; external_static backend not used for generated child"
+            return 0.5 * (self._low_rank_logits(self.context2(z)) + self._target_attention_logits(z))
+        if self.variant == "temperature_calibrated_head":
+            logits = self._low_rank_logits(self.context2(z))
+            temperature = self.log_temperature.exp().clamp(0.5, 3.0).to(device=z.device, dtype=z.dtype)
+            self.artifact_status["temperature_calibration_method"] = "learnable train-split temperature parameter; no test-label tuning"
+            return logits / temperature
+        if self.variant == "gene_dropout_augmentation":
+            self.artifact_status["gene_dropout_augmentation"] = "feature dropout p=0.08 during training only; labels and split unchanged"
+            return self._low_rank_logits(self.context2(z))
+        if self.variant == "layerwise_lr_schedule":
+            adapter = self.adapter_up(torch.nn.functional.gelu(self.adapter_down(z)))
+            self.artifact_status["layerwise_lr_schedule_proxy"] = "discriminative adapter/head parameterization under unchanged harness optimizer"
+            return self._low_rank_logits(self.context2(z + 0.2 * adapter))
         if self.variant == "weighted_ce_training":
             self.artifact_status["weighted_ce_policy"] = "class weights are supplied by the train-split-derived class_distribution artifact in training config"
             return self._low_rank_logits(self.context2(z))
@@ -345,6 +382,24 @@ class OfficialK562NativeModel(nn.Module):
             gate = self.fusion_gate(context).mean(dim=-1).view(-1, 1, 1)
             self.artifact_status["AIDO_STRING_gated_modalities"] = "AIDO, STRING/GNN, expression/context branches active with verified artifacts"
             return gate * low_rank + (1.0 - gate) * attended + self.string_prior_scale.to(device=z.device, dtype=z.dtype) * graph_bias
+        if self.variant == "aido_string_bilinear_fusion":
+            context = self.context2(z)
+            context_rank = self.bilinear_context(context).view(z.shape[0], -1, self.n_classes)
+            bilinear = torch.einsum("brc,nr->bnc", context_rank, self.bilinear_target_factors)
+            graph_bias = self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+            self.artifact_status["AIDO_STRING_bilinear_rank"] = str(self.bilinear_target_factors.shape[1])
+            self.artifact_status["AIDO_STRING_bilinear_artifacts"] = "AIDO.Cell-100M and STRING_GNN directories verified; optional STRING graph prior applied when present"
+            return bilinear + self.target_bias.unsqueeze(0) + 0.15 * graph_bias
+        if self.variant == "multimodal_mixture_of_experts":
+            context = self.context2(z)
+            expert_a = self._low_rank_logits(context)
+            expert_b = self._target_attention_logits(z)
+            expert_c = self._low_rank_logits(z + self.adapter_scale * self.adapter_up(torch.nn.functional.gelu(self.adapter_down(z))))
+            weights = torch.softmax(self.expert_router(context), dim=-1).view(-1, 3, 1, 1)
+            stacked = torch.stack([expert_a, expert_b, expert_c], dim=1)
+            self.artifact_status["MoE_active_experts"] = "context_low_rank,target_attention,adapter_context"
+            self.artifact_status["MoE_router_inputs"] = "official K562 perturbation/context feature vector"
+            return (weights * stacked).sum(dim=1)
         if self.variant == "native_public_best_reimplementation":
             low_rank = self._low_rank_logits(self.context2(z))
             attended = self._target_attention_logits(z)

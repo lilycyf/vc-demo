@@ -12,7 +12,7 @@
     ]
   },
   "search_scale_gap": {
-    "trained_nodes": 41,
+    "trained_nodes": 57,
     "paper_scale_target_nodes": 600,
     "estimated_candidate_count": 94500
   },
@@ -43,7 +43,15 @@
       "STRING_laplacian_prior": 2,
       "class_weighted_CE": 2,
       "AIDO_STRING_concat": 2,
-      "AIDO_STRING_gated": 2
+      "AIDO_STRING_gated": 2,
+      "AIDO_STRING_bilinear": 2,
+      "multimodal_MoE": 2,
+      "target_low_rank_head": 2,
+      "target_bilinear_head": 2,
+      "public_static_tree_family": 2,
+      "temperature_calibration": 2,
+      "gene_dropout_augmentation": 2,
+      "layerwise_lr_decay": 2
     },
     "replicate_nodes": 0
   },

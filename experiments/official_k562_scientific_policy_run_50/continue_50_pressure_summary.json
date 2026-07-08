@@ -1,0 +1,172 @@
+{
+  "branch": "official-k562-scientific-policy-run-50",
+  "start_trained": 41,
+  "end_statuses": {
+    "trained": 57,
+    "requires_artifact_acquisition": 9
+  },
+  "implementation_queue_items": 0,
+  "acquisition_queue_items": 9,
+  "blocked_artifacts": [
+    "regulatory_network_artifact",
+    "scfoundation_cell_embeddings",
+    "single_cell_foundation_model_artifact"
+  ],
+  "blocked_memory_count": 9,
+  "class_distribution_present": true,
+  "resume_expanded": true,
+  "new_trained_nodes": [
+    {
+      "node": "official_k562_native_p1_official_aido_string_bilinear_fusion_e2f0a399",
+      "strategy": "official_aido_string_bilinear_fusion",
+      "status": "trained",
+      "val": 0.4144500494003296,
+      "test": 0.43323346972465515
+    },
+    {
+      "node": "official_k562_native_p2_official_multimodal_mixture_of_experts_93125c64",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "status": "trained",
+      "val": 0.4387456178665161,
+      "test": 0.4780139923095703
+    },
+    {
+      "node": "official_k562_native_p3_official_target_low_rank_head_0ae2d7d8",
+      "strategy": "official_target_low_rank_head",
+      "status": "trained",
+      "val": 0.4232332706451416,
+      "test": 0.4424566328525543
+    },
+    {
+      "node": "official_k562_native_p4_official_target_bilinear_head_5a491322",
+      "strategy": "official_target_bilinear_head",
+      "status": "trained",
+      "val": 0.405314564704895,
+      "test": 0.43149086833000183
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_aido_string_bilinear_fusion_15f82887",
+      "strategy": "official_aido_string_bilinear_fusion",
+      "status": "trained",
+      "val": 0.38304993510246277,
+      "test": 0.40384697914123535
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_multimodal_mixture_of_experts_db0e9af8",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "status": "trained",
+      "val": 0.42599502205848694,
+      "test": 0.4394306242465973
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_low_rank_head_2e5e7df5",
+      "strategy": "official_target_low_rank_head",
+      "status": "trained",
+      "val": 0.40605828166007996,
+      "test": 0.42461535334587097
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p4_official_target_bilinear_head_7539101a",
+      "strategy": "official_target_bilinear_head",
+      "status": "trained",
+      "val": 0.4116579592227936,
+      "test": 0.42630109190940857
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_public_static_node_family_wrapper_34241d65",
+      "strategy": "official_public_static_node_family_wrapper",
+      "status": "trained",
+      "val": 0.41082167625427246,
+      "test": 0.4407902657985687
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_temperature_calibrated_head_d4f4664c",
+      "strategy": "official_temperature_calibrated_head",
+      "status": "trained",
+      "val": 0.3970951735973358,
+      "test": 0.41937223076820374
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_gene_dropout_augmentation_11602380",
+      "strategy": "official_gene_dropout_augmentation",
+      "status": "trained",
+      "val": 0.370728999376297,
+      "test": 0.41253456473350525
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_layerwise_lr_schedule_e7171cc9",
+      "strategy": "official_layerwise_lr_schedule",
+      "status": "trained",
+      "val": 0.40930959582328796,
+      "test": 0.43100741505622864
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_public_static_node_family_wrapper_cc540ff7",
+      "strategy": "official_public_static_node_family_wrapper",
+      "status": "trained",
+      "val": 0.41512835025787354,
+      "test": 0.4349517822265625
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_temperature_calibrated_head_c9bd0eba",
+      "strategy": "official_temperature_calibrated_head",
+      "status": "trained",
+      "val": 0.3694535493850708,
+      "test": 0.40804603695869446
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_gene_dropout_augmentation_d60de428",
+      "strategy": "official_gene_dropout_augmentation",
+      "status": "trained",
+      "val": 0.40201660990715027,
+      "test": 0.435548335313797
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_layerwise_lr_schedule_77aee7f1",
+      "strategy": "official_layerwise_lr_schedule",
+      "status": "trained",
+      "val": 0.3908825218677521,
+      "test": 0.4236637353897095
+    }
+  ],
+  "new_blocker_rows": [],
+  "best_root": {
+    "node": "official_k562_native_public_best_reimplementation",
+    "val": 0.46794524788856506,
+    "test": 0.5256422758102417
+  },
+  "best_overall": {
+    "node": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+    "strategy": "official_aido_string_fusion",
+    "val": 0.4884769916534424,
+    "test": 0.518327534198761
+  },
+  "previous_best_overall_val": 0.4884769916534424,
+  "exceeded_previous_best_overall": false,
+  "backend_anomalies": [],
+  "fallback_used": false,
+  "family_coverage_count": 31,
+  "family_counts_top": {
+    "AIDO_STRING_cross_attention": 3,
+    "AIDO_cached_embedding": 3,
+    "Reactome_pathway_pooling": 3,
+    "STRING_GNN_frozen_cached": 3,
+    "regulatory_network_prior": 3,
+    "scFoundation_selective_finetune": 3,
+    "scGPT_or_single_cell_encoder": 3,
+    "AIDO_STRING_bilinear": 2,
+    "AIDO_STRING_concat": 2,
+    "AIDO_STRING_gated": 2,
+    "AIDO_full_finetune": 2,
+    "AIDO_selective_finetune": 2,
+    "STRING_GNN_full_finetune": 2,
+    "STRING_laplacian_prior": 2,
+    "STRING_neighborhood_attention": 2,
+    "class_weighted_CE": 2,
+    "focal_loss": 2,
+    "gene_dropout_augmentation": 2,
+    "layerwise_lr_decay": 2,
+    "multimodal_MoE": 2
+  },
+  "blocked_aware_policy_effective": true
+}

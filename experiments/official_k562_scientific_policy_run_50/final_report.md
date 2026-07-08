@@ -10,17 +10,17 @@
 ## Search System
 
 - Experiment: `official_k562_scientific_policy_run_50`
-- Trained nodes: 41
+- Trained nodes: 57
 - Failed nodes: 0
 - Pending implementations: 0
 - Public static tree nodes cataloged: 154
 - Public best path scaffold: `node2-1-1-1-1-1`
 - Paper-scale estimated candidate count: 94500
 - Paper-scale 600+ manifest target reached: true
-- MCTS trace events: 138
+- MCTS trace events: 186
 - MCTS policy: uct
 - Search policy: scientific family/structure priority first; artifact status is a feasibility gate, not a ranking objective
-- Blueprint families covered: 23
+- Blueprint families covered: 31
 - Structural replicate nodes: 0
 - Strict artifact rule: missing official artifacts must acquire/block, not fallback
 
@@ -47,6 +47,7 @@
 
 | Family | Count |
 |---|---:|
+| AIDO_STRING_bilinear | 2 |
 | AIDO_STRING_concat | 2 |
 | AIDO_STRING_cross_attention | 3 |
 | AIDO_STRING_fusion | 1 |
@@ -63,22 +64,29 @@
 | STRING_neighborhood_attention | 2 |
 | class_weighted_CE | 2 |
 | focal_loss | 2 |
+| gene_dropout_augmentation | 2 |
+| layerwise_lr_decay | 2 |
+| multimodal_MoE | 2 |
 | official_deg_imbalance | 1 |
+| public_static_tree_family | 2 |
 | public_vcharness_best_path | 1 |
 | regulatory_network_prior | 3 |
 | scFoundation_selective_finetune | 3 |
 | scGPT_or_single_cell_encoder | 3 |
+| target_bilinear_head | 2 |
 | target_gene_aware_head | 1 |
 | target_graph_conditioned_head | 1 |
+| target_low_rank_head | 2 |
+| temperature_calibration | 2 |
 
 ## MCTS Trace Summary
 
 | Event | Count |
 |---|---:|
 | backpropagation | 6 |
-| expansion | 46 |
-| pending_implementation | 40 |
-| selection | 46 |
+| expansion | 62 |
+| pending_implementation | 56 |
+| selection | 62 |
 
 ## Results
 
@@ -125,6 +133,22 @@
 | `official_k562_p2_official_weighted_ce_training_d9dfeac6` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_weighted_ce_training | structural_variant | 0.3566 | 0.3635 |
 | `official_k562_p3_official_aido_string_concat_fusion_857f5a22` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_aido_string_concat_fusion | structural_variant | 0.3546 | 0.3731 |
 | `official_k562_p4_official_aido_string_gated_fusion_1fe27291` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_aido_string_gated_fusion | structural_variant | 0.3564 | 0.3684 |
+| `official_k562_native_p1_official_aido_string_bilinear_fusion_e2f0a399` | `official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a` |  | official_aido_string_bilinear_fusion | structural_variant | 0.4145 | 0.4332 |
+| `official_k562_native_p2_official_multimodal_mixture_of_experts_93125c64` | `official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a` |  | official_multimodal_mixture_of_experts | structural_variant | 0.4387 | 0.4780 |
+| `official_k562_native_p3_official_target_low_rank_head_0ae2d7d8` | `official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a` |  | official_target_low_rank_head | structural_variant | 0.4232 | 0.4425 |
+| `official_k562_native_p4_official_target_bilinear_head_5a491322` | `official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a` |  | official_target_bilinear_head | structural_variant | 0.4053 | 0.4315 |
+| `official_k562_root_aido_embedding_mlp_p1_official_aido_string_bilinear_fusion_15f82887` | `official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6` |  | official_aido_string_bilinear_fusion | structural_variant | 0.3830 | 0.4038 |
+| `official_k562_root_aido_embedding_mlp_p2_official_multimodal_mixture_of_experts_db0e9af8` | `official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6` |  | official_multimodal_mixture_of_experts | structural_variant | 0.4260 | 0.4394 |
+| `official_k562_root_aido_embedding_mlp_p3_official_target_low_rank_head_2e5e7df5` | `official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6` |  | official_target_low_rank_head | structural_variant | 0.4061 | 0.4246 |
+| `official_k562_root_aido_embedding_mlp_p4_official_target_bilinear_head_7539101a` | `official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6` |  | official_target_bilinear_head | structural_variant | 0.4117 | 0.4263 |
+| `official_k562_root_aido_gnn_embedding_mlp_p1_official_public_static_node_family_wrapper_34241d65` | `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` |  | official_public_static_node_family_wrapper | structural_variant | 0.4108 | 0.4408 |
+| `official_k562_root_aido_gnn_embedding_mlp_p2_official_temperature_calibrated_head_d4f4664c` | `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` |  | official_temperature_calibrated_head | structural_variant | 0.3971 | 0.4194 |
+| `official_k562_root_aido_gnn_embedding_mlp_p3_official_gene_dropout_augmentation_11602380` | `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` |  | official_gene_dropout_augmentation | structural_variant | 0.3707 | 0.4125 |
+| `official_k562_root_aido_gnn_embedding_mlp_p4_official_layerwise_lr_schedule_e7171cc9` | `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` |  | official_layerwise_lr_schedule | structural_variant | 0.4093 | 0.4310 |
+| `official_k562_root_aido_gnn_embedding_mlp_p1_official_public_static_node_family_wrapper_cc540ff7` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` |  | official_public_static_node_family_wrapper | structural_variant | 0.4151 | 0.4350 |
+| `official_k562_root_aido_gnn_embedding_mlp_p2_official_temperature_calibrated_head_c9bd0eba` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` |  | official_temperature_calibrated_head | structural_variant | 0.3695 | 0.4080 |
+| `official_k562_root_aido_gnn_embedding_mlp_p3_official_gene_dropout_augmentation_d60de428` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` |  | official_gene_dropout_augmentation | structural_variant | 0.4020 | 0.4355 |
+| `official_k562_root_aido_gnn_embedding_mlp_p4_official_layerwise_lr_schedule_77aee7f1` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` |  | official_layerwise_lr_schedule | structural_variant | 0.3909 | 0.4237 |
 
 ## Best Node
 

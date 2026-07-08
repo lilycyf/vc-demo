@@ -1,0 +1,729 @@
+{
+  "created_at": "2026-07-08T09:18:27.472603+00:00",
+  "queue": "experiments/official_k562_scientific_policy_run_50/acquisition_queue.json",
+  "registry": "configs/artifacts/k562_registry.json",
+  "sources": "configs/artifacts/acquisition_sources.json",
+  "execute_known": false,
+  "items": [
+    {
+      "artifact_id": "regulatory_network_artifact",
+      "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+      "strategy": "official_regulatory_network_prior",
+      "expected_path": "data/artifacts/regulatory_network",
+      "resolver": "source_definition_required_before_acquisition",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_regulatory_network_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "regulatory_network_artifact",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+      "strategy": "official_regulatory_network_prior",
+      "expected_path": "data/artifacts/regulatory_network",
+      "resolver": "source_definition_required_before_acquisition",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_regulatory_network_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "regulatory_network_artifact",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+      "strategy": "official_regulatory_network_prior",
+      "expected_path": "data/artifacts/regulatory_network",
+      "resolver": "source_definition_required_before_acquisition",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_regulatory_network_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "single_cell_foundation_model_artifact",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec",
+      "strategy": "official_scgpt_cell_encoder",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "resolver": "source_definition_required_before_acquisition",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_single_cell_foundation_model_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "single_cell_foundation_model_artifact",
+      "node": "official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd",
+      "strategy": "official_scgpt_cell_encoder",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "resolver": "source_definition_required_before_acquisition",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_single_cell_foundation_model_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "single_cell_foundation_model_artifact",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0",
+      "strategy": "official_scgpt_cell_encoder",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "resolver": "source_definition_required_before_acquisition",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_single_cell_foundation_model_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "scfoundation_cell_embeddings",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_229ce930",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "expected_path": "data/artifacts/scfoundation",
+      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_scfoundation_cell_embeddings.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "scfoundation_cell_embeddings",
+      "node": "official_k562_native_p1_official_scfoundation_top_layer_finetune_d20d4b0f",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "expected_path": "data/artifacts/scfoundation",
+      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_scfoundation_cell_embeddings.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    },
+    {
+      "artifact_id": "scfoundation_cell_embeddings",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_39582a38",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "expected_path": "data/artifacts/scfoundation",
+      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+      "can_execute_automatically": false,
+      "file_exists_before": false,
+      "present_before": false,
+      "audited_status_before": "missing",
+      "audit_issue_before": null,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition_continue_50/ACQUIRE_scfoundation_cell_embeddings.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    }
+  ],
+  "registry_audit_after": {
+    "registry_version": "vc_demo_artifact_registry.v1",
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "cell_line": "K562",
+    "artifacts": [
+      {
+        "id": "esm2_gene_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "ESM2",
+        "status": "expected_present",
+        "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene"
+        ],
+        "required_for_blueprints": [
+          "cross_attention_gene_perturbation",
+          "esm2_gene_projection",
+          "target_gene_embedding_bilinear"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "esm2_k562_target_manifest",
+        "family": "artifact_manifest",
+        "provider": "ESM2",
+        "status": "derived_if_built",
+        "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+        "source": "derived_by:scripts/build_target_gene_artifact.py",
+        "usable_for": [
+          "target_gene",
+          "model_head_geometry"
+        ],
+        "required_for_blueprints": [
+          "cross_attention_gene_perturbation",
+          "target_gene_embedding_bilinear"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "ESM2_D1280",
+        "artifact_family": "gene_embedding",
+        "target_gene_coverage": 0.921,
+        "n_target_genes": 1000,
+        "target_embedding_dim": 1280,
+        "missing_target_genes_count": 79
+      },
+      {
+        "id": "aido_gene_or_cell_embeddings",
+        "family": "foundation_embedding",
+        "provider": "AIDO",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/aido",
+        "source": "public GenBio artifact if available; exact file must be recorded before use",
+        "usable_for": [
+          "perturbation_gene",
+          "target_gene",
+          "cell_state"
+        ],
+        "required_for_blueprints": [
+          "aido_embedding_fusion"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "scfoundation_cell_embeddings",
+        "family": "cell_embedding",
+        "provider": "scFoundation",
+        "status": "missing_until_downloaded",
+        "path": "data/artifacts/scfoundation",
+        "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+        "usable_for": [
+          "cell_state",
+          "expression_encoder"
+        ],
+        "required_for_blueprints": [
+          "scfoundation_cell_encoder"
+        ],
+        "do_not_fabricate": true,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "string_k562_gene_graph",
+        "family": "gene_graph",
+        "provider": "STRING",
+        "status": "expected_present",
+        "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+        "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+        "usable_for": [
+          "gene_graph",
+          "target_gene",
+          "perturbation_propagation"
+        ],
+        "required_for_blueprints": [
+          "ppi_graph_message_passing",
+          "string_gnn_perturbation_propagator"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://version-12-0.string-db.org/api/tsv/network",
+        "mapping_url": "https://version-12-0.string-db.org/api/tsv/get_string_ids",
+        "version": {
+          "string_version": "12.0",
+          "stable_address": "https://version-12-0.string-db.org"
+        },
+        "filtering_rule": "Map K562 perturbation and target gene symbols to STRING protein IDs, query the official STRING v12.0 network API for the union, keep induced-subgraph edges where both endpoints map back to K562 genes and combined score >= 0.4.",
+        "score_threshold": 0.4,
+        "raw_edge_count": 135802,
+        "filtered_edge_count": 36550,
+        "node_count": 1054,
+        "perturbation_gene_graph_coverage": 0.9047619047619048,
+        "target_gene_graph_coverage": 0.966,
+        "summary_path": "experiments/k562_string_graph_artifact_summary.json",
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "pathway_memberships",
+        "family": "pathway_prior",
+        "provider": "Reactome",
+        "status": "expected_present",
+        "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+        "source": "Reactome official GMT download aligned to exact official K562 target genes; built by scripts/build_k562_pathway_membership.py",
+        "usable_for": [
+          "target_gene",
+          "pathway_pooling"
+        ],
+        "required_for_blueprints": [
+          "pathway_pooling_encoder",
+          "official_pathway_pooling_reactome"
+        ],
+        "do_not_fabricate": true,
+        "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+        "source_file": "ReactomePathways.gmt inside ReactomePathways.gmt.zip",
+        "source_sha256": "8c1dbc8578431da5d2d5118262718c60b553a9be3398e93658daa069e4a9afd4",
+        "source_bytes": 298479,
+        "species_filter": "Homo sapiens pathways only, identified by R-HSA stable IDs",
+        "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact official K562 target-gene list.",
+        "n_source_pathways": 2868,
+        "n_kept_pathways": 2034,
+        "membership_shape": [
+          6640,
+          2034
+        ],
+        "covered_target_gene_count": 4444,
+        "target_gene_coverage": 0.6692771084337349,
+        "mean_pathways_per_target_gene": 10.904367469879517,
+        "summary_path": "experiments/k562_pathway_membership_artifact_summary.json",
+        "aliases": [
+          "pathway_membership_matrix"
+        ],
+        "expected_n_targets": 6640,
+        "target_gene_source": "data/cell_lines/official_k562_cls/target_genes.tsv",
+        "artifact_sha256": "1f322d4e9f656f0f6305ed3cefe3d525562945bfdcb193ce88d3fba5b7a7a929",
+        "artifact_bytes": 491721,
+        "n_target_genes": 6640,
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "Reactome K562 pathway memberships",
+        "artifact_family": "pathway_prior",
+        "membership_shape_actual": [
+          6640,
+          2034
+        ],
+        "n_target_genes_actual": 6640,
+        "n_pathways_actual": 2034,
+        "target_gene_coverage_actual": 0.6692771084337349,
+        "covered_target_gene_count_actual": 4444
+      },
+      {
+        "id": "official_essential_deg_with_split_h5ad",
+        "family": "official_task_data",
+        "provider": "GenBio AI HuggingFace",
+        "status": "expected_present",
+        "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+        "usable_for": [
+          "official_k562_task_contract"
+        ],
+        "required_for_blueprints": [
+          "official_aido_lora_adapter",
+          "official_aido_string_fusion",
+          "official_class_imbalance_training",
+          "official_k562_task",
+          "official_public_best_node",
+          "official_string_gnn_attention",
+          "official_target_gene_head",
+          "official_native_public_best_reimplementation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "official_k562_aido_cell_100m_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "AIDO.Cell-100M",
+        "status": "expected_present",
+        "path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "official_k562_baseline"
+        ],
+        "required_for_blueprints": [
+          "official_k562_aido_embedding_mlp"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "official_string_gnn_keep20_graph",
+        "family": "gene_graph",
+        "provider": "STRING_GNN",
+        "status": "expected_present",
+        "path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+        "usable_for": [
+          "gene_graph",
+          "official_k562_string_gnn"
+        ],
+        "required_for_blueprints": [
+          "official_k562_string_gnn_attention",
+          "official_string_gnn_attention",
+          "official_native_public_best_reimplementation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "official_aido_cell_100m_model_dir",
+        "family": "foundation_model_checkpoint",
+        "provider": "AIDO.Cell-100M",
+        "status": "missing_until_downloaded",
+        "path": "/home/Models/AIDO.Cell-100M",
+        "source": "Exact AutoModel directory expected by public VCHarness node code; not equivalent to downloaded h5ad embedding.",
+        "usable_for": [
+          "official_vcharness_best_node"
+        ],
+        "required_for_blueprints": [
+          "official_aido_lora_adapter",
+          "official_aido_string_fusion",
+          "official_k562_aido_lora_automodel",
+          "official_public_best_node",
+          "official_native_public_best_reimplementation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "official_string_gnn_model_dir",
+        "family": "foundation_model_checkpoint",
+        "provider": "STRING_GNN",
+        "status": "missing_until_downloaded",
+        "path": "/home/Models/STRING_GNN",
+        "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+        "usable_for": [
+          "official_vcharness_best_node"
+        ],
+        "required_for_blueprints": [
+          "official_aido_string_fusion",
+          "official_k562_string_gnn_attention",
+          "official_public_best_node",
+          "official_string_gnn_attention",
+          "official_native_public_best_reimplementation"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "official_gnn_simple_embedding_h5ad",
+        "family": "gene_embedding",
+        "provider": "GNN Simple Official",
+        "status": "expected_present",
+        "path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+        "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+        "usable_for": [
+          "perturbation_gene",
+          "official_k562_gnn_embedding_baseline"
+        ],
+        "required_for_blueprints": [
+          "official_k562_aido_gnn_embedding_mlp"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "official_public_best_node_code",
+        "family": "public_node_code",
+        "provider": "VCHarness",
+        "status": "expected_present",
+        "path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+        "source": "VCHarness public K562 static node code bundled in genbio-ai/VCHarness",
+        "usable_for": [
+          "official_vcharness_best_node_wrapper"
+        ],
+        "required_for_blueprints": [
+          "official_public_best_node"
+        ],
+        "do_not_fabricate": true,
+        "present": true,
+        "resolved_status": "present"
+      },
+      {
+        "id": "class_distribution",
+        "family": "class_distribution",
+        "provider": "derived_from_official_k562_train_split",
+        "status": "derived_present",
+        "path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+        "source": "derived_by:scripts/build_k562_class_distribution.py from data/cell_lines/official_k562_cls/train.tsv only",
+        "usable_for": [
+          "loss_weighting",
+          "focal_loss_alpha",
+          "class_balanced_training"
+        ],
+        "required_for_blueprints": [
+          "official_class_imbalance_training",
+          "official_weighted_ce_training",
+          "official_focal_loss_training",
+          "class_balanced_deg_classifier",
+          "focal_loss_training_strategy"
+        ],
+        "do_not_fabricate": true,
+        "provenance": "derived_from_train_labels_only_no_val_or_test",
+        "split_used": "train",
+        "forbidden_splits": [
+          "val",
+          "test"
+        ],
+        "raw_label_counts": {
+          "-1": 405816,
+          "0": 8510952,
+          "1": 299552
+        },
+        "training_label_counts": {
+          "0": 405816,
+          "1": 8510952,
+          "2": 299552
+        },
+        "raw_label_order": [
+          -1,
+          0,
+          1
+        ],
+        "training_label_order": [
+          0,
+          1,
+          2
+        ],
+        "n_train_rows": 1388,
+        "n_targets": 6640,
+        "n_label_values": 3,
+        "artifact_sha256": "450fb9099181279f01917626a5394030898469c3c63a298abe1e60c779742bb4",
+        "artifact_bytes": 2381,
+        "summary_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+        "present": true,
+        "resolved_status": "present",
+        "artifact_name": "K562 train-only class distribution",
+        "artifact_family": "class_distribution",
+        "class_distribution_format": "vc_demo.class_distribution.v1",
+        "split_used_actual": "train",
+        "forbidden_splits_actual": [
+          "val",
+          "test"
+        ],
+        "n_train_rows_actual": 1388,
+        "n_targets_actual": 6640,
+        "raw_label_counts_actual": {
+          "-1": 405816,
+          "0": 8510952,
+          "1": 299552
+        },
+        "training_label_counts_actual": {
+          "0": 405816,
+          "1": 8510952,
+          "2": 299552
+        },
+        "has_recommended_weights": true,
+        "manifest_train_counts_match": true,
+        "provenance_actual": "derived_from_official_train_split_labels_only"
+      },
+      {
+        "id": "regulatory_network_artifact",
+        "family": "regulatory_network",
+        "provider": "unconfigured",
+        "status": "blocked_until_source_configured",
+        "path": "data/artifacts/regulatory_network",
+        "source": "No verified K562-aligned regulatory source configured; strict mode must block.",
+        "usable_for": [
+          "regulatory_prior",
+          "tf_target_prior"
+        ],
+        "required_for_blueprints": [
+          "official_regulatory_network_prior"
+        ],
+        "do_not_fabricate": true,
+        "fallback_allowed": false,
+        "present": false,
+        "resolved_status": "missing"
+      },
+      {
+        "id": "single_cell_foundation_model_artifact",
+        "family": "single_cell_foundation_model",
+        "provider": "unconfigured",
+        "status": "blocked_until_source_configured",
+        "path": "data/artifacts/single_cell_foundation_model",
+        "source": "No verified scGPT/scFoundation K562 row-aligned artifact configured; strict mode must block.",
+        "usable_for": [
+          "cell_state_encoder",
+          "single_cell_foundation_embedding"
+        ],
+        "required_for_blueprints": [
+          "official_scgpt_cell_encoder"
+        ],
+        "do_not_fabricate": true,
+        "fallback_allowed": false,
+        "present": false,
+        "resolved_status": "missing"
+      }
+    ],
+    "present_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "string_k562_gene_graph",
+      "pathway_memberships",
+      "official_essential_deg_with_split_h5ad",
+      "official_k562_aido_cell_100m_embedding_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_gnn_simple_embedding_h5ad",
+      "official_public_best_node_code",
+      "class_distribution"
+    ],
+    "missing_artifacts": [
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "regulatory_network_artifact",
+      "single_cell_foundation_model_artifact"
+    ]
+  },
+  "unblock_result": {
+    "run_dir": "experiments/official_k562_scientific_policy_run_50",
+    "updated": 0,
+    "unblocked": [],
+    "still_blocked": [
+      {
+        "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+        "missing_required_artifacts": [
+          "regulatory_network_artifact"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_regulatory_network_prior_144a8b54/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "regulatory_network_artifact"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+        "missing_required_artifacts": [
+          "regulatory_network_artifact"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "regulatory_network_artifact"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+        "missing_required_artifacts": [
+          "regulatory_network_artifact"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "regulatory_network_artifact"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec",
+        "missing_required_artifacts": [
+          "single_cell_foundation_model_artifact"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "single_cell_foundation_model_artifact"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd",
+        "missing_required_artifacts": [
+          "single_cell_foundation_model_artifact"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "single_cell_foundation_model_artifact"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0",
+        "missing_required_artifacts": [
+          "single_cell_foundation_model_artifact"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "single_cell_foundation_model_artifact"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_229ce930",
+        "missing_required_artifacts": [
+          "scfoundation_cell_embeddings"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_229ce930/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "scfoundation_cell_embeddings"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_native_p1_official_scfoundation_top_layer_finetune_d20d4b0f",
+        "missing_required_artifacts": [
+          "scfoundation_cell_embeddings"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_scfoundation_top_layer_finetune_d20d4b0f/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "scfoundation_cell_embeddings"
+          ]
+        }
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_39582a38",
+        "missing_required_artifacts": [
+          "scfoundation_cell_embeddings"
+        ],
+        "artifact_contract": {
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_39582a38/artifact_contract.json",
+          "updated": true,
+          "missing_required_artifacts": [
+            "scfoundation_cell_embeddings"
+          ]
+        }
+      }
+    ]
+  },
+  "next_action": "resume strict search if all queued artifacts are present; otherwise complete generated Codex acquisition tasks"
+}
