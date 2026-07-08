@@ -10,13 +10,13 @@
     ]
   },
   "search_scale_gap": {
-    "trained_nodes": 23,
+    "trained_nodes": 27,
     "paper_scale_target_nodes": 600,
     "estimated_candidate_count": 94500
   },
   "epoch_budget_gap": 3,
   "implementation_gap": {
-    "pending_implementations": 8,
+    "pending_implementations": 0,
     "failed_nodes": 0,
     "family_counts": {
       "AIDO_adapter": 1,

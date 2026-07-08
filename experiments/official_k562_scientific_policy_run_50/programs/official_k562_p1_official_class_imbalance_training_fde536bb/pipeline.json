@@ -2,7 +2,7 @@
   "format": "vc_demo_pipeline_node.v1",
   "kind": "pipeline_program_node",
   "strategy": "official_class_imbalance_training",
-  "model_entrypoint": "",
+  "model_entrypoint": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_class_imbalance_training_fde536bb/model.py",
   "training": {
     "loss_type": "focal_loss",
     "loss_notes": "Node-level training strategy patch for class-imbalanced DEG labels."
@@ -42,5 +42,7 @@
     "fine_tuning": "unspecified",
     "required_artifacts": [],
     "paper_alignment": "blueprint not yet mapped into the grammar"
-  }
+  },
+  "blocked_reason": "class_distribution artifact missing and strict mode forbids external static fallback for generated child",
+  "invalidated_external_static_backend": true
 }

@@ -1,13 +1,22 @@
 {
   "items": [
     {
+      "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
+      "strategy": "official_class_imbalance_training",
+      "artifact_id": "class_distribution",
+      "expected_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+      "source": "derive only from official train labels with documented split/provenance before retraining; not currently registered",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
       "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
       "strategy": "official_regulatory_network_prior",
       "artifact_id": "regulatory_network_artifact",
       "expected_path": "",
       "source": "definition/source required before acquisition; do not fabricate regulatory edges",
-      "action": "define_search_download_or_build_real_artifact",
-      "resume_after": "update registry/contracts, audit, then train pending without fallback"
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
     },
     {
       "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
@@ -15,8 +24,8 @@
       "artifact_id": "regulatory_network_artifact",
       "expected_path": "",
       "source": "definition/source required before acquisition; do not fabricate regulatory edges",
-      "action": "define_search_download_or_build_real_artifact",
-      "resume_after": "update registry/contracts, audit, then train pending without fallback"
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
     },
     {
       "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
@@ -24,8 +33,35 @@
       "artifact_id": "regulatory_network_artifact",
       "expected_path": "",
       "source": "definition/source required before acquisition; do not fabricate regulatory edges",
-      "action": "define_search_download_or_build_real_artifact",
-      "resume_after": "update registry/contracts, audit, then train pending without fallback"
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec",
+      "strategy": "official_scgpt_cell_encoder",
+      "artifact_id": "single_cell_foundation_model_artifact",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "source": "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd",
+      "strategy": "official_scgpt_cell_encoder",
+      "artifact_id": "single_cell_foundation_model_artifact",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "source": "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0",
+      "strategy": "official_scgpt_cell_encoder",
+      "artifact_id": "single_cell_foundation_model_artifact",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "source": "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
     }
   ]
 }

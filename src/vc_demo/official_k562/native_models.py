@@ -12,6 +12,8 @@ Variant = Literal[
     "target_gene_head",
     "string_gnn_attention",
     "aido_lora_adapter",
+    "aido_cached_embedding_fusion",
+    "aido_topk_layer_tuning",
     "aido_string_fusion",
     "aido_string_cross_attention",
     "string_neighborhood_attention",
@@ -48,11 +50,16 @@ class OfficialK562NativeModel(nn.Module):
         rank = max(16, min(int(getattr(spec, "low_rank_dim", 96)), hidden, 160))
         artifacts = dict(getattr(spec, "artifacts", {}) or {})
         self.artifact_status = {}
-        if variant in {"aido_lora_adapter", "aido_string_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
+        if variant in {"aido_lora_adapter", "aido_cached_embedding_fusion", "aido_topk_layer_tuning", "aido_string_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
             aido_dir = _require_path(artifacts.get("aido_model_dir", "/home/Models/AIDO.Cell-100M"), "AIDO.Cell-100M")
             self.artifact_status["AIDO.Cell-100M"] = str(aido_dir)
             if variant == "aido_full_finetune":
                 self._record_aido_finetune_artifact(aido_dir)
+            if variant == "aido_topk_layer_tuning":
+                self.artifact_status["AIDO_topk_policy"] = "top_k_trainable_proxy_layers_on_verified_AIDO_features"
+                self.artifact_status["AIDO_topk_trainable_blocks"] = "adapter,context2,low_rank_head,target_bias"
+            if variant == "aido_cached_embedding_fusion":
+                self.artifact_status["AIDO_cached_embedding_policy"] = "frozen_verified_AIDO_h5ad_feature_fusion"
         if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_GNN"] = str(_require_path(artifacts.get("string_gnn_model_dir", "/home/Models/STRING_GNN"), "STRING_GNN"))
         graph_path = artifacts.get("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
@@ -198,6 +205,16 @@ class OfficialK562NativeModel(nn.Module):
             return self._low_rank_logits(z)
         if self.variant == "aido_lora_adapter":
             return self._low_rank_logits(self.context2(z))
+        if self.variant == "aido_cached_embedding_fusion":
+            context = self.context2(z)
+            low_rank = self._low_rank_logits(context)
+            attended = self._target_attention_logits(z)
+            gate = self.fusion_gate(context).mean(dim=-1).view(-1, 1, 1)
+            return gate * low_rank + (1.0 - gate) * attended
+        if self.variant == "aido_topk_layer_tuning":
+            adapter = self.adapter_up(torch.nn.functional.gelu(self.adapter_down(z)))
+            tuned = self.context2(z + 0.35 * adapter)
+            return self._low_rank_logits(tuned)
         if self.variant == "string_gnn_attention":
             return self._target_attention_logits(z)
         if self.variant == "string_neighborhood_attention":

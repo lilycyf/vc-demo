@@ -1,0 +1,140 @@
+{
+  "rounds_completed": 1,
+  "requested_rounds": "2-3 unless early stop condition triggers",
+  "early_stop_reason": "artifact blockers could not be automatically resolved; stopped before expanding search further",
+  "rounds": [
+    {
+      "round": 1,
+      "start_counts": {
+        "trained": 23,
+        "needs_implementation": 8,
+        "requires_artifact_acquisition": 3
+      },
+      "end_counts": {
+        "trained": 27,
+        "requires_artifact_acquisition": 7
+      },
+      "implemented_nodes": [
+        {
+          "node": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "val_macro_f1": 0.4180505573749542,
+          "test_macro_f1": 0.4311048090457916,
+          "status": "trained",
+          "backend": "native_train",
+          "fallback_used": false
+        },
+        {
+          "node": "official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a",
+          "strategy": "official_aido_topk_layer_tuning",
+          "val_macro_f1": 0.3912365734577179,
+          "test_macro_f1": 0.4269042909145355,
+          "status": "trained",
+          "backend": "native_train",
+          "fallback_used": false
+        },
+        {
+          "node": "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "val_macro_f1": 0.41610708832740784,
+          "test_macro_f1": 0.4562140703201294,
+          "status": "trained",
+          "backend": "native_train",
+          "fallback_used": false
+        },
+        {
+          "node": "official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6",
+          "strategy": "official_aido_topk_layer_tuning",
+          "val_macro_f1": 0.39048025012016296,
+          "test_macro_f1": 0.40809789299964905,
+          "status": "trained",
+          "backend": "native_train",
+          "fallback_used": false
+        },
+        {
+          "node": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "val_macro_f1": 0.40517914295196533,
+          "test_macro_f1": 0.42161455750465393,
+          "status": "trained",
+          "backend": "native_train",
+          "fallback_used": false
+        }
+      ],
+      "blocked_nodes": [
+        {
+          "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
+          "strategy": "official_class_imbalance_training",
+          "artifact_id": "class_distribution",
+          "expected_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+          "source": "derive only from official train labels with documented split/provenance before retraining; not currently registered"
+        },
+        {
+          "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+          "strategy": "official_regulatory_network_prior",
+          "artifact_id": "regulatory_network_artifact",
+          "expected_path": "",
+          "source": "definition/source required before acquisition; do not fabricate regulatory edges"
+        },
+        {
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+          "strategy": "official_regulatory_network_prior",
+          "artifact_id": "regulatory_network_artifact",
+          "expected_path": "",
+          "source": "definition/source required before acquisition; do not fabricate regulatory edges"
+        },
+        {
+          "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+          "strategy": "official_regulatory_network_prior",
+          "artifact_id": "regulatory_network_artifact",
+          "expected_path": "",
+          "source": "definition/source required before acquisition; do not fabricate regulatory edges"
+        },
+        {
+          "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec",
+          "strategy": "official_scgpt_cell_encoder",
+          "artifact_id": "single_cell_foundation_model_artifact",
+          "expected_path": "data/artifacts/single_cell_foundation_model",
+          "source": "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured"
+        },
+        {
+          "node": "official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd",
+          "strategy": "official_scgpt_cell_encoder",
+          "artifact_id": "single_cell_foundation_model_artifact",
+          "expected_path": "data/artifacts/single_cell_foundation_model",
+          "source": "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured"
+        },
+        {
+          "node": "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0",
+          "strategy": "official_scgpt_cell_encoder",
+          "artifact_id": "single_cell_foundation_model_artifact",
+          "expected_path": "data/artifacts/single_cell_foundation_model",
+          "source": "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured"
+        }
+      ],
+      "implementation_queue_items_end": 0,
+      "acquisition_queue_items_end": 7
+    }
+  ],
+  "invalidated_nodes": [
+    {
+      "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
+      "reason": "invalid external_static_node backend and missing class_distribution artifact"
+    }
+  ],
+  "best_root": {
+    "node": "official_k562_native_public_best_reimplementation",
+    "val_macro_f1": 0.46794524788856506,
+    "test_macro_f1": 0.5256422758102417
+  },
+  "best_overall": {
+    "node": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+    "val_macro_f1": 0.4884769916534424,
+    "test_macro_f1": 0.518327534198761
+  },
+  "best_changed": false,
+  "backend_routing_anomalies": [],
+  "repeated_selection_anomaly": "none detected in this round; no additional search expansion was run after unresolved acquisition blockers",
+  "fallback_used": false,
+  "stop_reason": "requires artifact acquisition for class_distribution, regulatory_network_artifact, and single_cell_foundation_model_artifact"
+}
