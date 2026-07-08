@@ -1,0 +1,56 @@
+{
+  "acquisition_artifacts": [
+    "pathway_memberships"
+  ],
+  "acquisition_queue_items": 3,
+  "best_overall": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+  "best_overall_test": 0.518327534198761,
+  "best_overall_val": 0.4884769916534424,
+  "best_root": "official_k562_native_public_best_reimplementation",
+  "best_root_test": 0.5256422758102417,
+  "best_root_val": 0.46794524788856506,
+  "blocked": 3,
+  "failed": 0,
+  "fallback_used": false,
+  "family_counts_all_children": {
+    "official_aido_full_finetune": 2,
+    "official_aido_lora_adapter": 1,
+    "official_aido_string_cross_attention": 3,
+    "official_aido_string_fusion": 1,
+    "official_class_imbalance_training": 1,
+    "official_focal_loss_training": 2,
+    "official_pathway_pooling_reactome": 3,
+    "official_public_best_node": 1,
+    "official_regulatory_network_prior": 3,
+    "official_string_gnn_attention": 1,
+    "official_string_neighborhood_attention": 2,
+    "official_target_gene_head": 1,
+    "official_target_graph_conditioned_head": 1
+  },
+  "family_counts_trained_children": {
+    "official_aido_lora_adapter": 1,
+    "official_aido_string_cross_attention": 3,
+    "official_aido_string_fusion": 1,
+    "official_class_imbalance_training": 1,
+    "official_public_best_node": 1,
+    "official_string_gnn_attention": 1,
+    "official_string_neighborhood_attention": 2,
+    "official_target_gene_head": 1
+  },
+  "family_coverage_all_children": 13,
+  "family_coverage_trained_children": 8,
+  "implementation_queue_items": 8,
+  "native_public_best_child_count": 0,
+  "original_pending_handled": {
+    "blocked": 3,
+    "failed": 0,
+    "implemented": 5
+  },
+  "pending": 8,
+  "status_counts": {
+    "needs_implementation": 8,
+    "requires_artifact_acquisition": 3,
+    "trained": 15
+  },
+  "trained": 15
+}

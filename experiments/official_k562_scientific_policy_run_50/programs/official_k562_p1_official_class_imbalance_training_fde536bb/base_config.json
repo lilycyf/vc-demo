@@ -1,0 +1,64 @@
+{
+  "node_name": "official_k562_p1_official_class_imbalance_training_fde536bb",
+  "data": {
+    "dataset_type": "official_k562_tsv",
+    "data_dir": "data/cell_lines/official_k562_cls",
+    "n_classes": 3
+  },
+  "model": {
+    "model_type": "external_static_node",
+    "n_targets": 6640,
+    "n_classes": 3,
+    "program_blueprint": "official_class_imbalance_training",
+    "hidden_dim": 256,
+    "depth": 2,
+    "dropout": 0.1
+  },
+  "execution": {
+    "backend": "external_static_node",
+    "static_dir": "/workspace/_external/VCHarness/K562_cls/static",
+    "script_path": "node2-1-1-1-1-1_code.py",
+    "external_data_root": "/workspace/_external/VCHarness/data",
+    "pythonpath": [
+      "/workspace/_external/ModelGenerator/huggingface/aido.cell",
+      "src"
+    ],
+    "args": [
+      "--debug-max-step",
+      "1",
+      "--micro-batch-size",
+      "1",
+      "--global-batch-size",
+      "1",
+      "--num-workers",
+      "0",
+      "--max-epochs",
+      "1"
+    ],
+    "artifact_usage": {
+      "AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M",
+      "STRING_GNN": "/home/Models/STRING_GNN",
+      "public_node_code": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py"
+    },
+    "mode": "smoke",
+    "allow_test_metric_fallback": true,
+    "metric_contract": {
+      "validation": "val/f1 from public CSV logs",
+      "test": "test/f1 if emitted; smoke may fall back to validation"
+    }
+  },
+  "training": {
+    "epochs": 1,
+    "batch_size": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "loss_type": "focal_loss",
+    "focal_gamma": 2.0,
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "pipeline_manifest_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_class_imbalance_training_fde536bb/pipeline.json"
+}

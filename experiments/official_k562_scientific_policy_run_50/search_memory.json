@@ -1,67 +1,109 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-08T05:24:51.440210+00:00",
-  "updated_at": "2026-07-08T05:26:59.411028+00:00",
+  "updated_at": "2026-07-08T05:42:50.092353+00:00",
   "events": [],
   "blueprint_counts": {
-    "official_aido_string_fusion": 1,
-    "official_string_gnn_attention": 1,
     "official_aido_lora_adapter": 1,
-    "official_target_gene_head": 1,
+    "official_aido_string_fusion": 1,
     "official_pathway_pooling_reactome": 3,
+    "official_string_gnn_attention": 1,
+    "official_target_gene_head": 1,
     "official_aido_string_cross_attention": 3,
-    "official_string_neighborhood_attention": 2
+    "official_string_neighborhood_attention": 2,
+    "official_class_imbalance_training": 1,
+    "official_target_graph_conditioned_head": 1,
+    "official_public_best_node": 1,
+    "official_regulatory_network_prior": 3,
+    "official_focal_loss_training": 2,
+    "official_aido_full_finetune": 2
   },
   "parent_blueprints": {
-    "official_k562_native_public_best_reimplementation": [
-      "official_aido_string_fusion"
-    ],
-    "official_k562_native_p1_official_aido_string_fusion_66a588f9": [
-      "official_string_gnn_attention"
-    ],
     "official_k562_native_p1_official_string_gnn_attention_7ec267ae": [
       "official_aido_lora_adapter"
     ],
-    "official_k562_native_p1_official_aido_lora_adapter_d757c78c": [
-      "official_target_gene_head"
+    "official_k562_native_public_best_reimplementation": [
+      "official_aido_string_fusion"
     ],
     "official_k562_native_p1_official_target_gene_head_477d0ebb": [
       "official_aido_string_cross_attention",
       "official_pathway_pooling_reactome",
       "official_string_neighborhood_attention"
     ],
+    "official_k562_native_p1_official_aido_string_fusion_66a588f9": [
+      "official_string_gnn_attention"
+    ],
+    "official_k562_native_p1_official_aido_lora_adapter_d757c78c": [
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_aido_string_cross_attention",
+      "official_pathway_pooling_reactome"
+    ],
     "official_k562_root_aido_gnn_embedding_mlp": [
       "official_aido_string_cross_attention",
       "official_pathway_pooling_reactome",
       "official_string_neighborhood_attention"
     ],
-    "official_k562_root_aido_embedding_mlp": [
-      "official_aido_string_cross_attention",
-      "official_pathway_pooling_reactome"
+    "official_k562_public_best_node2_1_1_1_1_1_smoke": [
+      "official_class_imbalance_training"
+    ],
+    "official_k562_p1_official_class_imbalance_training_fde536bb": [
+      "official_public_best_node",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_p2_official_public_best_node_0f24e30a": [
+      "official_aido_full_finetune",
+      "official_focal_loss_training",
+      "official_regulatory_network_prior"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15": [
+      "official_aido_full_finetune",
+      "official_focal_loss_training",
+      "official_regulatory_network_prior"
+    ],
+    "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500": [
+      "official_regulatory_network_prior"
     ]
   },
   "family_counts": {
-    "AIDO_STRING_fusion": 1,
-    "STRING_GNN_attention": 1,
     "AIDO_adapter": 1,
-    "target_gene_aware_head": 1,
+    "AIDO_STRING_fusion": 1,
     "Reactome_pathway_pooling": 3,
+    "STRING_GNN_attention": 1,
+    "target_gene_aware_head": 1,
     "AIDO_STRING_cross_attention": 3,
-    "STRING_neighborhood_attention": 2
+    "STRING_neighborhood_attention": 2,
+    "official_deg_imbalance": 1,
+    "target_graph_conditioned_head": 1,
+    "public_vcharness_best_path": 1,
+    "regulatory_network_prior": 3,
+    "focal_loss": 2,
+    "AIDO_full_finetune": 2
   },
   "structural_signature_counts": {
-    "1dc910599699c0679f99b36e869d73da668a9260": 1,
-    "c095311789cedc0e8615880ade41302ae796fcfe": 1,
     "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 1,
-    "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4": 1,
+    "1dc910599699c0679f99b36e869d73da668a9260": 1,
     "e07394402b248323a71213361dcf92f42875beb8": 1,
+    "c095311789cedc0e8615880ade41302ae796fcfe": 1,
+    "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4": 1,
     "4caa6750c81268bdb8e8c388e893105377abf3d6": 1,
     "91ae899c274c46ad0ef6bd5bfe4e30045e44db02": 1,
+    "59a4826c3fb4d2e52897a61623e9369af783aede": 1,
+    "376d420d6696ac2b221b323c85ccc467688fae23": 1,
     "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 1,
     "deba82298c3d004b00e18f313793047749e3e865": 1,
     "9e51bea477de47d5e3ab3aa2ad7badd177e78b20": 1,
-    "59a4826c3fb4d2e52897a61623e9369af783aede": 1,
-    "376d420d6696ac2b221b323c85ccc467688fae23": 1
+    "ee058890b56f4c39eb7b601df40a245404b2d743": 1,
+    "deaa0223879d3aed41087df3c62255800425dab7": 1,
+    "95d045fc2108216862ec2fd107348343909290f4": 1,
+    "88dea9af0b34a982129949877d0c36337ba79c83": 1,
+    "ceac0c8919e107a9b98a22056505a6a59bb47cec": 1,
+    "dca68ab47390176b5bb3cc253188d535f3ad6f1b": 1,
+    "7286a8ec450a072241a5a676a2745e827e7a744d": 1,
+    "aee58de49b793bed52c054fdd1fac10e2710bdad": 1,
+    "88ecff675fd1c303a9151e2d11c787bd53c01c5a": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1
   },
   "replicate_nodes": [],
   "successes": [
@@ -100,17 +142,113 @@
       "val": 0.44139811396598816,
       "test": 0.5046269297599792,
       "parent": "official_k562_native_p1_official_aido_string_fusion_66a588f9"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15",
+      "strategy": "official_aido_string_cross_attention",
+      "family": "AIDO_STRING_cross_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.4206983745098114,
+      "test": 0.4469261169433594,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500",
+      "strategy": "official_aido_string_cross_attention",
+      "family": "AIDO_STRING_cross_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.4182926416397095,
+      "test": 0.4355005919933319,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    },
+    {
+      "node": "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
+      "strategy": "official_aido_string_cross_attention",
+      "family": "AIDO_STRING_cross_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.35783669352531433,
+      "test": 0.44356927275657654,
+      "parent": "official_k562_native_p1_official_target_gene_head_477d0ebb"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.3571525514125824,
+      "test": 0.3911851644515991,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_native_p3_official_string_neighborhood_attention_0376ea72",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.3425617218017578,
+      "test": 0.42282435297966003,
+      "parent": "official_k562_native_p1_official_target_gene_head_477d0ebb"
+    },
+    {
+      "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "structural_relation": "structural_variant",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke"
+    },
+    {
+      "node": "official_k562_p2_official_public_best_node_0f24e30a",
+      "strategy": "official_public_best_node",
+      "family": "public_vcharness_best_path",
+      "structural_relation": "structural_variant",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "parent": "official_k562_p1_official_class_imbalance_training_fde536bb"
     }
   ],
   "failures": [],
-  "blocked_artifacts": [],
+  "blocked_artifacts": [
+    {
+      "node": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "missing": [
+        "pathway_memberships"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "missing": [
+        "pathway_memberships"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "missing": [
+        "pathway_memberships"
+      ]
+    }
+  ],
   "motifs": {
     "promising": [
+      "official_aido_lora_adapter: unspecified + unspecified val=0.4741",
       "official_aido_string_fusion: unspecified + unspecified val=0.4885",
       "official_string_gnn_attention: unspecified + unspecified val=0.4414",
-      "official_aido_lora_adapter: unspecified + unspecified val=0.4741",
-      "official_target_gene_head: unspecified + unspecified val=0.4552"
+      "official_target_gene_head: unspecified + unspecified val=0.4552",
+      "official_aido_string_cross_attention: unspecified + unspecified val=0.3578",
+      "official_string_neighborhood_attention: unspecified + unspecified val=0.3426",
+      "official_aido_string_cross_attention: unspecified + unspecified val=0.4183",
+      "official_aido_string_cross_attention: unspecified + unspecified val=0.4207",
+      "official_string_neighborhood_attention: unspecified + unspecified val=0.3572",
+      "official_class_imbalance_training: unspecified + unspecified val=0.3333"
     ],
-    "discouraged": []
+    "discouraged": [
+      "official_pathway_pooling_reactome: blocked by missing artifact 3 time(s)"
+    ]
   }
 }

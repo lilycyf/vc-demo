@@ -10,7 +10,7 @@
     ]
   },
   "search_scale_gap": {
-    "trained_nodes": 8,
+    "trained_nodes": 15,
     "paper_scale_target_nodes": 600,
     "estimated_candidate_count": 94500
   },
@@ -19,13 +19,19 @@
     "pending_implementations": 8,
     "failed_nodes": 0,
     "family_counts": {
-      "AIDO_STRING_fusion": 1,
-      "STRING_GNN_attention": 1,
       "AIDO_adapter": 1,
-      "target_gene_aware_head": 1,
+      "AIDO_STRING_fusion": 1,
       "Reactome_pathway_pooling": 3,
+      "STRING_GNN_attention": 1,
+      "target_gene_aware_head": 1,
       "AIDO_STRING_cross_attention": 3,
-      "STRING_neighborhood_attention": 2
+      "STRING_neighborhood_attention": 2,
+      "official_deg_imbalance": 1,
+      "target_graph_conditioned_head": 1,
+      "public_vcharness_best_path": 1,
+      "regulatory_network_prior": 3,
+      "focal_loss": 2,
+      "AIDO_full_finetune": 2
     },
     "replicate_nodes": 0
   },
