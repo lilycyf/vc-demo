@@ -80,7 +80,17 @@ def build_tree(static_dir: Path, best_path: str) -> dict[str, Any]:
         current = parent_for(current)
     best_lineage.reverse()
     deepest = sorted(nodes, key=lambda n: (n.count("-"), n))[-1] if nodes else ""
-    return {"format": "official_k562_static_tree.v1", "static_dir": str(static_dir), "node_count": len(nodes), "root_nodes": roots, "best_path": best_path, "best_lineage": best_lineage, "deepest_node_hint": deepest, "nodes": nodes}
+    family_mapping: dict[str, Any] = {}
+    for node_id, node in nodes.items():
+        family = node["model_family"]
+        row = family_mapping.setdefault(family, {"node_count": 0, "nodes": [], "local_equivalent_blueprints": sorted(set())})
+        row["node_count"] += 1
+        row["nodes"].append(node_id)
+    for row in family_mapping.values():
+        blueprints = sorted({nodes[node_id]["local_equivalent_blueprint"] for node_id in row["nodes"]})
+        row["local_equivalent_blueprints"] = blueprints
+        row["nodes"] = sorted(row["nodes"], key=lambda n: (n.count("-"), n))
+    return {"format": "official_k562_static_tree.v1", "static_dir": str(static_dir), "node_count": len(nodes), "root_nodes": roots, "best_path": best_path, "best_lineage": best_lineage, "deepest_node_hint": deepest, "family_mapping": family_mapping, "nodes": nodes}
 
 
 def write_catalog(tree: dict[str, Any], path: Path) -> None:
@@ -102,6 +112,7 @@ def main() -> None:
     parser.add_argument("--output-json", type=Path, default=Path("experiments/official_k562_alignment/official_k562_static_tree.json"))
     parser.add_argument("--output-md", type=Path, default=Path("experiments/official_k562_alignment/official_k562_node_catalog.md"))
     parser.add_argument("--best-path-json", type=Path, default=Path("experiments/official_k562_alignment/official_k562_best_path.json"))
+    parser.add_argument("--family-mapping-json", type=Path, default=Path("experiments/official_k562_alignment/official_k562_family_mapping.json"))
     parser.add_argument("--best-path", default=BEST_PATH_DEFAULT)
     args = parser.parse_args()
     tree = build_tree(args.static_dir, args.best_path)
@@ -111,7 +122,9 @@ def main() -> None:
     best = {"best_path": args.best_path, "best_lineage": tree.get("best_lineage", []), "nodes": [tree["nodes"][n] for n in tree.get("best_lineage", [])]}
     args.best_path_json.parent.mkdir(parents=True, exist_ok=True)
     args.best_path_json.write_text(json.dumps(best, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"tree": str(args.output_json), "catalog": str(args.output_md), "best_path": str(args.best_path_json), "node_count": tree["node_count"]}, indent=2))
+    args.family_mapping_json.parent.mkdir(parents=True, exist_ok=True)
+    args.family_mapping_json.write_text(json.dumps(tree.get("family_mapping", {}), indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"tree": str(args.output_json), "catalog": str(args.output_md), "best_path": str(args.best_path_json), "family_mapping": str(args.family_mapping_json), "node_count": tree["node_count"]}, indent=2))
 
 
 if __name__ == "__main__":

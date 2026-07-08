@@ -11,6 +11,7 @@ from vc_demo.harness.official_k562_backend import OfficialK562BackendSpec, valid
 from vc_demo.harness.program_run import run_search
 from scripts.build_official_k562_static_tree import build_tree, write_catalog
 from scripts.write_official_k562_artifact_alignment import build_matrix, write_md
+from scripts.audit_official_k562_paper_scale_search_space import build_audit as build_search_space_audit, write_md as write_search_space_audit_md
 
 
 def main() -> None:
@@ -52,12 +53,16 @@ def main() -> None:
     static_tree = build_tree(Path("/workspace/_external/VCHarness/K562_cls/static"), "node2-1-1-1-1-1")
     (alignment_dir / "official_k562_static_tree.json").parent.mkdir(parents=True, exist_ok=True)
     (alignment_dir / "official_k562_static_tree.json").write_text(json.dumps(static_tree, indent=2) + "\n")
+    (alignment_dir / "official_k562_family_mapping.json").write_text(json.dumps(static_tree.get("family_mapping", {}), indent=2) + "\n")
     write_catalog(static_tree, alignment_dir / "official_k562_node_catalog.md")
     best = {"best_path": static_tree.get("best_path"), "best_lineage": static_tree.get("best_lineage", []), "nodes": [static_tree["nodes"][n] for n in static_tree.get("best_lineage", [])]}
     (alignment_dir / "official_k562_best_path.json").write_text(json.dumps(best, indent=2) + "\n")
     matrix = build_matrix(args.registry, "K562")
     (alignment_dir / "official_k562_artifact_alignment_matrix.json").write_text(json.dumps(matrix, indent=2) + "\n")
     write_md(matrix, alignment_dir / "official_k562_artifact_alignment_matrix.md")
+    search_space_audit = build_search_space_audit(Path("configs/official_k562_paper_scale_search_space.json"))
+    (alignment_dir / "official_k562_paper_scale_search_space_audit.json").write_text(json.dumps(search_space_audit, indent=2) + "\n")
+    write_search_space_audit_md(search_space_audit, alignment_dir / "official_k562_paper_scale_search_space_audit.md")
 
     ns = argparse.Namespace(
         experiment=args.experiment,

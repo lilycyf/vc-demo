@@ -30,6 +30,9 @@ def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], co
     node["program_model_path"] = proposal.get("program_model_path")
     node["implementation_request_path"] = proposal.get("implementation_request_path", "")
     node["pipeline_manifest_path"] = proposal.get("pipeline_manifest_path", "")
+    node["artifact_contract_path"] = proposal.get("artifact_contract_path", "")
+    node["smoke_contract_path"] = proposal.get("smoke_contract_path", "")
+    node["parent_summary_path"] = proposal.get("parent_summary_path", "")
     node["pipeline_kind"] = proposal.get("pipeline_kind", "")
     node["artifact_requirements"] = proposal.get("artifact_requirements", [])
     node["artifact_usage_claims"] = proposal.get("artifact_usage_claims", [])
@@ -119,7 +122,7 @@ def train_roots(root_configs: list[Path], run_dir: Path, tree: dict[str, Any], m
 
 def implementation_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
     return [
-        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "pipeline_manifest_path": node.get("pipeline_manifest_path"), "strategy": node.get("strategy"), "artifact_requirements": node.get("artifact_requirements", [])}
+        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "pipeline_manifest_path": node.get("pipeline_manifest_path"), "artifact_contract_path": node.get("artifact_contract_path"), "smoke_contract_path": node.get("smoke_contract_path"), "parent_summary_path": node.get("parent_summary_path"), "strategy": node.get("strategy"), "artifact_requirements": node.get("artifact_requirements", [])}
         for name, node in tree.get("nodes", {}).items()
         if node.get("status") == "needs_implementation"
     ]
@@ -144,6 +147,42 @@ def acquisition_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
                 "resume_after": "update registry, rerun artifact audit, then resume search without fallback",
             })
     return items
+
+
+def lineage(tree: dict[str, Any], node_name: str) -> list[str]:
+    path: list[str] = []
+    current = node_name
+    while current:
+        path.append(current)
+        current = tree.get("nodes", {}).get(current, {}).get("parent", "")
+    return path
+
+
+def append_mcts_trace(run_dir: Path, event: dict[str, Any]) -> None:
+    path = run_dir / "mcts_trace.jsonl"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(event, sort_keys=True) + "\n")
+
+
+def compact_candidates(scored: list[dict[str, Any]], limit: int = 16) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for row in scored[:limit]:
+        rows.append({
+            "node": row.get("node"),
+            "score": row.get("score"),
+            "uct": row.get("uct"),
+            "puct": row.get("puct"),
+            "q": row.get("q"),
+            "Q_v": row.get("Q_v"),
+            "exploitation": row.get("exploitation"),
+            "exploration": row.get("exploration"),
+            "prior": row.get("prior"),
+            "visits": row.get("visits"),
+            "children": row.get("children"),
+            "best_val_macro_f1": row.get("best_val_macro_f1"),
+        })
+    return rows
 
 
 def write_tree_and_failures(run_dir: Path, tree: dict[str, Any], failures: list[dict[str, Any]]) -> None:
@@ -192,6 +231,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     end_iteration = start_iteration + args.budget_nodes - 1
     for iteration in range(start_iteration, end_iteration + 1):
         parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
+        append_mcts_trace(run_dir, {"event": "selection", "iteration": iteration, "policy": args.selection_policy, "exploration": args.exploration, "selected_parent": parent_name, "candidate_list": compact_candidates(scored), "selected_components": compact_candidates(scored, 1)[0] if scored else {}})
         parent_node = tree["nodes"][parent_name]
         parent_config = read_json(Path(parent_node["config"]))
         child_config = None
@@ -226,6 +266,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         write_json(child_config_path, child_config)
         write_json(proposal_path, proposal)
         tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node", "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
+        append_mcts_trace(run_dir, {"event": "expansion", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "candidate_list": compact_candidates(scored), "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "duplicate_skips": duplicate_skips, "depth": len(lineage(tree, parent_name))})
 
         if proposal["missing_required_artifacts"] and not args.allow_missing_artifact_fallbacks:
             add_blocked_missing_artifact_node(tree, child_name, child_config_path, parent_name, iteration, proposal, missing_summary)
@@ -238,12 +279,14 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
             })
             stop_reason = f"requires artifact acquisition for {proposal.get('strategy')}: {', '.join(proposal['missing_required_artifacts'])}"
+            append_mcts_trace(run_dir, {"event": "artifact_acquisition_block", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "missing_required_artifacts": proposal["missing_required_artifacts"], "stop_reason": stop_reason})
             write_tree_and_failures(run_dir, tree, failures)
             break
 
         if proposal.get("requires_implementation"):
             add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
             pending_count += 1
+            append_mcts_trace(run_dir, {"event": "pending_implementation", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "implementation_request_path": proposal.get("implementation_request_path"), "artifact_contract_path": proposal.get("artifact_contract_path"), "smoke_contract_path": proposal.get("smoke_contract_path"), "parent_summary_path": proposal.get("parent_summary_path")})
             write_tree_and_failures(run_dir, tree, failures)
             if pending_count >= args.max_pending_implementations:
                 stop_reason = f"pending implementation limit reached ({pending_count})"
@@ -253,8 +296,10 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         try:
             metrics = run_node(child_config, run_dir, proposal=proposal, max_epochs=args.max_epochs)
             add_trained_node(tree, child_name, child_config_path, parent_name, iteration, metrics, proposal)
-            backpropagate(tree, child_name, reward(metrics))
-            val = reward(metrics)
+            rollout_reward = reward(metrics)
+            backpropagate(tree, child_name, rollout_reward)
+            append_mcts_trace(run_dir, {"event": "backpropagation", "iteration": iteration, "leaf": child_name, "reward": rollout_reward, "backprop_path": tree.get("mcts", {}).get("last_backpropagation", {}).get("path", []), "best_val_macro_f1": metrics.get("best_val_macro_f1"), "test_macro_f1": metrics.get("test_macro_f1")})
+            val = rollout_reward
             if val > best_val + args.min_delta:
                 best_val = val
                 no_improve = 0
@@ -265,6 +310,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             tree["nodes"][parent_name].setdefault("children", []).append(child_name)
             tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "pipeline_manifest_path": proposal.get("pipeline_manifest_path"), "pipeline_kind": proposal.get("pipeline_kind"), "artifact_requirements": proposal.get("artifact_requirements", []), "artifact_usage_claims": proposal.get("artifact_usage_claims", []), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
+            append_mcts_trace(run_dir, {"event": "failure", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "error": error})
             no_improve += 1
 
         memory = rebuild_memory_from_tree(run_dir, tree, failures)
@@ -277,7 +323,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
     run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
     print(json.dumps(result, indent=2))
     return result
 

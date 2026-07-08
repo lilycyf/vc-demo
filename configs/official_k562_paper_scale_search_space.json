@@ -10,7 +10,11 @@
     "planned_blueprints_are_selectable": true,
     "codex_implements_on_selection": true,
     "strict_artifacts_default": true,
-    "fallback_allowed_in_official_mode": false
+    "fallback_allowed_in_official_mode": false,
+    "search_space_is_manifest_not_preimplementation": true,
+    "codex_agent_materializes_planned_nodes_on_selection": true,
+    "minimum_estimated_candidate_families": 600,
+    "paper_scale_run_label_required_for_budget_ge": 600
   },
   "mcts_contract": {
     "selection_policy": "uct_or_puct",
@@ -86,5 +90,158 @@
     "implemented": "already executable by harness",
     "planned": "selectable; Codex must implement on demand before training",
     "blocked_missing_artifact": "must acquire artifact or stop; no fallback training"
-  }
+  },
+  "blueprint_entry_required_fields": [
+    "id",
+    "family",
+    "status",
+    "required_artifacts",
+    "input_contract",
+    "output_contract",
+    "codex_action",
+    "allowed_changes",
+    "forbidden_changes",
+    "smoke_command",
+    "cost_class",
+    "paper_alignment_claim"
+  ],
+  "scale_tiers": [
+    {
+      "id": "smoke",
+      "budget_nodes": "3-5",
+      "purpose": "wiring only"
+    },
+    {
+      "id": "pilot",
+      "budget_nodes": "20-50",
+      "purpose": "repair/acquisition/MCTS pressure test"
+    },
+    {
+      "id": "medium",
+      "budget_nodes": 150,
+      "purpose": "breadth and reporting attribution"
+    },
+    {
+      "id": "paper_scale_single_cellline",
+      "budget_nodes": "600+",
+      "purpose": "K562 paper-order search scale"
+    }
+  ],
+  "search_dimensions": [
+    {
+      "dimension": "backbone",
+      "options": [
+        "AIDO.Cell-100M",
+        "AIDO cached embedding",
+        "single-cell foundation encoder",
+        "STRING_GNN",
+        "public static wrapper",
+        "native public-best reimplementation"
+      ]
+    },
+    {
+      "dimension": "adapter",
+      "options": [
+        "LoRA",
+        "frozen adapter",
+        "selective layer tuning",
+        "full fine-tune",
+        "cached embedding projection"
+      ]
+    },
+    {
+      "dimension": "graph_prior",
+      "options": [
+        "STRING frozen embedding",
+        "K-hop attention",
+        "message passing",
+        "Laplacian smoothing",
+        "graph-conditioned head"
+      ]
+    },
+    {
+      "dimension": "fusion",
+      "options": [
+        "concat",
+        "gated",
+        "bilinear",
+        "cross-attention",
+        "mixture-of-experts",
+        "late fusion",
+        "residual fusion"
+      ]
+    },
+    {
+      "dimension": "target_head",
+      "options": [
+        "shared head",
+        "target-specific head",
+        "low-rank head",
+        "bilinear head",
+        "calibrated head"
+      ]
+    },
+    {
+      "dimension": "training_strategy",
+      "options": [
+        "weighted CE",
+        "focal loss",
+        "class-balanced loss",
+        "layerwise LR",
+        "SWA",
+        "checkpoint ensemble"
+      ]
+    },
+    {
+      "dimension": "biological_prior",
+      "options": [
+        "pathway membership",
+        "Reactome pooling",
+        "regulatory network prior"
+      ]
+    }
+  ],
+  "candidate_expansion_contract": {
+    "method": "manifest_cross_product_with_blueprint_constraints",
+    "estimated_candidate_formula": "sum of valid backbone x adapter x graph_prior x fusion x target_head x training_strategy x prior combinations after artifact/status constraints",
+    "do_not_preimplement_all_candidates": true,
+    "planned_candidate_execution": "MCTS may select a planned blueprint; Codex implements that node only after selection."
+  },
+  "artifact_policies": [
+    {
+      "artifact_family": "AIDO",
+      "policy": "present_or_acquire_public_source",
+      "fallback": "forbidden_in_strict_mode"
+    },
+    {
+      "artifact_family": "STRING_GNN",
+      "policy": "present_or_mark_reconstructed_compatibility",
+      "fallback": "forbidden_in_strict_mode"
+    },
+    {
+      "artifact_family": "scFoundation_or_single_cell_foundation",
+      "policy": "acquire_if_source_is_public_else_block",
+      "fallback": "forbidden_in_strict_mode"
+    },
+    {
+      "artifact_family": "AIDO_embedding",
+      "policy": "public_or_derived_with_checksum",
+      "fallback": "forbidden_in_strict_mode"
+    },
+    {
+      "artifact_family": "GNN_embedding",
+      "policy": "public_or_derived_with_checksum",
+      "fallback": "forbidden_in_strict_mode"
+    },
+    {
+      "artifact_family": "pathway_membership",
+      "policy": "build_from_public_pathway_database_when_possible",
+      "fallback": "forbidden_in_strict_mode"
+    },
+    {
+      "artifact_family": "regulatory_network",
+      "policy": "acquire_public_source_else_block",
+      "fallback": "forbidden_in_strict_mode"
+    }
+  ]
 }

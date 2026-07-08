@@ -172,6 +172,16 @@ Forbidden changes:
 - artifact provenance claims
 - silent fallback for missing required artifacts in strict official mode
 
+## Full Paper-Scale Upgrade Contract
+
+The current branch now treats the K562 paper-scale experiment as three linked contracts:
+
+- Search-space manifest: `configs/official_k562_paper_scale_search_space.json` defines combinatorial dimensions whose estimated capacity must exceed 600 candidates. Planned entries are intentionally selectable without being pre-implemented.
+- On-demand implementation: every planned node receives `IMPLEMENTATION_REQUEST.md`, `artifact_contract.json`, `smoke_contract.json`, `parent_summary.json`, and `pipeline.json`. Codex implements only the selected node and must obey strict artifact policy.
+- MCTS traceability: every selection, expansion, pending implementation, artifact block, failure, and backpropagation is appended to `mcts_trace.jsonl` for final report attribution.
+
+Use `scripts/audit_official_k562_paper_scale_search_space.py` to verify blueprint counts, status counts, required fields, and 600+ estimated search-space capacity before running 50/150/600-node experiments.
+
 ## Paper-Scale Search Contract
 
 The official K562 harness now treats paper-scale search as a first-class contract, not as a fully pre-implemented model library.

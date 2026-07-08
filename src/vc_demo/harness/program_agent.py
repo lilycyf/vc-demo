@@ -92,8 +92,18 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     pipeline_program = program_for_blueprint(blueprint_id)
 
     requires_implementation = blueprint["status"] != "implemented"
+    artifact_contract_path = child_dir / "artifact_contract.json"
+    smoke_contract_path = child_dir / "smoke_contract.json"
+    parent_summary_path = child_dir / "parent_summary.json"
+    implementation_request_path = child_dir / "IMPLEMENTATION_REQUEST.md"
+    artifact_contract = render_artifact_contract(child_name, blueprint, child, registry_audit)
+    smoke_contract = render_smoke_contract(child_name, child)
+    parent_summary = render_parent_summary(parent_name, parent_node, parent_config)
+    write_json(artifact_contract_path, artifact_contract)
+    write_json(smoke_contract_path, smoke_contract)
+    write_json(parent_summary_path, parent_summary)
     if requires_implementation:
-        (child_dir / "IMPLEMENTATION_REQUEST.md").write_text(render_implementation_request(child_name, blueprint, parent_name, child), encoding="utf-8")
+        implementation_request_path.write_text(render_implementation_request(child_name, blueprint, parent_name, child, artifact_contract, smoke_contract, parent_summary), encoding="utf-8")
     elif not config_only and not external_static:
         (child_dir / "model.py").write_text(render_program_source(blueprint_id), encoding="utf-8")
     (child_dir / "README.md").write_text(render_program_readme(child_name, blueprint, parent_name, requires_implementation), encoding="utf-8")
@@ -125,7 +135,10 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         "artifact_requirements": pipeline_manifest.get("artifact_requirements", []),
         "artifact_usage_claims": pipeline_manifest.get("artifact_usage_claims", []),
         "pipeline_program": pipeline_program,
-        "implementation_request_path": str(child_dir / "IMPLEMENTATION_REQUEST.md") if requires_implementation else "",
+        "implementation_request_path": str(implementation_request_path) if requires_implementation else "",
+        "artifact_contract_path": str(artifact_contract_path),
+        "smoke_contract_path": str(smoke_contract_path),
+        "parent_summary_path": str(parent_summary_path),
         "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
         "artifact_selection": artifact_selection_summary(blueprint_id, registry_audit),
     }
@@ -240,23 +253,77 @@ def _bounded_hidden(current: Any, blueprint_id: str) -> int:
     return min(max(value, 192), 384)
 
 
-def render_implementation_request(child_name: str, blueprint: dict[str, Any], parent_name: str, child_config: dict[str, Any]) -> str:
+def render_artifact_contract(child_name: str, blueprint: dict[str, Any], child_config: dict[str, Any], registry_audit: dict[str, Any] | None) -> dict[str, Any]:
+    required = list(blueprint.get("requires", []))
+    present: list[str] = []
+    missing: list[str] = []
+    artifact_rows = {row.get("id"): row for row in (registry_audit or {}).get("artifacts", [])}
+    for artifact_id in required:
+        row = artifact_rows.get(artifact_id, {})
+        if row.get("present"):
+            present.append(artifact_id)
+        else:
+            missing.append(artifact_id)
+    return {
+        "format": "vc_demo_node_artifact_contract.v1",
+        "node": child_name,
+        "blueprint": blueprint.get("id"),
+        "strict_official_mode": True,
+        "fallback_allowed": bool(blueprint.get("fallback_allowed", False)),
+        "required_artifacts": required,
+        "present_required_artifacts": present,
+        "missing_required_artifacts": missing,
+        "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
+        "artifact_rows": [artifact_rows.get(artifact_id, {"id": artifact_id, "present": False}) for artifact_id in required],
+        "model_artifacts_config": child_config.get("model", {}).get("artifacts", {}),
+    }
+
+
+def render_smoke_contract(child_name: str, child_config: dict[str, Any]) -> dict[str, Any]:
+    custom_model_path = child_config.get("model", {}).get("custom_model_path", "")
+    return {
+        "format": "vc_demo_node_smoke_contract.v1",
+        "node": child_name,
+        "expected_output_shape": "[batch, 6640, 3] for official K562; [batch, n_targets, n_classes] in generic spec terms",
+        "compile_command": f"python -m compileall -q {custom_model_path}" if custom_model_path else "config-only or external node; no node-local model.py compile step",
+        "native_smoke_command": "PYTHONPATH=src python -m vc_demo.harness.native_program_smoke --config <child-config>",
+        "training_smoke_command": "PYTHONPATH=src python -m vc_demo.harness.train_pending --run-dir <run-dir> --node <node> --max-epochs 1",
+        "repair_attempt_limit": {"compile": 3, "forward_shape": 3, "backward": 3, "train": 3},
+    }
+
+
+def render_parent_summary(parent_name: str, parent_node: dict[str, Any], parent_config: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "format": "vc_demo_parent_summary.v1",
+        "parent": parent_name,
+        "parent_status": parent_node.get("status"),
+        "parent_best_val_macro_f1": parent_node.get("best_val_macro_f1"),
+        "parent_test_macro_f1": parent_node.get("test_macro_f1"),
+        "parent_strategy": parent_node.get("strategy", "root"),
+        "parent_config_model": parent_config.get("model", {}),
+        "parent_config_training": parent_config.get("training", {}),
+        "parent_artifact_usage": parent_node.get("artifact_usage", {}),
+    }
+
+
+def render_implementation_request(child_name: str, blueprint: dict[str, Any], parent_name: str, child_config: dict[str, Any], artifact_contract: dict[str, Any], smoke_contract: dict[str, Any], parent_summary: dict[str, Any]) -> str:
     acceptance = "\n".join(f"- {item}" for item in blueprint.get("acceptance", []))
     requires = ", ".join(blueprint.get("requires", []))
+    missing = ", ".join(artifact_contract.get("missing_required_artifacts", [])) or "none"
     lines = [
         f"# Implementation Request: {child_name}", "",
-        "## Parent", "", f"`{parent_name}`", "",
+        "## Research Task", "", "K562 CRISPR perturbation DEG three-class classification on the official task contract. The node must predict logits for all 6,640 target genes and 3 DEG classes.", "",
+        "## Parent", "", f"`{parent_name}`", f"- parent val Macro-F1: `{parent_summary.get('parent_best_val_macro_f1')}`", f"- parent strategy: `{parent_summary.get('parent_strategy')}`", "",
         "## Blueprint", "",
-        f"- id: `{blueprint['id']}`", f"- status: `{blueprint['status']}`", f"- category: `{blueprint['category']}`", f"- role: {blueprint['role']}", f"- requires: {requires}", "",
+        f"- id: `{blueprint['id']}`", f"- status: `{blueprint['status']}`", f"- category: `{blueprint['category']}`", f"- paper family: `{blueprint.get('paper_family', '')}`", f"- role: {blueprint['role']}", f"- requires: {requires}", f"- missing required artifacts now: {missing}", "",
+        "## Contract Files", "", "- `artifact_contract.json`: required/present/missing artifacts and strict-mode policy", "- `smoke_contract.json`: compile, forward/backward, and training-smoke commands", "- `parent_summary.json`: parent score/config/artifact context", "- `pipeline.json`: executable pipeline grammar and artifact claims", "",
         "## Implementation Notes", "", blueprint.get("implementation_notes", ""), "", "## Pipeline Grammar", "", json_dumps_program(blueprint["id"]), "",
         "## Required File", "", "Create this file:", "", "```text", child_config["model"]["custom_model_path"], "```", "",
-        "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits.", "",
+        "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits, which is `[batch, 6640, 3]` for official K562.", "",
         "## Acceptance Criteria", "", acceptance, "",
-        "## Guardrails", "", "Allowed files: node-local `model.py`, node-local config/pipeline metadata, and small helper modules already approved by the harness.", "Forbidden changes: official split files, labels, target-gene order, metric semantics, and artifact provenance.", "Smoke gate: run `PYTHONPATH=src python -m vc_demo.harness.native_program_smoke --config <child-config>` before training.", "Keep the model compact enough for the current RunPod GPU.",
+        "## Guardrails", "", "Allowed files: node-local `model.py`, node-local config/pipeline metadata, and small helper modules under `src/vc_demo/official_k562/` when genuinely reusable.", "Forbidden changes: official split files, labels, target-gene order, metric semantics, and artifact provenance.", "Strict artifact rule: if a required artifact is missing, acquire the real artifact or block; do not train a fallback.", "Smoke gate: run the commands in `smoke_contract.json` before training.", "Keep the model compact enough for the current RunPod GPU.",
     ]
     return "\n".join(lines) + "\n"
-
-
 
 def json_dumps_program(blueprint_id: str) -> str:
     import json
