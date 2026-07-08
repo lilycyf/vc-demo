@@ -38,5 +38,6 @@
     "fine_tuning": "unspecified",
     "required_artifacts": [],
     "paper_alignment": "blueprint not yet mapped into the grammar"
-  }
+  },
+  "invalidated_external_static_inheritance": "removed execution.external_static_node; retrain uses native/program-node backend"
 }

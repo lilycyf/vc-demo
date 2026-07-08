@@ -1,7 +1,7 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-08T05:24:51.440210+00:00",
-  "updated_at": "2026-07-08T06:24:36.087026+00:00",
+  "updated_at": "2026-07-08T06:35:55.283024+00:00",
   "events": [],
   "blueprint_counts": {
     "official_aido_lora_adapter": 1,
@@ -213,6 +213,15 @@
       "parent": "official_k562_root_aido_gnn_embedding_mlp"
     },
     {
+      "node": "official_k562_p1_official_target_graph_conditioned_head_ab86336c",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.39674413204193115,
+      "test": 0.4169236719608307,
+      "parent": "official_k562_p1_official_class_imbalance_training_fde536bb"
+    },
+    {
       "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287",
       "strategy": "official_aido_full_finetune",
       "family": "AIDO_full_finetune",
@@ -229,6 +238,24 @@
       "val": 0.37847331166267395,
       "test": 0.4161146581172943,
       "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15"
+    },
+    {
+      "node": "official_k562_p2_official_focal_loss_training_11ab1cb3",
+      "strategy": "official_focal_loss_training",
+      "family": "focal_loss",
+      "structural_relation": "structural_variant",
+      "val": 0.3705071210861206,
+      "test": 0.38044044375419617,
+      "parent": "official_k562_p2_official_public_best_node_0f24e30a"
+    },
+    {
+      "node": "official_k562_p3_official_aido_full_finetune_337e49b9",
+      "strategy": "official_aido_full_finetune",
+      "family": "AIDO_full_finetune",
+      "structural_relation": "structural_variant",
+      "val": 0.36384257674217224,
+      "test": 0.37674346566200256,
+      "parent": "official_k562_p2_official_public_best_node_0f24e30a"
     },
     {
       "node": "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
@@ -267,15 +294,6 @@
       "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke"
     },
     {
-      "node": "official_k562_p1_official_target_graph_conditioned_head_ab86336c",
-      "strategy": "official_target_graph_conditioned_head",
-      "family": "target_graph_conditioned_head",
-      "structural_relation": "structural_variant",
-      "val": 0.33328312635421753,
-      "test": 0.33328312635421753,
-      "parent": "official_k562_p1_official_class_imbalance_training_fde536bb"
-    },
-    {
       "node": "official_k562_p2_official_public_best_node_0f24e30a",
       "strategy": "official_public_best_node",
       "family": "public_vcharness_best_path",
@@ -283,24 +301,6 @@
       "val": 0.33328312635421753,
       "test": 0.33328312635421753,
       "parent": "official_k562_p1_official_class_imbalance_training_fde536bb"
-    },
-    {
-      "node": "official_k562_p2_official_focal_loss_training_11ab1cb3",
-      "strategy": "official_focal_loss_training",
-      "family": "focal_loss",
-      "structural_relation": "structural_variant",
-      "val": 0.33328312635421753,
-      "test": 0.33328312635421753,
-      "parent": "official_k562_p2_official_public_best_node_0f24e30a"
-    },
-    {
-      "node": "official_k562_p3_official_aido_full_finetune_337e49b9",
-      "strategy": "official_aido_full_finetune",
-      "family": "AIDO_full_finetune",
-      "structural_relation": "structural_variant",
-      "val": 0.33328312635421753,
-      "test": 0.33328312635421753,
-      "parent": "official_k562_p2_official_public_best_node_0f24e30a"
     }
   ],
   "failures": [],

@@ -1377,7 +1377,7 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 3,
-      "last_reward": 0.4088006019592285,
+      "last_reward": 0.3425617218017578,
       "mean_reward": 0.4076938271522522,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_aido_lora_adapter_d757c78c/metrics.json",
       "node_kind": "program_node",
@@ -1410,10 +1410,10 @@
       "reward_variance": 0.0026787145012396874,
       "rollout_rewards": [
         0.4741170108318329,
+        0.4088006019592285,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578,
-        0.4088006019592285
+        0.3425617218017578
       ],
       "scientific_selection": {
         "base": 0.92,
@@ -1480,7 +1480,7 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 1,
-      "last_reward": 0.4088006019592285,
+      "last_reward": 0.3425617218017578,
       "mean_reward": 0.4240491773400988,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_aido_string_fusion_66a588f9/metrics.json",
       "node_kind": "program_node",
@@ -1514,13 +1514,13 @@
       "reward_std": 0.05234908754052356,
       "reward_variance": 0.002740426966325399,
       "rollout_rewards": [
-        0.4884769916534424,
-        0.44139811396598816,
         0.4741170108318329,
+        0.4884769916534424,
+        0.4088006019592285,
+        0.44139811396598816,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578,
-        0.4088006019592285
+        0.3425617218017578
       ],
       "scientific_selection": {
         "base": 1.0,
@@ -1550,7 +1550,7 @@
     },
     "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810": {
       "Exploitation": 0.4088006019592285,
-      "Q_v": 0.817601203918457,
+      "Q_v": 0.4088006019592285,
       "agent_type": "codex_program_node_agent",
       "artifact_blocker_record": {
         "decision": "blocked_for_real_artifact_acquisition",
@@ -1607,8 +1607,8 @@
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "e07394402b248323a71213361dcf92f42875beb8",
-      "value": 0.817601203918457,
-      "visits": 2,
+      "value": 0.4088006019592285,
+      "visits": 1,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/metrics.json",
       "best_val_macro_f1": 0.4088006019592285,
       "test_macro_f1": 0.4476519525051117,
@@ -1669,7 +1669,7 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 2,
-      "last_reward": 0.4088006019592285,
+      "last_reward": 0.3425617218017578,
       "mean_reward": 0.4133112082878749,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_string_gnn_attention_7ec267ae/metrics.json",
       "node_kind": "program_node",
@@ -1702,12 +1702,12 @@
       "reward_std": 0.04888800403453426,
       "reward_variance": 0.0023900369384806386,
       "rollout_rewards": [
-        0.44139811396598816,
         0.4741170108318329,
+        0.4088006019592285,
+        0.44139811396598816,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578,
-        0.4088006019592285
+        0.3425617218017578
       ],
       "scientific_selection": {
         "base": 0.96,
@@ -1759,7 +1759,7 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 4,
-      "last_reward": 0.4088006019592285,
+      "last_reward": 0.3425617218017578,
       "mean_reward": 0.391088031232357,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_target_gene_head_477d0ebb/metrics.json",
       "node_kind": "program_node",
@@ -1789,10 +1789,10 @@
       "reward_std": 0.04438052315919208,
       "reward_variance": 0.0019696308358835846,
       "rollout_rewards": [
+        0.4088006019592285,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578,
-        0.4088006019592285
+        0.3425617218017578
       ],
       "scientific_selection": {
         "base": 0.88,
@@ -1822,7 +1822,7 @@
     },
     "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f": {
       "Exploitation": 0.35783669352531433,
-      "Q_v": 0.7156733870506287,
+      "Q_v": 0.35783669352531433,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f/artifact_contract.json",
       "artifact_requirements": [
@@ -1889,12 +1889,12 @@
       "structural_relation": "structural_variant",
       "structural_signature": "4caa6750c81268bdb8e8c388e893105377abf3d6",
       "test_macro_f1": 0.44356927275657654,
-      "value": 0.7156733870506287,
-      "visits": 2
+      "value": 0.35783669352531433,
+      "visits": 1
     },
     "official_k562_native_p3_official_string_neighborhood_attention_0376ea72": {
       "Exploitation": 0.3425617218017578,
-      "Q_v": 0.6851234436035156,
+      "Q_v": 0.3425617218017578,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p3_official_string_neighborhood_attention_0376ea72/artifact_contract.json",
       "artifact_requirements": [
@@ -1960,8 +1960,8 @@
       "structural_relation": "structural_variant",
       "structural_signature": "91ae899c274c46ad0ef6bd5bfe4e30045e44db02",
       "test_macro_f1": 0.42282435297966003,
-      "value": 0.6851234436035156,
-      "visits": 2
+      "value": 0.3425617218017578,
+      "visits": 1
     },
     "official_k562_native_public_best_reimplementation": {
       "Exploitation": 0.4295361861586571,
@@ -1978,7 +1978,7 @@
       "execution_mode": null,
       "external_script": null,
       "iteration": 0,
-      "last_reward": 0.4088006019592285,
+      "last_reward": 0.46794524788856506,
       "mean_reward": 0.4295361861586571,
       "metrics": "",
       "parent": "",
@@ -2004,13 +2004,14 @@
       "reward_std": 0.05107469486897865,
       "reward_variance": 0.002608624455959274,
       "rollout_rewards": [
-        0.4884769916534424,
-        0.44139811396598816,
         0.4741170108318329,
+        0.4884769916534424,
+        0.4088006019592285,
+        0.44139811396598816,
         0.45515310764312744,
         0.35783669352531433,
         0.3425617218017578,
-        0.4088006019592285
+        0.46794524788856506
       ],
       "squared_value": 1.4968796774054702,
       "stage": "draft",
@@ -2022,14 +2023,14 @@
       "visits": 8
     },
     "official_k562_public_best_node2_1_1_1_1_1_smoke": {
-      "Exploitation": 0.33328312635421753,
-      "Q_v": 1.9996987581253052,
+      "Exploitation": 0.35515720148881275,
+      "Q_v": 2.1309432089328766,
       "artifact_usage": {
         "AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M",
         "STRING_GNN": "/home/Models/STRING_GNN",
         "public_node_code": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py"
       },
-      "best_reward": 0.33328312635421753,
+      "best_reward": 0.39674413204193115,
       "best_val_macro_f1": 0.33328312635421753,
       "children": [
         "official_k562_p1_official_class_imbalance_training_fde536bb"
@@ -2040,7 +2041,7 @@
       "execution_mode": "smoke",
       "external_script": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
       "iteration": 0,
-      "mean_reward": 0.33328312635421753,
+      "mean_reward": 0.35515720148881275,
       "metrics": "",
       "parent": "",
       "pipeline": {
@@ -2058,23 +2059,24 @@
         ],
         "uses_real_artifact": false
       },
-      "squared_value": 0.666465853874648,
+      "squared_value": 0.760295780672938,
       "stage": "draft",
       "status": "trained",
       "test_macro_f1": 0.33328312635421753,
       "test_metric_source": "missing_or_val_fallback",
       "validation_metric_source": "/workspace/_external/VCHarness/K562_cls/static/run/logs/csv_logs/version_0/metrics.csv:val/f1",
-      "value": 1.9996987581253052,
+      "value": 2.1309432089328766,
       "visits": 6,
-      "reward_variance": 0.0,
-      "reward_std": 0.0,
-      "last_reward": 0.33328312635421753,
+      "reward_variance": 0.0005793256761245369,
+      "reward_std": 0.024069185198600657,
+      "last_reward": 0.36384257674217224,
       "rollout_rewards": [
         0.33328312635421753,
         0.33328312635421753,
+        0.39674413204193115,
         0.33328312635421753,
-        0.33328312635421753,
-        0.33328312635421753
+        0.3705071210861206,
+        0.36384257674217224
       ]
     },
     "official_k562_root_aido_embedding_mlp": {
@@ -2093,7 +2095,7 @@
       "execution_mode": null,
       "external_script": null,
       "iteration": 0,
-      "last_reward": 0.40537509322166443,
+      "last_reward": 0.4182926416397095,
       "mean_reward": 0.4115036527315776,
       "metrics": "",
       "parent": "",
@@ -2112,8 +2114,9 @@
       "reward_std": 0.005294203718888531,
       "reward_variance": 2.802859301709315e-05,
       "rollout_rewards": [
-        0.4182926416397095,
-        0.40537509322166443
+        0.41084322333335876,
+        0.40537509322166443,
+        0.4182926416397095
       ],
       "squared_value": 0.5080898544133436,
       "stage": "draft",
@@ -2126,7 +2129,7 @@
     },
     "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c": {
       "Exploitation": 0.40537509322166443,
-      "Q_v": 0.8107501864433289,
+      "Q_v": 0.40537509322166443,
       "agent_type": "codex_program_node_agent",
       "artifact_blocker_record": {
         "decision": "blocked_for_real_artifact_acquisition",
@@ -2183,8 +2186,8 @@
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
-      "value": 0.8107501864433289,
-      "visits": 2,
+      "value": 0.40537509322166443,
+      "visits": 1,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/metrics.json",
       "best_val_macro_f1": 0.40537509322166443,
       "test_macro_f1": 0.42535877227783203,
@@ -2215,7 +2218,7 @@
     },
     "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500": {
       "Exploitation": 0.4182926416397095,
-      "Q_v": 0.836585283279419,
+      "Q_v": 0.4182926416397095,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500/artifact_contract.json",
       "artifact_requirements": [
@@ -2286,8 +2289,8 @@
       "structural_relation": "structural_variant",
       "structural_signature": "376d420d6696ac2b221b323c85ccc467688fae23",
       "test_macro_f1": 0.4355005919933319,
-      "value": 0.836585283279419,
-      "visits": 2
+      "value": 0.4182926416397095,
+      "visits": 1
     },
     "official_k562_root_aido_gnn_embedding_mlp": {
       "Exploitation": 0.3916011800368627,
@@ -2325,9 +2328,10 @@
       "reward_std": 0.021518646691242635,
       "reward_variance": 0.00046305215542252753,
       "rollout_rewards": [
+        0.4128258228302002,
+        0.39792147278785706,
         0.4206983745098114,
         0.3571525514125824,
-        0.39792147278785706,
         0.37847331166267395,
         0.38253554701805115
       ],
@@ -2342,7 +2346,7 @@
     },
     "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab": {
       "Exploitation": 0.39792147278785706,
-      "Q_v": 0.7958429455757141,
+      "Q_v": 0.39792147278785706,
       "agent_type": "codex_program_node_agent",
       "artifact_blocker_record": {
         "decision": "blocked_for_real_artifact_acquisition",
@@ -2395,8 +2399,8 @@
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "05a1ba5b1c1c309e511319add93f3d858cbc75b0",
-      "value": 0.7958429455757141,
-      "visits": 2,
+      "value": 0.39792147278785706,
+      "visits": 1,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/metrics.json",
       "best_val_macro_f1": 0.39792147278785706,
       "test_macro_f1": 0.4254453480243683,
@@ -2426,8 +2430,8 @@
       ]
     },
     "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15": {
-      "Exploitation": 0.400601401925087,
-      "Q_v": 1.602405607700348,
+      "Exploitation": 0.39390241106351215,
+      "Q_v": 1.1817072331905365,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15/artifact_contract.json",
       "artifact_requirements": [
@@ -2448,7 +2452,7 @@
       "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15/IMPLEMENTATION_REQUEST.md",
       "iteration": 9,
       "last_reward": 0.38253554701805115,
-      "mean_reward": 0.400601401925087,
+      "mean_reward": 0.39390241106351215,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15/metrics.json",
       "node_kind": "program_node",
       "parent": "official_k562_root_aido_gnn_embedding_mlp",
@@ -2472,8 +2476,8 @@
       "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15/model.py",
       "proposal": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15.proposal.json",
       "requires_implementation": false,
-      "reward_std": 0.0,
-      "reward_variance": 0.0,
+      "reward_std": 0.019020045246742463,
+      "reward_variance": 0.00036176212118813056,
       "rollout_rewards": [
         0.4206983745098114,
         0.37847331166267395,
@@ -2500,12 +2504,12 @@
       "structural_relation": "structural_variant",
       "structural_signature": "deba82298c3d004b00e18f313793047749e3e865",
       "test_macro_f1": 0.4469261169433594,
-      "value": 1.602405607700348,
-      "visits": 4
+      "value": 1.1817072331905365,
+      "visits": 3
     },
     "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1": {
       "Exploitation": 0.3571525514125824,
-      "Q_v": 0.7143051028251648,
+      "Q_v": 0.3571525514125824,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1/artifact_contract.json",
       "artifact_requirements": [
@@ -2571,8 +2575,8 @@
       "structural_relation": "structural_variant",
       "structural_signature": "9e51bea477de47d5e3ab3aa2ad7badd177e78b20",
       "test_macro_f1": 0.3911851644515991,
-      "value": 0.7143051028251648,
-      "visits": 2
+      "value": 0.3571525514125824,
+      "visits": 1
     },
     "official_k562_p1_official_class_imbalance_training_fde536bb": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_p1_official_class_imbalance_training_fde536bb.json",
@@ -2587,13 +2591,13 @@
       "best_val_macro_f1": 0.33328312635421753,
       "test_macro_f1": 0.33328312635421753,
       "visits": 5,
-      "value": 1.6664156317710876,
-      "Q_v": 1.6664156317710876,
-      "squared_value": 0.5553882115622066,
-      "mean_reward": 0.33328312635421753,
-      "Exploitation": 0.33328312635421753,
+      "value": 1.797660082578659,
+      "Q_v": 1.797660082578659,
+      "squared_value": 0.6492181383604967,
+      "mean_reward": 0.3595320165157318,
+      "Exploitation": 0.3595320165157318,
       "stage": "improve",
-      "best_reward": 0.33328312635421753,
+      "best_reward": 0.39674413204193115,
       "duration_seconds": 36.77713203430176,
       "pipeline": {
         "pipeline_kind": "pipeline_program_node",
@@ -2651,15 +2655,15 @@
       "structural_signature": "ee058890b56f4c39eb7b601df40a245404b2d743",
       "parent_structural_signature": "c7e9d3077d31ba8ea89433a9362278a4f8cd0bc0",
       "structural_relation": "structural_variant",
-      "reward_variance": 0.0,
-      "reward_std": 0.0,
-      "last_reward": 0.33328312635421753,
+      "reward_variance": 0.0005803567722308944,
+      "reward_std": 0.024090595099143866,
+      "last_reward": 0.36384257674217224,
       "rollout_rewards": [
         0.33328312635421753,
+        0.39674413204193115,
         0.33328312635421753,
-        0.33328312635421753,
-        0.33328312635421753,
-        0.33328312635421753
+        0.3705071210861206,
+        0.36384257674217224
       ]
     },
     "official_k562_p1_official_target_graph_conditioned_head_ab86336c": {
@@ -2668,11 +2672,11 @@
       "children": [],
       "status": "trained",
       "iteration": 14,
-      "visits": 2,
-      "value": 0.6665662527084351,
-      "Q_v": 0.6665662527084351,
-      "Exploitation": 0.33328312635421753,
-      "stage": "improve",
+      "visits": 1,
+      "value": 0.39674413204193115,
+      "Q_v": 0.39674413204193115,
+      "Exploitation": 0.39674413204193115,
+      "stage": "retrain",
       "agent_type": "codex_program_node_agent",
       "node_kind": "program_node",
       "strategy": "official_target_graph_conditioned_head",
@@ -2707,29 +2711,53 @@
       "structural_signature": "deaa0223879d3aed41087df3c62255800425dab7",
       "parent_structural_signature": "ee058890b56f4c39eb7b601df40a245404b2d743",
       "structural_relation": "structural_variant",
+      "squared_value": 0.1574059063097053,
+      "mean_reward": 0.39674413204193115,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "best_reward": 0.39674413204193115,
+      "last_reward": 0.39674413204193115,
+      "rollout_rewards": [
+        0.39674413204193115
+      ],
+      "invalidated_result": {
+        "reason": "invalid_smoke_backend: generated official child inherited external_static_node execution from public static parent",
+        "previous_result": {
+          "status": "trained",
+          "best_val_macro_f1": 0.33328312635421753,
+          "test_macro_f1": 0.33328312635421753,
+          "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p1_official_target_graph_conditioned_head_ab86336c/metrics.json",
+          "pipeline": {
+            "pipeline_kind": "pipeline_program_node",
+            "pipeline_strategy": "official_target_graph_conditioned_head",
+            "loss_type": "focal_loss",
+            "uses_real_artifact": false,
+            "artifact_sides": [],
+            "artifact_manifest_path": "",
+            "required_artifacts": [],
+            "missing_required_artifacts": []
+          }
+        }
+      },
+      "invalid_smoke_backend": false,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p1_official_target_graph_conditioned_head_ab86336c/metrics.json",
-      "best_val_macro_f1": 0.33328312635421753,
-      "test_macro_f1": 0.33328312635421753,
-      "duration_seconds": 37.74478578567505,
+      "best_val_macro_f1": 0.39674413204193115,
+      "test_macro_f1": 0.4169236719608307,
+      "duration_seconds": 27.04057288169861,
       "pipeline": {
         "pipeline_kind": "pipeline_program_node",
         "pipeline_strategy": "official_target_graph_conditioned_head",
         "loss_type": "focal_loss",
-        "uses_real_artifact": false,
-        "artifact_sides": [],
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
         "artifact_manifest_path": "",
         "required_artifacts": [],
         "missing_required_artifacts": []
       },
-      "squared_value": 0.11107764231244133,
-      "mean_reward": 0.33328312635421753,
-      "reward_variance": 0.0,
-      "reward_std": 0.0,
-      "best_reward": 0.33328312635421753,
-      "last_reward": 0.33328312635421753,
-      "rollout_rewards": [
-        0.33328312635421753
-      ]
+      "retrained_after_backend_fix": true,
+      "backend_after_fix": "native_program_training"
     },
     "official_k562_p2_official_public_best_node_0f24e30a": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_p2_official_public_best_node_0f24e30a.json",
@@ -2745,13 +2773,13 @@
       "best_val_macro_f1": 0.33328312635421753,
       "test_macro_f1": 0.33328312635421753,
       "visits": 3,
-      "value": 0.9998493790626526,
-      "Q_v": 0.9998493790626526,
-      "squared_value": 0.333232926937324,
-      "mean_reward": 0.33328312635421753,
-      "Exploitation": 0.33328312635421753,
+      "value": 1.0676328241825104,
+      "Q_v": 1.0676328241825104,
+      "squared_value": 0.38073458973835006,
+      "mean_reward": 0.3558776080608368,
+      "Exploitation": 0.3558776080608368,
       "stage": "improve",
-      "best_reward": 0.33328312635421753,
+      "best_reward": 0.3705071210861206,
       "duration_seconds": 35.967610359191895,
       "pipeline": {
         "pipeline_kind": "external_static_node",
@@ -2823,13 +2851,13 @@
       "structural_signature": "95d045fc2108216862ec2fd107348343909290f4",
       "parent_structural_signature": "ee058890b56f4c39eb7b601df40a245404b2d743",
       "structural_relation": "structural_variant",
-      "reward_variance": 0.0,
-      "reward_std": 0.0,
-      "last_reward": 0.33328312635421753,
+      "reward_variance": 0.000262657993680776,
+      "reward_std": 0.016206726803422583,
+      "last_reward": 0.36384257674217224,
       "rollout_rewards": [
         0.33328312635421753,
-        0.33328312635421753,
-        0.33328312635421753
+        0.3705071210861206,
+        0.36384257674217224
       ]
     },
     "official_k562_p1_official_regulatory_network_prior_144a8b54": {
@@ -2891,7 +2919,12 @@
         "artifact_id": "regulatory_network_artifact",
         "reason": "strict mode: regulatory_network_artifact has no configured public source/resolver; no fallback model trained",
         "next_step": "define and acquire a source-backed K562 regulatory network artifact, then update registry/contracts before training"
-      }
+      },
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_p2_official_focal_loss_training_11ab1cb3": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_p2_official_focal_loss_training_11ab1cb3.json",
@@ -2899,11 +2932,11 @@
       "children": [],
       "status": "trained",
       "iteration": 17,
-      "visits": 2,
-      "value": 0.6665662527084351,
-      "Q_v": 0.6665662527084351,
-      "Exploitation": 0.33328312635421753,
-      "stage": "improve",
+      "visits": 1,
+      "value": 0.3705071210861206,
+      "Q_v": 0.3705071210861206,
+      "Exploitation": 0.3705071210861206,
+      "stage": "retrain",
       "agent_type": "codex_program_node_agent",
       "node_kind": "program_node",
       "strategy": "official_focal_loss_training",
@@ -2938,29 +2971,53 @@
       "structural_signature": "ceac0c8919e107a9b98a22056505a6a59bb47cec",
       "parent_structural_signature": "95d045fc2108216862ec2fd107348343909290f4",
       "structural_relation": "structural_variant",
+      "squared_value": 0.13727552677552524,
+      "mean_reward": 0.3705071210861206,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "best_reward": 0.3705071210861206,
+      "last_reward": 0.3705071210861206,
+      "rollout_rewards": [
+        0.3705071210861206
+      ],
+      "invalidated_result": {
+        "reason": "invalid_smoke_backend: generated official child inherited external_static_node execution from public static parent",
+        "previous_result": {
+          "status": "trained",
+          "best_val_macro_f1": 0.33328312635421753,
+          "test_macro_f1": 0.33328312635421753,
+          "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p2_official_focal_loss_training_11ab1cb3/metrics.json",
+          "pipeline": {
+            "pipeline_kind": "pipeline_program_node",
+            "pipeline_strategy": "official_focal_loss_training",
+            "loss_type": "focal_loss",
+            "uses_real_artifact": false,
+            "artifact_sides": [],
+            "artifact_manifest_path": "",
+            "required_artifacts": [],
+            "missing_required_artifacts": []
+          }
+        }
+      },
+      "invalid_smoke_backend": false,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p2_official_focal_loss_training_11ab1cb3/metrics.json",
-      "best_val_macro_f1": 0.33328312635421753,
-      "test_macro_f1": 0.33328312635421753,
-      "duration_seconds": 35.65087080001831,
+      "best_val_macro_f1": 0.3705071210861206,
+      "test_macro_f1": 0.38044044375419617,
+      "duration_seconds": 11.182948350906372,
       "pipeline": {
         "pipeline_kind": "pipeline_program_node",
         "pipeline_strategy": "official_focal_loss_training",
         "loss_type": "focal_loss",
-        "uses_real_artifact": false,
-        "artifact_sides": [],
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
         "artifact_manifest_path": "",
         "required_artifacts": [],
         "missing_required_artifacts": []
       },
-      "squared_value": 0.11107764231244133,
-      "mean_reward": 0.33328312635421753,
-      "reward_variance": 0.0,
-      "reward_std": 0.0,
-      "best_reward": 0.33328312635421753,
-      "last_reward": 0.33328312635421753,
-      "rollout_rewards": [
-        0.33328312635421753
-      ]
+      "retrained_after_backend_fix": true,
+      "backend_after_fix": "native_program_training"
     },
     "official_k562_p3_official_aido_full_finetune_337e49b9": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_p3_official_aido_full_finetune_337e49b9.json",
@@ -2968,11 +3025,11 @@
       "children": [],
       "status": "trained",
       "iteration": 18,
-      "visits": 2,
-      "value": 0.6665662527084351,
-      "Q_v": 0.6665662527084351,
-      "Exploitation": 0.33328312635421753,
-      "stage": "improve",
+      "visits": 1,
+      "value": 0.36384257674217224,
+      "Q_v": 0.36384257674217224,
+      "Exploitation": 0.36384257674217224,
+      "stage": "retrain",
       "agent_type": "codex_program_node_agent",
       "node_kind": "program_node",
       "strategy": "official_aido_full_finetune",
@@ -3007,29 +3064,53 @@
       "structural_signature": "dca68ab47390176b5bb3cc253188d535f3ad6f1b",
       "parent_structural_signature": "95d045fc2108216862ec2fd107348343909290f4",
       "structural_relation": "structural_variant",
+      "squared_value": 0.1323814206503835,
+      "mean_reward": 0.36384257674217224,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "best_reward": 0.36384257674217224,
+      "last_reward": 0.36384257674217224,
+      "rollout_rewards": [
+        0.36384257674217224
+      ],
+      "invalidated_result": {
+        "reason": "invalid_smoke_backend: generated official child inherited external_static_node execution from public static parent",
+        "previous_result": {
+          "status": "trained",
+          "best_val_macro_f1": 0.33328312635421753,
+          "test_macro_f1": 0.33328312635421753,
+          "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p3_official_aido_full_finetune_337e49b9/metrics.json",
+          "pipeline": {
+            "pipeline_kind": "pipeline_program_node",
+            "pipeline_strategy": "official_aido_full_finetune",
+            "loss_type": "focal_loss",
+            "uses_real_artifact": false,
+            "artifact_sides": [],
+            "artifact_manifest_path": "",
+            "required_artifacts": [],
+            "missing_required_artifacts": []
+          }
+        }
+      },
+      "invalid_smoke_backend": false,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p3_official_aido_full_finetune_337e49b9/metrics.json",
-      "best_val_macro_f1": 0.33328312635421753,
-      "test_macro_f1": 0.33328312635421753,
-      "duration_seconds": 37.832762241363525,
+      "best_val_macro_f1": 0.36384257674217224,
+      "test_macro_f1": 0.37674346566200256,
+      "duration_seconds": 11.688638687133789,
       "pipeline": {
         "pipeline_kind": "pipeline_program_node",
         "pipeline_strategy": "official_aido_full_finetune",
         "loss_type": "focal_loss",
-        "uses_real_artifact": false,
-        "artifact_sides": [],
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
         "artifact_manifest_path": "",
         "required_artifacts": [],
         "missing_required_artifacts": []
       },
-      "squared_value": 0.11107764231244133,
-      "mean_reward": 0.33328312635421753,
-      "reward_variance": 0.0,
-      "reward_std": 0.0,
-      "best_reward": 0.33328312635421753,
-      "last_reward": 0.33328312635421753,
-      "rollout_rewards": [
-        0.33328312635421753
-      ]
+      "retrained_after_backend_fix": true,
+      "backend_after_fix": "native_program_training"
     },
     "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373.json",
@@ -3090,7 +3171,12 @@
         "artifact_id": "regulatory_network_artifact",
         "reason": "strict mode: regulatory_network_artifact has no configured public source/resolver; no fallback model trained",
         "next_step": "define and acquire a source-backed K562 regulatory network artifact, then update registry/contracts before training"
-      }
+      },
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87.json",
@@ -3098,9 +3184,9 @@
       "children": [],
       "status": "trained",
       "iteration": 20,
-      "visits": 2,
-      "value": 0.7569466233253479,
-      "Q_v": 0.7569466233253479,
+      "visits": 1,
+      "value": 0.37847331166267395,
+      "Q_v": 0.37847331166267395,
       "Exploitation": 0.37847331166267395,
       "stage": "improve",
       "agent_type": "codex_program_node_agent",
@@ -3169,9 +3255,9 @@
       "children": [],
       "status": "trained",
       "iteration": 21,
-      "visits": 2,
-      "value": 0.7650710940361023,
-      "Q_v": 0.7650710940361023,
+      "visits": 1,
+      "value": 0.38253554701805115,
+      "Q_v": 0.38253554701805115,
       "Exploitation": 0.38253554701805115,
       "stage": "improve",
       "agent_type": "codex_program_node_agent",
@@ -3293,7 +3379,12 @@
         "artifact_id": "regulatory_network_artifact",
         "reason": "strict mode: regulatory_network_artifact has no configured public source/resolver; no fallback model trained",
         "next_step": "define and acquire a source-backed K562 regulatory network artifact, then update registry/contracts before training"
-      }
+      },
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e.json",
@@ -3339,7 +3430,12 @@
       },
       "structural_signature": "065e6b1a7db28cb8c44066ee514801d6f35ba019",
       "parent_structural_signature": "376d420d6696ac2b221b323c85ccc467688fae23",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec.json",
@@ -3385,7 +3481,12 @@
       },
       "structural_signature": "46a894101f34f9e930d429a37e2510d1ca670fcb",
       "parent_structural_signature": "376d420d6696ac2b221b323c85ccc467688fae23",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a.json",
@@ -3431,7 +3532,12 @@
       },
       "structural_signature": "90062101037e1a7dac7f267d9f69d298e6f45c94",
       "parent_structural_signature": "e07394402b248323a71213361dcf92f42875beb8",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751.json",
@@ -3477,7 +3583,12 @@
       },
       "structural_signature": "8701982227d6d34b2484821cdb662ed1bfecafe6",
       "parent_structural_signature": "e07394402b248323a71213361dcf92f42875beb8",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd.json",
@@ -3523,7 +3634,12 @@
       },
       "structural_signature": "a21bee8308c3a0d3fd240c1bab332aeac3d9e608",
       "parent_structural_signature": "e07394402b248323a71213361dcf92f42875beb8",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6.json",
@@ -3569,7 +3685,12 @@
       },
       "structural_signature": "7493f0c5e07716204f23b50e21d7899661d8bc42",
       "parent_structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9.json",
@@ -3615,7 +3736,12 @@
       },
       "structural_signature": "065e6b1a7db28cb8c44066ee514801d6f35ba019",
       "parent_structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     },
     "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0.json",
@@ -3661,7 +3787,12 @@
       },
       "structural_signature": "46a894101f34f9e930d429a37e2510d1ca670fcb",
       "parent_structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
-      "structural_relation": "structural_variant"
+      "structural_relation": "structural_variant",
+      "squared_value": 0.0,
+      "mean_reward": 0.0,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "rollout_rewards": []
     }
   },
   "root_nodes": [

@@ -94,10 +94,10 @@
 | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` | `official_k562_root_aido_embedding_mlp` |  | official_pathway_pooling_reactome | structural_variant | 0.4054 | 0.4254 |
 | `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` | `official_k562_root_aido_embedding_mlp` |  | official_aido_string_cross_attention | structural_variant | 0.4183 | 0.4355 |
 | `official_k562_p1_official_class_imbalance_training_fde536bb` | `official_k562_public_best_node2_1_1_1_1_1_smoke` | external_static_node | official_class_imbalance_training | structural_variant | 0.3333 | 0.3333 |
-| `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | `official_k562_p1_official_class_imbalance_training_fde536bb` |  | official_target_graph_conditioned_head | structural_variant | 0.3333 | 0.3333 |
+| `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | `official_k562_p1_official_class_imbalance_training_fde536bb` |  | official_target_graph_conditioned_head | structural_variant | 0.3967 | 0.4169 |
 | `official_k562_p2_official_public_best_node_0f24e30a` | `official_k562_p1_official_class_imbalance_training_fde536bb` | external_static_node | official_public_best_node | structural_variant | 0.3333 | 0.3333 |
-| `official_k562_p2_official_focal_loss_training_11ab1cb3` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_focal_loss_training | structural_variant | 0.3333 | 0.3333 |
-| `official_k562_p3_official_aido_full_finetune_337e49b9` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_aido_full_finetune | structural_variant | 0.3333 | 0.3333 |
+| `official_k562_p2_official_focal_loss_training_11ab1cb3` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_focal_loss_training | structural_variant | 0.3705 | 0.3804 |
+| `official_k562_p3_official_aido_full_finetune_337e49b9` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_aido_full_finetune | structural_variant | 0.3638 | 0.3767 |
 | `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15` |  | official_focal_loss_training | structural_variant | 0.3785 | 0.4161 |
 | `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15` |  | official_aido_full_finetune | structural_variant | 0.3825 | 0.4200 |
 

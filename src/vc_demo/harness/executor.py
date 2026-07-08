@@ -12,6 +12,17 @@ from vc_demo.harness.external_static import run_external_static_node
 from vc_demo.harness.native_program_smoke import smoke_config
 
 
+def _allows_external_static_backend(config: dict[str, Any], proposal: dict[str, Any] | None) -> bool:
+    model_cfg = config.get("model", {})
+    strategy = str((proposal or {}).get("strategy") or model_cfg.get("program_blueprint", ""))
+    node_name = str(config.get("node_name", ""))
+    return (
+        strategy == "official_public_best_node"
+        or model_cfg.get("model_type") == "external_static_node"
+        or node_name in {"official_k562_public_best_node2_1_1_1_1_1_smoke", "official_k562_public_best_node2_1_1_1_1_1_benchmark"}
+    )
+
+
 def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | None, max_epochs: int | None) -> dict[str, Any]:
     name = str(config["node_name"])
     out_dir = node_dir(run_dir, name)
@@ -27,6 +38,12 @@ def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | N
     started = time.time()
     try:
         if materialized_config.get("execution", {}).get("backend") == "external_static_node":
+            if not _allows_external_static_backend(materialized_config, proposal):
+                strategy = str((proposal or {}).get("strategy") or materialized_config.get("model", {}).get("program_blueprint", ""))
+                raise ValueError(
+                    "external_static_node backend is only allowed for official public static wrappers; "
+                    f"node {name!r} strategy {strategy!r} must use native/program-node training"
+                )
             metrics = run_external_static_node(materialized_config, out_dir, max_epochs=max_epochs)
             duration = metrics.get("duration_seconds", time.time() - started)
         else:

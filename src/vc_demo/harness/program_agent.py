@@ -36,7 +36,20 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     old_model = model_cfg.get("model_type", "mlp")
     config_only = blueprint_id in {"official_class_imbalance_training"}
     external_static = blueprint_id in {"official_public_best_node"}
-    official_native = blueprint_id in {"official_aido_lora_adapter", "official_string_gnn_attention", "official_aido_string_fusion", "official_target_gene_head", "official_native_public_best_reimplementation"}
+    official_native = blueprint_id in {
+        "official_aido_lora_adapter",
+        "official_string_gnn_attention",
+        "official_aido_string_fusion",
+        "official_aido_string_cross_attention",
+        "official_string_neighborhood_attention",
+        "official_target_gene_head",
+        "official_target_graph_conditioned_head",
+        "official_aido_full_finetune",
+        "official_focal_loss_training",
+        "official_native_public_best_reimplementation",
+    }
+    if not external_static and child.get("execution", {}).get("backend") == "external_static_node":
+        child.pop("execution", None)
     if not config_only and not external_static:
         model_cfg["model_type"] = "custom_program"
         model_cfg["custom_model_path"] = str(child_dir / "model.py")
@@ -64,11 +77,20 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         model_cfg.setdefault("artifacts", {})
         model_cfg["artifacts"].setdefault("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
         model_cfg["artifacts"].setdefault("data_dir", child.get("data", {}).get("data_dir", ""))
-    if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training"}:
+    if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training", "official_focal_loss_training"}:
         train_cfg["loss_type"] = "focal_loss"
         train_cfg.setdefault("focal_gamma", 2.0)
         train_cfg.setdefault("class_weights", [2.37, 0.51, 2.75])
     if official_native:
+        data_cfg = child.setdefault("data", {})
+        if data_cfg.get("dataset_type") == "official_k562_tsv" and not data_cfg.get("embedding_h5ad") and not data_cfg.get("embedding_h5ads"):
+            if blueprint_id in {"official_string_gnn_attention", "official_aido_string_fusion", "official_aido_string_cross_attention", "official_string_neighborhood_attention", "official_target_graph_conditioned_head", "official_native_public_best_reimplementation"}:
+                data_cfg["embedding_h5ads"] = [
+                    "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+                    "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+                ]
+            else:
+                data_cfg["embedding_h5ad"] = "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad"
         model_cfg.setdefault("artifacts", {})
         model_cfg["artifacts"].setdefault("aido_model_dir", "/home/Models/AIDO.Cell-100M")
         model_cfg["artifacts"].setdefault("string_gnn_model_dir", "/home/Models/STRING_GNN")
@@ -178,13 +200,13 @@ def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: d
     if blueprint_id == "official_public_best_node":
         manifest["kind"] = "external_static_node"
         manifest["artifact_usage_claims"].append({"provider": "VCHarness public K562 best node", "sides": ["AIDO", "STRING_GNN", "official_k562_tsv"], "requires_present_artifact": True})
-    if blueprint_id in {"official_aido_lora_adapter", "official_aido_string_fusion", "official_native_public_best_reimplementation"}:
+    if blueprint_id in {"official_aido_lora_adapter", "official_aido_string_fusion", "official_aido_string_cross_attention", "official_aido_full_finetune", "official_native_public_best_reimplementation"}:
         manifest["artifact_usage_claims"].append({"provider": "AIDO.Cell-100M", "sides": ["perturbation_gene"], "requires_present_artifact": True})
-    if blueprint_id in {"official_string_gnn_attention", "official_aido_string_fusion", "official_native_public_best_reimplementation"}:
+    if blueprint_id in {"official_string_gnn_attention", "official_aido_string_fusion", "official_aido_string_cross_attention", "official_string_neighborhood_attention", "official_target_graph_conditioned_head", "official_native_public_best_reimplementation"}:
         manifest["artifact_usage_claims"].append({"provider": "STRING_GNN", "sides": ["gene_graph"], "requires_present_artifact": True})
-    if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training"}:
+    if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training", "official_focal_loss_training"}:
         manifest["training"] = {"loss_type": "focal_loss", "loss_notes": "Node-level training strategy patch for class-imbalanced DEG labels."}
-        manifest["patches"] = {"training": {"loss_type": "focal_loss", "focal_gamma": 2.0, "class_weights": [2.0, 0.5, 2.0]}}
+        manifest["patches"] = {"training": {"loss_type": "focal_loss", "focal_gamma": 2.0, "class_weights": [2.37, 0.51, 2.75]}}
     return manifest
 
 

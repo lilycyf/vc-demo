@@ -1,0 +1,44 @@
+{
+  "bug": "generated official children inherited execution.backend=external_static_node from public static parent configs; executor routed by execution before model_type",
+  "fix": "program_agent clears inherited external_static_node for non-public-static children; executor rejects external_static_node unless public static wrapper; official native children get stable official embedding artifacts when parent lacks them",
+  "invalidated_retrained_nodes": {
+    "official_k562_p1_official_target_graph_conditioned_head_ab86336c": {
+      "strategy": "official_target_graph_conditioned_head",
+      "status": "trained",
+      "val": 0.39674413204193115,
+      "test": 0.4169236719608307,
+      "backend_after_fix": "native_program_training"
+    },
+    "official_k562_p2_official_focal_loss_training_11ab1cb3": {
+      "strategy": "official_focal_loss_training",
+      "status": "trained",
+      "val": 0.3705071210861206,
+      "test": 0.38044044375419617,
+      "backend_after_fix": "native_program_training"
+    },
+    "official_k562_p3_official_aido_full_finetune_337e49b9": {
+      "strategy": "official_aido_full_finetune",
+      "status": "trained",
+      "val": 0.36384257674217224,
+      "test": 0.37674346566200256,
+      "backend_after_fix": "native_program_training"
+    }
+  },
+  "status_counts": {
+    "trained": 23,
+    "requires_artifact_acquisition": 3,
+    "needs_implementation": 8
+  },
+  "implementation_queue_items": 8,
+  "acquisition_queue_items": 3,
+  "acquisition_artifacts": [
+    "regulatory_network_artifact"
+  ],
+  "best_root": "official_k562_native_public_best_reimplementation",
+  "best_root_val": 0.46794524788856506,
+  "best_root_test": 0.5256422758102417,
+  "best_overall": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+  "best_overall_val": 0.4884769916534424,
+  "best_overall_test": 0.518327534198761,
+  "fallback_used": false
+}

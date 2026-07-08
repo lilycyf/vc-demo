@@ -3,44 +3,20 @@
   "data": {
     "dataset_type": "official_k562_tsv",
     "data_dir": "data/cell_lines/official_k562_cls",
-    "n_classes": 3
+    "n_classes": 3,
+    "embedding_h5ad": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad"
   },
   "model": {
     "model_type": "custom_program",
-    "n_targets": 6640,
-    "n_classes": 3,
+    "n_targets": "auto",
+    "n_classes": "auto",
     "program_blueprint": "official_focal_loss_training",
     "hidden_dim": 256,
     "depth": 2,
     "dropout": 0.1,
     "custom_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p2_official_focal_loss_training_11ab1cb3/model.py",
-    "custom_model_class": "GeneratedModel"
-  },
-  "execution": {
-    "backend": "external_static_node",
-    "static_dir": "/workspace/_external/VCHarness/K562_cls/static",
-    "script_path": "node2-1-1-1-1-1_code.py",
-    "external_data_root": "/workspace/_external/VCHarness/data",
-    "pythonpath": [
-      "/workspace/_external/ModelGenerator/huggingface/aido.cell",
-      "src"
-    ],
-    "args": [
-      "--debug-max-step",
-      "1",
-      "--micro-batch-size",
-      "1",
-      "--global-batch-size",
-      "1",
-      "--num-workers",
-      "0",
-      "--max-epochs",
-      "1"
-    ],
-    "artifact_usage": {
-      "AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M",
-      "STRING_GNN": "/home/Models/STRING_GNN"
-    }
+    "custom_model_class": "GeneratedModel",
+    "input_dim": "auto"
   },
   "training": {
     "epochs": 1,
