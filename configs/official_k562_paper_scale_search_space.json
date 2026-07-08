@@ -1,0 +1,90 @@
+{
+  "id": "official_k562_paper_scale_search_space",
+  "scope": "single_cell_line_K562",
+  "paper_scale_contract": {
+    "minimum_budget_nodes_for_paper_scale_single_cellline": 600,
+    "public_static_scaffold_nodes": 154,
+    "recommended_medium_budget_nodes": 150,
+    "recommended_full_budget_nodes": 600,
+    "node_definition": "one complete candidate training pipeline, not a small hyperparameter tweak",
+    "planned_blueprints_are_selectable": true,
+    "codex_implements_on_selection": true,
+    "strict_artifacts_default": true,
+    "fallback_allowed_in_official_mode": false
+  },
+  "mcts_contract": {
+    "selection_policy": "uct_or_puct",
+    "required_record_fields": [
+      "selected_parent",
+      "candidate_list",
+      "visits",
+      "Q",
+      "exploration_term",
+      "reward",
+      "backprop_path"
+    ],
+    "scale_requirement": "A paper-scale K562 run should be configured for 600+ budget nodes unless explicitly labeled pilot/smoke."
+  },
+  "blueprint_families": [
+    {
+      "family": "public_static_tree",
+      "role": "benchmark scaffold and optional external wrappers",
+      "count_target": 154
+    },
+    {
+      "family": "AIDO",
+      "role": "embedding, adapter, LoRA, selective and full fine-tuning"
+    },
+    {
+      "family": "scFoundation_or_single_cell_foundation",
+      "role": "cell/expression encoder when real artifacts are present"
+    },
+    {
+      "family": "STRING_GNN",
+      "role": "graph embedding, frozen cache, fine-tune, K-hop attention, smoothing"
+    },
+    {
+      "family": "AIDO_STRING_fusion",
+      "role": "concat, gated, bilinear, cross-attention, MoE"
+    },
+    {
+      "family": "target_gene_heads",
+      "role": "low-rank, bilinear, graph-conditioned, calibrated heads"
+    },
+    {
+      "family": "pathway_and_regulatory_priors",
+      "role": "Reactome/pathway pooling and regulatory networks when acquired"
+    },
+    {
+      "family": "training_strategy",
+      "role": "weighted CE, focal loss, layerwise LR, SWA/checkpoint ensemble"
+    }
+  ],
+  "codex_on_demand_rules": {
+    "when_selected": [
+      "write IMPLEMENTATION_REQUEST.md",
+      "implement node-local model.py or config-only patch",
+      "run native smoke",
+      "train/evaluate",
+      "record metrics or blocker"
+    ],
+    "allowed_changes": [
+      "node-local model.py",
+      "node-local pipeline metadata",
+      "approved helper under src/vc_demo/official_k562"
+    ],
+    "forbidden_changes": [
+      "official splits",
+      "labels",
+      "target gene order",
+      "metric semantics",
+      "artifact provenance",
+      "silent fallback"
+    ]
+  },
+  "status_taxonomy": {
+    "implemented": "already executable by harness",
+    "planned": "selectable; Codex must implement on demand before training",
+    "blocked_missing_artifact": "must acquire artifact or stop; no fallback training"
+  }
+}

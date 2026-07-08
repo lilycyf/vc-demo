@@ -24,8 +24,9 @@ Paper-level scale should be staged:
 |---|---:|---:|---|
 | Phase 0 | smoke test | 3-5 | verify code, data, metrics, and node artifacts |
 | Phase 1 | pilot | 20-50 | verify parent selection and planned-blueprint handling |
-| Phase 2 | single-cell-line serious search | 100-200 | approximate paper-style search on one cell line |
-| Phase 3 | multi-cell-line replication | 400-800+ | approximate paper-scale total model count |
+| Phase 2 | single-cell-line medium search | 150 | debug breadth, repair/acquisition, and report completeness |
+| Phase 3 | single-cell-line paper-scale search | 600+ | match the paper-level search order of magnitude for one cell line |
+| Phase 4 | multi-cell-line replication | 600+ per reproduced cell-line or 600+ aggregate with explicit caveat | extend beyond the K562-only target |
 
 A node is a complete trainable design, not merely a learning-rate tweak. Each node must define:
 
@@ -41,9 +42,22 @@ A node is a complete trainable design, not merely a learning-rate tweak. Each no
 - failure or pending status
 - cost and wall-time metadata when available
 
+
+## Paper-Scale K562 Contract
+
+For the official K562 one-cell-line reproduction, the target is not merely a 100-200 node approximation. The paper-scale contract is:
+
+- budget target: 600+ candidate nodes for K562 when running a paper-scale experiment;
+- benchmark scaffold: all 154 public K562 static nodes are cataloged and available for alignment/wrapper work;
+- implementation model: blueprints may be `implemented` or `planned`; planned means selectable and implemented by Codex on demand;
+- strict artifact policy: missing required artifacts trigger acquisition/blocker, not fallback training;
+- complete report: every selected node records parent, blueprint, artifact contract, implementation status, metrics, and gap attribution.
+
+The machine-readable K562 contract is `configs/official_k562_paper_scale_search_space.json`.
+
 ## Root Families
 
-A paper-level search should start from multiple root families rather than a single baseline. The minimum serious-search target is six or more root families.
+A paper-level search should start from multiple root families rather than a single baseline. The minimum serious-search target is six or more root families, but the paper-scale K562 contract is broader: the official selectable manifest should include all implemented and planned families needed for a 600+ node run. Planned entries are legitimate search choices; Codex implements them only if MCTS selects them.
 
 Recommended root families:
 

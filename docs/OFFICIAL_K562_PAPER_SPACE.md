@@ -51,3 +51,60 @@ The smoke should produce three roots plus one official child, with `official_k56
 ## Next Scale-Up
 
 After this smoke, the next meaningful run is a 50-node official K562 search with strict artifacts and official blueprint space enabled. Planned blueprints should either be implemented by the Codex agent using real audited artifacts or block/acquire missing artifacts; no fallback nodes should be trained in official mode.
+
+## Paper-Scale Search Contract
+
+The official K562 harness now treats paper-scale search as a first-class contract, not as a fully pre-implemented model library.
+
+Scale requirements:
+
+- `smoke`: 3-5 trained/evaluated nodes, only for wiring checks.
+- `pilot`: 20-50 trained/evaluated nodes, only for pressure testing.
+- `medium`: 150 trained/evaluated nodes, useful for debugging breadth and repair/acquisition behavior.
+- `paper-scale single-cell-line`: 600+ budget nodes for K562, matching the paper-level search order of magnitude rather than a demo run.
+- `public static scaffold`: all 154 public K562 static nodes are benchmark/alignment candidates, not merely the single public best node.
+
+The full search space does not need to be pre-implemented. A blueprint can be:
+
+- `implemented`: executable immediately.
+- `planned`: selectable by MCTS when `--allow-planned-blueprints` is set; Codex must implement it on demand.
+- `blocked_missing_artifact`: must acquire the real artifact or stop; no fallback training in strict official mode.
+
+Codex implementation rule:
+
+When MCTS selects a planned blueprint, the harness should create a node-local `IMPLEMENTATION_REQUEST.md`. Codex then implements only the selected node's `model.py` or config-only patch, runs smoke/compile checks, trains/evaluates, and records the result. This is intentional: the paper-scale search space is a manifest and procedure, not a requirement to hand-code every candidate before search starts.
+
+The machine-readable contract lives in:
+
+```text
+configs/official_k562_paper_scale_search_space.json
+```
+
+The official K562 selectable blueprint registry now includes implemented and planned entries across AIDO, scFoundation/single-cell foundation encoders, STRING_GNN, AIDO+STRING fusion, target-gene heads, pathway/regulatory priors, training strategies, and public static tree wrappers.
+
+Paper-scale command shape:
+
+```bash
+PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
+  --run-dir experiments/official_k562_paper_scale_600 \
+  --experiment official_k562_paper_scale_600 \
+  --root-configs \
+    configs/official_k562_root_aido_embedding_mlp.json \
+    configs/official_k562_root_aido_gnn_embedding_mlp.json \
+    configs/official_k562_public_best_node_benchmark.json \
+    configs/official_k562_native_public_best_reimplementation.json \
+  --budget-nodes 600 \
+  --max-epochs 5 \
+  --max-children 4 \
+  --stop-no-improve 60 \
+  --selection-policy uct \
+  --official-blueprint-space \
+  --strict-artifacts \
+  --allow-planned-blueprints \
+  --enable-repair-loop \
+  --enable-acquisition-loop \
+  --max-blueprint-repeats -1 \
+  --allow-parent-duplicate-blueprints \
+  --max-pending-implementations 8 \
+  --reset
+```
