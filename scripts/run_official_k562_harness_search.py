@@ -36,6 +36,7 @@ def main() -> None:
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8)
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
     parser.add_argument("--official-blueprint-space", action="store_true", default=False)
+    parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Reallocate child-blueprint budget away from families repeatedly blocked by unavailable artifacts while preserving strict acquisition records.")
     parser.add_argument("--strict-artifacts", action="store_true", default=True)
     parser.add_argument("--enable-repair-loop", action="store_true", help="Accepted for paper-level runbooks; native smoke gate is always enabled for custom programs in this harness.")
     parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
@@ -83,7 +84,7 @@ def main() -> None:
         max_pending_implementations=args.max_pending_implementations,
         force_blueprint=args.force_blueprint or None,
         artifact_registry=args.registry,
-        artifact_aware_blueprint_policy=False,
+        artifact_aware_blueprint_policy=args.artifact_aware_blueprint_policy,
         allow_missing_artifact_fallbacks=False,
         official_blueprint_space=args.official_blueprint_space,
         max_blueprint_repeats=args.max_blueprint_repeats,

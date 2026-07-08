@@ -253,7 +253,8 @@ def _choose_blueprint(
     choices = selectable_blueprint_ids(include_planned, official_k562_only=official_k562_only)
     if not choices:
         raise ValueError("no selectable model blueprints are available")
-    ranked = rank_scientific_blueprint_choices(choices, search_memory or {}, parent_node, child_index)
+    ranking_memory = (search_memory or {}) if artifact_aware else {}
+    ranked = rank_scientific_blueprint_choices(choices, ranking_memory, parent_node, child_index)
     if child_index <= len(ranked):
         return ranked[child_index - 1]
     parent_offset = int(hashlib.sha1(parent_name.encode("utf-8")).hexdigest(), 16) % len(ranked)
@@ -278,6 +279,63 @@ def rank_blueprint_choices(choices: list[str], registry_audit: dict[str, Any]) -
     return rank_scientific_blueprint_choices(choices, {}, {}, 1)
 
 
+BLOCKED_ARTIFACT_SUPPRESSION_THRESHOLD = 2
+BLOCKED_STRATEGY_SUPPRESSION_THRESHOLD = 2
+BLOCKED_FAMILY_SUPPRESSION_THRESHOLD = 3
+
+
+def blocked_policy_for_blueprint(blueprint_id: str, memory: dict[str, Any]) -> dict[str, Any]:
+    """Return strict-mode blocked-family policy signals for blueprint ranking.
+
+    This is intentionally not an artifact-present preference. It only reacts to
+    artifacts that have already blocked nodes in the current run. The search can
+    still record/acquire missing artifacts, but repeated unavailable artifacts
+    should not keep consuming expansion budget while other paper-level families
+    remain unexplored.
+    """
+    blueprint = blueprint_by_id(blueprint_id)
+    family = str(blueprint.get("paper_family") or blueprint.get("category") or blueprint_id)
+    required = set(str(item) for item in blueprint.get("requires", []) or [])
+    blocked_rows = list(memory.get("blocked_artifacts", []) or [])
+    artifact_counts: dict[str, int] = {}
+    strategy_block_count = 0
+    family_block_count = 0
+    for row in blocked_rows:
+        strategy = str(row.get("strategy") or "")
+        row_family = str(row.get("family") or "")
+        missing = [str(item) for item in row.get("missing", []) or []]
+        if strategy == blueprint_id:
+            strategy_block_count += 1
+        if row_family == family:
+            family_block_count += 1
+        for artifact_id in missing:
+            artifact_counts[artifact_id] = artifact_counts.get(artifact_id, 0) + 1
+    repeated_blocked_artifacts = sorted(
+        artifact_id for artifact_id in required
+        if artifact_counts.get(artifact_id, 0) >= BLOCKED_ARTIFACT_SUPPRESSION_THRESHOLD
+    )
+    suppress = bool(repeated_blocked_artifacts) or strategy_block_count >= BLOCKED_STRATEGY_SUPPRESSION_THRESHOLD
+    # Family suppression is deliberately weaker: only suppress a whole family
+    # after repeated blocks when no specific artifact mapping catches it.
+    if family_block_count >= BLOCKED_FAMILY_SUPPRESSION_THRESHOLD and not repeated_blocked_artifacts:
+        suppress = True
+    soft_penalty = 0.0
+    if suppress:
+        soft_penalty = 10.0
+    elif family_block_count > 0:
+        soft_penalty = min(0.20 * family_block_count, 0.80)
+    return {
+        "blocked_policy": "blocked_artifact_budget_reallocation",
+        "blocked_policy_active": bool(blocked_rows),
+        "suppressed_by_blocked_artifact": suppress,
+        "blocked_policy_penalty": soft_penalty,
+        "repeated_blocked_artifacts": repeated_blocked_artifacts,
+        "strategy_block_count": strategy_block_count,
+        "family_block_count": family_block_count,
+        "blocked_artifact_counts": {artifact_id: artifact_counts.get(artifact_id, 0) for artifact_id in sorted(required)},
+    }
+
+
 def scientific_score(blueprint_id: str, memory: dict[str, Any], child_index: int) -> dict[str, Any]:
     blueprint = blueprint_by_id(blueprint_id)
     counts = memory.get("blueprint_counts", {}) or {}
@@ -291,24 +349,28 @@ def scientific_score(blueprint_id: str, memory: dict[str, Any], child_index: int
     early_bonus = 0.20 if child_index <= len(REQUIRED_EARLY_FAMILIES) and blueprint_id in REQUIRED_EARLY_FAMILIES else 0.0
     repeat_penalty = min(0.12 * count, 0.60)
     native_repeat_penalty = 0.45 if blueprint_id == "official_native_public_best_reimplementation" and count > 0 else 0.0
-    score = base + coverage_bonus + family_bonus + early_bonus - repeat_penalty - native_repeat_penalty
-    return {"score": score, "base": base, "coverage_bonus": coverage_bonus, "family_bonus": family_bonus, "early_bonus": early_bonus, "repeat_penalty": repeat_penalty, "native_repeat_penalty": native_repeat_penalty, "count": count, "family": family, "family_count": family_count}
+    blocked_policy = blocked_policy_for_blueprint(blueprint_id, memory)
+    blocked_policy_penalty = float(blocked_policy.get("blocked_policy_penalty", 0.0) or 0.0)
+    score = base + coverage_bonus + family_bonus + early_bonus - repeat_penalty - native_repeat_penalty - blocked_policy_penalty
+    return {"score": score, "base": base, "coverage_bonus": coverage_bonus, "family_bonus": family_bonus, "early_bonus": early_bonus, "repeat_penalty": repeat_penalty, "native_repeat_penalty": native_repeat_penalty, "blocked_policy_penalty": blocked_policy_penalty, "count": count, "family": family, "family_count": family_count, **blocked_policy}
 
 
 def rank_scientific_blueprint_choices(choices: list[str], memory: dict[str, Any], parent_node: dict[str, Any], child_index: int) -> list[str]:
     indexed = list(enumerate(choices))
+    scored = [(index, blueprint_id, scientific_score(blueprint_id, memory, child_index)) for index, blueprint_id in indexed]
+    eligible = [row for row in scored if not row[2].get("suppressed_by_blocked_artifact")]
+    pool = eligible if eligible else scored
 
-    def key(item: tuple[int, str]) -> tuple[float, int, int, int]:
-        index, blueprint_id = item
-        score = scientific_score(blueprint_id, memory, child_index)
+    def key(item: tuple[int, str, dict[str, Any]]) -> tuple[float, int, int, int]:
+        index, blueprint_id, score = item
         blueprint = blueprint_by_id(blueprint_id)
         return (score["score"], int(blueprint.get("change_level", 0) or 0), -score["count"], -index)
 
-    return [blueprint_id for _, blueprint_id in sorted(indexed, key=key, reverse=True)]
+    return [blueprint_id for _, blueprint_id, _ in sorted(pool, key=key, reverse=True)]
 
 
 def scientific_selection_summary(blueprint_id: str, memory: dict[str, Any] | None) -> dict[str, Any]:
-    return {"policy": "scientific_priority_then_feasibility_gate", **scientific_score(blueprint_id, memory or {}, 1)}
+    return {"policy": "scientific_priority_with_blocked_artifact_budget_reallocation", **scientific_score(blueprint_id, memory or {}, 1)}
 
 
 def structural_signature(config: dict[str, Any]) -> str:
