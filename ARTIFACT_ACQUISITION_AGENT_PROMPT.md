@@ -49,3 +49,20 @@ Stop and report clearly if:
 - The blueprint is underspecified, such as `pretrained_encoder` without a defined checkpoint or tensor contract.
 
 In those cases, write a clear blocker note and do not fabricate the artifact.
+
+## K562 Artifact Policy: Derived vs Blocked
+
+The official K562 strict search distinguishes deterministic derived artifacts from artifacts that require external provenance.
+
+### Automatically Derivable
+
+- `class_distribution`: derive with `scripts/build_k562_class_distribution.py` from `data/cell_lines/official_k562_cls/train.tsv` only. The resolver must not read validation or test labels to compute class weights. The artifact must record raw counts, training-label remap, recommended class weights, `split_used=train`, and `forbidden_splits=[val,test]`.
+- `pathway_memberships`: derive only through the configured Reactome/MSigDB source-backed resolver and exact official target-gene order.
+
+### Must Block Unless Source Is Configured
+
+- `regulatory_network_artifact`: block unless a real public/approved TF-target or regulatory network source, version, filtering rule, checksum, and K562 target-gene alignment are recorded. Do not substitute STRING/PPI or pathway memberships and call it regulatory.
+- `single_cell_foundation_model_artifact`: block unless a real scGPT/scFoundation/single-cell foundation checkpoint or row-aligned embedding artifact is configured with preprocessing, vocabulary, source, and coverage. Do not train a small expression fallback in strict mode.
+
+If an artifact is listed as blocked, the correct action is to generate/complete an acquisition task, not to implement or train a fallback node.
+

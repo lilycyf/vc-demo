@@ -18,7 +18,22 @@
   "artifact_rows": [
     {
       "id": "single_cell_foundation_model_artifact",
-      "present": false
+      "family": "single_cell_foundation_model",
+      "provider": "unconfigured",
+      "status": "blocked_until_source_configured",
+      "path": "data/artifacts/single_cell_foundation_model",
+      "source": "No verified scGPT/scFoundation K562 row-aligned artifact configured; strict mode must block.",
+      "usable_for": [
+        "cell_state_encoder",
+        "single_cell_foundation_embedding"
+      ],
+      "required_for_blueprints": [
+        "official_scgpt_cell_encoder"
+      ],
+      "do_not_fabricate": true,
+      "fallback_allowed": false,
+      "present": false,
+      "resolved_status": "missing"
     },
     {
       "id": "official_essential_deg_with_split_h5ad",

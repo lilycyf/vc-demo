@@ -106,6 +106,27 @@ def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_ite
     return task_path
 
 
+
+def derive_class_distribution(expected_path: Path, registry_path: Path) -> dict[str, Any]:
+    command = [
+        "python",
+        "scripts/build_k562_class_distribution.py",
+        "--data-dir",
+        "data/cell_lines/official_k562_cls",
+        "--output",
+        str(expected_path),
+        "--registry",
+        str(registry_path),
+        "--update-registry",
+    ]
+    proc = subprocess.run(command, text=True, capture_output=True)
+    return {
+        "command": " ".join(shlex.quote(part) for part in command),
+        "returncode": proc.returncode,
+        "stdout": proc.stdout[-12000:],
+        "stderr": proc.stderr[-12000:],
+    }
+
 def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], registry: dict[str, Any], output_dir: Path, execute_known: bool) -> dict[str, Any]:
     artifact_id = str(item.get("artifact_id", ""))
     src = sources.get(artifact_id, {})
@@ -134,6 +155,20 @@ def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], regis
         return result
 
     command = src.get("command")
+    if execute_known and src.get("can_execute_automatically") and src.get("resolver") == "derive_from_official_train_labels":
+        result["action"] = "executed_train_only_class_distribution_resolver"
+        if not str(expected_path):
+            expected_path = Path("experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json")
+            result["expected_path"] = str(expected_path)
+        command_result = derive_class_distribution(expected_path, Path(str(registry.get("registry_path", "configs/artifacts/k562_registry.json"))))
+        result["command_result"] = command_result
+        audited_after = artifact_by_id_or_alias(audit_registry(load_registry(registry.get("registry_path", "configs/artifacts/k562_registry.json"))), artifact_id)
+        result["file_exists_after"] = bool(str(expected_path)) and expected_path.exists()
+        result["present_after"] = result["file_exists_after"] and bool(audited_after.get("present", False))
+        result["audited_status_after"] = audited_after.get("resolved_status")
+        result["audit_issue_after"] = audited_after.get("class_distribution_issue")
+        result["status"] = "acquired" if command_result["returncode"] == 0 and result["present_after"] else "resolver_failed_or_output_invalid"
+        return result
     if execute_known and src.get("can_execute_automatically") and command:
         result["action"] = "executed_known_resolver"
         command_result = run_command(str(command))

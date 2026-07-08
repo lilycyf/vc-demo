@@ -3,8 +3,8 @@
 This run separates the search loop into MCTS parent selection, an agent-style proposal step, node execution, and report generation.
 The proposal agent may generate config-level children or program-node children. Program nodes carry node-local Python model source and are dynamically loaded during training; data, splits, and metric semantics are unchanged.
 
-- Stop reason: requires artifact acquisition for class_distribution, regulatory_network_artifact, and single_cell_foundation_model_artifact; no fallback used
-- Trained nodes: 27
+- Stop reason: pending implementation trained
+- Trained nodes: 28
 - Failed nodes: 0
 - Best node: `official_k562_native_p1_official_aido_string_fusion_66a588f9` val=0.4885 test=0.5183
 - Best root: `official_k562_native_public_best_reimplementation` val=0.4679 test=0.5256
@@ -39,6 +39,7 @@ The proposal agent may generate config-level children or program-node children. 
 | 10 | `official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1` | `official_k562_root_aido_gnn_embedding_mlp` | program_node | official_string_neighborhood_attention | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 13.2 | custom_program | 0.3572 | 0.3912 |
 | 11 | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` | `official_k562_root_aido_embedding_mlp` | program_node | official_pathway_pooling_reactome | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 9.5 | custom_program | 0.4054 | 0.4254 |
 | 12 | `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` | `official_k562_root_aido_embedding_mlp` | program_node | official_aido_string_cross_attention | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 14.1 | custom_program | 0.4183 | 0.4355 |
+| 13 | `official_k562_p1_official_class_imbalance_training_fde536bb` | `official_k562_public_best_node2_1_1_1_1_1_smoke` | program_node | official_class_imbalance_training | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 11.8 | custom_program | 0.3828 | 0.3993 |
 | 14 | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | `official_k562_p1_official_class_imbalance_training_fde536bb` | program_node | official_target_graph_conditioned_head | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 27.0 | custom_program | 0.3967 | 0.4169 |
 | 15 | `official_k562_p2_official_public_best_node_0f24e30a` | `official_k562_p1_official_class_imbalance_training_fde536bb` | program_node | official_public_best_node | external_static_node | program_node | external_static_node | external_public_best_node |  | 36.0 | external_static_node | 0.3333 | 0.3333 |
 | 17 | `official_k562_p2_official_focal_loss_training_11ab1cb3` | `official_k562_p2_official_public_best_node_0f24e30a` | program_node | official_focal_loss_training | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 11.2 | custom_program | 0.3705 | 0.3804 |
@@ -71,6 +72,7 @@ The proposal agent may generate config-level children or program-node children. 
 | `official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
 | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` | true | perturbation_gene_or_context | pathway_memberships |  | `` | weighted_cross_entropy |  |
 | `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
+| `official_k562_p1_official_class_imbalance_training_fde536bb` | true | perturbation_gene_or_context | official_essential_deg_with_split_h5ad,class_distribution |  | `` | focal_loss | missing_or_val_fallback |
 | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | true | perturbation_gene_or_context |  |  | `` | focal_loss |  |
 | `official_k562_p2_official_public_best_node_0f24e30a` | true | external_public_best_node | AIDO.Cell-100M,STRING_GNN |  | `/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py` | external_static_node | missing_or_val_fallback |
 | `official_k562_p2_official_focal_loss_training_11ab1cb3` | true | perturbation_gene_or_context |  |  | `` | focal_loss |  |
@@ -103,6 +105,7 @@ The proposal agent may generate config-level children or program-node children. 
 | 10 | 0.4885 |
 | 11 | 0.4885 |
 | 12 | 0.4885 |
+| 13 | 0.4885 |
 | 14 | 0.4885 |
 | 15 | 0.4885 |
 | 17 | 0.4885 |
@@ -133,8 +136,8 @@ The proposal agent may generate config-level children or program-node children. 
     - `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` status=trained visits=1 val=0.3785 test=0.4161 strategy=official_focal_loss_training program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` status=trained visits=1 val=0.3825 test=0.4200 strategy=official_aido_full_finetune program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
   - `official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1` status=trained visits=1 val=0.3572 test=0.3912 strategy=official_string_neighborhood_attention program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
-- `official_k562_public_best_node2_1_1_1_1_1_smoke` status=trained visits=5 val=0.3333 test=0.3333 backend=external_static_node
-  - `official_k562_p1_official_class_imbalance_training_fde536bb` status=requires_artifact_acquisition visits=4 strategy=official_class_imbalance_training pipeline=pipeline_program_node
+- `official_k562_public_best_node2_1_1_1_1_1_smoke` status=trained visits=6 val=0.3333 test=0.3333 backend=external_static_node
+  - `official_k562_p1_official_class_imbalance_training_fde536bb` status=trained visits=2 val=0.3828 test=0.3993 strategy=official_class_imbalance_training pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_p1_official_target_graph_conditioned_head_ab86336c` status=trained visits=1 val=0.3967 test=0.4169 strategy=official_target_graph_conditioned_head program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_target_graph_conditioned_head_ab86336c/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_p2_official_public_best_node_0f24e30a` status=trained visits=3 val=0.3333 test=0.3333 strategy=official_public_best_node backend=external_static_node pipeline=external_static_node
       - `official_k562_p1_official_regulatory_network_prior_144a8b54` status=requires_artifact_acquisition visits=0 strategy=official_regulatory_network_prior program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_regulatory_network_prior_144a8b54/model.py pipeline=pipeline_program_node

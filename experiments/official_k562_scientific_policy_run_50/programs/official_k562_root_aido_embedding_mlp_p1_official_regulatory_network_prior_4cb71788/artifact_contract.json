@@ -18,7 +18,22 @@
   "artifact_rows": [
     {
       "id": "regulatory_network_artifact",
-      "present": false
+      "family": "regulatory_network",
+      "provider": "unconfigured",
+      "status": "blocked_until_source_configured",
+      "path": "data/artifacts/regulatory_network",
+      "source": "No verified K562-aligned regulatory source configured; strict mode must block.",
+      "usable_for": [
+        "regulatory_prior",
+        "tf_target_prior"
+      ],
+      "required_for_blueprints": [
+        "official_regulatory_network_prior"
+      ],
+      "do_not_fabricate": true,
+      "fallback_allowed": false,
+      "present": false,
+      "resolved_status": "missing"
     },
     {
       "id": "official_essential_deg_with_split_h5ad",

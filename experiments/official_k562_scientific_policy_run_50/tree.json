@@ -1008,14 +1008,13 @@
   "mcts": {
     "exploration_c": 1.4142135623730951,
     "last_backpropagation": {
-      "leaf": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9",
-      "reward": 0.40517914295196533,
+      "leaf": "official_k562_p1_official_class_imbalance_training_fde536bb",
+      "reward": 0.3828481435775757,
       "path": [
-        "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9",
-        "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
-        "official_k562_root_aido_embedding_mlp"
+        "official_k562_p1_official_class_imbalance_training_fde536bb",
+        "official_k562_public_best_node2_1_1_1_1_1_smoke"
       ],
-      "path_length": 3
+      "path_length": 2
     },
     "last_candidates": [
       {
@@ -2043,8 +2042,8 @@
       "q": 0.42436331510543823
     },
     "official_k562_public_best_node2_1_1_1_1_1_smoke": {
-      "Exploitation": 0.35515720148881275,
-      "Q_v": 1.797660082578659,
+      "Exploitation": 0.3634180376927058,
+      "Q_v": 2.1805082261562347,
       "artifact_usage": {
         "AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M",
         "STRING_GNN": "/home/Models/STRING_GNN",
@@ -2061,7 +2060,7 @@
       "execution_mode": "smoke",
       "external_script": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
       "iteration": 0,
-      "mean_reward": 0.35515720148881275,
+      "mean_reward": 0.3634180376927058,
       "metrics": "",
       "parent": "",
       "pipeline": {
@@ -2079,24 +2078,25 @@
         ],
         "uses_real_artifact": false
       },
-      "squared_value": 0.760295780672938,
+      "squared_value": 0.906868481713734,
       "stage": "draft",
       "status": "trained",
       "test_macro_f1": 0.33328312635421753,
       "test_metric_source": "missing_or_val_fallback",
       "validation_metric_source": "/workspace/_external/VCHarness/K562_cls/static/run/logs/csv_logs/version_0/metrics.csv:val/f1",
-      "value": 1.797660082578659,
-      "visits": 5,
-      "reward_variance": 0.0005793256761245369,
-      "reward_std": 0.024069185198600657,
-      "last_reward": 0.36384257674217224,
+      "value": 2.1805082261562347,
+      "visits": 6,
+      "reward_variance": 0.019072076831872065,
+      "reward_std": 0.13810169018470433,
+      "last_reward": 0.3828481435775757,
       "rollout_rewards": [
         0.33328312635421753,
         0.33328312635421753,
         0.39674413204193115,
         0.33328312635421753,
         0.3705071210861206,
-        0.36384257674217224
+        0.36384257674217224,
+        0.3828481435775757
       ],
       "q": 0.3595320165157318
     },
@@ -2619,15 +2619,15 @@
         "official_k562_p1_official_target_graph_conditioned_head_ab86336c",
         "official_k562_p2_official_public_best_node_0f24e30a"
       ],
-      "status": "requires_artifact_acquisition",
+      "status": "trained",
       "iteration": 13,
-      "visits": 4,
-      "value": 1.4643769562244415,
-      "Q_v": 1.4643769562244415,
-      "squared_value": 0.6492181383604967,
-      "mean_reward": 0.3595320165157318,
-      "Exploitation": 0.3595320165157318,
-      "stage": "blocked",
+      "visits": 2,
+      "value": 0.7656962871551514,
+      "Q_v": 0.7656962871551514,
+      "squared_value": 0.7957908394012927,
+      "mean_reward": 0.3828481435775757,
+      "Exploitation": 0.3828481435775757,
+      "stage": "improve",
       "best_reward": 0.39674413204193115,
       "external_script": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
       "artifact_usage": {
@@ -2672,15 +2672,16 @@
       "structural_signature": "ee058890b56f4c39eb7b601df40a245404b2d743",
       "parent_structural_signature": "c7e9d3077d31ba8ea89433a9362278a4f8cd0bc0",
       "structural_relation": "structural_variant",
-      "reward_variance": 0.0005803567722308944,
-      "reward_std": 0.024090595099143866,
-      "last_reward": 0.36384257674217224,
+      "reward_variance": 0.25132271865985034,
+      "reward_std": 0.501320973688365,
+      "last_reward": 0.3828481435775757,
       "rollout_rewards": [
         0.33328312635421753,
         0.39674413204193115,
         0.33328312635421753,
         0.3705071210861206,
-        0.36384257674217224
+        0.36384257674217224,
+        0.3828481435775757
       ],
       "invalid_smoke_backend": true,
       "invalid_reason": "generated official_class_imbalance_training inherited external_static_node from public static parent; class_distribution artifact is not present",
@@ -2690,18 +2691,31 @@
         "previous_execution_backend": "external_static_node",
         "invalidated_at": "2026-07-08T06:48:53.910764+00:00"
       },
-      "blocked_reason": "class_distribution artifact missing and strict mode forbids external static fallback for generated child",
-      "missing_required_artifacts": [
-        "class_distribution"
-      ],
-      "missing_required_artifact_paths": [
-        "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json"
-      ],
-      "missing_required_artifact_sources": [
-        "derive only from official train labels with documented split/provenance before retraining; not currently registered"
-      ],
+      "blocked_reason": "resolved_by_artifact_acquisition",
+      "missing_required_artifacts": [],
+      "missing_required_artifact_paths": [],
+      "missing_required_artifact_sources": [],
       "fallback_used": false,
-      "q": 0.3660942390561104
+      "q": 0.3660942390561104,
+      "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_p1_official_class_imbalance_training_fde536bb/metrics.json",
+      "best_val_macro_f1": 0.3828481435775757,
+      "test_macro_f1": 0.3993074893951416,
+      "duration_seconds": 11.775953531265259,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "official_class_imbalance_training",
+        "loss_type": "focal_loss",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "official_essential_deg_with_split_h5ad",
+          "class_distribution"
+        ],
+        "missing_required_artifacts": []
+      }
     },
     "official_k562_p1_official_target_graph_conditioned_head_ab86336c": {
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_p1_official_target_graph_conditioned_head_ab86336c.json",
@@ -2949,10 +2963,10 @@
         "regulatory_network_artifact"
       ],
       "missing_required_artifact_paths": [
-        ""
+        "data/artifacts/regulatory_network"
       ],
       "missing_required_artifact_sources": [
-        "definition/source required before acquisition; do not fabricate regulatory edges"
+        "No verified K562-aligned regulatory source configured; strict mode must block."
       ],
       "artifact_blocker_record": {
         "artifact_id": "regulatory_network_artifact",
@@ -3204,10 +3218,10 @@
         "regulatory_network_artifact"
       ],
       "missing_required_artifact_paths": [
-        ""
+        "data/artifacts/regulatory_network"
       ],
       "missing_required_artifact_sources": [
-        "definition/source required before acquisition; do not fabricate regulatory edges"
+        "No verified K562-aligned regulatory source configured; strict mode must block."
       ],
       "artifact_blocker_record": {
         "artifact_id": "regulatory_network_artifact",
@@ -3415,10 +3429,10 @@
         "regulatory_network_artifact"
       ],
       "missing_required_artifact_paths": [
-        ""
+        "data/artifacts/regulatory_network"
       ],
       "missing_required_artifact_sources": [
-        "definition/source required before acquisition; do not fabricate regulatory edges"
+        "No verified K562-aligned regulatory source configured; strict mode must block."
       ],
       "artifact_blocker_record": {
         "artifact_id": "regulatory_network_artifact",
@@ -3562,7 +3576,7 @@
         "data/artifacts/single_cell_foundation_model"
       ],
       "missing_required_artifact_sources": [
-        "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured"
+        "No verified scGPT/scFoundation K562 row-aligned artifact configured; strict mode must block."
       ],
       "fallback_used": false,
       "strict_no_fallback_blocked_at": "2026-07-08T06:46:37.137381+00:00",
@@ -3770,7 +3784,7 @@
         "data/artifacts/single_cell_foundation_model"
       ],
       "missing_required_artifact_sources": [
-        "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured"
+        "No verified scGPT/scFoundation K562 row-aligned artifact configured; strict mode must block."
       ],
       "fallback_used": false,
       "strict_no_fallback_blocked_at": "2026-07-08T06:46:37.137409+00:00",
@@ -3978,7 +3992,7 @@
         "data/artifacts/single_cell_foundation_model"
       ],
       "missing_required_artifact_sources": [
-        "definition/source required before acquisition; no verified official scGPT/scFoundation K562 artifact configured"
+        "No verified scGPT/scFoundation K562 row-aligned artifact configured; strict mode must block."
       ],
       "fallback_used": false,
       "strict_no_fallback_blocked_at": "2026-07-08T06:46:37.137412+00:00",

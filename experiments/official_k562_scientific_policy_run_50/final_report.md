@@ -10,7 +10,7 @@
 ## Search System
 
 - Experiment: `official_k562_scientific_policy_run_50`
-- Trained nodes: 27
+- Trained nodes: 28
 - Failed nodes: 0
 - Pending implementations: 0
 - Public static tree nodes cataloged: 154
@@ -93,6 +93,7 @@
 | `official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1` | `official_k562_root_aido_gnn_embedding_mlp` |  | official_string_neighborhood_attention | structural_variant | 0.3572 | 0.3912 |
 | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` | `official_k562_root_aido_embedding_mlp` |  | official_pathway_pooling_reactome | structural_variant | 0.4054 | 0.4254 |
 | `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` | `official_k562_root_aido_embedding_mlp` |  | official_aido_string_cross_attention | structural_variant | 0.4183 | 0.4355 |
+| `official_k562_p1_official_class_imbalance_training_fde536bb` | `official_k562_public_best_node2_1_1_1_1_1_smoke` |  | official_class_imbalance_training | structural_variant | 0.3828 | 0.3993 |
 | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | `official_k562_p1_official_class_imbalance_training_fde536bb` |  | official_target_graph_conditioned_head | structural_variant | 0.3967 | 0.4169 |
 | `official_k562_p2_official_public_best_node_0f24e30a` | `official_k562_p1_official_class_imbalance_training_fde536bb` | external_static_node | official_public_best_node | structural_variant | 0.3333 | 0.3333 |
 | `official_k562_p2_official_focal_loss_training_11ab1cb3` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_focal_loss_training | structural_variant | 0.3705 | 0.3804 |

@@ -75,3 +75,20 @@ See `AUTONOMOUS_AGENT_LOOP_UPGRADE.md`. The framework now includes `preflight`, 
 ## Codex Agent Cookbook
 
 Formal runs use the user-launched Codex window as the coding/research agent. The repo must not call Codex/OpenAI APIs internally. See `CODEX_AGENT_COOKBOOK.md` for what Codex may change, must not change, and when official-source search is required.
+
+## K562 Artifact Policy: Derived vs Blocked
+
+The official K562 strict search distinguishes deterministic derived artifacts from artifacts that require external provenance.
+
+### Automatically Derivable
+
+- `class_distribution`: derive with `scripts/build_k562_class_distribution.py` from `data/cell_lines/official_k562_cls/train.tsv` only. The resolver must not read validation or test labels to compute class weights. The artifact must record raw counts, training-label remap, recommended class weights, `split_used=train`, and `forbidden_splits=[val,test]`.
+- `pathway_memberships`: derive only through the configured Reactome/MSigDB source-backed resolver and exact official target-gene order.
+
+### Must Block Unless Source Is Configured
+
+- `regulatory_network_artifact`: block unless a real public/approved TF-target or regulatory network source, version, filtering rule, checksum, and K562 target-gene alignment are recorded. Do not substitute STRING/PPI or pathway memberships and call it regulatory.
+- `single_cell_foundation_model_artifact`: block unless a real scGPT/scFoundation/single-cell foundation checkpoint or row-aligned embedding artifact is configured with preprocessing, vocabulary, source, and coverage. Do not train a small expression fallback in strict mode.
+
+If an artifact is listed as blocked, the correct action is to generate/complete an acquisition task, not to implement or train a fallback node.
+

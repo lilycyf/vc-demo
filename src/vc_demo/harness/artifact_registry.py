@@ -67,6 +67,30 @@ def _pathway_membership_summary(path: Path) -> dict[str, Any]:
     except Exception as exc:
         return {"pathway_membership_read_error": str(exc)}
 
+
+
+def _class_distribution_summary(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        payload = read_json(path)
+    except Exception as exc:
+        return {"class_distribution_read_error": str(exc)}
+    return {
+        "artifact_name": "K562 train-only class distribution",
+        "artifact_family": "class_distribution",
+        "class_distribution_format": payload.get("format"),
+        "split_used_actual": payload.get("split_used"),
+        "forbidden_splits_actual": payload.get("forbidden_splits", []),
+        "n_train_rows_actual": payload.get("n_train_rows"),
+        "n_targets_actual": payload.get("n_targets"),
+        "raw_label_counts_actual": payload.get("raw_label_counts", {}),
+        "training_label_counts_actual": payload.get("training_label_counts", {}),
+        "has_recommended_weights": bool(payload.get("recommended", {}).get("weighted_cross_entropy_class_weights_training_order")),
+        "manifest_train_counts_match": payload.get("manifest_train_counts_match"),
+        "provenance_actual": payload.get("provenance"),
+    }
+
 def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
     audited: list[dict[str, Any]] = []
     for artifact in registry.get("artifacts", []):
@@ -84,6 +108,23 @@ def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
                 row["present"] = False
                 row["resolved_status"] = "shape_mismatch"
                 row["shape_issue"] = f"expected {expected} target genes, found {actual}"
+        if row.get("family") == "class_distribution":
+            row.update(_class_distribution_summary(path))
+            if row.get("present"):
+                issues = []
+                if row.get("split_used_actual") != "train":
+                    issues.append("split_used must be train")
+                if not row.get("manifest_train_counts_match"):
+                    issues.append("derived counts do not match official manifest train counts")
+                if not row.get("has_recommended_weights"):
+                    issues.append("missing recommended train-only class weights")
+                forbidden = set(row.get("forbidden_splits_actual") or [])
+                if not {"val", "test"}.issubset(forbidden):
+                    issues.append("artifact must explicitly forbid val/test label use")
+                if issues:
+                    row["present"] = False
+                    row["resolved_status"] = "invalid_class_distribution"
+                    row["class_distribution_issue"] = "; ".join(issues)
         audited.append(row)
     return {
         "registry_version": registry.get("registry_version"),

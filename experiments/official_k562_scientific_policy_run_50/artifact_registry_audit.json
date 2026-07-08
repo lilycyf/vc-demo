@@ -1,5 +1,6 @@
 {
   "registry_version": "vc_demo_artifact_registry.v1",
+  "registry_path": "configs/artifacts/k562_registry.json",
   "cell_line": "K562",
   "artifacts": [
     {
@@ -18,7 +19,9 @@
         "esm2_gene_projection",
         "target_gene_embedding_bilinear"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "esm2_k562_target_manifest",
@@ -35,7 +38,15 @@
         "cross_attention_gene_perturbation",
         "target_gene_embedding_bilinear"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present",
+      "artifact_name": "ESM2_D1280",
+      "artifact_family": "gene_embedding",
+      "target_gene_coverage": 0.921,
+      "n_target_genes": 1000,
+      "target_embedding_dim": 1280,
+      "missing_target_genes_count": 79
     },
     {
       "id": "aido_gene_or_cell_embeddings",
@@ -52,7 +63,9 @@
       "required_for_blueprints": [
         "aido_embedding_fusion"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
     },
     {
       "id": "scfoundation_cell_embeddings",
@@ -68,7 +81,9 @@
       "required_for_blueprints": [
         "scfoundation_cell_encoder"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
     },
     {
       "id": "string_k562_gene_graph",
@@ -100,7 +115,9 @@
       "node_count": 1054,
       "perturbation_gene_graph_coverage": 0.9047619047619048,
       "target_gene_graph_coverage": 0.966,
-      "summary_path": "experiments/k562_string_graph_artifact_summary.json"
+      "summary_path": "experiments/k562_string_graph_artifact_summary.json",
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "pathway_memberships",
@@ -141,7 +158,19 @@
       "target_gene_source": "data/cell_lines/official_k562_cls/target_genes.tsv",
       "artifact_sha256": "1f322d4e9f656f0f6305ed3cefe3d525562945bfdcb193ce88d3fba5b7a7a929",
       "artifact_bytes": 491721,
-      "n_target_genes": 6640
+      "n_target_genes": 6640,
+      "present": true,
+      "resolved_status": "present",
+      "artifact_name": "Reactome K562 pathway memberships",
+      "artifact_family": "pathway_prior",
+      "membership_shape_actual": [
+        6640,
+        2034
+      ],
+      "n_target_genes_actual": 6640,
+      "n_pathways_actual": 2034,
+      "target_gene_coverage_actual": 0.6692771084337349,
+      "covered_target_gene_count_actual": 4444
     },
     {
       "id": "official_essential_deg_with_split_h5ad",
@@ -163,7 +192,9 @@
         "official_target_gene_head",
         "official_native_public_best_reimplementation"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "official_k562_aido_cell_100m_embedding_h5ad",
@@ -179,7 +210,9 @@
       "required_for_blueprints": [
         "official_k562_aido_embedding_mlp"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "official_string_gnn_keep20_graph",
@@ -197,7 +230,9 @@
         "official_string_gnn_attention",
         "official_native_public_best_reimplementation"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "official_aido_cell_100m_model_dir",
@@ -216,7 +251,9 @@
         "official_public_best_node",
         "official_native_public_best_reimplementation"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "official_string_gnn_model_dir",
@@ -235,7 +272,9 @@
         "official_string_gnn_attention",
         "official_native_public_best_reimplementation"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "official_gnn_simple_embedding_h5ad",
@@ -251,7 +290,9 @@
       "required_for_blueprints": [
         "official_k562_aido_gnn_embedding_mlp"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "official_public_best_node_code",
@@ -266,7 +307,9 @@
       "required_for_blueprints": [
         "official_public_best_node"
       ],
-      "do_not_fabricate": true
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
     },
     {
       "id": "class_distribution",
@@ -319,7 +362,32 @@
       "n_label_values": 3,
       "artifact_sha256": "450fb9099181279f01917626a5394030898469c3c63a298abe1e60c779742bb4",
       "artifact_bytes": 2381,
-      "summary_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json"
+      "summary_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+      "present": true,
+      "resolved_status": "present",
+      "artifact_name": "K562 train-only class distribution",
+      "artifact_family": "class_distribution",
+      "class_distribution_format": "vc_demo.class_distribution.v1",
+      "split_used_actual": "train",
+      "forbidden_splits_actual": [
+        "val",
+        "test"
+      ],
+      "n_train_rows_actual": 1388,
+      "n_targets_actual": 6640,
+      "raw_label_counts_actual": {
+        "-1": 405816,
+        "0": 8510952,
+        "1": 299552
+      },
+      "training_label_counts_actual": {
+        "0": 405816,
+        "1": 8510952,
+        "2": 299552
+      },
+      "has_recommended_weights": true,
+      "manifest_train_counts_match": true,
+      "provenance_actual": "derived_from_official_train_split_labels_only"
     },
     {
       "id": "regulatory_network_artifact",
@@ -336,7 +404,9 @@
         "official_regulatory_network_prior"
       ],
       "do_not_fabricate": true,
-      "fallback_allowed": false
+      "fallback_allowed": false,
+      "present": false,
+      "resolved_status": "missing"
     },
     {
       "id": "single_cell_foundation_model_artifact",
@@ -353,7 +423,29 @@
         "official_scgpt_cell_encoder"
       ],
       "do_not_fabricate": true,
-      "fallback_allowed": false
+      "fallback_allowed": false,
+      "present": false,
+      "resolved_status": "missing"
     }
+  ],
+  "present_artifacts": [
+    "esm2_gene_embedding_h5ad",
+    "esm2_k562_target_manifest",
+    "string_k562_gene_graph",
+    "pathway_memberships",
+    "official_essential_deg_with_split_h5ad",
+    "official_k562_aido_cell_100m_embedding_h5ad",
+    "official_string_gnn_keep20_graph",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_gnn_simple_embedding_h5ad",
+    "official_public_best_node_code",
+    "class_distribution"
+  ],
+  "missing_artifacts": [
+    "aido_gene_or_cell_embeddings",
+    "scfoundation_cell_embeddings",
+    "regulatory_network_artifact",
+    "single_cell_foundation_model_artifact"
   ]
 }

@@ -10,7 +10,7 @@
     ]
   },
   "search_scale_gap": {
-    "trained_nodes": 27,
+    "trained_nodes": 28,
     "paper_scale_target_nodes": 600,
     "estimated_candidate_count": 94500
   },

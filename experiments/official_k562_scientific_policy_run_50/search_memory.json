@@ -1,7 +1,7 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-08T05:24:51.440210+00:00",
-  "updated_at": "2026-07-08T06:50:29.695579+00:00",
+  "updated_at": "2026-07-08T07:05:50.096389+00:00",
   "events": [],
   "blueprint_counts": {
     "official_aido_lora_adapter": 1,
@@ -267,6 +267,15 @@
       "parent": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c"
     },
     {
+      "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "structural_relation": "structural_variant",
+      "val": 0.3828481435775757,
+      "test": 0.3993074893951416,
+      "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke"
+    },
+    {
       "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287",
       "strategy": "official_aido_full_finetune",
       "family": "AIDO_full_finetune",
@@ -342,14 +351,6 @@
   "failures": [],
   "blocked_artifacts": [
     {
-      "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
-      "strategy": "official_class_imbalance_training",
-      "family": "official_deg_imbalance",
-      "missing": [
-        "class_distribution"
-      ]
-    },
-    {
       "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
       "strategy": "official_regulatory_network_prior",
       "family": "regulatory_network_prior",
@@ -413,8 +414,7 @@
     ],
     "discouraged": [
       "official_regulatory_network_prior: blocked by missing artifact 3 time(s)",
-      "official_scgpt_cell_encoder: blocked by missing artifact 3 time(s)",
-      "official_class_imbalance_training: blocked by missing artifact 1 time(s)"
+      "official_scgpt_cell_encoder: blocked by missing artifact 3 time(s)"
     ]
   }
 }

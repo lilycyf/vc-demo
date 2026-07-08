@@ -189,6 +189,58 @@
       "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/GNN_Simple_Official_(D=256).h5ad --output data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
       "can_execute_automatically": true,
       "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "class_distribution",
+      "resolver": "derive_from_official_train_labels",
+      "expected_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+      "source": "Derived deterministically from data/cell_lines/official_k562_cls/train.tsv labels only; val/test labels are forbidden.",
+      "can_execute_automatically": true,
+      "research_questions": [
+        "Do class counts match official K562 manifest label_counts_by_split.train?",
+        "Are val/test labels excluded from all weight derivation?",
+        "Which class-weight formula is recorded for weighted CE/focal alpha?"
+      ],
+      "required_outputs": [
+        "train-only class_distribution.json",
+        "registry metadata with split_used=train and forbidden_splits=[val,test]",
+        "artifact audit row marked present only if provenance and weights validate"
+      ],
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "regulatory_network_artifact",
+      "resolver": "source_definition_required_before_acquisition",
+      "expected_path": "data/artifacts/regulatory_network",
+      "source": "No verified K562-aligned regulatory network source is configured. Do not fabricate TF-target edges or substitute STRING/pathway edges.",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Which public TF-target/regulatory network source is acceptable for K562 target genes?",
+        "What version, license, confidence threshold, and gene identifier mapping are used?",
+        "How is coverage over the exact 6,640 target-gene order audited?"
+      ],
+      "required_outputs": [
+        "source-backed regulatory edge/prior artifact",
+        "coverage and checksum summary",
+        "registry update, or explicit blocker if no valid source exists"
+      ]
+    },
+    {
+      "id": "single_cell_foundation_model_artifact",
+      "resolver": "source_definition_required_before_acquisition",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "source": "No verified scGPT/scFoundation K562 row-aligned model output is configured. Do not train fallback expression encoders in strict mode.",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Which specific single-cell foundation model/checkpoint is intended?",
+        "Is there a public checkpoint and preprocessing recipe compatible with official K562 rows?",
+        "Can embeddings be generated reproducibly for train/val/test without using labels?"
+      ],
+      "required_outputs": [
+        "checkpoint or row-aligned embeddings",
+        "preprocessing/vocabulary/coverage summary",
+        "registry update, or explicit blocker if no valid source exists"
+      ]
     }
   ]
 }
