@@ -1,0 +1,38 @@
+{
+  "artifact_id": "class_distribution",
+  "status": "present_derived_from_official_train_split",
+  "source": {
+    "name": "genbio-ai/foundation-models-perturbation essential/essential_deg_with_split.h5ad",
+    "url": "https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation",
+    "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+    "sha256": "8dc810bfd053e3671523a5816c8c5807e990a14b609b486f092a8e31aa522bbf",
+    "bytes": 54536850
+  },
+  "split_used": "train only",
+  "label_values_raw": [
+    -1,
+    0,
+    1
+  ],
+  "label_remap_for_training": {
+    "-1": 0,
+    "0": 1,
+    "1": 2
+  },
+  "train_label_counts_raw": {
+    "-1": 405816,
+    "0": 8510952,
+    "1": 299552
+  },
+  "train_class_frequency_raw_labels": {
+    "-1": 0.044032325266483804,
+    "0": 0.9234653310648936,
+    "1": 0.03250234366862262
+  },
+  "class_weights_used_by_configs": [
+    2.37,
+    0.51,
+    2.75
+  ],
+  "provenance": "data/cell_lines/official_k562_cls/manifest.json derived from official essential_deg_with_split.h5ad; no test-label tuning"
+}

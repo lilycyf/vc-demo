@@ -1,54 +1,57 @@
 {
-  "created_at": "2026-07-08T05:58:54.211040+00:00",
+  "created_at": "2026-07-08T06:25:22.771452+00:00",
   "queue": "experiments/official_k562_scientific_policy_run_50/acquisition_queue.json",
   "registry": "configs/artifacts/k562_registry.json",
   "sources": "configs/artifacts/acquisition_sources.json",
   "execute_known": true,
   "items": [
     {
-      "artifact_id": "pathway_memberships",
-      "node": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
-      "strategy": "official_pathway_pooling_reactome",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "resolver": "build_from_official_reactome_gmt",
-      "can_execute_automatically": true,
+      "artifact_id": "regulatory_network_artifact",
+      "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+      "strategy": "official_regulatory_network_prior",
+      "expected_path": ".",
+      "resolver": "unconfigured",
+      "can_execute_automatically": false,
       "file_exists_before": true,
-      "present_before": true,
-      "audited_status_before": "present",
+      "present_before": false,
+      "audited_status_before": null,
       "audit_issue_before": null,
-      "action": "verified_existing_file",
-      "present_after": true,
-      "status": "already_present"
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition/ACQUIRE_regulatory_network_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
     },
     {
-      "artifact_id": "pathway_memberships",
-      "node": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
-      "strategy": "official_pathway_pooling_reactome",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "resolver": "build_from_official_reactome_gmt",
-      "can_execute_automatically": true,
+      "artifact_id": "regulatory_network_artifact",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+      "strategy": "official_regulatory_network_prior",
+      "expected_path": ".",
+      "resolver": "unconfigured",
+      "can_execute_automatically": false,
       "file_exists_before": true,
-      "present_before": true,
-      "audited_status_before": "present",
+      "present_before": false,
+      "audited_status_before": null,
       "audit_issue_before": null,
-      "action": "verified_existing_file",
-      "present_after": true,
-      "status": "already_present"
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition/ACQUIRE_regulatory_network_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
     },
     {
-      "artifact_id": "pathway_memberships",
-      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
-      "strategy": "official_pathway_pooling_reactome",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "resolver": "build_from_official_reactome_gmt",
-      "can_execute_automatically": true,
+      "artifact_id": "regulatory_network_artifact",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+      "strategy": "official_regulatory_network_prior",
+      "expected_path": ".",
+      "resolver": "unconfigured",
+      "can_execute_automatically": false,
       "file_exists_before": true,
-      "present_before": true,
-      "audited_status_before": "present",
+      "present_before": false,
+      "audited_status_before": null,
       "audit_issue_before": null,
-      "action": "verified_existing_file",
-      "present_after": true,
-      "status": "already_present"
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/official_k562_scientific_policy_run_50/artifact_acquisition/ACQUIRE_regulatory_network_artifact.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
     }
   ],
   "registry_audit_after": {
@@ -385,39 +388,49 @@
   },
   "unblock_result": {
     "run_dir": "experiments/official_k562_scientific_policy_run_50",
-    "updated": 3,
-    "unblocked": [
+    "updated": 0,
+    "unblocked": [],
+    "still_blocked": [
       {
-        "node": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
-        "status": "needs_implementation",
+        "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+        "missing_required_artifacts": [
+          "regulatory_network_artifact"
+        ],
         "artifact_contract": {
-          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/artifact_contract.json",
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_regulatory_network_prior_144a8b54/artifact_contract.json",
           "updated": true,
-          "missing_required_artifacts": []
+          "missing_required_artifacts": [
+            "regulatory_network_artifact"
+          ]
         }
       },
       {
-        "node": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
-        "status": "needs_implementation",
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+        "missing_required_artifacts": [
+          "regulatory_network_artifact"
+        ],
         "artifact_contract": {
-          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/artifact_contract.json",
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373/artifact_contract.json",
           "updated": true,
-          "missing_required_artifacts": []
+          "missing_required_artifacts": [
+            "regulatory_network_artifact"
+          ]
         }
       },
       {
-        "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
-        "status": "needs_implementation",
+        "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+        "missing_required_artifacts": [
+          "regulatory_network_artifact"
+        ],
         "artifact_contract": {
-          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/artifact_contract.json",
+          "path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788/artifact_contract.json",
           "updated": true,
-          "missing_required_artifacts": []
+          "missing_required_artifacts": [
+            "regulatory_network_artifact"
+          ]
         }
       }
-    ],
-    "still_blocked": [],
-    "final_implementation_queue_count": 11,
-    "final_acquisition_queue_count": 0
+    ]
   },
   "next_action": "resume strict search if all queued artifacts are present; otherwise complete generated Codex acquisition tasks"
 }

@@ -1,0 +1,66 @@
+{
+  "status_counts": {
+    "trained": 23,
+    "requires_artifact_acquisition": 3,
+    "needs_implementation": 8
+  },
+  "implementation_queue_items": 8,
+  "acquisition_queue_items": 3,
+  "acquisition_artifacts": [
+    "regulatory_network_artifact"
+  ],
+  "pending_nodes": [
+    "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e",
+    "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec",
+    "official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a",
+    "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751",
+    "official_k562_native_p3_official_scgpt_cell_encoder_3e5cbefd",
+    "official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6",
+    "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9",
+    "official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_d5b2bbc0"
+  ],
+  "best_root": "official_k562_native_public_best_reimplementation",
+  "best_root_val": 0.46794524788856506,
+  "best_root_test": 0.5256422758102417,
+  "best_overall": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+  "best_overall_val": 0.4884769916534424,
+  "best_overall_test": 0.518327534198761,
+  "round_pending_handled": {
+    "implemented": 5,
+    "blocked": 3,
+    "failed": 0
+  },
+  "round_newly_implemented_metrics": {
+    "official_k562_p1_official_target_graph_conditioned_head_ab86336c": {
+      "status": "trained",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "strategy": "official_target_graph_conditioned_head"
+    },
+    "official_k562_p2_official_focal_loss_training_11ab1cb3": {
+      "status": "trained",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "strategy": "official_focal_loss_training"
+    },
+    "official_k562_p3_official_aido_full_finetune_337e49b9": {
+      "status": "trained",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "strategy": "official_aido_full_finetune"
+    },
+    "official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87": {
+      "status": "trained",
+      "val": 0.37847331166267395,
+      "test": 0.4161146581172943,
+      "strategy": "official_focal_loss_training"
+    },
+    "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287": {
+      "status": "trained",
+      "val": 0.38253554701805115,
+      "test": 0.42000317573547363,
+      "strategy": "official_aido_full_finetune"
+    }
+  },
+  "fallback_used": false
+}

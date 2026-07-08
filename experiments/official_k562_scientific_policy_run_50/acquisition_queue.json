@@ -1,3 +1,31 @@
 {
-  "items": []
+  "items": [
+    {
+      "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+      "strategy": "official_regulatory_network_prior",
+      "artifact_id": "regulatory_network_artifact",
+      "expected_path": "",
+      "source": "definition/source required before acquisition; do not fabricate regulatory edges",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+      "strategy": "official_regulatory_network_prior",
+      "artifact_id": "regulatory_network_artifact",
+      "expected_path": "",
+      "source": "definition/source required before acquisition; do not fabricate regulatory edges",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+      "strategy": "official_regulatory_network_prior",
+      "artifact_id": "regulatory_network_artifact",
+      "expected_path": "",
+      "source": "definition/source required before acquisition; do not fabricate regulatory edges",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    }
+  ]
 }

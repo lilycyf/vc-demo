@@ -11,7 +11,12 @@
     "official_string_gnn_keep20_graph",
     "official_essential_deg_with_split_h5ad"
   ],
-  "artifact_usage_claims": [],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_string_gnn_keep20_graph",
+      "usage": "target graph conditioned head prior from real STRING keep20 graph"
+    }
+  ],
   "patches": {},
   "guardrails": {
     "preserve_splits": true,

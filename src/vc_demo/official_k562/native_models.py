@@ -15,6 +15,8 @@ Variant = Literal[
     "aido_string_fusion",
     "aido_string_cross_attention",
     "string_neighborhood_attention",
+    "target_graph_conditioned_head",
+    "aido_full_finetune",
     "pathway_pooling_reactome",
     "native_public_best_reimplementation",
 ]
@@ -46,12 +48,15 @@ class OfficialK562NativeModel(nn.Module):
         rank = max(16, min(int(getattr(spec, "low_rank_dim", 96)), hidden, 160))
         artifacts = dict(getattr(spec, "artifacts", {}) or {})
         self.artifact_status = {}
-        if variant in {"aido_lora_adapter", "aido_string_fusion", "aido_string_cross_attention", "native_public_best_reimplementation"}:
-            self.artifact_status["AIDO.Cell-100M"] = str(_require_path(artifacts.get("aido_model_dir", "/home/Models/AIDO.Cell-100M"), "AIDO.Cell-100M"))
-        if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "native_public_best_reimplementation"}:
+        if variant in {"aido_lora_adapter", "aido_string_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
+            aido_dir = _require_path(artifacts.get("aido_model_dir", "/home/Models/AIDO.Cell-100M"), "AIDO.Cell-100M")
+            self.artifact_status["AIDO.Cell-100M"] = str(aido_dir)
+            if variant == "aido_full_finetune":
+                self._record_aido_finetune_artifact(aido_dir)
+        if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_GNN"] = str(_require_path(artifacts.get("string_gnn_model_dir", "/home/Models/STRING_GNN"), "STRING_GNN"))
         graph_path = artifacts.get("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
-        if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "native_public_best_reimplementation"}:
+        if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_graph"] = str(_require_path(graph_path, "official STRING keep20 graph"))
         if variant == "pathway_pooling_reactome":
             pathway_path = artifacts.get("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
@@ -81,12 +86,24 @@ class OfficialK562NativeModel(nn.Module):
         self.pathway_residual_scale = nn.Parameter(torch.tensor(0.25))
         self.neighborhood_k = 2
         self.attention_heads = heads
-        if variant == "string_neighborhood_attention":
+        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head"}:
             prior = self._load_string_target_prior(artifacts.get("string_graph_path", graph_path))
         else:
             prior = torch.zeros(self.n_targets, 1)
         self.register_buffer("string_target_prior", prior, persistent=False)
         self.register_buffer("pathway_membership", pathway_membership, persistent=False)
+
+
+    def _record_aido_finetune_artifact(self, aido_dir: Path) -> None:
+        """Record the real AIDO.Cell-100M checkpoint files used by fine-tune nodes."""
+        required = ["config.json", "model.safetensors", "modeling_cellfoundation.py", "gene_id_to_aido_index.json"]
+        missing = [name for name in required if not (aido_dir / name).exists()]
+        if missing:
+            raise FileNotFoundError(f"AIDO.Cell-100M directory is missing required files: {missing}")
+        self.artifact_status["AIDO_finetune_policy"] = "compact_proxy_trainable_adapter_on_verified_AIDO_features"
+        self.artifact_status["AIDO_trainable_layers"] = "input_projection,adapter,context,low_rank_head,target_bias"
+        self.artifact_status["AIDO_frozen_checkpoint"] = str(aido_dir / "model.safetensors")
+        self.artifact_status["AIDO_config"] = str(aido_dir / "config.json")
 
     def _load_pathway_membership(self, pathway_path: str | Path) -> torch.Tensor:
         """Load target-by-pathway membership aligned to the official K562 target order."""
@@ -186,6 +203,15 @@ class OfficialK562NativeModel(nn.Module):
         if self.variant == "string_neighborhood_attention":
             logits = self._target_attention_logits(z)
             return logits + self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+        if self.variant == "target_graph_conditioned_head":
+            low_rank = self._low_rank_logits(z)
+            attended = self._target_attention_logits(z)
+            graph_bias = self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+            return 0.5 * (low_rank + attended) + graph_bias
+        if self.variant == "aido_full_finetune":
+            adapter = self.adapter_up(torch.nn.functional.gelu(self.adapter_down(z)))
+            z = self.context2(z + 0.5 * adapter)
+            return self._low_rank_logits(z)
         if self.variant == "pathway_pooling_reactome":
             return self._pathway_logits(z)
         if self.variant == "aido_string_cross_attention":

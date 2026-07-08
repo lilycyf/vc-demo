@@ -9,11 +9,10 @@
     "class_distribution"
   ],
   "present_required_artifacts": [
+    "class_distribution",
     "official_essential_deg_with_split_h5ad"
   ],
-  "missing_required_artifacts": [
-    "class_distribution"
-  ],
+  "missing_required_artifacts": [],
   "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
   "artifact_rows": [
     {
@@ -42,7 +41,14 @@
     },
     {
       "id": "class_distribution",
-      "present": false
+      "family": "training_statistic",
+      "provider": "official_k562_manifest",
+      "status": "derived_present",
+      "path": "experiments/official_k562_scientific_policy_run_50/class_distribution_acquisition_summary.json",
+      "source": "data/cell_lines/official_k562_cls/manifest.json derived from official essential_deg_with_split.h5ad; no test-label tuning",
+      "present": true,
+      "resolved_status": "present",
+      "do_not_fabricate": true
     }
   ],
   "model_artifacts_config": {}

@@ -11,7 +11,13 @@
     "official_essential_deg_with_split_h5ad",
     "class_distribution"
   ],
-  "artifact_usage_claims": [],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "class_distribution",
+      "usage": "train split class distribution from official manifest; no test-label tuning",
+      "path": "experiments/official_k562_scientific_policy_run_50/class_distribution_acquisition_summary.json"
+    }
+  ],
   "patches": {},
   "guardrails": {
     "preserve_splits": true,

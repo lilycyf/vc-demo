@@ -10,17 +10,17 @@
 ## Search System
 
 - Experiment: `official_k562_scientific_policy_run_50`
-- Trained nodes: 18
+- Trained nodes: 23
 - Failed nodes: 0
 - Pending implementations: 8
 - Public static tree nodes cataloged: 154
 - Public best path scaffold: `node2-1-1-1-1-1`
 - Paper-scale estimated candidate count: 94500
 - Paper-scale 600+ manifest target reached: true
-- MCTS trace events: 66
+- MCTS trace events: 90
 - MCTS policy: uct
 - Search policy: scientific family/structure priority first; artifact status is a feasibility gate, not a ranking objective
-- Blueprint families covered: 13
+- Blueprint families covered: 16
 - Structural replicate nodes: 0
 - Strict artifact rule: missing official artifacts must acquire/block, not fallback
 
@@ -50,7 +50,9 @@
 | AIDO_STRING_cross_attention | 3 |
 | AIDO_STRING_fusion | 1 |
 | AIDO_adapter | 1 |
+| AIDO_cached_embedding | 3 |
 | AIDO_full_finetune | 2 |
+| AIDO_selective_finetune | 2 |
 | Reactome_pathway_pooling | 3 |
 | STRING_GNN_attention | 1 |
 | STRING_neighborhood_attention | 2 |
@@ -58,6 +60,7 @@
 | official_deg_imbalance | 1 |
 | public_vcharness_best_path | 1 |
 | regulatory_network_prior | 3 |
+| scGPT_or_single_cell_encoder | 3 |
 | target_gene_aware_head | 1 |
 | target_graph_conditioned_head | 1 |
 
@@ -66,9 +69,9 @@
 | Event | Count |
 |---|---:|
 | backpropagation | 6 |
-| expansion | 22 |
-| pending_implementation | 16 |
-| selection | 22 |
+| expansion | 30 |
+| pending_implementation | 24 |
+| selection | 30 |
 
 ## Results
 
@@ -91,7 +94,12 @@
 | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` | `official_k562_root_aido_embedding_mlp` |  | official_pathway_pooling_reactome | structural_variant | 0.4054 | 0.4254 |
 | `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` | `official_k562_root_aido_embedding_mlp` |  | official_aido_string_cross_attention | structural_variant | 0.4183 | 0.4355 |
 | `official_k562_p1_official_class_imbalance_training_fde536bb` | `official_k562_public_best_node2_1_1_1_1_1_smoke` | external_static_node | official_class_imbalance_training | structural_variant | 0.3333 | 0.3333 |
+| `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | `official_k562_p1_official_class_imbalance_training_fde536bb` |  | official_target_graph_conditioned_head | structural_variant | 0.3333 | 0.3333 |
 | `official_k562_p2_official_public_best_node_0f24e30a` | `official_k562_p1_official_class_imbalance_training_fde536bb` | external_static_node | official_public_best_node | structural_variant | 0.3333 | 0.3333 |
+| `official_k562_p2_official_focal_loss_training_11ab1cb3` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_focal_loss_training | structural_variant | 0.3333 | 0.3333 |
+| `official_k562_p3_official_aido_full_finetune_337e49b9` | `official_k562_p2_official_public_best_node_0f24e30a` |  | official_aido_full_finetune | structural_variant | 0.3333 | 0.3333 |
+| `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15` |  | official_focal_loss_training | structural_variant | 0.3785 | 0.4161 |
+| `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` | `official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15` |  | official_aido_full_finetune | structural_variant | 0.3825 | 0.4200 |
 
 ## Best Node
 

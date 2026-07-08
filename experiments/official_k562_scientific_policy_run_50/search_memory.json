@@ -1,7 +1,7 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-08T05:24:51.440210+00:00",
-  "updated_at": "2026-07-08T06:10:41.481171+00:00",
+  "updated_at": "2026-07-08T06:24:36.087026+00:00",
   "events": [],
   "blueprint_counts": {
     "official_aido_lora_adapter": 1,
@@ -16,7 +16,10 @@
     "official_public_best_node": 1,
     "official_regulatory_network_prior": 3,
     "official_focal_loss_training": 2,
-    "official_aido_full_finetune": 2
+    "official_aido_full_finetune": 2,
+    "official_aido_cached_embedding_fusion": 3,
+    "official_scgpt_cell_encoder": 3,
+    "official_aido_topk_layer_tuning": 2
   },
   "parent_blueprints": {
     "official_k562_native_p1_official_string_gnn_attention_7ec267ae": [
@@ -63,7 +66,19 @@
       "official_regulatory_network_prior"
     ],
     "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500": [
-      "official_regulatory_network_prior"
+      "official_aido_cached_embedding_fusion",
+      "official_regulatory_network_prior",
+      "official_scgpt_cell_encoder"
+    ],
+    "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_topk_layer_tuning",
+      "official_scgpt_cell_encoder"
+    ],
+    "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_topk_layer_tuning",
+      "official_scgpt_cell_encoder"
     ]
   },
   "family_counts": {
@@ -79,7 +94,10 @@
     "public_vcharness_best_path": 1,
     "regulatory_network_prior": 3,
     "focal_loss": 2,
-    "AIDO_full_finetune": 2
+    "AIDO_full_finetune": 2,
+    "AIDO_cached_embedding": 3,
+    "scGPT_or_single_cell_encoder": 3,
+    "AIDO_selective_finetune": 2
   },
   "structural_signature_counts": {
     "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 1,
@@ -103,7 +121,13 @@
     "7286a8ec450a072241a5a676a2745e827e7a744d": 1,
     "aee58de49b793bed52c054fdd1fac10e2710bdad": 1,
     "88ecff675fd1c303a9151e2d11c787bd53c01c5a": 1,
-    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "065e6b1a7db28cb8c44066ee514801d6f35ba019": 2,
+    "46a894101f34f9e930d429a37e2510d1ca670fcb": 2,
+    "90062101037e1a7dac7f267d9f69d298e6f45c94": 1,
+    "8701982227d6d34b2484821cdb662ed1bfecafe6": 1,
+    "a21bee8308c3a0d3fd240c1bab332aeac3d9e608": 1,
+    "7493f0c5e07716204f23b50e21d7899661d8bc42": 1
   },
   "replicate_nodes": [],
   "successes": [
@@ -189,6 +213,24 @@
       "parent": "official_k562_root_aido_gnn_embedding_mlp"
     },
     {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287",
+      "strategy": "official_aido_full_finetune",
+      "family": "AIDO_full_finetune",
+      "structural_relation": "structural_variant",
+      "val": 0.38253554701805115,
+      "test": 0.42000317573547363,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87",
+      "strategy": "official_focal_loss_training",
+      "family": "focal_loss",
+      "structural_relation": "structural_variant",
+      "val": 0.37847331166267395,
+      "test": 0.4161146581172943,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15"
+    },
+    {
       "node": "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
       "strategy": "official_aido_string_cross_attention",
       "family": "AIDO_STRING_cross_attention",
@@ -225,6 +267,15 @@
       "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke"
     },
     {
+      "node": "official_k562_p1_official_target_graph_conditioned_head_ab86336c",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "parent": "official_k562_p1_official_class_imbalance_training_fde536bb"
+    },
+    {
       "node": "official_k562_p2_official_public_best_node_0f24e30a",
       "strategy": "official_public_best_node",
       "family": "public_vcharness_best_path",
@@ -232,10 +283,53 @@
       "val": 0.33328312635421753,
       "test": 0.33328312635421753,
       "parent": "official_k562_p1_official_class_imbalance_training_fde536bb"
+    },
+    {
+      "node": "official_k562_p2_official_focal_loss_training_11ab1cb3",
+      "strategy": "official_focal_loss_training",
+      "family": "focal_loss",
+      "structural_relation": "structural_variant",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "parent": "official_k562_p2_official_public_best_node_0f24e30a"
+    },
+    {
+      "node": "official_k562_p3_official_aido_full_finetune_337e49b9",
+      "strategy": "official_aido_full_finetune",
+      "family": "AIDO_full_finetune",
+      "structural_relation": "structural_variant",
+      "val": 0.33328312635421753,
+      "test": 0.33328312635421753,
+      "parent": "official_k562_p2_official_public_best_node_0f24e30a"
     }
   ],
   "failures": [],
-  "blocked_artifacts": [],
+  "blocked_artifacts": [
+    {
+      "node": "official_k562_p1_official_regulatory_network_prior_144a8b54",
+      "strategy": "official_regulatory_network_prior",
+      "family": "regulatory_network_prior",
+      "missing": [
+        "regulatory_network_artifact"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373",
+      "strategy": "official_regulatory_network_prior",
+      "family": "regulatory_network_prior",
+      "missing": [
+        "regulatory_network_artifact"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788",
+      "strategy": "official_regulatory_network_prior",
+      "family": "regulatory_network_prior",
+      "missing": [
+        "regulatory_network_artifact"
+      ]
+    }
+  ],
   "motifs": {
     "promising": [
       "official_aido_lora_adapter: unspecified + unspecified val=0.4741",
@@ -249,6 +343,8 @@
       "official_aido_string_cross_attention: unspecified + unspecified val=0.4183",
       "official_pathway_pooling_reactome: unspecified + unspecified val=0.3979"
     ],
-    "discouraged": []
+    "discouraged": [
+      "official_regulatory_network_prior: blocked by missing artifact 3 time(s)"
+    ]
   }
 }

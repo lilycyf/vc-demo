@@ -11,7 +11,12 @@
     "official_aido_cell_100m_model_dir",
     "official_essential_deg_with_split_h5ad"
   ],
-  "artifact_usage_claims": [],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_aido_cell_100m_model_dir",
+      "usage": "verified AIDO.Cell-100M checkpoint directory with compact trainable adapter/head policy"
+    }
+  ],
   "patches": {},
   "guardrails": {
     "preserve_splits": true,
