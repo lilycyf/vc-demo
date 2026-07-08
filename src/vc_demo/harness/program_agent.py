@@ -13,9 +13,9 @@ from vc_demo.harness.pipeline_grammar import program_for_blueprint
 from vc_demo.harness.state import write_json
 
 
-def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True) -> tuple[dict[str, Any], dict[str, Any]]:
+def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True, official_k562_only: bool = False) -> tuple[dict[str, Any], dict[str, Any]]:
     parent_name = str(parent_config.get("node_name", parent_node.get("name", "node")))
-    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware)
+    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware, official_k562_only=official_k562_only)
     blueprint = blueprint_by_id(blueprint_id)
     if blueprint["status"] == "planned" and not include_planned and force_blueprint is None:
         raise ValueError(f"planned blueprint {blueprint_id!r} selected without include_planned=True")
@@ -33,9 +33,12 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     model_cfg = child["model"]
     train_cfg = child["training"]
     old_model = model_cfg.get("model_type", "mlp")
-    model_cfg["model_type"] = "custom_program"
-    model_cfg["custom_model_path"] = str(child_dir / "model.py")
-    model_cfg["custom_model_class"] = "GeneratedModel"
+    config_only = blueprint_id in {"official_class_imbalance_training"}
+    external_static = blueprint_id in {"official_public_best_node"}
+    if not config_only and not external_static:
+        model_cfg["model_type"] = "custom_program"
+        model_cfg["custom_model_path"] = str(child_dir / "model.py")
+        model_cfg["custom_model_class"] = "GeneratedModel"
     model_cfg["program_blueprint"] = blueprint_id
     model_cfg["hidden_dim"] = _bounded_hidden(model_cfg.get("hidden_dim", 256), blueprint_id)
     model_cfg["depth"] = min(max(int(model_cfg.get("depth", 2) or 2), 1), 3)
@@ -59,10 +62,20 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         model_cfg.setdefault("artifacts", {})
         model_cfg["artifacts"].setdefault("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
         model_cfg["artifacts"].setdefault("data_dir", child.get("data", {}).get("data_dir", ""))
-    if blueprint_id == "focal_loss_training_strategy":
+    if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training"}:
         train_cfg["loss_type"] = "focal_loss"
         train_cfg.setdefault("focal_gamma", 2.0)
-        train_cfg.setdefault("class_weights", [2.0, 0.5, 2.0])
+        train_cfg.setdefault("class_weights", [2.37, 0.51, 2.75])
+    if blueprint_id == "official_public_best_node":
+        child["execution"] = {
+            "backend": "external_static_node",
+            "static_dir": "/workspace/_external/VCHarness/K562_cls/static",
+            "script_path": "node2-1-1-1-1-1_code.py",
+            "external_data_root": "/workspace/_external/VCHarness/data",
+            "pythonpath": ["/workspace/_external/ModelGenerator/huggingface/aido.cell", "src"],
+            "args": ["--debug-max-step", "1", "--micro-batch-size", "1", "--global-batch-size", "1", "--num-workers", "0", "--max-epochs", "1"],
+            "artifact_usage": {"AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M", "STRING_GNN": "/home/Models/STRING_GNN"},
+        }
     train_cfg["lr"] = min(float(train_cfg.get("lr", 3e-4) or 3e-4), 3e-4)
     train_cfg["weight_decay"] = min(float(train_cfg.get("weight_decay", 1e-4) or 1e-4), 1e-4)
 
@@ -74,7 +87,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     requires_implementation = blueprint["status"] != "implemented"
     if requires_implementation:
         (child_dir / "IMPLEMENTATION_REQUEST.md").write_text(render_implementation_request(child_name, blueprint, parent_name, child), encoding="utf-8")
-    else:
+    elif not config_only and not external_static:
         (child_dir / "model.py").write_text(render_program_source(blueprint_id), encoding="utf-8")
     (child_dir / "README.md").write_text(render_program_readme(child_name, blueprint, parent_name, requires_implementation), encoding="utf-8")
     write_pipeline_manifest(pipeline_path, pipeline_manifest)
@@ -83,7 +96,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     changes = [
         f"program_model:{old_model}->{blueprint_id}",
         f"blueprint_status:{blueprint['status']}",
-        f"custom_model_path:{child_dir / 'model.py'}",
+        f"custom_model_path:{child_dir / 'model.py'}" if not (config_only or external_static) else "model_program:none",
         f"hidden_dim:{parent_config.get('model', {}).get('hidden_dim')}->{model_cfg.get('hidden_dim')}",
         f"depth:{parent_config.get('model', {}).get('depth')}->{model_cfg.get('depth')}",
         f"lr:{parent_config.get('training', {}).get('lr')}->{train_cfg.get('lr')}",
@@ -99,7 +112,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         "hypothesis": hypothesis_for(blueprint_id, blueprint),
         "changes": changes,
         "program_dir": str(child_dir),
-        "program_model_path": str(child_dir / "model.py"),
+        "program_model_path": str(child_dir / "model.py") if not (config_only or external_static) else "",
         "pipeline_manifest_path": str(pipeline_path),
         "pipeline_kind": pipeline_manifest.get("kind"),
         "artifact_requirements": pipeline_manifest.get("artifact_requirements", []),
@@ -133,7 +146,14 @@ def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: d
         manifest["artifact_usage_claims"].append({"provider": "STRING", "sides": ["gene_graph"], "requires_present_artifact": True})
     if blueprint_id == "pathway_pooling_encoder":
         manifest["artifact_usage_claims"].append({"provider": "pathway_db", "sides": ["pathway_pooling"], "requires_present_artifact": True})
-    if blueprint_id == "focal_loss_training_strategy":
+    if blueprint_id == "official_public_best_node":
+        manifest["kind"] = "external_static_node"
+        manifest["artifact_usage_claims"].append({"provider": "VCHarness public K562 best node", "sides": ["AIDO", "STRING_GNN", "official_k562_tsv"], "requires_present_artifact": True})
+    if blueprint_id in {"official_aido_lora_adapter", "official_aido_string_fusion"}:
+        manifest["artifact_usage_claims"].append({"provider": "AIDO.Cell-100M", "sides": ["perturbation_gene"], "requires_present_artifact": True})
+    if blueprint_id in {"official_string_gnn_attention", "official_aido_string_fusion"}:
+        manifest["artifact_usage_claims"].append({"provider": "STRING_GNN", "sides": ["gene_graph"], "requires_present_artifact": True})
+    if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training"}:
         manifest["training"] = {"loss_type": "focal_loss", "loss_notes": "Node-level training strategy patch for class-imbalanced DEG labels."}
         manifest["patches"] = {"training": {"loss_type": "focal_loss", "focal_gamma": 2.0, "class_weights": [2.0, 0.5, 2.0]}}
     return manifest
@@ -147,8 +167,9 @@ def _choose_blueprint(
     include_planned: bool,
     registry_audit: dict[str, Any] | None = None,
     artifact_aware: bool = True,
+    official_k562_only: bool = False,
 ) -> str:
-    choices = selectable_blueprint_ids(include_planned)
+    choices = selectable_blueprint_ids(include_planned, official_k562_only=official_k562_only)
     if not choices:
         raise ValueError("no selectable model blueprints are available")
     if artifact_aware and registry_audit:

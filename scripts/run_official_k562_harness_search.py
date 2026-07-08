@@ -25,6 +25,8 @@ def main() -> None:
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--selection-policy", choices=["uct", "puct"], default="uct")
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
+    parser.add_argument("--official-blueprint-space", action="store_true", default=False)
+    parser.add_argument("--strict-artifacts", action="store_true", default=True)
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
 
@@ -55,6 +57,7 @@ def main() -> None:
         artifact_registry=args.registry,
         artifact_aware_blueprint_policy=True,
         allow_missing_artifact_fallbacks=False,
+        official_blueprint_space=args.official_blueprint_space,
         max_blueprint_repeats=2,
         allow_parent_duplicate_blueprints=False,
         max_duplicate_proposal_attempts=8,

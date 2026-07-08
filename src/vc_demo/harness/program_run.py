@@ -56,6 +56,9 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "best_reward": reward(metrics) if not parent else 0.0,
         "duration_seconds": metrics.get("duration_seconds"),
         "pipeline": metrics.get("pipeline", {}),
+        "execution_backend": metrics.get("execution_backend") or "native_train",
+        "external_script": metrics.get("external_script"),
+        "artifact_usage": metrics.get("artifact_usage", {}),
     }
     if proposal:
         enrich_node_from_proposal(node, proposal, config_path, name)
@@ -194,7 +197,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         duplicate_skips: list[dict[str, Any]] = []
         for duplicate_attempt in range(1, args.max_duplicate_proposal_attempts + 1):
             child_index = len(parent_node.get("children", [])) + duplicate_attempt
-            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy)
+            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space)
             duplicate, reason = is_duplicate_proposal(memory, parent_name, str(candidate_proposal.get("strategy", "")), args.max_blueprint_repeats, allow_parent_duplicate=args.allow_parent_duplicate_blueprints)
             if duplicate and not args.force_blueprint:
                 duplicate_skips.append({"child": candidate_config.get("node_name"), "strategy": candidate_proposal.get("strategy"), "reason": reason})
@@ -296,6 +299,7 @@ def main() -> None:
     parser.add_argument("--artifact-registry", type=Path, default=None)
     parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Prefer executable blueprints whose required artifacts are already present before blueprints that would trigger acquisition.")
     parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true", help="Allow planned artifact blueprints to train explicit fallback models when required artifacts are missing. Default is strict: block and stop.")
+    parser.add_argument("--official-blueprint-space", action="store_true", help="Restrict child proposals to official K562 paper-level blueprints.")
     parser.add_argument("--max-blueprint-repeats", type=int, default=2, help="Global repeat limit per blueprint; -1 disables the global duplicate guard.")
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true", help="Allow the same parent to generate the same blueprint more than once.")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8, help="How many candidate blueprints to try before skipping an iteration as duplicate-only.")

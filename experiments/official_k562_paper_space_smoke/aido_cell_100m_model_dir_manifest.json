@@ -1,0 +1,66 @@
+{
+  "repo_id": "genbio-ai/AIDO.Cell-100M",
+  "sha": "b14a88b962758102e618289f4340f989bd6eebe5",
+  "private": false,
+  "gated": false,
+  "downloads": [
+    {
+      "filename": "config.json",
+      "path": "/home/Models/AIDO.Cell-100M/config.json",
+      "bytes": 889,
+      "sha256": "d1f5fe34a2f76ecf61b6954b4c60360229501ce51473fd03248675c3066f096a",
+      "source": "https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/config.json"
+    },
+    {
+      "filename": "generation_config.json",
+      "path": "/home/Models/AIDO.Cell-100M/generation_config.json",
+      "bytes": 96,
+      "sha256": "7ba0b709b1fb48256348a0bd98404e764584c5d7d41c50e91e8d9364927f01f2",
+      "source": "https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/generation_config.json"
+    },
+    {
+      "filename": "model.safetensors",
+      "path": "/home/Models/AIDO.Cell-100M/model.safetensors",
+      "bytes": 399481732,
+      "sha256": "4602f09951c5a2f8cb814363f68cd63d8d7bd145e02560b852f6652df78bec77",
+      "source": "https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/model.safetensors"
+    },
+    {
+      "filename": "README.md",
+      "path": "/home/Models/AIDO.Cell-100M/README.md",
+      "bytes": 4064,
+      "sha256": "08713b94e659a3c7c7b43f9172a9132601abfa4a8078ee236a205b9f6de32b99",
+      "source": "https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/README.md"
+    },
+    {
+      "filename": "LICENSE",
+      "path": "/home/Models/AIDO.Cell-100M/LICENSE",
+      "bytes": 10687,
+      "sha256": "1093f6e45737ac90258c839421be3bcdb2c89ef286c6ca1161edbd758b56d88b",
+      "source": "https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/LICENSE"
+    }
+  ],
+  "validation": {
+    "path": "/home/Models/AIDO.Cell-100M",
+    "repo_id": "genbio-ai/AIDO.Cell-100M",
+    "files": [
+      "LICENSE",
+      "OS_scRNA_gene_index.19264.tsv",
+      "README.md",
+      "config.json",
+      "configuration_cellfoundation.py",
+      "gene_id_to_aido_index.json",
+      "generation_config.json",
+      "model.safetensors",
+      "modeling_cellfoundation.py",
+      "tokenization_cellfoundation.py"
+    ],
+    "has_config": true,
+    "has_weight": true,
+    "tokenizer_files": [],
+    "warnings": [
+      "no tokenizer files detected; public VCHarness code calls AutoTokenizer.from_pretrained, so runtime equivalence is not yet proven"
+    ],
+    "status": "usable_with_warnings"
+  }
+}

@@ -4,6 +4,12 @@ from typing import Any
 
 
 MODEL_BLUEPRINTS: list[dict[str, Any]] = [
+    {"id": "official_public_best_node", "status": "implemented", "official_k562": True, "category": "official_static_node", "paper_family": "public_vcharness_best_path", "change_level": 5, "role": "Run the public VCHarness K562 best static node node2-1-1-1-1-1 as a harness candidate through the external_static_node backend.", "requires": ["official_public_best_node_code", "official_aido_cell_100m_model_dir", "official_string_gnn_model_dir", "official_essential_deg_with_split_h5ad"], "execution_backend": "external_static_node", "fallback_allowed": False, "cost_class": "expensive", "implementation_notes": "Implemented as a wrapper around _external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py. Metrics are standardized into best_val_macro_f1/test_macro_f1 by vc_demo.harness.external_static.", "acceptance": ["Does not require manual execution outside harness", "Records artifact usage and external script path", "Appears in tree.json like any other node"]},
+    {"id": "official_aido_lora_adapter", "status": "planned", "official_k562": True, "category": "foundation_model_finetuning", "paper_family": "AIDO_adapter", "change_level": 5, "role": "Use AIDO.Cell-100M as the backbone with frozen parameters plus LoRA/adapters and a DEG classification head.", "requires": ["official_aido_cell_100m_model_dir", "official_essential_deg_with_split_h5ad"], "fallback_allowed": False, "cost_class": "expensive", "implementation_notes": "Codex agent must implement a node-local model or native wrapper that loads AIDO.Cell-100M and documents frozen/trainable parameter groups.", "acceptance": ["Loads /home/Models/AIDO.Cell-100M", "No random replacement for AIDO", "Forward returns [batch, 6640, 3]"]},
+    {"id": "official_string_gnn_attention", "status": "planned", "official_k562": True, "category": "graph_prior", "paper_family": "STRING_GNN_attention", "change_level": 5, "role": "Use STRING_GNN embedding/graph priors with K-hop aggregation or multi-head attention over target-gene neighborhoods.", "requires": ["official_string_gnn_model_dir", "official_string_gnn_keep20_graph", "official_essential_deg_with_split_h5ad"], "fallback_allowed": False, "cost_class": "medium", "implementation_notes": "Use the audited STRING_GNN directory. If it is reconstructed rather than original, report that provenance explicitly.", "acceptance": ["Consumes STRING/GNN artifact", "Does not fabricate graph edges", "Forward returns [batch, 6640, 3]"]},
+    {"id": "official_aido_string_fusion", "status": "planned", "official_k562": True, "category": "multimodal_fusion", "paper_family": "AIDO_STRING_fusion", "change_level": 5, "role": "Fuse AIDO perturbation/cell representation with STRING_GNN representation via concat, gating, bilinear, or cross-attention variants.", "requires": ["official_aido_cell_100m_model_dir", "official_string_gnn_model_dir", "official_essential_deg_with_split_h5ad"], "fallback_allowed": False, "cost_class": "expensive", "implementation_notes": "Agent may choose fusion mechanism but must preserve official splits, labels, and artifact provenance.", "acceptance": ["Uses both AIDO and STRING/GNN artifacts", "Records fusion type", "Forward returns [batch, 6640, 3]"]},
+    {"id": "official_target_gene_head", "status": "planned", "official_k562": True, "category": "prediction_head", "paper_family": "target_gene_aware_head", "change_level": 4, "role": "Add a target-gene-aware low-rank, bilinear, or multilayer DEG head over the official 6,640 targets.", "requires": ["official_essential_deg_with_split_h5ad"], "fallback_allowed": False, "cost_class": "cheap", "implementation_notes": "May modify node-local head/factorization only; must not alter official target order or labels.", "acceptance": ["Target dimension remains 6640", "Reports head rank/depth", "Forward returns [batch, 6640, 3]"]},
+    {"id": "official_class_imbalance_training", "status": "implemented", "official_k562": True, "category": "training_strategy", "paper_family": "official_deg_imbalance", "change_level": 1, "role": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.", "requires": ["official_essential_deg_with_split_h5ad", "class_distribution"], "fallback_allowed": False, "cost_class": "cheap", "implementation_notes": "Implemented as a config-only child in program_agent; patches loss_type/class weights and does not create a node-local model.py.", "acceptance": ["Documents weights/gamma", "Does not tune on test labels", "Reports Macro-F1"]},
     {"id": "dual_path_gated_low_rank", "status": "implemented", "category": "architecture_program", "paper_family": "compact_architecture", "change_level": 2, "role": "Dual encoder with input-conditioned gating and a low-rank target-gene head.", "requires": ["tabular_features"], "implementation_notes": "Already implemented as a generated node-local PyTorch model.", "acceptance": ["Defines GeneratedModel(spec)", "Forward returns [batch, n_targets, n_classes] logits"]},
     {"id": "mixture_of_experts", "status": "implemented", "category": "fusion", "paper_family": "multimodal_fusion", "change_level": 4, "role": "Compact router over several MLP experts for perturbation feature regimes.", "requires": ["tabular_features"], "implementation_notes": "Already implemented as a generated node-local PyTorch model.", "acceptance": ["Defines GeneratedModel(spec)", "Forward returns [batch, n_targets, n_classes] logits"]},
     {"id": "target_gene_embedding_bilinear", "status": "implemented", "category": "foundation_model_fusion", "paper_family": "target_gene_aware_gene_embedding", "change_level": 5, "role": "Use a frozen target-gene embedding table plus perturbation/context features to score each DEG target through a bilinear factorized head.", "requires": ["artifact_manifest", "target_gene_embeddings", "perturbation_context_features"], "implementation_notes": "Executable through the built-in model_type target_aware_bilinear. Requires scripts/build_target_gene_artifact.py to create data_dir/artifact_manifest.json and target_gene_embeddings.npz. This is the first repo-supported route that explicitly uses both perturbed-gene/context features and target-gene artifact geometry.", "acceptance": ["Uses model.artifact_manifest_path", "Loads target_gene_embeddings from artifact_manifest.json", "Does not fabricate missing target-gene embeddings", "Forward returns [batch, n_targets, n_classes] logits"]},
@@ -27,6 +33,15 @@ MODEL_BLUEPRINTS: list[dict[str, Any]] = [
     {"id": "multi_task_cellline_conditioning", "status": "planned", "category": "multi_cellline", "paper_family": "multi_context_conditioning", "change_level": 4, "role": "Condition predictions on cell-line identity for multi-cell-line experiments.", "requires": ["multiple_cell_lines"], "implementation_notes": "Requires multiple cell lines and a cell-line id field; not suitable for a one-cell-line run unless used as a no-op ablation.", "acceptance": ["Documents cell-line metadata", "Preserves per-cell-line splits"]},
 ]
 
+OFFICIAL_K562_BLUEPRINT_IDS = {
+    "official_public_best_node",
+    "official_aido_lora_adapter",
+    "official_string_gnn_attention",
+    "official_aido_string_fusion",
+    "official_target_gene_head",
+    "official_class_imbalance_training",
+}
+
 
 def blueprints(status: str | None = None) -> list[dict[str, Any]]:
     if status is None:
@@ -38,10 +53,13 @@ def implemented_blueprint_ids() -> list[str]:
     return [item["id"] for item in blueprints("implemented")]
 
 
-def selectable_blueprint_ids(include_planned: bool = False) -> list[str]:
+def selectable_blueprint_ids(include_planned: bool = False, official_k562_only: bool = False) -> list[str]:
+    items = MODEL_BLUEPRINTS
+    if official_k562_only:
+        items = [item for item in items if item.get("official_k562")]
     if include_planned:
-        return [item["id"] for item in MODEL_BLUEPRINTS if item["status"] in {"implemented", "planned"}]
-    return implemented_blueprint_ids()
+        return [item["id"] for item in items if item["status"] in {"implemented", "planned"}]
+    return [item["id"] for item in items if item["status"] == "implemented"]
 
 
 def blueprint_by_id(blueprint_id: str) -> dict[str, Any]:

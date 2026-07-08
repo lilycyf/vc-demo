@@ -16,11 +16,15 @@ class OfficialK562BackendSpec:
     root_configs: tuple[Path, ...] = (
         Path("configs/official_k562_root_aido_embedding_mlp.json"),
         Path("configs/official_k562_root_aido_gnn_embedding_mlp.json"),
+        Path("configs/official_k562_public_best_node.json"),
     )
     required_artifacts: tuple[str, ...] = (
         "official_essential_deg_with_split_h5ad",
         "official_k562_aido_cell_100m_embedding_h5ad",
         "official_gnn_simple_embedding_h5ad",
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_public_best_node_code",
     )
 
 
@@ -75,6 +79,8 @@ def validate_official_k562_backend(spec: OfficialK562BackendSpec | None = None, 
         row["data_dir"] = cfg.get("data", {}).get("data_dir")
         row["embedding_h5ad"] = cfg.get("data", {}).get("embedding_h5ad")
         row["embedding_h5ads"] = cfg.get("data", {}).get("embedding_h5ads", [])
+        row["execution_backend"] = cfg.get("execution", {}).get("backend", "native_train")
+        row["script_path"] = cfg.get("execution", {}).get("script_path", "")
         if row["dataset_type"] != "official_k562_tsv":
             issues.append(f"root config {config_path} is not official_k562_tsv")
         if Path(str(row["data_dir"] or "")) != spec.data_dir:
@@ -82,6 +88,12 @@ def validate_official_k562_backend(spec: OfficialK562BackendSpec | None = None, 
         for emb in [row.get("embedding_h5ad"), *row.get("embedding_h5ads", [])]:
             if emb and not Path(str(emb)).exists():
                 issues.append(f"root config {config_path} embedding missing: {emb}")
+        if row["execution_backend"] == "external_static_node":
+            script = cfg.get("execution", {}).get("script_path", "")
+            static_dir = Path(str(cfg.get("execution", {}).get("static_dir", "")))
+            script_path = Path(str(script)) if Path(str(script)).is_absolute() else static_dir / str(script)
+            if not script_path.exists():
+                issues.append(f"root config {config_path} external script missing: {script_path}")
         root_results.append(row)
 
     result = {

@@ -1,0 +1,70 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_class_imbalance_training_f6a6bb2d",
+  "strategy": "official_class_imbalance_training",
+  "blueprint": {
+    "id": "official_class_imbalance_training",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "training_strategy",
+    "paper_family": "official_deg_imbalance",
+    "change_level": 1,
+    "role": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_notes": "Implemented as a config-only child in program_agent; patches loss_type/class weights and does not create a node-local model.py.",
+    "acceptance": [
+      "Documents weights/gamma",
+      "Does not tune on test labels",
+      "Reports Macro-F1"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.",
+  "changes": [
+    "program_model:gated_mlp->official_class_imbalance_training",
+    "blueprint_status:implemented",
+    "model_program:none",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_paper_space_smoke/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_class_imbalance_training_f6a6bb2d",
+  "program_model_path": "",
+  "pipeline_manifest_path": "experiments/official_k562_paper_space_smoke/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_class_imbalance_training_f6a6bb2d/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_class_imbalance_training",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_request_path": "",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "artifact_aware_blueprint_ranking",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

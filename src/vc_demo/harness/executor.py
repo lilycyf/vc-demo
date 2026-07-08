@@ -8,6 +8,7 @@ from typing import Any
 from vc_demo.harness.pipeline import materialize_pipeline_config, pipeline_audit_summary
 from vc_demo.harness.state import node_dir, write_json
 from vc_demo.train import train
+from vc_demo.harness.external_static import run_external_static_node
 
 
 def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | None, max_epochs: int | None) -> dict[str, Any]:
@@ -24,8 +25,12 @@ def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | N
     write_json(out_dir / "status.json", {"status": "training", "pipeline": pipeline_summary})
     started = time.time()
     try:
-        metrics = train(materialized_config, out_dir, max_epochs=max_epochs)
-        duration = time.time() - started
+        if materialized_config.get("execution", {}).get("backend") == "external_static_node":
+            metrics = run_external_static_node(materialized_config, out_dir, max_epochs=max_epochs)
+            duration = metrics.get("duration_seconds", time.time() - started)
+        else:
+            metrics = train(materialized_config, out_dir, max_epochs=max_epochs)
+            duration = time.time() - started
         metrics["duration_seconds"] = duration
         metrics["pipeline"] = pipeline_summary
         write_json(out_dir / "metrics.json", metrics)

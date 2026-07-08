@@ -12,6 +12,17 @@ def _config_for(node: dict[str, Any]) -> dict[str, Any]:
 
 
 def _pipeline_summary(node: dict[str, Any], cfg: dict[str, Any]) -> dict[str, Any]:
+    if node.get("execution_backend") == "external_static_node" or cfg.get("execution", {}).get("backend") == "external_static_node":
+        artifact_usage = node.get("artifact_usage") or cfg.get("execution", {}).get("artifact_usage", {})
+        return {
+            "pipeline_kind": "program_node",
+            "loss_type": "external_static_node",
+            "uses_real_artifact": bool(artifact_usage),
+            "artifact_sides": ["external_public_best_node"],
+            "artifact_manifest_path": str(node.get("external_script") or cfg.get("execution", {}).get("script_path", "")),
+            "missing_required_artifacts": [],
+            "required_artifacts": list(artifact_usage.keys()) if isinstance(artifact_usage, dict) else [],
+        }
     pipeline = node.get("pipeline") or cfg.get("pipeline", {}) or {}
     if pipeline:
         return {
@@ -63,6 +74,7 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
                 "missing_required_artifacts": ",".join(pipeline_summary.get("missing_required_artifacts", [])),
                 "required_artifacts": ",".join(pipeline_summary.get("required_artifacts", [])),
                 "duration_seconds": node.get("duration_seconds"),
+                "execution_backend": node.get("execution_backend", cfg.get("execution", {}).get("backend", "native_train")),
                 "data_dir": data_cfg.get("data_dir", "synthetic"),
                 "model_type": model_cfg.get("model_type", "mlp"),
                 "hidden_dim": model_cfg.get("hidden_dim"),
@@ -109,15 +121,15 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "",
         "## All Trained Nodes",
         "",
-        "| Iter | Node | Parent | Kind | Strategy | Pipeline | Loss | Artifact sides | Missing req. | Sec | Model | Val | Test |",
-        "|---:|---|---|---|---|---|---|---|---|---:|---|---:|---:|",
+        "| Iter | Node | Parent | Kind | Strategy | Backend | Pipeline | Loss | Artifact sides | Missing req. | Sec | Model | Val | Test |",
+        "|---:|---|---|---|---|---|---|---|---|---|---:|---|---:|---:|",
     ])
     for row in rows:
         sec = "" if row["duration_seconds"] is None else f"{float(row['duration_seconds']):.1f}"
         missing = row["missing_required_artifacts"] or ""
         sides = row["artifact_sides"] or "none"
         lines.append(
-            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['strategy']} | {row['pipeline_kind']} | {row['loss_type']} | {sides} | {missing} | {sec} | {row['model_type']} | {row['val']:.4f} | {row['test']:.4f} |"
+            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['strategy']} | {row['execution_backend']} | {row['pipeline_kind']} | {row['loss_type']} | {sides} | {missing} | {sec} | {row['model_type']} | {row['val']:.4f} | {row['test']:.4f} |"
         )
 
     lines.extend(["", "## Artifact And Pipeline Audit", "", "| Node | Uses artifact | Artifact sides | Required artifacts | Missing required | Manifest | Loss |", "|---|---:|---|---|---|---|---|"])
@@ -142,6 +154,8 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
             label += f" strategy={node['strategy']}"
         if node.get("program_model_path"):
             label += f" program={node['program_model_path']}"
+        if node.get("execution_backend"):
+            label += f" backend={node['execution_backend']}"
         if node.get("pipeline_kind"):
             label += f" pipeline={node['pipeline_kind']}"
         if node.get("pipeline", {}).get("artifact_sides"):
