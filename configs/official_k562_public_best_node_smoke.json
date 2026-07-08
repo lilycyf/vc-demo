@@ -1,5 +1,5 @@
 {
-  "node_name": "official_k562_public_best_node2_1_1_1_1_1",
+  "node_name": "official_k562_public_best_node2_1_1_1_1_1_smoke",
   "data": {
     "dataset_type": "official_k562_tsv",
     "data_dir": "data/cell_lines/official_k562_cls",

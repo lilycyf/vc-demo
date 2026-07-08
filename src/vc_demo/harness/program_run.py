@@ -59,6 +59,9 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "execution_backend": metrics.get("execution_backend") or "native_train",
         "external_script": metrics.get("external_script"),
         "artifact_usage": metrics.get("artifact_usage", {}),
+        "execution_mode": metrics.get("execution_mode"),
+        "test_metric_source": metrics.get("test_metric_source"),
+        "validation_metric_source": metrics.get("validation_metric_source"),
     }
     if proposal:
         enrich_node_from_proposal(node, proposal, config_path, name)

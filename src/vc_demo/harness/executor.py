@@ -9,6 +9,7 @@ from vc_demo.harness.pipeline import materialize_pipeline_config, pipeline_audit
 from vc_demo.harness.state import node_dir, write_json
 from vc_demo.train import train
 from vc_demo.harness.external_static import run_external_static_node
+from vc_demo.harness.native_program_smoke import smoke_config
 
 
 def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | None, max_epochs: int | None) -> dict[str, Any]:
@@ -29,6 +30,9 @@ def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | N
             metrics = run_external_static_node(materialized_config, out_dir, max_epochs=max_epochs)
             duration = metrics.get("duration_seconds", time.time() - started)
         else:
+            if materialized_config.get("model", {}).get("model_type") == "custom_program":
+                smoke = smoke_config(materialized_config, batch_size=1)
+                write_json(out_dir / "native_program_smoke.json", smoke)
             metrics = train(materialized_config, out_dir, max_epochs=max_epochs)
             duration = time.time() - started
         metrics["duration_seconds"] = duration

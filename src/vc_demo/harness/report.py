@@ -74,6 +74,7 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
                 "missing_required_artifacts": ",".join(pipeline_summary.get("missing_required_artifacts", [])),
                 "required_artifacts": ",".join(pipeline_summary.get("required_artifacts", [])),
                 "duration_seconds": node.get("duration_seconds"),
+                "test_metric_source": node.get("test_metric_source", ""),
                 "execution_backend": node.get("execution_backend", cfg.get("execution", {}).get("backend", "native_train")),
                 "data_dir": data_cfg.get("data_dir", "synthetic"),
                 "model_type": model_cfg.get("model_type", "mlp"),
@@ -132,10 +133,10 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
             f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['strategy']} | {row['execution_backend']} | {row['pipeline_kind']} | {row['loss_type']} | {sides} | {missing} | {sec} | {row['model_type']} | {row['val']:.4f} | {row['test']:.4f} |"
         )
 
-    lines.extend(["", "## Artifact And Pipeline Audit", "", "| Node | Uses artifact | Artifact sides | Required artifacts | Missing required | Manifest | Loss |", "|---|---:|---|---|---|---|---|"])
+    lines.extend(["", "## Artifact And Pipeline Audit", "", "| Node | Uses artifact | Artifact sides | Required artifacts | Missing required | Manifest | Loss | Test metric source |", "|---|---:|---|---|---|---|---|---|"])
     for row in rows:
         manifest = row["artifact_manifest_path"] or ""
-        lines.append(f"| `{row['node']}` | {str(row['uses_real_artifact']).lower()} | {row['artifact_sides'] or 'none'} | {row['required_artifacts']} | {row['missing_required_artifacts']} | `{manifest}` | {row['loss_type']} |")
+        lines.append(f"| `{row['node']}` | {str(row['uses_real_artifact']).lower()} | {row['artifact_sides'] or 'none'} | {row['required_artifacts']} | {row['missing_required_artifacts']} | `{manifest}` | {row['loss_type']} | {row['test_metric_source']} |")
 
     lines.extend(["", "## Best-So-Far Curve", "", "| Iter | Best val Macro-F1 |", "|---:|---:|"])
     best_so_far = -1.0

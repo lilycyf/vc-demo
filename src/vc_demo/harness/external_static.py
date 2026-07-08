@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import csv
 import json
 import os
 import re
@@ -56,31 +57,41 @@ def _parse_score_file(path: Path) -> dict[str, float]:
     return metrics
 
 
-def _best_val_from_csv_logs(static_dir: Path) -> float | None:
-    candidates = sorted((static_dir / "run" / "logs" / "csv_logs").glob("version_*/metrics.csv"))
+def _csv_log_files(static_dir: Path) -> list[Path]:
+    return sorted((static_dir / "run" / "logs" / "csv_logs").glob("version_*/metrics.csv"))
+
+
+def _best_metric_from_csv_logs(static_dir: Path, names: tuple[str, ...]) -> tuple[float | None, str]:
     best: float | None = None
-    for path in candidates:
-        text = path.read_text(errors="replace").splitlines()
-        if not text:
-            continue
-        header = text[0].split(",")
-        if "val/f1" not in header:
-            continue
-        idx = header.index("val/f1")
-        for line in text[1:]:
-            parts = line.split(",")
-            if idx >= len(parts) or not parts[idx]:
-                continue
-            try:
-                value = float(parts[idx])
-            except ValueError:
-                continue
-            best = value if best is None else max(best, value)
-    return best
+    source = ""
+    for path in _csv_log_files(static_dir):
+        with path.open(newline="", errors="replace") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                for name in names:
+                    value = row.get(name)
+                    if value in {None, ""}:
+                        continue
+                    try:
+                        parsed = float(value)
+                    except ValueError:
+                        continue
+                    if best is None or parsed > best:
+                        best = parsed
+                        source = f"{path}:{name}"
+    return best, source
+
+
+def _contains_debug_arg(args: list[str]) -> bool:
+    return any(arg in {"--debug-max-step", "--fast-dev-run", "--limit-train-batches", "--limit-val-batches"} for arg in args)
 
 
 def run_external_static_node(config: dict[str, Any], output_dir: Path, max_epochs: int | None = None) -> dict[str, Any]:
     execution = config.get("execution", {})
+    mode = str(execution.get("mode", "smoke"))
+    if mode not in {"smoke", "benchmark"}:
+        raise ValueError(f"external_static_node execution.mode must be smoke or benchmark, got {mode!r}")
+    allow_test_fallback = bool(execution.get("allow_test_metric_fallback", mode == "smoke"))
     static_dir = Path(str(execution.get("static_dir", "")))
     script_path = Path(str(execution.get("script_path", "")))
     if not script_path.is_absolute():
@@ -100,7 +111,10 @@ def run_external_static_node(config: dict[str, Any], output_dir: Path, max_epoch
         env["PYTHONPATH"] = os.pathsep.join([*map(str, pythonpath), env.get("PYTHONPATH", "")]).rstrip(os.pathsep)
 
     args = ["python", str(script_path.name)]
-    args.extend(str(x) for x in execution.get("args", []))
+    configured_args = [str(x) for x in execution.get("args", [])]
+    if mode == "benchmark" and _contains_debug_arg(configured_args):
+        raise ValueError("benchmark external_static_node cannot include debug/fast-dev arguments")
+    args.extend(configured_args)
     if max_epochs is not None and "--max-epochs" not in args:
         args.extend(["--max-epochs", str(max_epochs)])
 
@@ -108,27 +122,49 @@ def run_external_static_node(config: dict[str, Any], output_dir: Path, max_epoch
     proc = subprocess.run(args, cwd=static_dir, env=env, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     duration = time.time() - started
     output_dir.mkdir(parents=True, exist_ok=True)
-    (output_dir / "external_stdout.txt").write_text(proc.stdout, encoding="utf-8", errors="replace")
+    stdout_path = output_dir / "external_stdout.txt"
+    stdout_path.write_text(proc.stdout, encoding="utf-8", errors="replace")
     if proc.returncode != 0:
-        raise RuntimeError(f"external static node failed with exit code {proc.returncode}; see {output_dir / 'external_stdout.txt'}")
+        raise RuntimeError(f"external static node failed with exit code {proc.returncode}; see {stdout_path}")
 
     score_path = static_dir / "test_score.txt"
     score_metrics = _parse_score_file(score_path)
-    best_val = _best_val_from_csv_logs(static_dir)
+    best_val, val_source = _best_metric_from_csv_logs(static_dir, ("val/f1", "val/macro_f1", "val_macro_f1"))
+    logged_test, logged_test_source = _best_metric_from_csv_logs(static_dir, ("test/f1", "test/macro_f1", "test_macro_f1"))
     test_loss = score_metrics.get("test/loss", score_metrics.get("loss", 0.0))
-    test_f1 = score_metrics.get("test/f1") or score_metrics.get("test/macro_f1") or best_val or 0.0
+    score_test = score_metrics.get("test/f1") or score_metrics.get("test/macro_f1") or score_metrics.get("test_macro_f1")
+    if score_test is not None:
+        test_f1 = float(score_test)
+        test_metric_source = str(score_path)
+    elif logged_test is not None:
+        test_f1 = float(logged_test)
+        test_metric_source = logged_test_source
+    elif allow_test_fallback and best_val is not None:
+        test_f1 = float(best_val)
+        test_metric_source = "missing_or_val_fallback"
+    else:
+        raise RuntimeError("external static benchmark did not emit held-out test Macro-F1 and fallback is disabled")
+    if best_val is None:
+        best_val = test_f1
+        val_source = test_metric_source
     result = {
         "node_name": config.get("node_name", output_dir.name),
         "dataset_type": config.get("data", {}).get("dataset_type", "official_k562_tsv"),
         "execution_backend": "external_static_node",
+        "execution_mode": mode,
         "external_script": str(script_path),
         "duration_seconds": duration,
-        "best_val_macro_f1": float(best_val if best_val is not None else test_f1),
+        "best_val_macro_f1": float(best_val),
         "test_macro_f1": float(test_f1),
         "test_loss": float(test_loss),
+        "validation_metric_source": val_source,
+        "test_metric_source": test_metric_source,
         "external_score_metrics": score_metrics,
+        "external_stdout_path": str(stdout_path),
+        "external_score_path": str(score_path),
+        "external_csv_logs": [str(path) for path in _csv_log_files(static_dir)],
         "artifact_usage": config.get("execution", {}).get("artifact_usage", {}),
-        "notes": "External public VCHarness node wrapper. Fast-dev/debug runs may not emit held-out test F1; test_macro_f1 is val/f1-derived when no test F1 is logged.",
+        "notes": "External public VCHarness node wrapper. Smoke mode may use validation fallback; benchmark mode forbids it unless explicitly allowed.",
     }
     write_json(output_dir / "metrics.json", result)
     return result

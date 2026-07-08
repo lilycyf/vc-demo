@@ -1,5 +1,5 @@
 {
-  "node_name": "official_k562_public_best_node2_1_1_1_1_1",
+  "node_name": "official_k562_public_best_node2_1_1_1_1_1_benchmark",
   "data": {
     "dataset_type": "official_k562_tsv",
     "data_dir": "data/cell_lines/official_k562_cls",
@@ -21,27 +21,23 @@
       "src"
     ],
     "args": [
-      "--debug-max-step",
-      "1",
       "--micro-batch-size",
       "1",
       "--global-batch-size",
       "1",
       "--num-workers",
-      "0",
-      "--max-epochs",
-      "1"
+      "0"
     ],
     "artifact_usage": {
       "AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M",
       "STRING_GNN": "/home/Models/STRING_GNN",
       "public_node_code": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py"
     },
-    "mode": "smoke",
-    "allow_test_metric_fallback": true,
+    "mode": "benchmark",
+    "allow_test_metric_fallback": false,
     "metric_contract": {
       "validation": "val/f1 from public CSV logs",
-      "test": "test/f1 if emitted; smoke may fall back to validation"
+      "test": "required held-out test/f1 from public output"
     }
   },
   "training": {

@@ -2,10 +2,15 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from vc_demo.harness.official_k562_backend import OfficialK562BackendSpec, validate_official_k562_backend, write_backend_report
 from vc_demo.harness.program_run import run_search
+from scripts.build_official_k562_static_tree import build_tree, write_catalog
+from scripts.write_official_k562_artifact_alignment import build_matrix, write_md
 
 
 def main() -> None:
@@ -20,13 +25,18 @@ def main() -> None:
     parser.add_argument("--max-children", type=int, default=2)
     parser.add_argument("--stop-no-improve", type=int, default=2)
     parser.add_argument("--seed", type=int, default=41)
-    parser.add_argument("--force-blueprint", default="dual_path_gated_low_rank", help="Default smoke uses an implemented architecture blueprint to avoid planned-node handoff.")
+    parser.add_argument("--force-blueprint", default=None, help="Optional: force one blueprint for smoke tests. Default None lets MCTS sample the configured blueprint space.")
     parser.add_argument("--allow-planned-blueprints", action="store_true")
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--selection-policy", choices=["uct", "puct"], default="uct")
+    parser.add_argument("--max-blueprint-repeats", type=int, default=2)
+    parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true")
+    parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8)
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
     parser.add_argument("--official-blueprint-space", action="store_true", default=False)
     parser.add_argument("--strict-artifacts", action="store_true", default=True)
+    parser.add_argument("--enable-repair-loop", action="store_true", help="Accepted for paper-level runbooks; native smoke gate is always enabled for custom programs in this harness.")
+    parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
 
@@ -37,6 +47,17 @@ def main() -> None:
     audit_md = args.run_dir / "official_k562_backend_audit.md"
     audit_json.write_text(json.dumps(audit, indent=2) + "\n")
     write_backend_report(audit_md, audit)
+
+    alignment_dir = args.run_dir / "alignment"
+    static_tree = build_tree(Path("/workspace/_external/VCHarness/K562_cls/static"), "node2-1-1-1-1-1")
+    (alignment_dir / "official_k562_static_tree.json").parent.mkdir(parents=True, exist_ok=True)
+    (alignment_dir / "official_k562_static_tree.json").write_text(json.dumps(static_tree, indent=2) + "\n")
+    write_catalog(static_tree, alignment_dir / "official_k562_node_catalog.md")
+    best = {"best_path": static_tree.get("best_path"), "best_lineage": static_tree.get("best_lineage", []), "nodes": [static_tree["nodes"][n] for n in static_tree.get("best_lineage", [])]}
+    (alignment_dir / "official_k562_best_path.json").write_text(json.dumps(best, indent=2) + "\n")
+    matrix = build_matrix(args.registry, "K562")
+    (alignment_dir / "official_k562_artifact_alignment_matrix.json").write_text(json.dumps(matrix, indent=2) + "\n")
+    write_md(matrix, alignment_dir / "official_k562_artifact_alignment_matrix.md")
 
     ns = argparse.Namespace(
         experiment=args.experiment,
@@ -58,9 +79,9 @@ def main() -> None:
         artifact_aware_blueprint_policy=True,
         allow_missing_artifact_fallbacks=False,
         official_blueprint_space=args.official_blueprint_space,
-        max_blueprint_repeats=2,
-        allow_parent_duplicate_blueprints=False,
-        max_duplicate_proposal_attempts=8,
+        max_blueprint_repeats=args.max_blueprint_repeats,
+        allow_parent_duplicate_blueprints=args.allow_parent_duplicate_blueprints,
+        max_duplicate_proposal_attempts=args.max_duplicate_proposal_attempts,
         reset=args.reset,
     )
     result = run_search(ns)

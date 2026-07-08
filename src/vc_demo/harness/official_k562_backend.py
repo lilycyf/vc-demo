@@ -17,6 +17,7 @@ class OfficialK562BackendSpec:
         Path("configs/official_k562_root_aido_embedding_mlp.json"),
         Path("configs/official_k562_root_aido_gnn_embedding_mlp.json"),
         Path("configs/official_k562_public_best_node.json"),
+        Path("configs/official_k562_native_public_best_reimplementation.json"),
     )
     required_artifacts: tuple[str, ...] = (
         "official_essential_deg_with_split_h5ad",

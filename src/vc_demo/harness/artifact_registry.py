@@ -108,8 +108,10 @@ def artifact_usage_from_config(config: dict[str, Any], proposal: dict[str, Any] 
         sides.append("perturbation_gene_or_context")
     if uses_target_manifest or model_type == "target_aware_bilinear" or strategy == "target_gene_embedding_bilinear":
         sides.append("target_gene")
-    if strategy in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"}:
+    if strategy in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator", "official_string_gnn_attention", "official_aido_string_fusion", "official_native_public_best_reimplementation"}:
         sides.append("gene_graph")
+    if strategy in {"official_aido_lora_adapter", "official_aido_string_fusion", "official_native_public_best_reimplementation"}:
+        sides.append("AIDO.Cell-100M")
     if strategy == "pathway_pooling_encoder":
         sides.append("pathway_membership")
     if strategy == "scfoundation_cell_encoder":

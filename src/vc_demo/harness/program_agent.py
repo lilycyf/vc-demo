@@ -35,6 +35,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     old_model = model_cfg.get("model_type", "mlp")
     config_only = blueprint_id in {"official_class_imbalance_training"}
     external_static = blueprint_id in {"official_public_best_node"}
+    official_native = blueprint_id in {"official_aido_lora_adapter", "official_string_gnn_attention", "official_aido_string_fusion", "official_target_gene_head", "official_native_public_best_reimplementation"}
     if not config_only and not external_static:
         model_cfg["model_type"] = "custom_program"
         model_cfg["custom_model_path"] = str(child_dir / "model.py")
@@ -66,6 +67,12 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         train_cfg["loss_type"] = "focal_loss"
         train_cfg.setdefault("focal_gamma", 2.0)
         train_cfg.setdefault("class_weights", [2.37, 0.51, 2.75])
+    if official_native:
+        model_cfg.setdefault("artifacts", {})
+        model_cfg["artifacts"].setdefault("aido_model_dir", "/home/Models/AIDO.Cell-100M")
+        model_cfg["artifacts"].setdefault("string_gnn_model_dir", "/home/Models/STRING_GNN")
+        model_cfg["artifacts"].setdefault("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
+        model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 96) or 96), 64), 160)
     if blueprint_id == "official_public_best_node":
         child["execution"] = {
             "backend": "external_static_node",
@@ -149,9 +156,9 @@ def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: d
     if blueprint_id == "official_public_best_node":
         manifest["kind"] = "external_static_node"
         manifest["artifact_usage_claims"].append({"provider": "VCHarness public K562 best node", "sides": ["AIDO", "STRING_GNN", "official_k562_tsv"], "requires_present_artifact": True})
-    if blueprint_id in {"official_aido_lora_adapter", "official_aido_string_fusion"}:
+    if blueprint_id in {"official_aido_lora_adapter", "official_aido_string_fusion", "official_native_public_best_reimplementation"}:
         manifest["artifact_usage_claims"].append({"provider": "AIDO.Cell-100M", "sides": ["perturbation_gene"], "requires_present_artifact": True})
-    if blueprint_id in {"official_string_gnn_attention", "official_aido_string_fusion"}:
+    if blueprint_id in {"official_string_gnn_attention", "official_aido_string_fusion", "official_native_public_best_reimplementation"}:
         manifest["artifact_usage_claims"].append({"provider": "STRING_GNN", "sides": ["gene_graph"], "requires_present_artifact": True})
     if blueprint_id in {"focal_loss_training_strategy", "official_class_imbalance_training"}:
         manifest["training"] = {"loss_type": "focal_loss", "loss_notes": "Node-level training strategy patch for class-imbalanced DEG labels."}
@@ -245,7 +252,7 @@ def render_implementation_request(child_name: str, blueprint: dict[str, Any], pa
         "## Required File", "", "Create this file:", "", "```text", child_config["model"]["custom_model_path"], "```", "",
         "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits.", "",
         "## Acceptance Criteria", "", acceptance, "",
-        "## Guardrails", "", "Do not modify data, splits, or metric semantics. Keep the model compact enough for the current RunPod GPU.",
+        "## Guardrails", "", "Allowed files: node-local `model.py`, node-local config/pipeline metadata, and small helper modules already approved by the harness.", "Forbidden changes: official split files, labels, target-gene order, metric semantics, and artifact provenance.", "Smoke gate: run `PYTHONPATH=src python -m vc_demo.harness.native_program_smoke --config <child-config>` before training.", "Keep the model compact enough for the current RunPod GPU.",
     ]
     return "\n".join(lines) + "\n"
 
@@ -272,7 +279,7 @@ def hypothesis_for(blueprint_id: str, blueprint: dict[str, Any]) -> str:
 
 
 def render_program_source(blueprint_id: str) -> str:
-    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "esm2_gene_projection": ESM2_GENE_PROJECTION, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING, "string_gnn_perturbation_propagator": STRING_GNN_PERTURBATION_PROPAGATOR, "pathway_pooling_encoder": PATHWAY_POOLING_ENCODER}
+    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "esm2_gene_projection": ESM2_GENE_PROJECTION, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING, "string_gnn_perturbation_propagator": STRING_GNN_PERTURBATION_PROPAGATOR, "pathway_pooling_encoder": PATHWAY_POOLING_ENCODER, "official_target_gene_head": OFFICIAL_TARGET_GENE_HEAD, "official_string_gnn_attention": OFFICIAL_STRING_GNN_ATTENTION, "official_aido_lora_adapter": OFFICIAL_AIDO_LORA_ADAPTER, "official_aido_string_fusion": OFFICIAL_AIDO_STRING_FUSION, "official_native_public_best_reimplementation": OFFICIAL_NATIVE_PUBLIC_BEST_REIMPLEMENTATION}
     try:
         return sources[blueprint_id]
     except KeyError as exc:
@@ -699,4 +706,55 @@ class GeneratedModel(nn.Module):
         gate = self.gate(torch.cat([c, e], dim=-1))
         z = c * (1.0 - gate) + e * gate
         return self.head(z).view(x.shape[0], self.n_targets, self.n_classes)
+"""
+
+
+OFFICIAL_TARGET_GENE_HEAD = """from __future__ import annotations
+
+from vc_demo.official_k562.native_models import OfficialK562NativeModel
+
+
+class GeneratedModel(OfficialK562NativeModel):
+    def __init__(self, spec) -> None:
+        super().__init__(spec, variant=\"target_gene_head\")
+"""
+
+OFFICIAL_STRING_GNN_ATTENTION = """from __future__ import annotations
+
+from vc_demo.official_k562.native_models import OfficialK562NativeModel
+
+
+class GeneratedModel(OfficialK562NativeModel):
+    def __init__(self, spec) -> None:
+        super().__init__(spec, variant=\"string_gnn_attention\")
+"""
+
+OFFICIAL_AIDO_LORA_ADAPTER = """from __future__ import annotations
+
+from vc_demo.official_k562.native_models import OfficialK562NativeModel
+
+
+class GeneratedModel(OfficialK562NativeModel):
+    def __init__(self, spec) -> None:
+        super().__init__(spec, variant=\"aido_lora_adapter\")
+"""
+
+OFFICIAL_AIDO_STRING_FUSION = """from __future__ import annotations
+
+from vc_demo.official_k562.native_models import OfficialK562NativeModel
+
+
+class GeneratedModel(OfficialK562NativeModel):
+    def __init__(self, spec) -> None:
+        super().__init__(spec, variant=\"aido_string_fusion\")
+"""
+
+OFFICIAL_NATIVE_PUBLIC_BEST_REIMPLEMENTATION = """from __future__ import annotations
+
+from vc_demo.official_k562.native_models import OfficialK562NativeModel
+
+
+class GeneratedModel(OfficialK562NativeModel):
+    def __init__(self, spec) -> None:
+        super().__init__(spec, variant=\"native_public_best_reimplementation\")
 """
