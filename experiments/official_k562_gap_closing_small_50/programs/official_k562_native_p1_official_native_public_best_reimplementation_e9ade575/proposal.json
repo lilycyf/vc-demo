@@ -1,0 +1,93 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_native_p1_official_native_public_best_reimplementation_63b5a7af",
+  "child": "official_k562_native_p1_official_native_public_best_reimplementation_e9ade575",
+  "strategy": "official_native_public_best_reimplementation",
+  "blueprint": {
+    "id": "official_native_public_best_reimplementation",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "native_reimplementation",
+    "paper_family": "public_vcharness_best_path_native_v1",
+    "change_level": 5,
+    "role": "Native compact reimplementation of the public K562 best-node family using official AIDO and STRING_GNN artifact contracts.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_notes": "Implemented as a native custom_program proxy in vc_demo.official_k562.native_models. It is interface/functionality aligned, not a numerical clone of the public static node.",
+    "acceptance": [
+      "Checks AIDO and STRING_GNN artifact paths",
+      "Forward returns [batch, 6640, 3]",
+      "Can be used as MCTS root or child"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Native compact reimplementation of the public K562 best-node family using official AIDO and STRING_GNN artifact contracts.",
+  "changes": [
+    "program_model:custom_program->official_native_public_best_reimplementation",
+    "blueprint_status:implemented",
+    "custom_model_path:experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575",
+  "program_model_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    },
+    {
+      "provider": "STRING_GNN",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_native_public_best_reimplementation",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_e9ade575/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "artifact_aware_blueprint_ranking",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

@@ -75,6 +75,9 @@
     "paper_alignment": "blueprint not yet mapped into the grammar"
   },
   "implementation_request_path": "",
+  "artifact_contract_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_3db8e977/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_3db8e977/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_3db8e977/parent_summary.json",
   "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
   "artifact_selection": {
     "policy": "artifact_aware_blueprint_ranking",

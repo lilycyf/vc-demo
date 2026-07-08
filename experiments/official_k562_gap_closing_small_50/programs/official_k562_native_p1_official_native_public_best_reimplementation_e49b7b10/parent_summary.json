@@ -1,0 +1,39 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_native_p1_official_native_public_best_reimplementation_f60cc825",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.4644263684749603,
+  "parent_test_macro_f1": 0.5318456292152405,
+  "parent_strategy": "official_native_public_best_reimplementation",
+  "parent_config_model": {
+    "model_type": "custom_program",
+    "custom_model_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_f60cc825/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_native_public_best_reimplementation",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "depth": 2,
+    "dropout": 0.1,
+    "low_rank_dim": 96,
+    "n_targets": "auto",
+    "n_classes": 3,
+    "artifacts": {
+      "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+      "string_gnn_model_dir": "/home/Models/STRING_GNN",
+      "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+    }
+  },
+  "parent_config_training": {
+    "epochs": 3,
+    "batch_size": 8,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {}
+}
