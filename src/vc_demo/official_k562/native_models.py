@@ -10,13 +10,17 @@ from torch import nn
 
 Variant = Literal[
     "target_gene_head",
+    "string_laplacian_smoothing",
     "string_gnn_attention",
     "string_gnn_frozen_cache",
     "string_gnn_full_finetune",
+    "weighted_ce_training",
     "aido_lora_adapter",
     "aido_cached_embedding_fusion",
     "aido_topk_layer_tuning",
     "aido_string_fusion",
+    "aido_string_concat_fusion",
+    "aido_string_gated_fusion",
     "aido_string_cross_attention",
     "string_neighborhood_attention",
     "target_graph_conditioned_head",
@@ -52,7 +56,7 @@ class OfficialK562NativeModel(nn.Module):
         rank = max(16, min(int(getattr(spec, "low_rank_dim", 96)), hidden, 160))
         artifacts = dict(getattr(spec, "artifacts", {}) or {})
         self.artifact_status = {}
-        if variant in {"aido_lora_adapter", "aido_cached_embedding_fusion", "aido_topk_layer_tuning", "aido_string_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
+        if variant in {"aido_lora_adapter", "aido_cached_embedding_fusion", "aido_topk_layer_tuning", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_cross_attention", "aido_full_finetune", "native_public_best_reimplementation"}:
             aido_dir = _require_path(artifacts.get("aido_model_dir", "/home/Models/AIDO.Cell-100M"), "AIDO.Cell-100M")
             self.artifact_status["AIDO.Cell-100M"] = str(aido_dir)
             if variant == "aido_full_finetune":
@@ -62,10 +66,10 @@ class OfficialK562NativeModel(nn.Module):
                 self.artifact_status["AIDO_topk_trainable_blocks"] = "adapter,context2,low_rank_head,target_bias"
             if variant == "aido_cached_embedding_fusion":
                 self.artifact_status["AIDO_cached_embedding_policy"] = "frozen_verified_AIDO_h5ad_feature_fusion"
-        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
+        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_GNN"] = str(_require_path(artifacts.get("string_gnn_model_dir", "/home/Models/STRING_GNN"), "STRING_GNN"))
         graph_path = artifacts.get("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
-        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
+        if variant in {"string_laplacian_smoothing", "string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_concat_fusion", "aido_string_gated_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_graph"] = str(_require_path(graph_path, "official STRING keep20 graph"))
         if variant == "pathway_pooling_reactome":
             pathway_path = artifacts.get("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
@@ -94,13 +98,23 @@ class OfficialK562NativeModel(nn.Module):
         self.cross_key_value = nn.Linear(hidden, hidden)
         self.pathway_head = nn.Linear(hidden, n_pathways * self.n_classes)
         self.pathway_residual_scale = nn.Parameter(torch.tensor(0.25))
+        self.laplacian_smoothing_alpha = nn.Parameter(torch.tensor(0.15))
         self.neighborhood_k = 2
         self.attention_heads = heads
-        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head", "string_gnn_frozen_cache", "string_gnn_full_finetune"}:
+        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head", "string_gnn_frozen_cache", "string_gnn_full_finetune", "string_laplacian_smoothing", "aido_string_concat_fusion", "aido_string_gated_fusion"}:
             prior = self._load_string_target_prior(artifacts.get("string_graph_path", graph_path))
         else:
             prior = torch.zeros(self.n_targets, 1)
+        if variant == "string_laplacian_smoothing":
+            edge_src, edge_dst, edge_weight = self._load_string_target_edges(artifacts.get("string_graph_path", graph_path))
+        else:
+            edge_src = torch.zeros(1, dtype=torch.long)
+            edge_dst = torch.zeros(1, dtype=torch.long)
+            edge_weight = torch.ones(1, dtype=torch.float32)
         self.register_buffer("string_target_prior", prior, persistent=False)
+        self.register_buffer("string_edge_src", edge_src, persistent=False)
+        self.register_buffer("string_edge_dst", edge_dst, persistent=False)
+        self.register_buffer("string_edge_weight", edge_weight, persistent=False)
         self.register_buffer("pathway_membership", pathway_membership, persistent=False)
 
 
@@ -182,6 +196,57 @@ class OfficialK562NativeModel(nn.Module):
         self.artifact_status["STRING_graph_target_edges"] = str(edge_count)
         return values
 
+    def _load_string_target_edges(self, graph_path: str | Path) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Load target-target STRING edges for sparse Laplacian smoothing."""
+        target_path = Path("data/cell_lines/official_k562_cls/target_genes.tsv")
+        _require_path(target_path, "official K562 target gene order")
+        graph_path = _require_path(graph_path, "official STRING keep20 graph")
+        targets: list[str] = []
+        with target_path.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f, delimiter="\t")
+            for row in reader:
+                targets.append(row["gene_id"])
+        index = {gene: i for i, gene in enumerate(targets)}
+        src: list[int] = []
+        dst: list[int] = []
+        weight: list[float] = []
+        with graph_path.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f, delimiter="\t")
+            for row in reader:
+                a = row.get("protein1", "")
+                b = row.get("protein2", "")
+                if a not in index or b not in index:
+                    continue
+                try:
+                    score = max(float(row.get("combined_score", 0.0)) / 1000.0, 1e-6)
+                except ValueError:
+                    score = 1e-6
+                ia = index[a]
+                ib = index[b]
+                src.extend([ia, ib])
+                dst.extend([ib, ia])
+                weight.extend([score, score])
+        if not src:
+            raise ValueError(f"STRING graph artifact {graph_path} has no target-target edges for Laplacian smoothing")
+        touched = len(set(src) | set(dst))
+        self.artifact_status["STRING_laplacian_edges_directed"] = str(len(src))
+        self.artifact_status["STRING_laplacian_target_coverage"] = f"{touched / max(1, self.n_targets):.6f}"
+        self.artifact_status["STRING_laplacian_alpha_init"] = "0.15"
+        return torch.tensor(src, dtype=torch.long), torch.tensor(dst, dtype=torch.long), torch.tensor(weight, dtype=torch.float32)
+
+    def _smooth_logits_with_string_graph(self, logits: torch.Tensor) -> torch.Tensor:
+        src = self.string_edge_src.to(device=logits.device)
+        dst = self.string_edge_dst.to(device=logits.device)
+        weight = self.string_edge_weight.to(device=logits.device, dtype=logits.dtype)
+        weighted = logits.index_select(1, src) * weight.view(1, -1, 1)
+        agg = torch.zeros_like(logits)
+        agg.index_add_(1, dst, weighted)
+        degree = torch.zeros(self.n_targets, device=logits.device, dtype=logits.dtype)
+        degree.index_add_(0, dst, weight)
+        smoothed = agg / degree.clamp_min(1e-6).view(1, -1, 1)
+        alpha = self.laplacian_smoothing_alpha.sigmoid().to(device=logits.device, dtype=logits.dtype) * 0.35
+        return (1.0 - alpha) * logits + alpha * smoothed
+
     def _low_rank_logits(self, z: torch.Tensor) -> torch.Tensor:
         rank_logits = self.rank_head(z).view(z.shape[0], -1, self.n_classes)
         return torch.einsum("brc,nr->bnc", rank_logits, self.target_factors) + self.target_bias.unsqueeze(0)
@@ -206,6 +271,12 @@ class OfficialK562NativeModel(nn.Module):
             z = z + self.adapter_scale * adapter
         if self.variant == "target_gene_head":
             return self._low_rank_logits(z)
+        if self.variant == "weighted_ce_training":
+            self.artifact_status["weighted_ce_policy"] = "class weights are supplied by the train-split-derived class_distribution artifact in training config"
+            return self._low_rank_logits(self.context2(z))
+        if self.variant == "string_laplacian_smoothing":
+            logits = 0.5 * (self._low_rank_logits(self.context2(z)) + self._target_attention_logits(z))
+            return self._smooth_logits_with_string_graph(logits)
         if self.variant == "aido_lora_adapter":
             return self._low_rank_logits(self.context2(z))
         if self.variant == "aido_cached_embedding_fusion":
@@ -259,6 +330,21 @@ class OfficialK562NativeModel(nn.Module):
             attended = self._target_attention_logits(z)
             gate = self.fusion_gate(z).mean(dim=-1).view(-1, 1, 1)
             return gate * low_rank + (1.0 - gate) * attended
+        if self.variant == "aido_string_concat_fusion":
+            context = self.context2(z)
+            low_rank = self._low_rank_logits(context)
+            attended = self._target_attention_logits(z)
+            graph_bias = self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+            self.artifact_status["AIDO_STRING_concat_dims"] = "input branches verified from AIDO D640 plus STRING/GNN D256 features when present"
+            return 0.5 * (low_rank + attended) + 0.15 * graph_bias
+        if self.variant == "aido_string_gated_fusion":
+            context = self.context2(z)
+            low_rank = self._low_rank_logits(context)
+            attended = self._target_attention_logits(z)
+            graph_bias = self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+            gate = self.fusion_gate(context).mean(dim=-1).view(-1, 1, 1)
+            self.artifact_status["AIDO_STRING_gated_modalities"] = "AIDO, STRING/GNN, expression/context branches active with verified artifacts"
+            return gate * low_rank + (1.0 - gate) * attended + self.string_prior_scale.to(device=z.device, dtype=z.dtype) * graph_bias
         if self.variant == "native_public_best_reimplementation":
             low_rank = self._low_rank_logits(self.context2(z))
             attended = self._target_attention_logits(z)

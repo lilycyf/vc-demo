@@ -10,17 +10,17 @@
 ## Search System
 
 - Experiment: `official_k562_scientific_policy_run_50`
-- Trained nodes: 33
+- Trained nodes: 41
 - Failed nodes: 0
 - Pending implementations: 0
 - Public static tree nodes cataloged: 154
 - Public best path scaffold: `node2-1-1-1-1-1`
 - Paper-scale estimated candidate count: 94500
 - Paper-scale 600+ manifest target reached: true
-- MCTS trace events: 114
+- MCTS trace events: 138
 - MCTS policy: uct
 - Search policy: scientific family/structure priority first; artifact status is a feasibility gate, not a ranking objective
-- Blueprint families covered: 19
+- Blueprint families covered: 23
 - Structural replicate nodes: 0
 - Strict artifact rule: missing official artifacts must acquire/block, not fallback
 
@@ -47,8 +47,10 @@
 
 | Family | Count |
 |---|---:|
+| AIDO_STRING_concat | 2 |
 | AIDO_STRING_cross_attention | 3 |
 | AIDO_STRING_fusion | 1 |
+| AIDO_STRING_gated | 2 |
 | AIDO_adapter | 1 |
 | AIDO_cached_embedding | 3 |
 | AIDO_full_finetune | 2 |
@@ -57,7 +59,9 @@
 | STRING_GNN_attention | 1 |
 | STRING_GNN_frozen_cached | 3 |
 | STRING_GNN_full_finetune | 2 |
+| STRING_laplacian_prior | 2 |
 | STRING_neighborhood_attention | 2 |
+| class_weighted_CE | 2 |
 | focal_loss | 2 |
 | official_deg_imbalance | 1 |
 | public_vcharness_best_path | 1 |
@@ -72,9 +76,9 @@
 | Event | Count |
 |---|---:|
 | backpropagation | 6 |
-| expansion | 38 |
-| pending_implementation | 32 |
-| selection | 38 |
+| expansion | 46 |
+| pending_implementation | 40 |
+| selection | 46 |
 
 ## Results
 
@@ -113,6 +117,14 @@
 | `official_k562_native_p2_official_string_gnn_frozen_cache_3d075b43` | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` |  | official_string_gnn_frozen_cache | structural_variant | 0.4171 | 0.4753 |
 | `official_k562_native_p3_official_string_gnn_full_finetune_b09af07d` | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` |  | official_string_gnn_full_finetune | structural_variant | 0.4257 | 0.4638 |
 | `official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_a9964654` | `official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9` |  | official_string_gnn_frozen_cache | structural_variant | 0.3552 | 0.3863 |
+| `official_k562_root_aido_gnn_embedding_mlp_p1_official_string_laplacian_smoothing_300cae7b` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` |  | official_string_laplacian_smoothing | structural_variant | 0.4113 | 0.4386 |
+| `official_k562_root_aido_gnn_embedding_mlp_p2_official_weighted_ce_training_4f8db4e3` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` |  | official_weighted_ce_training | structural_variant | 0.3894 | 0.4270 |
+| `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_string_concat_fusion_4ecbbcfc` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` |  | official_aido_string_concat_fusion | structural_variant | 0.4075 | 0.4358 |
+| `official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_gated_fusion_e45402bd` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` |  | official_aido_string_gated_fusion | structural_variant | 0.4150 | 0.4405 |
+| `official_k562_p1_official_string_laplacian_smoothing_cacb16db` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_string_laplacian_smoothing | structural_variant | 0.3655 | 0.3789 |
+| `official_k562_p2_official_weighted_ce_training_d9dfeac6` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_weighted_ce_training | structural_variant | 0.3566 | 0.3635 |
+| `official_k562_p3_official_aido_string_concat_fusion_857f5a22` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_aido_string_concat_fusion | structural_variant | 0.3546 | 0.3731 |
+| `official_k562_p4_official_aido_string_gated_fusion_1fe27291` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` |  | official_aido_string_gated_fusion | structural_variant | 0.3564 | 0.3684 |
 
 ## Best Node
 

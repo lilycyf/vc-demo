@@ -12,7 +12,7 @@
     ]
   },
   "search_scale_gap": {
-    "trained_nodes": 33,
+    "trained_nodes": 41,
     "paper_scale_target_nodes": 600,
     "estimated_candidate_count": 94500
   },
@@ -39,7 +39,11 @@
       "AIDO_selective_finetune": 2,
       "scFoundation_selective_finetune": 3,
       "STRING_GNN_frozen_cached": 3,
-      "STRING_GNN_full_finetune": 2
+      "STRING_GNN_full_finetune": 2,
+      "STRING_laplacian_prior": 2,
+      "class_weighted_CE": 2,
+      "AIDO_STRING_concat": 2,
+      "AIDO_STRING_gated": 2
     },
     "replicate_nodes": 0
   },

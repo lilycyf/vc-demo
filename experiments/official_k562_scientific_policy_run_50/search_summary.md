@@ -3,8 +3,8 @@
 This run separates the search loop into MCTS parent selection, an agent-style proposal step, node execution, and report generation.
 The proposal agent may generate config-level children or program-node children. Program nodes carry node-local Python model source and are dynamically loaded during training; data, splits, and metric semantics are unchanged.
 
-- Stop reason: pending implementations resolved; strict artifact acquisition remains for regulatory_network_artifact, single_cell_foundation_model_artifact, and scfoundation_cell_embeddings; no fallback used
-- Trained nodes: 33
+- Stop reason: pending implementation trained
+- Trained nodes: 41
 - Failed nodes: 0
 - Best node: `official_k562_native_p1_official_aido_string_fusion_66a588f9` val=0.4885 test=0.5183
 - Best root: `official_k562_native_public_best_reimplementation` val=0.4679 test=0.5256
@@ -56,6 +56,14 @@ The proposal agent may generate config-level children or program-node children. 
 | 35 | `official_k562_native_p2_official_string_gnn_frozen_cache_3d075b43` | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` | program_node | official_string_gnn_frozen_cache | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 16.1 | custom_program | 0.4171 | 0.4753 |
 | 36 | `official_k562_native_p3_official_string_gnn_full_finetune_b09af07d` | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` | program_node | official_string_gnn_full_finetune | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 13.8 | custom_program | 0.4257 | 0.4638 |
 | 38 | `official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_a9964654` | `official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9` | program_node | official_string_gnn_frozen_cache | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 12.2 | custom_program | 0.3552 | 0.3863 |
+| 39 | `official_k562_root_aido_gnn_embedding_mlp_p1_official_string_laplacian_smoothing_300cae7b` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` | program_node | official_string_laplacian_smoothing | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 15.2 | custom_program | 0.4113 | 0.4386 |
+| 40 | `official_k562_root_aido_gnn_embedding_mlp_p2_official_weighted_ce_training_4f8db4e3` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` | program_node | official_weighted_ce_training | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 8.4 | custom_program | 0.3894 | 0.4270 |
+| 41 | `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_string_concat_fusion_4ecbbcfc` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` | program_node | official_aido_string_concat_fusion | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 12.4 | custom_program | 0.4075 | 0.4358 |
+| 42 | `official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_gated_fusion_e45402bd` | `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` | program_node | official_aido_string_gated_fusion | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 12.9 | custom_program | 0.4150 | 0.4405 |
+| 43 | `official_k562_p1_official_string_laplacian_smoothing_cacb16db` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | program_node | official_string_laplacian_smoothing | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 20.2 | custom_program | 0.3655 | 0.3789 |
+| 44 | `official_k562_p2_official_weighted_ce_training_d9dfeac6` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | program_node | official_weighted_ce_training | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 11.8 | custom_program | 0.3566 | 0.3635 |
+| 45 | `official_k562_p3_official_aido_string_concat_fusion_857f5a22` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | program_node | official_aido_string_concat_fusion | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 16.5 | custom_program | 0.3546 | 0.3731 |
+| 46 | `official_k562_p4_official_aido_string_gated_fusion_1fe27291` | `official_k562_p1_official_target_graph_conditioned_head_ab86336c` | program_node | official_aido_string_gated_fusion | native_train | pipeline_program_node | focal_loss | perturbation_gene_or_context |  | 17.2 | custom_program | 0.3564 | 0.3684 |
 
 ## Artifact And Pipeline Audit
 
@@ -94,6 +102,14 @@ The proposal agent may generate config-level children or program-node children. 
 | `official_k562_native_p2_official_string_gnn_frozen_cache_3d075b43` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
 | `official_k562_native_p3_official_string_gnn_full_finetune_b09af07d` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
 | `official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_a9964654` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
+| `official_k562_root_aido_gnn_embedding_mlp_p1_official_string_laplacian_smoothing_300cae7b` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
+| `official_k562_root_aido_gnn_embedding_mlp_p2_official_weighted_ce_training_4f8db4e3` | true | perturbation_gene_or_context | class_distribution |  | `` | weighted_cross_entropy |  |
+| `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_string_concat_fusion_4ecbbcfc` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
+| `official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_gated_fusion_e45402bd` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy |  |
+| `official_k562_p1_official_string_laplacian_smoothing_cacb16db` | true | perturbation_gene_or_context |  |  | `` | focal_loss |  |
+| `official_k562_p2_official_weighted_ce_training_d9dfeac6` | true | perturbation_gene_or_context | class_distribution |  | `` | focal_loss |  |
+| `official_k562_p3_official_aido_string_concat_fusion_857f5a22` | true | perturbation_gene_or_context |  |  | `` | focal_loss |  |
+| `official_k562_p4_official_aido_string_gated_fusion_1fe27291` | true | perturbation_gene_or_context |  |  | `` | focal_loss |  |
 
 ## Best-So-Far Curve
 
@@ -132,6 +148,14 @@ The proposal agent may generate config-level children or program-node children. 
 | 35 | 0.4885 |
 | 36 | 0.4885 |
 | 38 | 0.4885 |
+| 39 | 0.4885 |
+| 40 | 0.4885 |
+| 41 | 0.4885 |
+| 42 | 0.4885 |
+| 43 | 0.4885 |
+| 44 | 0.4885 |
+| 45 | 0.4885 |
+| 46 | 0.4885 |
 
 ## Tree
 
@@ -149,16 +173,24 @@ The proposal agent may generate config-level children or program-node children. 
       - `official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_47592563` status=trained visits=2 val=0.3552 test=0.3845 strategy=official_string_gnn_frozen_cache program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_47592563/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
       - `official_k562_root_aido_embedding_mlp_p3_official_string_gnn_full_finetune_18414a9e` status=trained visits=2 val=0.4216 test=0.4352 strategy=official_string_gnn_full_finetune program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p3_official_string_gnn_full_finetune_18414a9e/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec` status=requires_artifact_acquisition visits=0 strategy=official_scgpt_cell_encoder program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p3_official_scgpt_cell_encoder_c8a798ec/model.py pipeline=pipeline_program_node
-- `official_k562_root_aido_gnn_embedding_mlp` status=trained visits=6 val=0.4128 test=0.4630 backend=native_train artifacts=perturbation_gene_or_context
-  - `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` status=trained visits=1 val=0.3979 test=0.4254 strategy=official_pathway_pooling_reactome program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+- `official_k562_root_aido_gnn_embedding_mlp` status=trained visits=10 val=0.4128 test=0.4630 backend=native_train artifacts=perturbation_gene_or_context
+  - `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` status=trained visits=5 val=0.3979 test=0.4254 strategy=official_pathway_pooling_reactome program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+    - `official_k562_root_aido_gnn_embedding_mlp_p1_official_string_laplacian_smoothing_300cae7b` status=trained visits=2 val=0.4113 test=0.4386 strategy=official_string_laplacian_smoothing program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_string_laplacian_smoothing_300cae7b/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+    - `official_k562_root_aido_gnn_embedding_mlp_p2_official_weighted_ce_training_4f8db4e3` status=trained visits=2 val=0.3894 test=0.4270 strategy=official_weighted_ce_training program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_weighted_ce_training_4f8db4e3/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+    - `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_string_concat_fusion_4ecbbcfc` status=trained visits=2 val=0.4075 test=0.4358 strategy=official_aido_string_concat_fusion program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_string_concat_fusion_4ecbbcfc/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+    - `official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_gated_fusion_e45402bd` status=trained visits=2 val=0.4150 test=0.4405 strategy=official_aido_string_gated_fusion program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_gated_fusion_e45402bd/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
   - `official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15` status=trained visits=3 val=0.4207 test=0.4469 strategy=official_aido_string_cross_attention program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373` status=requires_artifact_acquisition visits=0 strategy=official_regulatory_network_prior program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_d2e79373/model.py pipeline=pipeline_program_node
     - `official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87` status=trained visits=1 val=0.3785 test=0.4161 strategy=official_focal_loss_training program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287` status=trained visits=1 val=0.3825 test=0.4200 strategy=official_aido_full_finetune program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
   - `official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1` status=trained visits=1 val=0.3572 test=0.3912 strategy=official_string_neighborhood_attention program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
-- `official_k562_public_best_node2_1_1_1_1_1_smoke` status=trained visits=6 val=0.3333 test=0.3333 backend=external_static_node
-  - `official_k562_p1_official_class_imbalance_training_fde536bb` status=trained visits=2 val=0.3828 test=0.3993 strategy=official_class_imbalance_training pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
-    - `official_k562_p1_official_target_graph_conditioned_head_ab86336c` status=trained visits=1 val=0.3967 test=0.4169 strategy=official_target_graph_conditioned_head program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_target_graph_conditioned_head_ab86336c/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+- `official_k562_public_best_node2_1_1_1_1_1_smoke` status=trained visits=10 val=0.3333 test=0.3333 backend=external_static_node
+  - `official_k562_p1_official_class_imbalance_training_fde536bb` status=trained visits=6 val=0.3828 test=0.3993 strategy=official_class_imbalance_training pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+    - `official_k562_p1_official_target_graph_conditioned_head_ab86336c` status=trained visits=5 val=0.3967 test=0.4169 strategy=official_target_graph_conditioned_head program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_target_graph_conditioned_head_ab86336c/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+      - `official_k562_p1_official_string_laplacian_smoothing_cacb16db` status=trained visits=2 val=0.3655 test=0.3789 strategy=official_string_laplacian_smoothing program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_string_laplacian_smoothing_cacb16db/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+      - `official_k562_p2_official_weighted_ce_training_d9dfeac6` status=trained visits=2 val=0.3566 test=0.3635 strategy=official_weighted_ce_training program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p2_official_weighted_ce_training_d9dfeac6/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+      - `official_k562_p3_official_aido_string_concat_fusion_857f5a22` status=trained visits=2 val=0.3546 test=0.3731 strategy=official_aido_string_concat_fusion program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p3_official_aido_string_concat_fusion_857f5a22/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
+      - `official_k562_p4_official_aido_string_gated_fusion_1fe27291` status=trained visits=2 val=0.3564 test=0.3684 strategy=official_aido_string_gated_fusion program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
     - `official_k562_p2_official_public_best_node_0f24e30a` status=trained visits=3 val=0.3333 test=0.3333 strategy=official_public_best_node backend=external_static_node pipeline=external_static_node
       - `official_k562_p1_official_regulatory_network_prior_144a8b54` status=requires_artifact_acquisition visits=0 strategy=official_regulatory_network_prior program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_regulatory_network_prior_144a8b54/model.py pipeline=pipeline_program_node
       - `official_k562_p2_official_focal_loss_training_11ab1cb3` status=trained visits=1 val=0.3705 test=0.3804 strategy=official_focal_loss_training program=experiments/official_k562_scientific_policy_run_50/programs/official_k562_p2_official_focal_loss_training_11ab1cb3/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context

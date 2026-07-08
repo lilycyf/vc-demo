@@ -1,7 +1,7 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-08T05:24:51.440210+00:00",
-  "updated_at": "2026-07-08T07:20:04.428720+00:00",
+  "updated_at": "2026-07-08T08:31:41.654358+00:00",
   "events": [],
   "blueprint_counts": {
     "official_aido_lora_adapter": 1,
@@ -22,7 +22,11 @@
     "official_aido_topk_layer_tuning": 2,
     "official_scfoundation_top_layer_finetune": 3,
     "official_string_gnn_frozen_cache": 3,
-    "official_string_gnn_full_finetune": 2
+    "official_string_gnn_full_finetune": 2,
+    "official_string_laplacian_smoothing": 2,
+    "official_weighted_ce_training": 2,
+    "official_aido_string_concat_fusion": 2,
+    "official_aido_string_gated_fusion": 2
   },
   "parent_blueprints": {
     "official_k562_native_p1_official_string_gnn_attention_7ec267ae": [
@@ -96,6 +100,18 @@
     "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9": [
       "official_scfoundation_top_layer_finetune",
       "official_string_gnn_frozen_cache"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab": [
+      "official_aido_string_concat_fusion",
+      "official_aido_string_gated_fusion",
+      "official_string_laplacian_smoothing",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_p1_official_target_graph_conditioned_head_ab86336c": [
+      "official_aido_string_concat_fusion",
+      "official_aido_string_gated_fusion",
+      "official_string_laplacian_smoothing",
+      "official_weighted_ce_training"
     ]
   },
   "family_counts": {
@@ -117,7 +133,11 @@
     "AIDO_selective_finetune": 2,
     "scFoundation_selective_finetune": 3,
     "STRING_GNN_frozen_cached": 3,
-    "STRING_GNN_full_finetune": 2
+    "STRING_GNN_full_finetune": 2,
+    "STRING_laplacian_prior": 2,
+    "class_weighted_CE": 2,
+    "AIDO_STRING_concat": 2,
+    "AIDO_STRING_gated": 2
   },
   "structural_signature_counts": {
     "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 1,
@@ -153,7 +173,15 @@
     "09877d62c8ec5a7223b3ea489ea86f90f49bfd26": 1,
     "9f3feb9148355be15ca3924191ab26a142ee56cb": 1,
     "33bb792aebf420fa5c1e2fc14d0614650631e056": 1,
-    "9b04ab87698def130b5e3b62725306f0713d45f1": 1
+    "9b04ab87698def130b5e3b62725306f0713d45f1": 1,
+    "606d8cdf402a1af1ef92bc5742e3d019e66e0909": 1,
+    "d3eb6c3034dfc408abd078f8142d91c1fb07f939": 1,
+    "41689d24ee3f4e3268833fb25ea58c24ce83fcee": 1,
+    "9661c1839e98bafd02336eb45f434744e1d16282": 1,
+    "1166f2c9624d80c57487c0a1b1725a7924d49768": 1,
+    "600e68e195e725673eb2f19f120a132da4acea97": 1,
+    "197e23222ed2af653ab388a41700da64ac2a8a4d": 1,
+    "fcbc4ea285e0cf9aff62f6b976b04e1611ff0b73": 1
   },
   "replicate_nodes": [],
   "successes": [
@@ -257,6 +285,24 @@
       "parent": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810"
     },
     {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_gated_fusion_e45402bd",
+      "strategy": "official_aido_string_gated_fusion",
+      "family": "AIDO_STRING_gated",
+      "structural_relation": "structural_variant",
+      "val": 0.4149884283542633,
+      "test": 0.4404617249965668,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_string_laplacian_smoothing_300cae7b",
+      "strategy": "official_string_laplacian_smoothing",
+      "family": "STRING_laplacian_prior",
+      "structural_relation": "structural_variant",
+      "val": 0.4112708568572998,
+      "test": 0.43859413266181946,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab"
+    },
+    {
       "node": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
       "strategy": "official_pathway_pooling_reactome",
       "family": "Reactome_pathway_pooling",
@@ -264,6 +310,15 @@
       "val": 0.4088006019592285,
       "test": 0.4476519525051117,
       "parent": "official_k562_native_p1_official_target_gene_head_477d0ebb"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_string_concat_fusion_4ecbbcfc",
+      "strategy": "official_aido_string_concat_fusion",
+      "family": "AIDO_STRING_concat",
+      "structural_relation": "structural_variant",
+      "val": 0.4075310230255127,
+      "test": 0.43584585189819336,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab"
     },
     {
       "node": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
@@ -320,6 +375,15 @@
       "parent": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c"
     },
     {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_weighted_ce_training_4f8db4e3",
+      "strategy": "official_weighted_ce_training",
+      "family": "class_weighted_CE",
+      "structural_relation": "structural_variant",
+      "val": 0.389369934797287,
+      "test": 0.4269667863845825,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab"
+    },
+    {
       "node": "official_k562_p1_official_class_imbalance_training_fde536bb",
       "strategy": "official_class_imbalance_training",
       "family": "official_deg_imbalance",
@@ -356,6 +420,15 @@
       "parent": "official_k562_p2_official_public_best_node_0f24e30a"
     },
     {
+      "node": "official_k562_p1_official_string_laplacian_smoothing_cacb16db",
+      "strategy": "official_string_laplacian_smoothing",
+      "family": "STRING_laplacian_prior",
+      "structural_relation": "structural_variant",
+      "val": 0.36547985672950745,
+      "test": 0.3788825571537018,
+      "parent": "official_k562_p1_official_target_graph_conditioned_head_ab86336c"
+    },
+    {
       "node": "official_k562_p3_official_aido_full_finetune_337e49b9",
       "strategy": "official_aido_full_finetune",
       "family": "AIDO_full_finetune",
@@ -383,6 +456,24 @@
       "parent": "official_k562_root_aido_gnn_embedding_mlp"
     },
     {
+      "node": "official_k562_p2_official_weighted_ce_training_d9dfeac6",
+      "strategy": "official_weighted_ce_training",
+      "family": "class_weighted_CE",
+      "structural_relation": "structural_variant",
+      "val": 0.35660529136657715,
+      "test": 0.36345139145851135,
+      "parent": "official_k562_p1_official_target_graph_conditioned_head_ab86336c"
+    },
+    {
+      "node": "official_k562_p4_official_aido_string_gated_fusion_1fe27291",
+      "strategy": "official_aido_string_gated_fusion",
+      "family": "AIDO_STRING_gated",
+      "structural_relation": "structural_variant",
+      "val": 0.35644540190696716,
+      "test": 0.36839982867240906,
+      "parent": "official_k562_p1_official_target_graph_conditioned_head_ab86336c"
+    },
+    {
       "node": "official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_a9964654",
       "strategy": "official_string_gnn_frozen_cache",
       "family": "STRING_GNN_frozen_cached",
@@ -399,6 +490,15 @@
       "val": 0.35522904992103577,
       "test": 0.38447561860084534,
       "parent": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e"
+    },
+    {
+      "node": "official_k562_p3_official_aido_string_concat_fusion_857f5a22",
+      "strategy": "official_aido_string_concat_fusion",
+      "family": "AIDO_STRING_concat",
+      "structural_relation": "structural_variant",
+      "val": 0.3546348512172699,
+      "test": 0.3731480538845062,
+      "parent": "official_k562_p1_official_target_graph_conditioned_head_ab86336c"
     },
     {
       "node": "official_k562_native_p3_official_string_neighborhood_attention_0376ea72",

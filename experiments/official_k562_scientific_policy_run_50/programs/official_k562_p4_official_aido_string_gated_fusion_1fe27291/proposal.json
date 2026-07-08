@@ -1,0 +1,102 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_p1_official_target_graph_conditioned_head_ab86336c",
+  "child": "official_k562_p4_official_aido_string_gated_fusion_1fe27291",
+  "strategy": "official_aido_string_gated_fusion",
+  "blueprint": {
+    "id": "official_aido_string_gated_fusion",
+    "status": "planned",
+    "official_k562": true,
+    "category": "multimodal_fusion",
+    "paper_family": "AIDO_STRING_gated",
+    "change_level": 4,
+    "role": "Learn gates over AIDO, STRING/GNN, and expression/context branches.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex reports active modalities and gate parameterization.",
+    "acceptance": [
+      "Gate uses real branches",
+      "No silent branch dropout due to missing artifact",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Learn gates over AIDO, STRING/GNN, and expression/context branches.",
+  "changes": [
+    "program_model:custom_program->official_aido_string_gated_fusion",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0001->0.0001"
+  ],
+  "program_dir": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291",
+  "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_aido_string_gated_fusion",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_with_blocked_artifact_budget_reallocation",
+    "score": 1.26,
+    "base": 0.66,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "blocked_policy_penalty": 0.0,
+    "count": 0,
+    "family": "AIDO_STRING_gated",
+    "family_count": 0,
+    "blocked_policy": "blocked_artifact_budget_reallocation",
+    "blocked_policy_active": true,
+    "suppressed_by_blocked_artifact": false,
+    "repeated_blocked_artifacts": [],
+    "strategy_block_count": 0,
+    "family_block_count": 0,
+    "blocked_artifact_counts": {
+      "official_aido_cell_100m_model_dir": 0,
+      "official_essential_deg_with_split_h5ad": 0,
+      "official_string_gnn_model_dir": 0
+    }
+  },
+  "structural_signature": "fcbc4ea285e0cf9aff62f6b976b04e1611ff0b73",
+  "parent_structural_signature": "ce507ce1709c76506db3c3d5f40b9c8f759053eb",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p4_official_aido_string_gated_fusion_1fe27291/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [],
+    "missing_required_artifacts": [],
+    "all_required_present": false
+  }
+}
