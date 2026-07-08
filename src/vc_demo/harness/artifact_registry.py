@@ -92,7 +92,17 @@ def artifact_usage_from_config(config: dict[str, Any], proposal: dict[str, Any] 
     model_type = str(model_cfg.get("model_type", ""))
     strategy = str((proposal or {}).get("strategy") or model_cfg.get("program_blueprint", ""))
     data_name = str(data_dir)
-    uses_perturbation_embedding = "gene_embedding" in data_name or model_type in {"target_aware_bilinear"} or strategy in {"esm2_gene_projection", "target_gene_embedding_bilinear"}
+    embedding_paths = []
+    if data_cfg.get("embedding_h5ad"):
+        embedding_paths.append(str(data_cfg.get("embedding_h5ad")))
+    embedding_paths.extend(str(path) for path in data_cfg.get("embedding_h5ads", []) or [])
+    uses_official_k562_embeddings = data_cfg.get("dataset_type") == "official_k562_tsv" and bool(embedding_paths)
+    uses_perturbation_embedding = (
+        "gene_embedding" in data_name
+        or uses_official_k562_embeddings
+        or model_type in {"target_aware_bilinear"}
+        or strategy in {"esm2_gene_projection", "target_gene_embedding_bilinear"}
+    )
     sides: list[str] = []
     if uses_perturbation_embedding:
         sides.append("perturbation_gene_or_context")
