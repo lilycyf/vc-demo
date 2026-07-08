@@ -53,6 +53,33 @@
       "source": "No verified scGPT/scFoundation K562 row-aligned artifact configured; strict mode must block.",
       "action": "search_download_or_build_real_artifact",
       "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_229ce930",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "artifact_id": "scfoundation_cell_embeddings",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output; exact source must be documented before use",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_native_p1_official_scfoundation_top_layer_finetune_d20d4b0f",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "artifact_id": "scfoundation_cell_embeddings",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output; exact source must be documented before use",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_39582a38",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "artifact_id": "scfoundation_cell_embeddings",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output; exact source must be documented before use",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
     }
   ]
 }

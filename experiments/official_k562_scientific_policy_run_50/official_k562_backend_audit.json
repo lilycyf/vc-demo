@@ -1,0 +1,123 @@
+{
+  "status": "passed",
+  "backend": "official_k562_tsv_mcts_harness",
+  "data_contract": {
+    "status": "passed",
+    "data_dir": "data/cell_lines/official_k562_cls",
+    "split_sizes": {
+      "train": 1388,
+      "val": 154,
+      "test": 421
+    },
+    "target_gene_rows": 6640,
+    "n_genes_seen": [
+      6640
+    ],
+    "label_counts_by_split": {
+      "train": {
+        "-1": 405816,
+        "0": 8510952,
+        "1": 299552
+      },
+      "val": {
+        "-1": 32336,
+        "0": 963695,
+        "1": 26529
+      },
+      "test": {
+        "-1": 89553,
+        "0": 2637627,
+        "1": 68260
+      }
+    },
+    "issues": []
+  },
+  "registry_path": "configs/artifacts/k562_registry.json",
+  "required_artifacts": [
+    "official_essential_deg_with_split_h5ad",
+    "official_k562_aido_cell_100m_embedding_h5ad",
+    "official_gnn_simple_embedding_h5ad",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_public_best_node_code"
+  ],
+  "missing_required_artifacts": [],
+  "present_artifacts": [
+    "esm2_gene_embedding_h5ad",
+    "esm2_k562_target_manifest",
+    "string_k562_gene_graph",
+    "pathway_memberships",
+    "official_essential_deg_with_split_h5ad",
+    "official_k562_aido_cell_100m_embedding_h5ad",
+    "official_string_gnn_keep20_graph",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_gnn_simple_embedding_h5ad",
+    "official_public_best_node_code",
+    "class_distribution"
+  ],
+  "missing_artifacts": [
+    "aido_gene_or_cell_embeddings",
+    "scfoundation_cell_embeddings",
+    "regulatory_network_artifact",
+    "single_cell_foundation_model_artifact"
+  ],
+  "root_configs": [
+    {
+      "path": "configs/official_k562_root_aido_embedding_mlp.json",
+      "present": true,
+      "node_name": "official_k562_root_aido_embedding_mlp",
+      "dataset_type": "official_k562_tsv",
+      "data_dir": "data/cell_lines/official_k562_cls",
+      "embedding_h5ad": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "embedding_h5ads": [],
+      "execution_backend": "native_train",
+      "script_path": ""
+    },
+    {
+      "path": "configs/official_k562_root_aido_gnn_embedding_mlp.json",
+      "present": true,
+      "node_name": "official_k562_root_aido_gnn_embedding_mlp",
+      "dataset_type": "official_k562_tsv",
+      "data_dir": "data/cell_lines/official_k562_cls",
+      "embedding_h5ad": null,
+      "embedding_h5ads": [
+        "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+        "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad"
+      ],
+      "execution_backend": "native_train",
+      "script_path": ""
+    },
+    {
+      "path": "configs/official_k562_public_best_node_smoke.json",
+      "present": true,
+      "node_name": "official_k562_public_best_node2_1_1_1_1_1_smoke",
+      "dataset_type": "official_k562_tsv",
+      "data_dir": "data/cell_lines/official_k562_cls",
+      "embedding_h5ad": null,
+      "embedding_h5ads": [],
+      "execution_backend": "external_static_node",
+      "script_path": "node2-1-1-1-1-1_code.py"
+    },
+    {
+      "path": "configs/official_k562_native_public_best_reimplementation.json",
+      "present": true,
+      "node_name": "official_k562_native_public_best_reimplementation",
+      "dataset_type": "official_k562_tsv",
+      "data_dir": "data/cell_lines/official_k562_cls",
+      "embedding_h5ad": null,
+      "embedding_h5ads": [
+        "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+        "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad"
+      ],
+      "execution_backend": "native_train",
+      "script_path": ""
+    }
+  ],
+  "issues": [],
+  "notes": [
+    "This backend lets vc_demo.harness.program_run search on the official K562 TSV task.",
+    "The public VCHarness best node remains a separate compatibility benchmark and may use external node code.",
+    "Strict artifact mode must block or acquire missing artifacts; do not train fallback nodes for claimed official artifacts."
+  ]
+}

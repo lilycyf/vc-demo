@@ -1,7 +1,7 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-08T05:24:51.440210+00:00",
-  "updated_at": "2026-07-08T07:05:50.096389+00:00",
+  "updated_at": "2026-07-08T07:20:04.428720+00:00",
   "events": [],
   "blueprint_counts": {
     "official_aido_lora_adapter": 1,
@@ -19,7 +19,10 @@
     "official_aido_full_finetune": 2,
     "official_aido_cached_embedding_fusion": 3,
     "official_scgpt_cell_encoder": 3,
-    "official_aido_topk_layer_tuning": 2
+    "official_aido_topk_layer_tuning": 2,
+    "official_scfoundation_top_layer_finetune": 3,
+    "official_string_gnn_frozen_cache": 3,
+    "official_string_gnn_full_finetune": 2
   },
   "parent_blueprints": {
     "official_k562_native_p1_official_string_gnn_attention_7ec267ae": [
@@ -79,6 +82,20 @@
       "official_aido_cached_embedding_fusion",
       "official_aido_topk_layer_tuning",
       "official_scgpt_cell_encoder"
+    ],
+    "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e": [
+      "official_scfoundation_top_layer_finetune",
+      "official_string_gnn_frozen_cache",
+      "official_string_gnn_full_finetune"
+    ],
+    "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751": [
+      "official_scfoundation_top_layer_finetune",
+      "official_string_gnn_frozen_cache",
+      "official_string_gnn_full_finetune"
+    ],
+    "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9": [
+      "official_scfoundation_top_layer_finetune",
+      "official_string_gnn_frozen_cache"
     ]
   },
   "family_counts": {
@@ -97,7 +114,10 @@
     "AIDO_full_finetune": 2,
     "AIDO_cached_embedding": 3,
     "scGPT_or_single_cell_encoder": 3,
-    "AIDO_selective_finetune": 2
+    "AIDO_selective_finetune": 2,
+    "scFoundation_selective_finetune": 3,
+    "STRING_GNN_frozen_cached": 3,
+    "STRING_GNN_full_finetune": 2
   },
   "structural_signature_counts": {
     "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 1,
@@ -127,7 +147,13 @@
     "90062101037e1a7dac7f267d9f69d298e6f45c94": 1,
     "8701982227d6d34b2484821cdb662ed1bfecafe6": 1,
     "a21bee8308c3a0d3fd240c1bab332aeac3d9e608": 1,
-    "7493f0c5e07716204f23b50e21d7899661d8bc42": 1
+    "7493f0c5e07716204f23b50e21d7899661d8bc42": 1,
+    "d8cf58a3a6224ad426151c02e115666b0a7ecac0": 2,
+    "0f85c05959895d818cc7b37173b50225b913cea5": 2,
+    "09877d62c8ec5a7223b3ea489ea86f90f49bfd26": 1,
+    "9f3feb9148355be15ca3924191ab26a142ee56cb": 1,
+    "33bb792aebf420fa5c1e2fc14d0614650631e056": 1,
+    "9b04ab87698def130b5e3b62725306f0713d45f1": 1
   },
   "replicate_nodes": [],
   "successes": [
@@ -168,6 +194,24 @@
       "parent": "official_k562_native_p1_official_aido_string_fusion_66a588f9"
     },
     {
+      "node": "official_k562_native_p3_official_string_gnn_full_finetune_b09af07d",
+      "strategy": "official_string_gnn_full_finetune",
+      "family": "STRING_GNN_full_finetune",
+      "structural_relation": "structural_variant",
+      "val": 0.42571982741355896,
+      "test": 0.46380865573883057,
+      "parent": "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_string_gnn_full_finetune_18414a9e",
+      "strategy": "official_string_gnn_full_finetune",
+      "family": "STRING_GNN_full_finetune",
+      "structural_relation": "structural_variant",
+      "val": 0.42160913348197937,
+      "test": 0.4351629912853241,
+      "parent": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e"
+    },
+    {
       "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15",
       "strategy": "official_aido_string_cross_attention",
       "family": "AIDO_STRING_cross_attention",
@@ -193,6 +237,15 @@
       "val": 0.4180505573749542,
       "test": 0.4311048090457916,
       "parent": "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500"
+    },
+    {
+      "node": "official_k562_native_p2_official_string_gnn_frozen_cache_3d075b43",
+      "strategy": "official_string_gnn_frozen_cache",
+      "family": "STRING_GNN_frozen_cached",
+      "structural_relation": "structural_variant",
+      "val": 0.4171464741230011,
+      "test": 0.47527173161506653,
+      "parent": "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751"
     },
     {
       "node": "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751",
@@ -330,6 +383,24 @@
       "parent": "official_k562_root_aido_gnn_embedding_mlp"
     },
     {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_a9964654",
+      "strategy": "official_string_gnn_frozen_cache",
+      "family": "STRING_GNN_frozen_cached",
+      "structural_relation": "structural_variant",
+      "val": 0.3552299439907074,
+      "test": 0.38634219765663147,
+      "parent": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_47592563",
+      "strategy": "official_string_gnn_frozen_cache",
+      "family": "STRING_GNN_frozen_cached",
+      "structural_relation": "structural_variant",
+      "val": 0.35522904992103577,
+      "test": 0.38447561860084534,
+      "parent": "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e"
+    },
+    {
       "node": "official_k562_native_p3_official_string_neighborhood_attention_0376ea72",
       "strategy": "official_string_neighborhood_attention",
       "family": "STRING_neighborhood_attention",
@@ -397,6 +468,30 @@
       "missing": [
         "single_cell_foundation_model_artifact"
       ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_229ce930",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "family": "scFoundation_selective_finetune",
+      "missing": [
+        "scfoundation_cell_embeddings"
+      ]
+    },
+    {
+      "node": "official_k562_native_p1_official_scfoundation_top_layer_finetune_d20d4b0f",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "family": "scFoundation_selective_finetune",
+      "missing": [
+        "scfoundation_cell_embeddings"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_scfoundation_top_layer_finetune_39582a38",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "family": "scFoundation_selective_finetune",
+      "missing": [
+        "scfoundation_cell_embeddings"
+      ]
     }
   ],
   "motifs": {
@@ -414,7 +509,8 @@
     ],
     "discouraged": [
       "official_regulatory_network_prior: blocked by missing artifact 3 time(s)",
-      "official_scgpt_cell_encoder: blocked by missing artifact 3 time(s)"
+      "official_scgpt_cell_encoder: blocked by missing artifact 3 time(s)",
+      "official_scfoundation_top_layer_finetune: blocked by missing artifact 3 time(s)"
     ]
   }
 }

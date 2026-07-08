@@ -10,24 +10,24 @@
 ## Search System
 
 - Experiment: `official_k562_scientific_policy_run_50`
-- Trained nodes: 28
+- Trained nodes: 33
 - Failed nodes: 0
 - Pending implementations: 0
 - Public static tree nodes cataloged: 154
 - Public best path scaffold: `node2-1-1-1-1-1`
 - Paper-scale estimated candidate count: 94500
 - Paper-scale 600+ manifest target reached: true
-- MCTS trace events: 90
+- MCTS trace events: 114
 - MCTS policy: uct
 - Search policy: scientific family/structure priority first; artifact status is a feasibility gate, not a ranking objective
-- Blueprint families covered: 16
+- Blueprint families covered: 19
 - Structural replicate nodes: 0
 - Strict artifact rule: missing official artifacts must acquire/block, not fallback
 
 ## Artifact Alignment
 
-- Present artifacts: 11
-- Missing artifacts: aido_gene_or_cell_embeddings, scfoundation_cell_embeddings
+- Present artifacts: 12
+- Missing artifacts: aido_gene_or_cell_embeddings, scfoundation_cell_embeddings, regulatory_network_artifact, single_cell_foundation_model_artifact
 - Reconstructed compatibility artifacts: official_string_gnn_model_dir
 - STRING_GNN compatibility caveat: reconstructed artifacts must not be claimed as numerically equivalent to unpublished original checkpoints.
 
@@ -55,11 +55,14 @@
 | AIDO_selective_finetune | 2 |
 | Reactome_pathway_pooling | 3 |
 | STRING_GNN_attention | 1 |
+| STRING_GNN_frozen_cached | 3 |
+| STRING_GNN_full_finetune | 2 |
 | STRING_neighborhood_attention | 2 |
 | focal_loss | 2 |
 | official_deg_imbalance | 1 |
 | public_vcharness_best_path | 1 |
 | regulatory_network_prior | 3 |
+| scFoundation_selective_finetune | 3 |
 | scGPT_or_single_cell_encoder | 3 |
 | target_gene_aware_head | 1 |
 | target_graph_conditioned_head | 1 |
@@ -69,9 +72,9 @@
 | Event | Count |
 |---|---:|
 | backpropagation | 6 |
-| expansion | 30 |
-| pending_implementation | 24 |
-| selection | 30 |
+| expansion | 38 |
+| pending_implementation | 32 |
+| selection | 38 |
 
 ## Results
 
@@ -105,6 +108,11 @@
 | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` | `official_k562_native_p1_official_pathway_pooling_reactome_b5af6810` |  | official_aido_cached_embedding_fusion | structural_variant | 0.4161 | 0.4562 |
 | `official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6` | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` |  | official_aido_topk_layer_tuning | structural_variant | 0.3905 | 0.4081 |
 | `official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9` | `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` |  | official_aido_cached_embedding_fusion | structural_variant | 0.4052 | 0.4216 |
+| `official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_47592563` | `official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e` |  | official_string_gnn_frozen_cache | structural_variant | 0.3552 | 0.3845 |
+| `official_k562_root_aido_embedding_mlp_p3_official_string_gnn_full_finetune_18414a9e` | `official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e` |  | official_string_gnn_full_finetune | structural_variant | 0.4216 | 0.4352 |
+| `official_k562_native_p2_official_string_gnn_frozen_cache_3d075b43` | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` |  | official_string_gnn_frozen_cache | structural_variant | 0.4171 | 0.4753 |
+| `official_k562_native_p3_official_string_gnn_full_finetune_b09af07d` | `official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751` |  | official_string_gnn_full_finetune | structural_variant | 0.4257 | 0.4638 |
+| `official_k562_root_aido_embedding_mlp_p2_official_string_gnn_frozen_cache_a9964654` | `official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9` |  | official_string_gnn_frozen_cache | structural_variant | 0.3552 | 0.3863 |
 
 ## Best Node
 

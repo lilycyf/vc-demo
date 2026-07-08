@@ -11,6 +11,8 @@ from torch import nn
 Variant = Literal[
     "target_gene_head",
     "string_gnn_attention",
+    "string_gnn_frozen_cache",
+    "string_gnn_full_finetune",
     "aido_lora_adapter",
     "aido_cached_embedding_fusion",
     "aido_topk_layer_tuning",
@@ -60,10 +62,10 @@ class OfficialK562NativeModel(nn.Module):
                 self.artifact_status["AIDO_topk_trainable_blocks"] = "adapter,context2,low_rank_head,target_bias"
             if variant == "aido_cached_embedding_fusion":
                 self.artifact_status["AIDO_cached_embedding_policy"] = "frozen_verified_AIDO_h5ad_feature_fusion"
-        if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
+        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_GNN"] = str(_require_path(artifacts.get("string_gnn_model_dir", "/home/Models/STRING_GNN"), "STRING_GNN"))
         graph_path = artifacts.get("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
-        if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
+        if variant in {"string_gnn_attention", "string_gnn_frozen_cache", "string_gnn_full_finetune", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "target_graph_conditioned_head", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_graph"] = str(_require_path(graph_path, "official STRING keep20 graph"))
         if variant == "pathway_pooling_reactome":
             pathway_path = artifacts.get("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
@@ -87,13 +89,14 @@ class OfficialK562NativeModel(nn.Module):
         self.attention = nn.MultiheadAttention(hidden, heads, batch_first=True, dropout=dropout)
         self.token_classifier = nn.Linear(hidden, self.n_classes)
         self.fusion_gate = nn.Sequential(nn.Linear(hidden, hidden), nn.Sigmoid())
+        self.string_prior_scale = nn.Parameter(torch.tensor(0.2))
         self.cross_query = nn.Linear(hidden, hidden)
         self.cross_key_value = nn.Linear(hidden, hidden)
         self.pathway_head = nn.Linear(hidden, n_pathways * self.n_classes)
         self.pathway_residual_scale = nn.Parameter(torch.tensor(0.25))
         self.neighborhood_k = 2
         self.attention_heads = heads
-        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head"}:
+        if variant in {"string_neighborhood_attention", "target_graph_conditioned_head", "string_gnn_frozen_cache", "string_gnn_full_finetune"}:
             prior = self._load_string_target_prior(artifacts.get("string_graph_path", graph_path))
         else:
             prior = torch.zeros(self.n_targets, 1)
@@ -217,6 +220,17 @@ class OfficialK562NativeModel(nn.Module):
             return self._low_rank_logits(tuned)
         if self.variant == "string_gnn_attention":
             return self._target_attention_logits(z)
+        if self.variant == "string_gnn_frozen_cache":
+            logits = self._target_attention_logits(z)
+            graph_bias = self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+            self.artifact_status["STRING_GNN_cache_policy"] = "verified_reconstructed_or_present_STRING_GNN_artifact_frozen_cache_proxy"
+            return logits + self.string_prior_scale.detach().to(device=z.device, dtype=z.dtype) * graph_bias
+        if self.variant == "string_gnn_full_finetune":
+            low_rank = self._low_rank_logits(self.context2(z))
+            attended = self._target_attention_logits(z)
+            graph_bias = self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+            self.artifact_status["STRING_GNN_trainable_policy"] = "trainable_graph_prior_scale_and_classifier_on_verified_STRING_artifacts"
+            return 0.5 * (low_rank + attended) + self.string_prior_scale.to(device=z.device, dtype=z.dtype) * graph_bias
         if self.variant == "string_neighborhood_attention":
             logits = self._target_attention_logits(z)
             return logits + self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)

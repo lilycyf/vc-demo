@@ -3,14 +3,16 @@
   "artifact_gap": {
     "missing": [
       "aido_gene_or_cell_embeddings",
-      "scfoundation_cell_embeddings"
+      "scfoundation_cell_embeddings",
+      "regulatory_network_artifact",
+      "single_cell_foundation_model_artifact"
     ],
     "reconstructed_compatibility": [
       "official_string_gnn_model_dir"
     ]
   },
   "search_scale_gap": {
-    "trained_nodes": 28,
+    "trained_nodes": 33,
     "paper_scale_target_nodes": 600,
     "estimated_candidate_count": 94500
   },
@@ -34,7 +36,10 @@
       "AIDO_full_finetune": 2,
       "AIDO_cached_embedding": 3,
       "scGPT_or_single_cell_encoder": 3,
-      "AIDO_selective_finetune": 2
+      "AIDO_selective_finetune": 2,
+      "scFoundation_selective_finetune": 3,
+      "STRING_GNN_frozen_cached": 3,
+      "STRING_GNN_full_finetune": 2
     },
     "replicate_nodes": 0
   },
