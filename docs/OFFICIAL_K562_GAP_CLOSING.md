@@ -238,3 +238,17 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
   --max-pending-implementations 8 \
   --reset
 ```
+
+## Scientific Search Policy vs Artifact Feasibility
+
+Artifact presence is not a scientific ranking signal. In official K562 mode, MCTS and the Codex proposal layer first choose among blueprint families using scientific priority, family coverage, structural novelty, and repeat penalties. Artifact status is then applied as a feasibility gate: if a selected blueprint needs a missing artifact, the run creates an acquisition/blocker record instead of silently falling back or choosing a simpler present-artifact model.
+
+The search memory now records blueprint counts, paper-family counts, structural signatures, and replicate nodes. Replicates are allowed for robustness checks, but they do not count as architecture discovery. No-improvement early stopping can be delayed until a minimum number of blueprint families has been exercised, so short pilot runs do not collapse into repeatedly training the safest already-present native candidate.
+
+Default official pilot behavior:
+
+- select by scientific family/structure first
+- gate on artifact feasibility after selection
+- acquire or block missing real artifacts; no fallback in strict mode
+- record `scientific_selection` and `structural_relation` in `tree.json` and `mcts_trace.jsonl`
+- require at least 5 non-root blueprint families before no-improvement early stop in the official wrapper

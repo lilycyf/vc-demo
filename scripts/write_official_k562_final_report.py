@@ -47,6 +47,7 @@ def main() -> None:
     mcts_trace = load_jsonl(run_dir / "mcts_trace.jsonl")
     manifest = load_json(run_dir / "run_manifest.json")
     implementation_queue = load_json(run_dir / "implementation_queue.json").get("items", [])
+    search_memory = load_json(run_dir / "search_memory.json")
 
     trained = [(name, node) for name, node in tree.get("nodes", {}).items() if node.get("status") == "trained"]
     best = max(trained, key=lambda item: float(item[1].get("best_val_macro_f1", -1)), default=("", {}))
@@ -73,6 +74,9 @@ def main() -> None:
         f"- Paper-scale 600+ manifest target reached: {str(search_space_audit.get('reaches_600_plus', False)).lower()}",
         f"- MCTS trace events: {len(mcts_trace)}",
         f"- MCTS policy: {manifest.get('search', {}).get('selection_policy', 'uct') or 'uct'}",
+        "- Search policy: scientific family/structure priority first; artifact status is a feasibility gate, not a ranking objective",
+        f"- Blueprint families covered: {len(search_memory.get('family_counts', {}))}",
+        f"- Structural replicate nodes: {len(search_memory.get('replicate_nodes', []))}",
         "- Strict artifact rule: missing official artifacts must acquire/block, not fallback",
         "",
         "## Artifact Alignment",
@@ -93,13 +97,16 @@ def main() -> None:
     for family, row in sorted(family_mapping.items()):
         lines.append(f"| {family} | {row.get('node_count', 0)} | {', '.join(row.get('local_equivalent_blueprints', []))} |")
 
+    lines.extend(["", "## Scientific Search Coverage", "", "| Family | Count |", "|---|---:|"])
+    for family, count in sorted((search_memory.get("family_counts", {}) or {}).items()):
+        lines.append(f"| {family} | {count} |")
     lines.extend(["", "## MCTS Trace Summary", "", "| Event | Count |", "|---|---:|"])
     for event, count in sorted(event_counts(mcts_trace).items()):
         lines.append(f"| {event} | {count} |")
 
-    lines.extend(["", "## Results", "", "| Node | Parent | Backend | Strategy | Val Macro-F1 | Test Macro-F1 |", "|---|---|---|---|---:|---:|"])
+    lines.extend(["", "## Results", "", "| Node | Parent | Backend | Strategy | Relation | Val Macro-F1 | Test Macro-F1 |", "|---|---|---|---|---|---:|---:|"])
     for name, node in sorted(trained, key=lambda item: (int(item[1].get("iteration", 0)), item[0])):
-        lines.append(f"| `{name}` | `{node.get('parent', '')}` | {node.get('execution_backend', '')} | {node.get('strategy', 'root')} | {float(node.get('best_val_macro_f1', 0)):.4f} | {float(node.get('test_macro_f1', 0)):.4f} |")
+        lines.append(f"| `{name}` | `{node.get('parent', '')}` | {node.get('execution_backend', '')} | {node.get('strategy', 'root')} | {node.get('structural_relation', '')} | {float(node.get('best_val_macro_f1', 0)):.4f} | {float(node.get('test_macro_f1', 0)):.4f} |")
 
     lines.extend([
         "",
@@ -130,7 +137,7 @@ def main() -> None:
             "estimated_candidate_count": search_space_audit.get("estimated_combinatorial_candidate_count"),
         },
         "epoch_budget_gap": manifest.get("search", {}).get("max_epochs"),
-        "implementation_gap": {"pending_implementations": len(implementation_queue), "failed_nodes": len(failures)},
+        "implementation_gap": {"pending_implementations": len(implementation_queue), "failed_nodes": len(failures), "family_counts": search_memory.get("family_counts", {}), "replicate_nodes": len(search_memory.get("replicate_nodes", []))},
         "metric_contract_gap": "external benchmark mode must supply held-out test metric; smoke mode may mark test as missing_or_val_fallback",
         "stochastic_gap": "single short runs can differ from public/static and paper scores; compare only after 50/150/600-node staged runs",
     }

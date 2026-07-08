@@ -25,6 +25,7 @@ def main() -> None:
     parser.add_argument("--max-epochs", type=int, default=1)
     parser.add_argument("--max-children", type=int, default=2)
     parser.add_argument("--stop-no-improve", type=int, default=2)
+    parser.add_argument("--min-family-coverage-before-stop", type=int, default=5, help="Official-mode guard: no-improvement early stop waits until this many blueprint families are covered.")
     parser.add_argument("--seed", type=int, default=41)
     parser.add_argument("--force-blueprint", default=None, help="Optional: force one blueprint for smoke tests. Default None lets MCTS sample the configured blueprint space.")
     parser.add_argument("--allow-planned-blueprints", action="store_true")
@@ -75,13 +76,14 @@ def main() -> None:
         exploration=args.exploration,
         selection_policy=args.selection_policy,
         stop_no_improve=args.stop_no_improve,
+        min_family_coverage_before_stop=args.min_family_coverage_before_stop,
         min_delta=1e-4,
         seed=args.seed,
         allow_planned_blueprints=args.allow_planned_blueprints,
         max_pending_implementations=args.max_pending_implementations,
         force_blueprint=args.force_blueprint or None,
         artifact_registry=args.registry,
-        artifact_aware_blueprint_policy=True,
+        artifact_aware_blueprint_policy=False,
         allow_missing_artifact_fallbacks=False,
         official_blueprint_space=args.official_blueprint_space,
         max_blueprint_repeats=args.max_blueprint_repeats,

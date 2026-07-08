@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import json
 import random
 from pathlib import Path
 from typing import Any
@@ -13,9 +14,9 @@ from vc_demo.harness.pipeline_grammar import program_for_blueprint
 from vc_demo.harness.state import write_json
 
 
-def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True, official_k562_only: bool = False) -> tuple[dict[str, Any], dict[str, Any]]:
+def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True, official_k562_only: bool = False, search_memory: dict[str, Any] | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
     parent_name = str(parent_config.get("node_name", parent_node.get("name", "node")))
-    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware, official_k562_only=official_k562_only)
+    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware, official_k562_only=official_k562_only, search_memory=search_memory)
     blueprint = blueprint_by_id(blueprint_id)
     if blueprint["status"] == "planned" and not include_planned and force_blueprint is None:
         raise ValueError(f"planned blueprint {blueprint_id!r} selected without include_planned=True")
@@ -110,6 +111,10 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     write_pipeline_manifest(pipeline_path, pipeline_manifest)
     write_json(child_dir / "base_config.json", child)
 
+    parent_signature = structural_signature(parent_config)
+    child_signature = structural_signature(child)
+    structural_relation = "replicate" if parent_signature == child_signature else "structural_variant"
+
     changes = [
         f"program_model:{old_model}->{blueprint_id}",
         f"blueprint_status:{blueprint['status']}",
@@ -135,6 +140,10 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         "artifact_requirements": pipeline_manifest.get("artifact_requirements", []),
         "artifact_usage_claims": pipeline_manifest.get("artifact_usage_claims", []),
         "pipeline_program": pipeline_program,
+        "scientific_selection": scientific_selection_summary(blueprint_id, search_memory),
+        "structural_signature": child_signature,
+        "parent_structural_signature": parent_signature,
+        "structural_relation": structural_relation,
         "implementation_request_path": str(implementation_request_path) if requires_implementation else "",
         "artifact_contract_path": str(artifact_contract_path),
         "smoke_contract_path": str(smoke_contract_path),
@@ -179,6 +188,35 @@ def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: d
     return manifest
 
 
+SCIENTIFIC_PRIORS: dict[str, float] = {
+    "official_aido_string_fusion": 1.00,
+    "official_aido_string_cross_attention": 0.98,
+    "official_string_gnn_attention": 0.96,
+    "official_string_neighborhood_attention": 0.94,
+    "official_aido_lora_adapter": 0.92,
+    "official_target_gene_head": 0.88,
+    "official_target_graph_conditioned_head": 0.86,
+    "official_pathway_pooling_reactome": 0.84,
+    "official_regulatory_network_prior": 0.82,
+    "official_class_imbalance_training": 0.74,
+    "official_focal_loss_training": 0.72,
+    "official_weighted_ce_training": 0.70,
+    "official_public_best_node": 0.62,
+    "official_public_static_node_family_wrapper": 0.60,
+    "official_native_public_best_reimplementation": 0.45,
+}
+
+REQUIRED_EARLY_FAMILIES = [
+    "official_aido_string_fusion",
+    "official_string_gnn_attention",
+    "official_aido_lora_adapter",
+    "official_target_gene_head",
+    "official_class_imbalance_training",
+    "official_pathway_pooling_reactome",
+    "official_public_best_node",
+]
+
+
 def _choose_blueprint(
     parent_name: str,
     parent_node: dict[str, Any],
@@ -188,27 +226,16 @@ def _choose_blueprint(
     registry_audit: dict[str, Any] | None = None,
     artifact_aware: bool = True,
     official_k562_only: bool = False,
+    search_memory: dict[str, Any] | None = None,
 ) -> str:
     choices = selectable_blueprint_ids(include_planned, official_k562_only=official_k562_only)
     if not choices:
         raise ValueError("no selectable model blueprints are available")
-    if artifact_aware and registry_audit:
-        choices = rank_blueprint_choices(choices, registry_audit)
-    if child_index == 1 and not include_planned:
-        if "residual" in parent_name and "mixture_of_experts" in choices:
-            return "mixture_of_experts"
-        if "gated" in parent_name and "dual_path_gated_low_rank" in choices:
-            return "dual_path_gated_low_rank"
-    if artifact_aware and registry_audit:
-        if child_index <= len(choices):
-            return choices[child_index - 1]
-    parent_offset = int(hashlib.sha1(parent_name.encode("utf-8")).hexdigest(), 16) % len(choices)
-    if child_index <= len(choices):
-        return choices[(parent_offset + child_index - 1) % len(choices)]
-    parent_val = float(parent_node.get("best_val_macro_f1", 0.0) or 0.0)
-    if parent_val >= 0.60 and "dual_path_gated_low_rank" in choices and rng.random() < 0.65:
-        return "dual_path_gated_low_rank"
-    return rng.choice(choices)
+    ranked = rank_scientific_blueprint_choices(choices, search_memory or {}, parent_node, child_index)
+    if child_index <= len(ranked):
+        return ranked[child_index - 1]
+    parent_offset = int(hashlib.sha1(parent_name.encode("utf-8")).hexdigest(), 16) % len(ranked)
+    return ranked[parent_offset % len(ranked)] if ranked else rng.choice(choices)
 
 
 def artifact_selection_summary(blueprint_id: str, registry_audit: dict[str, Any] | None) -> dict[str, Any]:
@@ -217,7 +244,7 @@ def artifact_selection_summary(blueprint_id: str, registry_audit: dict[str, Any]
     required = requirements_for_blueprint(registry_audit, blueprint_id)
     missing = [item for item in required if not item.get("present")]
     return {
-        "policy": "artifact_aware_blueprint_ranking",
+        "policy": "feasibility_gate_after_scientific_selection",
         "required_artifacts": [item.get("id") for item in required],
         "missing_required_artifacts": [item.get("id") for item in missing],
         "all_required_present": bool(required) and not missing,
@@ -225,25 +252,51 @@ def artifact_selection_summary(blueprint_id: str, registry_audit: dict[str, Any]
 
 
 def rank_blueprint_choices(choices: list[str], registry_audit: dict[str, Any]) -> list[str]:
+    """Backward-compatible alias: artifact feasibility is no longer a scientific ranking signal."""
+    return rank_scientific_blueprint_choices(choices, {}, {}, 1)
+
+
+def scientific_score(blueprint_id: str, memory: dict[str, Any], child_index: int) -> dict[str, Any]:
+    blueprint = blueprint_by_id(blueprint_id)
+    counts = memory.get("blueprint_counts", {}) or {}
+    family_counts = memory.get("family_counts", {}) or {}
+    count = int(counts.get(blueprint_id, 0) or 0)
+    family = str(blueprint.get("paper_family") or blueprint.get("category") or blueprint_id)
+    family_count = int(family_counts.get(family, 0) or 0)
+    base = SCIENTIFIC_PRIORS.get(blueprint_id, 0.50 + 0.04 * int(blueprint.get("change_level", 0) or 0))
+    coverage_bonus = 0.35 if count == 0 else 0.0
+    family_bonus = 0.25 if family_count == 0 else 0.0
+    early_bonus = 0.20 if child_index <= len(REQUIRED_EARLY_FAMILIES) and blueprint_id in REQUIRED_EARLY_FAMILIES else 0.0
+    repeat_penalty = min(0.12 * count, 0.60)
+    native_repeat_penalty = 0.45 if blueprint_id == "official_native_public_best_reimplementation" and count > 0 else 0.0
+    score = base + coverage_bonus + family_bonus + early_bonus - repeat_penalty - native_repeat_penalty
+    return {"score": score, "base": base, "coverage_bonus": coverage_bonus, "family_bonus": family_bonus, "early_bonus": early_bonus, "repeat_penalty": repeat_penalty, "native_repeat_penalty": native_repeat_penalty, "count": count, "family": family, "family_count": family_count}
+
+
+def rank_scientific_blueprint_choices(choices: list[str], memory: dict[str, Any], parent_node: dict[str, Any], child_index: int) -> list[str]:
     indexed = list(enumerate(choices))
 
-    def key(item: tuple[int, str]) -> tuple[int, int, int, int, int]:
+    def key(item: tuple[int, str]) -> tuple[float, int, int, int]:
         index, blueprint_id = item
+        score = scientific_score(blueprint_id, memory, child_index)
         blueprint = blueprint_by_id(blueprint_id)
-        required = requirements_for_blueprint(registry_audit, blueprint_id)
-        missing = missing_requirements_for_blueprint(registry_audit, blueprint_id)
-        external_required = [r for r in required if r.get("family") not in {"tabular", "metadata"}]
-        if external_required and not missing:
-            availability_bucket = 0
-        elif not missing:
-            availability_bucket = 1
-        else:
-            availability_bucket = 3
-        status_bucket = 0 if blueprint.get("status") == "implemented" else 1
-        domain_bucket = 0 if blueprint_id in {"ppi_graph_message_passing", "string_gnn_perturbation_propagator"} else 1
-        return (availability_bucket, domain_bucket, status_bucket, -int(blueprint.get("change_level", 0) or 0), index)
+        return (score["score"], int(blueprint.get("change_level", 0) or 0), -score["count"], -index)
 
-    return [blueprint_id for _, blueprint_id in sorted(indexed, key=key)]
+    return [blueprint_id for _, blueprint_id in sorted(indexed, key=key, reverse=True)]
+
+
+def scientific_selection_summary(blueprint_id: str, memory: dict[str, Any] | None) -> dict[str, Any]:
+    return {"policy": "scientific_priority_then_feasibility_gate", **scientific_score(blueprint_id, memory or {}, 1)}
+
+
+def structural_signature(config: dict[str, Any]) -> str:
+    model = copy.deepcopy(config.get("model", {}))
+    training = copy.deepcopy(config.get("training", {}))
+    data = copy.deepcopy(config.get("data", {}))
+    for key in ["custom_model_path"]:
+        model.pop(key, None)
+    payload = {"data": data, "model": model, "training": training, "execution": config.get("execution", {})}
+    return hashlib.sha1(json.dumps(payload, sort_keys=True, default=str).encode("utf-8")).hexdigest()
 
 
 def _bounded_hidden(current: Any, blueprint_id: str) -> int:

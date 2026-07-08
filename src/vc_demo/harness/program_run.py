@@ -37,6 +37,10 @@ def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], co
     node["artifact_requirements"] = proposal.get("artifact_requirements", [])
     node["artifact_usage_claims"] = proposal.get("artifact_usage_claims", [])
     node["requires_implementation"] = bool(proposal.get("requires_implementation"))
+    node["scientific_selection"] = proposal.get("scientific_selection", {})
+    node["structural_signature"] = proposal.get("structural_signature", "")
+    node["parent_structural_signature"] = proposal.get("parent_structural_signature", "")
+    node["structural_relation"] = proposal.get("structural_relation", "")
 
 
 def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, metrics: dict[str, Any], proposal: dict[str, Any] | None = None) -> None:
@@ -122,7 +126,7 @@ def train_roots(root_configs: list[Path], run_dir: Path, tree: dict[str, Any], m
 
 def implementation_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
     return [
-        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "pipeline_manifest_path": node.get("pipeline_manifest_path"), "artifact_contract_path": node.get("artifact_contract_path"), "smoke_contract_path": node.get("smoke_contract_path"), "parent_summary_path": node.get("parent_summary_path"), "strategy": node.get("strategy"), "artifact_requirements": node.get("artifact_requirements", [])}
+        {"node": name, "program_dir": node.get("program_dir"), "implementation_request_path": node.get("implementation_request_path"), "program_model_path": node.get("program_model_path"), "pipeline_manifest_path": node.get("pipeline_manifest_path"), "artifact_contract_path": node.get("artifact_contract_path"), "smoke_contract_path": node.get("smoke_contract_path"), "parent_summary_path": node.get("parent_summary_path"), "strategy": node.get("strategy"), "artifact_requirements": node.get("artifact_requirements", []), "scientific_selection": node.get("scientific_selection", {}), "structural_relation": node.get("structural_relation", "")}
         for name, node in tree.get("nodes", {}).items()
         if node.get("status") == "needs_implementation"
     ]
@@ -192,6 +196,22 @@ def write_tree_and_failures(run_dir: Path, tree: dict[str, Any], failures: list[
     write_json(run_dir / "acquisition_queue.json", {"items": acquisition_queue(tree)})
 
 
+def family_coverage(tree: dict[str, Any]) -> int:
+    families: set[str] = set()
+    for node in tree.get("nodes", {}).values():
+        strategy = str(node.get("strategy") or "")
+        if not strategy or strategy == "root":
+            continue
+        scientific = node.get("scientific_selection", {}) or {}
+        family = str(scientific.get("family") or strategy)
+        families.add(family)
+    return len(families)
+
+
+def structural_variant_count(tree: dict[str, Any]) -> int:
+    return sum(1 for node in tree.get("nodes", {}).values() if node.get("structural_relation") == "structural_variant")
+
+
 def run_search(args: argparse.Namespace) -> dict[str, Any]:
     run_dir = args.run_dir
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -240,7 +260,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         duplicate_skips: list[dict[str, Any]] = []
         for duplicate_attempt in range(1, args.max_duplicate_proposal_attempts + 1):
             child_index = len(parent_node.get("children", [])) + duplicate_attempt
-            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space)
+            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space, search_memory=memory)
             duplicate, reason = is_duplicate_proposal(memory, parent_name, str(candidate_proposal.get("strategy", "")), args.max_blueprint_repeats, allow_parent_duplicate=args.allow_parent_duplicate_blueprints)
             if duplicate and not args.force_blueprint:
                 duplicate_skips.append({"child": candidate_config.get("node_name"), "strategy": candidate_proposal.get("strategy"), "reason": reason})
@@ -265,8 +285,8 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         proposal["missing_required_artifact_paths"] = missing_summary.get("missing_required_artifact_paths", [])
         write_json(child_config_path, child_config)
         write_json(proposal_path, proposal)
-        tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node", "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
-        append_mcts_trace(run_dir, {"event": "expansion", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "candidate_list": compact_candidates(scored), "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "duplicate_skips": duplicate_skips, "depth": len(lineage(tree, parent_name))})
+        tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "child": child_name, "strategy": proposal["strategy"], "node_kind": "program_node", "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "scientific_selection": proposal.get("scientific_selection", {}), "structural_relation": proposal.get("structural_relation", "")})
+        append_mcts_trace(run_dir, {"event": "expansion", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "candidate_list": compact_candidates(scored), "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "scientific_selection": proposal.get("scientific_selection", {}), "structural_relation": proposal.get("structural_relation", ""), "duplicate_skips": duplicate_skips, "depth": len(lineage(tree, parent_name))})
 
         if proposal["missing_required_artifacts"] and not args.allow_missing_artifact_fallbacks:
             add_blocked_missing_artifact_node(tree, child_name, child_config_path, parent_name, iteration, proposal, missing_summary)
@@ -286,7 +306,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         if proposal.get("requires_implementation"):
             add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
             pending_count += 1
-            append_mcts_trace(run_dir, {"event": "pending_implementation", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "implementation_request_path": proposal.get("implementation_request_path"), "artifact_contract_path": proposal.get("artifact_contract_path"), "smoke_contract_path": proposal.get("smoke_contract_path"), "parent_summary_path": proposal.get("parent_summary_path")})
+            append_mcts_trace(run_dir, {"event": "pending_implementation", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "scientific_selection": proposal.get("scientific_selection", {}), "structural_relation": proposal.get("structural_relation", ""), "implementation_request_path": proposal.get("implementation_request_path"), "artifact_contract_path": proposal.get("artifact_contract_path"), "smoke_contract_path": proposal.get("smoke_contract_path"), "parent_summary_path": proposal.get("parent_summary_path")})
             write_tree_and_failures(run_dir, tree, failures)
             if pending_count >= args.max_pending_implementations:
                 stop_reason = f"pending implementation limit reached ({pending_count})"
@@ -308,7 +328,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         except Exception as exc:
             error = "".join(traceback.format_exception_only(type(exc), exc)).strip()
             tree["nodes"][parent_name].setdefault("children", []).append(child_name)
-            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "pipeline_manifest_path": proposal.get("pipeline_manifest_path"), "pipeline_kind": proposal.get("pipeline_kind"), "artifact_requirements": proposal.get("artifact_requirements", []), "artifact_usage_claims": proposal.get("artifact_usage_claims", []), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
+            tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "pipeline_manifest_path": proposal.get("pipeline_manifest_path"), "pipeline_kind": proposal.get("pipeline_kind"), "artifact_requirements": proposal.get("artifact_requirements", []), "artifact_usage_claims": proposal.get("artifact_usage_claims", []), "scientific_selection": proposal.get("scientific_selection", {}), "structural_signature": proposal.get("structural_signature", ""), "parent_structural_signature": proposal.get("parent_structural_signature", ""), "structural_relation": proposal.get("structural_relation", ""), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             append_mcts_trace(run_dir, {"event": "failure", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "error": error})
             no_improve += 1
@@ -316,8 +336,11 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         memory = rebuild_memory_from_tree(run_dir, tree, failures)
         write_tree_and_failures(run_dir, tree, failures)
         if args.stop_no_improve and no_improve >= args.stop_no_improve:
-            stop_reason = f"no improvement for {no_improve} nodes"
-            break
+            coverage = family_coverage(tree)
+            if coverage >= args.min_family_coverage_before_stop:
+                stop_reason = f"no improvement for {no_improve} nodes"
+                break
+            append_mcts_trace(run_dir, {"event": "early_stop_suppressed_for_family_coverage", "iteration": iteration, "no_improve": no_improve, "family_coverage": coverage, "min_family_coverage_before_stop": args.min_family_coverage_before_stop})
 
     memory = rebuild_memory_from_tree(run_dir, tree, failures)
     write_tree_and_failures(run_dir, tree, failures)
@@ -340,6 +363,7 @@ def main() -> None:
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
     parser.add_argument("--selection-policy", choices=["uct", "puct"], default="uct")
     parser.add_argument("--stop-no-improve", type=int, default=6)
+    parser.add_argument("--min-family-coverage-before-stop", type=int, default=0, help="Do not stop for no-improvement until this many non-root blueprint families have been exercised.")
     parser.add_argument("--min-delta", type=float, default=1e-4)
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--allow-planned-blueprints", action="store_true")

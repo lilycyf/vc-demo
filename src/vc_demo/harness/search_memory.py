@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from vc_demo.harness.model_blueprints import blueprint_by_id
 from vc_demo.harness.pipeline_grammar import program_for_blueprint
 
 
@@ -24,6 +25,9 @@ def load_memory(run_dir: Path) -> dict[str, Any]:
         "events": [],
         "blueprint_counts": {},
         "parent_blueprints": {},
+        "family_counts": {},
+        "structural_signature_counts": {},
+        "replicate_nodes": [],
         "successes": [],
         "failures": [],
         "blocked_artifacts": [],
@@ -41,21 +45,34 @@ def write_memory(run_dir: Path, memory: dict[str, Any]) -> None:
 def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     memory = load_memory(run_dir)
     counts: Counter[str] = Counter()
+    family_counts: Counter[str] = Counter()
+    signature_counts: Counter[str] = Counter()
     parent_blueprints: dict[str, set[str]] = defaultdict(set)
     successes: list[dict[str, Any]] = []
     blocked: list[dict[str, Any]] = []
+    replicate_nodes: list[dict[str, Any]] = []
     for name, node in tree.get("nodes", {}).items():
         strategy = str(node.get("strategy") or "root")
+        parent = str(node.get("parent") or "")
+        family = family_for_strategy(strategy) if strategy != "root" else "root"
+        signature = str(node.get("structural_signature") or "")
         if strategy != "root":
             counts[strategy] += 1
-        parent = str(node.get("parent") or "")
+            family_counts[family] += 1
+        if signature:
+            signature_counts[signature] += 1
         if parent and strategy != "root":
             parent_blueprints[parent].add(strategy)
+        if node.get("structural_relation") == "replicate":
+            replicate_nodes.append({"node": name, "strategy": strategy, "family": family, "parent": parent})
         if node.get("status") == "trained" and strategy != "root":
-            successes.append({"node": name, "strategy": strategy, "val": node.get("best_val_macro_f1"), "test": node.get("test_macro_f1"), "parent": parent})
+            successes.append({"node": name, "strategy": strategy, "family": family, "structural_relation": node.get("structural_relation"), "val": node.get("best_val_macro_f1"), "test": node.get("test_macro_f1"), "parent": parent})
         if node.get("status") in {"requires_artifact_acquisition", "blocked_missing_artifact"}:
-            blocked.append({"node": name, "strategy": strategy, "missing": node.get("missing_required_artifacts", [])})
+            blocked.append({"node": name, "strategy": strategy, "family": family, "missing": node.get("missing_required_artifacts", [])})
     memory["blueprint_counts"] = dict(counts)
+    memory["family_counts"] = dict(family_counts)
+    memory["structural_signature_counts"] = dict(signature_counts)
+    memory["replicate_nodes"] = replicate_nodes[-100:]
     memory["parent_blueprints"] = {parent: sorted(values) for parent, values in parent_blueprints.items()}
     memory["successes"] = sorted(successes, key=lambda row: float(row.get("val") or -1), reverse=True)[:50]
     memory["failures"] = list(failures or [])[-50:]
@@ -63,6 +80,14 @@ def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list
     memory["motifs"] = infer_motifs(successes, list(failures or []), blocked)
     write_memory(run_dir, memory)
     return memory
+
+
+def family_for_strategy(strategy: str) -> str:
+    try:
+        blueprint = blueprint_by_id(strategy)
+    except Exception:
+        return strategy
+    return str(blueprint.get("paper_family") or blueprint.get("category") or strategy)
 
 
 def infer_motifs(successes: list[dict[str, Any]], failures: list[dict[str, Any]], blocked: list[dict[str, Any]]) -> dict[str, list[str]]:

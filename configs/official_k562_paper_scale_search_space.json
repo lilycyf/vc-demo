@@ -243,5 +243,28 @@
       "policy": "acquire_public_source_else_block",
       "fallback": "forbidden_in_strict_mode"
     }
-  ]
+  ],
+  "scientific_search_policy": {
+    "artifact_present_is_not_search_signal": true,
+    "selection_order": [
+      "scientific_prior",
+      "family_coverage",
+      "structural_novelty",
+      "repeat_penalty",
+      "feasibility_gate"
+    ],
+    "feasibility_gate_after_selection": true,
+    "strict_missing_artifact_behavior": "acquire_or_block_no_fallback",
+    "replicate_nodes_do_not_count_as_discovery": true,
+    "default_min_family_coverage_before_no_improve_stop": 5,
+    "early_coverage_families": [
+      "official_aido_string_fusion",
+      "official_string_gnn_attention",
+      "official_aido_lora_adapter",
+      "official_target_gene_head",
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_public_best_node"
+    ]
+  }
 }
