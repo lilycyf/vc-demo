@@ -103,18 +103,19 @@
       "summary_path": "experiments/k562_string_graph_artifact_summary.json"
     },
     {
-      "id": "pathway_membership_matrix",
+      "id": "pathway_memberships",
       "family": "pathway_prior",
       "provider": "Reactome",
       "status": "expected_present",
       "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+      "source": "Reactome official GMT download aligned to exact official K562 target genes; built by scripts/build_k562_pathway_membership.py",
       "usable_for": [
         "target_gene",
         "pathway_pooling"
       ],
       "required_for_blueprints": [
-        "pathway_pooling_encoder"
+        "pathway_pooling_encoder",
+        "official_pathway_pooling_reactome"
       ],
       "do_not_fabricate": true,
       "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
@@ -122,17 +123,25 @@
       "source_sha256": "8c1dbc8578431da5d2d5118262718c60b553a9be3398e93658daa069e4a9afd4",
       "source_bytes": 298479,
       "species_filter": "Homo sapiens pathways only, identified by R-HSA stable IDs",
-      "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact K562 target-gene list.",
+      "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact official K562 target-gene list.",
       "n_source_pathways": 2868,
-      "n_kept_pathways": 1139,
+      "n_kept_pathways": 2034,
       "membership_shape": [
-        1000,
-        1139
+        6640,
+        2034
       ],
-      "covered_target_gene_count": 742,
-      "target_gene_coverage": 0.742,
-      "mean_pathways_per_target_gene": 18.097,
-      "summary_path": "experiments/k562_pathway_membership_artifact_summary.json"
+      "covered_target_gene_count": 4444,
+      "target_gene_coverage": 0.6692771084337349,
+      "mean_pathways_per_target_gene": 10.904367469879517,
+      "summary_path": "experiments/k562_pathway_membership_artifact_summary.json",
+      "aliases": [
+        "pathway_membership_matrix"
+      ],
+      "expected_n_targets": 6640,
+      "target_gene_source": "data/cell_lines/official_k562_cls/target_genes.tsv",
+      "artifact_sha256": "1f322d4e9f656f0f6305ed3cefe3d525562945bfdcb193ce88d3fba5b7a7a929",
+      "artifact_bytes": 491721,
+      "n_target_genes": 6640
     },
     {
       "id": "official_essential_deg_with_split_h5ad",

@@ -16,7 +16,7 @@
   },
   "epoch_budget_gap": 3,
   "implementation_gap": {
-    "pending_implementations": 8,
+    "pending_implementations": 11,
     "failed_nodes": 0,
     "family_counts": {
       "AIDO_adapter": 1,

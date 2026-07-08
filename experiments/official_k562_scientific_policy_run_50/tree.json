@@ -1285,20 +1285,14 @@
         "official_essential_deg_with_split_h5ad"
       ],
       "artifact_usage_claims": [],
-      "blocked_reason": "required artifact missing; strict artifact mode requires real artifact acquisition before training; no fallback model written",
+      "blocked_reason": "resolved_by_artifact_acquisition",
       "children": [],
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810.json",
       "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/IMPLEMENTATION_REQUEST.md",
       "iteration": 5,
-      "missing_required_artifact_paths": [
-        "data/artifacts/pathways/k562_target_pathway_membership.npz"
-      ],
-      "missing_required_artifact_sources": [
-        "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes"
-      ],
-      "missing_required_artifacts": [
-        "pathway_memberships"
-      ],
+      "missing_required_artifact_paths": [],
+      "missing_required_artifact_sources": [],
+      "missing_required_artifacts": [],
       "node_kind": "program_node",
       "parent": "official_k562_native_p1_official_target_gene_head_477d0ebb",
       "parent_structural_signature": "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4",
@@ -1323,8 +1317,8 @@
         "score": 1.64
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/smoke_contract.json",
-      "stage": "blocked",
-      "status": "requires_artifact_acquisition",
+      "stage": "improve",
+      "status": "needs_implementation",
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "e07394402b248323a71213361dcf92f42875beb8",
@@ -1829,20 +1823,14 @@
         "official_essential_deg_with_split_h5ad"
       ],
       "artifact_usage_claims": [],
-      "blocked_reason": "required artifact missing; strict artifact mode requires real artifact acquisition before training; no fallback model written",
+      "blocked_reason": "resolved_by_artifact_acquisition",
       "children": [],
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c.json",
       "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/IMPLEMENTATION_REQUEST.md",
       "iteration": 11,
-      "missing_required_artifact_paths": [
-        "data/artifacts/pathways/k562_target_pathway_membership.npz"
-      ],
-      "missing_required_artifact_sources": [
-        "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes"
-      ],
-      "missing_required_artifacts": [
-        "pathway_memberships"
-      ],
+      "missing_required_artifact_paths": [],
+      "missing_required_artifact_sources": [],
+      "missing_required_artifacts": [],
       "node_kind": "program_node",
       "parent": "official_k562_root_aido_embedding_mlp",
       "parent_structural_signature": "ec44ce29d4c54db3bf28f4404546e76197140815",
@@ -1867,8 +1855,8 @@
         "score": 1.64
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/smoke_contract.json",
-      "stage": "blocked",
-      "status": "requires_artifact_acquisition",
+      "stage": "improve",
+      "status": "needs_implementation",
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
@@ -2015,20 +2003,14 @@
         "official_essential_deg_with_split_h5ad"
       ],
       "artifact_usage_claims": [],
-      "blocked_reason": "required artifact missing; strict artifact mode requires real artifact acquisition before training; no fallback model written",
+      "blocked_reason": "resolved_by_artifact_acquisition",
       "children": [],
       "config": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab.json",
       "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/IMPLEMENTATION_REQUEST.md",
       "iteration": 8,
-      "missing_required_artifact_paths": [
-        "data/artifacts/pathways/k562_target_pathway_membership.npz"
-      ],
-      "missing_required_artifact_sources": [
-        "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes"
-      ],
-      "missing_required_artifacts": [
-        "pathway_memberships"
-      ],
+      "missing_required_artifact_paths": [],
+      "missing_required_artifact_sources": [],
+      "missing_required_artifacts": [],
       "node_kind": "program_node",
       "parent": "official_k562_root_aido_gnn_embedding_mlp",
       "parent_structural_signature": "b543b809a8ca57cbbcba2b4baa9b7ffc76a77124",
@@ -2053,8 +2035,8 @@
         "score": 1.64
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/smoke_contract.json",
-      "stage": "blocked",
-      "status": "requires_artifact_acquisition",
+      "stage": "improve",
+      "status": "needs_implementation",
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "05a1ba5b1c1c309e511319add93f3d858cbc75b0",

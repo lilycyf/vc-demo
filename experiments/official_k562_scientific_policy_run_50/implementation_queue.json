@@ -1,6 +1,93 @@
 {
   "items": [
     {
+      "node": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
+      "program_dir": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
+      "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/IMPLEMENTATION_REQUEST.md",
+      "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/model.py",
+      "pipeline_manifest_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/pipeline.json",
+      "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/artifact_contract.json",
+      "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/smoke_contract.json",
+      "parent_summary_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/parent_summary.json",
+      "strategy": "official_pathway_pooling_reactome",
+      "artifact_requirements": [
+        "pathway_memberships",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "scientific_selection": {
+        "base": 0.84,
+        "count": 0,
+        "coverage_bonus": 0.35,
+        "early_bonus": 0.2,
+        "family": "Reactome_pathway_pooling",
+        "family_bonus": 0.25,
+        "family_count": 0,
+        "native_repeat_penalty": 0.0,
+        "policy": "scientific_priority_then_feasibility_gate",
+        "repeat_penalty": 0.0,
+        "score": 1.64
+      },
+      "structural_relation": "structural_variant"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
+      "program_dir": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
+      "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/IMPLEMENTATION_REQUEST.md",
+      "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/model.py",
+      "pipeline_manifest_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/pipeline.json",
+      "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/artifact_contract.json",
+      "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/smoke_contract.json",
+      "parent_summary_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/parent_summary.json",
+      "strategy": "official_pathway_pooling_reactome",
+      "artifact_requirements": [
+        "pathway_memberships",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "scientific_selection": {
+        "base": 0.84,
+        "count": 0,
+        "coverage_bonus": 0.35,
+        "early_bonus": 0.2,
+        "family": "Reactome_pathway_pooling",
+        "family_bonus": 0.25,
+        "family_count": 0,
+        "native_repeat_penalty": 0.0,
+        "policy": "scientific_priority_then_feasibility_gate",
+        "repeat_penalty": 0.0,
+        "score": 1.64
+      },
+      "structural_relation": "structural_variant"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
+      "program_dir": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
+      "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/IMPLEMENTATION_REQUEST.md",
+      "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/model.py",
+      "pipeline_manifest_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/pipeline.json",
+      "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/artifact_contract.json",
+      "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/smoke_contract.json",
+      "parent_summary_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/parent_summary.json",
+      "strategy": "official_pathway_pooling_reactome",
+      "artifact_requirements": [
+        "pathway_memberships",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "scientific_selection": {
+        "base": 0.84,
+        "count": 0,
+        "coverage_bonus": 0.35,
+        "early_bonus": 0.2,
+        "family": "Reactome_pathway_pooling",
+        "family_bonus": 0.25,
+        "family_count": 0,
+        "native_repeat_penalty": 0.0,
+        "policy": "scientific_priority_then_feasibility_gate",
+        "repeat_penalty": 0.0,
+        "score": 1.64
+      },
+      "structural_relation": "structural_variant"
+    },
+    {
       "node": "official_k562_p1_official_target_graph_conditioned_head_ab86336c",
       "program_dir": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_target_graph_conditioned_head_ab86336c",
       "implementation_request_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_target_graph_conditioned_head_ab86336c/IMPLEMENTATION_REQUEST.md",

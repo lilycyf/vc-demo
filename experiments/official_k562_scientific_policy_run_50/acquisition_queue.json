@@ -1,31 +1,3 @@
 {
-  "items": [
-    {
-      "node": "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
-      "strategy": "official_pathway_pooling_reactome",
-      "artifact_id": "pathway_memberships",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "source": "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes",
-      "action": "search_download_or_build_real_artifact",
-      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
-    },
-    {
-      "node": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
-      "strategy": "official_pathway_pooling_reactome",
-      "artifact_id": "pathway_memberships",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "source": "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes",
-      "action": "search_download_or_build_real_artifact",
-      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
-    },
-    {
-      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
-      "strategy": "official_pathway_pooling_reactome",
-      "artifact_id": "pathway_memberships",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "source": "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes",
-      "action": "search_download_or_build_real_artifact",
-      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
-    }
-  ]
+  "items": []
 }

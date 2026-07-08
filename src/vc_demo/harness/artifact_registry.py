@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import argparse
 import json
+
+import numpy as np
 from pathlib import Path
 from typing import Any
 
@@ -42,6 +44,29 @@ def _artifact_manifest_summary(path: Path) -> dict[str, Any]:
     }
 
 
+
+def _pathway_membership_summary(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        with np.load(path, allow_pickle=True) as z:
+            key = "membership" if "membership" in z.files else "membership_matrix"
+            membership = z[key]
+            target_genes = z["target_genes"] if "target_genes" in z.files else z.get("target_gene_symbols", [])
+            pathway_ids = z["pathway_ids"] if "pathway_ids" in z.files else []
+            covered = np.asarray(membership.sum(axis=1) > 0)
+            return {
+                "artifact_name": "Reactome K562 pathway memberships",
+                "artifact_family": "pathway_prior",
+                "membership_shape_actual": list(membership.shape),
+                "n_target_genes_actual": int(len(target_genes)),
+                "n_pathways_actual": int(len(pathway_ids)),
+                "target_gene_coverage_actual": float(covered.mean()) if len(covered) else 0.0,
+                "covered_target_gene_count_actual": int(covered.sum()) if len(covered) else 0,
+            }
+    except Exception as exc:
+        return {"pathway_membership_read_error": str(exc)}
+
 def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
     audited: list[dict[str, Any]] = []
     for artifact in registry.get("artifacts", []):
@@ -51,6 +76,14 @@ def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
         row["resolved_status"] = "present" if row["present"] else "missing"
         if row.get("family") == "artifact_manifest":
             row.update(_artifact_manifest_summary(path))
+        if row.get("family") == "pathway_prior":
+            row.update(_pathway_membership_summary(path))
+            expected = int(row.get("expected_n_targets") or row.get("n_target_genes") or 0)
+            actual = int(row.get("n_target_genes_actual") or 0)
+            if row.get("present") and expected and actual and actual != expected:
+                row["present"] = False
+                row["resolved_status"] = "shape_mismatch"
+                row["shape_issue"] = f"expected {expected} target genes, found {actual}"
         audited.append(row)
     return {
         "registry_version": registry.get("registry_version"),
@@ -64,6 +97,14 @@ def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
 
 def requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str) -> list[dict[str, Any]]:
     return [artifact for artifact in registry_audit.get("artifacts", []) if blueprint_id in artifact.get("required_for_blueprints", [])]
+
+
+def artifact_by_id_or_alias(registry_audit: dict[str, Any], artifact_id: str) -> dict[str, Any]:
+    for artifact in registry_audit.get("artifacts", []):
+        ids = {str(artifact.get("id", "")), *[str(alias) for alias in artifact.get("aliases", [])]}
+        if artifact_id in ids:
+            return artifact
+    return {"id": artifact_id, "present": False}
 
 
 def missing_requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str) -> list[dict[str, Any]]:

@@ -12,7 +12,7 @@
 - Experiment: `official_k562_scientific_policy_run_50`
 - Trained nodes: 15
 - Failed nodes: 0
-- Pending implementations: 8
+- Pending implementations: 11
 - Public static tree nodes cataloged: 154
 - Public best path scaffold: `node2-1-1-1-1-1`
 - Paper-scale estimated candidate count: 94500

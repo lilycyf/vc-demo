@@ -7,7 +7,7 @@ import random
 from pathlib import Path
 from typing import Any
 
-from vc_demo.harness.artifact_registry import missing_requirements_for_blueprint, requirements_for_blueprint
+from vc_demo.harness.artifact_registry import artifact_by_id_or_alias, missing_requirements_for_blueprint, requirements_for_blueprint
 from vc_demo.harness.model_blueprints import blueprint_by_id, selectable_blueprint_ids
 from vc_demo.harness.pipeline import default_pipeline_manifest, write_pipeline_manifest
 from vc_demo.harness.pipeline_grammar import program_for_blueprint
@@ -310,9 +310,8 @@ def render_artifact_contract(child_name: str, blueprint: dict[str, Any], child_c
     required = list(blueprint.get("requires", []))
     present: list[str] = []
     missing: list[str] = []
-    artifact_rows = {row.get("id"): row for row in (registry_audit or {}).get("artifacts", [])}
     for artifact_id in required:
-        row = artifact_rows.get(artifact_id, {})
+        row = artifact_by_id_or_alias(registry_audit or {}, artifact_id)
         if row.get("present"):
             present.append(artifact_id)
         else:
@@ -327,7 +326,7 @@ def render_artifact_contract(child_name: str, blueprint: dict[str, Any], child_c
         "present_required_artifacts": present,
         "missing_required_artifacts": missing,
         "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
-        "artifact_rows": [artifact_rows.get(artifact_id, {"id": artifact_id, "present": False}) for artifact_id in required],
+        "artifact_rows": [artifact_by_id_or_alias(registry_audit or {}, artifact_id) for artifact_id in required],
         "model_artifacts_config": child_config.get("model", {}).get("artifacts", {}),
     }
 
