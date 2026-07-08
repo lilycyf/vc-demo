@@ -1,0 +1,230 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_native_p1_official_native_public_best_reimplementation_e49b7b10",
+  "child": "official_k562_native_p1_official_native_public_best_reimplementation_07f618d0",
+  "strategy": "official_native_public_best_reimplementation",
+  "blueprint": {
+    "id": "official_native_public_best_reimplementation",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "native_reimplementation",
+    "paper_family": "public_vcharness_best_path_native_v1",
+    "change_level": 5,
+    "role": "Native compact reimplementation of the public K562 best-node family using official AIDO and STRING_GNN artifact contracts.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_notes": "Implemented as a native custom_program proxy in vc_demo.official_k562.native_models. It is interface/functionality aligned, not a numerical clone of the public static node.",
+    "acceptance": [
+      "Checks AIDO and STRING_GNN artifact paths",
+      "Forward returns [batch, 6640, 3]",
+      "Can be used as MCTS root or child"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Native compact reimplementation of the public K562 best-node family using official AIDO and STRING_GNN artifact contracts.",
+  "changes": [
+    "program_model:custom_program->official_native_public_best_reimplementation",
+    "blueprint_status:implemented",
+    "custom_model_path:experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_07f618d0/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_07f618d0",
+  "program_model_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_07f618d0/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_gap_closing_small_50/programs/official_k562_native_p1_official_native_public_best_reimplementation_07f618d0/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    },
+    {
+      "provider": "STRING_GNN",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_native_public_best_reimplementation",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_request_path": "",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "artifact_aware_blueprint_ranking",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  },
+  "mcts_selected_parent": "official_k562_native_p1_official_native_public_best_reimplementation_e49b7b10",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_native_p1_official_native_public_best_reimplementation_e49b7b10",
+      "policy": "uct",
+      "score": 2.7454421399832336,
+      "uct": 2.7454421399832336,
+      "puct": null,
+      "q": 0.48051416873931885,
+      "Q_v": 0.48051416873931885,
+      "exploitation": 0.48051416873931885,
+      "Exploitation": 0.48051416873931885,
+      "exploration": 2.2649279712439148,
+      "Exploration": 2.2649279712439148,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.48051416873931885,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 2.680430966496524,
+      "uct": 2.680430966496524,
+      "puct": null,
+      "q": 0.41550299525260925,
+      "Q_v": 0.41550299525260925,
+      "exploitation": 0.41550299525260925,
+      "Exploitation": 0.41550299525260925,
+      "exploration": 2.2649279712439148,
+      "Exploration": 2.2649279712439148,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.41550299525260925,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "policy": "uct",
+      "score": 2.677425104260501,
+      "uct": 2.677425104260501,
+      "puct": null,
+      "q": 0.4124971330165863,
+      "Q_v": 0.4124971330165863,
+      "exploitation": 0.4124971330165863,
+      "Exploitation": 0.4124971330165863,
+      "exploration": 2.2649279712439148,
+      "Exploration": 2.2649279712439148,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.4124971330165863,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_public_best_node2_1_1_1_1_1_smoke",
+      "policy": "uct",
+      "score": 2.5982110975981323,
+      "uct": 2.5982110975981323,
+      "puct": null,
+      "q": 0.33328312635421753,
+      "Q_v": 0.33328312635421753,
+      "exploitation": 0.33328312635421753,
+      "Exploitation": 0.33328312635421753,
+      "exploration": 2.2649279712439148,
+      "Exploration": 2.2649279712439148,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.33328312635421753,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_native_p1_official_native_public_best_reimplementation_f60cc825",
+      "policy": "uct",
+      "score": 2.0738263551791913,
+      "uct": 2.0738263551791913,
+      "puct": null,
+      "q": 0.47228042781352997,
+      "Q_v": 0.9445608556270599,
+      "exploitation": 0.47228042781352997,
+      "Exploitation": 0.47228042781352997,
+      "exploration": 1.6015459273656616,
+      "Exploration": 1.6015459273656616,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 13,
+      "children": 1,
+      "best_val_macro_f1": 0.4640466868877411,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_native_p1_official_native_public_best_reimplementation_4fc53048",
+      "policy": "uct",
+      "score": 1.7812910765089063,
+      "uct": 1.7812910765089063,
+      "puct": null,
+      "q": 0.4736343026161194,
+      "Q_v": 1.4209029078483582,
+      "exploitation": 0.4736343026161194,
+      "Exploitation": 0.4736343026161194,
+      "exploration": 1.307656773892787,
+      "Exploration": 1.307656773892787,
+      "prior": 0.0,
+      "visits": 3,
+      "parent_visits": 13,
+      "children": 1,
+      "best_val_macro_f1": 0.4763420522212982,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_native_public_best_reimplementation",
+      "policy": "uct",
+      "score": 1.6036157920360847,
+      "uct": 1.6036157920360847,
+      "puct": null,
+      "q": 0.47115180641412735,
+      "Q_v": 1.8846072256565094,
+      "exploitation": 0.47115180641412735,
+      "Exploitation": 0.47115180641412735,
+      "exploration": 1.1324639856219574,
+      "Exploration": 1.1324639856219574,
+      "prior": 0.0,
+      "visits": 4,
+      "parent_visits": 13,
+      "children": 1,
+      "best_val_macro_f1": 0.46370431780815125,
+      "stage": "draft"
+    }
+  ],
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [],
+  "missing_required_artifact_paths": []
+}
