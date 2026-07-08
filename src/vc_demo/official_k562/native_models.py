@@ -15,6 +15,7 @@ Variant = Literal[
     "aido_string_fusion",
     "aido_string_cross_attention",
     "string_neighborhood_attention",
+    "pathway_pooling_reactome",
     "native_public_best_reimplementation",
 ]
 
@@ -52,6 +53,13 @@ class OfficialK562NativeModel(nn.Module):
         graph_path = artifacts.get("string_graph_path", "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt")
         if variant in {"string_gnn_attention", "aido_string_fusion", "aido_string_cross_attention", "string_neighborhood_attention", "native_public_best_reimplementation"}:
             self.artifact_status["STRING_graph"] = str(_require_path(graph_path, "official STRING keep20 graph"))
+        if variant == "pathway_pooling_reactome":
+            pathway_path = artifacts.get("pathway_membership_path", "data/artifacts/pathways/k562_target_pathway_membership.npz")
+            pathway_membership = self._load_pathway_membership(pathway_path)
+            n_pathways = int(pathway_membership.shape[1])
+        else:
+            pathway_membership = torch.zeros(self.n_targets, 1)
+            n_pathways = 1
         self.input = nn.Sequential(nn.Linear(int(spec.input_dim), hidden), nn.LayerNorm(hidden), nn.GELU(), nn.Dropout(dropout))
         self.adapter_down = nn.Linear(hidden, max(8, hidden // 4))
         self.adapter_up = nn.Linear(max(8, hidden // 4), hidden)
@@ -69,6 +77,8 @@ class OfficialK562NativeModel(nn.Module):
         self.fusion_gate = nn.Sequential(nn.Linear(hidden, hidden), nn.Sigmoid())
         self.cross_query = nn.Linear(hidden, hidden)
         self.cross_key_value = nn.Linear(hidden, hidden)
+        self.pathway_head = nn.Linear(hidden, n_pathways * self.n_classes)
+        self.pathway_residual_scale = nn.Parameter(torch.tensor(0.25))
         self.neighborhood_k = 2
         self.attention_heads = heads
         if variant == "string_neighborhood_attention":
@@ -76,7 +86,33 @@ class OfficialK562NativeModel(nn.Module):
         else:
             prior = torch.zeros(self.n_targets, 1)
         self.register_buffer("string_target_prior", prior, persistent=False)
+        self.register_buffer("pathway_membership", pathway_membership, persistent=False)
 
+    def _load_pathway_membership(self, pathway_path: str | Path) -> torch.Tensor:
+        """Load target-by-pathway membership aligned to the official K562 target order."""
+        import numpy as np
+
+        pathway_path = _require_path(pathway_path, "K562 target pathway membership")
+        arrays = np.load(pathway_path, allow_pickle=False)
+        key = "membership" if "membership" in arrays.files else "membership_matrix"
+        if key not in arrays.files:
+            raise ValueError(f"pathway artifact {pathway_path} must contain membership or membership_matrix")
+        membership = torch.as_tensor(arrays[key], dtype=torch.float32)
+        if membership.ndim != 2:
+            raise ValueError(f"pathway membership must be 2D, got shape {tuple(membership.shape)}")
+        if int(membership.shape[0]) != self.n_targets:
+            raise ValueError(f"pathway target count {membership.shape[0]} does not match spec.n_targets {self.n_targets}")
+        if int(membership.shape[1]) < 1:
+            raise ValueError("pathway membership must contain at least one pathway column")
+        covered = membership.sum(dim=1) > 0
+        if not bool(covered.any()):
+            raise ValueError(f"pathway artifact {pathway_path} has no covered target genes")
+        row_sum = membership.sum(dim=1, keepdim=True).clamp_min(1.0)
+        membership = membership / row_sum
+        self.artifact_status["pathway_membership"] = str(pathway_path)
+        self.artifact_status["pathway_count"] = str(int(membership.shape[1]))
+        self.artifact_status["pathway_target_coverage"] = f"{float(covered.float().mean()):.6f}"
+        return membership
 
     def _load_string_target_prior(self, graph_path: str | Path) -> torch.Tensor:
         """Load a real STRING graph-derived target prior without altering target order."""
@@ -129,6 +165,13 @@ class OfficialK562NativeModel(nn.Module):
         attended, _ = self.attention(query=query, key=key_value, value=key_value, need_weights=False)
         return self.token_classifier(query + attended)
 
+    def _pathway_logits(self, z: torch.Tensor) -> torch.Tensor:
+        membership = self.pathway_membership.to(device=z.device, dtype=z.dtype)
+        pathway_logits = self.pathway_head(z).view(z.shape[0], membership.shape[1], self.n_classes)
+        pooled = torch.einsum("np,bpc->bnc", membership, pathway_logits)
+        residual = self._low_rank_logits(z)
+        return pooled + self.pathway_residual_scale * residual
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         z = self.input(x)
         if self.variant in {"aido_lora_adapter", "aido_string_fusion", "native_public_best_reimplementation"}:
@@ -143,6 +186,8 @@ class OfficialK562NativeModel(nn.Module):
         if self.variant == "string_neighborhood_attention":
             logits = self._target_attention_logits(z)
             return logits + self.string_target_prior.to(device=z.device, dtype=z.dtype).unsqueeze(0)
+        if self.variant == "pathway_pooling_reactome":
+            return self._pathway_logits(z)
         if self.variant == "aido_string_cross_attention":
             query = self.cross_query(z).unsqueeze(1)
             key_value = self.cross_key_value(self.target_tokens.to(device=z.device, dtype=z.dtype)).unsqueeze(0).expand(z.shape[0], -1, -1)

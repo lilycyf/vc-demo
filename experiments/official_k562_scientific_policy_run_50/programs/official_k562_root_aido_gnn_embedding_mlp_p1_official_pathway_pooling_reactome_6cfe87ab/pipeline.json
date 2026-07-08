@@ -11,7 +11,15 @@
     "pathway_memberships",
     "official_essential_deg_with_split_h5ad"
   ],
-  "artifact_usage_claims": [],
+  "artifact_usage_claims": [
+    {
+      "provider": "Reactome/MSigDB-derived pathway membership",
+      "artifact_id": "pathway_memberships",
+      "local_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "usage": "target_gene_pathway_pooling",
+      "fallback": "none"
+    }
+  ],
   "patches": {},
   "guardrails": {
     "preserve_splits": true,
@@ -32,5 +40,10 @@
     "fine_tuning": "unspecified",
     "required_artifacts": [],
     "paper_alignment": "blueprint not yet mapped into the grammar"
-  }
+  },
+  "implementation_status": "implemented",
+  "native_variant": "pathway_pooling_reactome",
+  "missing_artifacts": [],
+  "fallback": "none",
+  "artifact_notes": "Uses acquired K562 target-by-pathway membership aligned to the official 6640 target gene order."
 }

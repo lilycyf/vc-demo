@@ -824,14 +824,13 @@
   "mcts": {
     "exploration_c": 1.4142135623730951,
     "last_backpropagation": {
-      "leaf": "official_k562_p2_official_public_best_node_0f24e30a",
-      "reward": 0.33328312635421753,
+      "leaf": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
+      "reward": 0.39792147278785706,
       "path": [
-        "official_k562_p2_official_public_best_node_0f24e30a",
-        "official_k562_p1_official_class_imbalance_training_fde536bb",
-        "official_k562_public_best_node2_1_1_1_1_1_smoke"
+        "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab",
+        "official_k562_root_aido_gnn_embedding_mlp"
       ],
-      "path_length": 3
+      "path_length": 2
     },
     "last_candidates": [
       {
@@ -1068,8 +1067,8 @@
   },
   "nodes": {
     "official_k562_native_p1_official_aido_lora_adapter_d757c78c": {
-      "Exploitation": 0.4074171334505081,
-      "Q_v": 1.6296685338020325,
+      "Exploitation": 0.4076938271522522,
+      "Q_v": 2.038469135761261,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_aido_lora_adapter_d757c78c/artifact_contract.json",
       "artifact_requirements": [
@@ -1098,8 +1097,8 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 3,
-      "last_reward": 0.3425617218017578,
-      "mean_reward": 0.4074171334505081,
+      "last_reward": 0.4088006019592285,
+      "mean_reward": 0.4076938271522522,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_aido_lora_adapter_d757c78c/metrics.json",
       "node_kind": "program_node",
       "parent": "official_k562_native_p1_official_string_gnn_attention_7ec267ae",
@@ -1127,13 +1126,14 @@
       "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_aido_lora_adapter_d757c78c/model.py",
       "proposal": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p1_official_aido_lora_adapter_d757c78c.proposal.json",
       "requires_implementation": false,
-      "reward_std": 0.05786199382605733,
-      "reward_variance": 0.003348010329526696,
+      "reward_std": 0.05175629914551162,
+      "reward_variance": 0.0026787145012396874,
       "rollout_rewards": [
         0.4741170108318329,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578
+        0.3425617218017578,
+        0.4088006019592285
       ],
       "scientific_selection": {
         "base": 0.92,
@@ -1149,7 +1149,7 @@
         "score": 1.72
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_aido_lora_adapter_d757c78c/smoke_contract.json",
-      "squared_value": 0.6773469238342233,
+      "squared_value": 0.8444648559964509,
       "stage": "improve",
       "status": "trained",
       "strategy": "official_aido_lora_adapter",
@@ -1158,12 +1158,12 @@
       "test_macro_f1": 0.5233038067817688,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 1.6296685338020325,
-      "visits": 4
+      "value": 2.038469135761261,
+      "visits": 5
     },
     "official_k562_native_p1_official_aido_string_fusion_66a588f9": {
-      "Exploitation": 0.42659060657024384,
-      "Q_v": 2.559543639421463,
+      "Exploitation": 0.4240491773400988,
+      "Q_v": 2.9683442413806915,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_aido_string_fusion_66a588f9/artifact_contract.json",
       "artifact_requirements": [
@@ -1200,8 +1200,8 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 1,
-      "last_reward": 0.3425617218017578,
-      "mean_reward": 0.42659060657024384,
+      "last_reward": 0.4088006019592285,
+      "mean_reward": 0.4240491773400988,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_aido_string_fusion_66a588f9/metrics.json",
       "node_kind": "program_node",
       "parent": "official_k562_native_public_best_reimplementation",
@@ -1231,15 +1231,16 @@
       "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_aido_string_fusion_66a588f9/model.py",
       "proposal": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p1_official_aido_string_fusion_66a588f9.proposal.json",
       "requires_implementation": false,
-      "reward_std": 0.05614225464232296,
-      "reward_variance": 0.003151952756323434,
+      "reward_std": 0.05234908754052356,
+      "reward_variance": 0.002740426966325399,
       "rollout_rewards": [
         0.4884769916534424,
         0.44139811396598816,
         0.4741170108318329,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578
+        0.3425617218017578,
+        0.4088006019592285
       ],
       "scientific_selection": {
         "base": 1.0,
@@ -1255,7 +1256,7 @@
         "score": 1.8
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_aido_string_fusion_66a588f9/smoke_contract.json",
-      "squared_value": 1.110788990221752,
+      "squared_value": 1.2779069223839796,
       "stage": "improve",
       "status": "trained",
       "strategy": "official_aido_string_fusion",
@@ -1264,12 +1265,12 @@
       "test_macro_f1": 0.518327534198761,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 2.559543639421463,
-      "visits": 6
+      "value": 2.9683442413806915,
+      "visits": 7
     },
     "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810": {
-      "Exploitation": 0.0,
-      "Q_v": 0.0,
+      "Exploitation": 0.4088006019592285,
+      "Q_v": 0.817601203918457,
       "agent_type": "codex_program_node_agent",
       "artifact_blocker_record": {
         "decision": "blocked_for_real_artifact_acquisition",
@@ -1318,16 +1319,43 @@
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/smoke_contract.json",
       "stage": "improve",
-      "status": "needs_implementation",
+      "status": "trained",
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "e07394402b248323a71213361dcf92f42875beb8",
-      "value": 0.0,
-      "visits": 0
+      "value": 0.817601203918457,
+      "visits": 2,
+      "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_pathway_pooling_reactome_b5af6810/metrics.json",
+      "best_val_macro_f1": 0.4088006019592285,
+      "test_macro_f1": 0.4476519525051117,
+      "duration_seconds": 15.04022479057312,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "official_pathway_pooling_reactome",
+        "loss_type": "weighted_cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "pathway_memberships"
+        ],
+        "missing_required_artifacts": []
+      },
+      "squared_value": 0.1671179321622276,
+      "mean_reward": 0.4088006019592285,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "best_reward": 0.4088006019592285,
+      "last_reward": 0.4088006019592285,
+      "rollout_rewards": [
+        0.4088006019592285
+      ]
     },
     "official_k562_native_p1_official_string_gnn_attention_7ec267ae": {
-      "Exploitation": 0.4142133295536041,
-      "Q_v": 2.0710666477680206,
+      "Exploitation": 0.4133112082878749,
+      "Q_v": 2.479867249727249,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_string_gnn_attention_7ec267ae/artifact_contract.json",
       "artifact_requirements": [
@@ -1357,8 +1385,8 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 2,
-      "last_reward": 0.3425617218017578,
-      "mean_reward": 0.4142133295536041,
+      "last_reward": 0.4088006019592285,
+      "mean_reward": 0.4133112082878749,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_string_gnn_attention_7ec267ae/metrics.json",
       "node_kind": "program_node",
       "parent": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
@@ -1387,14 +1415,15 @@
       "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_string_gnn_attention_7ec267ae/model.py",
       "proposal": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p1_official_string_gnn_attention_7ec267ae.proposal.json",
       "requires_implementation": false,
-      "reward_std": 0.05350851698102198,
-      "reward_variance": 0.0028631613895083174,
+      "reward_std": 0.04888800403453426,
+      "reward_variance": 0.0023900369384806386,
       "rollout_rewards": [
         0.44139811396598816,
         0.4741170108318329,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578
+        0.3425617218017578,
+        0.4088006019592285
       ],
       "scientific_selection": {
         "base": 0.96,
@@ -1410,7 +1439,7 @@
         "score": 1.76
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_string_gnn_attention_7ec267ae/smoke_contract.json",
-      "squared_value": 0.8721792188469548,
+      "squared_value": 1.0392971510091824,
       "stage": "improve",
       "status": "trained",
       "strategy": "official_string_gnn_attention",
@@ -1419,12 +1448,12 @@
       "test_macro_f1": 0.5046269297599792,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 2.0710666477680206,
-      "visits": 5
+      "value": 2.479867249727249,
+      "visits": 6
     },
     "official_k562_native_p1_official_target_gene_head_477d0ebb": {
-      "Exploitation": 0.38518384099006653,
-      "Q_v": 1.1555515229701996,
+      "Exploitation": 0.391088031232357,
+      "Q_v": 1.564352124929428,
       "agent_type": "codex_program_node_agent",
       "artifact_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_target_gene_head_477d0ebb/artifact_contract.json",
       "artifact_requirements": [
@@ -1446,8 +1475,8 @@
       "external_script": null,
       "implementation_request_path": "",
       "iteration": 4,
-      "last_reward": 0.3425617218017578,
-      "mean_reward": 0.38518384099006653,
+      "last_reward": 0.4088006019592285,
+      "mean_reward": 0.391088031232357,
       "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_native_p1_official_target_gene_head_477d0ebb/metrics.json",
       "node_kind": "program_node",
       "parent": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
@@ -1473,12 +1502,13 @@
       "program_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_target_gene_head_477d0ebb/model.py",
       "proposal": "experiments/official_k562_scientific_policy_run_50/proposals/official_k562_native_p1_official_target_gene_head_477d0ebb.proposal.json",
       "requires_implementation": false,
-      "reward_std": 0.04986718959572654,
-      "reward_variance": 0.002486736598176137,
+      "reward_std": 0.04438052315919208,
+      "reward_variance": 0.0019696308358835846,
       "rollout_rewards": [
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578
+        0.3425617218017578,
+        0.4088006019592285
       ],
       "scientific_selection": {
         "base": 0.88,
@@ -1494,7 +1524,7 @@
         "score": 1.68
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_target_gene_head_477d0ebb/smoke_contract.json",
-      "squared_value": 0.452559983874111,
+      "squared_value": 0.6196779160363386,
       "stage": "improve",
       "status": "trained",
       "strategy": "official_target_gene_head",
@@ -1503,8 +1533,8 @@
       "test_macro_f1": 0.5265136361122131,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 1.1555515229701996,
-      "visits": 3
+      "value": 1.564352124929428,
+      "visits": 4
     },
     "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f": {
       "Exploitation": 0.35783669352531433,
@@ -1650,8 +1680,8 @@
       "visits": 2
     },
     "official_k562_native_public_best_reimplementation": {
-      "Exploitation": 0.43249841247286114,
-      "Q_v": 3.027488887310028,
+      "Exploitation": 0.4295361861586571,
+      "Q_v": 3.4362894892692566,
       "artifact_usage": {},
       "best_reward": 0.4884769916534424,
       "best_val_macro_f1": 0.46794524788856506,
@@ -1664,8 +1694,8 @@
       "execution_mode": null,
       "external_script": null,
       "iteration": 0,
-      "last_reward": 0.3425617218017578,
-      "mean_reward": 0.43249841247286114,
+      "last_reward": 0.4088006019592285,
+      "mean_reward": 0.4295361861586571,
       "metrics": "",
       "parent": "",
       "pipeline": {
@@ -1687,24 +1717,25 @@
         ],
         "uses_real_artifact": true
       },
-      "reward_std": 0.053954488364105505,
-      "reward_variance": 0.0029110868146323965,
+      "reward_std": 0.05107469486897865,
+      "reward_variance": 0.002608624455959274,
       "rollout_rewards": [
         0.4884769916534424,
         0.44139811396598816,
         0.4741170108318329,
         0.45515310764312744,
         0.35783669352531433,
-        0.3425617218017578
+        0.3425617218017578,
+        0.4088006019592285
       ],
-      "squared_value": 1.3297617452432426,
+      "squared_value": 1.4968796774054702,
       "stage": "draft",
       "status": "trained",
       "test_macro_f1": 0.5256422758102417,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 3.027488887310028,
-      "visits": 7
+      "value": 3.4362894892692566,
+      "visits": 8
     },
     "official_k562_public_best_node2_1_1_1_1_1_smoke": {
       "Exploitation": 0.33328312635421753,
@@ -1760,8 +1791,8 @@
       ]
     },
     "official_k562_root_aido_embedding_mlp": {
-      "Exploitation": 0.4145679324865341,
-      "Q_v": 0.8291358649730682,
+      "Exploitation": 0.4115036527315776,
+      "Q_v": 1.2345109581947327,
       "artifact_usage": {},
       "best_reward": 0.4182926416397095,
       "best_val_macro_f1": 0.41084322333335876,
@@ -1775,8 +1806,8 @@
       "execution_mode": null,
       "external_script": null,
       "iteration": 0,
-      "last_reward": 0.4182926416397095,
-      "mean_reward": 0.4145679324865341,
+      "last_reward": 0.40537509322166443,
+      "mean_reward": 0.4115036527315776,
       "metrics": "",
       "parent": "",
       "pipeline": {
@@ -1791,23 +1822,24 @@
         "required_artifacts": [],
         "uses_real_artifact": true
       },
-      "reward_std": 0.003724709153175354,
-      "reward_variance": 1.3873458275748263e-05,
+      "reward_std": 0.005294203718888531,
+      "reward_variance": 2.802859301709315e-05,
       "rollout_rewards": [
-        0.4182926416397095
+        0.4182926416397095,
+        0.40537509322166443
       ],
-      "squared_value": 0.3437608882088705,
+      "squared_value": 0.5080898544133436,
       "stage": "draft",
       "status": "trained",
       "test_macro_f1": 0.4532538652420044,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 0.8291358649730682,
-      "visits": 2
+      "value": 1.2345109581947327,
+      "visits": 3
     },
     "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c": {
-      "Exploitation": 0.0,
-      "Q_v": 0.0,
+      "Exploitation": 0.40537509322166443,
+      "Q_v": 0.8107501864433289,
       "agent_type": "codex_program_node_agent",
       "artifact_blocker_record": {
         "decision": "blocked_for_real_artifact_acquisition",
@@ -1856,12 +1888,39 @@
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/smoke_contract.json",
       "stage": "improve",
-      "status": "needs_implementation",
+      "status": "trained",
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
-      "value": 0.0,
-      "visits": 0
+      "value": 0.8107501864433289,
+      "visits": 2,
+      "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/metrics.json",
+      "best_val_macro_f1": 0.40537509322166443,
+      "test_macro_f1": 0.42535877227783203,
+      "duration_seconds": 9.461344957351685,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "official_pathway_pooling_reactome",
+        "loss_type": "weighted_cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "pathway_memberships"
+        ],
+        "missing_required_artifacts": []
+      },
+      "squared_value": 0.16432896620447313,
+      "mean_reward": 0.40537509322166443,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "best_reward": 0.40537509322166443,
+      "last_reward": 0.40537509322166443,
+      "rollout_rewards": [
+        0.40537509322166443
+      ]
     },
     "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500": {
       "Exploitation": 0.4182926416397095,
@@ -1938,8 +1997,8 @@
       "visits": 2
     },
     "official_k562_root_aido_gnn_embedding_mlp": {
-      "Exploitation": 0.396892249584198,
-      "Q_v": 1.190676748752594,
+      "Exploitation": 0.39714955538511276,
+      "Q_v": 1.588598221540451,
       "artifact_usage": {},
       "best_reward": 0.4206983745098114,
       "best_val_macro_f1": 0.4128258228302002,
@@ -1954,8 +2013,8 @@
       "execution_mode": null,
       "external_script": null,
       "iteration": 0,
-      "last_reward": 0.3571525514125824,
-      "mean_reward": 0.396892249584198,
+      "last_reward": 0.39792147278785706,
+      "mean_reward": 0.39714955538511276,
       "metrics": "",
       "parent": "",
       "pipeline": {
@@ -1970,24 +2029,25 @@
         "required_artifacts": [],
         "uses_real_artifact": true
       },
-      "reward_std": 0.028283410633153476,
-      "reward_variance": 0.000799951317043579,
+      "reward_std": 0.024498206191642634,
+      "reward_variance": 0.0006001621066082374,
       "rollout_rewards": [
         0.4206983745098114,
-        0.3571525514125824
+        0.3571525514125824,
+        0.39792147278785706
       ],
-      "squared_value": 0.4749702272911467,
+      "squared_value": 0.633311725796804,
       "stage": "draft",
       "status": "trained",
       "test_macro_f1": 0.4629861116409302,
       "test_metric_source": null,
       "validation_metric_source": null,
-      "value": 1.190676748752594,
-      "visits": 3
+      "value": 1.588598221540451,
+      "visits": 4
     },
     "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab": {
-      "Exploitation": 0.0,
-      "Q_v": 0.0,
+      "Exploitation": 0.39792147278785706,
+      "Q_v": 0.7958429455757141,
       "agent_type": "codex_program_node_agent",
       "artifact_blocker_record": {
         "decision": "blocked_for_real_artifact_acquisition",
@@ -2036,12 +2096,39 @@
       },
       "smoke_contract_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/smoke_contract.json",
       "stage": "improve",
-      "status": "needs_implementation",
+      "status": "trained",
       "strategy": "official_pathway_pooling_reactome",
       "structural_relation": "structural_variant",
       "structural_signature": "05a1ba5b1c1c309e511319add93f3d858cbc75b0",
-      "value": 0.0,
-      "visits": 0
+      "value": 0.7958429455757141,
+      "visits": 2,
+      "metrics": "experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab/metrics.json",
+      "best_val_macro_f1": 0.39792147278785706,
+      "test_macro_f1": 0.4254453480243683,
+      "duration_seconds": 13.310248374938965,
+      "pipeline": {
+        "pipeline_kind": "pipeline_program_node",
+        "pipeline_strategy": "official_pathway_pooling_reactome",
+        "loss_type": "weighted_cross_entropy",
+        "uses_real_artifact": true,
+        "artifact_sides": [
+          "perturbation_gene_or_context"
+        ],
+        "artifact_manifest_path": "",
+        "required_artifacts": [
+          "pathway_memberships"
+        ],
+        "missing_required_artifacts": []
+      },
+      "squared_value": 0.15834149850565726,
+      "mean_reward": 0.39792147278785706,
+      "reward_variance": 0.0,
+      "reward_std": 0.0,
+      "best_reward": 0.39792147278785706,
+      "last_reward": 0.39792147278785706,
+      "rollout_rewards": [
+        0.39792147278785706
+      ]
     },
     "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15": {
       "Exploitation": 0.4206983745098114,

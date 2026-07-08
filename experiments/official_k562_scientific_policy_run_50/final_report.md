@@ -10,9 +10,9 @@
 ## Search System
 
 - Experiment: `official_k562_scientific_policy_run_50`
-- Trained nodes: 15
+- Trained nodes: 18
 - Failed nodes: 0
-- Pending implementations: 11
+- Pending implementations: 8
 - Public static tree nodes cataloged: 154
 - Public best path scaffold: `node2-1-1-1-1-1`
 - Paper-scale estimated candidate count: 94500
@@ -82,10 +82,13 @@
 | `official_k562_native_p1_official_string_gnn_attention_7ec267ae` | `official_k562_native_p1_official_aido_string_fusion_66a588f9` | native_train | official_string_gnn_attention | structural_variant | 0.4414 | 0.5046 |
 | `official_k562_native_p1_official_aido_lora_adapter_d757c78c` | `official_k562_native_p1_official_string_gnn_attention_7ec267ae` | native_train | official_aido_lora_adapter | structural_variant | 0.4741 | 0.5233 |
 | `official_k562_native_p1_official_target_gene_head_477d0ebb` | `official_k562_native_p1_official_aido_lora_adapter_d757c78c` | native_train | official_target_gene_head | structural_variant | 0.4552 | 0.5265 |
+| `official_k562_native_p1_official_pathway_pooling_reactome_b5af6810` | `official_k562_native_p1_official_target_gene_head_477d0ebb` |  | official_pathway_pooling_reactome | structural_variant | 0.4088 | 0.4477 |
 | `official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f` | `official_k562_native_p1_official_target_gene_head_477d0ebb` |  | official_aido_string_cross_attention | structural_variant | 0.3578 | 0.4436 |
 | `official_k562_native_p3_official_string_neighborhood_attention_0376ea72` | `official_k562_native_p1_official_target_gene_head_477d0ebb` |  | official_string_neighborhood_attention | structural_variant | 0.3426 | 0.4228 |
+| `official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab` | `official_k562_root_aido_gnn_embedding_mlp` |  | official_pathway_pooling_reactome | structural_variant | 0.3979 | 0.4254 |
 | `official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15` | `official_k562_root_aido_gnn_embedding_mlp` |  | official_aido_string_cross_attention | structural_variant | 0.4207 | 0.4469 |
 | `official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1` | `official_k562_root_aido_gnn_embedding_mlp` |  | official_string_neighborhood_attention | structural_variant | 0.3572 | 0.3912 |
+| `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` | `official_k562_root_aido_embedding_mlp` |  | official_pathway_pooling_reactome | structural_variant | 0.4054 | 0.4254 |
 | `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` | `official_k562_root_aido_embedding_mlp` |  | official_aido_string_cross_attention | structural_variant | 0.4183 | 0.4355 |
 | `official_k562_p1_official_class_imbalance_training_fde536bb` | `official_k562_public_best_node2_1_1_1_1_1_smoke` | external_static_node | official_class_imbalance_training | structural_variant | 0.3333 | 0.3333 |
 | `official_k562_p2_official_public_best_node_0f24e30a` | `official_k562_p1_official_class_imbalance_training_fde536bb` | external_static_node | official_public_best_node | structural_variant | 0.3333 | 0.3333 |
