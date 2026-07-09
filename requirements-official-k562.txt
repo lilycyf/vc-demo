@@ -15,3 +15,6 @@ lightning
 peft
 pandas
 safetensors
+
+# Required by Lightning TensorBoardLogger in public VCHarness static nodes.
+tensorboard

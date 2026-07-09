@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import ast
 import csv
+import importlib.util
 import json
 import os
 import re
@@ -31,6 +32,56 @@ def _prepare_official_data_links(data_dir: Path, external_data_root: Path) -> No
             raise FileNotFoundError(f"official K562 TSV missing: {src}")
         _copy_or_link(src.resolve(), external_data_root / name)
 
+
+
+def _module_available(name: str) -> bool:
+    return importlib.util.find_spec(name) is not None
+
+
+def _preflight_external_static(config: dict[str, Any], static_dir: Path, script_path: Path, mode: str, output_dir: Path) -> dict[str, Any]:
+    execution = config.get("execution", {})
+    data_dir = Path(str(config.get("data", {}).get("data_dir", "data/cell_lines/official_k562_cls")))
+    required_paths = {
+        "static_dir": static_dir,
+        "script_path": script_path,
+        "data_dir": data_dir,
+    }
+    for name in ["train.tsv", "val.tsv", "test.tsv"]:
+        required_paths[f"data/{name}"] = data_dir / name
+    for label, raw_path in execution.get("artifact_usage", {}).items():
+        if label in {"public_node_code"}:
+            continue
+        required_paths[f"artifact/{label}"] = Path(str(raw_path))
+
+    missing_paths = {key: str(path) for key, path in required_paths.items() if not path.exists()}
+    logger_available = _module_available("tensorboard") or _module_available("tensorboardX")
+    issues: list[str] = []
+    if missing_paths:
+        issues.append("missing_required_paths")
+    if not logger_available:
+        issues.append("missing_tensorboard_logger_dependency")
+    result = {
+        "status": "passed" if not issues else "blocked",
+        "mode": mode,
+        "issues": issues,
+        "missing_paths": missing_paths,
+        "logger_dependency": {
+            "tensorboard": _module_available("tensorboard"),
+            "tensorboardX": _module_available("tensorboardX"),
+            "required_for": "Lightning TensorBoardLogger used by public VCHarness static node",
+            "install_hint": "pip install tensorboard or install requirements-official-k562.txt",
+        },
+        "metric_contract": {
+            "benchmark_requires_test_metric": mode == "benchmark" and not bool(execution.get("allow_test_metric_fallback", False)),
+            "smoke_allows_val_fallback": mode == "smoke" and bool(execution.get("allow_test_metric_fallback", True)),
+        },
+    }
+    output_dir.mkdir(parents=True, exist_ok=True)
+    write_json(output_dir / "external_preflight.json", result)
+    if issues:
+        details = "; ".join(issues)
+        raise RuntimeError(f"external static node preflight blocked: {details}; see {output_dir / 'external_preflight.json'}")
+    return result
 
 def _parse_score_file(path: Path) -> dict[str, float]:
     if not path.exists():
@@ -96,6 +147,7 @@ def run_external_static_node(config: dict[str, Any], output_dir: Path, max_epoch
     script_path = Path(str(execution.get("script_path", "")))
     if not script_path.is_absolute():
         script_path = static_dir / script_path
+    _preflight_external_static(config, static_dir, script_path, mode, output_dir)
     if not script_path.exists():
         raise FileNotFoundError(f"external static node script missing: {script_path}")
 
