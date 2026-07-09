@@ -1,0 +1,38 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_swa_or_checkpoint_ensemble",
+  "model_entrypoint": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_p1_official_swa_or_checkpoint_ensemble_63c03f89/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes",
+    "checkpoint_policy": "top_k_validation_macro_f1_only; test labels forbidden; executable proxy uses three lightweight averaged heads"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "checkpoint_ensemble_or_SWA",
+  "pipeline_program": {
+    "blueprint": "official_swa_or_checkpoint_ensemble",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "validation_only_checkpoint_ensemble_proxy",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "checkpoint/SWA family represented as trainable three-head validation-selection proxy; no test tuning"
+  }
+}
