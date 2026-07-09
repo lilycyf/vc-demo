@@ -65,7 +65,7 @@ Rules for searched artifacts:
 4. If preflight is not ready, fix only the reported setup issue or stop with a blocker.
 5. Run `python -m vc_demo.harness.autonomous_run` with the task budget.
 6. If `implementation_queue.json` is non-empty, implement only the selected node-local `model.py` or follow `CODEX_IMPLEMENTATION_TASK.md`.
-7. If `acquisition_queue.json` is non-empty, run `artifact_acquisition`; if it emits `ACQUIRE_<artifact>.md`, search/download/build the real artifact or stop with a blocker.
+7. If `acquisition_queue.json` is non-empty, run `artifact_acquisition`; if it emits `ACQUIRE_<artifact>.md`, search/download/build the real artifact, audit it, update registry, and resume. Stop with a blocker only after the acquisition attempt fails with documented source/provenance/alignment reasons.
 8. Resume the same run directory without changing data/splits/metrics.
 9. Write `final_conclusion.md` with best root, best overall, improvement, artifact use, failures/blockers, and whether the result supports the research question.
 10. Commit only allowed files and push the run branch.

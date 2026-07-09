@@ -61,7 +61,7 @@ python scripts/generate_codex_experiment_prompt.py   --branch framework-autonomo
 ## What Still Requires External Codex Or Human Review
 
 - Blueprints without a safe built-in template produce `CODEX_IMPLEMENTATION_TASK.md` for the active Codex agent to implement directly.
-- Missing artifacts with uncertain public sources produce `ACQUIRE_<artifact>.md`; the active Codex agent must search official/primary sources or stop with a blocker.
+- Missing artifacts with uncertain public sources produce `ACQUIRE_<artifact>.md`; the active Codex agent must search official/primary sources, attempt source-backed acquisition/build/audit, and only stop with a blocker after that attempt fails.
 - Large external model downloads, license-gated resources, and underspecified pretrained encoders must stop for review.
 
 ## Formal-Test Guardrails

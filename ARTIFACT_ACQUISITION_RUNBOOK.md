@@ -1,12 +1,12 @@
 # Artifact Acquisition Runbook
 
-Formal searches run in strict artifact mode. If a selected blueprint needs a missing artifact, the search must stop and create:
+Formal searches run in strict artifact mode. If a selected blueprint needs a missing artifact, the search must pause and create:
 
 ```text
 <run_dir>/acquisition_queue.json
 ```
 
-This is not a final scientific failure. It is the handoff into artifact acquisition.
+This is not a final scientific failure and it is not permission to end the experiment. It is the handoff into active artifact acquisition. The next Codex action is to try to search, download, build, audit, and register the real artifact; only then may the agent resume the run or declare a source-backed blocker.
 
 ## Resolver Command
 
@@ -26,7 +26,7 @@ If this writes `ACQUIRE_<artifact>.md`, follow `ARTIFACT_ACQUISITION_AGENT_PROMP
 
 ## Required Behavior
 
-When `acquisition_queue.json` is non-empty, the Codex agent must:
+When `acquisition_queue.json` is non-empty, the Codex agent must not simply report that the run stopped. It must:
 
 1. Read the queue item: artifact id, expected path, source hint, and triggering blueprint.
 2. Search for the real artifact from official or primary sources.
@@ -36,6 +36,20 @@ When `acquisition_queue.json` is non-empty, the Codex agent must:
 6. Update `configs/artifacts/k562_registry.json` only with source-backed metadata.
 7. Run `python -m vc_demo.harness.artifact_registry --cell-line K562` and save/update audit output.
 8. Resume the search from the same run dir or restart a clean run, still without fallback.
+9. If acquisition fails, write a blocker report that lists the sources checked, why each source is insufficient, and what approval/file would be needed next.
+
+
+## Blocker Threshold
+
+A missing artifact may remain blocked only after an acquisition attempt has been made. A valid blocker must include:
+
+- artifact id and triggering blueprint/node;
+- sources searched, including official/project repositories and public model/data hosts when relevant;
+- why no source-backed artifact can be used safely;
+- whether the issue is unavailable weights, license/manual approval, missing tensor contract, vocabulary mismatch, row/order mismatch, or leakage risk;
+- exact next human action needed.
+
+For `scfoundation_cell_embeddings`, do not block immediately after the strict search stops. First run the resolver, read the generated `ACQUIRE_scfoundation_cell_embeddings.md`, search for public scFoundation checkpoints/embeddings, and attempt a K562-aligned build only if the source and tensor contract are defensible.
 
 ## Forbidden In Formal Tests
 

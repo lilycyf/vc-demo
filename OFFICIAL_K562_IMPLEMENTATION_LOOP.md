@@ -161,6 +161,20 @@ Expected:
 - No fallback model is generated.
 - No reward backpropagation occurs for that node.
 
+
+## Acquisition Before Block
+
+Formal K562 runs must treat a missing required artifact as an acquisition task before treating it as a final blocker:
+
+1. Run the artifact acquisition command emitted in stdout or `run_manifest.json`.
+2. Follow generated `ACQUIRE_<artifact>.md` tasks, especially for `scfoundation_cell_embeddings`.
+3. Search official/primary/public sources and build only source-backed artifacts.
+4. Audit shape, row/order alignment, vocabulary coverage, split coverage, leakage risk, and provenance.
+5. Resume the same strict run if the artifact becomes present.
+6. Keep the node blocked only if the source or tensor contract cannot be verified.
+
+The negative missing-artifact smoke is the only case where stopping immediately after queue creation is acceptable; formal scale runs must perform the acquisition pass.
+
 ## Experiment Codex Handoff Semantics
 
 Experiment Codex should now behave as an auditor/operator of the loop, not as the default implementer.
@@ -170,7 +184,7 @@ Default behavior:
 1. Run with `--enable-implementation-loop`.
 2. Do not manually inspect every pending node.
 3. If `implementation_queue.json` is empty, continue/resume according to the run budget.
-4. If a node is `blocked_missing_artifact` or `requires_artifact_acquisition`, stop and report artifact acquisition needs.
+4. If a node is `blocked_missing_artifact` or `requires_artifact_acquisition`, do not merely stop and report. Run the artifact acquisition resolver, follow any generated `ACQUIRE_<artifact>.md`, attempt source-backed acquisition/build/audit, update registry if successful, and then resume. Stop only after the acquisition attempt produces a documented blocker.
 5. If `implementation_agent_report.json` contains `requires_external_codex`, only then inspect that node's `CODEX_IMPLEMENTATION_TASK.md` and decide whether to implement manually.
 6. Never train fallback models in strict official mode.
 7. Never count `pruned_not_selected`, blocked, failed, or external-Codex-required nodes as trained rollouts.

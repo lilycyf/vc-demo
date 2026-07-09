@@ -52,6 +52,26 @@ def run_command(command: str) -> dict[str, Any]:
     }
 
 
+def artifact_specific_task_lines(artifact_id: str) -> list[str]:
+    if artifact_id == "scfoundation_cell_embeddings":
+        return [
+            "",
+            "## scFoundation-Specific Acquisition Protocol",
+            "",
+            "This artifact must not be treated as a generic embedding table. Before blocking or resuming, complete this protocol:",
+            "",
+            "1. Search official/primary sources for scFoundation code, checkpoints, and any precomputed K562/cell-state embeddings. Check official project repositories, paper-author links, HuggingFace, Zenodo, Figshare, and model cards before declaring unavailable.",
+            "2. Determine whether the source provides precomputed cell embeddings or an encoder/checkpoint that can encode the official K562 rows.",
+            "3. Verify the tensor contract: row count/order, train/val/test split ids, perturbation ids, gene vocabulary, normalization, embedding dimension, and expected file names under `data/artifacts/scfoundation`.",
+            "4. Enforce leakage guardrails: do not fit or tune embeddings using validation/test labels, DEG targets, or test metrics. Source-backed pretrained weights may encode the official input rows only through their allowed encoder path.",
+            "5. If a defensible source exists, write a reproducible build/download script or exact command, produce a summary JSON with URL/revision/checksum-or-size/vocabulary coverage/split coverage, update `configs/artifacts/k562_registry.json`, and rerun artifact audit.",
+            "6. If no defensible source exists, write a blocker report listing every source checked and classify the reason as unavailable weights, license/manual approval, missing tensor contract, vocabulary mismatch, row/order mismatch, or leakage risk.",
+            "",
+            "Do not use random projections, root-model hidden states, AIDO/GNN embeddings, or ordinary expression MLP outputs as a scFoundation substitute.",
+        ]
+    return []
+
+
 def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_item: dict[str, Any], output_dir: Path) -> Path:
     artifact_id = queue_item.get("artifact_id")
     expected_path = queue_item.get("expected_path") or source.get("expected_path") or registry_item.get("path") or ""
@@ -86,6 +106,7 @@ def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_ite
     lines += [f"- {q}" for q in research_questions] if research_questions else ["- Identify and document the official source and exact alignment procedure."]
     lines += ["", "## Required Outputs"]
     lines += [f"- {item}" for item in required_outputs] if required_outputs else ["- Artifact files", "- Source/coverage summary", "- Registry update"]
+    lines += artifact_specific_task_lines(str(artifact_id))
     lines += [
         "",
         "## Forbidden",
