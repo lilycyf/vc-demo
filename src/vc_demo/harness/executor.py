@@ -10,6 +10,7 @@ from vc_demo.harness.state import node_dir, write_json
 from vc_demo.train import train
 from vc_demo.harness.external_static import run_external_static_node
 from vc_demo.harness.native_program_smoke import smoke_config
+from vc_demo.harness.paper_level_guardrails import assert_no_formal_proxy
 
 
 def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | None, max_epochs: int | None) -> dict[str, Any]:
@@ -31,6 +32,8 @@ def run_node(config: dict[str, Any], run_dir: Path, proposal: dict[str, Any] | N
             duration = metrics.get("duration_seconds", time.time() - started)
         else:
             if materialized_config.get("model", {}).get("model_type") == "custom_program":
+                model_path = Path(str(materialized_config.get("model", {}).get("custom_model_path", "")))
+                assert_no_formal_proxy(materialized_config, model_path, context=f"node {name}")
                 smoke = smoke_config(materialized_config, batch_size=1)
                 write_json(out_dir / "native_program_smoke.json", smoke)
             metrics = train(materialized_config, out_dir, max_epochs=max_epochs)

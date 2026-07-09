@@ -36,8 +36,7 @@ python scripts/generate_codex_experiment_prompt.py \
   --root-configs \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-    configs/official_k562_public_best_node_smoke.json \
+    configs/official_k562_public_best_node_benchmark.json \
   --budget-nodes 150 \
   --max-epochs 1 \
   --output /tmp/CODEX_EXPERIMENT_PROMPT.md
@@ -45,7 +44,7 @@ python scripts/generate_codex_experiment_prompt.py \
 
 ## Artifact Rule
 
-Formal runs do not train fallback models for missing foundation-model artifacts. If a selected node needs a missing artifact, the run creates `acquisition_queue.json`. The next action is active acquisition:
+Formal runs do not train fallback models for missing foundation-model artifacts and do not allow compact/proxy native stand-ins. If a selected node needs a missing artifact, the run creates `acquisition_queue.json`. The next action is active acquisition:
 
 ```bash
 python -m vc_demo.harness.artifact_acquisition \

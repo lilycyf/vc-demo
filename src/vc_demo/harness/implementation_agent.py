@@ -17,43 +17,6 @@ from vc_demo.harness.train_pending import train_pending_node
 
 
 
-OFFICIAL_NATIVE_VARIANT_BY_BLUEPRINT = {
-    "official_aido_full_finetune": "aido_lora_adapter",
-    "official_aido_topk_layer_tuning": "aido_lora_adapter",
-    "official_aido_cached_embedding_fusion": "aido_lora_adapter",
-    "official_string_gnn_frozen_cache": "string_gnn_attention",
-    "official_string_gnn_full_finetune": "string_gnn_attention",
-    "official_string_neighborhood_attention": "string_gnn_attention",
-    "official_string_laplacian_smoothing": "string_gnn_attention",
-    "official_aido_string_concat_fusion": "aido_string_fusion",
-    "official_aido_string_gated_fusion": "aido_string_fusion",
-    "official_aido_string_cross_attention": "aido_string_fusion",
-    "official_aido_string_bilinear_fusion": "aido_string_fusion",
-    "official_multimodal_mixture_of_experts": "aido_string_fusion",
-    "official_target_low_rank_head": "target_gene_head",
-    "official_target_bilinear_head": "target_gene_head",
-    "official_target_graph_conditioned_head": "string_gnn_attention",
-    "official_weighted_ce_training": "target_gene_head",
-    "official_focal_loss_training": "target_gene_head",
-    "official_layerwise_lr_schedule": "aido_lora_adapter",
-    "official_temperature_calibrated_head": "target_gene_head",
-    "official_gene_dropout_augmentation": "target_gene_head",
-}
-
-
-def _official_native_program_source(blueprint_id: str) -> str:
-    variant = OFFICIAL_NATIVE_VARIANT_BY_BLUEPRINT[blueprint_id]
-    return (
-        "from __future__ import annotations\n\n"
-        "from vc_demo.official_k562.native_models import OfficialK562NativeModel\n\n\n"
-        "class GeneratedModel(OfficialK562NativeModel):\n"
-        f"    implementation_blueprint = {blueprint_id!r}\n"
-        f"    native_variant = {variant!r}\n\n"
-        "    def __init__(self, spec):\n"
-        f"        super().__init__(spec, variant={variant!r})\n"
-    )
-
-
 def _generic_program_source(blueprint_id: str) -> str:
     templates = {
         "film_conditioned_residual": FILM_CONDITIONED_RESIDUAL,
@@ -72,18 +35,20 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
         source = render_program_source(strategy)
         source_kind = "harness_implemented_template"
     except Exception:
+        blueprint = blueprint_by_id(strategy)
+        if blueprint.get("official_k562"):
+            request = program_dir / "IMPLEMENTATION_REQUEST.md"
+            task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
+            task.write_text(render_codex_task(strategy, request), encoding="utf-8")
+            return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"}
         try:
-            source = _official_native_program_source(strategy)
-            source_kind = "implementation_agent_official_native_proxy"
+            source = _generic_program_source(strategy)
+            source_kind = "implementation_agent_template"
         except KeyError:
-            try:
-                source = _generic_program_source(strategy)
-                source_kind = "implementation_agent_template"
-            except KeyError:
-                request = program_dir / "IMPLEMENTATION_REQUEST.md"
-                task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
-                task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-                return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path)}
+            request = program_dir / "IMPLEMENTATION_REQUEST.md"
+            task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
+            task.write_text(render_codex_task(strategy, request), encoding="utf-8")
+            return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path)}
     model_path.write_text(source, encoding="utf-8")
     py_compile.compile(str(model_path), doraise=True)
     return {"status": "implemented", "strategy": strategy, "source_kind": source_kind, "model_path": str(model_path)}
@@ -98,6 +63,8 @@ def render_codex_task(strategy: str, request_path: Path) -> str:
         "Implement the pending node-local `model.py` for this blueprint.",
         "Do not modify data splits, labels, metrics, or artifact files.",
         "Do not fabricate missing artifacts. If the model requires a missing artifact, stop and update acquisition queue instead.",
+        "Do not implement a compact/proxy/simplified stand-in. Formal K562 search requires exact public static execution or a real artifact-backed full blueprint implementation.",
+        "Do not import vc_demo.official_k562.native_models.OfficialK562NativeModel; that helper is smoke-only and forbidden for formal runs.",
         "",
         "## Blueprint",
         json.dumps(blueprint, indent=2),

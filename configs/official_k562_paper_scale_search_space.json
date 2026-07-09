@@ -6,11 +6,12 @@
     "public_static_scaffold_nodes": 154,
     "recommended_medium_budget_nodes": 150,
     "recommended_full_budget_nodes": 600,
-    "node_definition": "one complete candidate training pipeline, not a small hyperparameter tweak",
+    "node_definition": "one complete candidate training pipeline with full artifact-backed implementation, not a small hyperparameter tweak and not a compact/proxy stand-in",
     "planned_blueprints_are_selectable": true,
     "codex_implements_on_selection": true,
     "strict_artifacts_default": true,
     "fallback_allowed_in_official_mode": false,
+    "compact_native_or_proxy_allowed_in_official_mode": false,
     "search_space_is_manifest_not_preimplementation": true,
     "codex_agent_materializes_planned_nodes_on_selection": true,
     "minimum_estimated_candidate_families": 600,
@@ -67,7 +68,7 @@
   "codex_on_demand_rules": {
     "when_selected": [
       "write IMPLEMENTATION_REQUEST.md",
-      "implement node-local model.py or config-only patch",
+      "implement full artifact-backed node-local model.py or config-only training patch",
       "run native smoke",
       "train/evaluate",
       "record metrics or blocker"
@@ -83,13 +84,15 @@
       "target gene order",
       "metric semantics",
       "artifact provenance",
-      "silent fallback"
+      "silent fallback",
+      "compact/proxy/simplified stand-ins"
     ]
   },
   "status_taxonomy": {
     "implemented": "already executable by harness",
     "planned": "selectable; Codex must implement on demand before training",
-    "blocked_missing_artifact": "must acquire artifact or stop; no fallback training"
+    "blocked_missing_artifact": "must acquire artifact or stop; no fallback training",
+    "blocked_proxy_implementation": "must replace with exact public static execution or full artifact-backed implementation before training"
   },
   "blueprint_entry_required_fields": [
     "id",

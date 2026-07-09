@@ -95,8 +95,7 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
   --root-configs \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-    configs/official_k562_public_best_node_smoke.json \
+        configs/official_k562_public_best_node_benchmark.json \
   --budget-proposals 64 \
   --budget-trained-nodes 16 \
   --candidate-pool-size 4 \

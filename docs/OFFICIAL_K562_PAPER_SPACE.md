@@ -72,7 +72,7 @@ The full search space does not need to be pre-implemented. A blueprint can be:
 
 Codex implementation rule:
 
-When MCTS selects a planned blueprint, the harness should create a node-local `IMPLEMENTATION_REQUEST.md`. Codex then implements only the selected node's `model.py` or config-only patch, runs smoke/compile checks, trains/evaluates, and records the result. This is intentional: the paper-scale search space is a manifest and procedure, not a requirement to hand-code every candidate before search starts.
+When MCTS selects a planned blueprint, the harness should create a node-local `IMPLEMENTATION_REQUEST.md`. Codex then implements only the selected node's `model.py` or config-only patch, runs smoke/compile checks, trains/evaluates, and records the result. Formal runs require exact public-static execution or full artifact-backed implementations; proxy shortcuts are rejected. This is intentional: the paper-scale search space is a manifest and procedure, not a requirement to hand-code every candidate before search starts.
 
 The machine-readable contract lives in:
 
@@ -92,8 +92,7 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
     configs/official_k562_public_best_node_benchmark.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-  --budget-nodes 600 \
+      --budget-nodes 600 \
   --max-epochs 5 \
   --max-children 4 \
   --stop-no-improve 60 \

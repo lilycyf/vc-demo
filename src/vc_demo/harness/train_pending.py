@@ -7,6 +7,7 @@ from typing import Any
 
 from vc_demo.harness.executor import run_node
 from vc_demo.harness.mcts import backpropagate
+from vc_demo.harness.paper_level_guardrails import assert_no_formal_proxy
 from vc_demo.harness.report import write_summary
 from vc_demo.harness.search_memory import rebuild_memory_from_tree
 from vc_demo.harness.state import read_json, write_json
@@ -78,6 +79,7 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
             + ", ".join(missing)
             + "; rerun only after adding real artifacts, or pass --allow-missing-artifact-fallbacks for an explicit ablation"
         )
+    assert_no_formal_proxy(config, model_path, context=f"pending node {node_name}")
     metrics = run_node(config, run_dir, proposal=proposal, max_epochs=max_epochs)
     node.update(
         {

@@ -38,15 +38,7 @@ Benchmark mode must not silently write a placeholder or validation fallback as t
 
 ## Native Official Blueprint Space
 
-The first native official blueprint family is implemented through `src/vc_demo/official_k562/native_models.py`:
-
-- `official_target_gene_head`
-- `official_string_gnn_attention`
-- `official_aido_lora_adapter`
-- `official_aido_string_fusion`
-- `official_native_public_best_reimplementation`
-
-The native public-best reimplementation is a compact compatibility v1. It is editable by the Codex agent and supports forward/backward smoke, but it is not a numerical clone of `node2-1-1-1-1-1_code.py`.
+Official native blueprints are selected from the manifest, then implemented on demand by Codex from `IMPLEMENTATION_REQUEST.md`. Compact/proxy helpers are forbidden in formal paper-level runs. If a faithful artifact-backed implementation cannot be produced, the node must block with an implementation/artifact/compute requirement rather than training a simplified stand-in.
 
 ## Native Smoke Gate
 
@@ -85,9 +77,8 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
   --root-configs \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
-    configs/official_k562_public_best_node_smoke.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-  --budget-nodes 1 \
+    configs/official_k562_public_best_node_benchmark.json \
+      --budget-nodes 1 \
   --max-epochs 1 \
   --max-children 2 \
   --stop-no-improve 1 \
@@ -106,9 +97,8 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
   --root-configs \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
-    configs/official_k562_public_best_node_smoke.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-  --budget-nodes 2 \
+    configs/official_k562_public_best_node_benchmark.json \
+      --budget-nodes 2 \
   --max-epochs 1 \
   --max-children 2 \
   --stop-no-improve 2 \
@@ -136,9 +126,8 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
   --root-configs \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
-    configs/official_k562_public_best_node_smoke.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-  --budget-nodes 50 \
+    configs/official_k562_public_best_node_benchmark.json \
+      --budget-nodes 50 \
   --max-epochs 3 \
   --max-children 3 \
   --stop-no-improve 12 \
@@ -171,6 +160,7 @@ Forbidden changes:
 - target gene order
 - artifact provenance claims
 - silent fallback for missing required artifacts in strict official mode
+- compact/proxy/simplified native stand-ins
 
 ## Full Paper-Scale Upgrade Contract
 
@@ -202,7 +192,7 @@ The full search space does not need to be pre-implemented. A blueprint can be:
 
 Codex implementation rule:
 
-When MCTS selects a planned blueprint, the harness should create a node-local `IMPLEMENTATION_REQUEST.md`. Codex then implements only the selected node's `model.py` or config-only patch, runs smoke/compile checks, trains/evaluates, and records the result. This is intentional: the paper-scale search space is a manifest and procedure, not a requirement to hand-code every candidate before search starts.
+When MCTS selects a planned blueprint, the harness should create a node-local `IMPLEMENTATION_REQUEST.md`. Codex then implements only the selected node's `model.py` or config-only patch, runs smoke/compile checks, trains/evaluates, and records the result. Formal runs require exact public-static execution or full artifact-backed implementations; proxy shortcuts are rejected. This is intentional: the paper-scale search space is a manifest and procedure, not a requirement to hand-code every candidate before search starts.
 
 The machine-readable contract lives in:
 
@@ -222,8 +212,7 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
     configs/official_k562_root_aido_embedding_mlp.json \
     configs/official_k562_root_aido_gnn_embedding_mlp.json \
     configs/official_k562_public_best_node_benchmark.json \
-    configs/official_k562_native_public_best_reimplementation.json \
-  --budget-nodes 600 \
+      --budget-nodes 600 \
   --max-epochs 5 \
   --max-children 4 \
   --stop-no-improve 60 \

@@ -7,6 +7,7 @@ from typing import Any
 
 from vc_demo.harness.artifact_registry import audit_registry, load_registry
 from vc_demo.official_k562.contract import validate_official_k562_task
+from vc_demo.harness.paper_level_guardrails import config_proxy_violations
 
 
 @dataclass(frozen=True)
@@ -17,7 +18,6 @@ class OfficialK562BackendSpec:
         Path("configs/official_k562_root_aido_embedding_mlp.json"),
         Path("configs/official_k562_root_aido_gnn_embedding_mlp.json"),
         Path("configs/official_k562_public_best_node.json"),
-        Path("configs/official_k562_native_public_best_reimplementation.json"),
     )
     required_artifacts: tuple[str, ...] = (
         "official_essential_deg_with_split_h5ad",
@@ -89,6 +89,10 @@ def validate_official_k562_backend(spec: OfficialK562BackendSpec | None = None, 
         for emb in [row.get("embedding_h5ad"), *row.get("embedding_h5ads", [])]:
             if emb and not Path(str(emb)).exists():
                 issues.append(f"root config {config_path} embedding missing: {emb}")
+        proxy_violations = config_proxy_violations(cfg)
+        if proxy_violations:
+            issues.append(f"root config {config_path} uses forbidden compact/proxy native implementation: {', '.join(proxy_violations)}")
+            row["proxy_violations"] = proxy_violations
         if row["execution_backend"] == "external_static_node":
             script = cfg.get("execution", {}).get("script_path", "")
             static_dir = Path(str(cfg.get("execution", {}).get("static_dir", "")))
@@ -112,6 +116,7 @@ def validate_official_k562_backend(spec: OfficialK562BackendSpec | None = None, 
             "This backend lets vc_demo.harness.program_run search on the official K562 TSV task.",
             "The public VCHarness best node remains a separate compatibility benchmark and may use external node code.",
             "Strict artifact mode must block or acquire missing artifacts; do not train fallback nodes for claimed official artifacts.",
+            "Formal paper-level runs forbid compact/proxy native implementations; use external public static benchmark or full artifact-backed implementations.",
         ],
     }
     if strict and issues:

@@ -120,7 +120,8 @@ def main() -> None:
         "",
         "- Replicated: official K562 task contract, MCTS/program-node loop, public static node wrapper, public static tree scaffold, artifact provenance audit.",
         "- Implemented beyond wrapper: native public-best-family v1 and executable official native blueprint children.",
-        "- Remaining gap: native implementations are compact proxies unless exact public static training recipe/checkpoints are run in benchmark mode.",
+        "- Formal implementation rule: compact/proxy native stand-ins are forbidden; nodes must be exact public static execution or full artifact-backed implementations.",
+        "- Remaining gap: any historical compact/proxy nodes are excluded from paper-level conclusions and must be rerun after full implementation.",
         "- Remaining artifact caveat: STRING_GNN model dir is compatibility reconstruction unless replaced by original upstream checkpoint.",
         "- Remaining scale gap: 50/150/600-node staged runs are required for paper-level search pressure.",
     ])
@@ -137,7 +138,7 @@ def main() -> None:
             "estimated_candidate_count": search_space_audit.get("estimated_combinatorial_candidate_count"),
         },
         "epoch_budget_gap": manifest.get("search", {}).get("max_epochs"),
-        "implementation_gap": {"pending_implementations": len(implementation_queue), "failed_nodes": len(failures), "family_counts": search_memory.get("family_counts", {}), "replicate_nodes": len(search_memory.get("replicate_nodes", []))},
+        "implementation_gap": {"pending_implementations": len(implementation_queue), "failed_nodes": len(failures), "family_counts": search_memory.get("family_counts", {}), "replicate_nodes": len(search_memory.get("replicate_nodes", [])), "formal_proxy_policy": "forbidden"},
         "metric_contract_gap": "external benchmark mode must supply held-out test metric; smoke mode may mark test as missing_or_val_fallback",
         "stochastic_gap": "single short runs can differ from public/static and paper scores; compare only after 50/150/600-node staged runs",
     }

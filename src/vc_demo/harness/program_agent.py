@@ -386,7 +386,7 @@ def render_implementation_request(child_name: str, blueprint: dict[str, Any], pa
         "## Required File", "", "Create this file:", "", "```text", child_config["model"]["custom_model_path"], "```", "",
         "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits, which is `[batch, 6640, 3]` for official K562.", "",
         "## Acceptance Criteria", "", acceptance, "",
-        "## Guardrails", "", "Allowed files: node-local `model.py`, node-local config/pipeline metadata, and small helper modules under `src/vc_demo/official_k562/` when genuinely reusable.", "Forbidden changes: official split files, labels, target-gene order, metric semantics, and artifact provenance.", "Strict artifact rule: if a required artifact is missing, acquire the real artifact or block; do not train a fallback.", "Smoke gate: run the commands in `smoke_contract.json` before training.", "Keep the model compact enough for the current RunPod GPU.",
+        "## Guardrails", "", "Allowed files: node-local `model.py`, node-local config/pipeline metadata, and small helper modules under `src/vc_demo/official_k562/` when genuinely reusable.", "Forbidden changes: official split files, labels, target-gene order, metric semantics, and artifact provenance.", "Strict artifact rule: if a required artifact is missing, acquire the real artifact or block; do not train a fallback.", "Formal implementation rule: do not create compact/proxy/simplified stand-ins; use exact public static execution or a real artifact-backed full blueprint implementation.", "Forbidden import: `vc_demo.official_k562.native_models.OfficialK562NativeModel` is smoke-only and must not appear in formal node-local `model.py`.", "Smoke gate: run the commands in `smoke_contract.json` before training.", "If the faithful implementation cannot fit the current RunPod GPU, block with a compute/artifact requirement instead of downgrading the model.",
     ]
     return "\n".join(lines) + "\n"
 
@@ -404,14 +404,17 @@ def render_program_readme(child_name: str, blueprint: dict[str, Any], parent_nam
 def hypothesis_for(blueprint_id: str, blueprint: dict[str, Any]) -> str:
     mapping = {
         "dual_path_gated_low_rank": "A dual-path encoder with input-conditioned gating and a low-rank target head may share target-gene response structure while preserving perturbation-specific signal.",
-        "mixture_of_experts": "A compact router over multiple experts may specialize decision surfaces for different perturbation feature regimes.",
+        "mixture_of_experts": "A router over artifact-backed experts may specialize decision surfaces for different perturbation feature regimes.",
         "target_gene_embedding_bilinear": "A frozen target-gene artifact table may give the classifier target-specific biological geometry instead of learning every target head from scratch.",
     }
     return mapping.get(blueprint_id, blueprint.get("role", f"Implement and test blueprint {blueprint_id}."))
 
 
 def render_program_source(blueprint_id: str) -> str:
-    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "esm2_gene_projection": ESM2_GENE_PROJECTION, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING, "string_gnn_perturbation_propagator": STRING_GNN_PERTURBATION_PROPAGATOR, "pathway_pooling_encoder": PATHWAY_POOLING_ENCODER, "official_target_gene_head": OFFICIAL_TARGET_GENE_HEAD, "official_string_gnn_attention": OFFICIAL_STRING_GNN_ATTENTION, "official_aido_lora_adapter": OFFICIAL_AIDO_LORA_ADAPTER, "official_aido_string_fusion": OFFICIAL_AIDO_STRING_FUSION, "official_native_public_best_reimplementation": OFFICIAL_NATIVE_PUBLIC_BEST_REIMPLEMENTATION}
+    # Official K562 blueprints deliberately do not have built-in shorthand
+    # templates here. They must be implemented on demand from the generated
+    # request using exact public-static execution or full artifact-backed code.
+    sources = {"dual_path_gated_low_rank": DUAL_PATH_GATED_LOW_RANK, "mixture_of_experts": MIXTURE_OF_EXPERTS, "esm2_gene_projection": ESM2_GENE_PROJECTION, "target_gene_embedding_bilinear": TARGET_GENE_EMBEDDING_BILINEAR, "ppi_graph_message_passing": STRING_GRAPH_MESSAGE_PASSING, "string_gnn_perturbation_propagator": STRING_GNN_PERTURBATION_PROPAGATOR, "pathway_pooling_encoder": PATHWAY_POOLING_ENCODER}
     try:
         return sources[blueprint_id]
     except KeyError as exc:
@@ -838,55 +841,4 @@ class GeneratedModel(nn.Module):
         gate = self.gate(torch.cat([c, e], dim=-1))
         z = c * (1.0 - gate) + e * gate
         return self.head(z).view(x.shape[0], self.n_targets, self.n_classes)
-"""
-
-
-OFFICIAL_TARGET_GENE_HEAD = """from __future__ import annotations
-
-from vc_demo.official_k562.native_models import OfficialK562NativeModel
-
-
-class GeneratedModel(OfficialK562NativeModel):
-    def __init__(self, spec) -> None:
-        super().__init__(spec, variant=\"target_gene_head\")
-"""
-
-OFFICIAL_STRING_GNN_ATTENTION = """from __future__ import annotations
-
-from vc_demo.official_k562.native_models import OfficialK562NativeModel
-
-
-class GeneratedModel(OfficialK562NativeModel):
-    def __init__(self, spec) -> None:
-        super().__init__(spec, variant=\"string_gnn_attention\")
-"""
-
-OFFICIAL_AIDO_LORA_ADAPTER = """from __future__ import annotations
-
-from vc_demo.official_k562.native_models import OfficialK562NativeModel
-
-
-class GeneratedModel(OfficialK562NativeModel):
-    def __init__(self, spec) -> None:
-        super().__init__(spec, variant=\"aido_lora_adapter\")
-"""
-
-OFFICIAL_AIDO_STRING_FUSION = """from __future__ import annotations
-
-from vc_demo.official_k562.native_models import OfficialK562NativeModel
-
-
-class GeneratedModel(OfficialK562NativeModel):
-    def __init__(self, spec) -> None:
-        super().__init__(spec, variant=\"aido_string_fusion\")
-"""
-
-OFFICIAL_NATIVE_PUBLIC_BEST_REIMPLEMENTATION = """from __future__ import annotations
-
-from vc_demo.official_k562.native_models import OfficialK562NativeModel
-
-
-class GeneratedModel(OfficialK562NativeModel):
-    def __init__(self, spec) -> None:
-        super().__init__(spec, variant=\"native_public_best_reimplementation\")
 """
