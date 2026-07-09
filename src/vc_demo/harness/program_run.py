@@ -330,8 +330,25 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     no_improve = 0
     pending_count = len(implementation_queue(tree))
     stop_reason = "proposal budget exhausted"
-    generated_proposals = 0
-    trained_rollouts = 0
+    proposal_statuses = {
+        "trained",
+        "pruned_not_selected",
+        "selected_for_training",
+        "needs_implementation",
+        "requires_artifact_acquisition",
+        "blocked_missing_artifact",
+        "failed",
+    }
+    generated_proposals = sum(
+        1
+        for node in tree.get("nodes", {}).values()
+        if node.get("parent") and node.get("status") in proposal_statuses
+    )
+    trained_rollouts = sum(
+        1
+        for node in tree.get("nodes", {}).values()
+        if node.get("parent") and node.get("status") == "trained"
+    )
     proposal_budget = int(args.budget_proposals if args.budget_proposals is not None else args.budget_nodes * max(args.candidate_pool_size, 1))
     trained_node_budget = args.budget_trained_nodes
     max_iterations = max(1, (proposal_budget + max(args.candidate_pool_size, 1) - 1) // max(args.candidate_pool_size, 1))

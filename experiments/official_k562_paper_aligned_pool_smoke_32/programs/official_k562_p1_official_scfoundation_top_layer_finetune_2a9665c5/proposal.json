@@ -1,0 +1,93 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke",
+  "child": "official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5",
+  "strategy": "official_scfoundation_top_layer_finetune",
+  "blueprint": {
+    "id": "official_scfoundation_top_layer_finetune",
+    "status": "planned",
+    "official_k562": true,
+    "category": "single_cell_foundation_model",
+    "paper_family": "scFoundation_selective_finetune",
+    "change_level": 5,
+    "role": "Use scFoundation with top-layer selective fine-tuning, mirroring public static-node families where available.",
+    "requires": [
+      "scfoundation_cell_embeddings",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex must acquire/verify scFoundation artifact first; otherwise block.",
+    "acceptance": [
+      "Documents scFoundation source",
+      "Records top-layer policy",
+      "No fallback expression MLP in strict mode"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Use scFoundation with top-layer selective fine-tuning, mirroring public static-node families where available.",
+  "changes": [
+    "program_model:external_static_node->official_scfoundation_top_layer_finetune",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/model.py",
+    "hidden_dim:None->256",
+    "depth:None->2",
+    "lr:0.0001->0.0001"
+  ],
+  "program_dir": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5",
+  "program_model_path": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "scfoundation_cell_embeddings",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_scfoundation_top_layer_finetune",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.2999999999999998,
+    "base": 0.7,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "scFoundation_selective_finetune",
+    "family_count": 0
+  },
+  "structural_signature": "5604e00a0b09667593ab9ca4cae219aecab662ee",
+  "parent_structural_signature": "c7e9d3077d31ba8ea89433a9362278a4f8cd0bc0",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_paper_aligned_pool_smoke_32/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "scfoundation_cell_embeddings",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [
+      "scfoundation_cell_embeddings"
+    ],
+    "all_required_present": false
+  }
+}

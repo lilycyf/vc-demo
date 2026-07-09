@@ -1,0 +1,238 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-09T10:37:18.887970+00:00",
+  "updated_at": "2026-07-09T11:16:42.433048+00:00",
+  "events": [],
+  "blueprint_counts": {
+    "official_target_gene_head": 1,
+    "official_aido_string_fusion": 1,
+    "official_aido_lora_adapter": 1,
+    "official_string_gnn_attention": 1,
+    "official_aido_string_cross_attention": 1,
+    "official_class_imbalance_training": 1,
+    "official_pathway_pooling_reactome": 1,
+    "official_string_neighborhood_attention": 1,
+    "official_public_best_node": 1,
+    "official_regulatory_network_prior": 1,
+    "official_focal_loss_training": 1,
+    "official_target_graph_conditioned_head": 1,
+    "official_aido_full_finetune": 1,
+    "official_aido_topk_layer_tuning": 1,
+    "official_scgpt_cell_encoder": 1,
+    "official_aido_cached_embedding_fusion": 1,
+    "official_string_laplacian_smoothing": 1,
+    "official_string_gnn_full_finetune": 1,
+    "official_scfoundation_top_layer_finetune": 1,
+    "official_string_gnn_frozen_cache": 1,
+    "official_aido_string_gated_fusion": 1,
+    "official_aido_string_bilinear_fusion": 1,
+    "official_weighted_ce_training": 1,
+    "official_aido_string_concat_fusion": 1,
+    "official_target_bilinear_head": 1,
+    "official_multimodal_mixture_of_experts": 1,
+    "official_public_static_node_family_wrapper": 1,
+    "official_target_low_rank_head": 1,
+    "official_gene_dropout_augmentation": 1,
+    "official_layerwise_lr_schedule": 1,
+    "official_swa_or_checkpoint_ensemble": 1,
+    "official_temperature_calibrated_head": 1
+  },
+  "parent_blueprints": {
+    "official_k562_native_public_best_reimplementation": [
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_string_cross_attention",
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_string_neighborhood_attention"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_focal_loss_training",
+      "official_public_best_node",
+      "official_regulatory_network_prior",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_native_p2_official_string_gnn_attention_c7b091ac": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_topk_layer_tuning",
+      "official_scgpt_cell_encoder"
+    ],
+    "official_k562_public_best_node2_1_1_1_1_1_smoke": [
+      "official_scfoundation_top_layer_finetune",
+      "official_string_gnn_frozen_cache",
+      "official_string_gnn_full_finetune",
+      "official_string_laplacian_smoothing"
+    ],
+    "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30": [
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_gated_fusion",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15": [
+      "official_multimodal_mixture_of_experts",
+      "official_public_static_node_family_wrapper",
+      "official_target_bilinear_head",
+      "official_target_low_rank_head"
+    ],
+    "official_k562_native_p2_official_target_low_rank_head_ae932f98": [
+      "official_gene_dropout_augmentation",
+      "official_layerwise_lr_schedule",
+      "official_swa_or_checkpoint_ensemble",
+      "official_temperature_calibrated_head"
+    ]
+  },
+  "family_counts": {
+    "target_gene_aware_head": 1,
+    "AIDO_STRING_fusion": 1,
+    "AIDO_adapter": 1,
+    "STRING_GNN_attention": 1,
+    "AIDO_STRING_cross_attention": 1,
+    "official_deg_imbalance": 1,
+    "Reactome_pathway_pooling": 1,
+    "STRING_neighborhood_attention": 1,
+    "public_vcharness_best_path": 1,
+    "regulatory_network_prior": 1,
+    "focal_loss": 1,
+    "target_graph_conditioned_head": 1,
+    "AIDO_full_finetune": 1,
+    "AIDO_selective_finetune": 1,
+    "scGPT_or_single_cell_encoder": 1,
+    "AIDO_cached_embedding": 1,
+    "STRING_laplacian_prior": 1,
+    "STRING_GNN_full_finetune": 1,
+    "scFoundation_selective_finetune": 1,
+    "STRING_GNN_frozen_cached": 1,
+    "AIDO_STRING_gated": 1,
+    "AIDO_STRING_bilinear": 1,
+    "class_weighted_CE": 1,
+    "AIDO_STRING_concat": 1,
+    "target_bilinear_head": 1,
+    "multimodal_MoE": 1,
+    "public_static_tree_family": 1,
+    "target_low_rank_head": 1,
+    "gene_dropout_augmentation": 1,
+    "layerwise_lr_decay": 1,
+    "checkpoint_ensemble_or_SWA": 1,
+    "temperature_calibration": 1
+  },
+  "structural_signature_counts": {
+    "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4": 1,
+    "1dc910599699c0679f99b36e869d73da668a9260": 1,
+    "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 1,
+    "c095311789cedc0e8615880ade41302ae796fcfe": 1,
+    "deba82298c3d004b00e18f313793047749e3e865": 1,
+    "e3a059eb21aed9a516d61b00e2ce109fc981ff12": 1,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 1,
+    "9e51bea477de47d5e3ab3aa2ad7badd177e78b20": 1,
+    "47c7847a301642e9a6ab8d8e5b93f2e343c21349": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "577882e9f484ab0b3881a898adf1d7c468869250": 1,
+    "5bc1536beaba0d3f8eea24bd9091228f5a47f64e": 1,
+    "3e48f0d869be1d32422b3a32a0be78331951e7b8": 1,
+    "90062101037e1a7dac7f267d9f69d298e6f45c94": 1,
+    "a21bee8308c3a0d3fd240c1bab332aeac3d9e608": 1,
+    "8701982227d6d34b2484821cdb662ed1bfecafe6": 1,
+    "4efd8b3b74047786389557d41e21a9c92ca4a013": 1,
+    "71a484eb9049e07edccfb3c78c8a349408c5fed7": 1,
+    "5604e00a0b09667593ab9ca4cae219aecab662ee": 1,
+    "fc5fbf40ab0bcb5ec05c961df969767d0b4ba6cb": 1,
+    "37ee2a900e860811813311ded384ec1f37a49629": 1,
+    "6d03998118ed08398af61a1149bd07542ba0e719": 1,
+    "cabe0cb97893e7cb5bb781c9526b1de73e25812c": 1,
+    "523087252fe2acb5f24fc3a3d660350bf61d7a23": 1,
+    "b0e8fd562ff9a28111b38c7a1cb1f35a6eb163ee": 1,
+    "f7a3d7153f2902f95304517b22bf3331dd01d69a": 1,
+    "f0fbf6c2ab0050ca97a4f3efeb4a57a928ec21dd": 1,
+    "2804a0e034cbb7dd17902c02d03a3627c4355817": 1,
+    "0c9f61446f4d8fac98743f0aa494531ad2c439af": 1,
+    "ebc5ece153314ac57bda06a4391b72e8206b1b72": 1,
+    "4139a10df7babf7cc54b12c8485e8e7e03dce188": 1,
+    "190d163b1a37354794c325b3562ed5dee8109441": 1
+  },
+  "replicate_nodes": [],
+  "successes": [
+    {
+      "node": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15",
+      "strategy": "official_aido_string_concat_fusion",
+      "family": "AIDO_STRING_concat",
+      "structural_relation": "structural_variant",
+      "val": 0.4257877767086029,
+      "test": 0.48312321305274963,
+      "parent": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30"
+    },
+    {
+      "node": "official_k562_native_p2_official_target_low_rank_head_ae932f98",
+      "strategy": "official_target_low_rank_head",
+      "family": "target_low_rank_head",
+      "structural_relation": "structural_variant",
+      "val": 0.421528697013855,
+      "test": 0.44236263632774353,
+      "parent": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15"
+    },
+    {
+      "node": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "family": "AIDO_cached_embedding",
+      "structural_relation": "structural_variant",
+      "val": 0.41162657737731934,
+      "test": 0.4839530289173126,
+      "parent": "official_k562_native_p2_official_string_gnn_attention_c7b091ac"
+    },
+    {
+      "node": "official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+      "strategy": "official_string_gnn_frozen_cache",
+      "family": "STRING_GNN_frozen_cached",
+      "structural_relation": "structural_variant",
+      "val": 0.3777574300765991,
+      "test": 0.440449595451355,
+      "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke"
+    },
+    {
+      "node": "official_k562_native_p2_official_string_gnn_attention_c7b091ac",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.3701779544353485,
+      "test": 0.44504642486572266,
+      "parent": "official_k562_native_public_best_reimplementation"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.3552292287349701,
+      "test": 0.3817157745361328,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.3504793643951416,
+      "test": 0.3743552267551422,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    }
+  ],
+  "failures": [],
+  "blocked_artifacts": [],
+  "motifs": {
+    "promising": [
+      "official_string_gnn_attention: unspecified + unspecified val=0.3702",
+      "official_string_neighborhood_attention: unspecified + unspecified val=0.3552",
+      "official_target_graph_conditioned_head: unspecified + unspecified val=0.3505",
+      "official_aido_cached_embedding_fusion: unspecified + unspecified val=0.4116",
+      "official_string_gnn_frozen_cache: unspecified + unspecified val=0.3778",
+      "official_aido_string_concat_fusion: unspecified + unspecified val=0.4258",
+      "official_target_low_rank_head: unspecified + unspecified val=0.4215"
+    ],
+    "discouraged": []
+  }
+}

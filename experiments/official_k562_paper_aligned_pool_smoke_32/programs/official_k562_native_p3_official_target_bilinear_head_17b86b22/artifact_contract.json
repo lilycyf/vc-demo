@@ -1,0 +1,46 @@
+{
+  "format": "vc_demo_node_artifact_contract.v1",
+  "node": "official_k562_native_p3_official_target_bilinear_head_17b86b22",
+  "blueprint": "official_target_bilinear_head",
+  "strict_official_mode": true,
+  "fallback_allowed": false,
+  "required_artifacts": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "present_required_artifacts": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "missing_required_artifacts": [],
+  "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
+  "artifact_rows": [
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "family": "official_task_data",
+      "provider": "GenBio AI HuggingFace",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "usable_for": [
+        "official_k562_task_contract"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    }
+  ],
+  "model_artifacts_config": {
+    "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+    "string_gnn_model_dir": "/home/Models/STRING_GNN",
+    "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+  }
+}
