@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -44,6 +45,48 @@ def _pipeline_summary(node: dict[str, Any], cfg: dict[str, Any]) -> dict[str, An
         "artifact_manifest_path": usage.get("artifact_manifest_path", ""),
         "missing_required_artifacts": [],
         "required_artifacts": [],
+    }
+
+
+
+def _read_jsonl(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    rows: list[dict[str, Any]] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            rows.append({"event": "malformed_jsonl", "raw": line[:500]})
+    return rows
+
+
+def implementation_loop_summary(run_dir: Path) -> dict[str, Any]:
+    report_path = run_dir / "implementation_agent_report.json"
+    report = read_json(report_path) if report_path.exists() else {"items": []}
+    items = list(report.get("items", []) or [])
+    repair_rows = _read_jsonl(run_dir / "repair_log.jsonl")
+    decision_rows = _read_jsonl(run_dir / "agent_decision_trace.jsonl")
+    item_status = Counter(str(item.get("status", "unknown")) for item in items)
+    repair_stages = Counter(str(row.get("stage", row.get("event", "unknown"))) for row in repair_rows)
+    decision_events = Counter(str(row.get("event", "unknown")) for row in decision_rows)
+    return {
+        "report_path": str(report_path) if report_path.exists() else "",
+        "repair_log_path": str(run_dir / "repair_log.jsonl") if (run_dir / "repair_log.jsonl").exists() else "",
+        "decision_trace_path": str(run_dir / "agent_decision_trace.jsonl") if (run_dir / "agent_decision_trace.jsonl").exists() else "",
+        "items": items,
+        "item_status": item_status,
+        "repair_stages": repair_stages,
+        "decision_events": decision_events,
+        "repair_attempt_rows": len(repair_rows),
+        "decision_event_rows": len(decision_rows),
+        "smoke_passed": sum(1 for row in repair_rows if row.get("stage") == "native_smoke" and row.get("status") == "passed"),
+        "repair_failures": sum(1 for row in repair_rows if row.get("status") == "failed"),
+        "trained_and_backpropagated": decision_events.get("trained_and_backpropagated", 0),
+        "requires_external_codex": decision_events.get("requires_external_codex", 0) + item_status.get("requires_external_codex", 0),
+        "blocked_missing_artifact": item_status.get("blocked_missing_artifact", 0),
     }
 
 
@@ -122,6 +165,35 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
     if best and best_root:
         lines.append(f"- Best root: `{best_root['node']}` val={best_root['val']:.4f} test={best_root['test']:.4f}")
         lines.append(f"- Improvement over best root: {best['val'] - best_root['val']:.4f} validation Macro-F1")
+
+    impl = implementation_loop_summary(summary_path.parent)
+    if impl["items"] or impl["repair_attempt_rows"] or impl["decision_event_rows"]:
+        lines.extend([
+            "",
+            "## Automatic Implementation Loop",
+            "",
+            "| Metric | Count |",
+            "|---|---:|",
+            f"| Auto implementation records | {len(impl['items'])} |",
+            f"| Native smoke passed | {impl['smoke_passed']} |",
+            f"| Repair/implementation log rows | {impl['repair_attempt_rows']} |",
+            f"| Repair failures | {impl['repair_failures']} |",
+            f"| Requires external Codex | {impl['requires_external_codex']} |",
+            f"| Blocked missing artifact | {impl['blocked_missing_artifact']} |",
+            f"| Trained and backpropagated | {impl['trained_and_backpropagated']} |",
+        ])
+        lines.extend(["", "| Item status | Count |", "|---|---:|"])
+        for status, count in sorted(impl["item_status"].items()):
+            lines.append(f"| `{status}` | {count} |")
+        lines.extend(["", "| Decision event | Count |", "|---|---:|"])
+        for event, count in sorted(impl["decision_events"].items()):
+            lines.append(f"| `{event}` | {count} |")
+        lines.extend([
+            "",
+            f"- Implementation agent report: `{impl['report_path']}`" if impl["report_path"] else "- Implementation agent report: not present",
+            f"- Repair log: `{impl['repair_log_path']}`" if impl["repair_log_path"] else "- Repair log: not present",
+            f"- Agent decision trace: `{impl['decision_trace_path']}`" if impl["decision_trace_path"] else "- Agent decision trace: not present",
+        ])
 
     lines.extend(["", "## Search State Counts", "", "| Status | Count |", "|---|---:|"])
     for status, count in sorted(status_counts.items()):

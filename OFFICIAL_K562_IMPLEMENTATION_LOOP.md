@@ -113,3 +113,77 @@ PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
 ```
 
 Do not advance to 150/600+ proposal runs until this 64/16 run has clean implementation and repair logs.
+
+## Negative Smoke Before Scale Runs
+
+Run these before a 64/16 or larger test when changing the implementation loop.
+
+### Missing Artifact Must Block
+
+This checks that strict artifact mode blocks missing scFoundation artifacts before implementation or training:
+
+```bash
+PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
+  --run-dir experiments/official_k562_auto_impl_missing_artifact_smoke \
+  --experiment official_k562_auto_impl_missing_artifact_smoke \
+  --root-configs configs/official_k562_root_aido_embedding_mlp.json \
+  --budget-proposals 2 \
+  --budget-trained-nodes 1 \
+  --candidate-pool-size 2 \
+  --max-epochs 1 \
+  --max-children 4 \
+  --stop-no-improve 4 \
+  --selection-policy uct \
+  --official-blueprint-space \
+  --allow-planned-blueprints \
+  --strict-artifacts \
+  --enable-implementation-loop \
+  --implementation-repair-attempts 3 \
+  --force-blueprint official_scfoundation_top_layer_finetune \
+  --reset
+```
+
+Expected:
+
+- `requires_artifact_acquisition` or equivalent blocker appears.
+- No node-local fallback `model.py` is trained.
+- `trained_rollouts_this_invocation` remains 0 for the selected blocked rollout.
+- `acquisition_queue.json` names `scfoundation_cell_embeddings`.
+
+### Unknown Template Must Require External Codex
+
+Use this when adding a new planned blueprint without a local template. The selected node should become `requires_external_codex` through `implementation_agent_report.json`, not trained or backpropagated.
+
+Expected:
+
+- `CODEX_IMPLEMENTATION_TASK.md` is written under the node's program directory.
+- `implementation_queue.json` is non-empty or the node remains pending for external Codex.
+- No fallback model is generated.
+- No reward backpropagation occurs for that node.
+
+## Experiment Codex Handoff Semantics
+
+Experiment Codex should now behave as an auditor/operator of the loop, not as the default implementer.
+
+Default behavior:
+
+1. Run with `--enable-implementation-loop`.
+2. Do not manually inspect every pending node.
+3. If `implementation_queue.json` is empty, continue/resume according to the run budget.
+4. If a node is `blocked_missing_artifact` or `requires_artifact_acquisition`, stop and report artifact acquisition needs.
+5. If `implementation_agent_report.json` contains `requires_external_codex`, only then inspect that node's `CODEX_IMPLEMENTATION_TASK.md` and decide whether to implement manually.
+6. Never train fallback models in strict official mode.
+7. Never count `pruned_not_selected`, blocked, failed, or external-Codex-required nodes as trained rollouts.
+
+The experiment report must include:
+
+- proposal count
+- trained rollout count
+- pruned proposal count
+- auto-implemented node count
+- native smoke passed count
+- repair attempt count
+- failed implementation count
+- requires-external-Codex count
+- artifact blocker count
+- backpropagation count
