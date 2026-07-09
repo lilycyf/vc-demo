@@ -1,3 +1,10 @@
 {
-  "failures": []
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "error": "RuntimeError: external static node failed with exit code 1; see experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e/external_stdout.txt",
+      "strategy": "official_public_best_node"
+    }
+  ]
 }

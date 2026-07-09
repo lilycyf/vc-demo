@@ -1,0 +1,46 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_class_imbalance_training",
+  "model_entrypoint": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_native_p1_official_target_gene_head_9b50d297/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "Node-level training strategy patch for class-imbalanced DEG labels."
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [],
+  "patches": {
+    "training": {
+      "loss_type": "focal_loss",
+      "focal_gamma": 2.0,
+      "class_weights": [
+        2.37,
+        0.51,
+        2.75
+      ]
+    }
+  },
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "official_deg_imbalance",
+  "pipeline_program": {
+    "blueprint": "official_class_imbalance_training",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  }
+}

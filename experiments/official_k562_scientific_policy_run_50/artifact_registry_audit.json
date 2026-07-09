@@ -39,14 +39,8 @@
         "target_gene_embedding_bilinear"
       ],
       "do_not_fabricate": true,
-      "present": true,
-      "resolved_status": "present",
-      "artifact_name": "ESM2_D1280",
-      "artifact_family": "gene_embedding",
-      "target_gene_coverage": 0.921,
-      "n_target_genes": 1000,
-      "target_embedding_dim": 1280,
-      "missing_target_genes_count": 79
+      "present": false,
+      "resolved_status": "missing"
     },
     {
       "id": "aido_gene_or_cell_embeddings",
@@ -360,7 +354,7 @@
       "n_train_rows": 1388,
       "n_targets": 6640,
       "n_label_values": 3,
-      "artifact_sha256": "450fb9099181279f01917626a5394030898469c3c63a298abe1e60c779742bb4",
+      "artifact_sha256": "5d57ee35e5a6645d70812f59f82eacd741f38edaede19ea2f66fea5bc2e2394e",
       "artifact_bytes": 2381,
       "summary_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
       "present": true,
@@ -430,7 +424,6 @@
   ],
   "present_artifacts": [
     "esm2_gene_embedding_h5ad",
-    "esm2_k562_target_manifest",
     "string_k562_gene_graph",
     "pathway_memberships",
     "official_essential_deg_with_split_h5ad",
@@ -443,6 +436,7 @@
     "class_distribution"
   ],
   "missing_artifacts": [
+    "esm2_k562_target_manifest",
     "aido_gene_or_cell_embeddings",
     "scfoundation_cell_embeddings",
     "regulatory_network_artifact",

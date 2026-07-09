@@ -44,7 +44,6 @@
   "missing_required_artifacts": [],
   "present_artifacts": [
     "esm2_gene_embedding_h5ad",
-    "esm2_k562_target_manifest",
     "string_k562_gene_graph",
     "pathway_memberships",
     "official_essential_deg_with_split_h5ad",
@@ -57,6 +56,7 @@
     "class_distribution"
   ],
   "missing_artifacts": [
+    "esm2_k562_target_manifest",
     "aido_gene_or_cell_embeddings",
     "scfoundation_cell_embeddings",
     "regulatory_network_artifact",
@@ -89,9 +89,9 @@
       "script_path": ""
     },
     {
-      "path": "configs/official_k562_public_best_node_smoke.json",
+      "path": "configs/official_k562_public_best_node.json",
       "present": true,
-      "node_name": "official_k562_public_best_node2_1_1_1_1_1_smoke",
+      "node_name": "official_k562_public_best_node2_1_1_1_1_1",
       "dataset_type": "official_k562_tsv",
       "data_dir": "data/cell_lines/official_k562_cls",
       "embedding_h5ad": null,

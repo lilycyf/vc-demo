@@ -1,0 +1,126 @@
+{
+  "format": "vc_demo_node_artifact_contract.v1",
+  "node": "official_k562_native_p5_official_class_imbalance_training_e4044bff",
+  "blueprint": "official_class_imbalance_training",
+  "strict_official_mode": true,
+  "fallback_allowed": false,
+  "required_artifacts": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "present_required_artifacts": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "missing_required_artifacts": [],
+  "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
+  "artifact_rows": [
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "family": "official_task_data",
+      "provider": "GenBio AI HuggingFace",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "usable_for": [
+        "official_k562_task_contract"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "class_distribution",
+      "family": "class_distribution",
+      "provider": "derived_from_official_k562_train_split",
+      "status": "derived_present",
+      "path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+      "source": "derived_by:scripts/build_k562_class_distribution.py from data/cell_lines/official_k562_cls/train.tsv only",
+      "usable_for": [
+        "loss_weighting",
+        "focal_loss_alpha",
+        "class_balanced_training"
+      ],
+      "required_for_blueprints": [
+        "official_class_imbalance_training",
+        "official_weighted_ce_training",
+        "official_focal_loss_training",
+        "class_balanced_deg_classifier",
+        "focal_loss_training_strategy"
+      ],
+      "do_not_fabricate": true,
+      "provenance": "derived_from_train_labels_only_no_val_or_test",
+      "split_used": "train",
+      "forbidden_splits": [
+        "val",
+        "test"
+      ],
+      "raw_label_counts": {
+        "-1": 405816,
+        "0": 8510952,
+        "1": 299552
+      },
+      "training_label_counts": {
+        "0": 405816,
+        "1": 8510952,
+        "2": 299552
+      },
+      "raw_label_order": [
+        -1,
+        0,
+        1
+      ],
+      "training_label_order": [
+        0,
+        1,
+        2
+      ],
+      "n_train_rows": 1388,
+      "n_targets": 6640,
+      "n_label_values": 3,
+      "artifact_sha256": "5d57ee35e5a6645d70812f59f82eacd741f38edaede19ea2f66fea5bc2e2394e",
+      "artifact_bytes": 2381,
+      "summary_path": "experiments/official_k562_scientific_policy_run_50/artifacts/class_distribution.json",
+      "present": true,
+      "resolved_status": "present",
+      "artifact_name": "K562 train-only class distribution",
+      "artifact_family": "class_distribution",
+      "class_distribution_format": "vc_demo.class_distribution.v1",
+      "split_used_actual": "train",
+      "forbidden_splits_actual": [
+        "val",
+        "test"
+      ],
+      "n_train_rows_actual": 1388,
+      "n_targets_actual": 6640,
+      "raw_label_counts_actual": {
+        "-1": 405816,
+        "0": 8510952,
+        "1": 299552
+      },
+      "training_label_counts_actual": {
+        "0": 405816,
+        "1": 8510952,
+        "2": 299552
+      },
+      "has_recommended_weights": true,
+      "manifest_train_counts_match": true,
+      "provenance_actual": "derived_from_official_train_split_labels_only"
+    }
+  ],
+  "model_artifacts_config": {
+    "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+    "string_gnn_model_dir": "/home/Models/STRING_GNN",
+    "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+  }
+}

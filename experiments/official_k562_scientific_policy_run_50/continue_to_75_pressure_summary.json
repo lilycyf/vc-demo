@@ -1,0 +1,409 @@
+{
+  "branch": "official-k562-scientific-policy-run-50",
+  "head_before_commit": "4d7baf8",
+  "statuses": {
+    "trained": 109,
+    "requires_artifact_acquisition": 9,
+    "failed": 1
+  },
+  "trained_target_met": true,
+  "implementation_queue_items": 0,
+  "acquisition_queue_items": 9,
+  "acquisition_artifacts": [
+    "regulatory_network_artifact",
+    "scfoundation_cell_embeddings",
+    "single_cell_foundation_model_artifact"
+  ],
+  "failure_count": 1,
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "error": "RuntimeError: external static node failed with exit code 1; see experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e/external_stdout.txt",
+      "strategy": "official_public_best_node"
+    }
+  ],
+  "new_trained_count": 52,
+  "new_trained_nodes": [
+    {
+      "node": "official_k562_p1_official_swa_or_checkpoint_ensemble_63c03f89",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "val_macro_f1": 0.29424625635147095,
+      "test_macro_f1": 0.3001604378223419,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_p1_official_aido_string_fusion_f4155be3",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.31672731041908264,
+      "test_macro_f1": 0.3241053819656372,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_native_public_best_reimplementation_f10eb662",
+      "strategy": "official_native_public_best_reimplementation",
+      "val_macro_f1": 0.4298854172229767,
+      "test_macro_f1": 0.46175146102905273,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_string_gnn_attention_18d05ea9",
+      "strategy": "official_string_gnn_attention",
+      "val_macro_f1": 0.44279471039772034,
+      "test_macro_f1": 0.48471513390541077,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_lora_adapter_069eadbc",
+      "strategy": "official_aido_lora_adapter",
+      "val_macro_f1": 0.40285536646842957,
+      "test_macro_f1": 0.4309944808483124,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_target_gene_head_9b50d297",
+      "strategy": "official_target_gene_head",
+      "val_macro_f1": 0.39018404483795166,
+      "test_macro_f1": 0.44277575612068176,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p5_official_class_imbalance_training_e4044bff",
+      "strategy": "official_class_imbalance_training",
+      "val_macro_f1": 0.3981381356716156,
+      "test_macro_f1": 0.4165184795856476,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p5_official_target_graph_conditioned_head_47986c6a",
+      "strategy": "official_target_graph_conditioned_head",
+      "val_macro_f1": 0.3505689203739166,
+      "test_macro_f1": 0.35968366265296936,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_6be02781",
+      "strategy": "official_string_gnn_attention",
+      "val_macro_f1": 0.347951203584671,
+      "test_macro_f1": 0.3755711615085602,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_b55aad86",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.41199347376823425,
+      "test_macro_f1": 0.435312420129776,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_lora_adapter_8625f823",
+      "strategy": "official_aido_lora_adapter",
+      "val_macro_f1": 0.3996128737926483,
+      "test_macro_f1": 0.4147969186306,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_03a94485",
+      "strategy": "official_target_gene_head",
+      "val_macro_f1": 0.3763342797756195,
+      "test_macro_f1": 0.40293872356414795,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_9a3ff6ec",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.40747591853141785,
+      "test_macro_f1": 0.4492966830730438,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_string_gnn_attention_cb063325",
+      "strategy": "official_string_gnn_attention",
+      "val_macro_f1": 0.35522904992103577,
+      "test_macro_f1": 0.3869852125644684,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_lora_adapter_4bce1ac6",
+      "strategy": "official_aido_lora_adapter",
+      "val_macro_f1": 0.4063762128353119,
+      "test_macro_f1": 0.42752036452293396,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_37175f57",
+      "strategy": "official_target_gene_head",
+      "val_macro_f1": 0.3939136266708374,
+      "test_macro_f1": 0.42985954880714417,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_c9e646ba",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.41134604811668396,
+      "test_macro_f1": 0.43606624007225037,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_string_neighborhood_attention_8e3eed47",
+      "strategy": "official_string_neighborhood_attention",
+      "val_macro_f1": 0.33373308181762695,
+      "test_macro_f1": 0.3965429365634918,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_class_imbalance_training_badb57a0",
+      "strategy": "official_class_imbalance_training",
+      "val_macro_f1": 0.3868987560272217,
+      "test_macro_f1": 0.4079239070415497,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_81fc3097",
+      "strategy": "official_pathway_pooling_reactome",
+      "val_macro_f1": 0.34909525513648987,
+      "test_macro_f1": 0.35900840163230896,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_2c8ec64e",
+      "strategy": "official_string_gnn_attention",
+      "val_macro_f1": 0.40434786677360535,
+      "test_macro_f1": 0.45158159732818604,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_lora_adapter_66952171",
+      "strategy": "official_aido_lora_adapter",
+      "val_macro_f1": 0.34161821007728577,
+      "test_macro_f1": 0.3512040078639984,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_target_graph_conditioned_head_efba71d4",
+      "strategy": "official_target_graph_conditioned_head",
+      "val_macro_f1": 0.4250730574131012,
+      "test_macro_f1": 0.4723019301891327,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p2_official_aido_string_cross_attention_f36612a4",
+      "strategy": "official_aido_string_cross_attention",
+      "val_macro_f1": 0.4106624126434326,
+      "test_macro_f1": 0.47213658690452576,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p3_official_target_gene_head_80566b56",
+      "strategy": "official_target_gene_head",
+      "val_macro_f1": 0.4030698239803314,
+      "test_macro_f1": 0.430056095123291,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_0ca95dd5",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.3590296804904938,
+      "test_macro_f1": 0.4310344159603119,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_aeb536e0",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4209045469760895,
+      "test_macro_f1": 0.46624335646629333,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_1462f243",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.43346723914146423,
+      "test_macro_f1": 0.4816721975803375,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_153f19d3",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.434207558631897,
+      "test_macro_f1": 0.48632845282554626,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_903c8f73",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4313340485095978,
+      "test_macro_f1": 0.47613826394081116,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_e283eea0",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4358552396297455,
+      "test_macro_f1": 0.47353020310401917,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_8ab5038c",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.3817735016345978,
+      "test_macro_f1": 0.4457017183303833,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_453bde57",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.40509283542633057,
+      "test_macro_f1": 0.4663393795490265,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_e41ea537",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4237285852432251,
+      "test_macro_f1": 0.4721064269542694,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_c3bb6a03",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4030437767505646,
+      "test_macro_f1": 0.458575576543808,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_697e7978",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.435698002576828,
+      "test_macro_f1": 0.4860762655735016,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_6a51b4f1",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.379447340965271,
+      "test_macro_f1": 0.4485366642475128,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_34dcef23",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4400881230831146,
+      "test_macro_f1": 0.46426451206207275,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_4d418087",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.395025372505188,
+      "test_macro_f1": 0.46553942561149597,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_44ec01a4",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4049382209777832,
+      "test_macro_f1": 0.4649399518966675,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_cf14e3bf",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.42894938588142395,
+      "test_macro_f1": 0.46428677439689636,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_3e3b60be",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4170222580432892,
+      "test_macro_f1": 0.4762645959854126,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_ad422419",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.3870737850666046,
+      "test_macro_f1": 0.44683775305747986,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_7ffa279e",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.42722058296203613,
+      "test_macro_f1": 0.4679117500782013,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_8d97d3db",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.3978526294231415,
+      "test_macro_f1": 0.45886334776878357,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_3bc03a7b",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.39865219593048096,
+      "test_macro_f1": 0.45868924260139465,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_334b1eb4",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4371725618839264,
+      "test_macro_f1": 0.48447296023368835,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_c881fe1c",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4129279851913452,
+      "test_macro_f1": 0.47075650095939636,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_b7bcad75",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.43535804748535156,
+      "test_macro_f1": 0.4752737581729889,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_5404c348",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.44112512469291687,
+      "test_macro_f1": 0.4740440547466278,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_dac145f0",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.4008048474788666,
+      "test_macro_f1": 0.47425732016563416,
+      "status": "trained"
+    },
+    {
+      "node": "official_k562_native_p1_official_aido_string_fusion_406dbc47",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.43158066272735596,
+      "test_macro_f1": 0.4660038650035858,
+      "status": "trained"
+    }
+  ],
+  "best_root": {
+    "node": "official_k562_native_public_best_reimplementation",
+    "strategy": null,
+    "val_macro_f1": 0.46794524788856506,
+    "test_macro_f1": 0.5256422758102417
+  },
+  "best_overall": {
+    "node": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+    "strategy": "official_aido_string_fusion",
+    "val_macro_f1": 0.4884769916534424,
+    "test_macro_f1": 0.518327534198761
+  },
+  "backend_audit_status": "passed",
+  "backend_issues": [],
+  "fallback_used": false,
+  "strict_artifact_policy": "missing artifacts remain acquisition/block; no fallback trained"
+}

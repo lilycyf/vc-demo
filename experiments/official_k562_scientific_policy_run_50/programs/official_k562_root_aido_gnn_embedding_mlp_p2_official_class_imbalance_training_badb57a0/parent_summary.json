@@ -1,0 +1,39 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_c9e646ba",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.41134604811668396,
+  "parent_test_macro_f1": 0.43606624007225037,
+  "parent_strategy": "official_aido_string_fusion",
+  "parent_config_model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/official_k562_scientific_policy_run_50/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_c9e646ba/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_aido_string_fusion",
+    "artifacts": {
+      "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+      "string_gnn_model_dir": "/home/Models/STRING_GNN",
+      "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+    },
+    "low_rank_dim": 96
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {}
+}

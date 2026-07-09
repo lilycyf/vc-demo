@@ -13,7 +13,7 @@
 |---|---|---|---|---|
 | `configs/official_k562_root_aido_embedding_mlp.json` | `official_k562_root_aido_embedding_mlp` | `official_k562_tsv` | `data/cell_lines/official_k562_cls` | `data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad` |
 | `configs/official_k562_root_aido_gnn_embedding_mlp.json` | `official_k562_root_aido_gnn_embedding_mlp` | `official_k562_tsv` | `data/cell_lines/official_k562_cls` | `data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad, data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad` |
-| `configs/official_k562_public_best_node_smoke.json` | `official_k562_public_best_node2_1_1_1_1_1_smoke` | `official_k562_tsv` | `data/cell_lines/official_k562_cls` | `` |
+| `configs/official_k562_public_best_node.json` | `official_k562_public_best_node2_1_1_1_1_1` | `official_k562_tsv` | `data/cell_lines/official_k562_cls` | `` |
 | `configs/official_k562_native_public_best_reimplementation.json` | `official_k562_native_public_best_reimplementation` | `official_k562_tsv` | `data/cell_lines/official_k562_cls` | `data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad, data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad` |
 
 ## Issues

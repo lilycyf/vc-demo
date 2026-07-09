@@ -7,9 +7,9 @@ Do not train fallback models and do not fabricate data.
 - Node: `official_k562_root_aido_embedding_mlp_p1_official_regulatory_network_prior_4cb71788`
 - Strategy/blueprint: `official_regulatory_network_prior`
 - Missing artifact: `regulatory_network_artifact`
-- Expected path: ``
-- Registry source hint: `definition/source required before acquisition; do not fabricate regulatory edges`
-- Resolver: `unconfigured`
+- Expected path: `data/artifacts/regulatory_network`
+- Registry source hint: `No verified K562-aligned regulatory source configured; strict mode must block.`
+- Resolver: `source_definition_required_before_acquisition`
 
 ## Required Workflow
 1. Search official or primary sources for the real artifact or a reproducible way to build it.
@@ -21,12 +21,14 @@ Do not train fallback models and do not fabricate data.
 7. Resume the strict search without `--allow-missing-artifact-fallbacks`.
 
 ## Research Questions
-- Identify and document the official source and exact alignment procedure.
+- Which public TF-target/regulatory network source is acceptable for K562 target genes?
+- What version, license, confidence threshold, and gene identifier mapping are used?
+- How is coverage over the exact 6,640 target-gene order audited?
 
 ## Required Outputs
-- Artifact files
-- Source/coverage summary
-- Registry update
+- source-backed regulatory edge/prior artifact
+- coverage and checksum summary
+- registry update, or explicit blocker if no valid source exists
 
 ## Forbidden
 - No random embeddings, random graphs, synthetic pathway memberships, or randomly initialized checkpoints marked as real artifacts.
