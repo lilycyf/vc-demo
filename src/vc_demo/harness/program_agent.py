@@ -41,6 +41,18 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         model_cfg["model_type"] = "custom_program"
         model_cfg["custom_model_path"] = str(child_dir / "model.py")
         model_cfg["custom_model_class"] = "GeneratedModel"
+        if child.get("execution", {}).get("backend") == "external_static_node":
+            child.pop("execution", None)
+        if train_cfg.get("loss_type") == "external_static_node":
+            train_cfg["loss_type"] = "weighted_cross_entropy"
+            train_cfg.setdefault("class_weights", [2.37, 0.51, 2.75])
+        data_cfg = child.setdefault("data", {})
+        if official_k562_only and data_cfg.get("dataset_type") == "official_k562_tsv" and not data_cfg.get("embedding_h5ad") and not data_cfg.get("embedding_h5ads"):
+            data_cfg["embedding_h5ads"] = [
+                "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+                "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+            ]
+            model_cfg["input_dim"] = "auto"
     model_cfg["program_blueprint"] = blueprint_id
     model_cfg["hidden_dim"] = _bounded_hidden(model_cfg.get("hidden_dim", 256), blueprint_id)
     model_cfg["depth"] = min(max(int(model_cfg.get("depth", 2) or 2), 1), 3)
