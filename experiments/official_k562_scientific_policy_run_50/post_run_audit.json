@@ -1,0 +1,1611 @@
+{
+  "format": "official_k562_post_run_audit.v1",
+  "run_dir": "experiments/official_k562_scientific_policy_run_50",
+  "head": "4d7baf8481b4071da62ad593a795ffc7d6297682",
+  "status_counts": {
+    "trained": 109,
+    "requires_artifact_acquisition": 9,
+    "failed": 1
+  },
+  "node_count": 119,
+  "trained_count": 109,
+  "blocked_count": 9,
+  "failed_count": 1,
+  "implementation_queue_count": 0,
+  "acquisition_queue_count": 9,
+  "artifact_blockers": [
+    "regulatory_network_artifact",
+    "scfoundation_cell_embeddings",
+    "single_cell_foundation_model_artifact"
+  ],
+  "family_counts_trained": {
+    "official_aido_string_fusion": 32,
+    "official_aido_lora_adapter": 5,
+    "official_string_gnn_attention": 5,
+    "official_target_gene_head": 5,
+    "official_pathway_pooling_reactome": 4,
+    "official_aido_string_cross_attention": 4,
+    "official_string_neighborhood_attention": 3,
+    "official_class_imbalance_training": 3,
+    "official_target_graph_conditioned_head": 3,
+    "official_aido_cached_embedding_fusion": 3,
+    "official_string_gnn_frozen_cache": 3,
+    "official_native_public_best_reimplementation": 2,
+    "official_public_best_node": 2,
+    "root": 2,
+    "official_focal_loss_training": 2,
+    "official_aido_full_finetune": 2,
+    "official_aido_topk_layer_tuning": 2,
+    "official_string_gnn_full_finetune": 2,
+    "official_string_laplacian_smoothing": 2,
+    "official_weighted_ce_training": 2,
+    "official_aido_string_concat_fusion": 2,
+    "official_aido_string_gated_fusion": 2,
+    "official_aido_string_bilinear_fusion": 2,
+    "official_multimodal_mixture_of_experts": 2,
+    "official_target_low_rank_head": 2,
+    "official_target_bilinear_head": 2,
+    "official_public_static_node_family_wrapper": 2,
+    "official_temperature_calibrated_head": 2,
+    "official_gene_dropout_augmentation": 2,
+    "official_layerwise_lr_schedule": 2,
+    "official_swa_or_checkpoint_ensemble": 1
+  },
+  "family_counts_all": {
+    "official_aido_string_fusion": 32,
+    "official_aido_lora_adapter": 5,
+    "official_string_gnn_attention": 5,
+    "official_target_gene_head": 5,
+    "official_pathway_pooling_reactome": 4,
+    "official_aido_string_cross_attention": 4,
+    "official_string_neighborhood_attention": 3,
+    "official_public_best_node": 3,
+    "official_class_imbalance_training": 3,
+    "official_target_graph_conditioned_head": 3,
+    "official_regulatory_network_prior": 3,
+    "official_aido_cached_embedding_fusion": 3,
+    "official_scgpt_cell_encoder": 3,
+    "official_scfoundation_top_layer_finetune": 3,
+    "official_string_gnn_frozen_cache": 3,
+    "official_native_public_best_reimplementation": 2,
+    "root": 2,
+    "official_focal_loss_training": 2,
+    "official_aido_full_finetune": 2,
+    "official_aido_topk_layer_tuning": 2,
+    "official_string_gnn_full_finetune": 2,
+    "official_string_laplacian_smoothing": 2,
+    "official_weighted_ce_training": 2,
+    "official_aido_string_concat_fusion": 2,
+    "official_aido_string_gated_fusion": 2,
+    "official_aido_string_bilinear_fusion": 2,
+    "official_multimodal_mixture_of_experts": 2,
+    "official_target_low_rank_head": 2,
+    "official_target_bilinear_head": 2,
+    "official_public_static_node_family_wrapper": 2,
+    "official_temperature_calibrated_head": 2,
+    "official_gene_dropout_augmentation": 2,
+    "official_layerwise_lr_schedule": 2,
+    "official_swa_or_checkpoint_ensemble": 1
+  },
+  "family_performance": {
+    "official_aido_cached_embedding_fusion": {
+      "trained_count": 3,
+      "best_val": 0.4180505573749542,
+      "mean_val": 0.4131122628847758,
+      "best_test": 0.4562140703201294,
+      "mean_test": 0.43631114562352497
+    },
+    "official_aido_full_finetune": {
+      "trained_count": 2,
+      "best_val": 0.38253554701805115,
+      "mean_val": 0.3731890618801117,
+      "best_test": 0.42000317573547363,
+      "mean_test": 0.3983733206987381
+    },
+    "official_aido_lora_adapter": {
+      "trained_count": 5,
+      "best_val": 0.4741170108318329,
+      "mean_val": 0.40491593480110166,
+      "best_test": 0.5233038067817688,
+      "mean_test": 0.4295639157295227
+    },
+    "official_aido_string_bilinear_fusion": {
+      "trained_count": 2,
+      "best_val": 0.4144500494003296,
+      "mean_val": 0.3987499922513962,
+      "best_test": 0.43323346972465515,
+      "mean_test": 0.41854022443294525
+    },
+    "official_aido_string_concat_fusion": {
+      "trained_count": 2,
+      "best_val": 0.4075310230255127,
+      "mean_val": 0.3810829371213913,
+      "best_test": 0.43584585189819336,
+      "mean_test": 0.4044969528913498
+    },
+    "official_aido_string_cross_attention": {
+      "trained_count": 4,
+      "best_val": 0.4206983745098114,
+      "mean_val": 0.40187253057956696,
+      "best_test": 0.47213658690452576,
+      "mean_test": 0.4495331421494484
+    },
+    "official_aido_string_fusion": {
+      "trained_count": 32,
+      "best_val": 0.4884769916534424,
+      "mean_val": 0.41360605880618095,
+      "best_test": 0.518327534198761,
+      "mean_test": 0.461493656039238
+    },
+    "official_aido_string_gated_fusion": {
+      "trained_count": 2,
+      "best_val": 0.4149884283542633,
+      "mean_val": 0.38571691513061523,
+      "best_test": 0.4404617249965668,
+      "mean_test": 0.4044307768344879
+    },
+    "official_aido_topk_layer_tuning": {
+      "trained_count": 2,
+      "best_val": 0.3912365734577179,
+      "mean_val": 0.39085841178894043,
+      "best_test": 0.4269042909145355,
+      "mean_test": 0.4175010919570923
+    },
+    "official_class_imbalance_training": {
+      "trained_count": 3,
+      "best_val": 0.3981381356716156,
+      "mean_val": 0.3892950117588043,
+      "best_test": 0.4165184795856476,
+      "mean_test": 0.4079166253407796
+    },
+    "official_focal_loss_training": {
+      "trained_count": 2,
+      "best_val": 0.37847331166267395,
+      "mean_val": 0.3744902163743973,
+      "best_test": 0.4161146581172943,
+      "mean_test": 0.39827755093574524
+    },
+    "official_gene_dropout_augmentation": {
+      "trained_count": 2,
+      "best_val": 0.40201660990715027,
+      "mean_val": 0.38637280464172363,
+      "best_test": 0.435548335313797,
+      "mean_test": 0.4240414500236511
+    },
+    "official_layerwise_lr_schedule": {
+      "trained_count": 2,
+      "best_val": 0.40930959582328796,
+      "mean_val": 0.40009605884552,
+      "best_test": 0.43100741505622864,
+      "mean_test": 0.42733557522296906
+    },
+    "official_multimodal_mixture_of_experts": {
+      "trained_count": 2,
+      "best_val": 0.4387456178665161,
+      "mean_val": 0.4323703199625015,
+      "best_test": 0.4780139923095703,
+      "mean_test": 0.4587223082780838
+    },
+    "official_native_public_best_reimplementation": {
+      "trained_count": 2,
+      "best_val": 0.46794524788856506,
+      "mean_val": 0.4489153325557709,
+      "best_test": 0.5256422758102417,
+      "mean_test": 0.4936968684196472
+    },
+    "official_pathway_pooling_reactome": {
+      "trained_count": 4,
+      "best_val": 0.4088006019592285,
+      "mean_val": 0.39029810577630997,
+      "best_test": 0.4476519525051117,
+      "mean_test": 0.41436611860990524
+    },
+    "official_public_best_node": {
+      "trained_count": 2,
+      "best_val": 0.33328312635421753,
+      "mean_val": 0.33328312635421753,
+      "best_test": 0.33328312635421753,
+      "mean_test": 0.33328312635421753
+    },
+    "official_public_static_node_family_wrapper": {
+      "trained_count": 2,
+      "best_val": 0.41512835025787354,
+      "mean_val": 0.412975013256073,
+      "best_test": 0.4407902657985687,
+      "mean_test": 0.4378710240125656
+    },
+    "official_string_gnn_attention": {
+      "trained_count": 5,
+      "best_val": 0.44279471039772034,
+      "mean_val": 0.3983441889286041,
+      "best_test": 0.5046269297599792,
+      "mean_test": 0.4406960070133209
+    },
+    "official_string_gnn_frozen_cache": {
+      "trained_count": 3,
+      "best_val": 0.4171464741230011,
+      "mean_val": 0.37586848934491474,
+      "best_test": 0.47527173161506653,
+      "mean_test": 0.4153631826241811
+    },
+    "official_string_gnn_full_finetune": {
+      "trained_count": 2,
+      "best_val": 0.42571982741355896,
+      "mean_val": 0.42366448044776917,
+      "best_test": 0.46380865573883057,
+      "mean_test": 0.44948582351207733
+    },
+    "official_string_laplacian_smoothing": {
+      "trained_count": 2,
+      "best_val": 0.4112708568572998,
+      "mean_val": 0.3883753567934036,
+      "best_test": 0.43859413266181946,
+      "mean_test": 0.4087383449077606
+    },
+    "official_string_neighborhood_attention": {
+      "trained_count": 3,
+      "best_val": 0.3571525514125824,
+      "mean_val": 0.3444824516773224,
+      "best_test": 0.42282435297966003,
+      "mean_test": 0.403517484664917
+    },
+    "official_swa_or_checkpoint_ensemble": {
+      "trained_count": 1,
+      "best_val": 0.29424625635147095,
+      "mean_val": 0.29424625635147095,
+      "best_test": 0.3001604378223419,
+      "mean_test": 0.3001604378223419
+    },
+    "official_target_bilinear_head": {
+      "trained_count": 2,
+      "best_val": 0.4116579592227936,
+      "mean_val": 0.4084862619638443,
+      "best_test": 0.43149086833000183,
+      "mean_test": 0.4288959801197052
+    },
+    "official_target_gene_head": {
+      "trained_count": 5,
+      "best_val": 0.45515310764312744,
+      "mean_val": 0.4037309765815735,
+      "best_test": 0.5265136361122131,
+      "mean_test": 0.4464287519454956
+    },
+    "official_target_graph_conditioned_head": {
+      "trained_count": 3,
+      "best_val": 0.4250730574131012,
+      "mean_val": 0.390795369942983,
+      "best_test": 0.4723019301891327,
+      "mean_test": 0.41630308826764423
+    },
+    "official_target_low_rank_head": {
+      "trained_count": 2,
+      "best_val": 0.4232332706451416,
+      "mean_val": 0.4146457761526108,
+      "best_test": 0.4424566328525543,
+      "mean_test": 0.43353599309921265
+    },
+    "official_temperature_calibrated_head": {
+      "trained_count": 2,
+      "best_val": 0.3970951735973358,
+      "mean_val": 0.3832743614912033,
+      "best_test": 0.41937223076820374,
+      "mean_test": 0.4137091338634491
+    },
+    "official_weighted_ce_training": {
+      "trained_count": 2,
+      "best_val": 0.389369934797287,
+      "mean_val": 0.37298761308193207,
+      "best_test": 0.4269667863845825,
+      "mean_test": 0.39520908892154694
+    },
+    "root": {
+      "trained_count": 2,
+      "best_val": 0.4128258228302002,
+      "mean_val": 0.4118345230817795,
+      "best_test": 0.4629861116409302,
+      "mean_test": 0.4581199884414673
+    }
+  },
+  "top_val_nodes": [
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+      "status": "trained",
+      "parent": "official_k562_native_public_best_reimplementation",
+      "children": [
+        "official_k562_native_p1_official_string_gnn_attention_7ec267ae"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4884769916534424,
+      "test_macro_f1": 0.518327534198761,
+      "iteration": 1,
+      "duration_seconds": 17.3861186504364,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 21.152903735637665,
+      "visits": 51,
+      "depth": 1
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_string_gnn_attention_7ec267ae",
+      "children": [
+        "official_k562_native_p1_official_target_gene_head_477d0ebb"
+      ],
+      "strategy": "official_aido_lora_adapter",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4741170108318329,
+      "test_macro_f1": 0.5233038067817688,
+      "iteration": 3,
+      "duration_seconds": 10.334728240966797,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 20.223028630018234,
+      "visits": 49,
+      "depth": 3
+    },
+    {
+      "node_id": "official_k562_native_public_best_reimplementation",
+      "status": "trained",
+      "parent": "",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_66a588f9"
+      ],
+      "strategy": "official_native_public_best_reimplementation",
+      "pipeline_kind": "program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.46794524788856506,
+      "test_macro_f1": 0.5256422758102417,
+      "iteration": 0,
+      "duration_seconds": 16.810636520385742,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_essential_deg_with_split_h5ad",
+        "official_string_gnn_keep20_graph",
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 21.62084898352623,
+      "visits": 52,
+      "depth": 0
+    },
+    {
+      "node_id": "official_k562_native_p1_official_target_gene_head_477d0ebb",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
+      "children": [
+        "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
+        "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
+        "official_k562_native_p3_official_string_neighborhood_attention_0376ea72"
+      ],
+      "strategy": "official_target_gene_head",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.45515310764312744,
+      "test_macro_f1": 0.5265136361122131,
+      "iteration": 4,
+      "duration_seconds": 12.080456018447876,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 19.7489116191864,
+      "visits": 48,
+      "depth": 4
+    },
+    {
+      "node_id": "official_k562_native_p1_official_string_gnn_attention_18d05ea9",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_native_public_best_reimplementation_f10eb662",
+      "children": [
+        "official_k562_native_p1_official_aido_lora_adapter_069eadbc"
+      ],
+      "strategy": "official_string_gnn_attention",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.44279471039772034,
+      "test_macro_f1": 0.48471513390541077,
+      "iteration": 66,
+      "duration_seconds": 7.628337621688843,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_string_gnn_model_dir",
+        "official_string_gnn_keep20_graph",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 1.9845411777496338,
+      "visits": 5,
+      "depth": 7
+    },
+    {
+      "node_id": "official_k562_native_p1_official_string_gnn_attention_7ec267ae",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+      "children": [
+        "official_k562_native_p1_official_aido_lora_adapter_d757c78c"
+      ],
+      "strategy": "official_string_gnn_attention",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.44139811396598816,
+      "test_macro_f1": 0.5046269297599792,
+      "iteration": 2,
+      "duration_seconds": 16.69264817237854,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_string_gnn_model_dir",
+        "official_string_gnn_keep20_graph",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 20.664426743984222,
+      "visits": 50,
+      "depth": 2
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_5404c348",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_b7bcad75",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_dac145f0"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.44112512469291687,
+      "test_macro_f1": 0.4740440547466278,
+      "iteration": 113,
+      "duration_seconds": 6.709964990615845,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 1.2735106348991394,
+      "visits": 3,
+      "depth": 31
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_34dcef23",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_6a51b4f1",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_4d418087"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4400881230831146,
+      "test_macro_f1": 0.46426451206207275,
+      "iteration": 101,
+      "duration_seconds": 7.5003156661987305,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 6.255791783332825,
+      "visits": 15,
+      "depth": 19
+    },
+    {
+      "node_id": "official_k562_native_p2_official_multimodal_mixture_of_experts_93125c64",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a",
+      "children": [],
+      "strategy": "official_multimodal_mixture_of_experts",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": null,
+      "best_val_macro_f1": 0.4387456178665161,
+      "test_macro_f1": 0.4780139923095703,
+      "iteration": 48,
+      "duration_seconds": 12.319261312484741,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.8774912357330322,
+      "visits": 2,
+      "depth": 7
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_334b1eb4",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_3bc03a7b",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_c881fe1c"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4371725618839264,
+      "test_macro_f1": 0.48447296023368835,
+      "iteration": 110,
+      "duration_seconds": 6.730175971984863,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 2.5589692294597626,
+      "visits": 6,
+      "depth": 28
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_e283eea0",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_903c8f73",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_8ab5038c"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4358552396297455,
+      "test_macro_f1": 0.47353020310401917,
+      "iteration": 94,
+      "duration_seconds": 6.7993693351745605,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 9.120431065559387,
+      "visits": 22,
+      "depth": 12
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_697e7978",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_c3bb6a03",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_6a51b4f1"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.435698002576828,
+      "test_macro_f1": 0.4860762655735016,
+      "iteration": 99,
+      "duration_seconds": 7.501565456390381,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 7.070937126874924,
+      "visits": 17,
+      "depth": 17
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_b7bcad75",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_c881fe1c",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_5404c348"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.43535804748535156,
+      "test_macro_f1": 0.4752737581729889,
+      "iteration": 112,
+      "duration_seconds": 6.5822813510894775,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 1.708868682384491,
+      "visits": 4,
+      "depth": 30
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_153f19d3",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_1462f243",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_903c8f73"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.434207558631897,
+      "test_macro_f1": 0.48632845282554626,
+      "iteration": 92,
+      "duration_seconds": 6.78590202331543,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 9.985972672700882,
+      "visits": 24,
+      "depth": 10
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_1462f243",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_aeb536e0",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_153f19d3"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.43346723914146423,
+      "test_macro_f1": 0.4816721975803375,
+      "iteration": 91,
+      "duration_seconds": 6.705471038818359,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 10.419439911842346,
+      "visits": 25,
+      "depth": 9
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_406dbc47",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_dac145f0",
+      "children": [],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.43158066272735596,
+      "test_macro_f1": 0.4660038650035858,
+      "iteration": 115,
+      "duration_seconds": 6.782654285430908,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.43158066272735596,
+      "visits": 1,
+      "depth": 33
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_903c8f73",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_153f19d3",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_e283eea0"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4313340485095978,
+      "test_macro_f1": 0.47613826394081116,
+      "iteration": 93,
+      "duration_seconds": 6.610642194747925,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 9.551765114068985,
+      "visits": 23,
+      "depth": 11
+    },
+    {
+      "node_id": "official_k562_native_p1_official_native_public_best_reimplementation_f10eb662",
+      "status": "trained",
+      "parent": "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
+      "children": [
+        "official_k562_native_p1_official_string_gnn_attention_18d05ea9"
+      ],
+      "strategy": "official_native_public_best_reimplementation",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4298854172229767,
+      "test_macro_f1": 0.46175146102905273,
+      "iteration": 65,
+      "duration_seconds": 8.158363342285156,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 2.4144265949726105,
+      "visits": 6,
+      "depth": 6
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_cf14e3bf",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_44ec01a4",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_3e3b60be"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.42894938588142395,
+      "test_macro_f1": 0.46428677439689636,
+      "iteration": 104,
+      "duration_seconds": 6.819840908050537,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 5.015740066766739,
+      "visits": 12,
+      "depth": 22
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_7ffa279e",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_ad422419",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_8d97d3db"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.42722058296203613,
+      "test_macro_f1": 0.4679117500782013,
+      "iteration": 107,
+      "duration_seconds": 6.705963611602783,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 3.782694637775421,
+      "visits": 9,
+      "depth": 25
+    }
+  ],
+  "top_test_nodes": [
+    {
+      "node_id": "official_k562_native_p1_official_target_gene_head_477d0ebb",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
+      "children": [
+        "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
+        "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
+        "official_k562_native_p3_official_string_neighborhood_attention_0376ea72"
+      ],
+      "strategy": "official_target_gene_head",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.45515310764312744,
+      "test_macro_f1": 0.5265136361122131,
+      "iteration": 4,
+      "duration_seconds": 12.080456018447876,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 19.7489116191864,
+      "visits": 48,
+      "depth": 4
+    },
+    {
+      "node_id": "official_k562_native_public_best_reimplementation",
+      "status": "trained",
+      "parent": "",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_66a588f9"
+      ],
+      "strategy": "official_native_public_best_reimplementation",
+      "pipeline_kind": "program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.46794524788856506,
+      "test_macro_f1": 0.5256422758102417,
+      "iteration": 0,
+      "duration_seconds": 16.810636520385742,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_essential_deg_with_split_h5ad",
+        "official_string_gnn_keep20_graph",
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 21.62084898352623,
+      "visits": 52,
+      "depth": 0
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_string_gnn_attention_7ec267ae",
+      "children": [
+        "official_k562_native_p1_official_target_gene_head_477d0ebb"
+      ],
+      "strategy": "official_aido_lora_adapter",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4741170108318329,
+      "test_macro_f1": 0.5233038067817688,
+      "iteration": 3,
+      "duration_seconds": 10.334728240966797,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 20.223028630018234,
+      "visits": 49,
+      "depth": 3
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+      "status": "trained",
+      "parent": "official_k562_native_public_best_reimplementation",
+      "children": [
+        "official_k562_native_p1_official_string_gnn_attention_7ec267ae"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4884769916534424,
+      "test_macro_f1": 0.518327534198761,
+      "iteration": 1,
+      "duration_seconds": 17.3861186504364,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 21.152903735637665,
+      "visits": 51,
+      "depth": 1
+    },
+    {
+      "node_id": "official_k562_native_p1_official_string_gnn_attention_7ec267ae",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+      "children": [
+        "official_k562_native_p1_official_aido_lora_adapter_d757c78c"
+      ],
+      "strategy": "official_string_gnn_attention",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.44139811396598816,
+      "test_macro_f1": 0.5046269297599792,
+      "iteration": 2,
+      "duration_seconds": 16.69264817237854,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_string_gnn_model_dir",
+        "official_string_gnn_keep20_graph",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 20.664426743984222,
+      "visits": 50,
+      "depth": 2
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_153f19d3",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_1462f243",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_903c8f73"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.434207558631897,
+      "test_macro_f1": 0.48632845282554626,
+      "iteration": 92,
+      "duration_seconds": 6.78590202331543,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 9.985972672700882,
+      "visits": 24,
+      "depth": 10
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_697e7978",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_c3bb6a03",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_6a51b4f1"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.435698002576828,
+      "test_macro_f1": 0.4860762655735016,
+      "iteration": 99,
+      "duration_seconds": 7.501565456390381,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 7.070937126874924,
+      "visits": 17,
+      "depth": 17
+    },
+    {
+      "node_id": "official_k562_native_p1_official_string_gnn_attention_18d05ea9",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_native_public_best_reimplementation_f10eb662",
+      "children": [
+        "official_k562_native_p1_official_aido_lora_adapter_069eadbc"
+      ],
+      "strategy": "official_string_gnn_attention",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.44279471039772034,
+      "test_macro_f1": 0.48471513390541077,
+      "iteration": 66,
+      "duration_seconds": 7.628337621688843,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_string_gnn_model_dir",
+        "official_string_gnn_keep20_graph",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 1.9845411777496338,
+      "visits": 5,
+      "depth": 7
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_334b1eb4",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_3bc03a7b",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_c881fe1c"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4371725618839264,
+      "test_macro_f1": 0.48447296023368835,
+      "iteration": 110,
+      "duration_seconds": 6.730175971984863,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 2.5589692294597626,
+      "visits": 6,
+      "depth": 28
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_1462f243",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_aeb536e0",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_153f19d3"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.43346723914146423,
+      "test_macro_f1": 0.4816721975803375,
+      "iteration": 91,
+      "duration_seconds": 6.705471038818359,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 10.419439911842346,
+      "visits": 25,
+      "depth": 9
+    },
+    {
+      "node_id": "official_k562_native_p2_official_multimodal_mixture_of_experts_93125c64",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a",
+      "children": [],
+      "strategy": "official_multimodal_mixture_of_experts",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": null,
+      "best_val_macro_f1": 0.4387456178665161,
+      "test_macro_f1": 0.4780139923095703,
+      "iteration": 48,
+      "duration_seconds": 12.319261312484741,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.8774912357330322,
+      "visits": 2,
+      "depth": 7
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_3e3b60be",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_cf14e3bf",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_ad422419"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4170222580432892,
+      "test_macro_f1": 0.4762645959854126,
+      "iteration": 105,
+      "duration_seconds": 6.628300905227661,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 4.586790680885315,
+      "visits": 11,
+      "depth": 23
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_903c8f73",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_153f19d3",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_e283eea0"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4313340485095978,
+      "test_macro_f1": 0.47613826394081116,
+      "iteration": 93,
+      "duration_seconds": 6.610642194747925,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 9.551765114068985,
+      "visits": 23,
+      "depth": 11
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_b7bcad75",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_c881fe1c",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_5404c348"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.43535804748535156,
+      "test_macro_f1": 0.4752737581729889,
+      "iteration": 112,
+      "duration_seconds": 6.5822813510894775,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 1.708868682384491,
+      "visits": 4,
+      "depth": 30
+    },
+    {
+      "node_id": "official_k562_native_p2_official_string_gnn_frozen_cache_3d075b43",
+      "status": "trained",
+      "parent": "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751",
+      "children": [],
+      "strategy": "official_string_gnn_frozen_cache",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": null,
+      "best_val_macro_f1": 0.4171464741230011,
+      "test_macro_f1": 0.47527173161506653,
+      "iteration": 35,
+      "duration_seconds": 16.079052925109863,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_string_gnn_model_dir",
+        "official_string_gnn_keep20_graph",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.8342929482460022,
+      "visits": 2,
+      "depth": 7
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_dac145f0",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_5404c348",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_406dbc47"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4008048474788666,
+      "test_macro_f1": 0.47425732016563416,
+      "iteration": 114,
+      "duration_seconds": 6.678747177124023,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.8323855102062225,
+      "visits": 2,
+      "depth": 32
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_5404c348",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_b7bcad75",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_dac145f0"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.44112512469291687,
+      "test_macro_f1": 0.4740440547466278,
+      "iteration": 113,
+      "duration_seconds": 6.709964990615845,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 1.2735106348991394,
+      "visits": 3,
+      "depth": 31
+    },
+    {
+      "node_id": "official_k562_native_p1_official_aido_string_fusion_e283eea0",
+      "status": "trained",
+      "parent": "official_k562_native_p1_official_aido_string_fusion_903c8f73",
+      "children": [
+        "official_k562_native_p1_official_aido_string_fusion_8ab5038c"
+      ],
+      "strategy": "official_aido_string_fusion",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": "native_train",
+      "best_val_macro_f1": 0.4358552396297455,
+      "test_macro_f1": 0.47353020310401917,
+      "iteration": 94,
+      "duration_seconds": 6.7993693351745605,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 9.120431065559387,
+      "visits": 22,
+      "depth": 12
+    },
+    {
+      "node_id": "official_k562_native_p1_official_target_graph_conditioned_head_efba71d4",
+      "status": "trained",
+      "parent": "official_k562_native_p3_official_string_neighborhood_attention_0376ea72",
+      "children": [],
+      "strategy": "official_target_graph_conditioned_head",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": null,
+      "best_val_macro_f1": 0.4250730574131012,
+      "test_macro_f1": 0.4723019301891327,
+      "iteration": 86,
+      "duration_seconds": 9.67649245262146,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_string_gnn_keep20_graph",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.8501461148262024,
+      "visits": 2,
+      "depth": 6
+    },
+    {
+      "node_id": "official_k562_native_p2_official_aido_string_cross_attention_f36612a4",
+      "status": "trained",
+      "parent": "official_k562_native_p3_official_string_neighborhood_attention_0376ea72",
+      "children": [],
+      "strategy": "official_aido_string_cross_attention",
+      "pipeline_kind": "pipeline_program_node",
+      "execution_backend": null,
+      "best_val_macro_f1": 0.4106624126434326,
+      "test_macro_f1": 0.47213658690452576,
+      "iteration": 87,
+      "duration_seconds": 9.816320419311523,
+      "missing_required_artifacts": [],
+      "artifact_requirements": [
+        "official_aido_cell_100m_model_dir",
+        "official_string_gnn_model_dir",
+        "official_essential_deg_with_split_h5ad"
+      ],
+      "error": null,
+      "fallback_used": null,
+      "Q_v": 0.8213248252868652,
+      "visits": 2,
+      "depth": 6
+    }
+  ],
+  "best_val_node": {
+    "node_id": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+    "status": "trained",
+    "parent": "official_k562_native_public_best_reimplementation",
+    "children": [
+      "official_k562_native_p1_official_string_gnn_attention_7ec267ae"
+    ],
+    "strategy": "official_aido_string_fusion",
+    "pipeline_kind": "pipeline_program_node",
+    "execution_backend": "native_train",
+    "best_val_macro_f1": 0.4884769916534424,
+    "test_macro_f1": 0.518327534198761,
+    "iteration": 1,
+    "duration_seconds": 17.3861186504364,
+    "missing_required_artifacts": [],
+    "artifact_requirements": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "error": null,
+    "fallback_used": null,
+    "Q_v": 21.152903735637665,
+    "visits": 51,
+    "depth": 1
+  },
+  "best_test_node": {
+    "node_id": "official_k562_native_p1_official_target_gene_head_477d0ebb",
+    "status": "trained",
+    "parent": "official_k562_native_p1_official_aido_lora_adapter_d757c78c",
+    "children": [
+      "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810",
+      "official_k562_native_p2_official_aido_string_cross_attention_e44c7c9f",
+      "official_k562_native_p3_official_string_neighborhood_attention_0376ea72"
+    ],
+    "strategy": "official_target_gene_head",
+    "pipeline_kind": "pipeline_program_node",
+    "execution_backend": "native_train",
+    "best_val_macro_f1": 0.45515310764312744,
+    "test_macro_f1": 0.5265136361122131,
+    "iteration": 4,
+    "duration_seconds": 12.080456018447876,
+    "missing_required_artifacts": [],
+    "artifact_requirements": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "error": null,
+    "fallback_used": null,
+    "Q_v": 19.7489116191864,
+    "visits": 48,
+    "depth": 4
+  },
+  "best_root_by_val": {
+    "node_id": "official_k562_native_public_best_reimplementation",
+    "status": "trained",
+    "parent": "",
+    "children": [
+      "official_k562_native_p1_official_aido_string_fusion_66a588f9"
+    ],
+    "strategy": "official_native_public_best_reimplementation",
+    "pipeline_kind": "program_node",
+    "execution_backend": "native_train",
+    "best_val_macro_f1": 0.46794524788856506,
+    "test_macro_f1": 0.5256422758102417,
+    "iteration": 0,
+    "duration_seconds": 16.810636520385742,
+    "missing_required_artifacts": [],
+    "artifact_requirements": [
+      "official_essential_deg_with_split_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "error": null,
+    "fallback_used": null,
+    "Q_v": 21.62084898352623,
+    "visits": 52,
+    "depth": 0
+  },
+  "best_root_by_test": {
+    "node_id": "official_k562_native_public_best_reimplementation",
+    "status": "trained",
+    "parent": "",
+    "children": [
+      "official_k562_native_p1_official_aido_string_fusion_66a588f9"
+    ],
+    "strategy": "official_native_public_best_reimplementation",
+    "pipeline_kind": "program_node",
+    "execution_backend": "native_train",
+    "best_val_macro_f1": 0.46794524788856506,
+    "test_macro_f1": 0.5256422758102417,
+    "iteration": 0,
+    "duration_seconds": 16.810636520385742,
+    "missing_required_artifacts": [],
+    "artifact_requirements": [
+      "official_essential_deg_with_split_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "error": null,
+    "fallback_used": null,
+    "Q_v": 21.62084898352623,
+    "visits": 52,
+    "depth": 0
+  },
+  "mcts_trace": {
+    "event_counts": {
+      "selection": 279,
+      "expansion": 115,
+      "backpropagation": 52,
+      "pending_implementation": 62,
+      "failure": 1
+    },
+    "selected_parent_counts_top20": {
+      "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1": 169,
+      "official_k562_root_aido_gnn_embedding_mlp_p1_official_pathway_pooling_reactome_6cfe87ab": 12,
+      "official_k562_p1_official_target_graph_conditioned_head_ab86336c": 12,
+      "official_k562_native_p1_official_aido_topk_layer_tuning_f7c2702a": 12,
+      "official_k562_root_aido_embedding_mlp_p1_official_aido_topk_layer_tuning_fa2d7be6": 12,
+      "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_full_finetune_6db85287": 12,
+      "official_k562_root_aido_gnn_embedding_mlp_p2_official_focal_loss_training_0f4a1b87": 12,
+      "official_k562_native_p1_official_target_gene_head_477d0ebb": 9,
+      "official_k562_root_aido_gnn_embedding_mlp": 9,
+      "official_k562_p2_official_public_best_node_0f24e30a": 9,
+      "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_76c8dc15": 9,
+      "official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500": 9,
+      "official_k562_native_p1_official_pathway_pooling_reactome_b5af6810": 9,
+      "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c": 9,
+      "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_a1e56f8e": 9,
+      "official_k562_native_p2_official_aido_cached_embedding_fusion_58fcc751": 9,
+      "official_k562_native_p3_official_string_neighborhood_attention_0376ea72": 8,
+      "official_k562_root_aido_embedding_mlp": 6,
+      "official_k562_root_aido_embedding_mlp_p2_official_aido_cached_embedding_fusion_9e4940c9": 6,
+      "official_k562_p1_official_class_imbalance_training_fde536bb": 5
+    },
+    "chosen_blueprints_top30": {
+      "official_aido_string_fusion": 32,
+      "official_pathway_pooling_reactome": 8,
+      "official_aido_string_cross_attention": 8,
+      "official_string_neighborhood_attention": 6,
+      "official_target_graph_conditioned_head": 6,
+      "official_regulatory_network_prior": 6,
+      "official_aido_cached_embedding_fusion": 6,
+      "official_scgpt_cell_encoder": 6,
+      "official_scfoundation_top_layer_finetune": 6,
+      "official_string_gnn_frozen_cache": 6,
+      "official_string_gnn_attention": 5,
+      "official_aido_lora_adapter": 5,
+      "official_target_gene_head": 5,
+      "official_focal_loss_training": 4,
+      "official_aido_full_finetune": 4,
+      "official_aido_topk_layer_tuning": 4,
+      "official_string_gnn_full_finetune": 4,
+      "official_string_laplacian_smoothing": 4,
+      "official_weighted_ce_training": 4,
+      "official_aido_string_concat_fusion": 4,
+      "official_aido_string_gated_fusion": 4,
+      "official_aido_string_bilinear_fusion": 4,
+      "official_multimodal_mixture_of_experts": 4,
+      "official_target_low_rank_head": 4,
+      "official_target_bilinear_head": 4,
+      "official_public_static_node_family_wrapper": 4,
+      "official_temperature_calibrated_head": 4,
+      "official_gene_dropout_augmentation": 4,
+      "official_layerwise_lr_schedule": 4,
+      "official_class_imbalance_training": 3
+    },
+    "best_timeline": [
+      {
+        "iteration": 1,
+        "leaf": "official_k562_native_p1_official_aido_string_fusion_66a588f9",
+        "reward": 0.4884769916534424,
+        "test_macro_f1": 0.518327534198761
+      }
+    ],
+    "trace_lines": 509
+  },
+  "failures": {
+    "failures": [
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e",
+        "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+        "error": "RuntimeError: external static node failed with exit code 1; see experiments/official_k562_scientific_policy_run_50/nodes/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e/external_stdout.txt",
+        "strategy": "official_public_best_node"
+      }
+    ]
+  },
+  "pressure_summary": {
+    "trained_target_met": true,
+    "new_trained_count": 52,
+    "failure_count": 1,
+    "statuses": {
+      "trained": 109,
+      "requires_artifact_acquisition": 9,
+      "failed": 1
+    }
+  },
+  "final_gap_attribution": {
+    "format": "official_k562_final_gap_attribution.v1",
+    "artifact_gap": {
+      "missing": [
+        "esm2_k562_target_manifest",
+        "aido_gene_or_cell_embeddings",
+        "scfoundation_cell_embeddings",
+        "regulatory_network_artifact",
+        "single_cell_foundation_model_artifact"
+      ],
+      "reconstructed_compatibility": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    "search_scale_gap": {
+      "trained_nodes": 109,
+      "paper_scale_target_nodes": 600,
+      "estimated_candidate_count": 94500
+    },
+    "epoch_budget_gap": 1,
+    "implementation_gap": {
+      "pending_implementations": 0,
+      "failed_nodes": 1,
+      "family_counts": {
+        "AIDO_adapter": 5,
+        "AIDO_STRING_fusion": 32,
+        "Reactome_pathway_pooling": 4,
+        "STRING_GNN_attention": 5,
+        "target_gene_aware_head": 5,
+        "AIDO_STRING_cross_attention": 4,
+        "STRING_neighborhood_attention": 3,
+        "official_deg_imbalance": 3,
+        "target_graph_conditioned_head": 3,
+        "public_vcharness_best_path": 2,
+        "regulatory_network_prior": 3,
+        "focal_loss": 2,
+        "AIDO_full_finetune": 2,
+        "AIDO_cached_embedding": 3,
+        "scGPT_or_single_cell_encoder": 3,
+        "AIDO_selective_finetune": 2,
+        "scFoundation_selective_finetune": 3,
+        "STRING_GNN_frozen_cached": 3,
+        "STRING_GNN_full_finetune": 2,
+        "STRING_laplacian_prior": 2,
+        "class_weighted_CE": 2,
+        "AIDO_STRING_concat": 2,
+        "AIDO_STRING_gated": 2,
+        "AIDO_STRING_bilinear": 2,
+        "multimodal_MoE": 2,
+        "target_low_rank_head": 2,
+        "target_bilinear_head": 2,
+        "public_static_tree_family": 2,
+        "temperature_calibration": 2,
+        "gene_dropout_augmentation": 2,
+        "layerwise_lr_decay": 2,
+        "checkpoint_ensemble_or_SWA": 1,
+        "public_vcharness_best_path_native_v1": 1
+      },
+      "replicate_nodes": 26
+    },
+    "metric_contract_gap": "external benchmark mode must supply held-out test metric; smoke mode may mark test as missing_or_val_fallback",
+    "stochastic_gap": "single short runs can differ from public/static and paper scores; compare only after 50/150/600-node staged runs"
+  },
+  "diagnosis": [
+    "Best overall is selected by validation Macro-F1, but the best root has higher held-out test Macro-F1; validation gains are not clearly test-dominant.",
+    "The search became concentrated in official_aido_string_fusion repeats; this is useful as a pressure test but weak as broad scientific discovery evidence.",
+    "Strict artifact blockers prevented scFoundation/scGPT/regulatory branches, so several paper-level biological prior families remain untested rather than underperforming.",
+    "The external public best-node wrapper failed once; native/generated nodes are valid, but numerical comparison to the public static best node remains incomplete.",
+    "The continue-to-75 phase relaxed repeat constraints to increase trained count, so results after that point should be labeled pressure/stress testing, not a clean fixed-policy search.",
+    "The best validation reward appeared extremely early in the search; later expansions did not move the best frontier."
+  ],
+  "external_public_best_failure_detail": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_bf9cc47e",
+    "failure_class": "missing_optional_logger_dependency",
+    "missing_dependency": "tensorboard_or_tensorboardX",
+    "interpretation": "External static public-best wrapper failed before model training at Lightning TensorBoardLogger initialization. This is an environment/wrapper benchmark issue, not evidence that the public best architecture underperformed."
+  }
+}
