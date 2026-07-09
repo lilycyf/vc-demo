@@ -43,6 +43,36 @@ def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], co
     node["structural_relation"] = proposal.get("structural_relation", "")
 
 
+def link_child(tree: dict[str, Any], parent: str, child: str) -> None:
+    if not parent:
+        roots = tree.setdefault("root_nodes", [])
+        if child not in roots:
+            roots.append(child)
+        return
+    children = tree["nodes"][parent].setdefault("children", [])
+    if child not in children:
+        children.append(child)
+
+
+def add_selected_for_training_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, proposal: dict[str, Any]) -> None:
+    node = {
+        "config": str(config_path),
+        "parent": parent,
+        "children": [],
+        "status": "selected_for_training",
+        "iteration": iteration,
+        "visits": 0,
+        "value": 0.0,
+        "Q_v": 0.0,
+        "Exploitation": 0.0,
+        "stage": "rollout_selected",
+        "selection_reason": "selected by proposal pool cheap-screen for rollout training",
+    }
+    enrich_node_from_proposal(node, proposal, config_path, name)
+    tree["nodes"][name] = node
+    link_child(tree, parent, name)
+
+
 def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, metrics: dict[str, Any], proposal: dict[str, Any] | None = None) -> None:
     node = {
         "config": str(config_path),
@@ -73,17 +103,14 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
     if proposal:
         enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
-    if parent:
-        tree["nodes"][parent].setdefault("children", []).append(name)
-    else:
-        tree.setdefault("root_nodes", []).append(name)
+    link_child(tree, parent, name)
 
 
 def add_pending_node(tree: dict[str, Any], name: str, config_path: Path, parent: str, iteration: int, proposal: dict[str, Any]) -> None:
     node = {"config": str(config_path), "parent": parent, "children": [], "status": "needs_implementation", "iteration": iteration, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
     enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
-    tree["nodes"][parent].setdefault("children", []).append(name)
+    link_child(tree, parent, name)
 
 
 def add_blocked_missing_artifact_node(
@@ -113,7 +140,7 @@ def add_blocked_missing_artifact_node(
     }
     enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
-    tree["nodes"][parent].setdefault("children", []).append(name)
+    link_child(tree, parent, name)
 
 
 def add_pruned_node(
@@ -144,7 +171,7 @@ def add_pruned_node(
     }
     enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
-    tree["nodes"][parent].setdefault("children", []).append(name)
+    link_child(tree, parent, name)
 
 
 def cheap_screen_score(proposal: dict[str, Any], missing_summary: dict[str, Any], duplicate_reason: str = "") -> dict[str, Any]:
@@ -302,12 +329,23 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     best_val = max(trained_values) if trained_values else -1.0
     no_improve = 0
     pending_count = len(implementation_queue(tree))
-    stop_reason = "budget exhausted"
+    stop_reason = "proposal budget exhausted"
+    generated_proposals = 0
+    trained_rollouts = 0
+    proposal_budget = int(args.budget_proposals if args.budget_proposals is not None else args.budget_nodes * max(args.candidate_pool_size, 1))
+    trained_node_budget = args.budget_trained_nodes
+    max_iterations = max(1, (proposal_budget + max(args.candidate_pool_size, 1) - 1) // max(args.candidate_pool_size, 1))
     write_tree_and_failures(run_dir, tree, failures)
 
     start_iteration = max([0, *[int(node.get("iteration", 0)) for node in tree["nodes"].values()]]) + 1
-    end_iteration = start_iteration + args.budget_nodes - 1
+    end_iteration = start_iteration + max_iterations - 1
     for iteration in range(start_iteration, end_iteration + 1):
+        if generated_proposals >= proposal_budget:
+            stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
+            break
+        if trained_node_budget is not None and trained_rollouts >= trained_node_budget:
+            stop_reason = f"trained-node budget exhausted ({trained_rollouts}/{trained_node_budget})"
+            break
         parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
         append_mcts_trace(run_dir, {"event": "selection", "iteration": iteration, "policy": args.selection_policy, "exploration": args.exploration, "selected_parent": parent_name, "candidate_list": compact_candidates(scored), "selected_components": compact_candidates(scored, 1)[0] if scored else {}})
         parent_node = tree["nodes"][parent_name]
@@ -346,6 +384,8 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 break
 
         if proposal_candidates:
+            generated_proposals += len(proposal_candidates)
+            append_mcts_trace(run_dir, {"event": "proposal_pool_generated", "iteration": iteration, "selected_parent": parent_name, "candidate_count": len(proposal_candidates), "generated_proposals": generated_proposals, "proposal_budget": proposal_budget})
             proposal_candidates.sort(key=lambda item: float(item["score"].get("score", 0.0)), reverse=True)
             selected_index = 0
             if not args.force_blueprint:
@@ -442,12 +482,17 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 break
             continue
 
+        add_selected_for_training_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
+        append_mcts_trace(run_dir, {"event": "selected_for_training", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "candidate_rank": proposal.get("candidate_pool_rank"), "candidate_pool_size": proposal.get("candidate_pool_size"), "cheap_screen_score": proposal.get("cheap_screen_score")})
+        write_tree_and_failures(run_dir, tree, failures)
+
         try:
             metrics = run_node(child_config, run_dir, proposal=proposal, max_epochs=args.max_epochs)
             add_trained_node(tree, child_name, child_config_path, parent_name, iteration, metrics, proposal)
             rollout_reward = reward(metrics)
             backpropagate(tree, child_name, rollout_reward)
             append_mcts_trace(run_dir, {"event": "backpropagation", "iteration": iteration, "leaf": child_name, "reward": rollout_reward, "backprop_path": tree.get("mcts", {}).get("last_backpropagation", {}).get("path", []), "best_val_macro_f1": metrics.get("best_val_macro_f1"), "test_macro_f1": metrics.get("test_macro_f1")})
+            trained_rollouts += 1
             val = rollout_reward
             if val > best_val + args.min_delta:
                 best_val = val
@@ -456,7 +501,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 no_improve += 1
         except Exception as exc:
             error = "".join(traceback.format_exception_only(type(exc), exc)).strip()
-            tree["nodes"][parent_name].setdefault("children", []).append(child_name)
+            link_child(tree, parent_name, child_name)
             tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "pipeline_manifest_path": proposal.get("pipeline_manifest_path"), "pipeline_kind": proposal.get("pipeline_kind"), "artifact_requirements": proposal.get("artifact_requirements", []), "artifact_usage_claims": proposal.get("artifact_usage_claims", []), "scientific_selection": proposal.get("scientific_selection", {}), "structural_signature": proposal.get("structural_signature", ""), "parent_structural_signature": proposal.get("parent_structural_signature", ""), "structural_relation": proposal.get("structural_relation", ""), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             append_mcts_trace(run_dir, {"event": "failure", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "error": error})
@@ -464,6 +509,9 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
         memory = rebuild_memory_from_tree(run_dir, tree, failures)
         write_tree_and_failures(run_dir, tree, failures)
+        if trained_node_budget is not None and trained_rollouts >= trained_node_budget:
+            stop_reason = f"trained-node budget exhausted ({trained_rollouts}/{trained_node_budget})"
+            break
         if args.stop_no_improve and no_improve >= args.stop_no_improve:
             coverage = family_coverage(tree)
             if coverage >= args.min_family_coverage_before_stop:
@@ -475,7 +523,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
     run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count, "generated_proposals": generated_proposals, "proposal_budget": proposal_budget, "trained_rollouts_this_invocation": trained_rollouts, "trained_node_budget": trained_node_budget, "candidate_pool_size": args.candidate_pool_size}
     print(json.dumps(result, indent=2))
     return result
 
@@ -486,7 +534,9 @@ def main() -> None:
     parser.add_argument("--root-configs", nargs="+", required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--summary", type=Path, default=None)
-    parser.add_argument("--budget-nodes", type=int, default=12)
+    parser.add_argument("--budget-nodes", type=int, default=12, help="Legacy rollout-iteration budget. In paper-aligned mode prefer --budget-proposals and --budget-trained-nodes.")
+    parser.add_argument("--budget-proposals", type=int, default=None, help="Maximum generated proposal candidates, including pruned/blocked/pending/trained candidates.")
+    parser.add_argument("--budget-trained-nodes", type=int, default=None, help="Maximum rollout candidates allowed to finish training and backpropagate reward.")
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--max-children", type=int, default=3)
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
@@ -505,11 +555,15 @@ def main() -> None:
     parser.add_argument("--max-blueprint-repeats", type=int, default=2, help="Global repeat limit per blueprint; -1 disables the global duplicate guard.")
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true", help="Allow the same parent to generate the same blueprint more than once.")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8, help="How many candidate blueprints to try before skipping an iteration as duplicate-only.")
-    parser.add_argument("--candidate-pool-size", type=int, default=1, help="Generate this many proposal candidates per selected parent, cheap-screen them, and train only the selected rollout candidate. Values >1 create pruned_not_selected nodes for untrained proposals.")
+    parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent, cheap-screen them, and train only the selected rollout candidate. Values >1 create pruned_not_selected nodes for untrained proposals.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:
         args.summary = args.run_dir / "search_summary.md"
+    if args.candidate_pool_size < 1:
+        raise SystemExit("--candidate-pool-size must be >= 1")
+    if args.official_blueprint_space and args.candidate_pool_size < 2:
+        raise SystemExit("official paper-aligned search requires --candidate-pool-size >= 2; proposal pruning is not optional in official mode")
     run_search(args)
 
 

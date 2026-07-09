@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -94,6 +95,8 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
 
 def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[str, Any]], stop_reason: str) -> None:
     rows = trained_rows(tree)
+    status_counts = Counter(str(node.get("status", "unknown")) for node in tree.get("nodes", {}).values())
+    proposal_like = sum(status_counts.get(status, 0) for status in ["pruned_not_selected", "requires_artifact_acquisition", "blocked_missing_artifact", "needs_implementation", "selected_for_training", "trained", "failed"])
     roots = [row for row in rows if row["iteration"] == 0]
     best = max(rows, key=lambda row: row["val"]) if rows else None
     best_root = max(roots, key=lambda row: row["val"]) if roots else None
@@ -101,18 +104,28 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
     lines = [
         "# VCHarness-Style K562 Search Summary",
         "",
-        "This run separates the search loop into MCTS parent selection, an agent-style proposal step, node execution, and report generation.",
-        "The proposal agent may generate config-level children or program-node children. Program nodes carry node-local Python model source and are dynamically loaded during training; data, splits, and metric semantics are unchanged.",
+        "This run separates the search loop into MCTS parent selection, proposal-pool generation, cheap screening/pruning, selected rollout execution, and reward backpropagation.",
+        "In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acquisition, selected for training, pending implementation, failed, or trained. Only trained rollout nodes backpropagate reward to MCTS.",
         "",
         f"- Stop reason: {stop_reason}",
+        f"- Proposal-like nodes: {proposal_like}",
         f"- Trained nodes: {len(rows)}",
-        f"- Failed nodes: {len(failures)}",
+        f"- Pruned proposals: {status_counts.get('pruned_not_selected', 0)}",
+        f"- Blocked/acquisition nodes: {status_counts.get('requires_artifact_acquisition', 0) + status_counts.get('blocked_missing_artifact', 0)}",
+        f"- Pending implementation nodes: {status_counts.get('needs_implementation', 0)}",
+        f"- Selected-for-training nodes: {status_counts.get('selected_for_training', 0)}",
+        f"- Failed nodes: {status_counts.get('failed', 0)}",
+        f"- Failure/acquisition records: {len(failures)}",
     ]
     if best:
         lines.append(f"- Best node: `{best['node']}` val={best['val']:.4f} test={best['test']:.4f}")
     if best and best_root:
         lines.append(f"- Best root: `{best_root['node']}` val={best_root['val']:.4f} test={best_root['test']:.4f}")
         lines.append(f"- Improvement over best root: {best['val'] - best_root['val']:.4f} validation Macro-F1")
+
+    lines.extend(["", "## Search State Counts", "", "| Status | Count |", "|---|---:|"])
+    for status, count in sorted(status_counts.items()):
+        lines.append(f"| `{status}` | {count} |")
 
     lines.extend(["", "## Root Baselines", "", "| Node | Data dir | Model | Val Macro-F1 | Test Macro-F1 |", "|---|---|---|---:|---:|"])
     for row in roots:
@@ -178,7 +191,9 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "",
         "## Reproducibility Notes",
         "",
-        "- One node means one complete trainable candidate pipeline: data representation, model type, model hyperparameters, optimizer settings, and training run.",
+        "- In paper-aligned mode, one node means one candidate program state, not necessarily one completed training run.",
+        "- `pruned_not_selected` proposals are deliberately not trained; they document the agent's search space and cheap-screen decision.",
+        "- `selected_for_training` is a transient rollout state written before execution; successful nodes become `trained`, failed nodes become `failed`.",
         "- MCTS decides which already-trained parent is worth expanding next. The paper-aligned default is UCT; PUCT is retained only as an optional implementation extension/ablation.",
         "- Tree/proposal records preserve UCT-style audit fields when available: visits, Q_v, Exploitation, Exploration, uct, stage, and selected-parent candidates.",
         "- Pipeline records preserve model, training/loss, artifact requirements, artifact usage claims, duration, and missing-artifact status for each node.",
