@@ -21,7 +21,9 @@ def main() -> None:
     parser.add_argument("--root-configs", nargs="+", type=Path, default=list(OfficialK562BackendSpec.root_configs))
     parser.add_argument("--registry", type=Path, default=OfficialK562BackendSpec.registry_path)
     parser.add_argument("--data-dir", type=Path, default=OfficialK562BackendSpec.data_dir)
-    parser.add_argument("--budget-nodes", type=int, default=2)
+    parser.add_argument("--budget-nodes", type=int, default=2, help="Legacy rollout-iteration budget. Prefer --budget-proposals and --budget-trained-nodes for paper-aligned runs.")
+    parser.add_argument("--budget-proposals", type=int, default=None, help="Maximum generated proposal candidates, including pruned/blocked/pending/trained candidates.")
+    parser.add_argument("--budget-trained-nodes", type=int, default=None, help="Maximum rollout candidates allowed to finish training and backpropagate reward.")
     parser.add_argument("--max-epochs", type=int, default=1)
     parser.add_argument("--max-children", type=int, default=2)
     parser.add_argument("--stop-no-improve", type=int, default=2)
@@ -34,6 +36,7 @@ def main() -> None:
     parser.add_argument("--max-blueprint-repeats", type=int, default=2)
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8)
+    parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent, cheap-screen them, and train only selected rollouts.")
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
     parser.add_argument("--official-blueprint-space", action="store_true", default=False)
     parser.add_argument("--strict-artifacts", action="store_true", default=True)
@@ -41,6 +44,10 @@ def main() -> None:
     parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
+    if args.candidate_pool_size < 1:
+        raise SystemExit("--candidate-pool-size must be >= 1")
+    if args.official_blueprint_space and args.candidate_pool_size < 2:
+        raise SystemExit("official paper-aligned search requires --candidate-pool-size >= 2; proposal pruning is not optional in official mode")
 
     backend_spec = OfficialK562BackendSpec(data_dir=args.data_dir, registry_path=args.registry, root_configs=tuple(args.root_configs))
     audit = validate_official_k562_backend(backend_spec, strict=True)
@@ -71,6 +78,8 @@ def main() -> None:
         run_dir=args.run_dir,
         summary=args.run_dir / "search_summary.md",
         budget_nodes=args.budget_nodes,
+        budget_proposals=args.budget_proposals,
+        budget_trained_nodes=args.budget_trained_nodes,
         max_epochs=args.max_epochs,
         max_children=args.max_children,
         exploration=args.exploration,
@@ -89,6 +98,7 @@ def main() -> None:
         max_blueprint_repeats=args.max_blueprint_repeats,
         allow_parent_duplicate_blueprints=args.allow_parent_duplicate_blueprints,
         max_duplicate_proposal_attempts=args.max_duplicate_proposal_attempts,
+        candidate_pool_size=args.candidate_pool_size,
         reset=args.reset,
     )
     result = run_search(ns)
