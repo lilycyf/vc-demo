@@ -63,7 +63,31 @@ def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
 
 
 def requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str) -> list[dict[str, Any]]:
-    return [artifact for artifact in registry_audit.get("artifacts", []) if blueprint_id in artifact.get("required_for_blueprints", [])]
+    artifacts = list(registry_audit.get("artifacts", []))
+    by_id = {str(artifact.get("id")): artifact for artifact in artifacts}
+    required_ids: list[str] = []
+    for artifact in artifacts:
+        if blueprint_id in artifact.get("required_for_blueprints", []):
+            artifact_id = str(artifact.get("id"))
+            if artifact_id not in required_ids:
+                required_ids.append(artifact_id)
+    try:
+        from vc_demo.harness.model_blueprints import blueprint_by_id
+
+        for artifact_id in blueprint_by_id(blueprint_id).get("requires", []) or []:
+            artifact_id = str(artifact_id)
+            if artifact_id not in required_ids:
+                required_ids.append(artifact_id)
+    except Exception:
+        pass
+
+    rows: list[dict[str, Any]] = []
+    for artifact_id in required_ids:
+        row = dict(by_id.get(artifact_id, {"id": artifact_id, "present": False, "resolved_status": "missing", "path": "", "source": "not listed in artifact registry"}))
+        row.setdefault("present", False)
+        row.setdefault("resolved_status", "present" if row.get("present") else "missing")
+        rows.append(row)
+    return rows
 
 
 def missing_requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str) -> list[dict[str, Any]]:

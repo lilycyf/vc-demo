@@ -116,6 +116,64 @@ def add_blocked_missing_artifact_node(
     tree["nodes"][parent].setdefault("children", []).append(name)
 
 
+def add_pruned_node(
+    tree: dict[str, Any],
+    name: str,
+    config_path: Path,
+    parent: str,
+    iteration: int,
+    proposal: dict[str, Any],
+    reason: str,
+    rank: int,
+    cheap_score: dict[str, Any],
+) -> None:
+    node = {
+        "config": str(config_path),
+        "parent": parent,
+        "children": [],
+        "status": "pruned_not_selected",
+        "iteration": iteration,
+        "visits": 0,
+        "value": 0.0,
+        "Q_v": 0.0,
+        "Exploitation": 0.0,
+        "stage": "proposal_screen",
+        "pruned_reason": reason,
+        "candidate_rank": rank,
+        "cheap_screen_score": cheap_score,
+    }
+    enrich_node_from_proposal(node, proposal, config_path, name)
+    tree["nodes"][name] = node
+    tree["nodes"][parent].setdefault("children", []).append(name)
+
+
+def cheap_screen_score(proposal: dict[str, Any], missing_summary: dict[str, Any], duplicate_reason: str = "") -> dict[str, Any]:
+    scientific = proposal.get("scientific_selection", {}) or {}
+    blueprint = proposal.get("blueprint", {}) or {}
+    cost_class = str(blueprint.get("cost_class", "medium"))
+    cost_bonus = {"cheap": 0.08, "medium": 0.0, "expensive": -0.08}.get(cost_class, 0.0)
+    missing = list(missing_summary.get("missing_required_artifacts", []) or [])
+    missing_penalty = 1.25 if missing else 0.0
+    duplicate_penalty = 0.75 if duplicate_reason else 0.0
+    implementation_penalty = 0.06 if proposal.get("requires_implementation") else 0.0
+    structural_bonus = 0.05 if proposal.get("structural_relation") == "structural_variant" else -0.05
+    base = float(scientific.get("score", 0.0) or 0.0)
+    score = base + cost_bonus + structural_bonus - missing_penalty - duplicate_penalty - implementation_penalty
+    return {
+        "score": score,
+        "scientific_score": base,
+        "cost_class": cost_class,
+        "cost_bonus": cost_bonus,
+        "structural_bonus": structural_bonus,
+        "missing_penalty": missing_penalty,
+        "duplicate_penalty": duplicate_penalty,
+        "implementation_penalty": implementation_penalty,
+        "missing_required_artifacts": missing,
+        "duplicate_reason": duplicate_reason,
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen",
+    }
+
+
 def train_roots(root_configs: list[Path], run_dir: Path, tree: dict[str, Any], max_epochs: int | None) -> None:
     for root_config in root_configs:
         config = read_json(root_config)
@@ -258,18 +316,89 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         proposal = None
         child_name = ""
         duplicate_skips: list[dict[str, Any]] = []
-        for duplicate_attempt in range(1, args.max_duplicate_proposal_attempts + 1):
+        proposal_candidates: list[dict[str, Any]] = []
+        pool_attempts = max(args.max_duplicate_proposal_attempts, args.candidate_pool_size)
+        for duplicate_attempt in range(1, pool_attempts + 1):
             child_index = len(parent_node.get("children", [])) + duplicate_attempt
             candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space, search_memory=memory)
-            duplicate, reason = is_duplicate_proposal(memory, parent_name, str(candidate_proposal.get("strategy", "")), args.max_blueprint_repeats, allow_parent_duplicate=args.allow_parent_duplicate_blueprints)
+            strategy = str(candidate_proposal.get("strategy", ""))
+            duplicate, reason = is_duplicate_proposal(memory, parent_name, strategy, args.max_blueprint_repeats, allow_parent_duplicate=args.allow_parent_duplicate_blueprints)
+            missing_summary = summarize_missing_requirements(registry_audit, strategy)
+            candidate_proposal["strict_artifact_mode"] = not args.allow_missing_artifact_fallbacks
+            candidate_proposal["missing_required_artifacts"] = missing_summary.get("missing_required_artifacts", [])
+            candidate_proposal["missing_required_artifact_paths"] = missing_summary.get("missing_required_artifact_paths", [])
+            candidate_proposal["candidate_pool_iteration"] = iteration
+            candidate_proposal["candidate_pool_parent"] = parent_name
+            candidate_proposal["duplicate_screen"] = {"is_duplicate": duplicate, "reason": reason}
+            candidate_proposal["cheap_screen_score"] = cheap_screen_score(candidate_proposal, missing_summary, reason if duplicate else "")
+            proposal_candidates.append({
+                "config": candidate_config,
+                "proposal": candidate_proposal,
+                "missing_summary": missing_summary,
+                "duplicate": duplicate,
+                "duplicate_reason": reason,
+                "score": candidate_proposal["cheap_screen_score"],
+            })
             if duplicate and not args.force_blueprint:
-                duplicate_skips.append({"child": candidate_config.get("node_name"), "strategy": candidate_proposal.get("strategy"), "reason": reason})
-                record_event(run_dir, "duplicate_proposal_skipped", {"iteration": iteration, "parent": parent_name, **duplicate_skips[-1]})
-                continue
-            child_config, proposal = candidate_config, candidate_proposal
-            break
+                duplicate_skips.append({"child": candidate_config.get("node_name"), "strategy": strategy, "reason": reason})
+                record_event(run_dir, "duplicate_proposal_screened", {"iteration": iteration, "parent": parent_name, **duplicate_skips[-1]})
+            if len(proposal_candidates) >= args.candidate_pool_size and (args.candidate_pool_size > 1 or not duplicate or args.force_blueprint):
+                break
+
+        if proposal_candidates:
+            proposal_candidates.sort(key=lambda item: float(item["score"].get("score", 0.0)), reverse=True)
+            selected_index = 0
+            if not args.force_blueprint:
+                for idx, item in enumerate(proposal_candidates):
+                    if not item["duplicate"]:
+                        selected_index = idx
+                        break
+            if not args.force_blueprint and all(item["duplicate"] for item in proposal_candidates):
+                selected = None
+            else:
+                selected = proposal_candidates[selected_index]
+            if selected is not None:
+                child_config = selected["config"]
+                proposal = selected["proposal"]
+                proposal["candidate_pool_selected"] = True
+                proposal["candidate_pool_rank"] = selected_index + 1
+                proposal["candidate_pool_size"] = len(proposal_candidates)
+                proposal["candidate_pool_policy"] = "generate_many_prune_before_training"
+                proposal["candidate_pool_summary"] = [
+                {
+                    "rank": rank,
+                    "node": item["config"].get("node_name"),
+                    "strategy": item["proposal"].get("strategy"),
+                    "score": item["score"],
+                    "selected": rank == selected_index + 1,
+                }
+                for rank, item in enumerate(proposal_candidates, start=1)
+                ]
+
+            for rank, item in enumerate(proposal_candidates, start=1):
+                cand_config = item["config"]
+                cand_proposal = item["proposal"]
+                cand_name = str(cand_config["node_name"])
+                cand_config_path = proposal_dir / f"{cand_name}.json"
+                cand_proposal_path = proposal_dir / f"{cand_name}.proposal.json"
+                cand_proposal["mcts_selected_parent"] = parent_name
+                cand_proposal["mcts_selection_policy"] = args.selection_policy
+                cand_proposal["mcts_candidates"] = scored[: min(8, len(scored))]
+                cand_proposal["candidate_pool_rank"] = rank
+                cand_proposal["candidate_pool_size"] = len(proposal_candidates)
+                cand_proposal["candidate_pool_selected"] = selected is not None and rank == selected_index + 1
+                cand_proposal["candidate_pool_policy"] = "generate_many_prune_before_training"
+                write_json(cand_config_path, cand_config)
+                write_json(cand_proposal_path, cand_proposal)
+                if selected is None or rank != selected_index + 1:
+                    reason = "lower cheap-screen rank; not selected for rollout training"
+                    if item["duplicate"]:
+                        reason = f"duplicate proposal pruned before training: {item['duplicate_reason']}"
+                    add_pruned_node(tree, cand_name, cand_config_path, parent_name, iteration, cand_proposal, reason, rank, item["score"])
+                    append_mcts_trace(run_dir, {"event": "proposal_pruned", "iteration": iteration, "selected_parent": parent_name, "child": cand_name, "chosen_blueprint": cand_proposal.get("strategy"), "candidate_rank": rank, "cheap_screen_score": item["score"], "reason": reason})
+
         if child_config is None or proposal is None:
-            tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "event": "all_candidate_blueprints_duplicate", "skips": duplicate_skips})
+            tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "event": "no_candidate_selected_after_proposal_screen", "skips": duplicate_skips})
             no_improve += 1
             write_tree_and_failures(run_dir, tree, failures)
             continue
@@ -376,6 +505,7 @@ def main() -> None:
     parser.add_argument("--max-blueprint-repeats", type=int, default=2, help="Global repeat limit per blueprint; -1 disables the global duplicate guard.")
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true", help="Allow the same parent to generate the same blueprint more than once.")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8, help="How many candidate blueprints to try before skipping an iteration as duplicate-only.")
+    parser.add_argument("--candidate-pool-size", type=int, default=1, help="Generate this many proposal candidates per selected parent, cheap-screen them, and train only the selected rollout candidate. Values >1 create pruned_not_selected nodes for untrained proposals.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:
