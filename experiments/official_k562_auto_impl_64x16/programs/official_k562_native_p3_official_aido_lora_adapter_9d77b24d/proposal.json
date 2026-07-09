@@ -1,0 +1,98 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_native_public_best_reimplementation",
+  "child": "official_k562_native_p3_official_aido_lora_adapter_9d77b24d",
+  "strategy": "official_aido_lora_adapter",
+  "blueprint": {
+    "id": "official_aido_lora_adapter",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "foundation_model_finetuning",
+    "paper_family": "AIDO_adapter",
+    "change_level": 5,
+    "role": "Use AIDO.Cell-100M as the backbone with frozen parameters plus LoRA/adapters and a DEG classification head.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_notes": "Codex agent must implement a node-local model or native wrapper that loads AIDO.Cell-100M and documents frozen/trainable parameter groups.",
+    "acceptance": [
+      "Loads /home/Models/AIDO.Cell-100M",
+      "No random replacement for AIDO",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Use AIDO.Cell-100M as the backbone with frozen parameters plus LoRA/adapters and a DEG classification head.",
+  "changes": [
+    "program_model:custom_program->official_aido_lora_adapter",
+    "blueprint_status:implemented",
+    "custom_model_path:experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d",
+  "program_model_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_aido_lora_adapter",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.72,
+    "base": 0.92,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "AIDO_adapter",
+    "family_count": 0
+  },
+  "structural_signature": "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1",
+  "parent_structural_signature": "88ddc70507102e18524a2dc42f80e44f04a540fb",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_aido_lora_adapter_9d77b24d/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_aido_cell_100m_model_dir"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

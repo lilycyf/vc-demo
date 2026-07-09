@@ -1,0 +1,47 @@
+{
+  "items": [
+    {
+      "node": "official_k562_native_p6_official_target_graph_conditioned_head_445330d7",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p6_official_target_graph_conditioned_head_445330d7",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p6_official_target_graph_conditioned_head_445330d7/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.38685163855552673,
+        "test_macro_f1": 0.4465043246746063
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p6_official_target_graph_conditioned_head_445330d7",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p6_official_target_graph_conditioned_head_445330d7/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p6_official_target_graph_conditioned_head_445330d7/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p6_official_target_graph_conditioned_head_445330d7",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    }
+  ],
+  "trained": true,
+  "repair_attempts": 3,
+  "repair_log": "experiments/official_k562_auto_impl_64x16/repair_log.jsonl",
+  "agent_decision_trace": "experiments/official_k562_auto_impl_64x16/agent_decision_trace.jsonl"
+}

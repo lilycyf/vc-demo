@@ -1,0 +1,298 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_native_p2_official_string_gnn_attention_c7b091ac",
+  "child": "official_k562_native_p3_official_string_neighborhood_attention_68e48066",
+  "strategy": "official_string_neighborhood_attention",
+  "blueprint": {
+    "id": "official_string_neighborhood_attention",
+    "status": "planned",
+    "official_k562": true,
+    "category": "graph_prior",
+    "paper_family": "STRING_neighborhood_attention",
+    "change_level": 5,
+    "role": "Apply K-hop STRING neighborhood attention around perturbed and target genes.",
+    "requires": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex implements attention over real graph neighborhoods with missing genes handled by self loops only.",
+    "acceptance": [
+      "Reports K and attention heads",
+      "No fake graph edges",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Apply K-hop STRING neighborhood attention around perturbed and target genes.",
+  "changes": [
+    "program_model:custom_program->official_string_neighborhood_attention",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066",
+  "program_model_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_string_neighborhood_attention",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.54,
+    "base": 0.94,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "STRING_neighborhood_attention",
+    "family_count": 0
+  },
+  "structural_signature": "91ae899c274c46ad0ef6bd5bfe4e30045e44db02",
+  "parent_structural_signature": "c095311789cedc0e8615880ade41302ae796fcfe",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_auto_impl_64x16/programs/official_k562_native_p3_official_string_neighborhood_attention_68e48066/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [],
+  "missing_required_artifact_paths": [],
+  "candidate_pool_iteration": 2,
+  "candidate_pool_parent": "official_k562_native_p2_official_string_gnn_attention_c7b091ac",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": 1.53,
+    "scientific_score": 1.54,
+    "cost_class": "medium",
+    "cost_bonus": 0.0,
+    "structural_bonus": 0.05,
+    "missing_penalty": 0.0,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "candidate_pool_selected": true,
+  "candidate_pool_rank": 1,
+  "candidate_pool_size": 4,
+  "candidate_pool_policy": "generate_many_prune_before_training",
+  "candidate_pool_summary": [
+    {
+      "rank": 1,
+      "node": "official_k562_native_p3_official_string_neighborhood_attention_68e48066",
+      "strategy": "official_string_neighborhood_attention",
+      "score": {
+        "score": 1.53,
+        "scientific_score": 1.54,
+        "cost_class": "medium",
+        "cost_bonus": 0.0,
+        "structural_bonus": 0.05,
+        "missing_penalty": 0.0,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "node": "official_k562_native_p2_official_aido_string_cross_attention_a9d31401",
+      "strategy": "official_aido_string_cross_attention",
+      "score": {
+        "score": 1.49,
+        "scientific_score": 1.58,
+        "cost_class": "expensive",
+        "cost_bonus": -0.08,
+        "structural_bonus": 0.05,
+        "missing_penalty": 0.0,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": false
+    },
+    {
+      "rank": 3,
+      "node": "official_k562_native_p4_official_class_imbalance_training_306c7695",
+      "strategy": "official_class_imbalance_training",
+      "score": {
+        "score": 0.41999999999999993,
+        "scientific_score": 1.5399999999999998,
+        "cost_class": "cheap",
+        "cost_bonus": 0.08,
+        "structural_bonus": 0.05,
+        "missing_penalty": 1.25,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.0,
+        "missing_required_artifacts": [
+          "class_distribution"
+        ],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": false
+    },
+    {
+      "rank": 4,
+      "node": "official_k562_native_p1_official_pathway_pooling_reactome_a3a9a35d",
+      "strategy": "official_pathway_pooling_reactome",
+      "score": {
+        "score": 0.37999999999999995,
+        "scientific_score": 1.64,
+        "cost_class": "medium",
+        "cost_bonus": 0.0,
+        "structural_bonus": 0.05,
+        "missing_penalty": 1.25,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [
+          "pathway_memberships"
+        ],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": false
+    }
+  ],
+  "mcts_selected_parent": "official_k562_native_p2_official_string_gnn_attention_c7b091ac",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_native_p2_official_string_gnn_attention_c7b091ac",
+      "policy": "uct",
+      "score": 2.335105676089082,
+      "uct": 2.335105676089082,
+      "puct": null,
+      "q": 0.44208720326423645,
+      "Q_v": 0.44208720326423645,
+      "exploitation": 0.44208720326423645,
+      "Exploitation": 0.44208720326423645,
+      "exploration": 1.8930184728248456,
+      "Exploration": 1.8930184728248456,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 6,
+      "children": 0,
+      "best_val_macro_f1": 0.44208720326423645,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "policy": "uct",
+      "score": 2.293766487274919,
+      "uct": 2.293766487274919,
+      "puct": null,
+      "q": 0.40074801445007324,
+      "Q_v": 0.40074801445007324,
+      "exploitation": 0.40074801445007324,
+      "Exploitation": 0.40074801445007324,
+      "exploration": 1.8930184728248456,
+      "Exploration": 1.8930184728248456,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 6,
+      "children": 0,
+      "best_val_macro_f1": 0.40074801445007324,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 2.2853104955299237,
+      "uct": 2.2853104955299237,
+      "puct": null,
+      "q": 0.3922920227050781,
+      "Q_v": 0.3922920227050781,
+      "exploitation": 0.3922920227050781,
+      "Exploitation": 0.3922920227050781,
+      "exploration": 1.8930184728248456,
+      "Exploration": 1.8930184728248456,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 6,
+      "children": 0,
+      "best_val_macro_f1": 0.3922920227050781,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_public_best_node2_1_1_1_1_1_smoke",
+      "policy": "uct",
+      "score": 2.2266028112514356,
+      "uct": 2.2266028112514356,
+      "puct": null,
+      "q": 0.33358433842658997,
+      "Q_v": 0.33358433842658997,
+      "exploitation": 0.33358433842658997,
+      "Exploitation": 0.33358433842658997,
+      "exploration": 1.8930184728248456,
+      "Exploration": 1.8930184728248456,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 6,
+      "children": 0,
+      "best_val_macro_f1": 0.33358433842658997,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_native_public_best_reimplementation",
+      "policy": "uct",
+      "score": 1.7762072385365502,
+      "uct": 1.7762072385365502,
+      "puct": null,
+      "q": 0.43764103949069977,
+      "Q_v": 0.8752820789813995,
+      "exploitation": 0.43764103949069977,
+      "Exploitation": 0.43764103949069977,
+      "exploration": 1.3385661990458504,
+      "Exploration": 1.3385661990458504,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 6,
+      "children": 4,
+      "best_val_macro_f1": 0.4331948757171631,
+      "stage": "draft"
+    }
+  ]
+}
