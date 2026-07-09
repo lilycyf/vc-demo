@@ -40,7 +40,9 @@ def main() -> None:
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
     parser.add_argument("--official-blueprint-space", action="store_true", default=False)
     parser.add_argument("--strict-artifacts", action="store_true", default=True)
-    parser.add_argument("--enable-repair-loop", action="store_true", help="Accepted for paper-level runbooks; native smoke gate is always enabled for custom programs in this harness.")
+    parser.add_argument("--enable-repair-loop", action="store_true", help="Compatibility alias for --enable-implementation-loop.")
+    parser.add_argument("--enable-implementation-loop", action="store_true", help="Automatically materialize selected planned nodes, run native smoke, train_pending, and repair-log failures.")
+    parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum attempts for compile/native-smoke/train repair in the automatic implementation loop.")
     parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
@@ -90,6 +92,8 @@ def main() -> None:
         seed=args.seed,
         allow_planned_blueprints=args.allow_planned_blueprints,
         max_pending_implementations=args.max_pending_implementations,
+        enable_implementation_loop=bool(args.enable_implementation_loop or args.enable_repair_loop),
+        implementation_repair_attempts=args.implementation_repair_attempts,
         force_blueprint=args.force_blueprint or None,
         artifact_registry=args.registry,
         artifact_aware_blueprint_policy=False,

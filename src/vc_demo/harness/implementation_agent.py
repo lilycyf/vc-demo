@@ -3,15 +3,55 @@ from __future__ import annotations
 import argparse
 import json
 import py_compile
+import time
 import traceback
 from pathlib import Path
 from typing import Any
 
 from vc_demo.harness.model_blueprints import blueprint_by_id
+from vc_demo.harness.native_program_smoke import smoke_config
 from vc_demo.harness.program_agent import render_program_source
 from vc_demo.harness.search_memory import record_event
 from vc_demo.harness.state import read_json, write_json
 from vc_demo.harness.train_pending import train_pending_node
+
+
+
+OFFICIAL_NATIVE_VARIANT_BY_BLUEPRINT = {
+    "official_aido_full_finetune": "aido_lora_adapter",
+    "official_aido_topk_layer_tuning": "aido_lora_adapter",
+    "official_aido_cached_embedding_fusion": "aido_lora_adapter",
+    "official_string_gnn_frozen_cache": "string_gnn_attention",
+    "official_string_gnn_full_finetune": "string_gnn_attention",
+    "official_string_neighborhood_attention": "string_gnn_attention",
+    "official_string_laplacian_smoothing": "string_gnn_attention",
+    "official_aido_string_concat_fusion": "aido_string_fusion",
+    "official_aido_string_gated_fusion": "aido_string_fusion",
+    "official_aido_string_cross_attention": "aido_string_fusion",
+    "official_aido_string_bilinear_fusion": "aido_string_fusion",
+    "official_multimodal_mixture_of_experts": "aido_string_fusion",
+    "official_target_low_rank_head": "target_gene_head",
+    "official_target_bilinear_head": "target_gene_head",
+    "official_target_graph_conditioned_head": "string_gnn_attention",
+    "official_weighted_ce_training": "target_gene_head",
+    "official_focal_loss_training": "target_gene_head",
+    "official_layerwise_lr_schedule": "aido_lora_adapter",
+    "official_temperature_calibrated_head": "target_gene_head",
+    "official_gene_dropout_augmentation": "target_gene_head",
+}
+
+
+def _official_native_program_source(blueprint_id: str) -> str:
+    variant = OFFICIAL_NATIVE_VARIANT_BY_BLUEPRINT[blueprint_id]
+    return (
+        "from __future__ import annotations\n\n"
+        "from vc_demo.official_k562.native_models import OfficialK562NativeModel\n\n\n"
+        "class GeneratedModel(OfficialK562NativeModel):\n"
+        f"    implementation_blueprint = {blueprint_id!r}\n"
+        f"    native_variant = {variant!r}\n\n"
+        "    def __init__(self, spec):\n"
+        f"        super().__init__(spec, variant={variant!r})\n"
+    )
 
 
 def _generic_program_source(blueprint_id: str) -> str:
@@ -33,13 +73,17 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
         source_kind = "harness_implemented_template"
     except Exception:
         try:
-            source = _generic_program_source(strategy)
-            source_kind = "implementation_agent_template"
+            source = _official_native_program_source(strategy)
+            source_kind = "implementation_agent_official_native_proxy"
         except KeyError:
-            request = program_dir / "IMPLEMENTATION_REQUEST.md"
-            task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
-            task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path)}
+            try:
+                source = _generic_program_source(strategy)
+                source_kind = "implementation_agent_template"
+            except KeyError:
+                request = program_dir / "IMPLEMENTATION_REQUEST.md"
+                task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
+                task.write_text(render_codex_task(strategy, request), encoding="utf-8")
+                return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path)}
     model_path.write_text(source, encoding="utf-8")
     py_compile.compile(str(model_path), doraise=True)
     return {"status": "implemented", "strategy": strategy, "source_kind": source_kind, "model_path": str(model_path)}
@@ -63,6 +107,45 @@ def render_codex_task(strategy: str, request_path: Path) -> str:
     ]) + "\n"
 
 
+def append_jsonl(path: Path, row: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(row, sort_keys=True) + "\n")
+
+
+def node_tree_record(run_dir: Path, node_name: str) -> tuple[dict[str, Any], dict[str, Any]]:
+    tree_path = run_dir / "tree.json"
+    tree = read_json(tree_path)
+    try:
+        node = tree["nodes"][node_name]
+    except KeyError as exc:
+        raise KeyError(f"node {node_name!r} not found in {tree_path}") from exc
+    return tree, node
+
+
+def pending_missing_artifacts(program_dir: Path, item: dict[str, Any]) -> list[str]:
+    missing: list[str] = []
+    contract_path = Path(str(item.get("artifact_contract_path") or program_dir / "artifact_contract.json"))
+    if contract_path.exists():
+        contract = read_json(contract_path)
+        missing.extend(str(x) for x in contract.get("missing_required_artifacts", []) or [])
+    missing.extend(str(x) for x in item.get("missing_required_artifacts", []) or [])
+    return sorted(set(x for x in missing if x))
+
+
+def mark_node_failed(run_dir: Path, node_name: str, error: str, strategy: str, stage: str, attempts: list[dict[str, Any]]) -> None:
+    tree_path = run_dir / "tree.json"
+    tree = read_json(tree_path)
+    node = tree.get("nodes", {}).get(node_name)
+    if node:
+        node.update({"status": "failed", "error": error, "failure_stage": stage, "implementation_attempts": attempts, "requires_implementation": False})
+    failures_path = run_dir / "failures.json"
+    failures = read_json(failures_path).get("failures", []) if failures_path.exists() else []
+    failures.append({"node": node_name, "error": error, "strategy": strategy, "stage": stage, "attempts": attempts})
+    write_json(tree_path, tree)
+    write_json(failures_path, {"failures": failures})
+
+
 def pending_nodes(run_dir: Path) -> list[dict[str, Any]]:
     queue_path = run_dir / "implementation_queue.json"
     if not queue_path.exists():
@@ -71,39 +154,73 @@ def pending_nodes(run_dir: Path) -> list[dict[str, Any]]:
     return list(payload.get("items", []))
 
 
-def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool = False, max_epochs: int | None = None, repair_attempts: int = 1) -> dict[str, Any]:
+def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool = False, max_epochs: int | None = None, repair_attempts: int = 3) -> dict[str, Any]:
     items = pending_nodes(run_dir)
     if max_nodes is not None:
         items = items[:max_nodes]
     results: list[dict[str, Any]] = []
+    repair_log = run_dir / "repair_log.jsonl"
+    decision_trace = run_dir / "agent_decision_trace.jsonl"
     for item in items:
         node = str(item.get("node"))
         strategy = str(item.get("strategy"))
         program_dir = Path(str(item.get("program_dir")))
+        result: dict[str, Any] = {"node": node, "strategy": strategy, "program_dir": str(program_dir), "policy": "strict_auto_materialize_smoke_train"}
         attempt_rows: list[dict[str, Any]] = []
-        result: dict[str, Any] = {"node": node, "strategy": strategy, "program_dir": str(program_dir)}
+        missing = pending_missing_artifacts(program_dir, item)
+        append_jsonl(decision_trace, {"time": time.time(), "event": "implementation_selected", "node": node, "strategy": strategy, "missing_required_artifacts": missing})
+        if missing:
+            result.update({"status": "blocked_missing_artifact", "missing_required_artifacts": missing})
+            attempt_rows.append({"attempt": 0, "stage": "artifact_gate", "status": "blocked", "missing_required_artifacts": missing})
+            results.append({**result, "attempts": attempt_rows})
+            append_jsonl(repair_log, {"time": time.time(), "node": node, "strategy": strategy, "stage": "artifact_gate", "status": "blocked", "missing_required_artifacts": missing})
+            record_event(run_dir, "implementation_agent", {**result, "attempts": attempt_rows})
+            continue
         for attempt in range(1, repair_attempts + 1):
+            row: dict[str, Any] = {"attempt": attempt, "node": node, "strategy": strategy}
             try:
                 impl = materialize_model(program_dir, strategy)
-                attempt_rows.append({"attempt": attempt, **impl})
+                row.update({"stage": "materialize", **impl})
+                attempt_rows.append(row)
+                append_jsonl(repair_log, {"time": time.time(), **row})
                 result.update(impl)
                 if impl["status"] != "implemented":
+                    append_jsonl(decision_trace, {"time": time.time(), "event": "requires_external_codex", "node": node, "strategy": strategy, "task_path": impl.get("task_path")})
                     break
+                model_path = Path(str(impl["model_path"]))
+                py_compile.compile(str(model_path), doraise=True)
+                tree, tree_node = node_tree_record(run_dir, node)
+                config_path = Path(str(tree_node["config"]))
+                config = read_json(config_path)
+                smoke = smoke_config(config)
+                smoke_path = program_dir / f"native_smoke_attempt_{attempt}.json"
+                write_json(smoke_path, smoke)
+                smoke_row = {"attempt": attempt, "stage": "native_smoke", "status": "passed", "smoke_path": str(smoke_path), **smoke}
+                attempt_rows.append(smoke_row)
+                append_jsonl(repair_log, {"time": time.time(), "node": node, "strategy": strategy, **smoke_row})
                 if train:
                     trained = train_pending_node(run_dir, node, max_epochs=max_epochs)
-                    result["training"] = {"status": "trained", "best_val_macro_f1": trained["metrics"].get("best_val_macro_f1"), "test_macro_f1": trained["metrics"].get("test_macro_f1")}
+                    metrics = trained["metrics"]
+                    result["training"] = {"status": "trained", "best_val_macro_f1": metrics.get("best_val_macro_f1"), "test_macro_f1": metrics.get("test_macro_f1")}
+                    append_jsonl(decision_trace, {"time": time.time(), "event": "trained_and_backpropagated", "node": node, "strategy": strategy, "best_val_macro_f1": metrics.get("best_val_macro_f1"), "test_macro_f1": metrics.get("test_macro_f1")})
+                result["status"] = "trained" if train else "implemented"
                 break
             except Exception as exc:
-                attempt_rows.append({"attempt": attempt, "status": "failed", "error": "".join(traceback.format_exception_only(type(exc), exc)).strip(), "traceback": traceback.format_exc()[-8000:]})
-                result.update({"status": "failed", "error": attempt_rows[-1]["error"]})
+                error = "".join(traceback.format_exception_only(type(exc), exc)).strip()
+                fail_row = {"attempt": attempt, "stage": "repairable_failure", "status": "failed", "error": error, "traceback": traceback.format_exc()[-8000:]}
+                attempt_rows.append(fail_row)
+                append_jsonl(repair_log, {"time": time.time(), "node": node, "strategy": strategy, **fail_row})
+                result.update({"status": "failed", "error": error})
+                if attempt >= repair_attempts:
+                    mark_node_failed(run_dir, node, error, strategy, "implementation_loop", attempt_rows)
+                    append_jsonl(decision_trace, {"time": time.time(), "event": "implementation_failed", "node": node, "strategy": strategy, "error": error})
         result["attempts"] = attempt_rows
         results.append(result)
         record_event(run_dir, "implementation_agent", result)
-    report = {"items": results, "trained": train}
+    report = {"items": results, "trained": train, "repair_attempts": repair_attempts, "repair_log": str(repair_log), "agent_decision_trace": str(decision_trace)}
     write_json(run_dir / "implementation_agent_report.json", report)
     print(json.dumps(report, indent=2))
     return report
-
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Materialize pending node-local model.py files and optionally train them.")
@@ -111,7 +228,7 @@ def main() -> None:
     parser.add_argument("--max-nodes", type=int, default=None)
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--max-epochs", type=int, default=None)
-    parser.add_argument("--repair-attempts", type=int, default=1)
+    parser.add_argument("--repair-attempts", type=int, default=3)
     args = parser.parse_args()
     implement_pending(args.run_dir, args.max_nodes, args.train, args.max_epochs, args.repair_attempts)
 

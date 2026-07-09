@@ -9,6 +9,7 @@ from typing import Any
 
 from vc_demo.harness.artifact_registry import audit_registry, load_registry, summarize_missing_requirements
 from vc_demo.harness.executor import run_node
+from vc_demo.harness.implementation_agent import implement_pending
 from vc_demo.harness.mcts import backpropagate, select_parent
 from vc_demo.harness.program_agent import propose_program_child
 from vc_demo.harness.report import write_summary
@@ -492,8 +493,35 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         if proposal.get("requires_implementation"):
             add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
             pending_count += 1
-            append_mcts_trace(run_dir, {"event": "pending_implementation", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "scientific_selection": proposal.get("scientific_selection", {}), "structural_relation": proposal.get("structural_relation", ""), "implementation_request_path": proposal.get("implementation_request_path"), "artifact_contract_path": proposal.get("artifact_contract_path"), "smoke_contract_path": proposal.get("smoke_contract_path"), "parent_summary_path": proposal.get("parent_summary_path")})
+            append_mcts_trace(run_dir, {"event": "pending_implementation", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "scientific_selection": proposal.get("scientific_selection", {}), "structural_relation": proposal.get("structural_relation", ""), "implementation_request_path": proposal.get("implementation_request_path"), "artifact_contract_path": proposal.get("artifact_contract_path"), "smoke_contract_path": proposal.get("smoke_contract_path"), "parent_summary_path": proposal.get("parent_summary_path"), "auto_loop_enabled": bool(args.enable_implementation_loop)})
             write_tree_and_failures(run_dir, tree, failures)
+            if args.enable_implementation_loop:
+                append_mcts_trace(run_dir, {"event": "implementation_loop_start", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "repair_attempts": args.implementation_repair_attempts})
+                implementation_report = implement_pending(run_dir, max_nodes=1, train=True, max_epochs=args.max_epochs, repair_attempts=args.implementation_repair_attempts)
+                tree = read_json(run_dir / "tree.json")
+                failures = read_json(run_dir / "failures.json").get("failures", []) if (run_dir / "failures.json").exists() else []
+                memory = rebuild_memory_from_tree(run_dir, tree, failures)
+                pending_count = len(implementation_queue(tree))
+                item = (implementation_report.get("items") or [{}])[0]
+                append_mcts_trace(run_dir, {"event": "implementation_loop_result", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "status": item.get("status"), "training": item.get("training"), "attempt_count": len(item.get("attempts", [])), "repair_log": implementation_report.get("repair_log"), "agent_decision_trace": implementation_report.get("agent_decision_trace")})
+                if item.get("status") == "trained":
+                    trained_rollouts += 1
+                    val = float((item.get("training") or {}).get("best_val_macro_f1", -1.0) or -1.0)
+                    if val > best_val + args.min_delta:
+                        best_val = val
+                        no_improve = 0
+                    else:
+                        no_improve += 1
+                    write_tree_and_failures(run_dir, tree, failures)
+                    if trained_node_budget is not None and trained_rollouts >= trained_node_budget:
+                        stop_reason = f"trained-node budget exhausted ({trained_rollouts}/{trained_node_budget})"
+                        break
+                    continue
+                if item.get("status") == "failed":
+                    no_improve += 1
+                    write_tree_and_failures(run_dir, tree, failures)
+                    continue
+                write_tree_and_failures(run_dir, tree, failures)
             if pending_count >= args.max_pending_implementations:
                 stop_reason = f"pending implementation limit reached ({pending_count})"
                 break
@@ -564,6 +592,8 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=11)
     parser.add_argument("--allow-planned-blueprints", action="store_true")
     parser.add_argument("--max-pending-implementations", type=int, default=1)
+    parser.add_argument("--enable-implementation-loop", action="store_true", help="Automatically materialize selected planned nodes, run native smoke, train_pending, and repair-log failures before returning to MCTS.")
+    parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum compile/native-smoke/train repair attempts for the automatic implementation loop.")
     parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--artifact-registry", type=Path, default=None)
     parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Prefer executable blueprints whose required artifacts are already present before blueprints that would trigger acquisition.")

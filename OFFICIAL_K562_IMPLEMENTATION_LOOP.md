@@ -1,0 +1,115 @@
+# Official K562 Automatic Implementation Loop
+
+This repo now supports a stricter paper-aligned loop for selected planned nodes:
+
+1. MCTS selects a parent.
+2. The harness generates a proposal pool.
+3. Cheap-screening prunes unselected proposals before training.
+4. The selected planned proposal is materialized by the implementation loop.
+5. The loop runs compile and native forward/backward smoke.
+6. Only a smoke-passing node is trained with `train_pending`.
+7. Only a trained node backpropagates reward into MCTS.
+
+This is the preferred mode for official K562 paper-aligned runs. Do not manually train every proposal.
+
+## Strict Rules
+
+- No silent fallback.
+- Missing required artifacts must block/acquire; they must not be replaced by random or tabular stand-ins.
+- Failed implementation attempts do not backpropagate reward.
+- Pruned proposals are never trained.
+- Test metrics are reported only after training; they must not guide implementation or repair.
+- Generated native children must not inherit `external_static_node` backend from public static parents.
+- Generated native children must use stable official K562 cached embeddings when a public static parent lacks native feature config.
+
+## Main Flags
+
+Use these flags through `scripts/run_official_k562_harness_search.py`:
+
+```bash
+--enable-implementation-loop
+--implementation-repair-attempts 3
+--allow-planned-blueprints
+--strict-artifacts
+--candidate-pool-size 4
+--budget-proposals <N>
+--budget-trained-nodes <M>
+```
+
+`--enable-repair-loop` is kept as a compatibility alias for `--enable-implementation-loop` in the official wrapper.
+
+## Generated Logs
+
+The automatic loop writes:
+
+- `implementation_agent_report.json`
+- `repair_log.jsonl`
+- `agent_decision_trace.jsonl`
+- node-local `native_smoke_attempt_<n>.json`
+- normal `tree.json`, `mcts_trace.jsonl`, `implementation_queue.json`, `acquisition_queue.json`
+
+A successful selected planned node should move from `needs_implementation` to `trained`, and `implementation_queue.json` should return to empty unless the node genuinely requires external Codex work or artifact acquisition.
+
+## Acceptance For Smoke Runs
+
+A valid automatic-loop smoke should show:
+
+- `pending_implementations: 0`
+- `failures: 0` unless the purpose is a repair-failure test
+- `trained_rollouts_this_invocation > 0`
+- `pruned_not_selected > 0` when `candidate_pool_size > 1`
+- `repair_log.jsonl` exists
+- `agent_decision_trace.jsonl` contains `implementation_selected` and `trained_and_backpropagated`
+
+## Example Smoke
+
+```bash
+PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
+  --run-dir experiments/official_k562_auto_impl_smoke \
+  --experiment official_k562_auto_impl_smoke \
+  --root-configs configs/official_k562_root_aido_embedding_mlp.json \
+  --budget-proposals 2 \
+  --budget-trained-nodes 1 \
+  --candidate-pool-size 2 \
+  --max-epochs 1 \
+  --max-children 4 \
+  --stop-no-improve 4 \
+  --selection-policy uct \
+  --official-blueprint-space \
+  --allow-planned-blueprints \
+  --strict-artifacts \
+  --enable-implementation-loop \
+  --implementation-repair-attempts 3 \
+  --force-blueprint official_target_low_rank_head \
+  --reset
+```
+
+## Next Scale Test
+
+After the smoke passes, the next recommended run is:
+
+```bash
+PYTHONPATH=src python scripts/run_official_k562_harness_search.py \
+  --run-dir experiments/official_k562_auto_impl_64x16 \
+  --experiment official_k562_auto_impl_64x16 \
+  --root-configs \
+    configs/official_k562_root_aido_embedding_mlp.json \
+    configs/official_k562_root_aido_gnn_embedding_mlp.json \
+    configs/official_k562_native_public_best_reimplementation.json \
+    configs/official_k562_public_best_node_smoke.json \
+  --budget-proposals 64 \
+  --budget-trained-nodes 16 \
+  --candidate-pool-size 4 \
+  --max-epochs 1 \
+  --max-children 8 \
+  --stop-no-improve 12 \
+  --selection-policy uct \
+  --official-blueprint-space \
+  --allow-planned-blueprints \
+  --strict-artifacts \
+  --enable-implementation-loop \
+  --implementation-repair-attempts 3 \
+  --reset
+```
+
+Do not advance to 150/600+ proposal runs until this 64/16 run has clean implementation and repair logs.
