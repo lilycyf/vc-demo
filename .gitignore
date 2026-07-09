@@ -14,3 +14,8 @@ data/**
 !data/
 !data/README.md
 experiments/**/nodes/
+# Local smoke/output folders
+experiments/_*/
+experiments/**/checkpoints/
+experiments/**/*.ckpt
+experiments/**/*.pt

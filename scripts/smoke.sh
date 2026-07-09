@@ -2,7 +2,6 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
-python -m pip install -r requirements.txt
-python -m pip install -e .
-python -m vc_demo.mcts --tree experiments/smoke/tree.json --reset --steps 3 --max-epochs 1 --summary experiments/smoke/summary.md
-python -m vc_demo.train --config configs/root_regularized_mlp.json --output-dir experiments/nodes/root_regularized_mlp --max-epochs 2
+python -m compileall -q src scripts
+python scripts/audit_official_k562_paper_scale_search_space.py   --config configs/official_k562_paper_scale_search_space.json   --output-json /tmp/official_k562_paper_scale_search_space_audit.json   --output-md /tmp/official_k562_paper_scale_search_space_audit.md
+python -m vc_demo.harness.artifact_registry --cell-line K562

@@ -18,7 +18,7 @@ Before touching code or running experiments, read these files in order:
 3. `PAPER_LEVEL_SEARCH_SPACE_SPEC.md`
 4. `PUBLIC_ARTIFACT_ALIGNMENT.md`
 5. `CODEX_AGENT_OPERATING_RULES.md`
-6. the concrete task file supplied by the user, for example `TASK_K562_PROGRAM_SEARCH.md`
+6. the concrete task file or generated prompt supplied by the user
 
 ## Reusable Framework Files
 

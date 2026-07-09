@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "vc-demo"
 version = "0.1.0"
-description = "Minimal VCHarness-style one-cell-line demo scaffold"
+description = "Official K562 VCHarness-style automatic modeling harness"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.24",

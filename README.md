@@ -1,94 +1,84 @@
 # vc-demo
 
-A minimal, runnable scaffold for reproducing the *shape* of a VCHarness-style experiment on one cell line.
+`vc-demo` is now an official-K562-focused VCHarness-style harness. The current mainline is not the early synthetic demo; it is a single-cell-line automatic modeling loop for K562 CRISPR DEG classification with:
 
-This repository currently implements an A-level demo:
+- official K562 task/data contracts;
+- artifact registry and acquisition guardrails;
+- MCTS proposal pools with UCT-style selection;
+- on-demand Codex implementation for selected planned nodes;
+- strict no-fallback artifact behavior;
+- public VCHarness static-node wrapper and native public-best reimplementation paths.
 
-- a synthetic CRISPR perturbation response dataset with train/validation/test splits
-- a configurable perturbation-response model
-- a training entrypoint that writes metrics, checkpoints, and node memory
-- a small MCTS-style search driver that selects nodes, proposes child configs,
-  trains them, reads metrics, and backpropagates validation Macro-F1 into the tree
+## Current Entry Points
 
-It does **not** yet reproduce the paper's full 600+ model search or use the real GenBio foundation-model embeddings. Treat it as the controllable harness that a later Codex/agent window can extend.
-
-## Smoke test
-
-```bash
-bash scripts/smoke.sh
-```
-
-Expected outputs:
-
-- `experiments/nodes/root_mlp/metrics.json`
-- `experiments/nodes/root_regularized_mlp/metrics.json`
-- `experiments/tree.json`
-- proposed child configs under `experiments/proposals/`
-
-## Synthetic MCTS demo
-
-Run a clean cheap search with eight trained child candidates:
+Read these first for formal work:
 
 ```bash
-PYTHONPATH=src python -m vc_demo.mcts \
-  --tree experiments/tree.json \
-  --reset \
-  --steps 8 \
-  --max-epochs 2 \
-  --summary experiments/synthetic_mcts_summary.md
+cat OFFICIAL_K562_IMPLEMENTATION_LOOP.md
+cat ARTIFACT_ACQUISITION_RUNBOOK.md
+cat CODEX_AGENT_COOKBOOK.md
+cat docs/OFFICIAL_K562_GAP_CLOSING.md
 ```
 
-The committed demo summary is `experiments/synthetic_mcts_summary.md`. It lists
-each trained node's config, validation Macro-F1, test Macro-F1, and best-so-far
-curve. Checkpoints and per-node metrics remain local under `experiments/nodes/`.
-
-## Typical next step
-
-Replace `SyntheticPerturbationDataset` in `src/vc_demo/data.py` with a real one-cell-line perturbation dataset loader, then let the agent generate child configs and model variants while keeping the train/evaluate interface stable.
-
-## B-stage real cell-line scaffold
-
-The repo now includes a real-data interface without committing large biological files.
-Use `dataset_type: "real_npz"` to train on a local one-cell-line dataset laid out as
-`manifest.json` plus NPZ split files.
-
-Framework validation with a tiny generated fixture:
+Core command wrapper:
 
 ```bash
-python scripts/make_fake_real_dataset.py --data-dir data/cell_lines/k562_demo
-python scripts/validate_real_dataset.py --data-dir data/cell_lines/k562_demo
-python -m vc_demo.train \
-  --config configs/real_k562_demo_fixture.json \
-  --output-dir experiments/nodes/real_k562_demo_fixture \
-  --max-epochs 1
+PYTHONPATH=src python scripts/run_official_k562_harness_search.py --help
 ```
 
-Real K562 template:
+Generate a handoff prompt for an experiment Codex:
 
 ```bash
-python scripts/validate_real_dataset.py --data-dir data/cell_lines/k562
-python -m vc_demo.train \
-  --config configs/real_k562_template.json \
-  --output-dir experiments/nodes/real_k562_template_mlp \
-  --max-epochs 1
+python scripts/generate_codex_experiment_prompt.py \
+  --branch official-k562-gap-closing \
+  --experiment official_k562_formal_run \
+  --run-dir experiments/official_k562_formal_run \
+  --root-configs \
+    configs/official_k562_root_aido_embedding_mlp.json \
+    configs/official_k562_root_aido_gnn_embedding_mlp.json \
+    configs/official_k562_native_public_best_reimplementation.json \
+    configs/official_k562_public_best_node_smoke.json \
+  --budget-nodes 150 \
+  --max-epochs 1 \
+  --output /tmp/CODEX_EXPERIMENT_PROMPT.md
 ```
 
-See `data/README.md` and `B_REAL_CELLLINE_HANDOFF.md` for the data contract and
-handoff instructions.
+## Artifact Rule
 
-## C-stage feature upgrade
-
-The current real K562 demo uses one-hot perturbation features. This is enough to prove
-that the harness works on real cell-line data, but it is still below the paper's feature
-setting. The next upgrade is to keep the same `real_npz` labels/splits and replace
-`features` with biological perturbation features such as protein embeddings, STRING/GNN
-features, or concatenated multimodal embeddings.
-
-Start with:
+Formal runs do not train fallback models for missing foundation-model artifacts. If a selected node needs a missing artifact, the run creates `acquisition_queue.json`. The next action is active acquisition:
 
 ```bash
-cat C_EMBEDDING_FEATURES_HANDOFF.md
-python scripts/audit_real_dataset.py \
-  --data-dir data/cell_lines/k562 \
-  --output experiments/real_k562_dataset_audit.json
+python -m vc_demo.harness.artifact_acquisition \
+  --queue <run_dir>/acquisition_queue.json \
+  --registry configs/artifacts/k562_registry.json \
+  --sources configs/artifacts/acquisition_sources.json \
+  --cell-line K562 \
+  --output-dir <run_dir>/artifact_acquisition \
+  --execute-known
 ```
+
+If this creates `ACQUIRE_<artifact>.md`, follow it: search official/primary sources, download or build only source-backed artifacts, audit provenance/alignment, update the registry, and resume. Block only after acquisition fails with documented source or tensor-contract reasons.
+
+## Smoke Checks
+
+Cheap static checks:
+
+```bash
+python -m compileall -q src scripts
+python scripts/audit_official_k562_paper_scale_search_space.py \
+  --config configs/official_k562_paper_scale_search_space.json \
+  --output-json /tmp/official_k562_paper_scale_search_space_audit.json \
+  --output-md /tmp/official_k562_paper_scale_search_space_audit.md
+```
+
+Official K562 artifact audit, assuming artifacts are prepared on the RunPod volume:
+
+```bash
+python -m vc_demo.harness.artifact_registry --cell-line K562
+```
+
+## Repo Hygiene
+
+- Do not commit `data/`, model checkpoints, `experiments/**/nodes/`, pycache, egg-info, secrets, or large raw artifacts.
+- Commit formal run metadata only when intentionally requested: `tree.json`, summaries, queues, proposals, small audit JSON, and node-local source files.
+- Historical early-stage demo outputs have been removed from the mainline. Use git history if you need the old synthetic scaffold notes.

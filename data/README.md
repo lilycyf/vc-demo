@@ -1,95 +1,31 @@
-# Data Layout
+# Data And Artifacts
 
-Large biological data should stay out of Git. Put local one-cell-line datasets under:
-
-```text
-data/cell_lines/<cell_line>/
-```
-
-The B-stage loader currently supports compressed NumPy NPZ files plus a manifest.
-
-## Split-File Layout
-
-Preferred layout:
+Large biological data should stay out of ordinary commits. Formal K562 runs expect data and artifacts on the RunPod volume, typically under:
 
 ```text
-data/cell_lines/k562/
-  manifest.json
-  train.npz
-  val.npz
-  test.npz
+data/cell_lines/official_k562_cls/
+data/artifacts/official_k562/
+data/artifacts/string/
+data/artifacts/pathways/
+/home/Models/AIDO.Cell-100M
+/home/Models/STRING_GNN
 ```
 
-Each NPZ contains:
-
-- `features`: `float32` matrix shaped `[n_perturbations, n_features]`
-- `labels`: `int64` matrix shaped `[n_perturbations, n_target_genes]`
-
-Labels use the DEG classification convention:
-
-- `0`: down
-- `1`: unchanged
-- `2`: up
-
-Minimal `manifest.json`:
-
-```json
-{
-  "format": "npz",
-  "cell_line": "K562",
-  "task": "CRISPR_KO_DEG_classification",
-  "feature_key": "features",
-  "label_key": "labels",
-  "n_classes": 3,
-  "class_names": ["down", "unchanged", "up"],
-  "files": {
-    "train": "train.npz",
-    "val": "val.npz",
-    "test": "test.npz"
-  }
-}
-```
-
-## Single-File Layout
-
-Also supported:
-
-```text
-data/cell_lines/k562/
-  manifest.json
-  dataset.npz
-```
-
-The NPZ must include `features`, `labels`, and a string `split` array with values
-`train`, `val`, or `test`.
-
-```json
-{
-  "format": "npz",
-  "cell_line": "K562",
-  "feature_key": "features",
-  "label_key": "labels",
-  "split_key": "split",
-  "n_classes": 3,
-  "file": "dataset.npz"
-}
-```
-
-## Validate
+Use the registry audit to see what is present:
 
 ```bash
-python scripts/validate_real_dataset.py --data-dir data/cell_lines/k562
+python -m vc_demo.harness.artifact_registry --cell-line K562
 ```
 
-## Fixture
+Known source-backed acquisition rules live in:
 
-To verify the real-data code path without downloading biological data:
-
-```bash
-python scripts/make_fake_real_dataset.py --data-dir data/cell_lines/k562_demo
-python scripts/validate_real_dataset.py --data-dir data/cell_lines/k562_demo
-python -m vc_demo.train \
-  --config configs/real_k562_demo_fixture.json \
-  --output-dir experiments/nodes/real_k562_demo_fixture \
-  --max-epochs 1
+```text
+configs/artifacts/k562_registry.json
+configs/artifacts/acquisition_sources.json
+ARTIFACT_ACQUISITION_RUNBOOK.md
+ARTIFACT_ACQUISITION_AGENT_PROMPT.md
 ```
+
+If a strict run creates `acquisition_queue.json`, run the artifact acquisition resolver and follow the generated `ACQUIRE_<artifact>.md` task. Do not create random or proxy artifacts and mark them as real.
+
+The legacy `real_npz` loader still exists as an internal training substrate, but the current formal path is the official K562 TSV/H5AD contract built by `scripts/build_official_k562_task.py` and related official artifact scripts.
