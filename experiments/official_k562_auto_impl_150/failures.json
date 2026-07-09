@@ -1,0 +1,16 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_native_p8_official_scfoundation_top_layer_finetune_ba26b0e0",
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "missing_required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "missing_required_artifact_paths": [
+        "data/artifacts/scfoundation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,964 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-09T12:43:05.070539+00:00",
+  "updated_at": "2026-07-09T13:14:30.684100+00:00",
+  "events": [
+    {
+      "time": "2026-07-09T12:53:15.330537+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.35522904992103577,
+        "test_macro_f1": 0.38847407698631287
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1/native_smoke_attempt_1.json",
+          "node_name": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 2853332
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T12:54:29.504343+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.35587355494499207,
+        "test_macro_f1": 0.38593271374702454
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25/native_smoke_attempt_1.json",
+          "node_name": "official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 2787796
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T12:55:50.679114+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.40342727303504944,
+        "test_macro_f1": 0.43293139338493347
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T12:57:01.276481+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+      "strategy": "official_string_gnn_frozen_cache",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_p2_official_string_gnn_frozen_cache_38234ef6/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.3501366078853607,
+        "test_macro_f1": 0.4225049316883087
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+          "strategy": "official_string_gnn_frozen_cache",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_p2_official_string_gnn_frozen_cache_38234ef6/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_p2_official_string_gnn_frozen_cache_38234ef6/native_smoke_attempt_1.json",
+          "node_name": "official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 2853332
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T12:58:53.063698+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15",
+      "strategy": "official_aido_string_concat_fusion",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_concat_fusion_5570bf15",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_concat_fusion_5570bf15/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.4187873303890228,
+        "test_macro_f1": 0.44281622767448425
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15",
+          "strategy": "official_aido_string_concat_fusion",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_concat_fusion_5570bf15/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_concat_fusion_5570bf15/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T13:00:12.884899+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p2_official_target_low_rank_head_ae932f98",
+      "strategy": "official_target_low_rank_head",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_target_low_rank_head_ae932f98",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_target_low_rank_head_ae932f98/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.4028734862804413,
+        "test_macro_f1": 0.4313524663448334
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p2_official_target_low_rank_head_ae932f98",
+          "strategy": "official_target_low_rank_head",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_target_low_rank_head_ae932f98/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_target_low_rank_head_ae932f98/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p2_official_target_low_rank_head_ae932f98",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T13:01:30.588970+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p1_official_temperature_calibrated_head_ad83be07",
+      "strategy": "official_temperature_calibrated_head",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_temperature_calibrated_head_ad83be07",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_temperature_calibrated_head_ad83be07/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.4200270473957062,
+        "test_macro_f1": 0.44617006182670593
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p1_official_temperature_calibrated_head_ad83be07",
+          "strategy": "official_temperature_calibrated_head",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_temperature_calibrated_head_ad83be07/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_temperature_calibrated_head_ad83be07/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p1_official_temperature_calibrated_head_ad83be07",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T13:02:50.666923+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c",
+      "child": "official_k562_native_p2_official_aido_string_fusion_4ff632f4",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:02:51.080517+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c",
+      "child": "official_k562_native_p4_official_string_gnn_attention_8db070ee",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:03:59.183901+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66",
+      "child": "official_k562_native_p1_official_aido_lora_adapter_cd6e7f54",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:03:59.575917+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66",
+      "child": "official_k562_native_p3_official_target_gene_head_f22d5b45",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:03:59.773148+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66",
+      "child": "official_k562_native_p4_official_aido_string_fusion_6f862340",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:05:48.700629+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0",
+      "strategy": "official_aido_string_cross_attention",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.3822679817676544,
+        "test_macro_f1": 0.43853113055229187
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0",
+          "strategy": "official_aido_string_cross_attention",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T13:05:49.285694+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66",
+      "child": "official_k562_native_p5_official_aido_lora_adapter_3bcecf73",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "parent official_k562_native_p1_official_target_gene_head_46c4ee66 already expanded blueprint official_aido_lora_adapter"
+    },
+    {
+      "time": "2026-07-09T13:05:49.766362+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66",
+      "child": "official_k562_native_p7_official_aido_string_cross_attention_43c56efd",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "parent official_k562_native_p1_official_target_gene_head_46c4ee66 already expanded blueprint official_aido_string_cross_attention"
+    },
+    {
+      "time": "2026-07-09T13:07:28.145354+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.447020560503006,
+        "test_macro_f1": 0.4829195439815521
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T13:07:28.854044+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+      "child": "official_k562_native_p3_official_pathway_pooling_reactome_ade166c5",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:07:29.048873+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+      "child": "official_k562_native_p4_official_string_gnn_attention_9c8fcb57",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:09:04.868428+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.4180651605129242,
+        "test_macro_f1": 0.48237013816833496
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    },
+    {
+      "time": "2026-07-09T13:09:05.289531+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "child": "official_k562_native_p1_official_target_gene_head_3f327172",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:09:05.467670+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "child": "official_k562_native_p2_official_aido_string_fusion_1c5de481",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:27.188436+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p1_official_string_neighborhood_attention_32154c60",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:27.556583+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p2_official_class_imbalance_training_b58afcb4",
+      "strategy": "official_class_imbalance_training",
+      "reason": "blueprint official_class_imbalance_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:27.856606+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p3_official_pathway_pooling_reactome_89e22836",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:28.098558+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p4_official_string_gnn_attention_cc5f8148",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:28.971503+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p5_official_aido_lora_adapter_8493b1ef",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:29.266331+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p6_official_target_graph_conditioned_head_1465dc85",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "blueprint official_target_graph_conditioned_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-09T13:14:29.560405+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "child": "official_k562_native_p7_official_aido_string_cross_attention_2f81e817",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    }
+  ],
+  "blueprint_counts": {
+    "official_target_gene_head": 4,
+    "official_aido_string_fusion": 5,
+    "official_aido_lora_adapter": 5,
+    "official_string_gnn_attention": 5,
+    "official_aido_string_cross_attention": 4,
+    "official_class_imbalance_training": 3,
+    "official_pathway_pooling_reactome": 4,
+    "official_string_neighborhood_attention": 3,
+    "official_public_best_node": 2,
+    "official_regulatory_network_prior": 2,
+    "official_focal_loss_training": 2,
+    "official_target_graph_conditioned_head": 3,
+    "official_aido_full_finetune": 1,
+    "official_aido_topk_layer_tuning": 1,
+    "official_scgpt_cell_encoder": 1,
+    "official_aido_cached_embedding_fusion": 1,
+    "official_string_laplacian_smoothing": 1,
+    "official_string_gnn_full_finetune": 1,
+    "official_scfoundation_top_layer_finetune": 2,
+    "official_string_gnn_frozen_cache": 1,
+    "official_aido_string_gated_fusion": 1,
+    "official_aido_string_bilinear_fusion": 1,
+    "official_weighted_ce_training": 1,
+    "official_aido_string_concat_fusion": 1,
+    "official_target_bilinear_head": 1,
+    "official_multimodal_mixture_of_experts": 1,
+    "official_public_static_node_family_wrapper": 1,
+    "official_target_low_rank_head": 1,
+    "official_gene_dropout_augmentation": 1,
+    "official_layerwise_lr_schedule": 1,
+    "official_swa_or_checkpoint_ensemble": 1,
+    "official_temperature_calibrated_head": 1,
+    "official_native_public_best_reimplementation": 1
+  },
+  "parent_blueprints": {
+    "official_k562_native_public_best_reimplementation": [
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_string_cross_attention",
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_string_neighborhood_attention"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_focal_loss_training",
+      "official_public_best_node",
+      "official_regulatory_network_prior",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_native_p2_official_string_gnn_attention_c7b091ac": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_topk_layer_tuning",
+      "official_scgpt_cell_encoder"
+    ],
+    "official_k562_public_best_node2_1_1_1_1_1_smoke": [
+      "official_scfoundation_top_layer_finetune",
+      "official_string_gnn_frozen_cache",
+      "official_string_gnn_full_finetune",
+      "official_string_laplacian_smoothing"
+    ],
+    "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30": [
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_gated_fusion",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15": [
+      "official_multimodal_mixture_of_experts",
+      "official_public_static_node_family_wrapper",
+      "official_target_bilinear_head",
+      "official_target_low_rank_head"
+    ],
+    "official_k562_native_p2_official_target_low_rank_head_ae932f98": [
+      "official_gene_dropout_augmentation",
+      "official_layerwise_lr_schedule",
+      "official_swa_or_checkpoint_ensemble",
+      "official_temperature_calibrated_head"
+    ],
+    "official_k562_native_p1_official_temperature_calibrated_head_ad83be07": [
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_native_public_best_reimplementation",
+      "official_string_gnn_attention"
+    ],
+    "official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c": [
+      "official_aido_string_fusion",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ],
+    "official_k562_native_p1_official_target_gene_head_46c4ee66": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_focal_loss_training",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6": [
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_string_neighborhood_attention"
+    ],
+    "official_k562_native_p1_official_string_neighborhood_attention_8885d36d": [
+      "official_aido_string_fusion",
+      "official_public_best_node",
+      "official_regulatory_network_prior",
+      "official_target_gene_head"
+    ],
+    "official_k562_native_p3_official_public_best_node_5f8e0610": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_scfoundation_top_layer_finetune",
+      "official_string_gnn_attention",
+      "official_string_neighborhood_attention",
+      "official_target_graph_conditioned_head"
+    ]
+  },
+  "family_counts": {
+    "target_gene_aware_head": 4,
+    "AIDO_STRING_fusion": 5,
+    "AIDO_adapter": 5,
+    "STRING_GNN_attention": 5,
+    "AIDO_STRING_cross_attention": 4,
+    "official_deg_imbalance": 3,
+    "Reactome_pathway_pooling": 4,
+    "STRING_neighborhood_attention": 3,
+    "public_vcharness_best_path": 2,
+    "regulatory_network_prior": 2,
+    "focal_loss": 2,
+    "target_graph_conditioned_head": 3,
+    "AIDO_full_finetune": 1,
+    "AIDO_selective_finetune": 1,
+    "scGPT_or_single_cell_encoder": 1,
+    "AIDO_cached_embedding": 1,
+    "STRING_laplacian_prior": 1,
+    "STRING_GNN_full_finetune": 1,
+    "scFoundation_selective_finetune": 2,
+    "STRING_GNN_frozen_cached": 1,
+    "AIDO_STRING_gated": 1,
+    "AIDO_STRING_bilinear": 1,
+    "class_weighted_CE": 1,
+    "AIDO_STRING_concat": 1,
+    "target_bilinear_head": 1,
+    "multimodal_MoE": 1,
+    "public_static_tree_family": 1,
+    "target_low_rank_head": 1,
+    "gene_dropout_augmentation": 1,
+    "layerwise_lr_decay": 1,
+    "checkpoint_ensemble_or_SWA": 1,
+    "temperature_calibration": 1,
+    "public_vcharness_best_path_native_v1": 1
+  },
+  "structural_signature_counts": {
+    "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4": 4,
+    "1dc910599699c0679f99b36e869d73da668a9260": 5,
+    "a0e847af6d97ced7bf42ce7c6db29a2a01e7f1b1": 5,
+    "c095311789cedc0e8615880ade41302ae796fcfe": 5,
+    "deba82298c3d004b00e18f313793047749e3e865": 1,
+    "e3a059eb21aed9a516d61b00e2ce109fc981ff12": 1,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 1,
+    "9e51bea477de47d5e3ab3aa2ad7badd177e78b20": 1,
+    "47c7847a301642e9a6ab8d8e5b93f2e343c21349": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "577882e9f484ab0b3881a898adf1d7c468869250": 1,
+    "5bc1536beaba0d3f8eea24bd9091228f5a47f64e": 1,
+    "3e48f0d869be1d32422b3a32a0be78331951e7b8": 1,
+    "90062101037e1a7dac7f267d9f69d298e6f45c94": 1,
+    "a21bee8308c3a0d3fd240c1bab332aeac3d9e608": 1,
+    "8701982227d6d34b2484821cdb662ed1bfecafe6": 1,
+    "b056a48bbeb5452ffdfd70ff9f4812784168d526": 1,
+    "f47907868989758d86bd74655ad04a07100d8244": 1,
+    "7526a48c021060be924de16b9fb5060c2e5ba1f4": 1,
+    "a2d3bcfb9272e3bc108236efeda8e829cd084ca1": 1,
+    "37ee2a900e860811813311ded384ec1f37a49629": 1,
+    "6d03998118ed08398af61a1149bd07542ba0e719": 1,
+    "cabe0cb97893e7cb5bb781c9526b1de73e25812c": 1,
+    "523087252fe2acb5f24fc3a3d660350bf61d7a23": 1,
+    "b0e8fd562ff9a28111b38c7a1cb1f35a6eb163ee": 1,
+    "f7a3d7153f2902f95304517b22bf3331dd01d69a": 1,
+    "f0fbf6c2ab0050ca97a4f3efeb4a57a928ec21dd": 1,
+    "2804a0e034cbb7dd17902c02d03a3627c4355817": 1,
+    "0c9f61446f4d8fac98743f0aa494531ad2c439af": 1,
+    "ebc5ece153314ac57bda06a4391b72e8206b1b72": 1,
+    "4139a10df7babf7cc54b12c8485e8e7e03dce188": 1,
+    "190d163b1a37354794c325b3562ed5dee8109441": 1,
+    "88ddc70507102e18524a2dc42f80e44f04a540fb": 1,
+    "e07394402b248323a71213361dcf92f42875beb8": 3,
+    "4caa6750c81268bdb8e8c388e893105377abf3d6": 3,
+    "c465771adfb3f41a3cca72ee780aa719a858b44b": 1,
+    "0bfe30d7082fe878783591a9f164c4bfd0020579": 2,
+    "0e33a8c49bf70dcbff190b5d6ced2c6ba72d60ad": 1,
+    "91ae899c274c46ad0ef6bd5bfe4e30045e44db02": 2,
+    "15dc7d5b0ac37e81f9eb5ab3da935c1d84d63a1f": 1,
+    "c86206897cbfd68221ef781f5d9080b2edf03f69": 1,
+    "9a9ae2299ba2e8e7cf4047c11234e1cbcbbb454c": 1,
+    "9f3feb9148355be15ca3924191ab26a142ee56cb": 1
+  },
+  "replicate_nodes": [
+    {
+      "node": "official_k562_native_p3_official_target_gene_head_f22d5b45",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66"
+    }
+  ],
+  "successes": [
+    {
+      "node": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.447020560503006,
+      "test": 0.4829195439815521,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66"
+    },
+    {
+      "node": "official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c",
+      "strategy": "official_native_public_best_reimplementation",
+      "family": "public_vcharness_best_path_native_v1",
+      "structural_relation": "structural_variant",
+      "val": 0.4411170184612274,
+      "test": 0.4693979322910309,
+      "parent": "official_k562_native_p1_official_temperature_calibrated_head_ad83be07"
+    },
+    {
+      "node": "official_k562_native_p1_official_temperature_calibrated_head_ad83be07",
+      "strategy": "official_temperature_calibrated_head",
+      "family": "temperature_calibration",
+      "structural_relation": "structural_variant",
+      "val": 0.4200270473957062,
+      "test": 0.44617006182670593,
+      "parent": "official_k562_native_p2_official_target_low_rank_head_ae932f98"
+    },
+    {
+      "node": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15",
+      "strategy": "official_aido_string_concat_fusion",
+      "family": "AIDO_STRING_concat",
+      "structural_relation": "structural_variant",
+      "val": 0.4187873303890228,
+      "test": 0.44281622767448425,
+      "parent": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30"
+    },
+    {
+      "node": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.4180651605129242,
+      "test": 0.48237013816833496,
+      "parent": "official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6"
+    },
+    {
+      "node": "official_k562_native_p1_official_target_gene_head_46c4ee66",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4066738784313202,
+      "test": 0.43706509470939636,
+      "parent": "official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c"
+    },
+    {
+      "node": "official_k562_native_p3_official_aido_cached_embedding_fusion_3eab0a30",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "family": "AIDO_cached_embedding",
+      "structural_relation": "structural_variant",
+      "val": 0.40342727303504944,
+      "test": 0.43293139338493347,
+      "parent": "official_k562_native_p2_official_string_gnn_attention_c7b091ac"
+    },
+    {
+      "node": "official_k562_native_p2_official_target_low_rank_head_ae932f98",
+      "strategy": "official_target_low_rank_head",
+      "family": "target_low_rank_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4028734862804413,
+      "test": 0.4313524663448334,
+      "parent": "official_k562_native_p2_official_aido_string_concat_fusion_5570bf15"
+    },
+    {
+      "node": "official_k562_native_p2_official_aido_string_cross_attention_5b1cf4f0",
+      "strategy": "official_aido_string_cross_attention",
+      "family": "AIDO_STRING_cross_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.3822679817676544,
+      "test": 0.43853113055229187,
+      "parent": "official_k562_native_p1_official_target_gene_head_46c4ee66"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_4405dd25",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.35587355494499207,
+      "test": 0.38593271374702454,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_8f579df1",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.35522904992103577,
+      "test": 0.38847407698631287,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+      "strategy": "official_string_gnn_frozen_cache",
+      "family": "STRING_GNN_frozen_cached",
+      "structural_relation": "structural_variant",
+      "val": 0.3501366078853607,
+      "test": 0.4225049316883087,
+      "parent": "official_k562_public_best_node2_1_1_1_1_1_smoke"
+    },
+    {
+      "node": "official_k562_native_p2_official_string_gnn_attention_c7b091ac",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.33830294013023376,
+      "test": 0.3887966573238373,
+      "parent": "official_k562_native_public_best_reimplementation"
+    },
+    {
+      "node": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "strategy": "official_public_best_node",
+      "family": "public_vcharness_best_path",
+      "structural_relation": "structural_variant",
+      "val": 0.33358433842658997,
+      "test": 0.33358433842658997,
+      "parent": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d"
+    }
+  ],
+  "failures": [
+    {
+      "node": "official_k562_native_p8_official_scfoundation_top_layer_finetune_ba26b0e0",
+      "parent": "official_k562_native_p3_official_public_best_node_5f8e0610",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "missing_required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "missing_required_artifact_paths": [
+        "data/artifacts/scfoundation"
+      ]
+    }
+  ],
+  "blocked_artifacts": [
+    {
+      "node": "official_k562_native_p8_official_scfoundation_top_layer_finetune_ba26b0e0",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "family": "scFoundation_selective_finetune",
+      "missing": [
+        "scfoundation_cell_embeddings"
+      ]
+    }
+  ],
+  "motifs": {
+    "promising": [
+      "official_string_gnn_attention: unspecified + unspecified val=0.3383",
+      "official_string_neighborhood_attention: unspecified + unspecified val=0.3552",
+      "official_target_graph_conditioned_head: unspecified + unspecified val=0.3559",
+      "official_aido_cached_embedding_fusion: unspecified + unspecified val=0.4034",
+      "official_string_gnn_frozen_cache: unspecified + unspecified val=0.3501",
+      "official_aido_string_concat_fusion: unspecified + unspecified val=0.4188",
+      "official_target_low_rank_head: unspecified + unspecified val=0.4029",
+      "official_temperature_calibrated_head: unspecified + unspecified val=0.4200",
+      "official_native_public_best_reimplementation: unspecified + unspecified val=0.4411",
+      "official_target_gene_head: unspecified + unspecified val=0.4067"
+    ],
+    "discouraged": [
+      "official_scfoundation_top_layer_finetune: 1 failure(s)",
+      "official_scfoundation_top_layer_finetune: blocked by missing artifact 1 time(s)"
+    ]
+  }
+}

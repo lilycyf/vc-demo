@@ -1,0 +1,47 @@
+{
+  "items": [
+    {
+      "node": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "trained",
+      "source_kind": "implementation_agent_official_native_proxy",
+      "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d/model.py",
+      "training": {
+        "status": "trained",
+        "best_val_macro_f1": 0.4180651605129242,
+        "test_macro_f1": 0.48237013816833496
+      },
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "implemented",
+          "source_kind": "implementation_agent_official_native_proxy",
+          "model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d/model.py"
+        },
+        {
+          "attempt": 1,
+          "stage": "native_smoke",
+          "status": "passed",
+          "smoke_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p1_official_string_neighborhood_attention_8885d36d/native_smoke_attempt_1.json",
+          "node_name": "official_k562_native_p1_official_string_neighborhood_attention_8885d36d",
+          "model_type": "custom_program",
+          "output_shape": [
+            2,
+            6640,
+            3
+          ],
+          "trainable_parameters": 3090484
+        }
+      ]
+    }
+  ],
+  "trained": true,
+  "repair_attempts": 3,
+  "repair_log": "experiments/official_k562_auto_impl_150/repair_log.jsonl",
+  "agent_decision_trace": "experiments/official_k562_auto_impl_150/agent_decision_trace.jsonl"
+}

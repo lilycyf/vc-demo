@@ -1,0 +1,87 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_native_public_best_reimplementation",
+  "child": "official_k562_native_p4_official_target_gene_head_bb439915",
+  "strategy": "official_target_gene_head",
+  "blueprint": {
+    "id": "official_target_gene_head",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "prediction_head",
+    "paper_family": "target_gene_aware_head",
+    "change_level": 4,
+    "role": "Add a target-gene-aware low-rank, bilinear, or multilayer DEG head over the official 6,640 targets.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_notes": "May modify node-local head/factorization only; must not alter official target order or labels.",
+    "acceptance": [
+      "Target dimension remains 6640",
+      "Reports head rank/depth",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Add a target-gene-aware low-rank, bilinear, or multilayer DEG head over the official 6,640 targets.",
+  "changes": [
+    "program_model:custom_program->official_target_gene_head",
+    "blueprint_status:implemented",
+    "custom_model_path:experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915",
+  "program_model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_target_gene_head",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.68,
+    "base": 0.88,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "target_gene_aware_head",
+    "family_count": 0
+  },
+  "structural_signature": "04a80a283cb45c7c2fda4709ca2e89e25a00ffa4",
+  "parent_structural_signature": "88ddc70507102e18524a2dc42f80e44f04a540fb",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p4_official_target_gene_head_bb439915/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

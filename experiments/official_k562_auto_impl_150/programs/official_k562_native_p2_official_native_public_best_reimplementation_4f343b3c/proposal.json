@@ -1,0 +1,109 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_native_p1_official_temperature_calibrated_head_ad83be07",
+  "child": "official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c",
+  "strategy": "official_native_public_best_reimplementation",
+  "blueprint": {
+    "id": "official_native_public_best_reimplementation",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "native_reimplementation",
+    "paper_family": "public_vcharness_best_path_native_v1",
+    "change_level": 5,
+    "role": "Native compact reimplementation of the public K562 best-node family using official AIDO and STRING_GNN artifact contracts.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_notes": "Implemented as a native custom_program proxy in vc_demo.official_k562.native_models. It is interface/functionality aligned, not a numerical clone of the public static node.",
+    "acceptance": [
+      "Checks AIDO and STRING_GNN artifact paths",
+      "Forward returns [batch, 6640, 3]",
+      "Can be used as MCTS root or child"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Native compact reimplementation of the public K562 best-node family using official AIDO and STRING_GNN artifact contracts.",
+  "changes": [
+    "program_model:custom_program->official_native_public_best_reimplementation",
+    "blueprint_status:implemented",
+    "custom_model_path:experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c",
+  "program_model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    },
+    {
+      "provider": "STRING_GNN",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_native_public_best_reimplementation",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.05,
+    "base": 0.45,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "public_vcharness_best_path_native_v1",
+    "family_count": 0
+  },
+  "structural_signature": "88ddc70507102e18524a2dc42f80e44f04a540fb",
+  "parent_structural_signature": "190d163b1a37354794c325b3562ed5dee8109441",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_auto_impl_150/programs/official_k562_native_p2_official_native_public_best_reimplementation_4f343b3c/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

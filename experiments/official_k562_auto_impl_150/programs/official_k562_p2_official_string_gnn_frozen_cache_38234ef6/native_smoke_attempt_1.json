@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "node_name": "official_k562_p2_official_string_gnn_frozen_cache_38234ef6",
+  "model_type": "custom_program",
+  "output_shape": [
+    2,
+    6640,
+    3
+  ],
+  "trainable_parameters": 2853332
+}

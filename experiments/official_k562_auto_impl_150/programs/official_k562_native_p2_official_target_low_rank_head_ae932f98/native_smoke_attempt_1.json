@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "node_name": "official_k562_native_p2_official_target_low_rank_head_ae932f98",
+  "model_type": "custom_program",
+  "output_shape": [
+    2,
+    6640,
+    3
+  ],
+  "trainable_parameters": 3090484
+}

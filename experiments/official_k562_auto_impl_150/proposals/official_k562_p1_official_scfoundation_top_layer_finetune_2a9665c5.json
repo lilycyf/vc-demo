@@ -1,0 +1,38 @@
+{
+  "node_name": "official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5",
+  "data": {
+    "dataset_type": "official_k562_tsv",
+    "data_dir": "data/cell_lines/official_k562_cls",
+    "n_classes": 3,
+    "embedding_h5ads": [
+      "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad"
+    ]
+  },
+  "model": {
+    "model_type": "custom_program",
+    "n_targets": 6640,
+    "n_classes": 3,
+    "program_blueprint": "official_scfoundation_top_layer_finetune",
+    "custom_model_path": "experiments/official_k562_auto_impl_150/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/model.py",
+    "custom_model_class": "GeneratedModel",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "depth": 2,
+    "dropout": 0.1
+  },
+  "training": {
+    "epochs": 1,
+    "batch_size": 1,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "pipeline_manifest_path": "experiments/official_k562_auto_impl_150/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/pipeline.json",
+  "proposal_note": "codex_program_agent blueprint=official_scfoundation_top_layer_finetune; program_model:external_static_node->official_scfoundation_top_layer_finetune; blueprint_status:planned; custom_model_path:experiments/official_k562_auto_impl_150/programs/official_k562_p1_official_scfoundation_top_layer_finetune_2a9665c5/model.py; hidden_dim:None->256; depth:None->2; lr:0.0001->0.0001"
+}
