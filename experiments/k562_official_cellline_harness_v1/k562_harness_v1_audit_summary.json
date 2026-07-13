@@ -993,7 +993,9 @@
       },
       "failures": {
         "failures": []
-      }
+      },
+      "formal_status": "historical_proxy_era_non_formal",
+      "use_for": "framework_wiring_and_pressure_test_only"
     },
     {
       "label": "150 proposals / 40 trained rollout strict attempt",
@@ -1280,7 +1282,9 @@
             ]
           }
         ]
-      }
+      },
+      "formal_status": "historical_proxy_era_non_formal",
+      "use_for": "framework_wiring_and_pressure_test_only"
     }
   ],
   "public_scaffold_counts": {
@@ -1341,5 +1345,10 @@
       }
     ],
     "interpretation": "The loop did not merely record missing artifacts; it produced first-class acquisition tasks. These remain blockers only because no verified automatic resolver/source-backed artifact was available in the registry."
+  },
+  "formal_policy_after_86959f1": {
+    "compact_native_or_proxy_implementations": "forbidden",
+    "historical_native_public_best_reimplementation_scores": "non_formal_proxy_era_reference_only",
+    "formal_baseline_requirement": "rerun exact public_static benchmark or full artifact-backed implementation; do not compare proxy-era scores to paper/public best"
   }
 }

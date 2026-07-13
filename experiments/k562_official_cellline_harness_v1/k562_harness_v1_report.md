@@ -54,7 +54,9 @@ Notes:
 - `official_string_gnn_model_dir` remains missing on this pod. The acquisition registry marks it as non-automatic because the public HuggingFace repo currently does not expose verifiable weight files. The existing STRING graph artifacts are source-backed, but they are not equivalent to the missing trained model directory.
 - `scfoundation_cell_embeddings` remains a valid strict blocker for scFoundation-family nodes. It has no automatic resolver and must not be replaced by a random embedding, small MLP, or K562 tabular proxy.
 
-## Root Baselines
+## Historical Proxy-Era Reference Numbers
+
+These numbers are retained only as framework-pressure-test evidence from runs before commit `86959f1` made compact/native proxy implementations forbidden. They are **not formal paper-level baselines**, must not be compared against public VCHarness best scores, and must be rerun after exact public-static execution or full artifact-backed implementations are available.
 
 From the 64/16 automatic-loop run:
 
@@ -169,11 +171,11 @@ A fresh low-budget sanity run on this pod was attempted after installing `requir
 
 - Official K562 contract validation: passed
 - Artifact registry audit: passed with explicit present/missing states
-- Root baselines available from historical official K562 runs: yes
+- Historical proxy-era root numbers recorded: yes, but excluded from formal paper-level conclusions
 - Proposal pool generated: yes
 - Pruned-not-selected proposals present: yes
-- Automatic implementation loop executed: yes
-- Native smoke passed for generated nodes: yes
+- Automatic implementation loop executed in historical proxy-era runs: yes; formal rerun required under `86959f1+` rules
+- Native smoke passed for historical generated nodes: yes; this is not evidence of formal full implementation
 - 64/16 run clean: yes
 - 150/40 run: strict artifact blocker, acceptable for v1
 - Fallback count: 0

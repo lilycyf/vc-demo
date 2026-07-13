@@ -12,7 +12,7 @@ New branch:
 Core rules:
 - Work only on RunPod `/workspace/vc-demo`.
 - Do not modify K562 data, split, labels, metrics, target gene order, or artifact provenance.
-- Do not use fallback models or fabricated artifacts.
+- Do not use fallback models, fabricated artifacts, compact/native proxy implementations, or K562 proxy-era scores as formal baselines.
 - Missing artifacts must go through acquisition first; write an acquisition queue, run the acquisition resolver/tool, and generate `ACQUIRE_<artifact>.md` before declaring a strict blocker. If source/order/shape/provenance cannot be verified after that pass, block.
 - Do not reuse K562-specific embeddings for hTERT-RPE1.
 - Generated native children must not inherit `external_static_node`.
@@ -29,7 +29,7 @@ git checkout -B official-htert-rpe1-transfer-smoke origin/official-k562-gap-clos
 git rev-parse --short HEAD
 ```
 
-Step 2: read K562 v1 handoff.
+Step 2: read K562 v1 handoff, treating recorded K562 run metrics as historical proxy-era wiring evidence only.
 
 ```bash
 cat experiments/k562_official_cellline_harness_v1/k562_harness_v1_report.md
@@ -48,7 +48,7 @@ Write:
 - `experiments/official_htert_rpe1_transfer/public_scaffold_audit.json`
 - `experiments/official_htert_rpe1_transfer/public_scaffold_audit.md`
 
-Record static count, memory count, public best node id/path, public best score, top 10 public nodes, and comparison to K562. K562 reference: static 309, memory 153, public best 0.51277. hTERT-RPE1 reference from current scaffold: static 331, memory 166, public best about 0.51816.
+Record static count, memory count, public best node id/path, public best score, top 10 public nodes, and comparison to K562. K562 public scaffold reference: static 309, memory 153, public best 0.51277. Do not use K562 proxy-era native/root metrics as formal benchmark targets. hTERT-RPE1 reference from current scaffold: static 331, memory 166, public best about 0.51816.
 
 Step 4: establish hTERT-RPE1 task contract.
 

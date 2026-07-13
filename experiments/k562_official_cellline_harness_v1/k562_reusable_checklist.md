@@ -41,14 +41,16 @@ Use this checklist before claiming that another cell line has reached K562 Harne
 - Audit counts: fallback = 0, backprop_nontrained = 0.
 - Forbidden staged-file check before commit.
 
-## K562 v1 Reference Numbers
+## K562 v1 Historical Reference Numbers
+
+These values came from proxy-era framework pressure tests before formal proxy bans. Use them only to compare harness wiring, not as formal K562 paper-level baselines. Any new cell-line transfer must rerun roots/rollouts under the current full-implementation policy.
 
 - Split: train 1388, val 154, test 421.
 - Target genes: 6640.
-- 64/16 run best root: official_k562_native_public_best_reimplementation, val 0.4332, test 0.4702.
-- 64/16 best trained rollout: official_k562_native_p2_official_string_gnn_attention_c7b091ac, val 0.4421, test 0.4805.
-- 150/40 best root: official_k562_native_public_best_reimplementation, val 0.4221, test 0.4559.
-- 150/40 best trained rollout: official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6, val 0.4470, test 0.4829.
+- Historical 64/16 run best root: official_k562_native_public_best_reimplementation, val 0.4332, test 0.4702.
+- Historical 64/16 best trained rollout: official_k562_native_p2_official_string_gnn_attention_c7b091ac, val 0.4421, test 0.4805.
+- Historical 150/40 best root: official_k562_native_public_best_reimplementation, val 0.4221, test 0.4559.
+- Historical 150/40 best trained rollout: official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6, val 0.4470, test 0.4829.
 - 150/40 strict blocker: scfoundation_cell_embeddings.
 
 ## Acquisition Closure
