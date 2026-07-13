@@ -10,6 +10,11 @@ from typing import Any
 from dataclasses import dataclass
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SRC_DIR = REPO_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
 
 @dataclass(frozen=True)
 class TransferLevel:
@@ -65,6 +70,8 @@ def resolve_level_and_epochs(args: argparse.Namespace) -> tuple[str, TransferLev
     max_epochs = args.max_epochs if args.max_epochs is not None else level.default_max_epochs
     if level.run_type == "full_cellline_run" and max_epochs < 8:
         raise SystemExit("full_cellline_run requires --max-epochs >= 8; 1-epoch smoke budgets are forbidden.")
+    if level.run_type == "full_cellline_run" and args.target_val_macro_f1 is None:
+        raise SystemExit("full_cellline_run requires --target-val-macro-f1; define the minimum acceptable validation Macro-F1.")
     return level_name, level, max_epochs
 
 
@@ -188,6 +195,7 @@ def write_plan(path: Path, payload: dict[str, object], command: list[str]) -> No
         f"- Level: `{payload['level']}`",
         f"- Artifact-constrained filter required: `{payload['artifact_constrained_required']}`",
         f"- Max epochs: `{payload['max_epochs']}`",
+        f"- Target validation Macro-F1: `{payload['target_val_macro_f1']}`",
         f"- Run dir: `{payload['run_dir']}`",
         f"- Experiment: `{payload['experiment']}`",
         f"- Resume: `{payload['resume']}`",
@@ -215,6 +223,7 @@ def main() -> None:
     parser.add_argument("--experiment", default=None)
     parser.add_argument("--root-configs", nargs="*", default=None)
     parser.add_argument("--max-epochs", type=int, default=None)
+    parser.add_argument("--target-val-macro-f1", type=float, default=None, help="Required for full_cellline_run: minimum acceptable best generated child validation Macro-F1.")
     parser.add_argument("--implementation-repair-attempts", type=int, default=3)
     parser.add_argument("--resume", action="store_true", help="Resume the existing run instead of adding --reset.")
     parser.add_argument("--execute", action="store_true", help="Run the generated command after writing the invocation files.")
@@ -249,6 +258,7 @@ def main() -> None:
         "root_configs": roots,
         "resume": args.resume,
         "max_epochs": max_epochs,
+        "target_val_macro_f1": args.target_val_macro_f1,
         "implementation_repair_attempts": args.implementation_repair_attempts,
         "artifact_constrained_blueprint_exclusions": str(exclusions_file) if exclusions_file else "",
         "guardrails": {
@@ -259,7 +269,8 @@ def main() -> None:
             "test_metric_report_only": True,
             "full_run_forbids_one_epoch": level.run_type == "full_cellline_run",
             "artifact_constrained_blueprint_filter_required": level.artifact_constrained_required,
-            "primary_objective": "best_generated_child_beats_best_root" if level.run_type == "full_cellline_run" else "loop_mechanics",
+            "primary_objective": "best_generated_child_beats_best_root_and_reaches_target_score" if level.run_type == "full_cellline_run" else "loop_mechanics",
+            "target_val_macro_f1": args.target_val_macro_f1,
         },
     }
     write_plan(run_dir, payload, command)

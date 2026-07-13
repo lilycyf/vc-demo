@@ -33,6 +33,7 @@ Hard rules:
 
 - `full_cellline_run` must use `--level full_cellline_run`.
 - `full_cellline_run` must use `--max-epochs >= 8`.
+- `full_cellline_run` must explicitly set `--target-val-macro-f1 <score>`; the target cannot be implied.
 - `transfer_64x16` and `transfer_150x40` are loop/self-test levels even if they generate many proposals.
 - If the user asks to "完整跑" or "真实跑" a cell line, use `RUN_TYPE=full_cellline_run`, not `transfer_64x16`.
 - Full runs require an artifact-constrained blueprint filter before training: exclude unresolved/blocked artifact-dependent blueprints from the main run and report exclusions separately.
@@ -65,15 +66,17 @@ The script writes `transfer_invocation.json` and `transfer_invocation.md` into t
 
 ### Root-Beating Objective For Full Runs
 
-A `full_cellline_run` is not complete merely because it trains many nodes. Its primary objective is to find a generated child that beats the best root on validation Macro-F1. The final report must include:
+A `full_cellline_run` is not complete merely because it trains many nodes. Its primary objective is to find a generated child that both beats the best root and reaches the user-specified target validation Macro-F1. The final report must include:
 
 - best root val/test Macro-F1
 - best generated child val/test Macro-F1
 - delta child vs root
-- whether the primary objective was achieved
+- target validation Macro-F1
+- delta child vs target
+- whether both primary objectives were achieved
 - if not achieved, root-dominance attribution covering artifact limits, training budget, model-space limits, implementation limits, and optimization stability
 
-If no child beats root, the run can be considered mechanically complete but scientifically not successful for the root-beating objective.
+If no child beats root or no child reaches the target score, the run can be considered mechanically complete but scientifically not successful for the full-run objective.
 
 ## Source-Backed Task Contract
 
