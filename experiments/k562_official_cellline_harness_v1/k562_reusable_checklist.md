@@ -16,7 +16,7 @@ Use this checklist before claiming that another cell line has reached K562 Harne
 - Registry records every artifact id, path, source, provider, status, and whether it is reusable or cell-line-specific.
 - Reusable artifacts can be shared only when the tensor contract is cell-line independent.
 - Cell-line-specific embeddings must be acquired or built for that cell line; never reuse K562-specific h5ad embeddings.
-- Missing artifacts first go through acquisition.
+- Missing artifacts first go through acquisition. The run must write an acquisition queue, acquisition report, and artifact-specific task before calling something a blocker.
 - If source, checkpoint, row order, vocabulary, or shape cannot be verified, stop with acquisition/block.
 - No random, tabular, small-MLP, or previous-cell-line fallback is allowed.
 
@@ -50,3 +50,17 @@ Use this checklist before claiming that another cell line has reached K562 Harne
 - 150/40 best root: official_k562_native_public_best_reimplementation, val 0.4221, test 0.4559.
 - 150/40 best trained rollout: official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6, val 0.4470, test 0.4829.
 - 150/40 strict blocker: scfoundation_cell_embeddings.
+
+## Acquisition Closure
+
+A strict blocker is acceptable only after the acquisition loop has produced:
+
+- an acquisition queue item naming artifact id, node, strategy, expected path, and source hint;
+- an acquisition report showing whether an automatic resolver was available and executed;
+- an `ACQUIRE_<artifact>.md` task when no automatic resolver exists;
+- a clear statement that no fallback model or fabricated artifact was trained.
+
+For K562 v1 this closure exists for:
+
+- `official_string_gnn_model_dir`
+- `scfoundation_cell_embeddings`

@@ -13,7 +13,7 @@ Core rules:
 - Work only on RunPod `/workspace/vc-demo`.
 - Do not modify K562 data, split, labels, metrics, target gene order, or artifact provenance.
 - Do not use fallback models or fabricated artifacts.
-- Missing artifacts must go through acquisition first; if source/order/shape/provenance cannot be verified, block.
+- Missing artifacts must go through acquisition first; write an acquisition queue, run the acquisition resolver/tool, and generate `ACQUIRE_<artifact>.md` before declaring a strict blocker. If source/order/shape/provenance cannot be verified after that pass, block.
 - Do not reuse K562-specific embeddings for hTERT-RPE1.
 - Generated native children must not inherit `external_static_node`.
 - `external_static_node` is allowed only for explicit public static wrappers/benchmarks.
@@ -135,6 +135,8 @@ PYTHONPATH=src python scripts/run_official_cellline_harness_search.py   --cell-l
 Step 8: handle blockers.
 
 If an artifact is missing:
+- add it to the run acquisition queue with artifact id, node, strategy, expected path, and source hint;
+- run `PYTHONPATH=src python -m vc_demo.harness.artifact_acquisition --queue <queue> --registry <registry> --sources configs/artifacts/acquisition_sources.json --cell-line <CELL_LINE> --output-dir <run>/artifact_acquisition --execute-known`;
 - run the explicit resolver if `can_execute_automatically=true`;
 - otherwise create an acquisition task/report with source questions and required output contract;
 - update registry/audit only after successful source-backed acquisition;

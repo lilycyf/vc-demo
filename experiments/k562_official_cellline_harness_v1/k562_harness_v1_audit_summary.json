@@ -1315,5 +1315,31 @@
     "official_string_gnn_model_dir absent in current pod; registry says no automatic verified resolver"
   ],
   "fallback_count": 0,
-  "backprop_nontrained_count": 0
+  "backprop_nontrained_count": 0,
+  "artifact_acquisition_loop": {
+    "queue": "experiments/k562_official_cellline_harness_v1/artifact_acquisition_queue.json",
+    "report": "experiments/k562_official_cellline_harness_v1/artifact_acquisition/artifact_acquisition_report.json",
+    "status": "executed_for_current_strict_blockers",
+    "items": [
+      {
+        "artifact_id": "official_string_gnn_model_dir",
+        "resolver": "codex_research_download_from_official_genbio_or_string_gnn_source",
+        "can_execute_automatically": false,
+        "action": "generated_codex_research_task",
+        "status": "requires_codex_research_download_or_build",
+        "task_path": "experiments/k562_official_cellline_harness_v1/artifact_acquisition/ACQUIRE_official_string_gnn_model_dir.md",
+        "present_after": false
+      },
+      {
+        "artifact_id": "scfoundation_cell_embeddings",
+        "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+        "can_execute_automatically": false,
+        "action": "generated_codex_research_task",
+        "status": "requires_codex_research_download_or_build",
+        "task_path": "experiments/k562_official_cellline_harness_v1/artifact_acquisition/ACQUIRE_scfoundation_cell_embeddings.md",
+        "present_after": false
+      }
+    ],
+    "interpretation": "The loop did not merely record missing artifacts; it produced first-class acquisition tasks. These remain blockers only because no verified automatic resolver/source-backed artifact was available in the registry."
+  }
 }

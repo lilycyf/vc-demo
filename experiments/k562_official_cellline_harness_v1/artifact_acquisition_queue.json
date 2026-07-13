@@ -1,0 +1,22 @@
+{
+  "format": "k562_harness_v1_acquisition_queue.v1",
+  "purpose": "Make strict artifact provenance/acquisition a first-class part of the K562 Harness v1 loop.",
+  "items": [
+    {
+      "node": "current_pod_preflight_and_official_native_public_best_reimplementation",
+      "strategy": "official_native_public_best_reimplementation / official_string_gnn_attention",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact STRING_GNN model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "action": "research_download_or_build_real_artifact_then_audit"
+    },
+    {
+      "node": "official_k562_native_p8_official_scfoundation_top_layer_finetune_ba26b0e0",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "artifact_id": "scfoundation_cell_embeddings",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+      "action": "research_download_or_encode_from_official_scfoundation_source_then_audit"
+    }
+  ]
+}

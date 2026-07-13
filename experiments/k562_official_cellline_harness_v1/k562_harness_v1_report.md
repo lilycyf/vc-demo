@@ -140,6 +140,27 @@ Strict blocker:
 }
 ```
 
+
+## Artifact Acquisition Loop
+
+K562 Harness v1 now treats provenance/acquisition as a first-class part of the loop, not as an informal note. The current strict blockers were placed into:
+
+- Queue: `experiments/k562_official_cellline_harness_v1/artifact_acquisition_queue.json`
+- Report: `experiments/k562_official_cellline_harness_v1/artifact_acquisition/artifact_acquisition_report.json`
+- Tasks:
+  - `experiments/k562_official_cellline_harness_v1/artifact_acquisition/ACQUIRE_official_string_gnn_model_dir.md`
+  - `experiments/k562_official_cellline_harness_v1/artifact_acquisition/ACQUIRE_scfoundation_cell_embeddings.md`
+
+Acquisition-loop result:
+
+| Artifact | Resolver | Automatic | Action | Status |
+|---|---|---:|---|---|
+| `official_string_gnn_model_dir` | `codex_research_download_from_official_genbio_or_string_gnn_source` | `False` | `generated_codex_research_task` | `requires_codex_research_download_or_build` |
+| `scfoundation_cell_embeddings` | `codex_research_download_or_encode_from_official_scfoundation_source` | `False` | `generated_codex_research_task` | `requires_codex_research_download_or_build` |
+
+
+Interpretation: these are still strict blockers, but now they are **blocked after acquisition dispatch**, not merely missing files. They require a separate Codex acquisition pass that searches official/primary sources, records provenance, validates tensor contracts, updates the registry, reruns artifact audit, and then resumes strict search. No fallback model or fabricated artifact is allowed.
+
 ## Current-Pod Sanity Attempt
 
 A fresh low-budget sanity run on this pod was attempted after installing `requirements-official-k562.txt`. It stopped at strict preflight because `/home/Models/STRING_GNN` is absent and has no verified automatic resolver. This is a valid strict artifact boundary, not a training or implementation failure. AIDO.Cell-100M was acquired successfully; STRING_GNN was not fabricated.
