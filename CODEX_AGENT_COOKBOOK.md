@@ -2,6 +2,18 @@
 
 This repo does not call the Codex API internally. The Codex agent is the external executor launched by the user in a Codex window. The repo's job is to provide search state, queues, prompts, guardrails, runnable commands, and audit artifacts. The Codex agent's job is to operate the repo end to end on RunPod.
 
+## Document Ownership
+
+Rules live in the repo documents, not in copied chat prompts.
+
+- `CODEX_AGENT_COOKBOOK.md` is the canonical source for universal agent rules, guardrails, git hygiene, artifact acquisition semantics, and realtime implementation semantics.
+- `docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md` is the canonical source for how to execute a generic cell-line run.
+- `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md` is the canonical source for pass/fail checks.
+- `ARTIFACT_ACQUISITION_RUNBOOK.md` is the canonical source for source-backed artifact acquisition.
+- K562-specific details belong in `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`, not in generic prompts.
+
+Experiment prompts must be variable-only handoffs. They should name the branch, cell line, run type, target score, run directory, and output branch, then instruct Codex to read the repo docs. Do not duplicate long cookbook/runbook rules in prompts; duplicated rules drift and become stale.
+
 ## Mental Model
 
 ```text

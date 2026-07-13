@@ -1,23 +1,30 @@
 # Generic Cell-Line Transfer Runbook
 
-This runbook is the canonical procedure for running a VCHarness-style generic cell-line transfer test. A prompt should only specify the target `CELL_LINE_ID` and test level; all rules below are part of the repo contract.
+This runbook is the canonical procedure for running a VCHarness-style generic cell-line transfer test. A prompt should only specify run variables; all executable rules below are part of the repo contract.
 
 ## Purpose
 
 Validate that the harness can move from one source-backed cell-line task to another without leaking K562-specific data, artifacts, or assumptions. K562 is a validation example, not a runtime template.
 
-## Short Prompt Contract
+## Prompt Variables Contract
 
-A valid experiment handoff can be as short as:
+Prompts are variable handoffs only. They must not copy cookbook/runbook guardrails. The receiving Codex must read the repo docs and execute the current rules from the files.
 
-```text
-Run generic cell-line transfer test on RunPod `/workspace/vc-demo`.
-Branch: generic-cellline-runner-fix
-CELL_LINE_ID: <cell line>
-TEST_LEVEL: transfer_64x16
-Follow docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md and docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md.
-Push results to generic-cellline-transfer-test-<slug>.
-```
+Required prompt fields:
+
+| Field | Meaning |
+|---|---|
+| `BASE_BRANCH` | Branch to start from |
+| `RUN_BRANCH` | New branch for this run |
+| `CELL_LINE_ID` | Cell line to run |
+| `RUN_TYPE` | `loop_self_test` or `full_cellline_run` |
+| `TEST_LEVEL` | One of the supported levels below |
+| `RUN_DIR` | Fresh experiment directory |
+| `TARGET_VAL_MACRO_F1` | Required for `full_cellline_run`; optional for loop tests |
+
+The prompt should say: read `CODEX_AGENT_COOKBOOK.md`, this runbook, `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md`, and `ARTIFACT_ACQUISITION_RUNBOOK.md`. If `CELL_LINE_ID=K562`, also read `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`.
+
+Do not paste detailed runtime rules into the prompt. If a rule needs to change, update the cookbook/runbook first.
 
 
 ## Run Types Are Mandatory

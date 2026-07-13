@@ -1,28 +1,32 @@
-# Prompt Template: Codex Program-Node Experiment Agent
+# Prompt Template: Generic Cell-Line Experiment
 
-Use this only when the user asks for a copyable prompt for another Codex.
+Use this format for future handoffs. Keep prompts variable-only; do not paste cookbook/runbook rules here.
 
 ```text
-You are working on RunPod in /workspace/vc-demo. Do not read or run the local repo.
+Work only on RunPod in /workspace/vc-demo. Do not read or run the local repo.
 
-Read the current repo instructions in this order:
+BASE_BRANCH: <base branch>
+RUN_BRANCH: <new run branch>
+CELL_LINE_ID: <cell line id>
+RUN_TYPE: <loop_self_test | full_cellline_run>
+TEST_LEVEL: <preflight | transfer_64x16 | transfer_150x40 | full_cellline_run>
+RUN_DIR: <fresh experiments/... directory>
+TARGET_VAL_MACRO_F1: <required for full_cellline_run, optional otherwise>
+
+First read and follow the current repo docs:
 1. CODEX_AGENT_COOKBOOK.md
 2. docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md
 3. docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md
 4. ARTIFACT_ACQUISITION_RUNBOOK.md
-5. OFFICIAL_K562_IMPLEMENTATION_LOOP.md only if the selected cell line/task is K562-specific
+5. OFFICIAL_K562_IMPLEMENTATION_LOOP.md only if CELL_LINE_ID=K562 or the task is explicitly K562-specific
 
-Follow the user-specified cell line, run type, target score, branch, and run directory.
-
-Runtime rules:
-- You are both experiment runner and implementation agent.
-- If implementation_queue.json appears, handle the selected node immediately.
-- If artifacts are present, implement the node-local model.py, compile/native-smoke/train it.
-- If no safe real artifact-backed implementation can be produced, mark the node implementation_skipped, clear it from the queue, do not train, do not backpropagate, and continue global search.
-- If artifacts are missing, run artifact acquisition/source-backed search first; block only after documented source/provenance/alignment failure.
-- Never use fallback/compact/proxy models in formal runs.
-- Never change data splits, labels, target order, reward metric, or tune on test labels.
-- Commit only allowed code/config/docs/small metadata/reports; never commit data, nodes, checkpoints, weights, .h5ad, .npz, pycache, egg-info, secrets, or tokens.
-
-At the end, push the run branch and report commit hash, run directory, best root, best generated child, objective status, blocker/skipped counts, and forbidden staged check result.
+Run the requested experiment from scratch in RUN_DIR, push RUN_BRANCH, and report:
+- branch and commit hash
+- run dir
+- generated proposals / trained selected rollouts / pruned / skipped / blocked / failed
+- best root val/test
+- best generated child val/test
+- objective status against TARGET_VAL_MACRO_F1
+- acquisition/blocker summary
+- forbidden staged check result
 ```
