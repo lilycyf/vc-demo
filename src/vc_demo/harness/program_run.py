@@ -22,15 +22,6 @@ def reward(metrics: dict[str, Any]) -> float:
     return float(metrics["best_val_macro_f1"])
 
 
-def load_blueprint_exclusions(path: Path | None) -> tuple[set[str], dict[str, Any]]:
-    if path is None:
-        return set(), {"excluded_blueprints": []}
-    payload = read_json(path)
-    rows = payload.get("excluded_blueprints", [])
-    excluded = {str(row.get("blueprint_id")) for row in rows if row.get("blueprint_id")}
-    return excluded, payload
-
-
 def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], config_path: Path, name: str) -> None:
     node["agent_type"] = proposal.get("agent_type")
     node["node_kind"] = proposal.get("node_kind")
@@ -329,11 +320,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     proposal_dir.mkdir(parents=True, exist_ok=True)
     registry_audit = audit_registry(load_registry(args.artifact_registry, "K562"))
     write_json(run_dir / "artifact_registry_audit.json", registry_audit)
-    excluded_blueprints, exclusion_payload = load_blueprint_exclusions(getattr(args, "excluded_blueprints_file", None))
-    if excluded_blueprints:
-        write_json(run_dir / "artifact_constrained_blueprint_exclusions.json", exclusion_payload)
     tree.setdefault("artifact_registry", registry_audit)
-    tree["artifact_constrained_blueprint_exclusions"] = exclusion_payload
     memory = rebuild_memory_from_tree(run_dir, tree, failures)
 
     if not resume:
@@ -389,7 +376,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         pool_attempts = max(args.max_duplicate_proposal_attempts, args.candidate_pool_size)
         for duplicate_attempt in range(1, pool_attempts + 1):
             child_index = len(parent_node.get("children", [])) + duplicate_attempt
-            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space, search_memory=memory, excluded_blueprints=excluded_blueprints)
+            candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space, search_memory=memory)
             strategy = str(candidate_proposal.get("strategy", ""))
             duplicate, reason = is_duplicate_proposal(memory, parent_name, strategy, args.max_blueprint_repeats, allow_parent_duplicate=args.allow_parent_duplicate_blueprints)
             missing_summary = summarize_missing_requirements(registry_audit, strategy)
@@ -616,7 +603,6 @@ def main() -> None:
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true", help="Allow the same parent to generate the same blueprint more than once.")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8, help="How many candidate blueprints to try before skipping an iteration as duplicate-only.")
     parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent, cheap-screen them, and train only the selected rollout candidate. Values >1 create pruned_not_selected nodes for untrained proposals.")
-    parser.add_argument("--excluded-blueprints-file", type=Path, default=None, help="JSON report listing blueprints excluded from the main search by strict artifact-constrained policy.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:

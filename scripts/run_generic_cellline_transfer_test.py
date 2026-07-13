@@ -6,7 +6,6 @@ import re
 import shlex
 import subprocess
 import sys
-from typing import Any
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -75,7 +74,7 @@ def resolve_level_and_epochs(args: argparse.Namespace) -> tuple[str, TransferLev
     return level_name, level, max_epochs
 
 
-def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, experiment: str, level: TransferLevel, max_epochs: int, exclusions_file: Path | None = None) -> list[str]:
+def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, experiment: str, level: TransferLevel, max_epochs: int) -> list[str]:
     cmd = [
         sys.executable,
         "scripts/run_official_cellline_harness_search.py",
@@ -108,79 +107,10 @@ def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, exp
         "--implementation-repair-attempts",
         str(args.implementation_repair_attempts),
     ]
-    if exclusions_file is not None:
-        cmd.extend(["--excluded-blueprints-file", str(exclusions_file)])
     if args.resume:
         return cmd
     return [*cmd, "--reset"]
 
-
-
-
-def build_artifact_constrained_exclusions(cell_line: str, run_dir: Path, level: TransferLevel) -> Path | None:
-    if not level.artifact_constrained_required:
-        return None
-    normalized = cell_line.lower().replace("_", "-")
-    if normalized not in {"k562", "k-562"}:
-        return None
-    from vc_demo.harness.model_blueprints import MODEL_BLUEPRINTS
-
-    blocked_artifacts = {
-        "official_string_gnn_model_dir": {
-            "reason": "Public genbio-ai/STRING_GNN repository exposes no source-backed model weights/config through the Hugging Face API; graph TSV/H5AD artifacts are not an equivalent model directory.",
-            "expected_path": "/home/Models/STRING_GNN",
-            "policy": "exclude dependent blueprints from the main full run and report separately; no fallback/proxy training",
-            "evidence": [
-                "configs/artifacts/acquisition_sources.json documents the unavailable public STRING_GNN model-dir source",
-                "docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md requires proving or blocking official_string_gnn_model_dir rather than substituting graph files",
-                "docs/OFFICIAL_MODEL_DIR_ACQUISITION.md distinguishes STRING graph/embedding artifacts from /home/Models/STRING_GNN",
-            ],
-        }
-    }
-    excluded: list[dict[str, Any]] = []
-    for bp in MODEL_BLUEPRINTS:
-        requires = set(bp.get("requires", []) or [])
-        missing = sorted(requires & set(blocked_artifacts))
-        if not missing:
-            continue
-        excluded.append({
-            "blueprint_id": bp.get("id"),
-            "paper_family": bp.get("paper_family"),
-            "category": bp.get("category"),
-            "required_blocked_artifacts": missing,
-            "reason": "; ".join(blocked_artifacts[a]["reason"] for a in missing),
-        })
-    payload = {
-        "format": "vc_demo.artifact_constrained_blueprint_exclusions.v1",
-        "cell_line": cell_line,
-        "run_level": "full_cellline_run",
-        "strict_artifact_policy": True,
-        "main_run_policy": "source-backed artifacts only; proven-unavailable artifact-dependent blueprints are excluded from training and reported separately",
-        "blocked_artifacts": blocked_artifacts,
-        "excluded_blueprints": excluded,
-        "excluded_count": len(excluded),
-    }
-    run_dir.mkdir(parents=True, exist_ok=True)
-    json_path = run_dir / "artifact_constrained_blueprint_exclusions.json"
-    json_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
-    md = [
-        "# Artifact-Constrained Blueprint Exclusions",
-        "",
-        f"- Cell line: `{cell_line}`",
-        "- Run level: `full_cellline_run`",
-        "- Policy: source-backed artifacts only; no fallback/proxy training.",
-        f"- Excluded blueprints: `{len(excluded)}`",
-        "",
-        "## Blocked Artifacts",
-        "",
-    ]
-    for artifact_id, row in blocked_artifacts.items():
-        md.extend([f"### `{artifact_id}`", "", f"- Expected path: `{row['expected_path']}`", f"- Reason: {row['reason']}", f"- Policy: {row['policy']}", ""])
-    md.extend(["## Excluded Blueprints", ""])
-    for row in excluded:
-        md.append(f"- `{row['blueprint_id']}` ({row.get('paper_family')}) requires {', '.join(row['required_blocked_artifacts'])}")
-    (run_dir / "artifact_constrained_blueprint_exclusions.md").write_text("\n".join(md) + "\n", encoding="utf-8")
-    return json_path
 
 def write_plan(path: Path, payload: dict[str, object], command: list[str]) -> None:
     path.mkdir(parents=True, exist_ok=True)
@@ -244,8 +174,7 @@ def main() -> None:
 
     run_dir = args.run_dir or Path("experiments") / f"official_{slug}_generic_transfer_v1" / level_name
     experiment = args.experiment or f"official_{slug}_{level_name}"
-    exclusions_file = build_artifact_constrained_exclusions(args.cell_line, run_dir, level)
-    command = build_command(args, roots, run_dir, experiment, level, max_epochs, exclusions_file=exclusions_file)
+    command = build_command(args, roots, run_dir, experiment, level, max_epochs)
     payload = {
         "cell_line": args.cell_line,
         "cell_line_slug": slug,
@@ -260,7 +189,6 @@ def main() -> None:
         "max_epochs": max_epochs,
         "target_val_macro_f1": args.target_val_macro_f1,
         "implementation_repair_attempts": args.implementation_repair_attempts,
-        "artifact_constrained_blueprint_exclusions": str(exclusions_file) if exclusions_file else "",
         "guardrails": {
             "no_fallback": True,
             "no_compact_proxy": True,
