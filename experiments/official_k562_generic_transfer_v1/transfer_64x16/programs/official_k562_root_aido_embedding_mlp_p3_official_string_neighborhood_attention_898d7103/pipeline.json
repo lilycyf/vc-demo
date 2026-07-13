@@ -1,0 +1,54 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_string_neighborhood_attention",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact": "official_string_gnn_keep20_graph",
+      "usage": "real STRING keep20 target-gene neighborhood features and attention priors; no synthetic edges",
+      "path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "source_backed": true
+    },
+    {
+      "artifact": "official_essential_deg_with_split_h5ad",
+      "usage": "official task contract, split, and target-gene order validation",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source_backed": true
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "STRING_neighborhood_attention",
+  "pipeline_program": {
+    "blueprint": "official_string_neighborhood_attention",
+    "representation": "official_aido_embedding_context",
+    "perturbation_side": "parent_aido_embedding_features",
+    "target_side": "official_target_gene_string_neighborhood_features",
+    "fusion": "multihead_context_to_string_target_attention",
+    "prior": "STRING_keep20_induced_target_graph_self_loop_for_missing_only",
+    "head": "graph_prior_gated_low_rank_class_head",
+    "training_strategy": "weighted_cross_entropy",
+    "fine_tuning": "node_local_graph_attention_head",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "Level-5 STRING neighborhood attention using the real official graph artifact"
+  },
+  "fallback_used": false,
+  "formal_proxy_used": false
+}

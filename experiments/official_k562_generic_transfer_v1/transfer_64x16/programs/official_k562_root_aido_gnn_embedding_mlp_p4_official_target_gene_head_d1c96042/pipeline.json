@@ -1,0 +1,52 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_gene_head",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact": "official_essential_deg_with_split_h5ad",
+      "usage": "official task contract and fixed target-gene order validation",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source_backed": true
+    },
+    {
+      "artifact": "official_k562_target_gene_order",
+      "usage": "node-local target-gene head validates and preserves the 6640 target order",
+      "path": "data/cell_lines/official_k562_cls/target_genes.tsv",
+      "source_backed": true
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "target_gene_aware_head",
+  "pipeline_program": {
+    "blueprint": "official_target_gene_head",
+    "representation": "official_aido_plus_gnn_embedding_context",
+    "perturbation_side": "parent_embedding_features",
+    "target_side": "fixed_official_target_gene_identity_features",
+    "fusion": "low_rank_context_target_bilinear",
+    "prior": "official_task_contract_target_order",
+    "head": "target_aware_low_rank_bilinear_class_head",
+    "training_strategy": "weighted_cross_entropy",
+    "fine_tuning": "node_local_head_only",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "Level-4 target-gene-aware prediction head over the official 6640 DEG targets"
+  },
+  "fallback_used": false,
+  "formal_proxy_used": false
+}

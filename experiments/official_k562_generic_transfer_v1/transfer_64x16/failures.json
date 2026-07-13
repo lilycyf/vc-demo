@@ -1,0 +1,28 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_weighted_ce_training_2988ee3e",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_weighted_ce_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_ec2c0082",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_649e5781",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_cross_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    }
+  ]
+}

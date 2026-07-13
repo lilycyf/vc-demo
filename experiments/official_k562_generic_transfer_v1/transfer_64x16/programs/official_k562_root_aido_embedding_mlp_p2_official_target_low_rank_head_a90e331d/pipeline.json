@@ -1,0 +1,52 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_low_rank_head",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_embedding_mlp_p2_official_target_low_rank_head_a90e331d/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact": "official_essential_deg_with_split_h5ad",
+      "usage": "official task contract and fixed target-gene order validation",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source_backed": true
+    },
+    {
+      "artifact": "official_k562_target_gene_order",
+      "usage": "node-local low-rank head validates and preserves 6640 target order",
+      "path": "data/cell_lines/official_k562_cls/target_genes.tsv",
+      "source_backed": true
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "target_low_rank_head",
+  "pipeline_program": {
+    "blueprint": "official_target_low_rank_head",
+    "representation": "official_aido_embedding_context",
+    "perturbation_side": "parent_aido_embedding_features",
+    "target_side": "fixed_official_target_gene_identity_features",
+    "fusion": "low_rank_context_target_bilinear",
+    "prior": "official_task_contract_target_order",
+    "head": "target_low_rank_bilinear_class_head",
+    "training_strategy": "weighted_cross_entropy",
+    "fine_tuning": "node_local_low_rank_head",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "target-aware low-rank DEG head over official 6640 targets"
+  },
+  "fallback_used": false,
+  "formal_proxy_used": false
+}

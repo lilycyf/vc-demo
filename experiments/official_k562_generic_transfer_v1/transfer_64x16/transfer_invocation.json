@@ -1,0 +1,22 @@
+{
+  "cell_line": "K562",
+  "cell_line_slug": "k562",
+  "level": "transfer_64x16",
+  "level_description": "generic transfer loop test",
+  "run_dir": "experiments/official_k562_generic_transfer_v1/transfer_64x16",
+  "experiment": "official_k562_transfer_64x16",
+  "root_configs": [
+    "configs/official_k562_loop_roots/root_aido_embedding_mlp.json",
+    "configs/official_k562_loop_roots/root_aido_gnn_embedding_mlp.json"
+  ],
+  "resume": true,
+  "max_epochs": 1,
+  "implementation_repair_attempts": 3,
+  "guardrails": {
+    "no_fallback": true,
+    "no_compact_proxy": true,
+    "strict_artifacts": true,
+    "validation_macro_f1_reward": true,
+    "test_metric_report_only": true
+  }
+}

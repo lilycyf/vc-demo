@@ -1,0 +1,298 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_649e5781",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906",
+  "strategy": "official_aido_string_fusion",
+  "blueprint": {
+    "id": "official_aido_string_fusion",
+    "status": "planned",
+    "official_k562": true,
+    "category": "multimodal_fusion",
+    "paper_family": "AIDO_STRING_fusion",
+    "change_level": 5,
+    "role": "Fuse AIDO perturbation/cell representation with STRING_GNN representation via concat, gating, bilinear, or cross-attention variants.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_notes": "Agent may choose fusion mechanism but must preserve official splits, labels, and artifact provenance. The implementation must use real AIDO and STRING/GNN branches, not a proxy wrapper.",
+    "acceptance": [
+      "Uses both AIDO and STRING/GNN artifacts",
+      "Records fusion type",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Fuse AIDO perturbation/cell representation with STRING_GNN representation via concat, gating, bilinear, or cross-attention variants.",
+  "changes": [
+    "program_model:custom_program->official_aido_string_fusion",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906",
+  "program_model_path": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    },
+    {
+      "provider": "STRING_GNN",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_aido_string_fusion",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.84,
+    "base": 1.0,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.36,
+    "native_repeat_penalty": 0.0,
+    "count": 3,
+    "family": "AIDO_STRING_fusion",
+    "family_count": 3
+  },
+  "structural_signature": "1123b8802df90e9f4c17ed7477cfcba52678f383",
+  "parent_structural_signature": "841a8f77d14ecd77e5286010e281e10413c6c4f4",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_a3d78906/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "missing_required_artifacts": [
+      "official_string_gnn_model_dir"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "official_string_gnn_model_dir"
+  ],
+  "missing_required_artifact_paths": [
+    "/home/Models/STRING_GNN"
+  ],
+  "candidate_pool_iteration": 11,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_649e5781",
+  "duplicate_screen": {
+    "is_duplicate": true,
+    "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+  },
+  "cheap_screen_score": {
+    "score": -1.25,
+    "scientific_score": 0.84,
+    "cost_class": "expensive",
+    "cost_bonus": -0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.75,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "official_string_gnn_model_dir"
+    ],
+    "duplicate_reason": "blueprint official_aido_string_fusion reached repeat limit 2",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_649e5781",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_649e5781",
+      "policy": "uct",
+      "score": 2.2313946076157345,
+      "uct": 2.2313946076157345,
+      "puct": null,
+      "q": 0.3535339832305908,
+      "Q_v": 0.7070679664611816,
+      "exploitation": 0.3535339832305908,
+      "Exploitation": 0.3535339832305908,
+      "exploration": 1.8778606243851437,
+      "Exploration": 1.8778606243851437,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 34,
+      "children": 0,
+      "best_val_macro_f1": 0.3535339832305908,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p4_official_aido_lora_adapter_c468633e",
+      "policy": "uct",
+      "score": 2.210664290976788,
+      "uct": 2.210664290976788,
+      "puct": null,
+      "q": 0.3328036665916443,
+      "Q_v": 0.6656073331832886,
+      "exploitation": 0.3328036665916443,
+      "Exploitation": 0.3328036665916443,
+      "exploration": 1.8778606243851437,
+      "Exploration": 1.8778606243851437,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 34,
+      "children": 0,
+      "best_val_macro_f1": 0.3328036665916443,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p7_official_aido_cached_embedding_fusion_7cfdea7c",
+      "policy": "uct",
+      "score": 2.2046664245846523,
+      "uct": 2.2046664245846523,
+      "puct": null,
+      "q": 0.32680580019950867,
+      "Q_v": 0.6536116003990173,
+      "exploitation": 0.32680580019950867,
+      "Exploitation": 0.32680580019950867,
+      "exploration": 1.8778606243851437,
+      "Exploration": 1.8778606243851437,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 34,
+      "children": 0,
+      "best_val_macro_f1": 0.32680580019950867,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "uct",
+      "score": 1.8796407942826516,
+      "uct": 1.8796407942826516,
+      "puct": null,
+      "q": 0.3463740150133769,
+      "Q_v": 1.0391220450401306,
+      "exploitation": 0.3463740150133769,
+      "Exploitation": 0.3463740150133769,
+      "exploration": 1.5332667792692747,
+      "Exploration": 1.5332667792692747,
+      "prior": 0.0,
+      "visits": 3,
+      "parent_visits": 34,
+      "children": 4,
+      "best_val_macro_f1": 0.3427940309047699,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_temperature_calibrated_head_1f61c967",
+      "policy": "uct",
+      "score": 1.8789192005847857,
+      "uct": 1.8789192005847857,
+      "puct": null,
+      "q": 0.34565242131551105,
+      "Q_v": 1.0369572639465332,
+      "exploitation": 0.34565242131551105,
+      "Exploitation": 0.34565242131551105,
+      "exploration": 1.5332667792692747,
+      "Exploration": 1.5332667792692747,
+      "prior": 0.0,
+      "visits": 3,
+      "parent_visits": 34,
+      "children": 4,
+      "best_val_macro_f1": 0.35207679867744446,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_target_low_rank_head_a90e331d",
+      "policy": "uct",
+      "score": 1.6758030073584567,
+      "uct": 1.6758030073584567,
+      "puct": null,
+      "q": 0.34795502573251724,
+      "Q_v": 1.391820102930069,
+      "exploitation": 0.34795502573251724,
+      "Exploitation": 0.34795502573251724,
+      "exploration": 1.3278479816259394,
+      "Exploration": 1.3278479816259394,
+      "prior": 0.0,
+      "visits": 4,
+      "parent_visits": 34,
+      "children": 4,
+      "best_val_macro_f1": 0.3534698188304901,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_laplacian_smoothing_dc9fe3d0",
+      "policy": "uct",
+      "score": 1.5335639950733826,
+      "uct": 1.5335639950733826,
+      "puct": null,
+      "q": 0.34590065479278564,
+      "Q_v": 1.7295032739639282,
+      "exploitation": 0.34590065479278564,
+      "Exploitation": 0.34590065479278564,
+      "exploration": 1.187663340280597,
+      "Exploration": 1.187663340280597,
+      "prior": 0.0,
+      "visits": 5,
+      "parent_visits": 34,
+      "children": 4,
+      "best_val_macro_f1": 0.3455764949321747,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_target_graph_conditioned_head_10827e49",
+      "policy": "uct",
+      "score": 1.4332966672343797,
+      "uct": 1.4332966672343797,
+      "puct": null,
+      "q": 0.349113330245018,
+      "Q_v": 2.094679981470108,
+      "exploitation": 0.349113330245018,
+      "Exploitation": 0.349113330245018,
+      "exploration": 1.0841833369893616,
+      "Exploration": 1.0841833369893616,
+      "prior": 0.0,
+      "visits": 6,
+      "parent_visits": 34,
+      "children": 4,
+      "best_val_macro_f1": 0.35537660121917725,
+      "stage": "improve"
+    }
+  ],
+  "candidate_pool_rank": 4,
+  "candidate_pool_size": 4,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "generate_many_prune_before_training"
+}

@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_weighted_ce_training_2988ee3e",
+      "strategy": "official_weighted_ce_training",
+      "artifact_id": "class_distribution",
+      "expected_path": "",
+      "source": "not listed in artifact registry",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_ec2c0082",
+      "strategy": "official_aido_string_cross_attention",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_aido_cached_embedding_fusion",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/transfer_64x16/programs/official_k562_root_aido_embedding_mlp_p7_official_aido_cached_embedding_fusion_7cfdea7c/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact": "official_aido_cell_100m_model_dir",
+      "usage": "validated AIDO.Cell-100M model directory provenance for cached embedding family",
+      "path": "/home/Models/AIDO.Cell-100M",
+      "source_backed": true
+    },
+    {
+      "artifact": "official_aido_cell_100m_cached_embedding_h5ad",
+      "usage": "frozen AIDO.Cell-100M cached perturbation embeddings consumed as model input",
+      "path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "source_backed": true
+    },
+    {
+      "artifact": "official_essential_deg_with_split_h5ad",
+      "usage": "official task contract, split, and target-gene order validation",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source_backed": true
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "AIDO_cached_embedding",
+  "pipeline_program": {
+    "blueprint": "official_aido_cached_embedding_fusion",
+    "representation": "official_aido_cell_100m_cached_embedding",
+    "perturbation_side": "frozen_aido_cached_embedding_features",
+    "target_side": "fixed_official_target_gene_identity_features",
+    "fusion": "gated_cached_aido_context_to_target_low_rank_fusion",
+    "prior": "official_aido_model_dir_and_cached_embedding_h5ad",
+    "head": "aido_cache_gated_target_head",
+    "training_strategy": "weighted_cross_entropy",
+    "fine_tuning": "node_local_head_over_frozen_cached_embeddings",
+    "required_artifacts": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "Level-5 AIDO cached embedding fusion using present source-backed AIDO artifacts"
+  },
+  "fallback_used": false,
+  "formal_proxy_used": false
+}
