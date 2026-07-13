@@ -27,12 +27,12 @@ Every handoff must distinguish run type from cell line. Do not infer run type fr
 | Run type | Purpose | Allowed levels | Default epochs | Quality interpretation |
 |---|---|---|---:|---|
 | `loop_self_test` | Validate runner wiring, proposal-pool pruning, strict artifact gates, implementation loop, and report counters | `preflight`, `transfer_64x16`, `transfer_150x40` | 1 | May not be used to claim model superiority |
-| `full_cellline_run` | Run a real cell-line experiment with model-quality budget | `full_cellline_run` | 5 | May be used for root-vs-child comparison |
+| `full_cellline_run` | Run a real cell-line experiment whose primary objective is to beat the best root | `full_cellline_run` | 8 | Must report whether best generated child beats best root |
 
 Hard rules:
 
 - `full_cellline_run` must use `--level full_cellline_run`.
-- `full_cellline_run` must use `--max-epochs >= 5`.
+- `full_cellline_run` must use `--max-epochs >= 8`.
 - `transfer_64x16` and `transfer_150x40` are loop/self-test levels even if they generate many proposals.
 - If the user asks to "完整跑" or "真实跑" a cell line, use `RUN_TYPE=full_cellline_run`, not `transfer_64x16`.
 - Full runs require an artifact-constrained blueprint filter before training: exclude unresolved/blocked artifact-dependent blueprints from the main run and report exclusions separately.
@@ -47,7 +47,7 @@ Use `scripts/run_generic_cellline_transfer_test.py` to expand a short request in
 | `preflight` | 8 | 2 | wiring and artifact readiness smoke |
 | `transfer_64x16` | 64 | 16 | default transfer test |
 | `transfer_150x40` | 150 | 40 | loop/self-test pressure test after 64x16 passes |
-| `full_cellline_run` | 150 | 50 | real full cell-line run; default 5 epochs |
+| `full_cellline_run` | 300 | 100 | root-beating full cell-line run; default 8 epochs |
 
 ## Standard Invocation
 
@@ -62,6 +62,18 @@ PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-lin
 ```
 
 The script writes `transfer_invocation.json` and `transfer_invocation.md` into the run directory before execution.
+
+### Root-Beating Objective For Full Runs
+
+A `full_cellline_run` is not complete merely because it trains many nodes. Its primary objective is to find a generated child that beats the best root on validation Macro-F1. The final report must include:
+
+- best root val/test Macro-F1
+- best generated child val/test Macro-F1
+- delta child vs root
+- whether the primary objective was achieved
+- if not achieved, root-dominance attribution covering artifact limits, training budget, model-space limits, implementation limits, and optimization stability
+
+If no child beats root, the run can be considered mechanically complete but scientifically not successful for the root-beating objective.
 
 ## Source-Backed Task Contract
 

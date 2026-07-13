@@ -18,9 +18,12 @@ Pass only if the run type is explicit:
 - `RUN_TYPE=loop_self_test` is for wiring/proposal/acquisition/implementation-loop validation only.
 - `RUN_TYPE=full_cellline_run` is for real model-quality cell-line experiments.
 - `full_cellline_run` must use `--level full_cellline_run`.
-- `full_cellline_run` must use `max_epochs >= 5`.
+- `full_cellline_run` must use `max_epochs >= 8`.
 - `transfer_64x16` and `transfer_150x40` must not be described as full model-quality runs.
 - Full runs must apply artifact-constrained blueprint filtering before training and report excluded blueprint families.
+- Full runs must train at least 100 selected rollouts unless stopped by a source-backed blocker.
+- Full runs must generate at least 300 proposals unless stopped by a source-backed blocker.
+- Full runs must explicitly report whether best generated child beats best root on validation Macro-F1.
 
 ## Task Contract
 
@@ -33,6 +36,16 @@ Pass only if:
 - validation Macro-F1 is the reward
 - test Macro-F1 is report-only
 - no K562 task files are used for a different cell line
+
+## Root-Beating Acceptance
+
+For `RUN_TYPE=full_cellline_run`, the primary scientific objective is:
+
+```text
+best_generated_child_val_macro_f1 > best_root_val_macro_f1
+```
+
+The run is not a scientific success unless this is true. If false, the final report must mark the root-beating objective as not achieved and include root-dominance attribution.
 
 ## Artifact Contract
 

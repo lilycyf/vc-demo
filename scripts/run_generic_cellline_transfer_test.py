@@ -27,7 +27,7 @@ LEVELS: dict[str, TransferLevel] = {
     "preflight": TransferLevel(8, 2, 2, 4, 4, "loop_self_test", 1, "minimal wiring smoke"),
     "transfer_64x16": TransferLevel(64, 16, 4, 8, 12, "loop_self_test", 1, "generic transfer loop test; not a model-quality run"),
     "transfer_150x40": TransferLevel(150, 40, 4, 8, 30, "loop_self_test", 1, "medium transfer pressure test; still not a full model-quality run"),
-    "full_cellline_run": TransferLevel(150, 50, 4, 8, 30, "full_cellline_run", 5, "formal full cell-line run with real model-quality budget", True),
+    "full_cellline_run": TransferLevel(300, 100, 6, 10, 60, "full_cellline_run", 8, "formal root-beating full cell-line run with model-quality budget", True),
 }
 
 
@@ -62,8 +62,8 @@ def resolve_level_and_epochs(args: argparse.Namespace) -> tuple[str, TransferLev
     if args.run_type == "loop_self_test" and level.run_type == "full_cellline_run":
         raise SystemExit("--level full_cellline_run requires --run-type full_cellline_run.")
     max_epochs = args.max_epochs if args.max_epochs is not None else level.default_max_epochs
-    if level.run_type == "full_cellline_run" and max_epochs < 5:
-        raise SystemExit("full_cellline_run requires --max-epochs >= 5; 1-epoch smoke budgets are forbidden.")
+    if level.run_type == "full_cellline_run" and max_epochs < 8:
+        raise SystemExit("full_cellline_run requires --max-epochs >= 8; 1-epoch smoke budgets are forbidden.")
     return level_name, level, max_epochs
 
 
@@ -187,6 +187,7 @@ def main() -> None:
             "test_metric_report_only": True,
             "full_run_forbids_one_epoch": level.run_type == "full_cellline_run",
             "artifact_constrained_blueprint_filter_required": level.artifact_constrained_required,
+            "primary_objective": "best_generated_child_beats_best_root" if level.run_type == "full_cellline_run" else "loop_mechanics",
         },
     }
     write_plan(run_dir, payload, command)

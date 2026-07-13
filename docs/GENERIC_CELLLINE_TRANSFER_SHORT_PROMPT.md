@@ -17,12 +17,12 @@ Use repo instructions only:
 Use the standard entrypoint:
 PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --run-type full_cellline_run --level full_cellline_run --execute
 
-This is not a smoke test. Do not use transfer_64x16. Do not use 1 epoch. Before training, apply the artifact-constrained blueprint rule from the runbook: acquire public source-backed artifacts when possible; if an artifact is proven unavailable, exclude dependent blueprints from the main full run and report them separately. No fallback, no compact/proxy, no test-set tuning, and no forbidden files.
+This is not a smoke test. Do not use transfer_64x16. Do not use 1 epoch. The primary objective is to find a generated child that beats the best root on validation Macro-F1. Before training, apply the artifact-constrained blueprint rule from the runbook: acquire public source-backed artifacts when possible; if an artifact is proven unavailable, exclude dependent blueprints from the main full run and report them separately. No fallback, no compact/proxy, no test-set tuning, and no forbidden files.
 
 Push results to:
 <cell_line_slug>-full-official-run
 
-Final reply must include commit hash, generated/trained/pruned/blocked counts, best root val/test, best child val/test, whether best child beats root, artifact exclusions/blockers, fallback/proxy/backprop/backend anomaly counts, and forbidden staged check result.
+Final reply must include commit hash, generated/trained/pruned/blocked counts, best root val/test, best generated child val/test, delta child-vs-root, whether the root-beating objective was achieved, artifact exclusions/blockers, fallback/proxy/backprop/backend anomaly counts, and forbidden staged check result.
 ```
 
 ## Loop self-test
