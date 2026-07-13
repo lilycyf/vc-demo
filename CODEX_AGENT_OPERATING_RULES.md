@@ -121,10 +121,9 @@ When public paper artifacts define a mechanism, follow it. When they do not defi
 Use this loop for program-node experiments:
 
 1. Run `program_run` with the task's root configs and budget.
-2. If it stops with pending implementations, inspect `implementation_queue.json`.
-3. Implement queued `model.py` files one at a time.
-4. Train each implemented node with `train_pending.py`.
-5. Continue search if the task budget allows.
+2. If selected nodes need implementation, handle them during the same run: inspect `implementation_queue.json` and the node-local task files immediately.
+3. Implement the selected node-local `model.py` and train it; if no safe real implementation can be produced, mark the node `implementation_skipped` and do not leave it pending for later.
+4. Continue search if the task budget allows.
 6. Write final conclusion.
 7. Commit only allowed files and push to the requested branch.
 

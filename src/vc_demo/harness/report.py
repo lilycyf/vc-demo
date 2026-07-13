@@ -148,7 +148,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "# VCHarness-Style K562 Search Summary",
         "",
         "This run separates the search loop into MCTS parent selection, proposal-pool generation, cheap screening/pruning, selected rollout execution, and reward backpropagation.",
-        "In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acquisition, selected for training, pending implementation, failed, or trained. Only trained rollout nodes backpropagate reward to MCTS.",
+        "In paper-aligned mode, a node may be proposed, queued, pruned, blocked for artifact acquisition, selected for training, skipped when realtime implementation cannot safely produce a real model, failed, or trained. Only trained rollout nodes backpropagate reward to MCTS.",
         "",
         f"- Stop reason: {stop_reason}",
         f"- Proposal-like nodes: {proposal_like}",

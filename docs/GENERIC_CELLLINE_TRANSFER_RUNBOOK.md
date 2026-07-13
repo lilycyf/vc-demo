@@ -143,15 +143,16 @@ Expected root families, subject to source-backed availability:
 - AIDO+GNN embedding MLP
 - optional public static wrapper for the selected cell line
 
-## Pending Implementation Loop
+## Realtime Implementation Loop
 
-When `implementation_queue.json` contains a selected planned node:
+When `implementation_queue.json` contains a selected planned node, the experiment Codex must handle it immediately, not leave it for a later run:
 
 1. Read node-local `IMPLEMENTATION_REQUEST.md`, `CODEX_IMPLEMENTATION_TASK.md` if present, `artifact_contract.json`, `smoke_contract.json`, `base_config.json`, and `pipeline.json`.
 2. If required artifacts are missing, run acquisition or block. Do not write `model.py`.
 3. If required artifacts are present, implement only node-local `model.py` and node-local pipeline metadata. Tiny helpers may live under `src/vc_demo/official_<slug>/` only when necessary.
 4. Run compile, native smoke, and `train_pending`.
-5. Resume the same run without `--reset`.
+5. If no safe real implementation can be produced, mark the node `implementation_skipped`, clear it from `implementation_queue.json`, and continue global search. Do not leave pending implementation tasks for later.
+6. Resume or continue the same run without `--reset`.
 
 Allowed edits during pending implementation:
 
