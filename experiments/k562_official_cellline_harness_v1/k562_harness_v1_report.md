@@ -1,0 +1,174 @@
+# K562 Official Cell-Line Harness v1 Completion Report
+
+## Verdict
+
+K562 is complete for **Reusable Official Cell-Line Harness v1 / Phase-3**. This is not a 600+ proposal paper-scale claim. It is a reusable, strict, auditable cell-line harness with official task contract validation, artifact registry audit, root baselines, proposal-pool MCTS semantics, automatic implementation-loop evidence, strict acquisition/block behavior, and a transfer checklist for hTERT-RPE1.
+
+Current branch: `k562-official-cellline-harness-v1`  
+Base commit on this pod: `86959f1`
+
+## Official Task Contract
+
+Validation output: `experiments/k562_official_cellline_harness_v1/task_contract_validation.json`
+
+- Cell line: K562 / K-562 official DEG task
+- Data dir: `data/cell_lines/official_k562_cls`
+- Split: train `1388`, val `154`, test `421`
+- Target genes: `6640`
+- Raw DEG labels: `-1`, `0`, `1`; training remaps to `0`, `1`, `2`
+- Reward/selection metric: validation Macro-F1
+- Final reporting metric: validation Macro-F1 and test Macro-F1
+- Validation status: `passed` with issues `[]`
+
+## Artifact Registry
+
+Audit outputs:
+
+- `artifact_registry_audit.json`
+- `artifact_registry_audit_after_aido_acquisition.json`
+- `model_dir_validation.json`
+- `aido_cell_100m_model_dir_manifest.json`
+
+Present after current-pod AIDO acquisition:
+
+- `string_k562_gene_graph`
+- `pathway_membership_matrix`
+- `official_essential_deg_with_split_h5ad`
+- `official_k562_aido_cell_100m_embedding_h5ad`
+- `official_string_gnn_keep20_graph`
+- `official_aido_cell_100m_model_dir`
+- `official_gnn_simple_embedding_h5ad`
+- `official_public_best_node_code`
+
+Missing after current-pod AIDO acquisition:
+
+- `esm2_gene_embedding_h5ad`
+- `esm2_k562_target_manifest`
+- `aido_gene_or_cell_embeddings`
+- `scfoundation_cell_embeddings`
+- `official_string_gnn_model_dir`
+
+Notes:
+
+- `official_aido_cell_100m_model_dir` was actively acquired from HuggingFace `genbio-ai/AIDO.Cell-100M`, revision `b14a88b962758102e618289f4340f989bd6eebe5`. Validation is `passed_with_warnings` and warns that tokenizer files are absent.
+- `official_string_gnn_model_dir` remains missing on this pod. The acquisition registry marks it as non-automatic because the public HuggingFace repo currently does not expose verifiable weight files. The existing STRING graph artifacts are source-backed, but they are not equivalent to the missing trained model directory.
+- `scfoundation_cell_embeddings` remains a valid strict blocker for scFoundation-family nodes. It has no automatic resolver and must not be replaced by a random embedding, small MLP, or K562 tabular proxy.
+
+## Root Baselines
+
+From the 64/16 automatic-loop run:
+
+- Best root: `official_k562_native_public_best_reimplementation`
+- Val Macro-F1: `0.4332`
+- Test Macro-F1: `0.4702`
+
+From the 150/40 strict attempt:
+
+- Best root: `official_k562_native_public_best_reimplementation`
+- Val Macro-F1: `0.4221`
+- Test Macro-F1: `0.4559`
+
+## Automatic Proposal/Implementation Loop Evidence
+
+### 64/16 clean run
+
+Source branch: `official-k562-auto-impl-64x16`  
+Run dir: `experiments/official_k562_auto_impl_64x16`  
+Stop reason: `no improvement for 12 nodes`
+
+- Total tree nodes: `56`
+- Status counts: `{'trained': 17, 'pruned_not_selected': 39}`
+- Proposal pools: `13`
+- Pruned proposals: `39`
+- Trained nodes including roots: `17`
+- Auto-implemented trained nodes from search memory: `9`
+- Native smoke passed count: `9`
+- Backpropagation events: `4`
+- Backprop non-trained count: `0`
+- Fallback trace lines: `0`
+- External static trace lines: `0`
+
+Best trained rollout:
+
+- Node: `official_k562_native_p2_official_string_gnn_attention_c7b091ac`
+- Strategy: `official_string_gnn_attention`
+- Val Macro-F1: `0.4421`
+- Test Macro-F1: `0.4805`
+
+### 150/40 strict attempt
+
+Source branch: `official-k562-auto-impl-150`  
+Run dir: `experiments/official_k562_auto_impl_150`  
+Stop reason: `requires artifact acquisition for official_scfoundation_top_layer_finetune: scfoundation_cell_embeddings`
+
+- Total tree nodes: `68`
+- Status counts: `{'trained': 18, 'pruned_not_selected': 49, 'requires_artifact_acquisition': 1}`
+- Proposal pools: `16`
+- Pruned proposals: `49`
+- Trained nodes including roots: `18`
+- Auto-implemented trained nodes from search memory: `10`
+- Native smoke passed count: `10`
+- Artifact acquisition blocks: `1`
+- Backpropagation events: `4`
+- Backprop non-trained count: `0`
+- Fallback trace lines: `0`
+- External static trace lines: `0`
+
+Best trained rollout:
+
+- Node: `official_k562_native_p6_official_target_graph_conditioned_head_e7c293b6`
+- Strategy: `official_target_graph_conditioned_head`
+- Val Macro-F1: `0.4470`
+- Test Macro-F1: `0.4829`
+- Improvement over best root validation Macro-F1: `0.0249`
+
+Strict blocker:
+
+```json
+{
+  "items": [
+    {
+      "node": "official_k562_native_p8_official_scfoundation_top_layer_finetune_ba26b0e0",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "artifact_id": "scfoundation_cell_embeddings",
+      "expected_path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    }
+  ]
+}
+```
+
+## Current-Pod Sanity Attempt
+
+A fresh low-budget sanity run on this pod was attempted after installing `requirements-official-k562.txt`. It stopped at strict preflight because `/home/Models/STRING_GNN` is absent and has no verified automatic resolver. This is a valid strict artifact boundary, not a training or implementation failure. AIDO.Cell-100M was acquired successfully; STRING_GNN was not fabricated.
+
+## Completion Criteria Check
+
+- Official K562 contract validation: passed
+- Artifact registry audit: passed with explicit present/missing states
+- Root baselines available from historical official K562 runs: yes
+- Proposal pool generated: yes
+- Pruned-not-selected proposals present: yes
+- Automatic implementation loop executed: yes
+- Native smoke passed for generated nodes: yes
+- 64/16 run clean: yes
+- 150/40 run: strict artifact blocker, acceptable for v1
+- Fallback count: 0
+- Non-trained backprop count: 0
+- External static backend: no trace use for generated children in these automatic-loop traces; public static wrapper remains the only intended use
+- Forbidden files committed in this v1 branch: checked before commit
+
+## hTERT-RPE1 Choice
+
+hTERT-RPE1 is the recommended second cell line because its public VCHarness scaffold is at least as rich as K562:
+
+| Cell line | Static files | Memory nodes | Public best score |
+|---|---:|---:|---:|
+| K562 | 309 | 153 | 0.51277 |
+| hTERT-RPE1 | 331 | 166 | 0.51816 |
+| HepG2 | 313 | 151 | 0.53093 |
+| Jurkat | 292 | 147 | 0.50488 |
+
+HepG2 is the fallback only if hTERT-RPE1 cannot establish a source-backed task contract from official artifacts.
