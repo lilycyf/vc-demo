@@ -1,51 +1,28 @@
 # Prompt Template: Codex Program-Node Experiment Agent
 
-Use this prompt when launching a Codex agent for a concrete task.
+Use this only when the user asks for a copyable prompt for another Codex.
 
 ```text
-You are working in /workspace/vc-demo on RunPod.
+You are working on RunPod in /workspace/vc-demo. Do not read or run the local repo.
 
-First run:
+Read the current repo instructions in this order:
+1. CODEX_AGENT_COOKBOOK.md
+2. docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md
+3. docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md
+4. ARTIFACT_ACQUISITION_RUNBOOK.md
+5. OFFICIAL_K562_IMPLEMENTATION_LOOP.md only if the selected cell line/task is K562-specific
 
-git pull --ff-only
+Follow the user-specified cell line, run type, target score, branch, and run directory.
 
-Then read, in order:
-1. E_CODEX_AGENT_EXPERIMENT_RUNBOOK.md
-2. F_PROGRAM_NODE_HARNESS_UPGRADE.md
-3. PAPER_LEVEL_SEARCH_SPACE_SPEC.md
-4. PUBLIC_ARTIFACT_ALIGNMENT.md
-5. CODEX_AGENT_OPERATING_RULES.md
-6. CODEX_AGENT_COOKBOOK.md
-7. <TASK_FILE>.md
+Runtime rules:
+- You are both experiment runner and implementation agent.
+- If implementation_queue.json appears, handle the selected node immediately.
+- If artifacts are present, implement the node-local model.py, compile/native-smoke/train it.
+- If no safe real artifact-backed implementation can be produced, mark the node implementation_skipped, clear it from the queue, do not train, do not backpropagate, and continue global search.
+- If artifacts are missing, run artifact acquisition/source-backed search first; block only after documented source/provenance/alignment failure.
+- Never use fallback/compact/proxy models in formal runs.
+- Never change data splits, labels, target order, reward metric, or tune on test labels.
+- Commit only allowed code/config/docs/small metadata/reports; never commit data, nodes, checkpoints, weights, .h5ad, .npz, pycache, egg-info, secrets, or tokens.
 
-Follow the task file exactly. You are both the experiment runner and the implementation agent. Use public paper-aligned behavior where specified; when a detail is missing but required for the loop, implement it as an explicit repo-specific completion and record it. Use the harness files already in the repo instead of writing ad hoc search scripts. Treat PAPER_LEVEL_SEARCH_SPACE_SPEC.md as the search-space contract: do not pre-implement all planned models, but do consider the planned biological-prior, foundation-embedding, graph, and multimodal-fusion blueprints when the search selects them. Also read TARGET_AWARE_ARTIFACT_MODEL_SPACE.md and PAPER_LEVEL_FRAMEWORK_UPGRADE_2.md when the task involves ESM2/AIDO/scFoundation/STRING artifacts; prefer target-aware artifact use over simply appending a foundation embedding to tabular features.
-
-If program_run produces needs_implementation nodes, read implementation_queue.json and the node's IMPLEMENTATION_REQUEST.md immediately. Implement only selected node-local model.py files, run compile/smoke checks, then train them with python -m vc_demo.harness.train_pending. If a selected node cannot be safely implemented as a real artifact-backed model, mark it implementation_skipped, clear it from the queue, and continue global search; do not leave it for a later Codex. If a selected node requires a missing external artifact, do not just stop and report it: run the artifact acquisition flow, search/download/build a source-backed artifact when possible, audit it, update the registry, and resume. Only record a blocker after the acquisition attempt fails with documented reasons. Never fake AIDO/ESM2/scFoundation/STRING data.
-
-Keep data, splits, and metric semantics unchanged. Do not commit data, nodes, checkpoints, pycache, egg-info, secrets, or tokens.
-
-At the end, write the requested final_conclusion.md, commit only allowed files, and push to the task branch. Do not push to master.
+At the end, push the run branch and report commit hash, run directory, best root, best generated child, objective status, blocker/skipped counts, and forbidden staged check result.
 ```
-
-
-Strict artifact rule: in formal testing, do not implement fallback models for missing AIDO/scFoundation/STRING/pathway/pretrained artifacts. If the registry says a required artifact is missing, run artifact acquisition first; block only after a documented source/provenance/alignment attempt fails. Use `--allow-missing-artifact-fallbacks` only when the user explicitly asks for a separate ablation.
-
-
-Artifact acquisition rule: if strict search stops with `requires_artifact_acquisition`, run `python -m vc_demo.harness.artifact_acquisition --queue <run_dir>/acquisition_queue.json --registry configs/artifacts/k562_registry.json --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir <run_dir>/artifact_acquisition --execute-known`. If it generates `ACQUIRE_<artifact>.md`, follow `ARTIFACT_ACQUISITION_AGENT_PROMPT.md` to search/download/build the real source-backed artifact, update the registry, rerun artifact audit, and resume strict search. For `scfoundation_cell_embeddings`, actively search public scFoundation sources and attempt a K562-aligned build only if the checkpoint/vocabulary/normalization/tensor contract is defensible. Do not train fallback models in formal tests.
-
-
-STRING/PPI implementation rule: if `ppi_graph_message_passing` is selected and `string_k562_gene_graph` is present, use the implemented node-local graph smoother generated by the harness. It must read `data/artifacts/string/k562_target_graph_edges.tsv` through `spec.artifacts`, preserve target order from the dataset split, and never fabricate graph edges.
-
-Run manifest rule: every formal run must preserve `run_manifest.json` together with `tree.json`, `search_summary.md`, queues, and proposals so another Codex can resume without relying on chat history.
-
-
-Autonomous loop rule: prefer `python -m vc_demo.harness.autonomous_run` for formal single-cell-line experiments. It must preserve `search_memory.json`, `run_manifest.json`, queues, proposals, and summaries. If it emits `CODEX_IMPLEMENTATION_TASK.md` or `ACQUIRE_<artifact>.md`, handle that task during the current run without changing data splits, labels, metrics, or fabricating artifacts; implementation tasks that cannot be safely completed become `implementation_skipped`, not pending-for-later.
-
-
-Codex execution model: do not add internal Codex/OpenAI API calls to the repo for formal runs. The user-launched Codex window is the agent. The repo should emit queues, task files, audits, and guardrails; Codex should read them and make direct repo edits on RunPod within the cookbook boundaries.
-
-
-Paper alignment layers rule: before a formal run, read `PAPER_ALIGNMENT_LAYERS_1_4.md`. Use `preflight.json` for grammar/artifact readiness, `search_memory.json` for prior motifs and duplicate context, and `final_analysis.md` to explain whether architecture, training strategy, or artifact-backed biology drove the result.
-
-
-Paper alignment layers 5-8 rule: before a formal run, create `artifact_readiness.json`, `benchmark_audit.json`, `scale_plan.json`, and `preflight.json`. After the run, generate repair tasks for failures if needed and write `final_analysis.md` before `final_conclusion.md`.
