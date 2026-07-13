@@ -1,0 +1,30 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_embedding_mlp",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.3844268321990967,
+  "parent_test_macro_f1": 0.3974635601043701,
+  "parent_strategy": "root",
+  "parent_config_model": {
+    "model_type": "gated_mlp",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {}
+}

@@ -10,7 +10,17 @@
   "artifact_requirements": [
     "official_essential_deg_with_split_h5ad"
   ],
-  "artifact_usage_claims": [],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_essential_deg_with_split_h5ad",
+      "usage": "defines the official K562 DEG task contract and exact 6640 target-gene prediction problem"
+    },
+    {
+      "artifact_id": "official_k562_target_gene_order",
+      "path": "data/cell_lines/official_k562_cls/target_genes.tsv",
+      "usage": "source-backed target-gene order used by the node-local target-aware factor head"
+    }
+  ],
   "patches": {},
   "guardrails": {
     "preserve_splits": true,
@@ -21,15 +31,21 @@
   "paper_family": "target_gene_aware_head",
   "pipeline_program": {
     "blueprint": "official_target_gene_head",
-    "representation": "unspecified",
-    "perturbation_side": "unspecified",
-    "target_side": "unspecified",
-    "fusion": "unspecified",
-    "prior": "unspecified",
-    "head": "unspecified",
-    "training_strategy": "unspecified",
-    "fine_tuning": "unspecified",
-    "required_artifacts": [],
-    "paper_alignment": "blueprint not yet mapped into the grammar"
-  }
+    "representation": "official_aido_gnn_parent_features",
+    "perturbation_side": "AIDOcell_100M_essential_K562_D640 + GNN_Simple_Official_D256 input features inherited from parent root",
+    "target_side": "official target_genes.tsv order encoded as deterministic target identity/order features plus learned target factors",
+    "fusion": "context rank logits x target rank factors",
+    "prior": "official target gene order only; no STRING_GNN checkpoint or scFoundation artifact used",
+    "head": "residual context encoder with target-gene-aware low-rank bilinear class head",
+    "training_strategy": "weighted cross entropy inherited from base config",
+    "fine_tuning": "node-local head and context encoder only",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "target-gene-aware prediction head over the official 6640 K562 targets"
+  },
+  "head_rank": 96,
+  "head_depth": 2,
+  "fallback_used": false,
+  "formal_proxy_used": false
 }

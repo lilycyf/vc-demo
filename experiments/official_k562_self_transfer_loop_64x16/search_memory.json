@@ -1,7 +1,7 @@
 {
   "format": "vc_demo_search_memory.v1",
   "created_at": "2026-07-13T06:00:25.074017+00:00",
-  "updated_at": "2026-07-13T06:01:49.683233+00:00",
+  "updated_at": "2026-07-13T06:14:48.430856+00:00",
   "events": [
     {
       "time": "2026-07-13T06:01:49.544659+00:00",
@@ -26,13 +26,41 @@
           "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
         }
       ]
+    },
+    {
+      "time": "2026-07-13T06:14:48.322700+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
     }
   ],
   "blueprint_counts": {
     "official_aido_lora_adapter": 1,
     "official_string_gnn_attention": 1,
     "official_aido_string_fusion": 1,
-    "official_target_gene_head": 1
+    "official_target_gene_head": 1,
+    "official_class_imbalance_training": 1,
+    "official_pathway_pooling_reactome": 1,
+    "official_aido_string_cross_attention": 1,
+    "official_string_neighborhood_attention": 1
   },
   "parent_blueprints": {
     "official_k562_root_aido_gnn_embedding_mlp": [
@@ -40,26 +68,52 @@
       "official_aido_string_fusion",
       "official_string_gnn_attention",
       "official_target_gene_head"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_aido_string_cross_attention",
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_string_neighborhood_attention"
     ]
   },
   "family_counts": {
     "AIDO_adapter": 1,
     "STRING_GNN_attention": 1,
     "AIDO_STRING_fusion": 1,
-    "target_gene_aware_head": 1
+    "target_gene_aware_head": 1,
+    "official_deg_imbalance": 1,
+    "Reactome_pathway_pooling": 1,
+    "AIDO_STRING_cross_attention": 1,
+    "STRING_neighborhood_attention": 1
   },
   "structural_signature_counts": {
     "9d1bce694fc088a4d626218348b38372fb84586d": 1,
     "930fbba42d4a3a8549fc158bbaf7d2f0fdf9a612": 1,
     "1123b8802df90e9f4c17ed7477cfcba52678f383": 1,
-    "841a8f77d14ecd77e5286010e281e10413c6c4f4": 1
+    "841a8f77d14ecd77e5286010e281e10413c6c4f4": 1,
+    "1f74853a1499c2a3803343a9d6723e5fefb9c620": 1,
+    "59a4826c3fb4d2e52897a61623e9369af783aede": 1,
+    "376d420d6696ac2b221b323c85ccc467688fae23": 1,
+    "bba2a2345669bc31b6d7cf4aa1dc1b88c44af0ad": 1
   },
   "replicate_nodes": [],
-  "successes": [],
+  "successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.32795366644859314,
+      "test": 0.34598609805107117,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    }
+  ],
   "failures": [],
   "blocked_artifacts": [],
   "motifs": {
-    "promising": [],
+    "promising": [
+      "official_target_gene_head: unspecified + unspecified val=0.3280"
+    ],
     "discouraged": []
   }
 }

@@ -4,9 +4,9 @@ This run separates the search loop into MCTS parent selection, proposal-pool gen
 In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acquisition, selected for training, pending implementation, failed, or trained. Only trained rollout nodes backpropagate reward to MCTS.
 
 - Stop reason: pending implementation limit reached (1)
-- Proposal-like nodes: 6
-- Trained nodes: 2
-- Pruned proposals: 3
+- Proposal-like nodes: 10
+- Trained nodes: 3
+- Pruned proposals: 6
 - Blocked/acquisition nodes: 0
 - Pending implementation nodes: 1
 - Selected-for-training nodes: 0
@@ -22,9 +22,9 @@ In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acqu
 |---|---:|
 | Auto implementation records | 1 |
 | Native smoke passed | 0 |
-| Repair/implementation log rows | 1 |
+| Repair/implementation log rows | 2 |
 | Repair failures | 0 |
-| Requires external Codex | 2 |
+| Requires external Codex | 3 |
 | Blocked missing artifact | 0 |
 | Trained and backpropagated | 0 |
 
@@ -34,8 +34,8 @@ In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acqu
 
 | Decision event | Count |
 |---|---:|
-| `implementation_selected` | 1 |
-| `requires_external_codex` | 1 |
+| `implementation_selected` | 2 |
+| `requires_external_codex` | 2 |
 
 - Implementation agent report: `experiments/official_k562_self_transfer_loop_64x16/implementation_agent_report.json`
 - Repair log: `experiments/official_k562_self_transfer_loop_64x16/repair_log.jsonl`
@@ -46,8 +46,8 @@ In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acqu
 | Status | Count |
 |---|---:|
 | `needs_implementation` | 1 |
-| `pruned_not_selected` | 3 |
-| `trained` | 2 |
+| `pruned_not_selected` | 6 |
+| `trained` | 3 |
 
 ## Root Baselines
 
@@ -62,6 +62,7 @@ In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acqu
 |---:|---|---|---|---|---|---|---|---|---|---:|---|---:|---:|
 | 0 | `official_k562_root_aido_embedding_mlp` | `` | root | root | native_train | model_only | weighted_cross_entropy | perturbation_gene_or_context |  | 41.1 | gated_mlp | 0.3844 | 0.3975 |
 | 0 | `official_k562_root_aido_gnn_embedding_mlp` | `` | root | root | native_train | model_only | weighted_cross_entropy | perturbation_gene_or_context |  | 42.2 | gated_mlp | 0.3883 | 0.3996 |
+| 1 | `official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042` | `official_k562_root_aido_gnn_embedding_mlp` | program_node | official_target_gene_head | native_train | pipeline_program_node | weighted_cross_entropy | perturbation_gene_or_context |  | 56.0 | custom_program | 0.3280 | 0.3460 |
 
 ## Artifact And Pipeline Audit
 
@@ -69,6 +70,7 @@ In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acqu
 |---|---:|---|---|---|---|---|---|
 | `official_k562_root_aido_embedding_mlp` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy | None |
 | `official_k562_root_aido_gnn_embedding_mlp` | true | perturbation_gene_or_context |  |  | `` | weighted_cross_entropy | None |
+| `official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042` | true | perturbation_gene_or_context | official_essential_deg_with_split_h5ad |  | `` | weighted_cross_entropy |  |
 
 ## Best-So-Far Curve
 
@@ -76,15 +78,20 @@ In paper-aligned mode, a node may be proposed, pruned, blocked for artifact acqu
 |---:|---:|
 | 0 | 0.3844 |
 | 0 | 0.3883 |
+| 1 | 0.3883 |
 
 ## Tree
 
 - `official_k562_root_aido_embedding_mlp` status=trained visits=1 val=0.3844 test=0.3975 backend=native_train artifacts=perturbation_gene_or_context
-- `official_k562_root_aido_gnn_embedding_mlp` status=trained visits=1 val=0.3883 test=0.3996 backend=native_train artifacts=perturbation_gene_or_context
+  - `official_k562_root_aido_embedding_mlp_p4_official_class_imbalance_training_f1ee4c8d` status=pruned_not_selected visits=0 strategy=official_class_imbalance_training pipeline=pipeline_program_node
+  - `official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c` status=pruned_not_selected visits=0 strategy=official_pathway_pooling_reactome program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/model.py pipeline=pipeline_program_node
+  - `official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500` status=pruned_not_selected visits=0 strategy=official_aido_string_cross_attention program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500/model.py pipeline=pipeline_program_node
+  - `official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103` status=needs_implementation visits=0 strategy=official_string_neighborhood_attention program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py pipeline=pipeline_program_node
+- `official_k562_root_aido_gnn_embedding_mlp` status=trained visits=2 val=0.3883 test=0.3996 backend=native_train artifacts=perturbation_gene_or_context
   - `official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28` status=pruned_not_selected visits=0 strategy=official_aido_lora_adapter program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py pipeline=pipeline_program_node
   - `official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d` status=pruned_not_selected visits=0 strategy=official_string_gnn_attention program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/model.py pipeline=pipeline_program_node
   - `official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d` status=pruned_not_selected visits=0 strategy=official_aido_string_fusion program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d/model.py pipeline=pipeline_program_node
-  - `official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042` status=needs_implementation visits=0 strategy=official_target_gene_head program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py pipeline=pipeline_program_node
+  - `official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042` status=trained visits=2 val=0.3280 test=0.3460 strategy=official_target_gene_head program=experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py pipeline=pipeline_program_node artifacts=perturbation_gene_or_context
 
 ## Reproducibility Notes
 

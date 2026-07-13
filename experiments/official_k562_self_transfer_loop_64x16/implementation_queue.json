@@ -1,29 +1,30 @@
 {
   "items": [
     {
-      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
-      "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
-      "implementation_request_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/IMPLEMENTATION_REQUEST.md",
-      "program_model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
-      "pipeline_manifest_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/pipeline.json",
-      "artifact_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/artifact_contract.json",
-      "smoke_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/smoke_contract.json",
-      "parent_summary_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/parent_summary.json",
-      "strategy": "official_target_gene_head",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+      "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+      "implementation_request_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/IMPLEMENTATION_REQUEST.md",
+      "program_model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py",
+      "pipeline_manifest_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/pipeline.json",
+      "artifact_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/artifact_contract.json",
+      "smoke_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/smoke_contract.json",
+      "parent_summary_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/parent_summary.json",
+      "strategy": "official_string_neighborhood_attention",
       "artifact_requirements": [
+        "official_string_gnn_keep20_graph",
         "official_essential_deg_with_split_h5ad"
       ],
       "scientific_selection": {
         "policy": "scientific_priority_then_feasibility_gate",
-        "score": 1.68,
-        "base": 0.88,
+        "score": 1.54,
+        "base": 0.94,
         "coverage_bonus": 0.35,
         "family_bonus": 0.25,
-        "early_bonus": 0.2,
+        "early_bonus": 0.0,
         "repeat_penalty": 0.0,
         "native_repeat_penalty": 0.0,
         "count": 0,
-        "family": "target_gene_aware_head",
+        "family": "STRING_neighborhood_attention",
         "family_count": 0
       },
       "structural_relation": "structural_variant"

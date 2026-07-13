@@ -1,23 +1,23 @@
 {
   "items": [
     {
-      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
-      "strategy": "official_target_gene_head",
-      "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
       "policy": "strict_auto_materialize_smoke_train",
       "status": "requires_external_codex",
-      "task_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
-      "model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+      "task_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py",
       "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
       "attempts": [
         {
           "attempt": 1,
-          "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
-          "strategy": "official_target_gene_head",
+          "node": "official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103",
+          "strategy": "official_string_neighborhood_attention",
           "stage": "materialize",
           "status": "requires_external_codex",
-          "task_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
-          "model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+          "task_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/model.py",
           "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
         }
       ]

@@ -1,12 +1,12 @@
 {
   "format": "vc_demo_run_manifest.v1",
-  "created_at": "2026-07-13T06:01:49.826448+00:00",
+  "created_at": "2026-07-13T06:14:48.535359+00:00",
   "experiment": "official_k562_self_transfer_loop_64x16",
   "run_dir": "experiments/official_k562_self_transfer_loop_64x16",
   "git": {
     "branch": "generic-cellline-runner-fix",
-    "commit": "01c10487003a1600594fdd1b1654e36b3af906bb",
-    "status_short": "M experiments/k562_official_cellline_harness_v1/k562_to_second_cellline_transfer_prompt.md\n M src/vc_demo/harness/official_k562_backend.py\n?? configs/official_k562_loop_roots/\n?? configs/official_k562_roots/\n?? experiments/official_k562_self_transfer_loop_64x16/\n?? scripts/run_official_cellline_harness_search.py"
+    "commit": "dfe12b6722d4c276d2d514487f5f53b92789c92b",
+    "status_short": "M experiments/official_k562_self_transfer_loop_64x16/agent_decision_trace.jsonl\n M experiments/official_k562_self_transfer_loop_64x16/implementation_agent_report.json\n M experiments/official_k562_self_transfer_loop_64x16/implementation_queue.json\n M experiments/official_k562_self_transfer_loop_64x16/mcts_trace.jsonl\n M experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/pipeline.json\n M experiments/official_k562_self_transfer_loop_64x16/repair_log.jsonl\n M experiments/official_k562_self_transfer_loop_64x16/search_memory.json\n M experiments/official_k562_self_transfer_loop_64x16/search_summary.md\n M experiments/official_k562_self_transfer_loop_64x16/tree.json\n?? experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/\n?? experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500/\n?? experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103/\n?? experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p4_official_class_imbalance_training_f1ee4c8d/\n?? experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py\n?? experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/native_smoke_manual.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c.proposal.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p2_official_aido_string_cross_attention_ac799500.proposal.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p3_official_string_neighborhood_attention_898d7103.proposal.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p4_official_class_imbalance_training_f1ee4c8d.json\n?? experiments/official_k562_self_transfer_loop_64x16/proposals/official_k562_root_aido_embedding_mlp_p4_official_class_imbalance_training_f1ee4c8d.proposal.json"
   },
   "search": {
     "selection_policy": "uct",
@@ -46,7 +46,7 @@
     "artifact_acquisition_command": "python -m vc_demo.harness.artifact_acquisition --queue experiments/official_k562_self_transfer_loop_64x16/acquisition_queue.json --registry configs/artifacts/k562_registry.json --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir experiments/official_k562_self_transfer_loop_64x16/artifact_acquisition --execute-known"
   },
   "results": {
-    "trained_nodes": 2,
+    "trained_nodes": 3,
     "failed_nodes": 0,
     "best_node": "official_k562_root_aido_gnn_embedding_mlp",
     "best_val_macro_f1": 0.38831961154937744,
@@ -57,66 +57,94 @@
   },
   "mcts": {
     "last_selection": {
-      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "node": "official_k562_root_aido_embedding_mlp",
       "policy": "uct",
-      "score": 1.565729634064852,
-      "uct": 1.565729634064852,
+      "score": 2.178549410193198,
+      "uct": 2.178549410193198,
       "puct": null,
-      "q": 0.38831961154937744,
-      "Q_v": 0.38831961154937744,
-      "exploitation": 0.38831961154937744,
-      "Exploitation": 0.38831961154937744,
-      "exploration": 1.1774100225154747,
-      "Exploration": 1.1774100225154747,
+      "q": 0.3844268321990967,
+      "Q_v": 0.3844268321990967,
+      "exploitation": 0.3844268321990967,
+      "Exploitation": 0.3844268321990967,
+      "exploration": 1.7941225779941015,
+      "Exploration": 1.7941225779941015,
       "prior": 0.0,
       "visits": 1,
-      "parent_visits": 2,
+      "parent_visits": 5,
       "children": 0,
-      "best_val_macro_f1": 0.38831961154937744,
+      "best_val_macro_f1": 0.3844268321990967,
       "stage": "draft"
     },
     "last_candidates": [
       {
-        "node": "official_k562_root_aido_gnn_embedding_mlp",
-        "policy": "uct",
-        "score": 1.565729634064852,
-        "uct": 1.565729634064852,
-        "puct": null,
-        "q": 0.38831961154937744,
-        "Q_v": 0.38831961154937744,
-        "exploitation": 0.38831961154937744,
-        "Exploitation": 0.38831961154937744,
-        "exploration": 1.1774100225154747,
-        "Exploration": 1.1774100225154747,
-        "prior": 0.0,
-        "visits": 1,
-        "parent_visits": 2,
-        "children": 0,
-        "best_val_macro_f1": 0.38831961154937744,
-        "stage": "draft"
-      },
-      {
         "node": "official_k562_root_aido_embedding_mlp",
         "policy": "uct",
-        "score": 1.5618368547145713,
-        "uct": 1.5618368547145713,
+        "score": 2.178549410193198,
+        "uct": 2.178549410193198,
         "puct": null,
         "q": 0.3844268321990967,
         "Q_v": 0.3844268321990967,
         "exploitation": 0.3844268321990967,
         "Exploitation": 0.3844268321990967,
-        "exploration": 1.1774100225154747,
-        "Exploration": 1.1774100225154747,
+        "exploration": 1.7941225779941015,
+        "Exploration": 1.7941225779941015,
         "prior": 0.0,
         "visits": 1,
-        "parent_visits": 2,
+        "parent_visits": 5,
         "children": 0,
         "best_val_macro_f1": 0.3844268321990967,
         "stage": "draft"
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp",
+        "policy": "uct",
+        "score": 1.626772880178505,
+        "uct": 1.626772880178505,
+        "puct": null,
+        "q": 0.3581366389989853,
+        "Q_v": 0.7162732779979706,
+        "exploitation": 0.3581366389989853,
+        "Exploitation": 0.3581366389989853,
+        "exploration": 1.2686362411795198,
+        "Exploration": 1.2686362411795198,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 5,
+        "children": 4,
+        "best_val_macro_f1": 0.38831961154937744,
+        "stage": "draft"
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+        "policy": "uct",
+        "score": 1.596589907628113,
+        "uct": 1.596589907628113,
+        "puct": null,
+        "q": 0.32795366644859314,
+        "Q_v": 0.6559073328971863,
+        "exploitation": 0.32795366644859314,
+        "Exploitation": 0.32795366644859314,
+        "exploration": 1.2686362411795198,
+        "Exploration": 1.2686362411795198,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 5,
+        "children": 0,
+        "best_val_macro_f1": 0.32795366644859314,
+        "stage": "improve"
       }
     ],
     "selection_policy": "uct",
     "exploration_c": 1.4142135623730951,
-    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension"
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension",
+    "last_backpropagation": {
+      "leaf": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "reward": 0.32795366644859314,
+      "path": [
+        "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+        "official_k562_root_aido_gnn_embedding_mlp"
+      ],
+      "path_length": 2
+    }
   }
 }

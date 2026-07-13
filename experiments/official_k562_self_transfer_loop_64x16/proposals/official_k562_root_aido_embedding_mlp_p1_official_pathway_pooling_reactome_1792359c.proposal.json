@@ -1,0 +1,186 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_embedding_mlp",
+  "child": "official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
+  "strategy": "official_pathway_pooling_reactome",
+  "blueprint": {
+    "id": "official_pathway_pooling_reactome",
+    "status": "planned",
+    "official_k562": true,
+    "category": "pathway_prior",
+    "paper_family": "Reactome_pathway_pooling",
+    "change_level": 5,
+    "role": "Pool target genes through Reactome/pathway memberships before DEG classification.",
+    "requires": [
+      "pathway_memberships",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex can build/acquire memberships; if unavailable, block.",
+    "acceptance": [
+      "Records pathway source",
+      "Reports coverage",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Pool target genes through Reactome/pathway memberships before DEG classification.",
+  "changes": [
+    "program_model:gated_mlp->official_pathway_pooling_reactome",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c",
+  "program_model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "pathway_memberships",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_pathway_pooling_reactome",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.64,
+    "base": 0.84,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "Reactome_pathway_pooling",
+    "family_count": 0
+  },
+  "structural_signature": "59a4826c3fb4d2e52897a61623e9369af783aede",
+  "parent_structural_signature": "ec44ce29d4c54db3bf28f4404546e76197140815",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_embedding_mlp_p1_official_pathway_pooling_reactome_1792359c/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "pathway_memberships",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [
+      "pathway_memberships"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "pathway_memberships"
+  ],
+  "missing_required_artifact_paths": [
+    ""
+  ],
+  "candidate_pool_iteration": 2,
+  "candidate_pool_parent": "official_k562_root_aido_embedding_mlp",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": 0.37999999999999995,
+    "scientific_score": 1.64,
+    "cost_class": "medium",
+    "cost_bonus": 0.0,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "pathway_memberships"
+    ],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_embedding_mlp",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "policy": "uct",
+      "score": 2.178549410193198,
+      "uct": 2.178549410193198,
+      "puct": null,
+      "q": 0.3844268321990967,
+      "Q_v": 0.3844268321990967,
+      "exploitation": 0.3844268321990967,
+      "Exploitation": 0.3844268321990967,
+      "exploration": 1.7941225779941015,
+      "Exploration": 1.7941225779941015,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 5,
+      "children": 0,
+      "best_val_macro_f1": 0.3844268321990967,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.626772880178505,
+      "uct": 1.626772880178505,
+      "puct": null,
+      "q": 0.3581366389989853,
+      "Q_v": 0.7162732779979706,
+      "exploitation": 0.3581366389989853,
+      "Exploitation": 0.3581366389989853,
+      "exploration": 1.2686362411795198,
+      "Exploration": 1.2686362411795198,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 5,
+      "children": 4,
+      "best_val_macro_f1": 0.38831961154937744,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "uct",
+      "score": 1.596589907628113,
+      "uct": 1.596589907628113,
+      "puct": null,
+      "q": 0.32795366644859314,
+      "Q_v": 0.6559073328971863,
+      "exploitation": 0.32795366644859314,
+      "Exploitation": 0.32795366644859314,
+      "exploration": 1.2686362411795198,
+      "Exploration": 1.2686362411795198,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 5,
+      "children": 0,
+      "best_val_macro_f1": 0.32795366644859314,
+      "stage": "improve"
+    }
+  ],
+  "candidate_pool_rank": 3,
+  "candidate_pool_size": 4,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "generate_many_prune_before_training"
+}
