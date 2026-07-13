@@ -53,6 +53,24 @@ def run_command(command: str) -> dict[str, Any]:
 
 
 def artifact_specific_task_lines(artifact_id: str) -> list[str]:
+    if artifact_id == "official_string_gnn_model_dir":
+        return [
+            "",
+            "## STRING_GNN Model-Directory Acquisition Protocol",
+            "",
+            "This artifact is a model directory expected by public VCHarness node code. It is not equivalent to the STRING edge graph, keep20 graph text file, or a generated embedding table.",
+            "",
+            "Before blocking or resuming, complete this protocol:",
+            "",
+            "1. Search primary/public sources: GenBio AI HuggingFace org, VCHarness repository/issues/releases, foundation-models-perturbation dataset/model cards, linked paper/code pages, Zenodo/Figshare/S3 links, and model repos named `STRING_GNN` or equivalent.",
+            "2. Inspect the public K562 static node code that imports `/home/Models/STRING_GNN`; record the expected loader class, config files, state-dict names, vocabulary, embedding dimension, and graph inputs.",
+            "3. If a source-backed downloadable model directory exists, download it to `/home/Models/STRING_GNN`, record source URL/revision/file sizes/checksums, and run model-dir validation.",
+            "4. If only source graph data is available, determine whether an official build/train script and checkpoint recipe exists. Do not train an ad hoc substitute and call it official.",
+            "5. If no source-backed checkpoint/model-dir is available, write a blocker report listing every source checked and classify the reason as unavailable weights, inaccessible license/manual approval, incomplete tensor contract, incompatible vocabulary, or non-equivalent reconstruction.",
+            "6. Update the artifact registry only after the real expected path exists and provenance is recorded. Otherwise keep the artifact missing/blocked and resume is not allowed for nodes requiring this artifact.",
+            "",
+            "Do not use `official_string_gnn_keep20_graph`, `string_k562_gene_graph`, random GNN weights, or a compact graph head as `/home/Models/STRING_GNN`.",
+        ]
     if artifact_id == "scfoundation_cell_embeddings":
         return [
             "",

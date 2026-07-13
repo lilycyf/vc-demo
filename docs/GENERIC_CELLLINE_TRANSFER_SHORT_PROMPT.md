@@ -15,7 +15,7 @@ Use repo instructions only:
 Use the standard entrypoint:
 PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --level transfer_64x16 --execute
 
-If pending implementation appears, follow the node-local contracts and the runbook. Do not fallback, do not use compact/proxy implementations, do not leak K562 files, and do not commit forbidden files.
+If pending implementation appears, follow the node-local contracts and the runbook. If acquisition appears, generate and run the artifact-acquisition Codex prompt with `scripts/generate_artifact_acquisition_prompt.py`; do not call the run blocked until that research step completes. Do not fallback, do not use compact/proxy implementations, do not leak K562 files, and do not commit forbidden files.
 
 Push results to:
 generic-cellline-transfer-test-<cell_line_slug>

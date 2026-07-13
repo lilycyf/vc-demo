@@ -79,6 +79,25 @@ configs/official_<slug>_roots/*.json
 
 Artifacts must be labeled as `present`, `missing`, `acquired`, `reusable`, `cell_line_specific`, or `blocked`, with source/provenance notes. Missing artifacts enter acquisition first. If source, shape, row order, vocabulary, or provenance cannot be verified, block. Do not fallback.
 
+### Codex Research Acquisition
+
+`requires_codex_research_download_or_build` is not a final stop. It means a separate artifact-acquisition Codex step must run before the transfer test can be called blocked.
+
+When `acquisition_queue.json` or `artifact_acquisition/ACQUIRE_<artifact>.md` appears:
+
+1. Generate the short acquisition handoff:
+
+```bash
+PYTHONPATH=src python scripts/generate_artifact_acquisition_prompt.py   --run-dir <run-dir>   --cell-line ${CELL_LINE_ID}   --branch <run-branch>
+```
+
+2. The acquisition Codex must search official/primary public sources, inspect expected loader/tensor contracts, and either acquire/build the exact source-backed artifact or write a blocker report.
+3. A final `blocked` decision is allowed only after this research step records checked sources and a concrete reason such as unavailable weights, inaccessible license/manual approval, incomplete tensor contract, incompatible vocabulary, non-equivalent reconstruction, or leakage risk.
+4. If acquired, update the registry/provenance, rerun artifact audit, then resume the same transfer run with `scripts/run_generic_cellline_transfer_test.py --resume --execute`.
+5. If not acquired, keep the artifact missing/blocked. Do not train substitute nodes.
+
+For `official_string_gnn_model_dir`, the Codex acquisition step must not treat `official_string_gnn_keep20_graph` or `string_k562_gene_graph` as the model directory. It must find the real `/home/Models/STRING_GNN` checkpoint/model layout or explicitly prove that no public equivalent is available.
+
 ## Root Configs
 
 Root configs must point to the selected cell line's task and artifacts. They may not point to K562 data unless `CELL_LINE_ID=K562`.

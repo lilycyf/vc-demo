@@ -27,7 +27,8 @@ Pass only if:
 
 - artifact registry exists for the selected cell line
 - each artifact has provenance and status
-- missing artifacts go through acquisition/block
+- missing artifacts go through acquisition before block
+- `requires_codex_research_download_or_build` has a completed Codex research acquisition report before final blocked status
 - no fake/random/generated artifact is used as fallback
 - row order, shape, vocabulary, and source are verified before marking present
 
@@ -90,7 +91,7 @@ __pycache__
 The final report must state one of:
 
 - `passed`: generic transfer loop completed with all hard counters at zero
-- `blocked`: source-backed task/artifact could not be verified
+- `blocked`: source-backed task/artifact could not be verified after acquisition resolver and Codex research acquisition were attempted
 - `failed`: implementation/search failed for a non-artifact reason
 - `inconclusive`: run did not reach enough selected rollouts for the requested test level
 
