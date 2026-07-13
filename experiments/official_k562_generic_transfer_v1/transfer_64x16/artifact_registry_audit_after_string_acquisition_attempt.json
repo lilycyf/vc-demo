@@ -1,0 +1,307 @@
+{
+  "registry_version": "vc_demo_artifact_registry.v1",
+  "registry_path": "configs/artifacts/k562_registry.json",
+  "cell_line": "K562",
+  "artifacts": [
+    {
+      "id": "esm2_gene_embedding_h5ad",
+      "family": "gene_embedding",
+      "provider": "ESM2",
+      "status": "expected_present",
+      "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+      "usable_for": [
+        "perturbation_gene",
+        "target_gene"
+      ],
+      "required_for_blueprints": [
+        "cross_attention_gene_perturbation",
+        "esm2_gene_projection",
+        "target_gene_embedding_bilinear"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "esm2_k562_target_manifest",
+      "family": "artifact_manifest",
+      "provider": "ESM2",
+      "status": "derived_if_built",
+      "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+      "source": "derived_by:scripts/build_target_gene_artifact.py",
+      "usable_for": [
+        "target_gene",
+        "model_head_geometry"
+      ],
+      "required_for_blueprints": [
+        "cross_attention_gene_perturbation",
+        "target_gene_embedding_bilinear"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "aido_gene_or_cell_embeddings",
+      "family": "foundation_embedding",
+      "provider": "AIDO",
+      "status": "missing_until_downloaded",
+      "path": "data/artifacts/aido",
+      "source": "public GenBio artifact if available; exact file must be recorded before use",
+      "usable_for": [
+        "perturbation_gene",
+        "target_gene",
+        "cell_state"
+      ],
+      "required_for_blueprints": [
+        "aido_embedding_fusion"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "scfoundation_cell_embeddings",
+      "family": "cell_embedding",
+      "provider": "scFoundation",
+      "status": "missing_until_downloaded",
+      "path": "data/artifacts/scfoundation",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+      "usable_for": [
+        "cell_state",
+        "expression_encoder"
+      ],
+      "required_for_blueprints": [
+        "scfoundation_cell_encoder"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "string_k562_gene_graph",
+      "family": "gene_graph",
+      "provider": "STRING",
+      "status": "expected_present",
+      "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+      "usable_for": [
+        "gene_graph",
+        "target_gene",
+        "perturbation_propagation"
+      ],
+      "required_for_blueprints": [
+        "ppi_graph_message_passing",
+        "string_gnn_perturbation_propagator"
+      ],
+      "do_not_fabricate": true,
+      "source_url": "https://version-12-0.string-db.org/api/tsv/network",
+      "mapping_url": "https://version-12-0.string-db.org/api/tsv/get_string_ids",
+      "version": {
+        "string_version": "12.0",
+        "stable_address": "https://version-12-0.string-db.org"
+      },
+      "filtering_rule": "Map K562 perturbation and target gene symbols to STRING protein IDs, query the official STRING v12.0 network API for the union, keep induced-subgraph edges where both endpoints map back to K562 genes and combined score >= 0.4.",
+      "score_threshold": 0.4,
+      "raw_edge_count": 135802,
+      "filtered_edge_count": 36550,
+      "node_count": 1054,
+      "perturbation_gene_graph_coverage": 0.9047619047619048,
+      "target_gene_graph_coverage": 0.966,
+      "summary_path": "experiments/k562_string_graph_artifact_summary.json",
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "pathway_membership_matrix",
+      "family": "pathway_prior",
+      "provider": "Reactome",
+      "status": "expected_present",
+      "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+      "usable_for": [
+        "target_gene",
+        "pathway_pooling"
+      ],
+      "required_for_blueprints": [
+        "pathway_pooling_encoder"
+      ],
+      "do_not_fabricate": true,
+      "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+      "source_file": "ReactomePathways.gmt inside ReactomePathways.gmt.zip",
+      "source_sha256": "8c1dbc8578431da5d2d5118262718c60b553a9be3398e93658daa069e4a9afd4",
+      "source_bytes": 298479,
+      "species_filter": "Homo sapiens pathways only, identified by R-HSA stable IDs",
+      "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact K562 target-gene list.",
+      "n_source_pathways": 2868,
+      "n_kept_pathways": 1139,
+      "membership_shape": [
+        1000,
+        1139
+      ],
+      "covered_target_gene_count": 742,
+      "target_gene_coverage": 0.742,
+      "mean_pathways_per_target_gene": 18.097,
+      "summary_path": "experiments/k562_pathway_membership_artifact_summary.json",
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "family": "official_task_data",
+      "provider": "GenBio AI HuggingFace",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "usable_for": [
+        "official_k562_task_contract"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_k562_aido_cell_100m_embedding_h5ad",
+      "family": "gene_embedding",
+      "provider": "AIDO.Cell-100M",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+      "usable_for": [
+        "perturbation_gene",
+        "official_k562_baseline"
+      ],
+      "required_for_blueprints": [
+        "official_k562_aido_embedding_mlp"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_string_gnn_keep20_graph",
+      "family": "gene_graph",
+      "provider": "STRING_GNN",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "usable_for": [
+        "gene_graph",
+        "official_k562_string_gnn"
+      ],
+      "required_for_blueprints": [
+        "official_k562_string_gnn_attention",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_aido_cell_100m_model_dir",
+      "family": "foundation_model_checkpoint",
+      "provider": "AIDO.Cell-100M",
+      "status": "missing_until_downloaded",
+      "path": "/home/Models/AIDO.Cell-100M",
+      "source": "Exact AutoModel directory expected by public VCHarness node code; not equivalent to downloaded h5ad embedding.",
+      "usable_for": [
+        "official_vcharness_best_node"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_k562_aido_lora_automodel",
+        "official_public_best_node",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_string_gnn_model_dir",
+      "family": "foundation_model_checkpoint",
+      "provider": "STRING_GNN",
+      "status": "missing_until_downloaded",
+      "path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "usable_for": [
+        "official_vcharness_best_node"
+      ],
+      "required_for_blueprints": [
+        "official_aido_string_fusion",
+        "official_k562_string_gnn_attention",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "official_gnn_simple_embedding_h5ad",
+      "family": "gene_embedding",
+      "provider": "GNN Simple Official",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+      "usable_for": [
+        "perturbation_gene",
+        "official_k562_gnn_embedding_baseline"
+      ],
+      "required_for_blueprints": [
+        "official_k562_aido_gnn_embedding_mlp"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_public_best_node_code",
+      "family": "public_node_code",
+      "provider": "VCHarness",
+      "status": "expected_present",
+      "path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+      "source": "VCHarness public K562 static node code bundled in genbio-ai/VCHarness",
+      "usable_for": [
+        "official_vcharness_best_node_wrapper"
+      ],
+      "required_for_blueprints": [
+        "official_public_best_node"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    }
+  ],
+  "present_artifacts": [
+    "string_k562_gene_graph",
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad",
+    "official_k562_aido_cell_100m_embedding_h5ad",
+    "official_string_gnn_keep20_graph",
+    "official_aido_cell_100m_model_dir",
+    "official_gnn_simple_embedding_h5ad",
+    "official_public_best_node_code"
+  ],
+  "missing_artifacts": [
+    "esm2_gene_embedding_h5ad",
+    "esm2_k562_target_manifest",
+    "aido_gene_or_cell_embeddings",
+    "scfoundation_cell_embeddings",
+    "official_string_gnn_model_dir"
+  ]
+}

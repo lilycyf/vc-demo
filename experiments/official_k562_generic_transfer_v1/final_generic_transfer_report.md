@@ -62,6 +62,7 @@ The run is blocked by strict artifact policy, not by model/training failure.
 
 ## Acquisition
 - acquisition report: `experiments/official_k562_generic_transfer_v1/transfer_64x16/artifact_acquisition/artifact_acquisition_report.json`
+- STRING_GNN blocker evidence: `experiments/official_k562_generic_transfer_v1/transfer_64x16/artifact_acquisition/official_string_gnn_model_dir_blocker_report.md`
 - `class_distribution`: `already_present` action `verified_existing_file`
 - `official_string_gnn_model_dir`: `requires_codex_research_download_or_build` action `generated_codex_research_task`
 

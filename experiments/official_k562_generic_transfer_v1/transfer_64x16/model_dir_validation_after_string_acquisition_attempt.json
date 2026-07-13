@@ -1,0 +1,31 @@
+{
+  "status": "passed_with_warnings",
+  "model_dirs": [
+    {
+      "path": "/home/Models/AIDO.Cell-100M",
+      "repo_id": "genbio-ai/AIDO.Cell-100M",
+      "files": [
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "model.safetensors"
+      ],
+      "has_config": true,
+      "has_weight": true,
+      "tokenizer_files": [],
+      "warnings": [
+        "no tokenizer files detected; public VCHarness code calls AutoTokenizer.from_pretrained, so runtime equivalence is not yet proven"
+      ],
+      "status": "usable_with_warnings"
+    },
+    {
+      "path": "/home/Models/STRING_GNN",
+      "repo_id": "genbio-ai/STRING_GNN",
+      "status": "missing",
+      "warnings": [
+        "directory does not exist; Hugging Face repo currently lists no weight files"
+      ]
+    }
+  ]
+}
