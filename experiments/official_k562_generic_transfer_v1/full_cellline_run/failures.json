@@ -1,0 +1,16 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_190f70aa",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_regulatory_network_prior",
+      "missing_required_artifacts": [
+        "regulatory_network_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "artifact_id": "regulatory_network_artifact",
+  "status": "blocked_unavailable_or_undefined_source",
+  "cell_line": "K562",
+  "checked_at_unix": 1783944100.4203026,
+  "checked_sources": [
+    {
+      "source": "configs/artifacts/acquisition_sources.json",
+      "result": "no entry/resolver for regulatory_network_artifact"
+    },
+    {
+      "source": "HuggingFace dataset API genbio-ai/foundation-models-perturbation recursive tree",
+      "result": "no regulatory/regulon/GRN artifact; network-related matches were STRING/GNN/gene-embedding artifacts, not a regulatory-network artifact"
+    },
+    {
+      "source": "HuggingFace model API genbio-ai/STRING_GNN recursive tree",
+      "result": "no regulatory-network artifact and no usable regulatory checkpoint/layout"
+    },
+    {
+      "source": "configs/artifacts/k562_registry.json and run artifact audit",
+      "result": "regulatory_network_artifact not registered as present with path/provenance"
+    }
+  ],
+  "blocked_reason": "The selected official_regulatory_network_prior blueprint requires regulatory_network_artifact, but no source-backed artifact contract, path, resolver, row/gene-order contract, or verified public primary source was available. Substituting STRING graph edges, random GRN edges, or a proxy MLP would violate strict artifact policy.",
+  "policy": "Do not implement or train fallback. Keep node as requires_artifact_acquisition and report as a valid strict blocker/exclusion until a real regulatory artifact is added.",
+  "dependent_blueprints": [
+    "official_regulatory_network_prior"
+  ]
+}

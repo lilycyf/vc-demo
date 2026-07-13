@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "node_name": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_99d67e4f",
+  "model_type": "custom_program",
+  "output_shape": [
+    2,
+    6640,
+    3
+  ],
+  "trainable_parameters": 6141139
+}

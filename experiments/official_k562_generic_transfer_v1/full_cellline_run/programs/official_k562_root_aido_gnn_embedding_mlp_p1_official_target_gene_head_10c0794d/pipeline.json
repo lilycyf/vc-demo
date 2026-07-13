@@ -1,0 +1,42 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_gene_head",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/full_cellline_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_10c0794d/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_essential_deg_with_split_h5ad",
+      "usage": "preserves official DEG task and initializes target-wise class bias from train split labels only, never val/test"
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "target_gene_aware_head",
+  "pipeline_program": {
+    "blueprint": "official_target_gene_head",
+    "representation": "official K562 AIDO+GNN cached features inherited from root",
+    "perturbation_side": "unspecified",
+    "target_side": "official target genes with train-split-only class-prior bias and learned low-rank factors",
+    "fusion": "learned mixture of direct all-target head and target low-rank factor head",
+    "prior": "unspecified",
+    "head": "target_gene_aware_low_rank_head_with_train_prior_bias",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "target-gene-aware DEG head over source-backed official task; no val/test tuning, no proxy/fallback"
+  }
+}

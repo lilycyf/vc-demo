@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_regulatory_network_prior_190f70aa",
+      "strategy": "official_regulatory_network_prior",
+      "artifact_id": "regulatory_network_artifact",
+      "expected_path": "",
+      "source": "not listed in artifact registry",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback",
+      "status": "blocked_unavailable_or_undefined_source",
+      "blocker_report": "experiments/official_k562_generic_transfer_v1/full_cellline_run/artifact_acquisition/regulatory_network_artifact_blocker.md",
+      "fallback_trained": false
+    }
+  ]
+}

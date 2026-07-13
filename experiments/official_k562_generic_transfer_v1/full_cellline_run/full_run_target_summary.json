@@ -1,0 +1,40 @@
+{
+  "target_val_macro_f1": 0.5,
+  "status_counts": {
+    "trained": 12,
+    "pruned_not_selected": 55,
+    "requires_artifact_acquisition": 1
+  },
+  "generated_proposals": 66,
+  "trained_total": 12,
+  "trained_generated_children": 10,
+  "pruned_not_selected": 55,
+  "blocked_or_acquisition": 1,
+  "failed": 0,
+  "pending": 0,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "val_macro_f1": 0.4820006191730499,
+    "test_macro_f1": 0.5394778251647949
+  },
+  "best_generated_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_laplacian_smoothing_81b813c2",
+    "strategy": "official_string_laplacian_smoothing",
+    "val_macro_f1": 0.4956570565700531,
+    "test_macro_f1": 0.5346590876579285
+  },
+  "delta_child_vs_root_val": 0.013656437397003174,
+  "delta_child_vs_root_test": -0.004818737506866455,
+  "delta_child_vs_target_val": -0.004342943429946899,
+  "root_beating_objective_achieved": true,
+  "target_score_objective_achieved": false,
+  "both_primary_objectives_achieved": false,
+  "stop_reason": "strict artifact acquisition blocker: regulatory_network_artifact; run mechanically resumable after source-backed artifact is added or blueprint exclusion policy is extended",
+  "artifact_exclusions_blockers": [
+    "regulatory_network_artifact"
+  ],
+  "fallback_count": 0,
+  "compact_proxy_count": 0,
+  "backprop_nontrained_count": 0,
+  "backend_anomaly_count": 0
+}

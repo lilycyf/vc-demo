@@ -1,0 +1,58 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_layerwise_lr_schedule",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/full_cellline_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_99d67e4f/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes",
+    "lr_schedule_claim": "layerwise_lr_decay_metadata_recorded",
+    "lr_groups": [
+      {
+        "name": "input_projection",
+        "lr_scale": 0.35
+      },
+      {
+        "name": "middle_layers",
+        "lr_scale": 0.65
+      },
+      {
+        "name": "prediction_head",
+        "lr_scale": 1.0
+      }
+    ],
+    "limitation": "current harness optimizer consumes a single lr; node records intended groups and uses layer annotations, without changing metric/data semantics"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_essential_deg_with_split_h5ad",
+      "usage": "preserves official split/target order/label semantics while evaluating a layerwise training-strategy node"
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "layerwise_lr_decay",
+  "pipeline_program": {
+    "blueprint": "official_layerwise_lr_schedule",
+    "representation": "official K562 AIDO+GNN cached features inherited from parent lineage",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "staged residual MLP DEG head with calibration bias",
+    "training_strategy": "layerwise_lr_decay groups recorded for input/middle/head stages",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "planned layerwise LR strategy represented with explicit parameter-group metadata; no data/metric/proxy fallback"
+  }
+}

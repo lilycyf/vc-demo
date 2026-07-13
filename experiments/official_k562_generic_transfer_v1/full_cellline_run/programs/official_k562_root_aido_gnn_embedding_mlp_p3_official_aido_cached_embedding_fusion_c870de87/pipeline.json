@@ -1,0 +1,48 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_aido_cached_embedding_fusion",
+  "model_entrypoint": "experiments/official_k562_generic_transfer_v1/full_cellline_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_c870de87/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_aido_cell_100m_model_dir",
+      "usage": "verifies source-backed /home/Models/AIDO.Cell-100M directory is present; uses official cached AIDO embedding dimensions in the input features"
+    },
+    {
+      "artifact_id": "official_essential_deg_with_split_h5ad",
+      "usage": "preserves official split, target order, and DEG labels"
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "AIDO_cached_embedding",
+  "pipeline_program": {
+    "blueprint": "official_aido_cached_embedding_fusion",
+    "representation": "official cached AIDO embedding branch plus auxiliary/GNN cached branch inherited from parent features",
+    "perturbation_side": "AIDO.Cell-100M cached feature segment with gated auxiliary fusion",
+    "target_side": "unspecified",
+    "fusion": "two-branch gated cached embedding fusion",
+    "prior": "unspecified",
+    "head": "direct DEG head plus low-rank target factor head",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "planned AIDO cached embedding fusion using source-backed AIDO model directory and official cached features; no proxy/fallback"
+  }
+}
