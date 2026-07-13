@@ -1,0 +1,88 @@
+{
+  "format": "vc_demo_node_artifact_contract.v1",
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_gnn_frozen_cache_509b18b9",
+  "blueprint": "official_string_gnn_frozen_cache",
+  "strict_official_mode": true,
+  "fallback_allowed": false,
+  "required_artifacts": [
+    "official_string_gnn_model_dir",
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "present_required_artifacts": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "missing_required_artifacts": [
+    "official_string_gnn_model_dir"
+  ],
+  "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
+  "artifact_rows": [
+    {
+      "id": "official_string_gnn_model_dir",
+      "family": "foundation_model_checkpoint",
+      "provider": "STRING_GNN",
+      "status": "missing_until_downloaded",
+      "path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "usable_for": [
+        "official_vcharness_best_node"
+      ],
+      "required_for_blueprints": [
+        "official_aido_string_fusion",
+        "official_k562_string_gnn_attention",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "official_string_gnn_keep20_graph",
+      "family": "gene_graph",
+      "provider": "STRING_GNN",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "usable_for": [
+        "gene_graph",
+        "official_k562_string_gnn"
+      ],
+      "required_for_blueprints": [
+        "official_k562_string_gnn_attention",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "family": "official_task_data",
+      "provider": "GenBio AI HuggingFace",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "usable_for": [
+        "official_k562_task_contract"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    }
+  ],
+  "model_artifacts_config": {}
+}

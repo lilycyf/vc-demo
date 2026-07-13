@@ -1,0 +1,3255 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-13T17:42:38.027895+00:00",
+  "updated_at": "2026-07-13T17:47:52.255080+00:00",
+  "events": [
+    {
+      "time": "2026-07-13T17:46:58.859026+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+          "strategy": "official_target_gene_head",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:46:59.959837+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+          "strategy": "official_aido_lora_adapter",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:01.055149+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:02.139113+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:02.468092+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 5,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p14_official_aido_lora_adapter_e87e85d3",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_lora_adapter"
+    },
+    {
+      "time": "2026-07-13T17:47:02.566419+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 5,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p15_official_target_gene_head_bccda118",
+      "strategy": "official_target_gene_head",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_target_gene_head"
+    },
+    {
+      "time": "2026-07-13T17:47:02.754060+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 5,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p17_official_pathway_pooling_reactome_e2d5716a",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_pathway_pooling_reactome"
+    },
+    {
+      "time": "2026-07-13T17:47:03.280545+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62",
+      "strategy": "official_target_low_rank_head",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62",
+          "strategy": "official_target_low_rank_head",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p8_official_target_low_rank_head_305f2d62/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:03.593859+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 6,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p20_official_aido_full_finetune_bbd4e2e9",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:03.689431+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 6,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p21_official_aido_cached_embedding_fusion_ce76cbf6",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:03.793835+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 6,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p22_official_scgpt_cell_encoder_84f67556",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:03.890322+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 6,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p23_official_scfoundation_top_layer_finetune_65d4bc63",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:03.984454+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 6,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p24_official_string_gnn_frozen_cache_bf38866c",
+      "strategy": "official_string_gnn_frozen_cache",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_string_gnn_frozen_cache"
+    },
+    {
+      "time": "2026-07-13T17:47:04.480263+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54",
+      "strategy": "official_target_bilinear_head",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54",
+          "strategy": "official_target_bilinear_head",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p9_official_target_bilinear_head_ab558f54/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:05.493324+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 7,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p26_official_focal_loss_training_52224fd7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:05.616214+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 7,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p27_official_aido_full_finetune_28925798",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:05.726411+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 7,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p28_official_aido_cached_embedding_fusion_a5cde0d8",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:05.830207+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 7,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p29_official_scgpt_cell_encoder_727e9578",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:05.936667+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 7,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p30_official_scfoundation_top_layer_finetune_00e94037",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:06.389765+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_cached_embedding_fusion_67c9e514/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:06.659486+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p31_official_aido_cached_embedding_fusion_948f49a3",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:06.771660+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p32_official_scgpt_cell_encoder_9b9d9614",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:06.889202+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p33_official_scfoundation_top_layer_finetune_c52f2088",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:07.024654+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p34_official_focal_loss_training_e0f49221",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:07.139499+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p35_official_focal_loss_training_4c44c813",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:07.249203+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p36_official_focal_loss_training_8050833b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:08.083312+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8",
+          "strategy": "official_multimodal_mixture_of_experts",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p7_official_multimodal_mixture_of_experts_9ae3d1e8/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:08.373358+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 9,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:08.519829+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 9,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p38_official_aido_full_finetune_edcd2035",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:08.640228+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 9,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p39_official_aido_full_finetune_3eeadf4d",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:08.754954+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 9,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p40_official_aido_full_finetune_cb292082",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:08.878107+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 9,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p41_official_aido_full_finetune_07ceb515",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:09.001531+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 9,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p42_official_aido_full_finetune_27eef43e",
+      "strategy": "official_aido_full_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_full_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:09.501165+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a",
+      "strategy": "official_temperature_calibrated_head",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a",
+          "strategy": "official_temperature_calibrated_head",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_b1ebc39a/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:09.743327+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p43_official_aido_cached_embedding_fusion_bcdbddbe",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:09.841609+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p44_official_aido_cached_embedding_fusion_9371c77b",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:09.951690+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p45_official_aido_cached_embedding_fusion_f898c2d3",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:10.060252+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p46_official_aido_cached_embedding_fusion_ce8751fe",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:10.155705+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p47_official_aido_cached_embedding_fusion_d26a07fa",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:10.253328+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p48_official_aido_cached_embedding_fusion_f0da0ebd",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_aido_cached_embedding_fusion"
+    },
+    {
+      "time": "2026-07-13T17:47:10.744508+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad",
+      "strategy": "official_gene_dropout_augmentation",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad",
+          "strategy": "official_gene_dropout_augmentation",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p12_official_gene_dropout_augmentation_ee5e47ad/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:10.986189+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p49_official_scgpt_cell_encoder_b64593bd",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:11.086823+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p50_official_scgpt_cell_encoder_d2b9a7b3",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:11.197969+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p51_official_scgpt_cell_encoder_da61713c",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:11.299099+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p52_official_scgpt_cell_encoder_4c95e713",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:11.398473+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p53_official_scgpt_cell_encoder_26050f44",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:11.519437+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p54_official_scgpt_cell_encoder_e6959179",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scgpt_cell_encoder"
+    },
+    {
+      "time": "2026-07-13T17:47:11.937996+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916",
+      "strategy": "official_aido_full_finetune",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916",
+          "strategy": "official_aido_full_finetune",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_full_finetune_5d17a916/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:12.160204+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p55_official_scfoundation_top_layer_finetune_f0046420",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:12.257842+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p56_official_scfoundation_top_layer_finetune_060e6c33",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:12.360002+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p57_official_scfoundation_top_layer_finetune_bb2c56b8",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:12.458005+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p58_official_scfoundation_top_layer_finetune_f542cfb3",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:12.553874+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p59_official_scfoundation_top_layer_finetune_c4241372",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:12.659838+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p60_official_scfoundation_top_layer_finetune_08ec0505",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_scfoundation_top_layer_finetune"
+    },
+    {
+      "time": "2026-07-13T17:47:13.082896+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f",
+      "strategy": "official_public_static_node_family_wrapper",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f",
+          "strategy": "official_public_static_node_family_wrapper",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p10_official_public_static_node_family_wrapper_4639430f/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:13.322968+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p61_official_focal_loss_training_7f3224b3",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:13.419803+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p62_official_focal_loss_training_b59e677c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:13.518551+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p63_official_focal_loss_training_d7cbb658",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:13.623288+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p64_official_focal_loss_training_bc88de08",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:13.720678+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p65_official_focal_loss_training_2a5e608e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:13.836655+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p66_official_focal_loss_training_1f29ea70",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:14.280730+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p13_official_string_neighborhood_attention_2931eed8/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:14.543223+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p67_official_focal_loss_training_6ae3d614",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:14.655372+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p68_official_focal_loss_training_08b79884",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:14.761566+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p69_official_focal_loss_training_d2af64ab",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:14.863275+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p70_official_focal_loss_training_47a00172",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:14.970997+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p71_official_focal_loss_training_7a614fbc",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:15.081581+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p72_official_focal_loss_training_de469b39",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:15.573757+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p16_official_target_graph_conditioned_head_769564d9/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:15.838458+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p73_official_focal_loss_training_11f1957e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:15.948408+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p74_official_focal_loss_training_b3589ebd",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:16.059892+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p75_official_focal_loss_training_bf1d9a0c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:16.163718+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p76_official_focal_loss_training_0ce94646",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:16.273655+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p77_official_focal_loss_training_9d81b168",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:16.381563+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p78_official_focal_loss_training_6c6b503e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:16.895285+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p79_official_focal_loss_training_92481719",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:17.001614+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p80_official_focal_loss_training_348e68be",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:17.126018+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p81_official_focal_loss_training_faa8b84a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:17.243770+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p82_official_focal_loss_training_1b469bd0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:17.358915+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p83_official_focal_loss_training_95aaaa5d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:17.471390+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p84_official_focal_loss_training_fea71ea6",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:17.975387+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p85_official_focal_loss_training_b86a6180",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:18.088811+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p86_official_focal_loss_training_c70b9393",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:18.189832+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p87_official_focal_loss_training_6ad355aa",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:18.296178+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p88_official_focal_loss_training_1e9827c7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:18.420057+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p89_official_focal_loss_training_b4980e1d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:18.525927+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p90_official_focal_loss_training_623424ac",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:18.995157+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p91_official_focal_loss_training_ff0f15f9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:19.098278+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p92_official_focal_loss_training_ce16644a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:19.228470+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p93_official_focal_loss_training_0bc7476e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:19.331991+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p94_official_focal_loss_training_42af33fa",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:19.438013+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p95_official_focal_loss_training_85331156",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:19.528618+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p96_official_focal_loss_training_9d36000f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:19.968158+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852",
+      "strategy": "official_public_static_node_family_wrapper",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852",
+          "strategy": "official_public_static_node_family_wrapper",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T17:47:20.196614+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p97_official_focal_loss_training_a4d67751",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:20.321324+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p98_official_focal_loss_training_9d1ad801",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:20.423402+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p99_official_focal_loss_training_268f50b0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:20.525883+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p100_official_focal_loss_training_1b06314c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:20.644306+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p101_official_focal_loss_training_bc877577",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:20.751106+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p102_official_focal_loss_training_85b87087",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:21.272100+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p103_official_focal_loss_training_a238157e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:21.420206+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p104_official_focal_loss_training_7eb5c677",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:21.546739+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p105_official_focal_loss_training_22a8f1a2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:21.681540+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p106_official_focal_loss_training_7c58904d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:21.801321+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p107_official_focal_loss_training_27e58052",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:21.933668+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p108_official_focal_loss_training_efe43961",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:22.398033+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p109_official_focal_loss_training_24023ba7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:22.535337+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p110_official_focal_loss_training_7488f8bf",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:22.651091+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p111_official_focal_loss_training_79a11ed4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:22.768692+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p112_official_focal_loss_training_a6903b2a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:22.884852+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p113_official_focal_loss_training_b347c3cd",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:22.996121+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p114_official_focal_loss_training_14d0bee1",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:23.544158+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p115_official_focal_loss_training_bb0c4ca4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:23.656781+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p116_official_focal_loss_training_f6e96b9e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:23.769816+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p117_official_focal_loss_training_538d9ede",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:23.888073+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p118_official_focal_loss_training_ee386738",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:24.001304+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p119_official_focal_loss_training_a15e2679",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:24.134046+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p120_official_focal_loss_training_601ce6ff",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:24.650625+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p121_official_focal_loss_training_fa1161f4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:24.796998+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p122_official_focal_loss_training_83d33bb3",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:24.921707+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p123_official_focal_loss_training_95148cd2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:25.048430+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p124_official_focal_loss_training_d29570b9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:25.157052+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p125_official_focal_loss_training_ec5747c7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:25.273911+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p126_official_focal_loss_training_f71feae3",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:25.798508+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p127_official_focal_loss_training_6012291f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:25.917595+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p128_official_focal_loss_training_c4b98e0f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:26.033315+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p129_official_focal_loss_training_a57ae5a8",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:26.138625+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p130_official_focal_loss_training_87bd4c14",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:26.247356+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p131_official_focal_loss_training_2060621c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:26.358235+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p132_official_focal_loss_training_130fc91c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:26.860208+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p133_official_focal_loss_training_d50272a2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:26.963356+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p134_official_focal_loss_training_285993dd",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:27.078523+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p135_official_focal_loss_training_c90b0c93",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:27.193689+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p136_official_focal_loss_training_a48cabc4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:27.323554+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p137_official_focal_loss_training_8f070762",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:27.429340+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p138_official_focal_loss_training_511f8807",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:27.938878+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p139_official_focal_loss_training_52a61397",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:28.038313+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p140_official_focal_loss_training_415312d7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:28.141481+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p141_official_focal_loss_training_18cda94d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:28.251047+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p142_official_focal_loss_training_2617210e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:28.351988+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p143_official_focal_loss_training_8dd6b0a2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:28.456360+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p144_official_focal_loss_training_b4aa1df1",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:28.939677+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p145_official_focal_loss_training_cdae6a63",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:29.041837+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p146_official_focal_loss_training_79142a8b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:29.148291+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p147_official_focal_loss_training_355f9325",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:29.260838+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p148_official_focal_loss_training_257ad50c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:29.362272+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p149_official_focal_loss_training_61fcaf14",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:29.483411+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p150_official_focal_loss_training_9d953847",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:29.940583+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p151_official_focal_loss_training_c4d09f6c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:30.057208+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p152_official_focal_loss_training_47a829e4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:30.164057+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p153_official_focal_loss_training_291c8d41",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:30.271070+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p154_official_focal_loss_training_468ba074",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:30.384273+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p155_official_focal_loss_training_9b39000e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:30.498220+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p156_official_focal_loss_training_1f3ba975",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:30.967246+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p157_official_focal_loss_training_08a899a1",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:31.078701+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p158_official_focal_loss_training_053fa233",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:31.190907+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p159_official_focal_loss_training_b9fac958",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:31.291470+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p160_official_focal_loss_training_33193dee",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:31.395170+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p161_official_focal_loss_training_c94e8fd8",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:31.501877+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p162_official_focal_loss_training_62366951",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:31.997109+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p163_official_focal_loss_training_1916c536",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:32.129078+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p164_official_focal_loss_training_df93147f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:32.224557+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p165_official_focal_loss_training_7f1bf810",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:32.338605+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p166_official_focal_loss_training_72cfd9c7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:32.445423+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p167_official_focal_loss_training_25a852b6",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:32.573848+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p168_official_focal_loss_training_ed5625c1",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:32.946603+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p169_official_focal_loss_training_63084f6a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.058585+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p170_official_focal_loss_training_668f718c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.163149+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p171_official_focal_loss_training_9b753119",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.263931+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p172_official_focal_loss_training_a7d1e2ff",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.373486+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p173_official_focal_loss_training_4dbbfaec",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.488698+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p174_official_focal_loss_training_3f7bdc05",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.873248+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p175_official_focal_loss_training_1be04286",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:33.988428+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p176_official_focal_loss_training_88a78194",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:34.124810+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p177_official_focal_loss_training_2b6124a7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:34.235004+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p178_official_focal_loss_training_a8c2f408",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:34.338461+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p179_official_focal_loss_training_0e86dc39",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:34.458098+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p180_official_focal_loss_training_4bf19648",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:34.846176+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p181_official_focal_loss_training_532df0e2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:34.948019+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p182_official_focal_loss_training_c82deee4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.048445+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p183_official_focal_loss_training_e51f729c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.150508+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p184_official_focal_loss_training_f6e163a6",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.253236+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p185_official_focal_loss_training_c1a570e1",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.351026+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p186_official_focal_loss_training_514b8d91",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.761108+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p187_official_focal_loss_training_02a56ef9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.884884+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p188_official_focal_loss_training_56b766d0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:35.993014+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p189_official_focal_loss_training_355439d9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:36.124820+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p190_official_focal_loss_training_c2f75dac",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:36.246444+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p191_official_focal_loss_training_0b8bc1aa",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:36.341624+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p192_official_focal_loss_training_41eae7f6",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:36.736465+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p193_official_focal_loss_training_e1b2056d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:36.848454+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p194_official_focal_loss_training_1dd5a0c2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:36.945683+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p195_official_focal_loss_training_13f168b5",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:37.046802+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p196_official_focal_loss_training_945a8000",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:37.151613+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p197_official_focal_loss_training_3cd17ce2",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:37.255615+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p198_official_focal_loss_training_b88cc8aa",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:37.659652+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 36,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p199_official_focal_loss_training_f7266d7f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:37.788197+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 36,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p200_official_focal_loss_training_eeb9645f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:37.900190+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 36,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p201_official_focal_loss_training_aa361e51",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.031802+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 36,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p202_official_focal_loss_training_06b26c6b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.143234+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 36,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p203_official_focal_loss_training_636a2c7b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.245069+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 36,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p204_official_focal_loss_training_e74575d9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.590092+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 37,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p205_official_focal_loss_training_c73a32be",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.694354+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 37,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p206_official_focal_loss_training_cbe3ccac",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.796529+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 37,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p207_official_focal_loss_training_e696dc1b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:38.918540+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 37,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p208_official_focal_loss_training_13e028d8",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.023042+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 37,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p209_official_focal_loss_training_20954933",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.128541+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 37,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p210_official_focal_loss_training_1b3755f3",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.491413+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 38,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p211_official_focal_loss_training_5f3013b0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.592051+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 38,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p212_official_focal_loss_training_3b115da9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.715271+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 38,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p213_official_focal_loss_training_e3197df0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.838395+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 38,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p214_official_focal_loss_training_1bc2a9cd",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:39.937075+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 38,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p215_official_focal_loss_training_b6ea074b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.043082+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 38,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p216_official_focal_loss_training_ded19398",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.428772+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 39,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p217_official_focal_loss_training_59d34e60",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.540863+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 39,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p218_official_focal_loss_training_94c49669",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.651666+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 39,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p219_official_focal_loss_training_42b3ec2c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.745017+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 39,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p220_official_focal_loss_training_12e5329a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.841836+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 39,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p221_official_focal_loss_training_dc559ab8",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:40.948209+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 39,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p222_official_focal_loss_training_e5e8649f",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:41.336002+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 40,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p223_official_focal_loss_training_4c85ccca",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:41.436926+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 40,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p224_official_focal_loss_training_d07e9caf",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:41.546494+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 40,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p225_official_focal_loss_training_7d8bc58b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:41.657386+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 40,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p226_official_focal_loss_training_492b6123",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:41.765951+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 40,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p227_official_focal_loss_training_a7b55f1d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:41.870974+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 40,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p228_official_focal_loss_training_09022d35",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:42.265256+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 41,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p229_official_focal_loss_training_a1ff1311",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:42.371805+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 41,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p230_official_focal_loss_training_b1ff210c",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:42.487041+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 41,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p231_official_focal_loss_training_54119243",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:42.598725+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 41,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p232_official_focal_loss_training_ca06f1d7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:42.720703+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 41,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p233_official_focal_loss_training_c38a5c51",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:42.836671+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 41,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p234_official_focal_loss_training_da21a1c8",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:43.375950+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 42,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p235_official_focal_loss_training_ae2a40f4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:43.488271+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 42,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p236_official_focal_loss_training_b58607b3",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:43.591949+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 42,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p237_official_focal_loss_training_dd825a0e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:43.700393+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 42,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p238_official_focal_loss_training_e7c5b11b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:43.826040+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 42,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p239_official_focal_loss_training_31fec57a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:43.941783+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 42,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p240_official_focal_loss_training_2488b6ed",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:44.372286+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 43,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p241_official_focal_loss_training_85724102",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:44.494032+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 43,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p242_official_focal_loss_training_fdc7a034",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:44.629108+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 43,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p243_official_focal_loss_training_613b381d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:44.752864+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 43,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p244_official_focal_loss_training_89a69c6b",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:44.866117+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 43,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p245_official_focal_loss_training_bbcfc195",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:44.986793+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 43,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p246_official_focal_loss_training_e9b1da58",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:45.441478+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 44,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p247_official_focal_loss_training_6c353e8e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:45.554223+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 44,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p248_official_focal_loss_training_6cc9d496",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:45.675722+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 44,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p249_official_focal_loss_training_605d4995",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:45.800570+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 44,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p250_official_focal_loss_training_cfb9daea",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:45.932208+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 44,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p251_official_focal_loss_training_34167a49",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:46.056274+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 44,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p252_official_focal_loss_training_57cbf4c0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:46.481822+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 45,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p253_official_focal_loss_training_b3b02963",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:46.615559+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 45,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p254_official_focal_loss_training_14a97c3d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:46.729884+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 45,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p255_official_focal_loss_training_6e3fd477",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:46.845060+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 45,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p256_official_focal_loss_training_8cf8b8b6",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:46.963830+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 45,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p257_official_focal_loss_training_4ab8331e",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:47.073310+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 45,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p258_official_focal_loss_training_3db7f383",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:47.481083+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 46,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p259_official_focal_loss_training_54bd3dea",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:47.580924+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 46,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p260_official_focal_loss_training_3d0e0fa1",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:47.681451+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 46,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p261_official_focal_loss_training_ac35fa3d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:47.801574+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 46,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p262_official_focal_loss_training_f25474c4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:47.918436+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 46,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p263_official_focal_loss_training_478fd0ec",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:48.024241+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 46,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p264_official_focal_loss_training_160ea4c7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:48.460421+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 47,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p265_official_focal_loss_training_486de017",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:48.574483+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 47,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p266_official_focal_loss_training_d93794b7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:48.686252+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 47,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p267_official_focal_loss_training_2cb65ccd",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:48.799311+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 47,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p268_official_focal_loss_training_4919f4ee",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:48.902599+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 47,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p269_official_focal_loss_training_c6eade42",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:49.029308+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 47,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p270_official_focal_loss_training_ec0d5b12",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:49.501751+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 48,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p271_official_focal_loss_training_2d8c6118",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:49.621163+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 48,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p272_official_focal_loss_training_166242a7",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:49.732103+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 48,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p273_official_focal_loss_training_e1127205",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:49.853903+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 48,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p274_official_focal_loss_training_752eb96a",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:49.966671+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 48,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p275_official_focal_loss_training_ec4b9c87",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:50.072141+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 48,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p276_official_focal_loss_training_c4710734",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:50.493887+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 49,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p277_official_focal_loss_training_83aa8ce9",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:50.602002+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 49,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p278_official_focal_loss_training_e4b3bc36",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:50.748551+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 49,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p279_official_focal_loss_training_e7d6e065",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:50.857157+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 49,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p280_official_focal_loss_training_7429043d",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:50.954582+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 49,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p281_official_focal_loss_training_fefe0149",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.059302+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 49,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p282_official_focal_loss_training_41dfca72",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.457150+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 50,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p283_official_focal_loss_training_a5030ab0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.552149+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 50,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p284_official_focal_loss_training_4ff62250",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.656045+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 50,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p285_official_focal_loss_training_8914a0e0",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.761796+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 50,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p286_official_focal_loss_training_684059d4",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.858746+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 50,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p287_official_focal_loss_training_6f845706",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    },
+    {
+      "time": "2026-07-13T17:47:51.958697+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 50,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p288_official_focal_loss_training_20615edc",
+      "strategy": "official_focal_loss_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp already expanded blueprint official_focal_loss_training"
+    }
+  ],
+  "blueprint_counts": {
+    "official_target_gene_head": 2,
+    "official_aido_lora_adapter": 2,
+    "official_string_gnn_attention": 1,
+    "official_aido_string_fusion": 1,
+    "official_pathway_pooling_reactome": 2,
+    "official_aido_string_cross_attention": 1,
+    "official_aido_cached_embedding_fusion": 10,
+    "official_aido_full_finetune": 9,
+    "official_string_gnn_frozen_cache": 2,
+    "official_scgpt_cell_encoder": 10,
+    "official_scfoundation_top_layer_finetune": 10,
+    "official_string_gnn_full_finetune": 1,
+    "official_string_neighborhood_attention": 2,
+    "official_target_graph_conditioned_head": 2,
+    "official_class_imbalance_training": 1,
+    "official_regulatory_network_prior": 2,
+    "official_focal_loss_training": 234,
+    "official_public_best_node": 1,
+    "official_target_low_rank_head": 1,
+    "official_target_bilinear_head": 1,
+    "official_multimodal_mixture_of_experts": 1,
+    "official_temperature_calibrated_head": 1,
+    "official_gene_dropout_augmentation": 1,
+    "official_public_static_node_family_wrapper": 2
+  },
+  "parent_blueprints": {
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_focal_loss_training",
+      "official_pathway_pooling_reactome",
+      "official_public_static_node_family_wrapper",
+      "official_regulatory_network_prior",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_attention",
+      "official_string_gnn_frozen_cache",
+      "official_string_gnn_full_finetune",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_class_imbalance_training",
+      "official_focal_loss_training",
+      "official_gene_dropout_augmentation",
+      "official_multimodal_mixture_of_experts",
+      "official_public_best_node",
+      "official_public_static_node_family_wrapper",
+      "official_regulatory_network_prior",
+      "official_string_neighborhood_attention",
+      "official_target_bilinear_head",
+      "official_target_graph_conditioned_head",
+      "official_target_low_rank_head",
+      "official_temperature_calibrated_head"
+    ]
+  },
+  "family_counts": {
+    "target_gene_aware_head": 2,
+    "AIDO_adapter": 2,
+    "STRING_GNN_attention": 1,
+    "AIDO_STRING_fusion": 1,
+    "Reactome_pathway_pooling": 2,
+    "AIDO_STRING_cross_attention": 1,
+    "AIDO_cached_embedding": 10,
+    "AIDO_full_finetune": 9,
+    "STRING_GNN_frozen_cached": 2,
+    "scGPT_or_single_cell_encoder": 10,
+    "scFoundation_selective_finetune": 10,
+    "STRING_GNN_full_finetune": 1,
+    "STRING_neighborhood_attention": 2,
+    "target_graph_conditioned_head": 2,
+    "official_deg_imbalance": 1,
+    "regulatory_network_prior": 2,
+    "focal_loss": 234,
+    "public_vcharness_best_path": 1,
+    "target_low_rank_head": 1,
+    "target_bilinear_head": 1,
+    "multimodal_MoE": 1,
+    "temperature_calibration": 1,
+    "gene_dropout_augmentation": 1,
+    "public_static_tree_family": 2
+  },
+  "structural_signature_counts": {
+    "841a8f77d14ecd77e5286010e281e10413c6c4f4": 2,
+    "9d1bce694fc088a4d626218348b38372fb84586d": 2,
+    "930fbba42d4a3a8549fc158bbaf7d2f0fdf9a612": 1,
+    "1123b8802df90e9f4c17ed7477cfcba52678f383": 1,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 2,
+    "deba82298c3d004b00e18f313793047749e3e865": 1,
+    "a262e75b7224c168d3ae7368ac6b624e5c403ed7": 10,
+    "88ecff675fd1c303a9151e2d11c787bd53c01c5a": 9,
+    "636df077d3ff7962f9b1975240117c774df52e49": 2,
+    "6291ab76721f2e3af47bf7100bc2851a646b8f3e": 10,
+    "74655690438240a600d9469173ce9c418a7c823b": 10,
+    "d930602e9cc7efaeceb85c360e8ab5a968303018": 1,
+    "bba2a2345669bc31b6d7cf4aa1dc1b88c44af0ad": 1,
+    "5bc1536beaba0d3f8eea24bd9091228f5a47f64e": 1,
+    "1f74853a1499c2a3803343a9d6723e5fefb9c620": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "577882e9f484ab0b3881a898adf1d7c468869250": 1,
+    "47c7847a301642e9a6ab8d8e5b93f2e343c21349": 1,
+    "cb57c5538b2d27434feec8c48538eeb5b54409ad": 1,
+    "1742b37a7c9d12d8ca5fb2e0073a957270f24bb8": 1,
+    "c0eafae0f99bbac794bde9a55f080e4f06764340": 1,
+    "30dd208026c9c8ed8f5706405af6ea3e49aebf00": 1,
+    "e5bbad2806049803fe13ea9aa6a77d46aca836cd": 1,
+    "ae71d927bbc5501a8260a258012881011cd34b26": 1,
+    "9e51bea477de47d5e3ab3aa2ad7badd177e78b20": 1,
+    "2478b4b1142a32c36d979510cb471b79c00a59c1": 1,
+    "7286a8ec450a072241a5a676a2745e827e7a744d": 1,
+    "aee58de49b793bed52c054fdd1fac10e2710bdad": 233,
+    "f756f3c8dbedf6011b9cdc363c79ba6316732465": 1
+  },
+  "replicate_nodes": [],
+  "successes": [],
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_fusion",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_class_imbalance_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_pathway_pooling_reactome",
+      "missing_required_artifacts": [
+        "pathway_memberships"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_e2de701c",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_cross_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p5_official_regulatory_network_prior_046124cf",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_regulatory_network_prior",
+      "missing_required_artifacts": [
+        "regulatory_network_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p6_official_focal_loss_training_0342c716",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_focal_loss_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p4_official_public_best_node_dd0aeebb",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_public_best_node",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_gnn_frozen_cache_509b18b9",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_frozen_cache",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_scgpt_cell_encoder_a96fd95b",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_scgpt_cell_encoder",
+      "missing_required_artifacts": [
+        "single_cell_foundation_model_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_scfoundation_top_layer_finetune_85ff4d1b",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "missing_required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "missing_required_artifact_paths": [
+        "data/artifacts/scfoundation"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_string_gnn_full_finetune_9646a965",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_full_finetune",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p18_official_regulatory_network_prior_4124f12e",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_regulatory_network_prior",
+      "missing_required_artifacts": [
+        "regulatory_network_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p19_official_focal_loss_training_57616c7f",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_focal_loss_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    }
+  ],
+  "blocked_artifacts": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "family": "AIDO_STRING_fusion",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "missing": [
+        "pathway_memberships"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_e2de701c",
+      "strategy": "official_aido_string_cross_attention",
+      "family": "AIDO_STRING_cross_attention",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_gnn_frozen_cache_509b18b9",
+      "strategy": "official_string_gnn_frozen_cache",
+      "family": "STRING_GNN_frozen_cached",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_scgpt_cell_encoder_a96fd95b",
+      "strategy": "official_scgpt_cell_encoder",
+      "family": "scGPT_or_single_cell_encoder",
+      "missing": [
+        "single_cell_foundation_model_artifact"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_scfoundation_top_layer_finetune_85ff4d1b",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "family": "scFoundation_selective_finetune",
+      "missing": [
+        "scfoundation_cell_embeddings"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_string_gnn_full_finetune_9646a965",
+      "strategy": "official_string_gnn_full_finetune",
+      "family": "STRING_GNN_full_finetune",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "missing": [
+        "class_distribution"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p5_official_regulatory_network_prior_046124cf",
+      "strategy": "official_regulatory_network_prior",
+      "family": "regulatory_network_prior",
+      "missing": [
+        "regulatory_network_artifact"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p6_official_focal_loss_training_0342c716",
+      "strategy": "official_focal_loss_training",
+      "family": "focal_loss",
+      "missing": [
+        "class_distribution"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p4_official_public_best_node_dd0aeebb",
+      "strategy": "official_public_best_node",
+      "family": "public_vcharness_best_path",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p18_official_regulatory_network_prior_4124f12e",
+      "strategy": "official_regulatory_network_prior",
+      "family": "regulatory_network_prior",
+      "missing": [
+        "regulatory_network_artifact"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p19_official_focal_loss_training_57616c7f",
+      "strategy": "official_focal_loss_training",
+      "family": "focal_loss",
+      "missing": [
+        "class_distribution"
+      ]
+    }
+  ],
+  "motifs": {
+    "promising": [],
+    "discouraged": [
+      "official_regulatory_network_prior: 2 failure(s)",
+      "official_focal_loss_training: 2 failure(s)",
+      "official_string_gnn_attention: 1 failure(s)",
+      "official_aido_string_fusion: 1 failure(s)",
+      "official_class_imbalance_training: 1 failure(s)",
+      "official_regulatory_network_prior: blocked by missing artifact 2 time(s)",
+      "official_focal_loss_training: blocked by missing artifact 2 time(s)",
+      "official_string_gnn_attention: blocked by missing artifact 1 time(s)",
+      "official_aido_string_fusion: blocked by missing artifact 1 time(s)",
+      "official_pathway_pooling_reactome: blocked by missing artifact 1 time(s)"
+    ]
+  }
+}

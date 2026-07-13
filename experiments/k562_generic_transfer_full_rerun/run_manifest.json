@@ -1,0 +1,122 @@
+{
+  "format": "vc_demo_run_manifest.v1",
+  "created_at": "2026-07-13T17:47:52.383458+00:00",
+  "experiment": "k562_generic_transfer_full_rerun",
+  "run_dir": "experiments/k562_generic_transfer_full_rerun",
+  "git": {
+    "branch": "k562-generic-transfer-full-rerun",
+    "commit": "51b5bc7d56fb319dd49f78b917a2c531f1c393cd",
+    "status_short": "?? experiments/k562_full_global_queue_run/\n?? experiments/k562_generic_transfer_full_rerun/\n?? experiments/official_k562_generic_transfer_v1/"
+  },
+  "search": {
+    "selection_policy": "uct",
+    "exploration": 1.4142135623730951,
+    "budget_nodes": 2,
+    "max_children": 10,
+    "max_epochs": 8,
+    "stop_no_improve": 60,
+    "allow_planned_blueprints": true,
+    "allow_missing_artifact_fallbacks": false,
+    "artifact_aware_blueprint_policy": false,
+    "stop_reason": "proposal budget exhausted (300/300)"
+  },
+  "artifacts": {
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "present_artifacts": [
+      "string_k562_gene_graph",
+      "pathway_membership_matrix",
+      "official_essential_deg_with_split_h5ad",
+      "official_k562_aido_cell_100m_embedding_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_gnn_simple_embedding_h5ad",
+      "official_public_best_node_code"
+    ],
+    "missing_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "official_string_gnn_model_dir"
+    ]
+  },
+  "queues": {
+    "implementation_queue": "experiments/k562_generic_transfer_full_rerun/implementation_queue.json",
+    "acquisition_queue": "experiments/k562_generic_transfer_full_rerun/acquisition_queue.json",
+    "artifact_acquisition_command": "python -m vc_demo.harness.artifact_acquisition --queue experiments/k562_generic_transfer_full_rerun/acquisition_queue.json --registry configs/artifacts/k562_registry.json --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir experiments/k562_generic_transfer_full_rerun/artifact_acquisition --execute-known"
+  },
+  "results": {
+    "trained_nodes": 2,
+    "failed_nodes": 14,
+    "best_node": "official_k562_root_aido_gnn_embedding_mlp",
+    "best_val_macro_f1": 0.4669579565525055,
+    "best_test_macro_f1": 0.523522138595581,
+    "best_root": "official_k562_root_aido_gnn_embedding_mlp",
+    "best_root_val_macro_f1": 0.4669579565525055,
+    "best_root_test_macro_f1": 0.523522138595581
+  },
+  "mcts": {
+    "last_selection": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.6443679790679802,
+      "uct": 1.6443679790679802,
+      "puct": null,
+      "q": 0.4669579565525055,
+      "Q_v": 0.4669579565525055,
+      "exploitation": 0.4669579565525055,
+      "Exploitation": 0.4669579565525055,
+      "exploration": 1.1774100225154747,
+      "Exploration": 1.1774100225154747,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 2,
+      "children": 282,
+      "best_val_macro_f1": 0.4669579565525055,
+      "stage": "draft"
+    },
+    "last_candidates": [
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp",
+        "policy": "uct",
+        "score": 1.6443679790679802,
+        "uct": 1.6443679790679802,
+        "puct": null,
+        "q": 0.4669579565525055,
+        "Q_v": 0.4669579565525055,
+        "exploitation": 0.4669579565525055,
+        "Exploitation": 0.4669579565525055,
+        "exploration": 1.1774100225154747,
+        "Exploration": 1.1774100225154747,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 2,
+        "children": 282,
+        "best_val_macro_f1": 0.4669579565525055,
+        "stage": "draft"
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp",
+        "policy": "uct",
+        "score": 1.6104760627929557,
+        "uct": 1.6104760627929557,
+        "puct": null,
+        "q": 0.4330660402774811,
+        "Q_v": 0.4330660402774811,
+        "exploitation": 0.4330660402774811,
+        "Exploitation": 0.4330660402774811,
+        "exploration": 1.1774100225154747,
+        "Exploration": 1.1774100225154747,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 2,
+        "children": 12,
+        "best_val_macro_f1": 0.4330660402774811,
+        "stage": "draft"
+      }
+    ],
+    "selection_policy": "uct",
+    "exploration_c": 1.4142135623730951,
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension"
+  }
+}

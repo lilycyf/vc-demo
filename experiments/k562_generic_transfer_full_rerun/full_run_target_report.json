@@ -1,0 +1,59 @@
+{
+  "branch": "k562-generic-transfer-full-rerun",
+  "commit_base": "51b5bc7d56fb319dd49f78b917a2c531f1c393cd",
+  "run_dir": "experiments/k562_generic_transfer_full_rerun",
+  "proposal_selection_mode": "global_queue",
+  "target_val_macro_f1": 0.5,
+  "stop_reason": "proposal budget exhausted (300/300)",
+  "counts": {
+    "trained": 2,
+    "implementation_skipped": 15,
+    "requires_artifact_acquisition": 14,
+    "pruned_not_selected": 271
+  },
+  "generated_proposals": 300,
+  "trained_selected_rollouts": 0,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "strategy": "root",
+    "status": "trained",
+    "val_macro_f1": 0.4669579565525055,
+    "test_macro_f1": 0.523522138595581
+  },
+  "best_generated_child": null,
+  "delta_child_vs_root": null,
+  "delta_child_vs_target": null,
+  "root_beating_achieved": false,
+  "target_achieved": false,
+  "implementation_queue_items": 0,
+  "acquisition_queue_items": 14,
+  "acquisition_artifacts": [
+    "class_distribution",
+    "official_string_gnn_model_dir",
+    "pathway_memberships",
+    "regulatory_network_artifact",
+    "scfoundation_cell_embeddings",
+    "single_cell_foundation_model_artifact"
+  ],
+  "trace_counts": {
+    "selection": 50,
+    "proposal_pool_generated": 50,
+    "proposal_queued": 29,
+    "global_queue_selected": 29,
+    "expansion": 29,
+    "pending_implementation": 15,
+    "implementation_loop_start": 15,
+    "implementation_loop_result": 15,
+    "implementation_skipped_continued": 15,
+    "proposal_pruned": 271,
+    "artifact_acquisition_block_continued": 14
+  },
+  "audit_counters": {
+    "fallback_count": 0,
+    "compact_proxy_count": 0,
+    "backprop_nontrained_count": 0,
+    "backend_anomaly_count": 0,
+    "backend_audit_status": "passed"
+  },
+  "interpretation": "Mechanically completed the 300-proposal full run, but the scientific objective was not achieved: no generated child was trained because strict formal implementation rules skipped planned generated nodes instead of allowing compact/proxy implementations."
+}

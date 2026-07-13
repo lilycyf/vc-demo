@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852",
+      "strategy": "official_public_static_node_family_wrapper",
+      "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "implementation_skipped",
+      "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/model.py",
+      "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852",
+          "strategy": "official_public_static_node_family_wrapper",
+          "stage": "materialize",
+          "status": "implementation_skipped",
+          "task_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p25_official_public_static_node_family_wrapper_5b864852/model.py",
+          "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+          "skip_reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    }
+  ],
+  "trained": true,
+  "repair_attempts": 3,
+  "repair_log": "experiments/k562_generic_transfer_full_rerun/repair_log.jsonl",
+  "agent_decision_trace": "experiments/k562_generic_transfer_full_rerun/agent_decision_trace.jsonl"
+}

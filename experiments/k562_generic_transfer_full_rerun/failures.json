@@ -1,0 +1,172 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_fusion",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_class_imbalance_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_pathway_pooling_reactome",
+      "missing_required_artifacts": [
+        "pathway_memberships"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_e2de701c",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_cross_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p5_official_regulatory_network_prior_046124cf",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_regulatory_network_prior",
+      "missing_required_artifacts": [
+        "regulatory_network_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p6_official_focal_loss_training_0342c716",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_focal_loss_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p4_official_public_best_node_dd0aeebb",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_public_best_node",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_gnn_frozen_cache_509b18b9",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_frozen_cache",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_scgpt_cell_encoder_a96fd95b",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_scgpt_cell_encoder",
+      "missing_required_artifacts": [
+        "single_cell_foundation_model_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_scfoundation_top_layer_finetune_85ff4d1b",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "missing_required_artifacts": [
+        "scfoundation_cell_embeddings"
+      ],
+      "missing_required_artifact_paths": [
+        "data/artifacts/scfoundation"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_string_gnn_full_finetune_9646a965",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_full_finetune",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p18_official_regulatory_network_prior_4124f12e",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_regulatory_network_prior",
+      "missing_required_artifacts": [
+        "regulatory_network_artifact"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p19_official_focal_loss_training_57616c7f",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_focal_loss_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    }
+  ]
+}

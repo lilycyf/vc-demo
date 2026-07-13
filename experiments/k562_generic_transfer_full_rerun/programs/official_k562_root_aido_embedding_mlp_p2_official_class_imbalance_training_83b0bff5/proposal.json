@@ -1,0 +1,92 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_embedding_mlp",
+  "child": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "strategy": "official_class_imbalance_training",
+  "blueprint": {
+    "id": "official_class_imbalance_training",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "training_strategy",
+    "paper_family": "official_deg_imbalance",
+    "change_level": 1,
+    "role": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_notes": "Implemented as a config-only child in program_agent; patches loss_type/class weights and does not create a node-local model.py.",
+    "acceptance": [
+      "Documents weights/gamma",
+      "Does not tune on test labels",
+      "Reports Macro-F1"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.",
+  "changes": [
+    "program_model:gated_mlp->official_class_imbalance_training",
+    "blueprint_status:implemented",
+    "model_program:none",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "program_model_path": "",
+  "pipeline_manifest_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_class_imbalance_training",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.5399999999999998,
+    "base": 0.74,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "official_deg_imbalance",
+    "family_count": 0
+  },
+  "structural_signature": "1f74853a1499c2a3803343a9d6723e5fefb9c620",
+  "parent_structural_signature": "ec44ce29d4c54db3bf28f4404546e76197140815",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "missing_required_artifacts": [
+      "class_distribution"
+    ],
+    "all_required_present": false
+  }
+}

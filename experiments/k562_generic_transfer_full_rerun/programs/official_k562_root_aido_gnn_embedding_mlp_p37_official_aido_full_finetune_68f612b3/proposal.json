@@ -1,0 +1,91 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3",
+  "strategy": "official_aido_full_finetune",
+  "blueprint": {
+    "id": "official_aido_full_finetune",
+    "status": "planned",
+    "official_k562": true,
+    "category": "foundation_model_finetuning",
+    "paper_family": "AIDO_full_finetune",
+    "change_level": 5,
+    "role": "Fine-tune selected AIDO.Cell-100M layers for K562 DEG classification with frozen/unfrozen layer policy recorded.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex implements only when selected. Must load real AIDO.Cell-100M; no random stand-in.",
+    "acceptance": [
+      "Records frozen/trainable AIDO layers",
+      "Forward returns [batch, 6640, 3]",
+      "Does not alter official split"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Fine-tune selected AIDO.Cell-100M layers for K562 DEG classification with frozen/unfrozen layer policy recorded.",
+  "changes": [
+    "program_model:gated_mlp->official_aido_full_finetune",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3",
+  "program_model_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/model.py",
+  "pipeline_manifest_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_aido_full_finetune",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.33999999999999997,
+    "base": 0.7,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.36,
+    "native_repeat_penalty": 0.0,
+    "count": 3,
+    "family": "AIDO_full_finetune",
+    "family_count": 3
+  },
+  "structural_signature": "88ecff675fd1c303a9151e2d11c787bd53c01c5a",
+  "parent_structural_signature": "b543b809a8ca57cbbcba2b4baa9b7ffc76a77124",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_generic_transfer_full_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p37_official_aido_full_finetune_68f612b3/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}
