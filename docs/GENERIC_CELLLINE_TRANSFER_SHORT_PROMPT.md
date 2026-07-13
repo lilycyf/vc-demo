@@ -1,24 +1,43 @@
-# Short Prompt: Generic Cell-Line Transfer Test
+# Short Prompt: Generic Cell-Line Runs
 
-Copy this when handing off to an experiment Codex:
+## Full cell-line run
+
+Copy this when the user asks to truly/fully run a cell line:
 
 ```text
-Run generic cell-line transfer test on RunPod `/workspace/vc-demo`.
+Run official generic cell-line full run on RunPod `/workspace/vc-demo`.
 Branch: generic-cellline-runner-fix
 CELL_LINE_ID: <CELL_LINE_ID>
-TEST_LEVEL: transfer_64x16
+RUN_TYPE: full_cellline_run
 
 Use repo instructions only:
 - docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md
 - docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md
 
 Use the standard entrypoint:
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --level transfer_64x16 --execute
+PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --run-type full_cellline_run --level full_cellline_run --execute
 
-If pending implementation appears, follow the node-local contracts and the runbook. If acquisition appears, generate and run the artifact-acquisition Codex prompt with `scripts/generate_artifact_acquisition_prompt.py`; do not call the run blocked until that research step completes. Do not fallback, do not use compact/proxy implementations, do not leak K562 files, and do not commit forbidden files.
+This is not a smoke test. Do not use transfer_64x16. Do not use 1 epoch. Before training, apply the artifact-constrained blueprint rule from the runbook: acquire public source-backed artifacts when possible; if an artifact is proven unavailable, exclude dependent blueprints from the main full run and report them separately. No fallback, no compact/proxy, no test-set tuning, and no forbidden files.
 
 Push results to:
-generic-cellline-transfer-test-<cell_line_slug>
+<cell_line_slug>-full-official-run
 
-Final reply must include selected cell line, commit hash, trained/pending/failed/blocked counts, best root, best child, fallback/proxy/backprop/backend anomaly counts, and pass/block/fail decision.
+Final reply must include commit hash, generated/trained/pruned/blocked counts, best root val/test, best child val/test, whether best child beats root, artifact exclusions/blockers, fallback/proxy/backprop/backend anomaly counts, and forbidden staged check result.
+```
+
+## Loop self-test
+
+Copy this only when the user asks to test the runner mechanics:
+
+```text
+Run generic cell-line loop self-test on RunPod `/workspace/vc-demo`.
+Branch: generic-cellline-runner-fix
+CELL_LINE_ID: <CELL_LINE_ID>
+RUN_TYPE: loop_self_test
+TEST_LEVEL: transfer_64x16
+
+Use the standard entrypoint:
+PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --run-type loop_self_test --level transfer_64x16 --execute
+
+This is a loop/runner validation only; do not use the result to judge model superiority.
 ```

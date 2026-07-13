@@ -5,9 +5,22 @@ Use this checklist for every generic cell-line transfer test.
 ## Required Inputs
 
 - `CELL_LINE_ID` is explicit.
-- `TEST_LEVEL` is one of `preflight`, `transfer_64x16`, or `transfer_150x40`.
+- `RUN_TYPE` is explicit: `loop_self_test` or `full_cellline_run`.
+- `TEST_LEVEL` is one of `preflight`, `transfer_64x16`, `transfer_150x40`, or `full_cellline_run`.
 - The run uses `scripts/run_generic_cellline_transfer_test.py` unless debugging the runner itself.
 - The run branch is separate from the framework branch when producing experiment outputs.
+
+
+## Run Type Acceptance
+
+Pass only if the run type is explicit:
+
+- `RUN_TYPE=loop_self_test` is for wiring/proposal/acquisition/implementation-loop validation only.
+- `RUN_TYPE=full_cellline_run` is for real model-quality cell-line experiments.
+- `full_cellline_run` must use `--level full_cellline_run`.
+- `full_cellline_run` must use `max_epochs >= 5`.
+- `transfer_64x16` and `transfer_150x40` must not be described as full model-quality runs.
+- Full runs must apply artifact-constrained blueprint filtering before training and report excluded blueprint families.
 
 ## Task Contract
 

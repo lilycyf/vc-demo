@@ -19,6 +19,25 @@ Follow docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md and docs/GENERIC_CELLLINE_TRANS
 Push results to generic-cellline-transfer-test-<slug>.
 ```
 
+
+## Run Types Are Mandatory
+
+Every handoff must distinguish run type from cell line. Do not infer run type from `TEST_LEVEL`.
+
+| Run type | Purpose | Allowed levels | Default epochs | Quality interpretation |
+|---|---|---|---:|---|
+| `loop_self_test` | Validate runner wiring, proposal-pool pruning, strict artifact gates, implementation loop, and report counters | `preflight`, `transfer_64x16`, `transfer_150x40` | 1 | May not be used to claim model superiority |
+| `full_cellline_run` | Run a real cell-line experiment with model-quality budget | `full_cellline_run` | 5 | May be used for root-vs-child comparison |
+
+Hard rules:
+
+- `full_cellline_run` must use `--level full_cellline_run`.
+- `full_cellline_run` must use `--max-epochs >= 5`.
+- `transfer_64x16` and `transfer_150x40` are loop/self-test levels even if they generate many proposals.
+- If the user asks to "完整跑" or "真实跑" a cell line, use `RUN_TYPE=full_cellline_run`, not `transfer_64x16`.
+- Full runs require an artifact-constrained blueprint filter before training: exclude unresolved/blocked artifact-dependent blueprints from the main run and report exclusions separately.
+- Known-unavailable artifacts must not repeatedly stop the main full run; after source-backed acquisition proves unavailability, filter those blueprint families and continue with currently real artifacts.
+
 ## Test Levels
 
 Use `scripts/run_generic_cellline_transfer_test.py` to expand a short request into the standard invocation.
@@ -27,18 +46,19 @@ Use `scripts/run_generic_cellline_transfer_test.py` to expand a short request in
 |---|---:|---:|---|
 | `preflight` | 8 | 2 | wiring and artifact readiness smoke |
 | `transfer_64x16` | 64 | 16 | default transfer test |
-| `transfer_150x40` | 150 | 40 | medium pressure test after 64x16 passes |
+| `transfer_150x40` | 150 | 40 | loop/self-test pressure test after 64x16 passes |
+| `full_cellline_run` | 150 | 50 | real full cell-line run; default 5 epochs |
 
 ## Standard Invocation
 
 ```bash
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-line ${CELL_LINE_ID}   --level ${TEST_LEVEL}   --execute
+PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-line ${CELL_LINE_ID}   --run-type ${RUN_TYPE}   --level ${TEST_LEVEL}   --execute
 ```
 
 For resume:
 
 ```bash
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-line ${CELL_LINE_ID}   --level ${TEST_LEVEL}   --resume   --execute
+PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-line ${CELL_LINE_ID}   --run-type ${RUN_TYPE}   --level ${TEST_LEVEL}   --resume   --execute
 ```
 
 The script writes `transfer_invocation.json` and `transfer_invocation.md` into the run directory before execution.
