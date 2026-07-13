@@ -1,0 +1,15 @@
+{
+  "format": "official_cellline_transfer_acquisition_queue.v1",
+  "cell_line_id": "K562",
+  "items": [
+    {
+      "node": "generic_wrapper_preflight",
+      "strategy": "official_k562_tsv_mcts_harness_required_artifacts",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "cell_line_specific": false,
+      "action": "research_download_or_build_real_artifact_then_audit"
+    }
+  ]
+}
