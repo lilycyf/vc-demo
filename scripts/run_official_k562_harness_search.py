@@ -44,6 +44,7 @@ def main() -> None:
     parser.add_argument("--enable-implementation-loop", action="store_true", help="Automatically materialize selected planned nodes, run native smoke, train_pending, and repair-log failures.")
     parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum attempts for compile/native-smoke/train repair in the automatic implementation loop.")
     parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
+    parser.add_argument("--excluded-blueprints-file", type=Path, default=None, help="Strict artifact-constrained blueprint exclusion report.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.candidate_pool_size < 1:
@@ -103,6 +104,7 @@ def main() -> None:
         allow_parent_duplicate_blueprints=args.allow_parent_duplicate_blueprints,
         max_duplicate_proposal_attempts=args.max_duplicate_proposal_attempts,
         candidate_pool_size=args.candidate_pool_size,
+        excluded_blueprints_file=args.excluded_blueprints_file,
         reset=args.reset,
     )
     result = run_search(ns)

@@ -14,9 +14,9 @@ from vc_demo.harness.pipeline_grammar import program_for_blueprint
 from vc_demo.harness.state import write_json
 
 
-def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True, official_k562_only: bool = False, search_memory: dict[str, Any] | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True, official_k562_only: bool = False, search_memory: dict[str, Any] | None = None, excluded_blueprints: set[str] | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
     parent_name = str(parent_config.get("node_name", parent_node.get("name", "node")))
-    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware, official_k562_only=official_k562_only, search_memory=search_memory)
+    blueprint_id = force_blueprint or _choose_blueprint(parent_name, parent_node, child_index, rng, include_planned, registry_audit=registry_audit, artifact_aware=artifact_aware, official_k562_only=official_k562_only, search_memory=search_memory, excluded_blueprints=excluded_blueprints)
     blueprint = blueprint_by_id(blueprint_id)
     if blueprint["status"] == "planned" and not include_planned and force_blueprint is None:
         raise ValueError(f"planned blueprint {blueprint_id!r} selected without include_planned=True")
@@ -239,10 +239,13 @@ def _choose_blueprint(
     artifact_aware: bool = True,
     official_k562_only: bool = False,
     search_memory: dict[str, Any] | None = None,
+    excluded_blueprints: set[str] | None = None,
 ) -> str:
     choices = selectable_blueprint_ids(include_planned, official_k562_only=official_k562_only)
+    excluded = excluded_blueprints or set()
+    choices = [choice for choice in choices if choice not in excluded]
     if not choices:
-        raise ValueError("no selectable model blueprints are available")
+        raise ValueError("no selectable model blueprints are available after artifact-constrained exclusions")
     ranked = rank_scientific_blueprint_choices(choices, search_memory or {}, parent_node, child_index)
     if child_index <= len(ranked):
         return ranked[child_index - 1]
