@@ -380,6 +380,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         "candidate_queued",
         "selected_for_training",
         "needs_implementation",
+        "implementation_skipped",
         "requires_artifact_acquisition",
         "blocked_missing_artifact",
         "failed",
@@ -625,9 +626,9 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                     no_improve += 1
                     write_tree_and_failures(run_dir, tree, failures)
                     continue
-                if item.get("status") == "implementation_required":
+                if item.get("status") == "implementation_skipped":
                     no_improve += 1
-                    append_mcts_trace(run_dir, {"event": "implementation_required_continued", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "task_path": item.get("task_path"), "policy": "record_required_implementation_and_continue_global_queue_without_fallback"})
+                    append_mcts_trace(run_dir, {"event": "implementation_skipped_continued", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "task_path": item.get("task_path"), "skip_reason": item.get("skip_reason"), "policy": "skip_unimplemented_candidate_and_continue_global_queue_without_fallback"})
                     write_tree_and_failures(run_dir, tree, failures)
                     if args.proposal_selection_mode == "global_queue":
                         continue

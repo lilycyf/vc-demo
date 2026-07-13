@@ -40,7 +40,7 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
             request = program_dir / "IMPLEMENTATION_REQUEST.md"
             task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
             task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "implementation_required", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"}
+            return {"status": "implementation_skipped", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"}
         try:
             source = _generic_program_source(strategy)
             source_kind = "implementation_agent_template"
@@ -48,7 +48,7 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
             request = program_dir / "IMPLEMENTATION_REQUEST.md"
             task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
             task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "implementation_required", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "no safe local template exists; Codex must implement a real node-local model or mark a precise artifact/contract blocker"}
+            return {"status": "implementation_skipped", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "no safe local template exists; Codex must implement a real node-local model or mark a precise artifact/contract blocker"}
     model_path.write_text(source, encoding="utf-8")
     py_compile.compile(str(model_path), doraise=True)
     return {"status": "implemented", "strategy": strategy, "source_kind": source_kind, "model_path": str(model_path)}
@@ -100,6 +100,28 @@ def pending_missing_artifacts(program_dir: Path, item: dict[str, Any]) -> list[s
     return sorted(set(x for x in missing if x))
 
 
+def _write_implementation_queue(run_dir: Path, tree: dict[str, Any]) -> None:
+    items = [
+        {
+            "node": name,
+            "program_dir": node.get("program_dir"),
+            "implementation_request_path": node.get("implementation_request_path"),
+            "program_model_path": node.get("program_model_path"),
+            "pipeline_manifest_path": node.get("pipeline_manifest_path"),
+            "artifact_contract_path": node.get("artifact_contract_path"),
+            "smoke_contract_path": node.get("smoke_contract_path"),
+            "parent_summary_path": node.get("parent_summary_path"),
+            "strategy": node.get("strategy"),
+            "artifact_requirements": node.get("artifact_requirements", []),
+            "scientific_selection": node.get("scientific_selection", {}),
+            "structural_relation": node.get("structural_relation", ""),
+        }
+        for name, node in tree.get("nodes", {}).items()
+        if node.get("status") == "needs_implementation"
+    ]
+    write_json(run_dir / "implementation_queue.json", {"items": items})
+
+
 def mark_node_failed(run_dir: Path, node_name: str, error: str, strategy: str, stage: str, attempts: list[dict[str, Any]]) -> None:
     tree_path = run_dir / "tree.json"
     tree = read_json(tree_path)
@@ -111,6 +133,24 @@ def mark_node_failed(run_dir: Path, node_name: str, error: str, strategy: str, s
     failures.append({"node": node_name, "error": error, "strategy": strategy, "stage": stage, "attempts": attempts})
     write_json(tree_path, tree)
     write_json(failures_path, {"failures": failures})
+    _write_implementation_queue(run_dir, tree)
+
+
+def mark_node_implementation_skipped(run_dir: Path, node_name: str, strategy: str, reason: str, task_path: str | None, attempts: list[dict[str, Any]]) -> None:
+    tree_path = run_dir / "tree.json"
+    tree = read_json(tree_path)
+    node = tree.get("nodes", {}).get(node_name)
+    if node:
+        node.update({
+            "status": "implementation_skipped",
+            "stage": "skipped",
+            "skip_reason": reason,
+            "implementation_task_path": task_path or node.get("implementation_request_path"),
+            "implementation_attempts": attempts,
+            "requires_implementation": False,
+        })
+    write_json(tree_path, tree)
+    _write_implementation_queue(run_dir, tree)
 
 
 def pending_nodes(run_dir: Path) -> list[dict[str, Any]]:
@@ -152,7 +192,12 @@ def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool =
                 append_jsonl(repair_log, {"time": time.time(), **row})
                 result.update(impl)
                 if impl["status"] != "implemented":
-                    append_jsonl(decision_trace, {"time": time.time(), "event": "implementation_required", "node": node, "strategy": strategy, "task_path": impl.get("task_path"), "reason": impl.get("reason")})
+                    reason = str(impl.get("reason") or "no safe realtime implementation generated")
+                    row["status"] = "implementation_skipped"
+                    row["skip_reason"] = reason
+                    result.update({"status": "implementation_skipped", "skip_reason": reason, "task_path": impl.get("task_path"), "model_path": impl.get("model_path")})
+                    mark_node_implementation_skipped(run_dir, node, strategy, reason, impl.get("task_path"), attempt_rows)
+                    append_jsonl(decision_trace, {"time": time.time(), "event": "implementation_skipped", "node": node, "strategy": strategy, "task_path": impl.get("task_path"), "reason": reason})
                     break
                 model_path = Path(str(impl["model_path"]))
                 py_compile.compile(str(model_path), doraise=True)

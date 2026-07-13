@@ -74,14 +74,14 @@ def autonomous_loop(args: argparse.Namespace) -> dict[str, Any]:
             cycle_row["implementation_agent"] = impl_report
             statuses = {str(item.get("status")) for item in impl_report.get("items", [])}
             if any(status != "implemented" for status in statuses):
-                cycle_row["status"] = "implementation_required"
+                cycle_row["status"] = "implementation_skipped"
                 cycles.append(cycle_row)
                 break
             cycles.append(cycle_row)
             args.reset = False
             continue
         if impl:
-            cycle_row["status"] = "implementation_required"
+            cycle_row["status"] = "implementation_skipped"
             cycles.append(cycle_row)
             break
         cycle_row["status"] = "complete_or_budget_exhausted"

@@ -50,7 +50,7 @@ The automatic loop writes:
 - node-local `native_smoke_attempt_<n>.json`
 - normal `tree.json`, `mcts_trace.jsonl`, `implementation_queue.json`, `acquisition_queue.json`
 
-A successful selected planned node should move from `needs_implementation` to `trained`, and `implementation_queue.json` should return to empty unless the node genuinely requires external Codex work or artifact acquisition.
+A successful selected planned node should move from `needs_implementation` to `trained`. If realtime implementation cannot safely produce a real model, the node must become `implementation_skipped`, leave `implementation_queue.json`, and the global queue continues.
 
 ## Acceptance For Smoke Runs
 
@@ -151,17 +151,17 @@ Expected:
 - `trained_rollouts_this_invocation` remains 0 for the selected blocked rollout.
 - `acquisition_queue.json` names `scfoundation_cell_embeddings`.
 
-### Unknown Template Must Become Required Implementation
+### Unknown Template Must Be Handled Realtime Or Skipped
 
-Use this when adding a new planned blueprint without a local template. The selected node must remain `needs_implementation` and be recorded as `implementation_required`, not trained or backpropagated. In `global_queue` full runs this is not a terminal stop reason: the search continues to other queued candidates while Codex is still responsible for implementing the required node-local `model.py` later.
+Use this when adding a new planned blueprint without a local template. The selected node must be handled during the current Codex run. If Codex cannot safely generate a real artifact-backed `model.py`, the node becomes `implementation_skipped`, not pending-for-later. It is not trained and does not backpropagate. In `global_queue` full runs this is not a terminal stop reason: the search continues to other queued candidates.
 
 Expected:
 
-- `CODEX_IMPLEMENTATION_TASK.md` is written under the node's program directory.
-- `implementation_queue.json` remains non-empty until Codex implements the node or converts it to a precise artifact/contract blocker.
+- `CODEX_IMPLEMENTATION_TASK.md` may be written for audit under the node's program directory.
+- `implementation_queue.json` returns to empty for skipped nodes; no future manual queue is left behind.
 - No fallback model is generated.
 - No reward backpropagation occurs for that node.
-- Full runs continue through the global queue instead of stopping at one implementation-required node.
+- Full runs continue through the global queue instead of stopping at one unimplemented node.
 
 
 ## Acquisition Before Block
@@ -187,9 +187,9 @@ Default behavior:
 2. Do not manually inspect every pending node.
 3. If `implementation_queue.json` is empty, continue/resume according to the run budget.
 4. If a node is `blocked_missing_artifact` or `requires_artifact_acquisition`, do not merely stop and report. Run the artifact acquisition resolver, follow any generated `ACQUIRE_<artifact>.md`, attempt source-backed acquisition/build/audit, update registry if successful, and then resume. Stop only after the acquisition attempt produces a documented blocker.
-5. If `implementation_agent_report.json` contains `implementation_required`, inspect that node's `CODEX_IMPLEMENTATION_TASK.md` and implement it as a real artifact-backed node-local `model.py`; do not report it as a final blocker unless a required artifact/contract cannot be verified.
+5. If realtime implementation cannot safely create a real node-local `model.py`, mark the node `implementation_skipped`, leave no pending queue for later, and continue global search.
 6. Never train fallback models in strict official mode.
-7. Never count `candidate_queued`, `pruned_not_selected`, blocked, failed, or implementation-required nodes as trained rollouts.
+7. Never count `candidate_queued`, `pruned_not_selected`, skipped, blocked, or failed nodes as trained rollouts.
 
 The experiment report must include:
 

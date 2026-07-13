@@ -85,7 +85,7 @@ def implementation_loop_summary(run_dir: Path) -> dict[str, Any]:
         "smoke_passed": sum(1 for row in repair_rows if row.get("stage") == "native_smoke" and row.get("status") == "passed"),
         "repair_failures": sum(1 for row in repair_rows if row.get("status") == "failed"),
         "trained_and_backpropagated": decision_events.get("trained_and_backpropagated", 0),
-        "implementation_required": decision_events.get("implementation_required", 0) + item_status.get("implementation_required", 0),
+        "implementation_skipped": decision_events.get("implementation_skipped", 0) + item_status.get("implementation_skipped", 0),
         "blocked_missing_artifact": item_status.get("blocked_missing_artifact", 0),
     }
 
@@ -139,7 +139,7 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
 def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[str, Any]], stop_reason: str) -> None:
     rows = trained_rows(tree)
     status_counts = Counter(str(node.get("status", "unknown")) for node in tree.get("nodes", {}).values())
-    proposal_like = sum(status_counts.get(status, 0) for status in ["candidate_queued", "pruned_not_selected", "requires_artifact_acquisition", "blocked_missing_artifact", "needs_implementation", "selected_for_training", "trained", "failed"])
+    proposal_like = sum(status_counts.get(status, 0) for status in ["candidate_queued", "pruned_not_selected", "implementation_skipped", "requires_artifact_acquisition", "blocked_missing_artifact", "needs_implementation", "selected_for_training", "trained", "failed"])
     roots = [row for row in rows if row["iteration"] == 0]
     best = max(rows, key=lambda row: row["val"]) if rows else None
     best_root = max(roots, key=lambda row: row["val"]) if roots else None
@@ -157,6 +157,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         f"- Pruned proposals: {status_counts.get('pruned_not_selected', 0)}",
         f"- Blocked/acquisition nodes: {status_counts.get('requires_artifact_acquisition', 0) + status_counts.get('blocked_missing_artifact', 0)}",
         f"- Pending implementation nodes: {status_counts.get('needs_implementation', 0)}",
+        f"- Implementation-skipped nodes: {status_counts.get('implementation_skipped', 0)}",
         f"- Selected-for-training nodes: {status_counts.get('selected_for_training', 0)}",
         f"- Failed nodes: {status_counts.get('failed', 0)}",
         f"- Failure/acquisition records: {len(failures)}",
@@ -179,7 +180,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
             f"| Native smoke passed | {impl['smoke_passed']} |",
             f"| Repair/implementation log rows | {impl['repair_attempt_rows']} |",
             f"| Repair failures | {impl['repair_failures']} |",
-            f"| Implementation required | {impl['implementation_required']} |",
+            f"| Implementation skipped | {impl['implementation_skipped']} |",
             f"| Blocked missing artifact | {impl['blocked_missing_artifact']} |",
             f"| Trained and backpropagated | {impl['trained_and_backpropagated']} |",
         ])
