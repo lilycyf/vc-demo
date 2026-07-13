@@ -625,10 +625,18 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                     no_improve += 1
                     write_tree_and_failures(run_dir, tree, failures)
                     continue
+                if item.get("status") == "implementation_required":
+                    no_improve += 1
+                    append_mcts_trace(run_dir, {"event": "implementation_required_continued", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "task_path": item.get("task_path"), "policy": "record_required_implementation_and_continue_global_queue_without_fallback"})
+                    write_tree_and_failures(run_dir, tree, failures)
+                    if args.proposal_selection_mode == "global_queue":
+                        continue
                 write_tree_and_failures(run_dir, tree, failures)
-            if pending_count >= args.max_pending_implementations:
+            if pending_count >= args.max_pending_implementations and args.proposal_selection_mode != "global_queue":
                 stop_reason = f"pending implementation limit reached ({pending_count})"
                 break
+            if args.proposal_selection_mode == "global_queue":
+                continue
             continue
 
         add_selected_for_training_node(tree, child_name, child_config_path, parent_name, iteration, proposal)

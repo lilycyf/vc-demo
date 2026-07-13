@@ -40,7 +40,7 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
             request = program_dir / "IMPLEMENTATION_REQUEST.md"
             task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
             task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"}
+            return {"status": "implementation_required", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"}
         try:
             source = _generic_program_source(strategy)
             source_kind = "implementation_agent_template"
@@ -48,7 +48,7 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
             request = program_dir / "IMPLEMENTATION_REQUEST.md"
             task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
             task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "requires_external_codex", "strategy": strategy, "task_path": str(task), "model_path": str(model_path)}
+            return {"status": "implementation_required", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "no safe local template exists; Codex must implement a real node-local model or mark a precise artifact/contract blocker"}
     model_path.write_text(source, encoding="utf-8")
     py_compile.compile(str(model_path), doraise=True)
     return {"status": "implemented", "strategy": strategy, "source_kind": source_kind, "model_path": str(model_path)}
@@ -152,7 +152,7 @@ def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool =
                 append_jsonl(repair_log, {"time": time.time(), **row})
                 result.update(impl)
                 if impl["status"] != "implemented":
-                    append_jsonl(decision_trace, {"time": time.time(), "event": "requires_external_codex", "node": node, "strategy": strategy, "task_path": impl.get("task_path")})
+                    append_jsonl(decision_trace, {"time": time.time(), "event": "implementation_required", "node": node, "strategy": strategy, "task_path": impl.get("task_path"), "reason": impl.get("reason")})
                     break
                 model_path = Path(str(impl["model_path"]))
                 py_compile.compile(str(model_path), doraise=True)

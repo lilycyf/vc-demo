@@ -151,16 +151,17 @@ Expected:
 - `trained_rollouts_this_invocation` remains 0 for the selected blocked rollout.
 - `acquisition_queue.json` names `scfoundation_cell_embeddings`.
 
-### Unknown Template Must Require External Codex
+### Unknown Template Must Become Required Implementation
 
-Use this when adding a new planned blueprint without a local template. The selected node should become `requires_external_codex` through `implementation_agent_report.json`, not trained or backpropagated.
+Use this when adding a new planned blueprint without a local template. The selected node must remain `needs_implementation` and be recorded as `implementation_required`, not trained or backpropagated. In `global_queue` full runs this is not a terminal stop reason: the search continues to other queued candidates while Codex is still responsible for implementing the required node-local `model.py` later.
 
 Expected:
 
 - `CODEX_IMPLEMENTATION_TASK.md` is written under the node's program directory.
-- `implementation_queue.json` is non-empty or the node remains pending for external Codex.
+- `implementation_queue.json` remains non-empty until Codex implements the node or converts it to a precise artifact/contract blocker.
 - No fallback model is generated.
 - No reward backpropagation occurs for that node.
+- Full runs continue through the global queue instead of stopping at one implementation-required node.
 
 
 ## Acquisition Before Block
@@ -186,9 +187,9 @@ Default behavior:
 2. Do not manually inspect every pending node.
 3. If `implementation_queue.json` is empty, continue/resume according to the run budget.
 4. If a node is `blocked_missing_artifact` or `requires_artifact_acquisition`, do not merely stop and report. Run the artifact acquisition resolver, follow any generated `ACQUIRE_<artifact>.md`, attempt source-backed acquisition/build/audit, update registry if successful, and then resume. Stop only after the acquisition attempt produces a documented blocker.
-5. If `implementation_agent_report.json` contains `requires_external_codex`, only then inspect that node's `CODEX_IMPLEMENTATION_TASK.md` and decide whether to implement manually.
+5. If `implementation_agent_report.json` contains `implementation_required`, inspect that node's `CODEX_IMPLEMENTATION_TASK.md` and implement it as a real artifact-backed node-local `model.py`; do not report it as a final blocker unless a required artifact/contract cannot be verified.
 6. Never train fallback models in strict official mode.
-7. Never count `pruned_not_selected`, blocked, failed, or external-Codex-required nodes as trained rollouts.
+7. Never count `candidate_queued`, `pruned_not_selected`, blocked, failed, or implementation-required nodes as trained rollouts.
 
 The experiment report must include:
 

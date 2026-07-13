@@ -85,7 +85,7 @@ def implementation_loop_summary(run_dir: Path) -> dict[str, Any]:
         "smoke_passed": sum(1 for row in repair_rows if row.get("stage") == "native_smoke" and row.get("status") == "passed"),
         "repair_failures": sum(1 for row in repair_rows if row.get("status") == "failed"),
         "trained_and_backpropagated": decision_events.get("trained_and_backpropagated", 0),
-        "requires_external_codex": decision_events.get("requires_external_codex", 0) + item_status.get("requires_external_codex", 0),
+        "implementation_required": decision_events.get("implementation_required", 0) + item_status.get("implementation_required", 0),
         "blocked_missing_artifact": item_status.get("blocked_missing_artifact", 0),
     }
 
@@ -179,7 +179,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
             f"| Native smoke passed | {impl['smoke_passed']} |",
             f"| Repair/implementation log rows | {impl['repair_attempt_rows']} |",
             f"| Repair failures | {impl['repair_failures']} |",
-            f"| Requires external Codex | {impl['requires_external_codex']} |",
+            f"| Implementation required | {impl['implementation_required']} |",
             f"| Blocked missing artifact | {impl['blocked_missing_artifact']} |",
             f"| Trained and backpropagated | {impl['trained_and_backpropagated']} |",
         ])
