@@ -1,0 +1,122 @@
+{
+  "format": "vc_demo_run_manifest.v1",
+  "created_at": "2026-07-13T06:01:49.826448+00:00",
+  "experiment": "official_k562_self_transfer_loop_64x16",
+  "run_dir": "experiments/official_k562_self_transfer_loop_64x16",
+  "git": {
+    "branch": "generic-cellline-runner-fix",
+    "commit": "01c10487003a1600594fdd1b1654e36b3af906bb",
+    "status_short": "M experiments/k562_official_cellline_harness_v1/k562_to_second_cellline_transfer_prompt.md\n M src/vc_demo/harness/official_k562_backend.py\n?? configs/official_k562_loop_roots/\n?? configs/official_k562_roots/\n?? experiments/official_k562_self_transfer_loop_64x16/\n?? scripts/run_official_cellline_harness_search.py"
+  },
+  "search": {
+    "selection_policy": "uct",
+    "exploration": 1.4142135623730951,
+    "budget_nodes": 2,
+    "max_children": 8,
+    "max_epochs": 1,
+    "stop_no_improve": 12,
+    "allow_planned_blueprints": true,
+    "allow_missing_artifact_fallbacks": false,
+    "artifact_aware_blueprint_policy": false,
+    "stop_reason": "pending implementation limit reached (1)"
+  },
+  "artifacts": {
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "present_artifacts": [
+      "string_k562_gene_graph",
+      "pathway_membership_matrix",
+      "official_essential_deg_with_split_h5ad",
+      "official_k562_aido_cell_100m_embedding_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_gnn_simple_embedding_h5ad",
+      "official_public_best_node_code"
+    ],
+    "missing_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "official_string_gnn_model_dir"
+    ]
+  },
+  "queues": {
+    "implementation_queue": "experiments/official_k562_self_transfer_loop_64x16/implementation_queue.json",
+    "acquisition_queue": "experiments/official_k562_self_transfer_loop_64x16/acquisition_queue.json",
+    "artifact_acquisition_command": "python -m vc_demo.harness.artifact_acquisition --queue experiments/official_k562_self_transfer_loop_64x16/acquisition_queue.json --registry configs/artifacts/k562_registry.json --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir experiments/official_k562_self_transfer_loop_64x16/artifact_acquisition --execute-known"
+  },
+  "results": {
+    "trained_nodes": 2,
+    "failed_nodes": 0,
+    "best_node": "official_k562_root_aido_gnn_embedding_mlp",
+    "best_val_macro_f1": 0.38831961154937744,
+    "best_test_macro_f1": 0.3995912969112396,
+    "best_root": "official_k562_root_aido_gnn_embedding_mlp",
+    "best_root_val_macro_f1": 0.38831961154937744,
+    "best_root_test_macro_f1": 0.3995912969112396
+  },
+  "mcts": {
+    "last_selection": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.565729634064852,
+      "uct": 1.565729634064852,
+      "puct": null,
+      "q": 0.38831961154937744,
+      "Q_v": 0.38831961154937744,
+      "exploitation": 0.38831961154937744,
+      "Exploitation": 0.38831961154937744,
+      "exploration": 1.1774100225154747,
+      "Exploration": 1.1774100225154747,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 2,
+      "children": 0,
+      "best_val_macro_f1": 0.38831961154937744,
+      "stage": "draft"
+    },
+    "last_candidates": [
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp",
+        "policy": "uct",
+        "score": 1.565729634064852,
+        "uct": 1.565729634064852,
+        "puct": null,
+        "q": 0.38831961154937744,
+        "Q_v": 0.38831961154937744,
+        "exploitation": 0.38831961154937744,
+        "Exploitation": 0.38831961154937744,
+        "exploration": 1.1774100225154747,
+        "Exploration": 1.1774100225154747,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 2,
+        "children": 0,
+        "best_val_macro_f1": 0.38831961154937744,
+        "stage": "draft"
+      },
+      {
+        "node": "official_k562_root_aido_embedding_mlp",
+        "policy": "uct",
+        "score": 1.5618368547145713,
+        "uct": 1.5618368547145713,
+        "puct": null,
+        "q": 0.3844268321990967,
+        "Q_v": 0.3844268321990967,
+        "exploitation": 0.3844268321990967,
+        "Exploitation": 0.3844268321990967,
+        "exploration": 1.1774100225154747,
+        "Exploration": 1.1774100225154747,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 2,
+        "children": 0,
+        "best_val_macro_f1": 0.3844268321990967,
+        "stage": "draft"
+      }
+    ],
+    "selection_policy": "uct",
+    "exploration_c": 1.4142135623730951,
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension"
+  }
+}

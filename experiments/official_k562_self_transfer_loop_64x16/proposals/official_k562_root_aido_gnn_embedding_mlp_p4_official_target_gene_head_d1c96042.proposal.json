@@ -1,0 +1,237 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+  "strategy": "official_target_gene_head",
+  "blueprint": {
+    "id": "official_target_gene_head",
+    "status": "planned",
+    "official_k562": true,
+    "category": "prediction_head",
+    "paper_family": "target_gene_aware_head",
+    "change_level": 4,
+    "role": "Add a target-gene-aware low-rank, bilinear, or multilayer DEG head over the official 6,640 targets.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_notes": "May modify node-local head/factorization only; must not alter official target order or labels. The head must be implemented directly in node-local code, not via smoke-only proxy helpers.",
+    "acceptance": [
+      "Target dimension remains 6640",
+      "Reports head rank/depth",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Add a target-gene-aware low-rank, bilinear, or multilayer DEG head over the official 6,640 targets.",
+  "changes": [
+    "program_model:gated_mlp->official_target_gene_head",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+  "program_model_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+  "pipeline_manifest_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_target_gene_head",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.68,
+    "base": 0.88,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "target_gene_aware_head",
+    "family_count": 0
+  },
+  "structural_signature": "841a8f77d14ecd77e5286010e281e10413c6c4f4",
+  "parent_structural_signature": "b543b809a8ca57cbbcba2b4baa9b7ffc76a77124",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/artifact_contract.json",
+  "smoke_contract_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/smoke_contract.json",
+  "parent_summary_path": "experiments/official_k562_self_transfer_loop_64x16/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [],
+  "missing_required_artifact_paths": [],
+  "candidate_pool_iteration": 1,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": 1.75,
+    "scientific_score": 1.68,
+    "cost_class": "cheap",
+    "cost_bonus": 0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 0.0,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "candidate_pool_selected": true,
+  "candidate_pool_rank": 1,
+  "candidate_pool_size": 4,
+  "candidate_pool_policy": "generate_many_prune_before_training",
+  "candidate_pool_summary": [
+    {
+      "rank": 1,
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "score": {
+        "score": 1.75,
+        "scientific_score": 1.68,
+        "cost_class": "cheap",
+        "cost_bonus": 0.08,
+        "structural_bonus": 0.05,
+        "missing_penalty": 0.0,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": true
+    },
+    {
+      "rank": 2,
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "score": {
+        "score": 1.63,
+        "scientific_score": 1.72,
+        "cost_class": "expensive",
+        "cost_bonus": -0.08,
+        "structural_bonus": 0.05,
+        "missing_penalty": 0.0,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": false
+    },
+    {
+      "rank": 3,
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "score": {
+        "score": 0.5,
+        "scientific_score": 1.76,
+        "cost_class": "medium",
+        "cost_bonus": 0.0,
+        "structural_bonus": 0.05,
+        "missing_penalty": 1.25,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [
+          "official_string_gnn_model_dir"
+        ],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": false
+    },
+    {
+      "rank": 4,
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "score": {
+        "score": 0.46,
+        "scientific_score": 1.8,
+        "cost_class": "expensive",
+        "cost_bonus": -0.08,
+        "structural_bonus": 0.05,
+        "missing_penalty": 1.25,
+        "duplicate_penalty": 0.0,
+        "implementation_penalty": 0.06,
+        "missing_required_artifacts": [
+          "official_string_gnn_model_dir"
+        ],
+        "duplicate_reason": "",
+        "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+      },
+      "selected": false
+    }
+  ],
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.565729634064852,
+      "uct": 1.565729634064852,
+      "puct": null,
+      "q": 0.38831961154937744,
+      "Q_v": 0.38831961154937744,
+      "exploitation": 0.38831961154937744,
+      "Exploitation": 0.38831961154937744,
+      "exploration": 1.1774100225154747,
+      "Exploration": 1.1774100225154747,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 2,
+      "children": 0,
+      "best_val_macro_f1": 0.38831961154937744,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "policy": "uct",
+      "score": 1.5618368547145713,
+      "uct": 1.5618368547145713,
+      "puct": null,
+      "q": 0.3844268321990967,
+      "Q_v": 0.3844268321990967,
+      "exploitation": 0.3844268321990967,
+      "Exploitation": 0.3844268321990967,
+      "exploration": 1.1774100225154747,
+      "Exploration": 1.1774100225154747,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 2,
+      "children": 0,
+      "best_val_macro_f1": 0.3844268321990967,
+      "stage": "draft"
+    }
+  ]
+}

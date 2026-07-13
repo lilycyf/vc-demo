@@ -146,6 +146,8 @@ Expected root families, subject to source-backed artifact availability:
 - cell-line-specific AIDO+GNN embedding MLP
 - public static wrapper/benchmark for `CELL_LINE_ID`
 
+For K562 self-instantiation loop tests, use `configs/official_k562_loop_roots/*.json` for the 64/16 MCTS loop check. This excludes the public static wrapper so a missing `/home/Models/STRING_GNN` checkpoint cannot mask proposal-pool, prune, train-selected-only, and backprop-trained-only behavior. Public wrapper benchmark remains a separate strict acquisition/benchmark path.
+
 Write:
 
 ```text
@@ -180,6 +182,8 @@ PYTHONPATH=src python scripts/run_official_cellline_harness_search.py \
   --implementation-repair-attempts 3 \
   --reset
 ```
+
+If `CELL_LINE_ID=K562` and the goal is generic self-instantiation, first run the same command with `--root-configs configs/official_k562_loop_roots/*.json`. A run blocked only by the public wrapper's STRING_GNN artifact is an acquisition result, not a MCTS-loop pass.
 
 If clean, run 150 proposals / 40 trained rollouts:
 

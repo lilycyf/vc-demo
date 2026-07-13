@@ -19,20 +19,72 @@ class OfficialK562BackendSpec:
         Path("configs/official_k562_root_aido_gnn_embedding_mlp.json"),
         Path("configs/official_k562_public_best_node.json"),
     )
-    required_artifacts: tuple[str, ...] = (
-        "official_essential_deg_with_split_h5ad",
-        "official_k562_aido_cell_100m_embedding_h5ad",
-        "official_gnn_simple_embedding_h5ad",
-        "official_aido_cell_100m_model_dir",
-        "official_string_gnn_model_dir",
-        "official_public_best_node_code",
-    )
+    # If empty, required artifacts are inferred from the selected root configs.
+    # This lets loop-only K562 self-tests train embedding roots without being
+    # blocked by the external public-best wrapper's STRING_GNN checkpoint.
+    required_artifacts: tuple[str, ...] = ()
 
 
 def _read_json(path: Path) -> dict[str, Any]:
     with path.open() as f:
         return json.load(f)
 
+
+
+def _infer_required_artifacts_from_config(config_path: Path, cfg: dict[str, Any]) -> set[str]:
+    required = {"official_essential_deg_with_split_h5ad"}
+    data = cfg.get("data", {}) if isinstance(cfg.get("data"), dict) else {}
+    model = cfg.get("model", {}) if isinstance(cfg.get("model"), dict) else {}
+    execution = cfg.get("execution", {}) if isinstance(cfg.get("execution"), dict) else {}
+
+    embedding_paths: list[str] = []
+    if data.get("embedding_h5ad"):
+        embedding_paths.append(str(data["embedding_h5ad"]))
+    embedding_paths.extend(str(p) for p in data.get("embedding_h5ads", []) if p)
+    for path in embedding_paths:
+        lower = path.lower()
+        if "aidocell_100m" in lower or "aido" in lower:
+            required.add("official_k562_aido_cell_100m_embedding_h5ad")
+        if "gnn_simple" in lower or "gnn" in lower:
+            required.add("official_gnn_simple_embedding_h5ad")
+
+    if execution.get("backend") == "external_static_node" or model.get("model_type") == "external_static_node":
+        required.update({
+            "official_aido_cell_100m_model_dir",
+            "official_string_gnn_model_dir",
+            "official_public_best_node_code",
+        })
+
+    artifact_usage = execution.get("artifact_usage", {})
+    if isinstance(artifact_usage, dict):
+        for key, value in artifact_usage.items():
+            combined = f"{key} {value}".lower()
+            if "aido.cell-100m" in combined or "/home/models/aido" in combined:
+                required.add("official_aido_cell_100m_model_dir")
+            if "string_gnn" in combined or "/home/models/string_gnn" in combined:
+                required.add("official_string_gnn_model_dir")
+            if "public_node_code" in combined or "vcharness" in combined:
+                required.add("official_public_best_node_code")
+
+    explicit = cfg.get("required_artifacts", [])
+    if isinstance(explicit, list):
+        required.update(str(item) for item in explicit)
+    return required
+
+
+def _infer_required_artifacts(root_configs: tuple[Path, ...], explicit: tuple[str, ...]) -> tuple[str, ...]:
+    if explicit:
+        return explicit
+    required: set[str] = set()
+    for config_path in root_configs:
+        if config_path.exists():
+            try:
+                required.update(_infer_required_artifacts_from_config(config_path, _read_json(config_path)))
+            except Exception:
+                required.add("official_essential_deg_with_split_h5ad")
+        else:
+            required.add("official_essential_deg_with_split_h5ad")
+    return tuple(sorted(required))
 
 def _artifact_by_id(audit: dict[str, Any]) -> dict[str, dict[str, Any]]:
     return {str(item.get("id")): item for item in audit.get("artifacts", [])}
@@ -58,7 +110,8 @@ def validate_official_k562_backend(spec: OfficialK562BackendSpec | None = None, 
     audit = audit_registry(registry)
     artifacts = _artifact_by_id(audit)
     missing_required: list[dict[str, Any]] = []
-    for artifact_id in spec.required_artifacts:
+    required_artifacts = _infer_required_artifacts(spec.root_configs, spec.required_artifacts)
+    for artifact_id in required_artifacts:
         item = artifacts.get(artifact_id)
         if not item:
             issues.append(f"registry missing artifact id {artifact_id}")
@@ -106,7 +159,7 @@ def validate_official_k562_backend(spec: OfficialK562BackendSpec | None = None, 
         "backend": "official_k562_tsv_mcts_harness",
         "data_contract": data_result,
         "registry_path": str(spec.registry_path),
-        "required_artifacts": list(spec.required_artifacts),
+        "required_artifacts": list(required_artifacts),
         "missing_required_artifacts": missing_required,
         "present_artifacts": audit.get("present_artifacts", []),
         "missing_artifacts": audit.get("missing_artifacts", []),
