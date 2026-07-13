@@ -1294,24 +1294,7 @@
       "public_best_score": 0.512766198238068,
       "total_nodes": 153
     },
-    "hTERT-RPE1_cls": {
-      "static_count": 331,
-      "memory_count": 166,
-      "public_best_score": 0.5181633216720356,
-      "total_nodes": 166
-    },
-    "HepG2_cls": {
-      "static_count": 313,
-      "memory_count": 151,
-      "public_best_score": 0.5309293149563081,
-      "total_nodes": 152
-    },
-    "Jurkat_cls": {
-      "static_count": 292,
-      "memory_count": 147,
-      "public_best_score": 0.5048768050269771,
-      "total_nodes": 147
-    }
+    "non_k562_tracks": "redacted_from_generic_handoff; discover from CELL_LINE_ID only after transfer task launch"
   },
   "completion_status": "complete_with_strict_blockers",
   "strict_blockers": [
@@ -1350,5 +1333,12 @@
     "compact_native_or_proxy_implementations": "forbidden",
     "historical_native_public_best_reimplementation_scores": "non_formal_proxy_era_reference_only",
     "formal_baseline_requirement": "rerun exact public_static benchmark or full artifact-backed implementation; do not compare proxy-era scores to paper/public best"
+  },
+  "second_cellline_transfer_policy": {
+    "anti_leakage": true,
+    "cell_line_id_source": "runtime_user_task_only",
+    "do_not_hardcode_or_rank_second_cellline": true,
+    "generic_prompt": "experiments/k562_official_cellline_harness_v1/k562_to_second_cellline_transfer_prompt.md",
+    "non_k562_public_scaffold_counts": "discover_at_transfer_time"
   }
 }

@@ -80,7 +80,7 @@ def audit(root_configs: list[Path], output: Path) -> dict[str, Any]:
         "issues": issues,
         "alignment_status": "ready_for_single_cell_line_formal_search" if not issues else "blocked_or_needs_review",
         "paper_repo_alignment": {
-            "paper_case_study": "VCHarness Essential dataset four classification tracks include K562, HepG2, Jurkat, and hTERT-RPE1.",
+            "paper_case_study": "VCHarness Essential dataset includes K562 plus additional public classification tracks that must be discovered only from the user-specified CELL_LINE_ID during transfer.",
             "repo_task_scope": "This audit covers only the K562 single-cell-line CRISPR_KO_DEG_classification track.",
             "data_source_in_this_repo": "NormanWeissman2019_filtered.h5ad from scPerturb Zenodo record 7041849, with repo-local top-1000 target-gene and percentile DEG label construction.",
             "numeric_reproduction_status": "framework-aligned but not certified numerically identical to the paper until exact VCHarness K562 split, target universe, label rule, and expert baseline configs are matched."

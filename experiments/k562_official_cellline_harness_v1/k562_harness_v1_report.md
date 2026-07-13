@@ -2,7 +2,7 @@
 
 ## Verdict
 
-K562 is complete for **Reusable Official Cell-Line Harness v1 / Phase-3**. This is not a 600+ proposal paper-scale claim. It is a reusable, strict, auditable cell-line harness with official task contract validation, artifact registry audit, root baselines, proposal-pool MCTS semantics, automatic implementation-loop evidence, strict acquisition/block behavior, and a transfer checklist for hTERT-RPE1.
+K562 is complete for **Reusable Official Cell-Line Harness v1 / Phase-3**. This is not a 600+ proposal paper-scale claim. It is a reusable, strict, auditable cell-line harness with official task contract validation, artifact registry audit, root baselines, proposal-pool MCTS semantics, automatic implementation-loop evidence, strict acquisition/block behavior, and a parameterized transfer checklist for a user-specified second cell line.
 
 Current branch: `k562-official-cellline-harness-v1`  
 Base commit on this pod: `86959f1`
@@ -183,15 +183,21 @@ A fresh low-budget sanity run on this pod was attempted after installing `requir
 - External static backend: no trace use for generated children in these automatic-loop traces; public static wrapper remains the only intended use
 - Forbidden files committed in this v1 branch: checked before commit
 
-## hTERT-RPE1 Choice
+## Second Cell-Line Transfer Policy
 
-hTERT-RPE1 is the recommended second cell line because its public VCHarness scaffold is at least as rich as K562:
+K562 is the template-building cell line, not a leaked answer key for the next test. The reusable transfer prompt is parameterized and must receive the second cell line from the user at run time as `CELL_LINE_ID`.
 
-| Cell line | Static files | Memory nodes | Public best score |
-|---|---:|---:|---:|
-| K562 | 309 | 153 | 0.51277 |
-| hTERT-RPE1 | 331 | 166 | 0.51816 |
-| HepG2 | 313 | 151 | 0.53093 |
-| Jurkat | 292 | 147 | 0.50488 |
+The generic transfer checklist is:
 
-HepG2 is the fallback only if hTERT-RPE1 cannot establish a source-backed task contract from official artifacts.
+- `experiments/k562_official_cellline_harness_v1/k562_to_second_cellline_transfer_prompt.md`
+
+Rules for the second cell-line test:
+
+- Do not hard-code or prefer any particular second cell line in repo-level runbooks.
+- Discover public scaffold paths from `CELL_LINE_ID` only after the transfer task is launched.
+- Establish task contract from source-backed artifacts before creating roots or search runs.
+- Do not silently switch to a different cell line if the requested one cannot be validated; block and report the reason.
+- Treat K562 public scaffold metrics only as template sanity references, not as score targets.
+- Treat K562 proxy-era run numbers only as historical framework-wiring evidence.
+
+The purpose of the second cell-line run is to prove that the K562 Harness v1 pattern is reusable without prior knowledge of the held-out cell line.
