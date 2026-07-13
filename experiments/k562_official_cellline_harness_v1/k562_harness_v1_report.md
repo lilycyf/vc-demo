@@ -183,21 +183,21 @@ A fresh low-budget sanity run on this pod was attempted after installing `requir
 - External static backend: no trace use for generated children in these automatic-loop traces; public static wrapper remains the only intended use
 - Forbidden files committed in this v1 branch: checked before commit
 
-## Second Cell-Line Transfer Policy
+## Generic Cell-Line Template Policy
 
-The current template instance uses `TEMPLATE_CELL_LINE_ID=K562`, but K562 is not a permanently special case in the transfer rules. The reusable transfer prompt is parameterized with both `TEMPLATE_CELL_LINE_ID` and `TARGET_CELL_LINE_ID`, and the target cell line must come from the user at run time.
+K562 is prior validation evidence for the generic template, not a runtime parameter. The reusable prompt now has a single runtime cell-line parameter, `CELL_LINE_ID`, supplied by the user at launch time.
 
 The generic transfer checklist is:
 
 - `experiments/k562_official_cellline_harness_v1/k562_to_second_cellline_transfer_prompt.md`
 
-Rules for the second cell-line test:
+Rules for any new cell-line test:
 
 - Do not hard-code or prefer any particular second cell line in repo-level runbooks.
-- Discover target public scaffold paths from `TARGET_CELL_LINE_ID` only after the transfer task is launched.
+- Discover public scaffold paths from `CELL_LINE_ID` only after the run task is launched.
 - Establish task contract from source-backed artifacts before creating roots or search runs.
 - Do not silently switch to a different cell line if the requested one cannot be validated; block and report the reason.
-- Treat template public scaffold metrics only as sanity references, not as target-cell-line score targets.
-- Treat template proxy-era run numbers only as historical framework-wiring evidence.
+- Treat K562 public scaffold metrics only as validation sanity evidence, not as score targets for the new cell line.
+- Treat K562 proxy-era run numbers only as historical framework-wiring evidence.
 
-The purpose of the target cell-line run is to prove that the template Harness v1 pattern is reusable without prior knowledge of the held-out cell line.
+The purpose of the new cell-line run is to prove that the generic Harness v1 pattern is reusable without prior knowledge of the held-out cell line.

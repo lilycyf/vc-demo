@@ -1336,18 +1336,19 @@
   },
   "second_cellline_transfer_policy": {
     "anti_leakage": true,
-    "cell_line_id_source": "TARGET_CELL_LINE_ID_from_runtime_user_task_only",
+    "cell_line_id_source": "CELL_LINE_ID_from_runtime_user_task_only",
     "do_not_hardcode_or_rank_second_cellline": true,
     "generic_prompt": "experiments/k562_official_cellline_harness_v1/k562_to_second_cellline_transfer_prompt.md",
     "non_k562_public_scaffold_counts": "discover_at_transfer_time",
-    "template_parameter": "TEMPLATE_CELL_LINE_ID",
-    "target_parameter": "TARGET_CELL_LINE_ID"
+    "template_parameter": null,
+    "target_parameter": "CELL_LINE_ID",
+    "no_template_cell_line_parameter": true
   },
-  "template_cellline_policy": {
-    "template_cell_line_id": "K562",
-    "template_cell_line_slug": "k562",
-    "template_is_parameterized": true,
-    "target_cell_line_source": "runtime_user_task_only",
-    "do_not_treat_k562_as_permanently_special": true
+  "generic_cellline_template_policy": {
+    "runtime_parameter": "CELL_LINE_ID",
+    "k562_role": "prior_validation_evidence_only",
+    "no_template_cell_line_parameter": true,
+    "cell_line_id_source": "runtime_user_task_only",
+    "do_not_hardcode_or_rank_new_cellline": true
   }
 }
