@@ -185,7 +185,7 @@ A fresh low-budget sanity run on this pod was attempted after installing `requir
 
 ## Second Cell-Line Transfer Policy
 
-K562 is the template-building cell line, not a leaked answer key for the next test. The reusable transfer prompt is parameterized and must receive the second cell line from the user at run time as `CELL_LINE_ID`.
+The current template instance uses `TEMPLATE_CELL_LINE_ID=K562`, but K562 is not a permanently special case in the transfer rules. The reusable transfer prompt is parameterized with both `TEMPLATE_CELL_LINE_ID` and `TARGET_CELL_LINE_ID`, and the target cell line must come from the user at run time.
 
 The generic transfer checklist is:
 
@@ -194,10 +194,10 @@ The generic transfer checklist is:
 Rules for the second cell-line test:
 
 - Do not hard-code or prefer any particular second cell line in repo-level runbooks.
-- Discover public scaffold paths from `CELL_LINE_ID` only after the transfer task is launched.
+- Discover target public scaffold paths from `TARGET_CELL_LINE_ID` only after the transfer task is launched.
 - Establish task contract from source-backed artifacts before creating roots or search runs.
 - Do not silently switch to a different cell line if the requested one cannot be validated; block and report the reason.
-- Treat K562 public scaffold metrics only as template sanity references, not as score targets.
-- Treat K562 proxy-era run numbers only as historical framework-wiring evidence.
+- Treat template public scaffold metrics only as sanity references, not as target-cell-line score targets.
+- Treat template proxy-era run numbers only as historical framework-wiring evidence.
 
-The purpose of the second cell-line run is to prove that the K562 Harness v1 pattern is reusable without prior knowledge of the held-out cell line.
+The purpose of the target cell-line run is to prove that the template Harness v1 pattern is reusable without prior knowledge of the held-out cell line.
