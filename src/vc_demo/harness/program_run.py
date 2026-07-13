@@ -175,6 +175,49 @@ def add_pruned_node(
     link_child(tree, parent, name)
 
 
+def add_candidate_queued_node(
+    tree: dict[str, Any],
+    name: str,
+    config_path: Path,
+    parent: str,
+    iteration: int,
+    proposal: dict[str, Any],
+    rank: int,
+    cheap_score: dict[str, Any],
+) -> None:
+    node = {
+        "config": str(config_path),
+        "parent": parent,
+        "children": [],
+        "status": "candidate_queued",
+        "iteration": iteration,
+        "visits": 0,
+        "value": 0.0,
+        "Q_v": 0.0,
+        "Exploitation": 0.0,
+        "stage": "global_proposal_queue",
+        "queue_reason": "queued for global proposal selection before rollout training",
+        "candidate_rank": rank,
+        "cheap_screen_score": cheap_score,
+        "global_priority": float(cheap_score.get("score", 0.0) or 0.0),
+    }
+    enrich_node_from_proposal(node, proposal, config_path, name)
+    tree["nodes"][name] = node
+    link_child(tree, parent, name)
+
+
+def queued_candidates(tree: dict[str, Any]) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for name, node in tree.get("nodes", {}).items():
+        if node.get("status") != "candidate_queued":
+            continue
+        score = node.get("global_priority")
+        if score is None:
+            score = float((node.get("cheap_screen_score") or {}).get("score", 0.0) or 0.0)
+        rows.append({"name": name, "node": node, "score": float(score)})
+    return sorted(rows, key=lambda row: row["score"], reverse=True)
+
+
 def cheap_screen_score(proposal: dict[str, Any], missing_summary: dict[str, Any], duplicate_reason: str = "") -> dict[str, Any]:
     scientific = proposal.get("scientific_selection", {}) or {}
     blueprint = proposal.get("blueprint", {}) or {}
@@ -334,6 +377,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     proposal_statuses = {
         "trained",
         "pruned_not_selected",
+        "candidate_queued",
         "selected_for_training",
         "needs_implementation",
         "requires_artifact_acquisition",
@@ -352,29 +396,42 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     )
     proposal_budget = int(args.budget_proposals if args.budget_proposals is not None else args.budget_nodes * max(args.candidate_pool_size, 1))
     trained_node_budget = args.budget_trained_nodes
-    max_iterations = max(1, (proposal_budget + max(args.candidate_pool_size, 1) - 1) // max(args.candidate_pool_size, 1))
+    if args.proposal_selection_mode == "global_queue":
+        max_iterations = max(1, proposal_budget + (trained_node_budget or proposal_budget) + 10)
+    else:
+        max_iterations = max(1, (proposal_budget + max(args.candidate_pool_size, 1) - 1) // max(args.candidate_pool_size, 1))
     write_tree_and_failures(run_dir, tree, failures)
 
     start_iteration = max([0, *[int(node.get("iteration", 0)) for node in tree["nodes"].values()]]) + 1
     end_iteration = start_iteration + max_iterations - 1
     for iteration in range(start_iteration, end_iteration + 1):
-        if generated_proposals >= proposal_budget:
+        queue = queued_candidates(tree)
+        if generated_proposals >= proposal_budget and not queue:
             stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
             break
         if trained_node_budget is not None and trained_rollouts >= trained_node_budget:
             stop_reason = f"trained-node budget exhausted ({trained_rollouts}/{trained_node_budget})"
             break
-        parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
-        append_mcts_trace(run_dir, {"event": "selection", "iteration": iteration, "policy": args.selection_policy, "exploration": args.exploration, "selected_parent": parent_name, "candidate_list": compact_candidates(scored), "selected_components": compact_candidates(scored, 1)[0] if scored else {}})
-        parent_node = tree["nodes"][parent_name]
-        parent_config = read_json(Path(parent_node["config"]))
         child_config = None
         proposal = None
         child_name = ""
         duplicate_skips: list[dict[str, Any]] = []
         proposal_candidates: list[dict[str, Any]] = []
+        parent_name = ""
+        scored: list[dict[str, Any]] = []
+        parent_node: dict[str, Any] | None = None
+        parent_config: dict[str, Any] | None = None
+
+        should_generate_pool = args.proposal_selection_mode != "global_queue" or generated_proposals < proposal_budget
+        if should_generate_pool:
+            parent_name, scored = select_parent(tree, args.exploration, args.max_children, policy=args.selection_policy)
+            append_mcts_trace(run_dir, {"event": "selection", "iteration": iteration, "policy": args.selection_policy, "exploration": args.exploration, "selected_parent": parent_name, "candidate_list": compact_candidates(scored), "selected_components": compact_candidates(scored, 1)[0] if scored else {}})
+            parent_node = tree["nodes"][parent_name]
+            parent_config = read_json(Path(parent_node["config"]))
         pool_attempts = max(args.max_duplicate_proposal_attempts, args.candidate_pool_size)
         for duplicate_attempt in range(1, pool_attempts + 1):
+            if not should_generate_pool or parent_node is None or parent_config is None:
+                break
             child_index = len(parent_node.get("children", [])) + duplicate_attempt
             candidate_config, candidate_proposal = propose_program_child(parent_config, {**parent_node, "name": parent_name}, child_index, rng, program_root, include_planned=args.allow_planned_blueprints, force_blueprint=args.force_blueprint, registry_audit=registry_audit, artifact_aware=args.artifact_aware_blueprint_policy, official_k562_only=args.official_blueprint_space, search_memory=memory)
             strategy = str(candidate_proposal.get("strategy", ""))
@@ -403,35 +460,37 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
         if proposal_candidates:
             generated_proposals += len(proposal_candidates)
-            append_mcts_trace(run_dir, {"event": "proposal_pool_generated", "iteration": iteration, "selected_parent": parent_name, "candidate_count": len(proposal_candidates), "generated_proposals": generated_proposals, "proposal_budget": proposal_budget})
+            append_mcts_trace(run_dir, {"event": "proposal_pool_generated", "iteration": iteration, "selected_parent": parent_name, "candidate_count": len(proposal_candidates), "generated_proposals": generated_proposals, "proposal_budget": proposal_budget, "proposal_selection_mode": args.proposal_selection_mode})
             proposal_candidates.sort(key=lambda item: float(item["score"].get("score", 0.0)), reverse=True)
             selected_index = 0
-            if not args.force_blueprint:
-                for idx, item in enumerate(proposal_candidates):
-                    if not item["duplicate"]:
-                        selected_index = idx
-                        break
-            if not args.force_blueprint and all(item["duplicate"] for item in proposal_candidates):
-                selected = None
-            else:
-                selected = proposal_candidates[selected_index]
-            if selected is not None:
-                child_config = selected["config"]
-                proposal = selected["proposal"]
-                proposal["candidate_pool_selected"] = True
-                proposal["candidate_pool_rank"] = selected_index + 1
-                proposal["candidate_pool_size"] = len(proposal_candidates)
-                proposal["candidate_pool_policy"] = "generate_many_prune_before_training"
-                proposal["candidate_pool_summary"] = [
-                {
-                    "rank": rank,
-                    "node": item["config"].get("node_name"),
-                    "strategy": item["proposal"].get("strategy"),
-                    "score": item["score"],
-                    "selected": rank == selected_index + 1,
-                }
-                for rank, item in enumerate(proposal_candidates, start=1)
-                ]
+            selected = None
+            if args.proposal_selection_mode != "global_queue":
+                if not args.force_blueprint:
+                    for idx, item in enumerate(proposal_candidates):
+                        if not item["duplicate"]:
+                            selected_index = idx
+                            break
+                if not args.force_blueprint and all(item["duplicate"] for item in proposal_candidates):
+                    selected = None
+                else:
+                    selected = proposal_candidates[selected_index]
+                if selected is not None:
+                    child_config = selected["config"]
+                    proposal = selected["proposal"]
+                    proposal["candidate_pool_selected"] = True
+                    proposal["candidate_pool_rank"] = selected_index + 1
+                    proposal["candidate_pool_size"] = len(proposal_candidates)
+                    proposal["candidate_pool_policy"] = "generate_many_prune_before_training"
+                    proposal["candidate_pool_summary"] = [
+                    {
+                        "rank": rank,
+                        "node": item["config"].get("node_name"),
+                        "strategy": item["proposal"].get("strategy"),
+                        "score": item["score"],
+                        "selected": rank == selected_index + 1,
+                    }
+                    for rank, item in enumerate(proposal_candidates, start=1)
+                    ]
 
             for rank, item in enumerate(proposal_candidates, start=1):
                 cand_config = item["config"]
@@ -444,16 +503,45 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 cand_proposal["mcts_candidates"] = scored[: min(8, len(scored))]
                 cand_proposal["candidate_pool_rank"] = rank
                 cand_proposal["candidate_pool_size"] = len(proposal_candidates)
-                cand_proposal["candidate_pool_selected"] = selected is not None and rank == selected_index + 1
-                cand_proposal["candidate_pool_policy"] = "generate_many_prune_before_training"
+                cand_proposal["candidate_pool_selected"] = args.proposal_selection_mode != "global_queue" and selected is not None and rank == selected_index + 1
+                cand_proposal["candidate_pool_policy"] = "global_queue_generate_many_train_best_available" if args.proposal_selection_mode == "global_queue" else "generate_many_prune_before_training"
                 write_json(cand_config_path, cand_config)
                 write_json(cand_proposal_path, cand_proposal)
-                if selected is None or rank != selected_index + 1:
+                if args.proposal_selection_mode == "global_queue":
+                    if item["duplicate"] and not args.force_blueprint:
+                        reason = f"duplicate proposal pruned before global queue: {item['duplicate_reason']}"
+                        add_pruned_node(tree, cand_name, cand_config_path, parent_name, iteration, cand_proposal, reason, rank, item["score"])
+                        append_mcts_trace(run_dir, {"event": "proposal_pruned", "iteration": iteration, "selected_parent": parent_name, "child": cand_name, "chosen_blueprint": cand_proposal.get("strategy"), "candidate_rank": rank, "cheap_screen_score": item["score"], "reason": reason, "proposal_selection_mode": args.proposal_selection_mode})
+                    else:
+                        add_candidate_queued_node(tree, cand_name, cand_config_path, parent_name, iteration, cand_proposal, rank, item["score"])
+                        append_mcts_trace(run_dir, {"event": "proposal_queued", "iteration": iteration, "selected_parent": parent_name, "child": cand_name, "chosen_blueprint": cand_proposal.get("strategy"), "candidate_rank": rank, "cheap_screen_score": item["score"], "proposal_selection_mode": args.proposal_selection_mode})
+                elif selected is None or rank != selected_index + 1:
                     reason = "lower cheap-screen rank; not selected for rollout training"
                     if item["duplicate"]:
                         reason = f"duplicate proposal pruned before training: {item['duplicate_reason']}"
                     add_pruned_node(tree, cand_name, cand_config_path, parent_name, iteration, cand_proposal, reason, rank, item["score"])
                     append_mcts_trace(run_dir, {"event": "proposal_pruned", "iteration": iteration, "selected_parent": parent_name, "child": cand_name, "chosen_blueprint": cand_proposal.get("strategy"), "candidate_rank": rank, "cheap_screen_score": item["score"], "reason": reason})
+
+        if args.proposal_selection_mode == "global_queue":
+            queue = queued_candidates(tree)
+            if queue:
+                selected_row = queue[0]
+                child_name = selected_row["name"]
+                queued_node = selected_row["node"]
+                parent_name = str(queued_node.get("parent", ""))
+                child_config_path = Path(queued_node["config"])
+                proposal_path = proposal_dir / f"{child_name}.proposal.json"
+                child_config = read_json(child_config_path)
+                proposal = read_json(proposal_path)
+                proposal["candidate_pool_selected"] = True
+                proposal["global_queue_selected"] = True
+                proposal["global_queue_priority"] = selected_row["score"]
+                proposal["candidate_pool_policy"] = "global_queue_generate_many_train_best_available"
+                write_json(proposal_path, proposal)
+                append_mcts_trace(run_dir, {"event": "global_queue_selected", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "global_queue_priority": selected_row["score"], "queued_candidates": len(queue)})
+            else:
+                child_config = None
+                proposal = None
 
         if child_config is None or proposal is None:
             tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "event": "no_candidate_selected_after_proposal_screen", "skips": duplicate_skips})
@@ -461,8 +549,12 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             write_tree_and_failures(run_dir, tree, failures)
             continue
         child_name = str(child_config["node_name"])
-        child_config_path = proposal_dir / f"{child_name}.json"
-        proposal_path = proposal_dir / f"{child_name}.proposal.json"
+        if args.proposal_selection_mode != "global_queue":
+            child_config_path = proposal_dir / f"{child_name}.json"
+            proposal_path = proposal_dir / f"{child_name}.proposal.json"
+        else:
+            child_config_path = Path(tree["nodes"][child_name]["config"])
+            proposal_path = proposal_dir / f"{child_name}.proposal.json"
         proposal["mcts_selected_parent"] = parent_name
         proposal["mcts_selection_policy"] = args.selection_policy
         proposal["mcts_candidates"] = scored[: min(8, len(scored))]
@@ -497,7 +589,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 "policy": "block_selected_node_record_artifact_memory_and_continue_search",
             })
             write_tree_and_failures(run_dir, tree, failures)
-            if proposal_budget is not None and generated_proposals >= proposal_budget:
+            if proposal_budget is not None and generated_proposals >= proposal_budget and not queued_candidates(tree):
                 stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
                 break
             continue
@@ -580,7 +672,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
     run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count, "generated_proposals": generated_proposals, "proposal_budget": proposal_budget, "trained_rollouts_this_invocation": trained_rollouts, "trained_node_budget": trained_node_budget, "candidate_pool_size": args.candidate_pool_size}
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count, "generated_proposals": generated_proposals, "proposal_budget": proposal_budget, "trained_rollouts_this_invocation": trained_rollouts, "trained_node_budget": trained_node_budget, "candidate_pool_size": args.candidate_pool_size, "proposal_selection_mode": args.proposal_selection_mode, "queued_candidates": len(queued_candidates(tree))}
     print(json.dumps(result, indent=2))
     return result
 
@@ -614,7 +706,8 @@ def main() -> None:
     parser.add_argument("--max-blueprint-repeats", type=int, default=2, help="Global repeat limit per blueprint; -1 disables the global duplicate guard.")
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true", help="Allow the same parent to generate the same blueprint more than once.")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8, help="How many candidate blueprints to try before skipping an iteration as duplicate-only.")
-    parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent, cheap-screen them, and train only the selected rollout candidate. Values >1 create pruned_not_selected nodes for untrained proposals.")
+    parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent.")
+    parser.add_argument("--proposal-selection-mode", choices=["local_top1", "global_queue"], default="local_top1", help="local_top1 trains the best candidate from the current parent pool; global_queue queues feasible candidates from all parent pools and trains the globally highest-priority next rollout.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
     if args.summary is None:

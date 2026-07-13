@@ -36,7 +36,8 @@ def main() -> None:
     parser.add_argument("--max-blueprint-repeats", type=int, default=2)
     parser.add_argument("--allow-parent-duplicate-blueprints", action="store_true")
     parser.add_argument("--max-duplicate-proposal-attempts", type=int, default=8)
-    parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent, cheap-screen them, and train only selected rollouts.")
+    parser.add_argument("--candidate-pool-size", type=int, default=4, help="Paper-aligned default: generate multiple proposal candidates per selected parent.")
+    parser.add_argument("--proposal-selection-mode", choices=["local_top1", "global_queue"], default="local_top1", help="local_top1 trains current-pool top1; global_queue trains the best queued proposal across all generated candidates.")
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
     parser.add_argument("--official-blueprint-space", action="store_true", default=False)
     parser.add_argument("--strict-artifacts", action="store_true", default=True)
@@ -103,6 +104,7 @@ def main() -> None:
         allow_parent_duplicate_blueprints=args.allow_parent_duplicate_blueprints,
         max_duplicate_proposal_attempts=args.max_duplicate_proposal_attempts,
         candidate_pool_size=args.candidate_pool_size,
+        proposal_selection_mode=args.proposal_selection_mode,
         reset=args.reset,
     )
     result = run_search(ns)

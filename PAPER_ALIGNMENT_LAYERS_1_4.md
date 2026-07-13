@@ -25,7 +25,8 @@ The repo keeps UCT/PUCT parent selection, but proposal selection is now more pap
 Aligned pieces:
 
 - MCTS selects the trained parent node.
-- Artifact-aware blueprint ranking prefers executable high-level programs with present artifacts.
+- Artifact-aware blueprint ranking screens feasibility but must not be the scientific objective.
+- Full-cellline runs use `--proposal-selection-mode global_queue`: generated candidates are queued globally, and the next rollout is selected from the best available proposal across parent pools rather than the local top-1 from the newest parent.
 - Duplicate guards avoid repeatedly expanding the same blueprint on one parent and cap global blueprint repeats.
 - `search_memory.json` summarizes prior expansions and can be read by the next Codex turn.
 - `pipeline_grammar.py` maps each blueprint into a structured pipeline program instead of treating it as a single flat label.
@@ -33,6 +34,7 @@ Aligned pieces:
 Remaining gap:
 
 - The proposal policy is still deterministic/grammar-guided, not a learned proposal model. Codex can still implement selected planned nodes using the cookbook.
+- Global queue scoring is still a cheap-screen priority, not a trained surrogate model.
 
 ## 3. Model Space / Pipeline Grammar Layer
 

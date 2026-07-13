@@ -4,11 +4,12 @@ This repo now supports a stricter paper-aligned loop for selected planned nodes:
 
 1. MCTS selects a parent.
 2. The harness generates a proposal pool.
-3. Cheap-screening prunes unselected proposals before training.
-4. The selected planned proposal is materialized by the implementation loop.
-5. The loop runs compile and native forward/backward smoke.
-6. Only a smoke-passing node is trained with `train_pending`.
-7. Only a trained node backpropagates reward into MCTS.
+3. In full-cellline runs, feasible proposals enter a global queue; the next rollout is the highest-priority queued proposal across all generated parents.
+4. Duplicate or dominated proposals may be pruned, but local pool losers are not automatically discarded in global-queue mode.
+5. The selected planned proposal is materialized by the implementation loop.
+6. The loop runs compile and native forward/backward smoke.
+7. Only a smoke-passing node is trained with `train_pending`.
+8. Only a trained node backpropagates reward into MCTS.
 
 This is the preferred mode for official K562 paper-aligned runs. Do not manually train every proposal.
 
@@ -17,7 +18,7 @@ This is the preferred mode for official K562 paper-aligned runs. Do not manually
 - No silent fallback.
 - Missing required artifacts must block/acquire; they must not be replaced by random or tabular stand-ins.
 - Failed implementation attempts do not backpropagate reward.
-- Pruned proposals are never trained.
+- `candidate_queued` proposals remain eligible for later global selection; `pruned_not_selected` proposals are never trained.
 - Test metrics are reported only after training; they must not guide implementation or repair.
 - Generated native children must not inherit `external_static_node` backend from public static parents.
 - Generated native children must use stable official K562 cached embeddings when a public static parent lacks native feature config.
@@ -32,6 +33,7 @@ Use these flags through `scripts/run_official_k562_harness_search.py`:
 --allow-planned-blueprints
 --strict-artifacts
 --candidate-pool-size 4
+--proposal-selection-mode global_queue   # required for full_cellline_run
 --budget-proposals <N>
 --budget-trained-nodes <M>
 ```
@@ -57,7 +59,7 @@ A valid automatic-loop smoke should show:
 - `pending_implementations: 0`
 - `failures: 0` unless the purpose is a repair-failure test
 - `trained_rollouts_this_invocation > 0`
-- `pruned_not_selected > 0` when `candidate_pool_size > 1`
+- `candidate_queued > 0` in global-queue full runs, or `pruned_not_selected > 0` in local-pool smoke runs
 - `repair_log.jsonl` exists
 - `agent_decision_trace.jsonl` contains `implementation_selected` and `trained_and_backpropagated`
 
@@ -192,6 +194,7 @@ The experiment report must include:
 
 - proposal count
 - trained rollout count
+- queued proposal count
 - pruned proposal count
 - auto-implemented node count
 - native smoke passed count

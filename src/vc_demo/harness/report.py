@@ -139,7 +139,7 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
 def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[str, Any]], stop_reason: str) -> None:
     rows = trained_rows(tree)
     status_counts = Counter(str(node.get("status", "unknown")) for node in tree.get("nodes", {}).values())
-    proposal_like = sum(status_counts.get(status, 0) for status in ["pruned_not_selected", "requires_artifact_acquisition", "blocked_missing_artifact", "needs_implementation", "selected_for_training", "trained", "failed"])
+    proposal_like = sum(status_counts.get(status, 0) for status in ["candidate_queued", "pruned_not_selected", "requires_artifact_acquisition", "blocked_missing_artifact", "needs_implementation", "selected_for_training", "trained", "failed"])
     roots = [row for row in rows if row["iteration"] == 0]
     best = max(rows, key=lambda row: row["val"]) if rows else None
     best_root = max(roots, key=lambda row: row["val"]) if roots else None
@@ -153,6 +153,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         f"- Stop reason: {stop_reason}",
         f"- Proposal-like nodes: {proposal_like}",
         f"- Trained nodes: {len(rows)}",
+        f"- Queued proposals: {status_counts.get('candidate_queued', 0)}",
         f"- Pruned proposals: {status_counts.get('pruned_not_selected', 0)}",
         f"- Blocked/acquisition nodes: {status_counts.get('requires_artifact_acquisition', 0) + status_counts.get('blocked_missing_artifact', 0)}",
         f"- Pending implementation nodes: {status_counts.get('needs_implementation', 0)}",
@@ -264,7 +265,8 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         "## Reproducibility Notes",
         "",
         "- In paper-aligned mode, one node means one candidate program state, not necessarily one completed training run.",
-        "- `pruned_not_selected` proposals are deliberately not trained; they document the agent's search space and cheap-screen decision.",
+        "- `candidate_queued` proposals remain globally eligible for rollout training until selected, blocked, failed, or budget ends.",
+        "- `pruned_not_selected` proposals are deliberately not trained; in full-cellline global-queue mode they should mainly represent duplicate/dominated candidates rather than local-pool losers.",
         "- `selected_for_training` is a transient rollout state written before execution; successful nodes become `trained`, failed nodes become `failed`.",
         "- MCTS decides which already-trained parent is worth expanding next. The paper-aligned default is UCT; PUCT is retained only as an optional implementation extension/ablation.",
         "- Tree/proposal records preserve UCT-style audit fields when available: visits, Q_v, Exploitation, Exploration, uct, stage, and selected-parent candidates.",
