@@ -1,0 +1,46 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_gene_dropout_augmentation",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes",
+    "augmentation": {
+      "type": "training_only_feature_group_dropout",
+      "feature_group_count": 16,
+      "drop_probability": 0.08,
+      "applies_to": "official cached AIDO+GNN perturbation feature vector",
+      "label_or_split_changes": false
+    }
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "uses official_essential_deg_with_split_h5ad to validate official target-gene task contract"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 2,
+  "paper_family": "gene_dropout_augmentation",
+  "pipeline_program": {
+    "blueprint": "official_gene_dropout_augmentation",
+    "representation": "official cached AIDO+GNN perturbation features",
+    "perturbation_side": "feature-group dropout augmentation during training only",
+    "target_side": "official target-gene table features",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "target-aware low-rank DEG classifier",
+    "training_strategy": "gene_dropout_augmentation",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "regularization blueprint with recorded feature dropout augmentation"
+  }
+}

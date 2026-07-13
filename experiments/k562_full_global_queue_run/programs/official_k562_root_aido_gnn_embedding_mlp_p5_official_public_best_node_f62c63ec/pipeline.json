@@ -1,0 +1,48 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "external_static_node",
+  "strategy": "official_public_best_node",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_public_best_node_code",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "VCHarness public K562 best node",
+      "sides": [
+        "AIDO",
+        "STRING_GNN",
+        "official_k562_tsv"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "public_vcharness_best_path",
+  "pipeline_program": {
+    "blueprint": "official_public_best_node",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  }
+}

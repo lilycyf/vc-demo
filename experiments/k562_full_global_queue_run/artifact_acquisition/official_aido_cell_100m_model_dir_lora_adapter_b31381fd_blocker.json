@@ -1,0 +1,9 @@
+{
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd",
+  "strategy": "official_aido_lora_adapter",
+  "artifact_id": "official_aido_cell_100m_model_dir",
+  "status": "blocked_unverifiable_model_interface",
+  "reason": "AIDO LoRA adapter requires the real AIDO.Cell-100M AutoModel/AutoTokenizer architecture and layer/module names. /home/Models/AIDO.Cell-100M exists but cannot load model_type=cellfoundation with the available verified code, so LoRA placement cannot be implemented without fallback/proxy code.",
+  "created_at": "2026-07-13T14:08:09.991539+00:00",
+  "fallback_trained": false
+}

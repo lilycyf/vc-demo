@@ -1,0 +1,11 @@
+{
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63",
+  "strategy": "official_aido_full_finetune",
+  "artifact_id": "official_aido_cell_100m_model_dir",
+  "expected_path": "/home/Models/AIDO.Cell-100M",
+  "status": "blocked_unverifiable_model_interface",
+  "reason": "AIDO.Cell-100M directory exists but is not loadable as a real AutoModel/AutoTokenizer artifact: Transformers reports unknown model_type cellfoundation; architecture/tokenizer code is missing or unverifiable. Strict full fine-tune cannot be implemented without the real public model interface.",
+  "created_at": "2026-07-13T13:54:22.382717+00:00",
+  "fallback_trained": false,
+  "resume_policy": "continue_global_queue_with_other_candidates"
+}

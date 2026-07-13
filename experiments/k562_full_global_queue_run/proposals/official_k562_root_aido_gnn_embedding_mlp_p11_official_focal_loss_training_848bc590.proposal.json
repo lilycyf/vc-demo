@@ -1,0 +1,224 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590",
+  "strategy": "official_focal_loss_training",
+  "blueprint": {
+    "id": "official_focal_loss_training",
+    "status": "planned",
+    "official_k562": true,
+    "category": "training_strategy",
+    "paper_family": "focal_loss",
+    "change_level": 1,
+    "role": "Apply focal loss or class-balanced focal loss for hard DEG classes.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex records gamma/alpha and keeps metric fixed.",
+    "acceptance": [
+      "No test-label tuning",
+      "Reports gamma/alpha",
+      "Macro-F1 reward unchanged"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Apply focal loss or class-balanced focal loss for hard DEG classes.",
+  "changes": [
+    "program_model:custom_program->official_focal_loss_training",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590",
+  "program_model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_focal_loss_training",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.6,
+    "base": 0.72,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.12,
+    "native_repeat_penalty": 0.0,
+    "count": 1,
+    "family": "focal_loss",
+    "family_count": 1
+  },
+  "structural_signature": "aee58de49b793bed52c054fdd1fac10e2710bdad",
+  "parent_structural_signature": "01d32665ef9829fb0afae924abba9659d58cc146",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_focal_loss_training_848bc590/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "missing_required_artifacts": [
+      "class_distribution"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "class_distribution"
+  ],
+  "missing_required_artifact_paths": [
+    ""
+  ],
+  "candidate_pool_iteration": 7,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": -0.5800000000000001,
+    "scientific_score": 0.6,
+    "cost_class": "cheap",
+    "cost_bonus": 0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "class_distribution"
+    ],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+      "policy": "uct",
+      "score": 1.973095817205581,
+      "uct": 1.973095817205581,
+      "puct": null,
+      "q": 0.45566868782043457,
+      "Q_v": 0.9113373756408691,
+      "exploitation": 0.45566868782043457,
+      "Exploitation": 0.45566868782043457,
+      "exploration": 1.5174271293851465,
+      "Exploration": 1.5174271293851465,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 10,
+      "children": 6,
+      "best_val_macro_f1": 0.45566868782043457,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "policy": "uct",
+      "score": 1.9630296357843011,
+      "uct": 1.9630296357843011,
+      "puct": null,
+      "q": 0.44560250639915466,
+      "Q_v": 0.8912050127983093,
+      "exploitation": 0.44560250639915466,
+      "Exploitation": 0.44560250639915466,
+      "exploration": 1.5174271293851465,
+      "Exploration": 1.5174271293851465,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 10,
+      "children": 0,
+      "best_val_macro_f1": 0.44560250639915466,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "uct",
+      "score": 1.9549290665361017,
+      "uct": 1.9549290665361017,
+      "puct": null,
+      "q": 0.4375019371509552,
+      "Q_v": 0.8750038743019104,
+      "exploitation": 0.4375019371509552,
+      "Exploitation": 0.4375019371509552,
+      "exploration": 1.5174271293851465,
+      "Exploration": 1.5174271293851465,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 10,
+      "children": 6,
+      "best_val_macro_f1": 0.4375019371509552,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "policy": "uct",
+      "score": 1.9369658955308526,
+      "uct": 1.9369658955308526,
+      "puct": null,
+      "q": 0.4195387661457062,
+      "Q_v": 0.8390775322914124,
+      "exploitation": 0.4195387661457062,
+      "Exploitation": 0.4195387661457062,
+      "exploration": 1.5174271293851465,
+      "Exploration": 1.5174271293851465,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 10,
+      "children": 0,
+      "best_val_macro_f1": 0.4195387661457062,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "uct",
+      "score": 1.932235164281997,
+      "uct": 1.932235164281997,
+      "puct": null,
+      "q": 0.4148080348968506,
+      "Q_v": 0.8296160697937012,
+      "exploitation": 0.4148080348968506,
+      "Exploitation": 0.4148080348968506,
+      "exploration": 1.5174271293851465,
+      "Exploration": 1.5174271293851465,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 10,
+      "children": 0,
+      "best_val_macro_f1": 0.4148080348968506,
+      "stage": "improve"
+    }
+  ],
+  "candidate_pool_rank": 6,
+  "candidate_pool_size": 6,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "global_queue_generate_many_train_best_available"
+}

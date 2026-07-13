@@ -1,0 +1,42 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_multimodal_mixture_of_experts",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_essential_deg_with_split_h5ad",
+      "usage": "official task contract and target-gene order"
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "multimodal_MoE",
+  "pipeline_program": {
+    "blueprint": "official_multimodal_mixture_of_experts",
+    "representation": "source-backed cached AIDO/GNN feature inputs from official root data contract",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "router over full-input, AIDO-cached, and GNN-cached experts",
+    "prior": "unspecified",
+    "head": "target-aware low-rank DEG head",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "multimodal mixture-of-experts over available official cached modalities"
+  }
+}

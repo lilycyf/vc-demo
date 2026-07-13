@@ -1,0 +1,110 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b",
+  "strategy": "official_aido_string_fusion",
+  "blueprint": {
+    "id": "official_aido_string_fusion",
+    "status": "planned",
+    "official_k562": true,
+    "category": "multimodal_fusion",
+    "paper_family": "AIDO_STRING_fusion",
+    "change_level": 5,
+    "role": "Fuse AIDO perturbation/cell representation with STRING_GNN representation via concat, gating, bilinear, or cross-attention variants.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_notes": "Agent may choose fusion mechanism but must preserve official splits, labels, and artifact provenance. The implementation must use real AIDO and STRING/GNN branches, not a proxy wrapper.",
+    "acceptance": [
+      "Uses both AIDO and STRING/GNN artifacts",
+      "Records fusion type",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Fuse AIDO perturbation/cell representation with STRING_GNN representation via concat, gating, bilinear, or cross-attention variants.",
+  "changes": [
+    "program_model:custom_program->official_aido_string_fusion",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b",
+  "program_model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    },
+    {
+      "provider": "STRING_GNN",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_aido_string_fusion",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.72,
+    "base": 1.0,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.48,
+    "native_repeat_penalty": 0.0,
+    "count": 4,
+    "family": "AIDO_STRING_fusion",
+    "family_count": 4
+  },
+  "structural_signature": "1123b8802df90e9f4c17ed7477cfcba52678f383",
+  "parent_structural_signature": "72816382e367b91a1a32648f16b5d9f32314ba46",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir"
+    ],
+    "missing_required_artifacts": [
+      "official_string_gnn_model_dir"
+    ],
+    "all_required_present": false
+  }
+}

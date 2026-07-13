@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "strategy": "official_public_static_node_family_wrapper",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+          "strategy": "official_public_static_node_family_wrapper",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    }
+  ],
+  "trained": true,
+  "repair_attempts": 3,
+  "repair_log": "experiments/k562_full_global_queue_run/repair_log.jsonl",
+  "agent_decision_trace": "experiments/k562_full_global_queue_run/agent_decision_trace.jsonl"
+}

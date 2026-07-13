@@ -1,0 +1,11 @@
+{
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933",
+  "strategy": "official_aido_topk_layer_tuning",
+  "artifact_id": "official_aido_cell_100m_model_dir",
+  "expected_path": "/home/Models/AIDO.Cell-100M",
+  "status": "blocked_unverifiable_model_interface",
+  "reason": "AIDO top-k layer tuning requires the real AIDO.Cell-100M layer stack and tokenizer/model architecture. /home/Models/AIDO.Cell-100M contains weights/config but AutoModel/AutoTokenizer cannot load model_type=cellfoundation, so top-k trainable layers cannot be identified or fine-tuned without unverifiable/fallback code.",
+  "created_at": "2026-07-13T13:55:23.439986+00:00",
+  "fallback_trained": false,
+  "resume_policy": "continue_global_queue_with_other_candidates"
+}

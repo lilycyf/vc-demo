@@ -1,0 +1,2834 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-13T12:41:30.341000+00:00",
+  "updated_at": "2026-07-13T15:05:57.659156+00:00",
+  "events": [
+    {
+      "time": "2026-07-13T12:46:26.035116+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+          "strategy": "official_target_gene_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T12:51:19.960488+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+          "strategy": "official_aido_lora_adapter",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T12:57:34.970480+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:04:28.049644+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:10:05.941149+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+      "strategy": "official_target_low_rank_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+          "strategy": "official_target_low_rank_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:14:35.764431+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "strategy": "official_target_bilinear_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+          "strategy": "official_target_bilinear_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:18:42.431102+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 7,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_lora_adapter_c2f32a03",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12 already expanded blueprint official_aido_lora_adapter"
+    },
+    {
+      "time": "2026-07-13T13:18:43.279645+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04",
+      "strategy": "official_string_laplacian_smoothing",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04",
+          "strategy": "official_string_laplacian_smoothing",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:24:27.973846+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d0505802",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:24:28.270336+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_gnn_attention_8c362f13",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:24:28.595617+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 8,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_1d811045",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:24:29.153816+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:29:47.147984+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+          "strategy": "official_multimodal_mixture_of_experts",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:35:09.045071+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_653fa05c",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:35:09.158849+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_6e4e9295",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:35:09.268685+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_pathway_pooling_reactome_61b14c66",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:35:09.394382+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_gnn_attention_322f8391",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:35:09.598035+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 10,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_0cb9bd37",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:35:10.063952+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2",
+      "strategy": "official_temperature_calibrated_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2",
+          "strategy": "official_temperature_calibrated_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:39:29.617794+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 11,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_576d82a6",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:39:30.638145+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "strategy": "official_gene_dropout_augmentation",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+          "strategy": "official_gene_dropout_augmentation",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:47:41.855351+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_d3ae821b",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:47:41.975535+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_fusion_d424aa1b",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:47:42.081280+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_neighborhood_attention_47d43eb0",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:47:42.188520+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_class_imbalance_training_4d9191a4",
+      "strategy": "official_class_imbalance_training",
+      "reason": "blueprint official_class_imbalance_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:47:42.300629+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_3b3f8ba6",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:47:42.440360+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 12,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_string_gnn_attention_dc9540c7",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:47:42.925162+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "strategy": "official_layerwise_lr_schedule",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+          "strategy": "official_layerwise_lr_schedule",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:53:15.215938+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_graph_conditioned_head_3a419bda",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "blueprint official_target_graph_conditioned_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:53:15.341573+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_string_cross_attention_b8fc0cfb",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:53:15.471326+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_gene_head_51026665",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:53:15.625665+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_string_fusion_b0820a8d",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:53:15.755263+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 13,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec",
+      "strategy": "official_public_best_node",
+      "reason": "blueprint official_public_best_node reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:53:16.544827+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63",
+      "strategy": "official_aido_full_finetune",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63",
+          "strategy": "official_aido_full_finetune",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:54:41.853014+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_pathway_pooling_reactome_17145439",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:54:42.070951+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_focal_loss_training_8205ae36",
+      "strategy": "official_focal_loss_training",
+      "reason": "blueprint official_focal_loss_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:54:42.195254+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_aido_full_finetune_2d39793a",
+      "strategy": "official_aido_full_finetune",
+      "reason": "blueprint official_aido_full_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:54:42.417934+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_aido_topk_layer_tuning_0f68575c",
+      "strategy": "official_aido_topk_layer_tuning",
+      "reason": "blueprint official_aido_topk_layer_tuning reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:54:42.514723+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 14,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_cached_embedding_fusion_c692a141",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "blueprint official_aido_cached_embedding_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:54:42.901510+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933",
+      "strategy": "official_aido_topk_layer_tuning",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933",
+          "strategy": "official_aido_topk_layer_tuning",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T13:55:42.734887+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_gnn_attention_50467d3b",
+      "strategy": "official_string_gnn_attention",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f already expanded blueprint official_string_gnn_attention"
+    },
+    {
+      "time": "2026-07-13T13:55:42.849455+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_scgpt_cell_encoder_393978d5",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "blueprint official_scgpt_cell_encoder reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:55:42.957936+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_scfoundation_top_layer_finetune_f6ec3282",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "blueprint official_scfoundation_top_layer_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:55:43.065763+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_string_gnn_frozen_cache_0db39187",
+      "strategy": "official_string_gnn_frozen_cache",
+      "reason": "blueprint official_string_gnn_frozen_cache reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:55:43.173269+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 15,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_gnn_full_finetune_533908b0",
+      "strategy": "official_string_gnn_full_finetune",
+      "reason": "blueprint official_string_gnn_full_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T13:55:43.695234+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+          "strategy": "official_swa_or_checkpoint_ensemble",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:00:19.920543+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_07686c3d",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:00:20.137832+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_regulatory_network_prior_b29b4198",
+      "strategy": "official_regulatory_network_prior",
+      "reason": "blueprint official_regulatory_network_prior reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:00:20.258467+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_neighborhood_attention_33544309",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:00:20.468033+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 16,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_78651b6f",
+      "strategy": "official_class_imbalance_training",
+      "reason": "blueprint official_class_imbalance_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:00:21.062772+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6",
+      "strategy": "official_public_static_node_family_wrapper",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6",
+          "strategy": "official_public_static_node_family_wrapper",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:02:39.874825+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_target_gene_head_7ddf5601",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:02:39.997979+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_weighted_ce_training_a1d38281",
+      "strategy": "official_weighted_ce_training",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0 already expanded blueprint official_weighted_ce_training"
+    },
+    {
+      "time": "2026-07-13T14:02:40.130673+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_string_concat_fusion_ab3129a2",
+      "strategy": "official_aido_string_concat_fusion",
+      "reason": "blueprint official_aido_string_concat_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:02:40.456795+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_aido_string_gated_fusion_623842eb",
+      "strategy": "official_aido_string_gated_fusion",
+      "reason": "blueprint official_aido_string_gated_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:02:40.576852+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_aido_string_bilinear_fusion_b503e514",
+      "strategy": "official_aido_string_bilinear_fusion",
+      "reason": "blueprint official_aido_string_bilinear_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:02:40.693230+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 17,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_multimodal_mixture_of_experts_e6e35583",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "reason": "blueprint official_multimodal_mixture_of_experts reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:02:41.165900+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "strategy": "official_target_gene_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+          "strategy": "official_target_gene_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:07:37.294845+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_59ce7808",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:07:37.488318+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_df92a562",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:07:37.755617+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_aido_lora_adapter_485a1869",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:07:37.898923+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_8563b0ce",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "blueprint official_target_graph_conditioned_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:07:38.064642+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 18,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_80793868",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:07:38.578122+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd",
+      "strategy": "official_aido_lora_adapter",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd",
+          "strategy": "official_aido_lora_adapter",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:08:27.259934+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_regulatory_network_prior_c0a636c1",
+      "strategy": "official_regulatory_network_prior",
+      "reason": "blueprint official_regulatory_network_prior reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:08:27.461192+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_string_fusion_241fb68d",
+      "strategy": "official_aido_string_fusion",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef already expanded blueprint official_aido_string_fusion"
+    },
+    {
+      "time": "2026-07-13T14:08:27.575881+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_target_graph_conditioned_head_6f22a315",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef already expanded blueprint official_target_graph_conditioned_head"
+    },
+    {
+      "time": "2026-07-13T14:08:27.687129+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_aido_string_cross_attention_22ef45a0",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef already expanded blueprint official_aido_string_cross_attention"
+    },
+    {
+      "time": "2026-07-13T14:08:27.814898+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 19,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_public_static_node_family_wrapper_fd4b5055",
+      "strategy": "official_public_static_node_family_wrapper",
+      "reason": "blueprint official_public_static_node_family_wrapper reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:08:28.315020+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "strategy": "official_string_neighborhood_attention",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+          "strategy": "official_string_neighborhood_attention",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:13:51.664284+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_db6e2af0",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:13:51.788561+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_934c6842",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:13:51.921328+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_053d475b",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:13:52.061003+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_2b629bed",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:13:52.173914+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_3c68c47a",
+      "strategy": "official_public_best_node",
+      "reason": "blueprint official_public_best_node reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:13:52.352098+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 20,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_string_laplacian_smoothing_ee3599bb",
+      "strategy": "official_string_laplacian_smoothing",
+      "reason": "blueprint official_string_laplacian_smoothing reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:13:52.830913+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "strategy": "official_target_graph_conditioned_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+          "strategy": "official_target_graph_conditioned_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:18:43.123335+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_8b0a7684",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:18:43.233173+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_e0ed2f98",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:18:43.334989+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_45c2440f",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:18:43.436259+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_053bd58e",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:18:43.537962+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 21,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_string_neighborhood_attention_6a50558b",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:18:43.993027+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8",
+      "strategy": "official_target_low_rank_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8",
+          "strategy": "official_target_low_rank_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:22:59.480819+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_target_low_rank_head_5586ceb8",
+      "strategy": "official_target_low_rank_head",
+      "reason": "blueprint official_target_low_rank_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:22:59.590066+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_full_finetune_ef2d068f",
+      "strategy": "official_aido_full_finetune",
+      "reason": "blueprint official_aido_full_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:22:59.699032+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_topk_layer_tuning_8aafef84",
+      "strategy": "official_aido_topk_layer_tuning",
+      "reason": "blueprint official_aido_topk_layer_tuning reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:22:59.839563+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_aido_cached_embedding_fusion_6b32f277",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "blueprint official_aido_cached_embedding_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:22:59.945940+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_scgpt_cell_encoder_d958a0db",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "blueprint official_scgpt_cell_encoder reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:23:00.063544+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 22,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_scfoundation_top_layer_finetune_be0100da",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "blueprint official_scfoundation_top_layer_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:23:00.470000+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "strategy": "official_target_bilinear_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+          "strategy": "official_target_bilinear_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:27:07.123579+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_9163424e",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:27:07.241785+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_c1d88529",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:27:07.354876+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_3d43c30e",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:27:07.483299+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d98e250e",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:27:07.594258+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_class_imbalance_training_cc9992f0",
+      "strategy": "official_class_imbalance_training",
+      "reason": "blueprint official_class_imbalance_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:27:07.727380+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 23,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_pathway_pooling_reactome_18e1053d",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:27:08.186920+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+          "strategy": "official_aido_cached_embedding_fusion",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:32:06.693270+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_gnn_full_finetune_4d73512a",
+      "strategy": "official_string_gnn_full_finetune",
+      "reason": "blueprint official_string_gnn_full_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:32:06.819847+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_string_laplacian_smoothing_30be33d4",
+      "strategy": "official_string_laplacian_smoothing",
+      "reason": "blueprint official_string_laplacian_smoothing reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:32:06.926702+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_regulatory_network_prior_190fb199",
+      "strategy": "official_regulatory_network_prior",
+      "reason": "blueprint official_regulatory_network_prior reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:32:07.028749+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_neighborhood_attention_17b48783",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:32:07.148629+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 24,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_a0c3dade",
+      "strategy": "official_temperature_calibrated_head",
+      "reason": "blueprint official_temperature_calibrated_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:32:07.564764+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "strategy": "official_string_laplacian_smoothing",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+          "strategy": "official_string_laplacian_smoothing",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:37:18.029413+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_b0838d87",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:37:18.139886+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_a97de254",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:37:18.245516+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_f5c8176a",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:37:18.356466+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_8f7ee358",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:37:18.454144+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_47816a24",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:37:18.564294+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 25,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_target_bilinear_head_c01f9a84",
+      "strategy": "official_target_bilinear_head",
+      "reason": "blueprint official_target_bilinear_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:37:18.983765+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "strategy": "official_temperature_calibrated_head",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+          "strategy": "official_temperature_calibrated_head",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:42:53.834763+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_focal_loss_training_c2c89e61",
+      "strategy": "official_focal_loss_training",
+      "reason": "blueprint official_focal_loss_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:42:53.963432+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_weighted_ce_training_e2c86af5",
+      "strategy": "official_weighted_ce_training",
+      "reason": "blueprint official_weighted_ce_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:42:54.090203+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_lora_adapter_e0d20fc8",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76 already expanded blueprint official_aido_lora_adapter"
+    },
+    {
+      "time": "2026-07-13T14:42:54.235982+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_aido_string_concat_fusion_da884a7f",
+      "strategy": "official_aido_string_concat_fusion",
+      "reason": "blueprint official_aido_string_concat_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:42:54.359834+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_aido_string_gated_fusion_41d1a094",
+      "strategy": "official_aido_string_gated_fusion",
+      "reason": "blueprint official_aido_string_gated_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:42:54.468949+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 26,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_string_bilinear_fusion_fb08043b",
+      "strategy": "official_aido_string_bilinear_fusion",
+      "reason": "blueprint official_aido_string_bilinear_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:42:54.963468+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "strategy": "official_gene_dropout_augmentation",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+          "strategy": "official_gene_dropout_augmentation",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:48:37.160534+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_917e976b",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:37.288976+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_a84a8f3b",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:37.443686+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_ed6fff35",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:37.575117+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_ff201078",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:37.700557+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_98dc3edb",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:37.856344+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 27,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_0fbbb738",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:38.463417+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_public_best_node_a3cf184b",
+      "strategy": "official_public_best_node",
+      "reason": "blueprint official_public_best_node reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:38.583316+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_multimodal_mixture_of_experts_5edabefd",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "reason": "blueprint official_multimodal_mixture_of_experts reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:38.744751+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_low_rank_head_ef5170e8",
+      "strategy": "official_target_low_rank_head",
+      "reason": "blueprint official_target_low_rank_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:38.867093+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_target_bilinear_head_bbbcb832",
+      "strategy": "official_target_bilinear_head",
+      "reason": "blueprint official_target_bilinear_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:38.994443+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_layerwise_lr_schedule_9360aa71",
+      "strategy": "official_layerwise_lr_schedule",
+      "reason": "blueprint official_layerwise_lr_schedule reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:39.142377+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 28,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_swa_or_checkpoint_ensemble_fe7eee54",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "reason": "blueprint official_swa_or_checkpoint_ensemble reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:48:39.666860+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06",
+      "strategy": "official_layerwise_lr_schedule",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06",
+          "strategy": "official_layerwise_lr_schedule",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:54:00.489163+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_dc26bb9e",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:00.625622+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_9b9fa0b0",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:00.733791+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_ea8f4b40",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:00.842636+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_793adf53",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:00.954025+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_2a41d824",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:01.059027+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 29,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_752603ac",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:01.544187+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c",
+      "strategy": "official_aido_full_finetune",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c",
+          "strategy": "official_aido_full_finetune",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:54:54.890482+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_gnn_frozen_cache_1e0d4423",
+      "strategy": "official_string_gnn_frozen_cache",
+      "reason": "blueprint official_string_gnn_frozen_cache reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:55.024738+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_gene_head_4407d0b8",
+      "strategy": "official_target_gene_head",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9 already expanded blueprint official_target_gene_head"
+    },
+    {
+      "time": "2026-07-13T14:54:55.146821+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_graph_conditioned_head_1c9cb8e1",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "blueprint official_target_graph_conditioned_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:55.270473+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_82c119c4",
+      "strategy": "official_public_static_node_family_wrapper",
+      "reason": "blueprint official_public_static_node_family_wrapper reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:55.374061+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_pathway_pooling_reactome_f30874b1",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9 already expanded blueprint official_pathway_pooling_reactome"
+    },
+    {
+      "time": "2026-07-13T14:54:55.489013+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 30,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_focal_loss_training_3bb50da3",
+      "strategy": "official_focal_loss_training",
+      "reason": "blueprint official_focal_loss_training reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:54:56.026366+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5",
+      "strategy": "official_aido_topk_layer_tuning",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5",
+          "strategy": "official_aido_topk_layer_tuning",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:55:48.664510+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_86ea93c2",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:48.780513+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_graph_conditioned_head_085c31f5",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "blueprint official_target_graph_conditioned_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:48.901714+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_pathway_pooling_reactome_ef2bb698",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:49.025909+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_aido_full_finetune_d9f534fa",
+      "strategy": "official_aido_full_finetune",
+      "reason": "blueprint official_aido_full_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:49.140751+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_aido_topk_layer_tuning_be22accd",
+      "strategy": "official_aido_topk_layer_tuning",
+      "reason": "blueprint official_aido_topk_layer_tuning reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:49.263903+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 31,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_cached_embedding_fusion_ff1409c7",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "reason": "blueprint official_aido_cached_embedding_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:49.752118+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_82257c87",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:49.858815+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_2437fdd3",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:49.970317+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e8957762",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:50.070397+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_7b26a604",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:50.171205+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_ce3cc944",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:50.297337+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 32,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_8f9a64b4",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:55:50.729786+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+          "strategy": "official_multimodal_mixture_of_experts",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T14:59:58.777454+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_aa7c9250",
+      "strategy": "official_string_neighborhood_attention",
+      "reason": "blueprint official_string_neighborhood_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:59:58.952114+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_graph_conditioned_head_4dd1404b",
+      "strategy": "official_target_graph_conditioned_head",
+      "reason": "blueprint official_target_graph_conditioned_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:59:59.102028+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p9_official_pathway_pooling_reactome_8ee8d39d",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "parent official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b already expanded blueprint official_pathway_pooling_reactome"
+    },
+    {
+      "time": "2026-07-13T14:59:59.301922+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_0340d56c",
+      "strategy": "official_scgpt_cell_encoder",
+      "reason": "blueprint official_scgpt_cell_encoder reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:59:59.497242+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_scfoundation_top_layer_finetune_303b1e51",
+      "strategy": "official_scfoundation_top_layer_finetune",
+      "reason": "blueprint official_scfoundation_top_layer_finetune reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T14:59:59.700477+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 33,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_string_gnn_frozen_cache_dd39cca1",
+      "strategy": "official_string_gnn_frozen_cache",
+      "reason": "blueprint official_string_gnn_frozen_cache reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:00.491899+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_87592fff",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:00.671610+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_f286ae65",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:00.852165+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_ce2525ad",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:00.999867+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_7f971a4f",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:01.196601+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_db366398",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:01.356712+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 34,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_bed55786",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:00:01.971612+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+          "strategy": "official_swa_or_checkpoint_ensemble",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-13T15:05:56.556570+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_610e1dff",
+      "strategy": "official_aido_string_fusion",
+      "reason": "blueprint official_aido_string_fusion reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:05:56.654220+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_14ac1e45",
+      "strategy": "official_string_gnn_attention",
+      "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:05:56.748283+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_14bd3ee2",
+      "strategy": "official_aido_lora_adapter",
+      "reason": "blueprint official_aido_lora_adapter reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:05:56.853339+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_7b1fceb1",
+      "strategy": "official_target_gene_head",
+      "reason": "blueprint official_target_gene_head reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:05:56.953596+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_03b212e9",
+      "strategy": "official_pathway_pooling_reactome",
+      "reason": "blueprint official_pathway_pooling_reactome reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:05:57.068830+00:00",
+      "kind": "duplicate_proposal_screened",
+      "iteration": 35,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_string_cross_attention_5f3406cd",
+      "strategy": "official_aido_string_cross_attention",
+      "reason": "blueprint official_aido_string_cross_attention reached repeat limit 2"
+    },
+    {
+      "time": "2026-07-13T15:05:57.476927+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "strategy": "official_public_static_node_family_wrapper",
+      "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_external_codex",
+      "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/model.py",
+      "reason": "official K562 formal mode forbids automatic compact/proxy native implementations",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+          "strategy": "official_public_static_node_family_wrapper",
+          "stage": "materialize",
+          "status": "requires_external_codex",
+          "task_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b/model.py",
+          "reason": "official K562 formal mode forbids automatic compact/proxy native implementations"
+        }
+      ]
+    }
+  ],
+  "blueprint_counts": {
+    "official_target_gene_head": 16,
+    "official_aido_lora_adapter": 16,
+    "official_string_gnn_attention": 16,
+    "official_aido_string_fusion": 18,
+    "official_pathway_pooling_reactome": 15,
+    "official_aido_string_cross_attention": 11,
+    "official_string_neighborhood_attention": 8,
+    "official_target_graph_conditioned_head": 8,
+    "official_class_imbalance_training": 5,
+    "official_regulatory_network_prior": 5,
+    "official_focal_loss_training": 5,
+    "official_public_best_node": 5,
+    "official_string_laplacian_smoothing": 4,
+    "official_weighted_ce_training": 4,
+    "official_aido_string_concat_fusion": 4,
+    "official_aido_string_gated_fusion": 4,
+    "official_aido_string_bilinear_fusion": 4,
+    "official_string_gnn_full_finetune": 4,
+    "official_target_low_rank_head": 4,
+    "official_target_bilinear_head": 4,
+    "official_multimodal_mixture_of_experts": 4,
+    "official_temperature_calibrated_head": 3,
+    "official_gene_dropout_augmentation": 2,
+    "official_public_static_node_family_wrapper": 4,
+    "official_aido_cached_embedding_fusion": 5,
+    "official_aido_full_finetune": 5,
+    "official_aido_topk_layer_tuning": 5,
+    "official_string_gnn_frozen_cache": 5,
+    "official_scgpt_cell_encoder": 5,
+    "official_scfoundation_top_layer_finetune": 5,
+    "official_layerwise_lr_schedule": 3,
+    "official_swa_or_checkpoint_ensemble": 3,
+    "official_native_public_best_reimplementation": 1
+  },
+  "parent_blueprints": {
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_gene_dropout_augmentation",
+      "official_multimodal_mixture_of_experts",
+      "official_pathway_pooling_reactome",
+      "official_public_static_node_family_wrapper",
+      "official_string_gnn_attention",
+      "official_target_bilinear_head",
+      "official_target_gene_head",
+      "official_target_low_rank_head",
+      "official_temperature_calibrated_head"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_gated_fusion",
+      "official_class_imbalance_training",
+      "official_focal_loss_training",
+      "official_public_best_node",
+      "official_regulatory_network_prior",
+      "official_string_gnn_full_finetune",
+      "official_string_laplacian_smoothing",
+      "official_string_neighborhood_attention",
+      "official_target_graph_conditioned_head",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_topk_layer_tuning",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_frozen_cache"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12": [
+      "official_aido_full_finetune",
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_class_imbalance_training",
+      "official_focal_loss_training",
+      "official_layerwise_lr_schedule",
+      "official_native_public_best_reimplementation",
+      "official_regulatory_network_prior",
+      "official_string_gnn_attention",
+      "official_string_neighborhood_attention",
+      "official_swa_or_checkpoint_ensemble"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_aido_topk_layer_tuning",
+      "official_pathway_pooling_reactome",
+      "official_public_best_node",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_attention",
+      "official_string_gnn_frozen_cache",
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a": [
+      "official_aido_lora_adapter",
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_aido_string_gated_fusion",
+      "official_multimodal_mixture_of_experts",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head",
+      "official_target_low_rank_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f": [
+      "official_aido_string_fusion",
+      "official_class_imbalance_training",
+      "official_pathway_pooling_reactome",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_attention",
+      "official_string_gnn_frozen_cache",
+      "official_string_gnn_full_finetune",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_temperature_calibrated_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_aido_topk_layer_tuning",
+      "official_focal_loss_training",
+      "official_pathway_pooling_reactome",
+      "official_public_best_node",
+      "official_public_static_node_family_wrapper",
+      "official_string_gnn_full_finetune",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0": [
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_fusion",
+      "official_aido_string_gated_fusion",
+      "official_class_imbalance_training",
+      "official_multimodal_mixture_of_experts",
+      "official_regulatory_network_prior",
+      "official_string_laplacian_smoothing",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_public_static_node_family_wrapper",
+      "official_regulatory_network_prior",
+      "official_string_gnn_attention",
+      "official_swa_or_checkpoint_ensemble",
+      "official_target_bilinear_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_aido_topk_layer_tuning",
+      "official_pathway_pooling_reactome",
+      "official_public_best_node",
+      "official_string_gnn_attention",
+      "official_string_laplacian_smoothing",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_aido_topk_layer_tuning",
+      "official_gene_dropout_augmentation",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_attention",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_target_low_rank_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c": [
+      "official_aido_lora_adapter",
+      "official_aido_string_fusion",
+      "official_class_imbalance_training",
+      "official_layerwise_lr_schedule",
+      "official_pathway_pooling_reactome",
+      "official_regulatory_network_prior",
+      "official_string_gnn_attention",
+      "official_string_gnn_full_finetune",
+      "official_string_laplacian_smoothing",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_temperature_calibrated_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76": [
+      "official_aido_lora_adapter",
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_fusion",
+      "official_aido_string_gated_fusion",
+      "official_focal_loss_training",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_bilinear_head",
+      "official_target_gene_head",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_layerwise_lr_schedule",
+      "official_multimodal_mixture_of_experts",
+      "official_pathway_pooling_reactome",
+      "official_public_best_node",
+      "official_string_gnn_attention",
+      "official_swa_or_checkpoint_ensemble",
+      "official_target_bilinear_head",
+      "official_target_gene_head",
+      "official_target_low_rank_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_focal_loss_training",
+      "official_pathway_pooling_reactome",
+      "official_public_static_node_family_wrapper",
+      "official_string_gnn_attention",
+      "official_string_gnn_frozen_cache",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_pathway_pooling_reactome",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_attention",
+      "official_string_gnn_frozen_cache",
+      "official_string_neighborhood_attention",
+      "official_target_gene_head",
+      "official_target_graph_conditioned_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ]
+  },
+  "family_counts": {
+    "target_gene_aware_head": 16,
+    "AIDO_adapter": 16,
+    "STRING_GNN_attention": 16,
+    "AIDO_STRING_fusion": 18,
+    "Reactome_pathway_pooling": 15,
+    "AIDO_STRING_cross_attention": 11,
+    "STRING_neighborhood_attention": 8,
+    "target_graph_conditioned_head": 8,
+    "official_deg_imbalance": 5,
+    "regulatory_network_prior": 5,
+    "focal_loss": 5,
+    "public_vcharness_best_path": 5,
+    "STRING_laplacian_prior": 4,
+    "class_weighted_CE": 4,
+    "AIDO_STRING_concat": 4,
+    "AIDO_STRING_gated": 4,
+    "AIDO_STRING_bilinear": 4,
+    "STRING_GNN_full_finetune": 4,
+    "target_low_rank_head": 4,
+    "target_bilinear_head": 4,
+    "multimodal_MoE": 4,
+    "temperature_calibration": 3,
+    "gene_dropout_augmentation": 2,
+    "public_static_tree_family": 4,
+    "AIDO_cached_embedding": 5,
+    "AIDO_full_finetune": 5,
+    "AIDO_selective_finetune": 5,
+    "STRING_GNN_frozen_cached": 5,
+    "scGPT_or_single_cell_encoder": 5,
+    "scFoundation_selective_finetune": 5,
+    "layerwise_lr_decay": 3,
+    "checkpoint_ensemble_or_SWA": 3,
+    "public_vcharness_best_path_native_exact": 1
+  },
+  "structural_signature_counts": {
+    "841a8f77d14ecd77e5286010e281e10413c6c4f4": 16,
+    "9d1bce694fc088a4d626218348b38372fb84586d": 16,
+    "930fbba42d4a3a8549fc158bbaf7d2f0fdf9a612": 16,
+    "1123b8802df90e9f4c17ed7477cfcba52678f383": 18,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 13,
+    "deba82298c3d004b00e18f313793047749e3e865": 8,
+    "bba2a2345669bc31b6d7cf4aa1dc1b88c44af0ad": 1,
+    "5bc1536beaba0d3f8eea24bd9091228f5a47f64e": 1,
+    "1f74853a1499c2a3803343a9d6723e5fefb9c620": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "577882e9f484ab0b3881a898adf1d7c468869250": 1,
+    "47c7847a301642e9a6ab8d8e5b93f2e343c21349": 1,
+    "afabd8c127a509136fc030813fab2a77e125aea9": 1,
+    "7ca5733db56efec64fcc1b4797ce1b4caa921846": 1,
+    "24dadbd5bef08e5071caed019119cd2ae3318260": 1,
+    "fd27ea250c8f7a69928d1ba69977800011bcf26f": 1,
+    "2624ad11ade4998264900a0bb4c08e86b54b5b88": 1,
+    "09877d62c8ec5a7223b3ea489ea86f90f49bfd26": 1,
+    "01d32665ef9829fb0afae924abba9659d58cc146": 4,
+    "698fac9267ea69e285de0823c56486ab1fd2e597": 3,
+    "9944b65c879ed552105e42809556f67dca7cb1b6": 4,
+    "7a4cab27dbef3288c4392834e597fbcc22a84837": 2,
+    "72816382e367b91a1a32648f16b5d9f32314ba46": 2,
+    "f756f3c8dbedf6011b9cdc363c79ba6316732465": 3,
+    "ca34f433e0c30b7887aa2e3e3bb5e866deddbef7": 1,
+    "4a5a630f1d7f89f86f006be6f7d19852d6b8cf8f": 1,
+    "da5a0ae33b11d6c45e30553e8ff3513bfd3bf160": 1,
+    "e4e871a205b68fc638b51a645d912b692eac89fd": 1,
+    "1c3b93c4b44b47ddc2244c29e107e2379ae639d3": 1,
+    "005c5cd0fb0bb27be847a413c867eae26d306cef": 1,
+    "ae815737da772b8b08976111c6e5f7fbd001a592": 2,
+    "1a7755f3b4e667491f48ea398093f9f0188b2e5a": 2,
+    "2ad59a94ee61c98c9c97055ce824146b3b6e385a": 1,
+    "9e51bea477de47d5e3ab3aa2ad7badd177e78b20": 6,
+    "88ecff675fd1c303a9151e2d11c787bd53c01c5a": 4,
+    "d2601d6dd2b6180ae8075851eb00fb7cad576160": 3,
+    "7286a8ec450a072241a5a676a2745e827e7a744d": 2,
+    "aee58de49b793bed52c054fdd1fac10e2710bdad": 4,
+    "a262e75b7224c168d3ae7368ac6b624e5c403ed7": 4,
+    "db409760e9f8c84a535ef2cfd3b53deff0707e64": 4,
+    "2104ab0e264f0ca1661066144b4407bf08038e14": 4,
+    "636df077d3ff7962f9b1975240117c774df52e49": 4,
+    "6291ab76721f2e3af47bf7100bc2851a646b8f3e": 4,
+    "74655690438240a600d9469173ce9c418a7c823b": 4,
+    "2478b4b1142a32c36d979510cb471b79c00a59c1": 5,
+    "41689d24ee3f4e3268833fb25ea58c24ce83fcee": 3,
+    "9661c1839e98bafd02336eb45f434744e1d16282": 3,
+    "7f4e3d1b226349e29ea88436b449a7108d4fb568": 3,
+    "d930602e9cc7efaeceb85c360e8ab5a968303018": 2,
+    "606d8cdf402a1af1ef92bc5742e3d019e66e0909": 2,
+    "d3eb6c3034dfc408abd078f8142d91c1fb07f939": 3,
+    "d89da9085410397239bdd4c2c693737de9b0a088": 1,
+    "6e2ce4451062d259aa991e1a5238190d4b421c51": 2,
+    "4a8f23b42f6b4f0fc0ff9e8c5772db389ad0495f": 3,
+    "1c000f6728b8a846af09123f9181d59e63949ba1": 1,
+    "cb128b513ee607b4986cb17712d9fcef6a8a656e": 1,
+    "9dcbbdce9b07cabba8483b64b37925317e39a880": 2,
+    "c2067c7955b31bc32f10d9fa0a1bcd97fd89f90f": 1,
+    "54593ecd47e0483ebaf8effd595dbd2737ef369d": 2,
+    "965d64d99cd6eff6fa0d7a6b5569d871298f2bb8": 1,
+    "5150759e3411adc14bcf1cc5b89211f270b79116": 1,
+    "0b3bb33b5650ce76bf0bedb73b0e77dae4bb90d0": 1,
+    "1c39ec33197a0a9496c94f6caf26f81b75880e4a": 1,
+    "0b0fd8ddeabd28316e930f51f4518c5aec0c5928": 1
+  },
+  "replicate_nodes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "family": "multimodal_MoE",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_86ea93c2",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770"
+    }
+  ],
+  "successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+      "strategy": "official_gene_dropout_augmentation",
+      "family": "gene_dropout_augmentation",
+      "structural_relation": "structural_variant",
+      "val": 0.4946935474872589,
+      "test": 0.5318608283996582,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_laplacian_smoothing_87f46e76",
+      "strategy": "official_string_laplacian_smoothing",
+      "family": "STRING_laplacian_prior",
+      "structural_relation": "structural_variant",
+      "val": 0.49365296959877014,
+      "test": 0.5193934440612793,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_temperature_calibrated_head_841519b9",
+      "strategy": "official_temperature_calibrated_head",
+      "family": "temperature_calibration",
+      "structural_relation": "structural_variant",
+      "val": 0.49013376235961914,
+      "test": 0.5232389569282532,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c",
+      "strategy": "official_target_bilinear_head",
+      "family": "target_bilinear_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4898087978363037,
+      "test": 0.5163614153862,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_swa_or_checkpoint_ensemble_e29e9b6b",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "family": "checkpoint_ensemble_or_SWA",
+      "structural_relation": "structural_variant",
+      "val": 0.48721346259117126,
+      "test": 0.5290976166725159,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_target_graph_conditioned_head_e1a25a55",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4865931272506714,
+      "test": 0.5289888381958008,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_target_gene_head_4888e1ef",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4828227460384369,
+      "test": 0.5282691121101379,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_string_neighborhood_attention_08b2c770",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.4809098243713379,
+      "test": 0.522528350353241,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_aido_cached_embedding_fusion_0f75b97b",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "family": "AIDO_cached_embedding",
+      "structural_relation": "structural_variant",
+      "val": 0.4785623848438263,
+      "test": 0.53033846616745,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_multimodal_mixture_of_experts_4374052d",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "family": "multimodal_MoE",
+      "structural_relation": "replicate",
+      "val": 0.47188663482666016,
+      "test": 0.5336167812347412,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06",
+      "strategy": "official_layerwise_lr_schedule",
+      "family": "layerwise_lr_decay",
+      "structural_relation": "structural_variant",
+      "val": 0.4701603949069977,
+      "test": 0.5197435617446899,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p3_official_target_bilinear_head_8053bd8c"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_swa_or_checkpoint_ensemble_889dddf0",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "family": "checkpoint_ensemble_or_SWA",
+      "structural_relation": "structural_variant",
+      "val": 0.46610915660858154,
+      "test": 0.5070006251335144,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+      "strategy": "official_layerwise_lr_schedule",
+      "family": "layerwise_lr_decay",
+      "structural_relation": "structural_variant",
+      "val": 0.46022966504096985,
+      "test": 0.4992233216762543,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "strategy": "official_multimodal_mixture_of_experts",
+      "family": "multimodal_MoE",
+      "structural_relation": "structural_variant",
+      "val": 0.4562431275844574,
+      "test": 0.4966503083705902,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_low_rank_head_9dbf5d12",
+      "strategy": "official_target_low_rank_head",
+      "family": "target_low_rank_head",
+      "structural_relation": "structural_variant",
+      "val": 0.45566868782043457,
+      "test": 0.5021732449531555,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_target_low_rank_head_e31f01a8",
+      "strategy": "official_target_low_rank_head",
+      "family": "target_low_rank_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4474222660064697,
+      "test": 0.5052575469017029,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "strategy": "official_gene_dropout_augmentation",
+      "family": "gene_dropout_augmentation",
+      "structural_relation": "structural_variant",
+      "val": 0.44735535979270935,
+      "test": 0.4934024512767792,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "strategy": "official_target_bilinear_head",
+      "family": "target_bilinear_head",
+      "structural_relation": "structural_variant",
+      "val": 0.44560250639915466,
+      "test": 0.48925352096557617,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2",
+      "strategy": "official_temperature_calibrated_head",
+      "family": "temperature_calibration",
+      "structural_relation": "structural_variant",
+      "val": 0.44276538491249084,
+      "test": 0.4993557631969452,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4375019371509552,
+      "test": 0.49938610196113586,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed",
+      "strategy": "official_aido_cached_embedding_fusion",
+      "family": "AIDO_cached_embedding",
+      "structural_relation": "structural_variant",
+      "val": 0.43591591715812683,
+      "test": 0.49854469299316406,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04",
+      "strategy": "official_string_laplacian_smoothing",
+      "family": "STRING_laplacian_prior",
+      "structural_relation": "structural_variant",
+      "val": 0.42920923233032227,
+      "test": 0.46035560965538025,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "strategy": "official_target_graph_conditioned_head",
+      "family": "target_graph_conditioned_head",
+      "structural_relation": "structural_variant",
+      "val": 0.4195387661457062,
+      "test": 0.44576215744018555,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.4148080348968506,
+      "test": 0.44605448842048645,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    }
+  ],
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_lora_adapter",
+      "missing_required_artifacts": [
+        "official_aido_cell_100m_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/AIDO.Cell-100M"
+      ],
+      "blocker_report": "experiments/k562_full_global_queue_run/artifact_acquisition/official_aido_cell_100m_model_dir_lora_interface_blocker.md"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_fusion",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_class_imbalance_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    }
+  ],
+  "blocked_artifacts": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "family": "AIDO_adapter",
+      "missing": [
+        "official_aido_cell_100m_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "family": "AIDO_STRING_fusion",
+      "missing": [
+        "official_string_gnn_model_dir"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "missing": [
+        "class_distribution"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6",
+      "strategy": "official_public_static_node_family_wrapper",
+      "family": "public_static_tree_family",
+      "missing": []
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63",
+      "strategy": "official_aido_full_finetune",
+      "family": "AIDO_full_finetune",
+      "missing": []
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933",
+      "strategy": "official_aido_topk_layer_tuning",
+      "family": "AIDO_selective_finetune",
+      "missing": []
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd",
+      "strategy": "official_aido_lora_adapter",
+      "family": "AIDO_adapter",
+      "missing": []
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c",
+      "strategy": "official_aido_full_finetune",
+      "family": "AIDO_full_finetune",
+      "missing": []
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5",
+      "strategy": "official_aido_topk_layer_tuning",
+      "family": "AIDO_selective_finetune",
+      "missing": []
+    }
+  ],
+  "motifs": {
+    "promising": [
+      "official_target_gene_head: unspecified + unspecified val=0.4375",
+      "official_string_neighborhood_attention: unspecified + unspecified val=0.4148",
+      "official_target_graph_conditioned_head: unspecified + unspecified val=0.4195",
+      "official_string_laplacian_smoothing: unspecified + unspecified val=0.4292",
+      "official_target_low_rank_head: unspecified + unspecified val=0.4557",
+      "official_target_bilinear_head: unspecified + unspecified val=0.4456",
+      "official_multimodal_mixture_of_experts: unspecified + unspecified val=0.4562",
+      "official_temperature_calibrated_head: unspecified + unspecified val=0.4428",
+      "official_gene_dropout_augmentation: unspecified + unspecified val=0.4474",
+      "official_aido_cached_embedding_fusion: unspecified + unspecified val=0.4359"
+    ],
+    "discouraged": [
+      "official_aido_lora_adapter: 1 failure(s)",
+      "official_string_gnn_attention: 1 failure(s)",
+      "official_aido_string_fusion: 1 failure(s)",
+      "official_class_imbalance_training: 1 failure(s)",
+      "official_aido_lora_adapter: blocked by missing artifact 2 time(s)",
+      "official_aido_full_finetune: blocked by missing artifact 2 time(s)",
+      "official_aido_topk_layer_tuning: blocked by missing artifact 2 time(s)",
+      "official_string_gnn_attention: blocked by missing artifact 1 time(s)",
+      "official_aido_string_fusion: blocked by missing artifact 1 time(s)"
+    ]
+  }
+}

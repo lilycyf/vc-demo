@@ -1,0 +1,113 @@
+{
+  "branch": "k562-full-global-queue-run",
+  "proposal_selection_mode": "global_queue",
+  "target_val_macro_f1": 0.5,
+  "counts": {
+    "trained": 26,
+    "requires_artifact_acquisition": 11,
+    "candidate_queued": 30,
+    "pruned_not_selected": 145
+  },
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "strategy": "root",
+    "val_macro_f1": 0.48099008202552795,
+    "test_macro_f1": 0.5259189009666443,
+    "status": "trained"
+  },
+  "best_generated_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237",
+    "strategy": "official_gene_dropout_augmentation",
+    "val_macro_f1": 0.4946935474872589,
+    "test_macro_f1": 0.5318608283996582,
+    "status": "trained"
+  },
+  "delta_child_vs_root": 0.013703465461730957,
+  "delta_child_vs_target": -0.005306452512741089,
+  "target_achieved": false,
+  "root_beating_achieved": true,
+  "blocked": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "artifact": null,
+      "status": "requires_artifact_acquisition",
+      "reason": "AIDO.Cell-100M model directory is present but lacks loadable cellfoundation architecture/tokenizer code required by public LoRA implementation; strict mode forbids proxy fallback"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "artifact": null,
+      "status": "requires_artifact_acquisition",
+      "reason": "required artifact missing; strict artifact mode requires artifact acquisition before training"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "artifact": null,
+      "status": "requires_artifact_acquisition",
+      "reason": "required artifact missing; strict artifact mode requires artifact acquisition before training"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "artifact": null,
+      "status": "requires_artifact_acquisition",
+      "reason": "required artifact missing; strict artifact mode requires artifact acquisition before training"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6",
+      "strategy": "official_public_static_node_family_wrapper",
+      "artifact": "official_string_gnn_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "The selected public static node family wrapper must execute source-backed VCHarness public static code through external_static_node. Public static K562 wrappers require /home/Models/STRING_GNN for the official model artifact contract, but /home/Models/STRING_GNN is absent and configs/artifacts/acquisition_sources.json marks official_string_gnn_model_dir as non-automatic/unavailable without a verified source-backed checkpoint or build procedure. A graph file is not an equivalent trained STRING_GNN model."
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_full_finetune_f54f7d63",
+      "strategy": "official_aido_full_finetune",
+      "artifact": "official_aido_cell_100m_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "AIDO.Cell-100M directory exists but is not loadable as a real AutoModel/AutoTokenizer artifact: Transformers reports unknown model_type cellfoundation; architecture/tokenizer code is missing or unverifiable. Strict full fine-tune cannot be implemented without the real public model interface."
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_aido_topk_layer_tuning_73e7b933",
+      "strategy": "official_aido_topk_layer_tuning",
+      "artifact": "official_aido_cell_100m_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "AIDO top-k layer tuning requires the real AIDO.Cell-100M layer stack and tokenizer/model architecture. /home/Models/AIDO.Cell-100M contains weights/config but AutoModel/AutoTokenizer cannot load model_type=cellfoundation, so top-k trainable layers cannot be identified or fine-tuned without unverifiable/fallback code."
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_aido_lora_adapter_b31381fd",
+      "strategy": "official_aido_lora_adapter",
+      "artifact": "official_aido_cell_100m_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "AIDO LoRA adapter requires the real AIDO.Cell-100M AutoModel/AutoTokenizer architecture and layer/module names. /home/Models/AIDO.Cell-100M exists but cannot load model_type=cellfoundation with the available verified code, so LoRA placement cannot be implemented without fallback/proxy code."
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_aido_full_finetune_2b5b9d0c",
+      "strategy": "official_aido_full_finetune",
+      "artifact": "official_aido_cell_100m_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "AIDO full fine-tune requires a verifiable AIDO.Cell-100M AutoModel/AutoTokenizer implementation and layer stack. The available /home/Models/AIDO.Cell-100M checkpoint has model_type=cellfoundation but no loadable verified architecture/tokenizer code, so strict fine-tuning cannot proceed without fallback/proxy code."
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_aido_topk_layer_tuning_4f258bf5",
+      "strategy": "official_aido_topk_layer_tuning",
+      "artifact": "official_aido_cell_100m_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "AIDO top-k layer tuning requires verifiable AIDO.Cell-100M layer/module code. The available checkpoint directory cannot load model_type=cellfoundation via verified AutoModel/AutoTokenizer, so no source-backed layer selection is possible."
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "strategy": "official_public_static_node_family_wrapper",
+      "artifact": "official_string_gnn_model_dir",
+      "status": "requires_artifact_acquisition",
+      "reason": "Public static VCHarness wrappers require the real /home/Models/STRING_GNN trained model directory. That directory is absent, and acquisition_sources marks official_string_gnn_model_dir as non-automatic/unavailable without verifiable model weights; graph source files are not equivalent checkpoints."
+    }
+  ],
+  "fallback_count": 0,
+  "backprop_nontrained_count": 0,
+  "generated_event_count_estimate": 35,
+  "pruned_event_count_estimate": 145,
+  "selected_event_count_estimate": 0
+}

@@ -1,0 +1,243 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a",
+  "strategy": "official_scgpt_cell_encoder",
+  "blueprint": {
+    "id": "official_scgpt_cell_encoder",
+    "status": "planned",
+    "official_k562": true,
+    "category": "single_cell_foundation_model",
+    "paper_family": "scGPT_or_single_cell_encoder",
+    "change_level": 5,
+    "role": "Use a single-cell foundation model style encoder for cell/expression state if a real artifact is present or acquired.",
+    "requires": [
+      "single_cell_foundation_model_artifact",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "If artifact is not public or cannot be acquired, node must block instead of fallback.",
+    "acceptance": [
+      "Records artifact source",
+      "No random encoder substitution",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Use a single-cell foundation model style encoder for cell/expression state if a real artifact is present or acquired.",
+  "changes": [
+    "program_model:custom_program->official_scgpt_cell_encoder",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a",
+  "program_model_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "single_cell_foundation_model_artifact",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_scgpt_cell_encoder",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.58,
+    "base": 0.7,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.12,
+    "native_repeat_penalty": 0.0,
+    "count": 1,
+    "family": "scGPT_or_single_cell_encoder",
+    "family_count": 1
+  },
+  "structural_signature": "6291ab76721f2e3af47bf7100bc2851a646b8f3e",
+  "parent_structural_signature": "698fac9267ea69e285de0823c56486ab1fd2e597",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p10_official_scgpt_cell_encoder_039e098a/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "single_cell_foundation_model_artifact",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [
+      "single_cell_foundation_model_artifact"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "single_cell_foundation_model_artifact"
+  ],
+  "missing_required_artifact_paths": [
+    ""
+  ],
+  "candidate_pool_iteration": 9,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": -0.76,
+    "scientific_score": 0.58,
+    "cost_class": "expensive",
+    "cost_bonus": -0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "single_cell_foundation_model_artifact"
+    ],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p9_official_target_bilinear_head_dc403b85",
+      "policy": "uct",
+      "score": 2.047148433764816,
+      "uct": 2.047148433764816,
+      "puct": null,
+      "q": 0.44560250639915466,
+      "Q_v": 0.8912050127983093,
+      "exploitation": 0.44560250639915466,
+      "Exploitation": 0.44560250639915466,
+      "exploration": 1.6015459273656616,
+      "Exploration": 1.6015459273656616,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 13,
+      "children": 6,
+      "best_val_macro_f1": 0.44560250639915466,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed",
+      "policy": "uct",
+      "score": 2.037461844523788,
+      "uct": 2.037461844523788,
+      "puct": null,
+      "q": 0.43591591715812683,
+      "Q_v": 0.8718318343162537,
+      "exploitation": 0.43591591715812683,
+      "Exploitation": 0.43591591715812683,
+      "exploration": 1.6015459273656616,
+      "Exploration": 1.6015459273656616,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.43591591715812683,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04",
+      "policy": "uct",
+      "score": 2.0307551596959836,
+      "uct": 2.0307551596959836,
+      "puct": null,
+      "q": 0.42920923233032227,
+      "Q_v": 0.8584184646606445,
+      "exploitation": 0.42920923233032227,
+      "Exploitation": 0.42920923233032227,
+      "exploration": 1.6015459273656616,
+      "Exploration": 1.6015459273656616,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.42920923233032227,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "policy": "uct",
+      "score": 2.0210846935113675,
+      "uct": 2.0210846935113675,
+      "puct": null,
+      "q": 0.4195387661457062,
+      "Q_v": 0.8390775322914124,
+      "exploitation": 0.4195387661457062,
+      "Exploitation": 0.4195387661457062,
+      "exploration": 1.6015459273656616,
+      "Exploration": 1.6015459273656616,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.4195387661457062,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "uct",
+      "score": 2.016353962262512,
+      "uct": 2.016353962262512,
+      "puct": null,
+      "q": 0.4148080348968506,
+      "Q_v": 0.8296160697937012,
+      "exploitation": 0.4148080348968506,
+      "Exploitation": 0.4148080348968506,
+      "exploration": 1.6015459273656616,
+      "Exploration": 1.6015459273656616,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 13,
+      "children": 0,
+      "best_val_macro_f1": 0.4148080348968506,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "uct",
+      "score": 1.7446300377127992,
+      "uct": 1.7446300377127992,
+      "puct": null,
+      "q": 0.4369732638200124,
+      "Q_v": 1.3109197914600372,
+      "exploitation": 0.4369732638200124,
+      "Exploitation": 0.4369732638200124,
+      "exploration": 1.307656773892787,
+      "Exploration": 1.307656773892787,
+      "prior": 0.0,
+      "visits": 3,
+      "parent_visits": 13,
+      "children": 6,
+      "best_val_macro_f1": 0.4375019371509552,
+      "stage": "improve"
+    }
+  ],
+  "candidate_pool_rank": 5,
+  "candidate_pool_size": 6,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "global_queue_generate_many_train_best_available"
+}

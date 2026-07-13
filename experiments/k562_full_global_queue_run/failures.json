@@ -1,0 +1,62 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_lora_adapter",
+      "missing_required_artifacts": [
+        "official_aido_cell_100m_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/AIDO.Cell-100M"
+      ],
+      "blocker_report": "experiments/k562_full_global_queue_run/artifact_acquisition/official_aido_cell_100m_model_dir_lora_interface_blocker.md"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_string_fusion",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ]
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "parent": "official_k562_root_aido_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_class_imbalance_training",
+      "missing_required_artifacts": [
+        "class_distribution"
+      ],
+      "missing_required_artifact_paths": [
+        ""
+      ]
+    }
+  ],
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "strategy": "official_public_static_node_family_wrapper",
+      "status": "requires_artifact_acquisition",
+      "reason": "Public static VCHarness wrappers require the real /home/Models/STRING_GNN trained model directory. That directory is absent, and acquisition_sources marks official_string_gnn_model_dir as non-automatic/unavailable without verifiable model weights; graph source files are not equivalent checkpoints.",
+      "fallback_trained": false
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_gene_dropout_augmentation",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_gene_dropout_augmentation_368da237/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes",
+    "augmentation": {
+      "type": "training_only_feature_group_dropout",
+      "drop_probability": 0.06,
+      "feature_group_count": 16,
+      "test_labels_used": false
+    }
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "uses official_string_gnn_keep20_graph as graph prior",
+    "uses official_essential_deg_with_split_h5ad to validate task contract"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 2,
+  "paper_family": "gene_dropout_augmentation",
+  "pipeline_program": {
+    "blueprint": "official_gene_dropout_augmentation",
+    "representation": "official cached AIDO+GNN perturbation features",
+    "perturbation_side": "training-only grouped feature dropout",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "STRING keep20 graph residual",
+    "head": "dense target logits plus graph residual",
+    "training_strategy": "gene_dropout_augmentation",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "regularized source-backed graph/dense head; no label/split/metric changes"
+  }
+}

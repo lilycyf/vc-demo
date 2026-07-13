@@ -1,0 +1,11 @@
+{
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_public_static_node_family_wrapper_786354b6",
+  "strategy": "official_public_static_node_family_wrapper",
+  "artifact_id": "official_string_gnn_model_dir",
+  "expected_path": "/home/Models/STRING_GNN",
+  "status": "blocked_missing_source_backed_model_checkpoint",
+  "reason": "The selected public static node family wrapper must execute source-backed VCHarness public static code through external_static_node. Public static K562 wrappers require /home/Models/STRING_GNN for the official model artifact contract, but /home/Models/STRING_GNN is absent and configs/artifacts/acquisition_sources.json marks official_string_gnn_model_dir as non-automatic/unavailable without a verified source-backed checkpoint or build procedure. A graph file is not an equivalent trained STRING_GNN model.",
+  "created_at": "2026-07-13T14:02:13.229912+00:00",
+  "fallback_trained": false,
+  "resume_policy": "continue_global_queue_with_other_candidates"
+}

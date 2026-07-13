@@ -1,0 +1,112 @@
+{
+  "format": "vc_demo_node_artifact_contract.v1",
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_native_public_best_reimplementation_64c64c0b",
+  "blueprint": "official_native_public_best_reimplementation",
+  "strict_official_mode": true,
+  "fallback_allowed": false,
+  "required_artifacts": [
+    "official_public_best_node_code",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "present_required_artifacts": [
+    "official_public_best_node_code",
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "missing_required_artifacts": [
+    "official_string_gnn_model_dir"
+  ],
+  "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
+  "artifact_rows": [
+    {
+      "id": "official_public_best_node_code",
+      "family": "public_node_code",
+      "provider": "VCHarness",
+      "status": "expected_present",
+      "path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+      "source": "VCHarness public K562 static node code bundled in genbio-ai/VCHarness",
+      "usable_for": [
+        "official_vcharness_best_node_wrapper"
+      ],
+      "required_for_blueprints": [
+        "official_public_best_node"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_aido_cell_100m_model_dir",
+      "family": "foundation_model_checkpoint",
+      "provider": "AIDO.Cell-100M",
+      "status": "missing_until_downloaded",
+      "path": "/home/Models/AIDO.Cell-100M",
+      "source": "Exact AutoModel directory expected by public VCHarness node code; not equivalent to downloaded h5ad embedding.",
+      "usable_for": [
+        "official_vcharness_best_node"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_k562_aido_lora_automodel",
+        "official_public_best_node",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_string_gnn_model_dir",
+      "family": "foundation_model_checkpoint",
+      "provider": "STRING_GNN",
+      "status": "missing_until_downloaded",
+      "path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "usable_for": [
+        "official_vcharness_best_node"
+      ],
+      "required_for_blueprints": [
+        "official_aido_string_fusion",
+        "official_k562_string_gnn_attention",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": false,
+      "resolved_status": "missing"
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "family": "official_task_data",
+      "provider": "GenBio AI HuggingFace",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "usable_for": [
+        "official_k562_task_contract"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    }
+  ],
+  "model_artifacts_config": {
+    "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+    "string_gnn_model_dir": "/home/Models/STRING_GNN",
+    "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+  }
+}

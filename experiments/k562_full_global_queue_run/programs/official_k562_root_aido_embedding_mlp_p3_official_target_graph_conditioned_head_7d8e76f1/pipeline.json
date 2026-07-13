@@ -1,0 +1,48 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_graph_conditioned_head",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "artifact_id": "official_string_gnn_keep20_graph",
+      "usage": "conditions target-specific head factors using real STRING keep20 target neighborhoods; missing genes use self-loops only"
+    },
+    {
+      "artifact_id": "official_essential_deg_with_split_h5ad",
+      "usage": "official task contract and target-gene order"
+    }
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "target_graph_conditioned_head",
+  "pipeline_program": {
+    "blueprint": "official_target_graph_conditioned_head",
+    "representation": "parent AIDO perturbation embedding features",
+    "perturbation_side": "unspecified",
+    "target_side": "official target_genes.tsv aligned to STRING keep20 graph by Ensembl id",
+    "fusion": "unspecified",
+    "prior": "real STRING graph neighborhood conditioning over target-specific head factors",
+    "head": "low-rank target graph-conditioned DEG head",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "target-specific prediction head conditioned on real graph neighborhoods"
+  }
+}

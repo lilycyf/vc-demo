@@ -1,0 +1,53 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_layerwise_lr_schedule",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes",
+    "layerwise_lr_schedule": [
+      {
+        "name": "input_encoder",
+        "lr_scale": 0.5
+      },
+      {
+        "name": "context_blocks",
+        "lr_scale": 0.75
+      },
+      {
+        "name": "target_head",
+        "lr_scale": 1.0
+      }
+    ]
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "uses official_essential_deg_with_split_h5ad to validate official target-gene task contract"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "layerwise_lr_decay",
+  "pipeline_program": {
+    "blueprint": "official_layerwise_lr_schedule",
+    "representation": "official cached AIDO+GNN perturbation features",
+    "perturbation_side": "unspecified",
+    "target_side": "official target-gene table features",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "target-aware low-rank DEG classifier",
+    "training_strategy": "layerwise_lr_decay/discriminative_lr_groups_recorded",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "training-strategy blueprint records discriminative LR groups without altering data or metrics"
+  }
+}

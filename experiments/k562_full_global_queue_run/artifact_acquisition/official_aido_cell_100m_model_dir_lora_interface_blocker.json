@@ -1,0 +1,16 @@
+{
+  "artifact_id": "official_aido_cell_100m_model_dir",
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+  "blueprint": "official_aido_lora_adapter",
+  "status": "blocked_unavailable_or_incomplete_interface",
+  "expected_path": "/home/Models/AIDO.Cell-100M",
+  "checked_sources": [
+    "/home/Models/AIDO.Cell-100M",
+    "/workspace/_external/VCHarness/K562_cls/static/*_code.py",
+    "AutoTokenizer.from_pretrained(..., trust_remote_code=True)",
+    "AutoModel.from_pretrained(..., trust_remote_code=True)"
+  ],
+  "reason": "/home/Models/AIDO.Cell-100M contains config.json and model.safetensors, but Transformers cannot load model_type=cellfoundation or tokenizer with trust_remote_code=True in this environment. The public VCHarness LoRA implementation requires AutoModel/AutoTokenizer for AIDO.Cell-100M, so the artifact is incomplete for faithful LoRA fine-tuning. No fallback/proxy model was trained.",
+  "fallback_trained": false,
+  "blocker_report": "experiments/k562_full_global_queue_run/artifact_acquisition/official_aido_cell_100m_model_dir_lora_interface_blocker.md"
+}

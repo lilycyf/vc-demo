@@ -1,0 +1,109 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_04c620ff",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec",
+  "strategy": "official_public_best_node",
+  "blueprint": {
+    "id": "official_public_best_node",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "official_static_node",
+    "paper_family": "public_vcharness_best_path",
+    "change_level": 5,
+    "role": "Run the public VCHarness K562 best static node node2-1-1-1-1-1 as a harness candidate through the external_static_node backend.",
+    "requires": [
+      "official_public_best_node_code",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "execution_backend": "external_static_node",
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_notes": "Implemented as a wrapper around _external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py. Metrics are standardized into best_val_macro_f1/test_macro_f1 by vc_demo.harness.external_static.",
+    "acceptance": [
+      "Does not require manual execution outside harness",
+      "Records artifact usage and external script path",
+      "Appears in tree.json like any other node"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Run the public VCHarness K562 best static node node2-1-1-1-1-1 as a harness candidate through the external_static_node backend.",
+  "changes": [
+    "program_model:custom_program->official_public_best_node",
+    "blueprint_status:implemented",
+    "model_program:none",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec",
+  "program_model_path": "",
+  "pipeline_manifest_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec/pipeline.json",
+  "pipeline_kind": "external_static_node",
+  "artifact_requirements": [
+    "official_public_best_node_code",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "VCHarness public K562 best node",
+      "sides": [
+        "AIDO",
+        "STRING_GNN",
+        "official_k562_tsv"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_public_best_node",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.5800000000000001,
+    "base": 0.62,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.24,
+    "native_repeat_penalty": 0.0,
+    "count": 2,
+    "family": "public_vcharness_best_path",
+    "family_count": 2
+  },
+  "structural_signature": "2104ab0e264f0ca1661066144b4407bf08038e14",
+  "parent_structural_signature": "ae815737da772b8b08976111c6e5f7fbd001a592",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_public_best_node_f62c63ec/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_public_best_node_code"
+    ],
+    "missing_required_artifacts": [
+      "official_string_gnn_model_dir"
+    ],
+    "all_required_present": false
+  }
+}

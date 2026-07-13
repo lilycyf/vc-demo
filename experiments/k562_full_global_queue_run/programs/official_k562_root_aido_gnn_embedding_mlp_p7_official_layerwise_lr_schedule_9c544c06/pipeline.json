@@ -1,0 +1,55 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_layerwise_lr_schedule",
+  "model_entrypoint": "experiments/k562_full_global_queue_run/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_9c544c06/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes",
+    "layerwise_lr_schedule": [
+      {
+        "name": "context_and_dense_head",
+        "lr_scale": 1.0
+      },
+      {
+        "name": "graph_target_prior",
+        "lr_scale": 0.75
+      },
+      {
+        "name": "target_bias_and_offsets",
+        "lr_scale": 1.25
+      }
+    ]
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "uses official_string_gnn_keep20_graph as graph prior",
+    "uses official_essential_deg_with_split_h5ad to validate task contract"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "layerwise_lr_decay",
+  "pipeline_program": {
+    "blueprint": "official_layerwise_lr_schedule",
+    "representation": "official cached AIDO+GNN perturbation features",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "STRING graph residual",
+    "head": "dense target logits plus graph residual",
+    "training_strategy": "layerwise_lr_decay/discriminative_lr_groups_recorded",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "records layerwise LR groups on source-backed dense/graph model; no data/metric changes"
+  }
+}

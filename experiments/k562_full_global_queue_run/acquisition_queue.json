@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "artifact_id": "official_aido_cell_100m_model_dir",
+      "expected_path": "/home/Models/AIDO.Cell-100M",
+      "source": "Exact AIDO.Cell-100M AutoModel/AutoTokenizer code and checkpoint layout required by public VCHarness LoRA nodes",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "artifact_id": "class_distribution",
+      "expected_path": "",
+      "source": "not listed in artifact registry",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_public_static_node_family_wrapper_79d19c4b",
+      "strategy": "official_public_static_node_family_wrapper",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact trained STRING_GNN model directory required by public static wrappers",
+      "action": "source_backed_acquisition_or_block",
+      "resume_after": "resume only after /home/Models/STRING_GNN is source-backed and validated",
+      "blocker_report": "experiments/k562_full_global_queue_run/artifact_acquisition/official_string_gnn_model_dir_public_static_79d19c4b_blocker.md"
+    }
+  ]
+}
