@@ -22,8 +22,8 @@ Pass only if the run type is explicit:
 - `full_cellline_run` must explicitly set `target_val_macro_f1`.
 - `transfer_64x16` and `transfer_150x40` must not be described as full model-quality runs.
 - Full runs must apply artifact-constrained blueprint filtering before training and report excluded blueprint families.
-- Full runs must train at least 100 selected rollouts unless stopped by a source-backed blocker.
-- Full runs must generate at least 300 proposals unless stopped by a source-backed blocker.
+- Full runs must train at least 100 selected rollouts unless no feasible non-blocked blueprint path remains.
+- Full runs must generate at least 300 proposals unless no feasible non-blocked blueprint path remains.
 - Full runs must explicitly report whether best generated child beats best root on validation Macro-F1.
 - Full runs must explicitly report whether best generated child reaches `target_val_macro_f1`.
 

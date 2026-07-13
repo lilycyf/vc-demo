@@ -485,10 +485,22 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 "missing_required_artifacts": proposal["missing_required_artifacts"],
                 "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
             })
-            stop_reason = f"requires artifact acquisition for {proposal.get('strategy')}: {', '.join(proposal['missing_required_artifacts'])}"
-            append_mcts_trace(run_dir, {"event": "artifact_acquisition_block", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "missing_required_artifacts": proposal["missing_required_artifacts"], "stop_reason": stop_reason})
+            no_improve += 1
+            memory = rebuild_memory_from_tree(run_dir, tree, failures)
+            append_mcts_trace(run_dir, {
+                "event": "artifact_acquisition_block_continued",
+                "iteration": iteration,
+                "selected_parent": parent_name,
+                "child": child_name,
+                "chosen_blueprint": proposal.get("strategy"),
+                "missing_required_artifacts": proposal["missing_required_artifacts"],
+                "policy": "block_selected_node_record_artifact_memory_and_continue_search",
+            })
             write_tree_and_failures(run_dir, tree, failures)
-            break
+            if proposal_budget is not None and generated_proposals >= proposal_budget:
+                stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
+                break
+            continue
 
         if proposal.get("requires_implementation"):
             add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)

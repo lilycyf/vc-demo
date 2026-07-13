@@ -37,7 +37,7 @@ Hard rules:
 - `transfer_64x16` and `transfer_150x40` are loop/self-test levels even if they generate many proposals.
 - If the user asks to "完整跑" or "真实跑" a cell line, use `RUN_TYPE=full_cellline_run`, not `transfer_64x16`.
 - Full runs require an artifact-constrained blueprint filter before training: exclude unresolved/blocked artifact-dependent blueprints from the main run and report exclusions separately.
-- Known-unavailable artifacts must not repeatedly stop the main full run; after source-backed acquisition proves unavailability, filter those blueprint families and continue with currently real artifacts.
+- Known-unavailable artifacts must not stop the main full run. After source-backed acquisition proves unavailability, record the blocker, suppress/filter dependent blueprint families, and continue searching other feasible paths.
 
 ## Test Levels
 
