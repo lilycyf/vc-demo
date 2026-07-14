@@ -282,6 +282,63 @@ def acquisition_queue(tree: dict[str, Any]) -> list[dict[str, Any]]:
     return items
 
 
+def present_artifact_ids(registry_audit: dict[str, Any]) -> set[str]:
+    return {
+        str(item.get("id"))
+        for item in registry_audit.get("artifacts", [])
+        if item.get("present") or item.get("resolved_status") == "present"
+    }
+
+
+def reactivate_resolved_artifact_blockers(
+    run_dir: Path,
+    tree: dict[str, Any],
+    failures: list[dict[str, Any]],
+    registry_audit: dict[str, Any],
+) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
+    present = present_artifact_ids(registry_audit)
+    reactivated: list[dict[str, Any]] = []
+    reactivated_nodes: set[str] = set()
+    for name, node in tree.get("nodes", {}).items():
+        if node.get("status") not in {"requires_artifact_acquisition", "blocked_missing_artifact"}:
+            continue
+        required = [str(x) for x in node.get("artifact_requirements", []) or [] if x]
+        missing = [str(x) for x in node.get("missing_required_artifacts", []) or [] if x]
+        needed = required or missing
+        if not needed:
+            continue
+        still_missing = sorted(x for x in needed if x not in present)
+        if still_missing:
+            node["missing_required_artifacts"] = still_missing
+            continue
+        node.update({
+            "status": "candidate_queued",
+            "missing_required_artifacts": [],
+            "missing_required_artifact_paths": [],
+            "reactivated_after_artifact_acquisition": True,
+            "reactivation_policy": "artifact_audit_now_present_requeue_for_global_selection",
+            "requires_implementation": bool(node.get("requires_implementation")),
+        })
+        reactivated_nodes.add(name)
+        row = {
+            "node": name,
+            "strategy": node.get("strategy"),
+            "artifact_requirements": needed,
+            "policy": "artifact_audit_now_present_requeue_for_global_selection",
+        }
+        reactivated.append(row)
+        append_mcts_trace(run_dir, {"event": "artifact_blocker_reactivated", **row})
+    if reactivated_nodes:
+        filtered_failures = []
+        for failure in failures:
+            if failure.get("node") in reactivated_nodes and failure.get("error") == "requires_artifact_acquisition":
+                continue
+            filtered_failures.append(failure)
+        failures = filtered_failures
+    return tree, failures, reactivated
+
+
+
 def lineage(tree: dict[str, Any], node_name: str) -> list[str]:
     path: list[str] = []
     current = node_name
@@ -363,7 +420,12 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     proposal_dir.mkdir(parents=True, exist_ok=True)
     registry_audit = audit_registry(load_registry(args.artifact_registry, "K562"))
     write_json(run_dir / "artifact_registry_audit.json", registry_audit)
-    tree.setdefault("artifact_registry", registry_audit)
+    tree["artifact_registry"] = registry_audit
+    if resume:
+        tree, failures, reactivated = reactivate_resolved_artifact_blockers(run_dir, tree, failures, registry_audit)
+        if reactivated:
+            tree.setdefault("events", []).append({"event": "resolved_artifact_blockers_reactivated", "items": reactivated})
+            write_json(run_dir / "resolved_artifact_blockers.json", {"items": reactivated})
     memory = rebuild_memory_from_tree(run_dir, tree, failures)
 
     if not resume:

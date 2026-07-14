@@ -59,6 +59,7 @@ Pass only if:
 - artifact registry exists for the selected cell line
 - each artifact has provenance and status
 - missing artifacts go through acquisition before block
+- after acquisition, resolved artifact blockers are re-audited and requeued rather than left as stale blockers
 - `requires_codex_research_download_or_build` has a completed Codex research acquisition report before final blocked status
 - no fake/random/generated artifact is used as fallback
 - row order, shape, vocabulary, and source are verified before marking present
