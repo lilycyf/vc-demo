@@ -1,0 +1,93 @@
+{
+  "branch": "k562-full-autonomy-rerun",
+  "run_dir": "experiments/k562_full_autonomy_rerun",
+  "target_val_macro_f1": 0.5,
+  "status_counts": {
+    "trained": 7,
+    "candidate_queued": 25
+  },
+  "event_counts": {
+    "selection": 5,
+    "proposal_pool_generated": 5,
+    "proposal_queued": 30,
+    "global_queue_selected": 5,
+    "expansion": 5,
+    "pending_implementation": 4,
+    "implementation_loop_start": 4,
+    "implementation_loop_result": 4,
+    "realtime_implementation_required": 4,
+    "selected_for_training": 1,
+    "backpropagation": 1
+  },
+  "generated_proposals": 30,
+  "trained_selected_rollouts": 5,
+  "pruned": 0,
+  "skipped": 25,
+  "blocked": 0,
+  "failed": 0,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "strategy": null,
+    "val_macro_f1": 0.48330000042915344,
+    "test_macro_f1": 0.5373832583427429
+  },
+  "best_generated_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+    "strategy": "official_target_gene_head",
+    "val_macro_f1": 0.5009788274765015,
+    "test_macro_f1": 0.5180274248123169
+  },
+  "delta_child_vs_root": 0.017678827047348022,
+  "delta_child_vs_target": 0.0009788274765014648,
+  "objective_achieved": true,
+  "implementation_queue_items": 0,
+  "acquisition_queue_items": 0,
+  "fallback_count_trace_scan": 0,
+  "backprop_nontrained_count_trace_scan": 0,
+  "backend_anomaly_count_trace_scan": 0,
+  "external_static_nonpublic": [],
+  "trained_nodes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "val_macro_f1": 0.5009788274765015,
+      "test_macro_f1": 0.5180274248123169
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "strategy": null,
+      "val_macro_f1": 0.48330000042915344,
+      "test_macro_f1": 0.5373832583427429
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "val_macro_f1": 0.47817835211753845,
+      "test_macro_f1": 0.525343120098114
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "val_macro_f1": 0.4764595329761505,
+      "test_macro_f1": 0.5043745040893555
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "val_macro_f1": 0.46437814831733704,
+      "test_macro_f1": 0.5000032782554626
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "val_macro_f1": 0.43443652987480164,
+      "test_macro_f1": 0.45848551392555237
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "strategy": null,
+      "val_macro_f1": 0.4295100271701813,
+      "test_macro_f1": 0.4801298677921295
+    }
+  ]
+}

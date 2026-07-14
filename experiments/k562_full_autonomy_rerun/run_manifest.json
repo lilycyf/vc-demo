@@ -1,0 +1,191 @@
+{
+  "format": "vc_demo_run_manifest.v1",
+  "created_at": "2026-07-14T08:59:21.269499+00:00",
+  "experiment": "k562_full_autonomy_rerun",
+  "run_dir": "experiments/k562_full_autonomy_rerun",
+  "git": {
+    "branch": "k562-full-autonomy-rerun",
+    "commit": "4af2d0e681cb0d086f813c9b02eb7f559d2f9ed1",
+    "status_short": "?? experiments/k562_full_autonomy_rerun/\n?? experiments/k562_full_global_queue_run/\n?? experiments/k562_generic_transfer_full_rerun_v2/\n?? experiments/official_k562_generic_transfer_v1/"
+  },
+  "search": {
+    "selection_policy": "uct",
+    "exploration": 1.4142135623730951,
+    "budget_nodes": 2,
+    "max_children": 10,
+    "max_epochs": 8,
+    "stop_no_improve": 60,
+    "allow_planned_blueprints": true,
+    "allow_missing_artifact_fallbacks": false,
+    "artifact_aware_blueprint_policy": false,
+    "stop_reason": "realtime implementation required for selected node official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28"
+  },
+  "artifacts": {
+    "registry_path": "configs/artifacts/k562_registry.json",
+    "present_artifacts": [
+      "string_k562_gene_graph",
+      "pathway_membership_matrix",
+      "official_essential_deg_with_split_h5ad",
+      "official_k562_aido_cell_100m_embedding_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "official_gnn_simple_embedding_h5ad",
+      "official_public_best_node_code",
+      "class_distribution"
+    ],
+    "missing_artifacts": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "regulatory_network_artifact",
+      "single_cell_foundation_model_artifact"
+    ]
+  },
+  "queues": {
+    "implementation_queue": "experiments/k562_full_autonomy_rerun/implementation_queue.json",
+    "acquisition_queue": "experiments/k562_full_autonomy_rerun/acquisition_queue.json",
+    "artifact_acquisition_command": "python -m vc_demo.harness.artifact_acquisition --queue experiments/k562_full_autonomy_rerun/acquisition_queue.json --registry configs/artifacts/k562_registry.json --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir experiments/k562_full_autonomy_rerun/artifact_acquisition --execute-known"
+  },
+  "results": {
+    "trained_nodes": 6,
+    "failed_nodes": 0,
+    "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+    "best_val_macro_f1": 0.5009788274765015,
+    "best_test_macro_f1": 0.5180274248123169,
+    "best_root": "official_k562_root_aido_gnn_embedding_mlp",
+    "best_root_val_macro_f1": 0.48330000042915344,
+    "best_root_test_macro_f1": 0.5373832583427429
+  },
+  "mcts": {
+    "last_selection": {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "policy": "uct",
+      "score": 2.6243658770448746,
+      "uct": 2.6243658770448746,
+      "puct": null,
+      "q": 0.43443652987480164,
+      "Q_v": 0.43443652987480164,
+      "exploitation": 0.43443652987480164,
+      "Exploitation": 0.43443652987480164,
+      "exploration": 2.189929347170073,
+      "Exploration": 2.189929347170073,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 11,
+      "children": 0,
+      "best_val_macro_f1": 0.43443652987480164,
+      "stage": "improve"
+    },
+    "last_candidates": [
+      {
+        "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+        "policy": "uct",
+        "score": 2.6243658770448746,
+        "uct": 2.6243658770448746,
+        "puct": null,
+        "q": 0.43443652987480164,
+        "Q_v": 0.43443652987480164,
+        "exploitation": 0.43443652987480164,
+        "Exploitation": 0.43443652987480164,
+        "exploration": 2.189929347170073,
+        "Exploration": 2.189929347170073,
+        "prior": 0.0,
+        "visits": 1,
+        "parent_visits": 11,
+        "children": 0,
+        "best_val_macro_f1": 0.43443652987480164,
+        "stage": "improve"
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+        "policy": "uct",
+        "score": 2.0494927191798893,
+        "uct": 2.0494927191798893,
+        "puct": null,
+        "q": 0.5009788274765015,
+        "Q_v": 1.001957654953003,
+        "exploitation": 0.5009788274765015,
+        "Exploitation": 0.5009788274765015,
+        "exploration": 1.5485138917033878,
+        "Exploration": 1.5485138917033878,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 11,
+        "children": 6,
+        "best_val_macro_f1": 0.5009788274765015,
+        "stage": "improve"
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+        "policy": "uct",
+        "score": 2.0266922438209263,
+        "uct": 2.0266922438209263,
+        "puct": null,
+        "q": 0.47817835211753845,
+        "Q_v": 0.9563567042350769,
+        "exploitation": 0.47817835211753845,
+        "Exploitation": 0.47817835211753845,
+        "exploration": 1.5485138917033878,
+        "Exploration": 1.5485138917033878,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 11,
+        "children": 0,
+        "best_val_macro_f1": 0.47817835211753845,
+        "stage": "improve"
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+        "policy": "uct",
+        "score": 2.012892040020725,
+        "uct": 2.012892040020725,
+        "puct": null,
+        "q": 0.46437814831733704,
+        "Q_v": 0.9287562966346741,
+        "exploitation": 0.46437814831733704,
+        "Exploitation": 0.46437814831733704,
+        "exploration": 1.5485138917033878,
+        "Exploration": 1.5485138917033878,
+        "prior": 0.0,
+        "visits": 2,
+        "parent_visits": 11,
+        "children": 0,
+        "best_val_macro_f1": 0.46437814831733704,
+        "stage": "improve"
+      },
+      {
+        "node": "official_k562_root_aido_gnn_embedding_mlp",
+        "policy": "uct",
+        "score": 1.576673505670169,
+        "uct": 1.576673505670169,
+        "puct": null,
+        "q": 0.4817088320851326,
+        "Q_v": 1.9268353283405304,
+        "exploitation": 0.4817088320851326,
+        "Exploitation": 0.4817088320851326,
+        "exploration": 1.0949646735850365,
+        "Exploration": 1.0949646735850365,
+        "prior": 0.0,
+        "visits": 4,
+        "parent_visits": 11,
+        "children": 6,
+        "best_val_macro_f1": 0.48330000042915344,
+        "stage": "draft"
+      }
+    ],
+    "selection_policy": "uct",
+    "exploration_c": 1.4142135623730951,
+    "public_artifact_alignment": "uct fields match the public VCHarness tree schema when selection_policy=uct; puct is an optional repo extension",
+    "last_backpropagation": {
+      "leaf": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "reward": 0.43443652987480164,
+      "path": [
+        "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+        "official_k562_root_aido_embedding_mlp"
+      ],
+      "path_length": 2
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "node_name": "official_k562_root_aido_embedding_mlp_p5_official_temperature_calibrated_head_e9cf2fea",
+  "data": {
+    "dataset_type": "official_k562_tsv",
+    "data_dir": "data/cell_lines/official_k562_cls",
+    "embedding_h5ad": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+    "n_classes": 3
+  },
+  "model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "program_blueprint": "official_temperature_calibrated_head",
+    "custom_model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_embedding_mlp_p5_official_temperature_calibrated_head_e9cf2fea/model.py",
+    "custom_model_class": "GeneratedModel"
+  },
+  "training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "focal_loss",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ],
+    "focal_gamma": 2.0
+  },
+  "pipeline_manifest_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_embedding_mlp_p5_official_temperature_calibrated_head_e9cf2fea/pipeline.json",
+  "proposal_note": "codex_program_agent blueprint=official_class_imbalance_training; program_model:gated_mlp->official_class_imbalance_training; blueprint_status:implemented; model_program:none; hidden_dim:256->256; depth:2->2; lr:0.0003->0.0003"
+}

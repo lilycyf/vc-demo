@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "program_dir": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+          "strategy": "official_aido_lora_adapter",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    }
+  ],
+  "trained": true,
+  "repair_attempts": 3,
+  "repair_log": "experiments/k562_full_autonomy_rerun/repair_log.jsonl",
+  "agent_decision_trace": "experiments/k562_full_autonomy_rerun/agent_decision_trace.jsonl"
+}

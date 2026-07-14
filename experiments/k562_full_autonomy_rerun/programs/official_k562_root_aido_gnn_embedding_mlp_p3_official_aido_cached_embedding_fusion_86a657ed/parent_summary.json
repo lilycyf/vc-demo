@@ -1,0 +1,74 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.5009788274765015,
+  "parent_test_macro_f1": 0.5180274248123169,
+  "parent_strategy": "official_target_gene_head",
+  "parent_config_model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_target_gene_head",
+    "artifacts": {
+      "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+      "string_gnn_model_dir": "/home/Models/STRING_GNN",
+      "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+    },
+    "low_rank_dim": 96
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [
+    "official_string_gnn_attention: unspecified + unspecified val=0.4644",
+    "official_target_gene_head: unspecified + unspecified val=0.5010",
+    "official_aido_string_fusion: unspecified + unspecified val=0.4782"
+  ],
+  "search_memory_discouraged_motifs": [],
+  "recent_successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.5009788274765015,
+      "test": 0.5180274248123169,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "family": "AIDO_STRING_fusion",
+      "structural_relation": "structural_variant",
+      "val": 0.47817835211753845,
+      "test": 0.525343120098114,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.46437814831733704,
+      "test": 0.5000032782554626,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    }
+  ]
+}

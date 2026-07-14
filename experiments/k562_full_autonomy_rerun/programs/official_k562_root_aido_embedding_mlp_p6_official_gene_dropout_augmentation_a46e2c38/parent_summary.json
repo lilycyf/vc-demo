@@ -1,0 +1,77 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.43443652987480164,
+  "parent_test_macro_f1": 0.45848551392555237,
+  "parent_strategy": "official_class_imbalance_training",
+  "parent_config_model": {
+    "model_type": "gated_mlp",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "program_blueprint": "official_class_imbalance_training"
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "focal_loss",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ],
+    "focal_gamma": 2.0
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [
+    "official_string_gnn_attention: unspecified + unspecified val=0.4644",
+    "official_target_gene_head: unspecified + unspecified val=0.5010",
+    "official_aido_string_fusion: unspecified + unspecified val=0.4782",
+    "official_class_imbalance_training: unspecified + unspecified val=0.4344"
+  ],
+  "search_memory_discouraged_motifs": [],
+  "recent_successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.5009788274765015,
+      "test": 0.5180274248123169,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "family": "AIDO_STRING_fusion",
+      "structural_relation": "structural_variant",
+      "val": 0.47817835211753845,
+      "test": 0.525343120098114,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.46437814831733704,
+      "test": 0.5000032782554626,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "structural_relation": "structural_variant",
+      "val": 0.43443652987480164,
+      "test": 0.45848551392555237,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "format": "official_k562_final_gap_attribution.v1",
+  "artifact_gap": {
+    "missing": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "regulatory_network_artifact",
+      "single_cell_foundation_model_artifact"
+    ],
+    "reconstructed_compatibility": [
+      "official_string_gnn_model_dir"
+    ]
+  },
+  "search_scale_gap": {
+    "trained_nodes": 7,
+    "paper_scale_target_nodes": 600,
+    "estimated_candidate_count": 94500
+  },
+  "epoch_budget_gap": 8,
+  "implementation_gap": {
+    "pending_implementations": 0,
+    "failed_nodes": 0,
+    "family_counts": {
+      "STRING_GNN_attention": 1,
+      "target_gene_aware_head": 1,
+      "AIDO_STRING_fusion": 1,
+      "AIDO_adapter": 1,
+      "Reactome_pathway_pooling": 1,
+      "AIDO_STRING_cross_attention": 1,
+      "official_deg_imbalance": 1,
+      "STRING_neighborhood_attention": 1,
+      "target_graph_conditioned_head": 1,
+      "public_vcharness_best_path": 1,
+      "focal_loss": 1,
+      "regulatory_network_prior": 1,
+      "class_weighted_CE": 1,
+      "STRING_laplacian_prior": 1,
+      "AIDO_STRING_concat": 1,
+      "AIDO_STRING_gated": 1,
+      "AIDO_STRING_bilinear": 1,
+      "STRING_GNN_full_finetune": 1,
+      "AIDO_cached_embedding": 1,
+      "STRING_GNN_frozen_cached": 1,
+      "AIDO_full_finetune": 1,
+      "AIDO_selective_finetune": 1,
+      "scGPT_or_single_cell_encoder": 1,
+      "scFoundation_selective_finetune": 1,
+      "target_low_rank_head": 1,
+      "target_bilinear_head": 1,
+      "multimodal_MoE": 1,
+      "temperature_calibration": 1,
+      "gene_dropout_augmentation": 1,
+      "public_static_tree_family": 1
+    },
+    "replicate_nodes": 0,
+    "formal_proxy_policy": "forbidden"
+  },
+  "metric_contract_gap": "external benchmark mode must supply held-out test metric; smoke mode may mark test as missing_or_val_fallback",
+  "stochastic_gap": "single short runs can differ from public/static and paper scores; compare only after 50/150/600-node staged runs"
+}

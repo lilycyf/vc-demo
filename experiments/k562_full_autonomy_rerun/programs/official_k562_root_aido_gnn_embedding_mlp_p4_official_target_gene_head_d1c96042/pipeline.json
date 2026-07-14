@@ -1,0 +1,42 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_gene_head",
+  "model_entrypoint": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad",
+    "official_target_gene_order"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "target_gene_aware_head",
+  "pipeline_program": {
+    "blueprint": "official_target_gene_head",
+    "representation": "cached official AIDO+GNN perturbation features from parent root",
+    "perturbation_side": "unspecified",
+    "target_side": "official ordered 6640-gene target feature table derived from task contract",
+    "fusion": "low-rank bilinear context-target residual gated per DEG class",
+    "prior": "unspecified",
+    "head": "parent dense head plus target-gene-aware low-rank residual",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "target-gene-aware prediction head over official K562 DEG targets"
+  },
+  "implementation_semantics": "parent_preserving_delta",
+  "head": "parent_dense_logits_plus_target_gene_low_rank_bilinear_residual"
+}

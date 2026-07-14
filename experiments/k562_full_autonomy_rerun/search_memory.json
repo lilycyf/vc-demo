@@ -1,0 +1,299 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-14T08:05:14.994893+00:00",
+  "updated_at": "2026-07-14T09:04:49.367392+00:00",
+  "events": [
+    {
+      "time": "2026-07-14T08:09:54.649510+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "program_dir": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+          "strategy": "official_string_gnn_attention",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-14T08:20:20.471992+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "program_dir": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+          "strategy": "official_target_gene_head",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-14T08:28:45.567684+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "program_dir": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+          "strategy": "official_aido_string_fusion",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-14T08:59:21.001326+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "program_dir": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+          "strategy": "official_aido_lora_adapter",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    }
+  ],
+  "blueprint_counts": {
+    "official_string_gnn_attention": 1,
+    "official_target_gene_head": 1,
+    "official_aido_string_fusion": 1,
+    "official_aido_lora_adapter": 1,
+    "official_pathway_pooling_reactome": 1,
+    "official_aido_string_cross_attention": 1,
+    "official_class_imbalance_training": 1,
+    "official_string_neighborhood_attention": 1,
+    "official_target_graph_conditioned_head": 1,
+    "official_public_best_node": 1,
+    "official_focal_loss_training": 1,
+    "official_regulatory_network_prior": 1,
+    "official_weighted_ce_training": 1,
+    "official_string_laplacian_smoothing": 1,
+    "official_aido_string_concat_fusion": 1,
+    "official_aido_string_gated_fusion": 1,
+    "official_aido_string_bilinear_fusion": 1,
+    "official_string_gnn_full_finetune": 1,
+    "official_aido_cached_embedding_fusion": 1,
+    "official_string_gnn_frozen_cache": 1,
+    "official_aido_full_finetune": 1,
+    "official_aido_topk_layer_tuning": 1,
+    "official_scgpt_cell_encoder": 1,
+    "official_scfoundation_top_layer_finetune": 1,
+    "official_target_low_rank_head": 1,
+    "official_target_bilinear_head": 1,
+    "official_multimodal_mixture_of_experts": 1,
+    "official_temperature_calibrated_head": 1,
+    "official_gene_dropout_augmentation": 1,
+    "official_public_static_node_family_wrapper": 1
+  },
+  "parent_blueprints": {
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_aido_string_bilinear_fusion",
+      "official_aido_string_concat_fusion",
+      "official_aido_string_gated_fusion",
+      "official_class_imbalance_training",
+      "official_focal_loss_training",
+      "official_public_best_node",
+      "official_regulatory_network_prior",
+      "official_string_gnn_full_finetune",
+      "official_string_laplacian_smoothing",
+      "official_string_neighborhood_attention",
+      "official_target_graph_conditioned_head",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_topk_layer_tuning",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder",
+      "official_string_gnn_frozen_cache"
+    ],
+    "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5": [
+      "official_gene_dropout_augmentation",
+      "official_multimodal_mixture_of_experts",
+      "official_public_static_node_family_wrapper",
+      "official_target_bilinear_head",
+      "official_target_low_rank_head",
+      "official_temperature_calibrated_head"
+    ]
+  },
+  "family_counts": {
+    "STRING_GNN_attention": 1,
+    "target_gene_aware_head": 1,
+    "AIDO_STRING_fusion": 1,
+    "AIDO_adapter": 1,
+    "Reactome_pathway_pooling": 1,
+    "AIDO_STRING_cross_attention": 1,
+    "official_deg_imbalance": 1,
+    "STRING_neighborhood_attention": 1,
+    "target_graph_conditioned_head": 1,
+    "public_vcharness_best_path": 1,
+    "focal_loss": 1,
+    "regulatory_network_prior": 1,
+    "class_weighted_CE": 1,
+    "STRING_laplacian_prior": 1,
+    "AIDO_STRING_concat": 1,
+    "AIDO_STRING_gated": 1,
+    "AIDO_STRING_bilinear": 1,
+    "STRING_GNN_full_finetune": 1,
+    "AIDO_cached_embedding": 1,
+    "STRING_GNN_frozen_cached": 1,
+    "AIDO_full_finetune": 1,
+    "AIDO_selective_finetune": 1,
+    "scGPT_or_single_cell_encoder": 1,
+    "scFoundation_selective_finetune": 1,
+    "target_low_rank_head": 1,
+    "target_bilinear_head": 1,
+    "multimodal_MoE": 1,
+    "temperature_calibration": 1,
+    "gene_dropout_augmentation": 1,
+    "public_static_tree_family": 1
+  },
+  "structural_signature_counts": {
+    "930fbba42d4a3a8549fc158bbaf7d2f0fdf9a612": 1,
+    "841a8f77d14ecd77e5286010e281e10413c6c4f4": 1,
+    "1123b8802df90e9f4c17ed7477cfcba52678f383": 1,
+    "9d1bce694fc088a4d626218348b38372fb84586d": 1,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 1,
+    "deba82298c3d004b00e18f313793047749e3e865": 1,
+    "1f74853a1499c2a3803343a9d6723e5fefb9c620": 1,
+    "bba2a2345669bc31b6d7cf4aa1dc1b88c44af0ad": 1,
+    "5bc1536beaba0d3f8eea24bd9091228f5a47f64e": 1,
+    "47c7847a301642e9a6ab8d8e5b93f2e343c21349": 1,
+    "577882e9f484ab0b3881a898adf1d7c468869250": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "7ca5733db56efec64fcc1b4797ce1b4caa921846": 1,
+    "afabd8c127a509136fc030813fab2a77e125aea9": 1,
+    "24dadbd5bef08e5071caed019119cd2ae3318260": 1,
+    "fd27ea250c8f7a69928d1ba69977800011bcf26f": 1,
+    "2624ad11ade4998264900a0bb4c08e86b54b5b88": 1,
+    "09877d62c8ec5a7223b3ea489ea86f90f49bfd26": 1,
+    "ca34f433e0c30b7887aa2e3e3bb5e866deddbef7": 1,
+    "e4e871a205b68fc638b51a645d912b692eac89fd": 1,
+    "4a5a630f1d7f89f86f006be6f7d19852d6b8cf8f": 1,
+    "da5a0ae33b11d6c45e30553e8ff3513bfd3bf160": 1,
+    "1c3b93c4b44b47ddc2244c29e107e2379ae639d3": 1,
+    "005c5cd0fb0bb27be847a413c867eae26d306cef": 1,
+    "930939eda936f42e15146c8036a4e26978d9ee62": 1,
+    "76daa2feaa7c8e2a0880fa459b90f1faeaea6736": 1,
+    "60e493321efca320b45a997491ce82a8f76f8f9e": 1,
+    "d4a67e65bb4bb31f124750761fde760e5c6ff33a": 1,
+    "85a59107019d147f191c299458e056a7a2c84638": 1,
+    "adbac7b4bcc4da38525b03da56454e5afea31678": 1
+  },
+  "replicate_nodes": [],
+  "successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.5009788274765015,
+      "test": 0.5180274248123169,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_aido_string_fusion_3afacf8d",
+      "strategy": "official_aido_string_fusion",
+      "family": "AIDO_STRING_fusion",
+      "structural_relation": "structural_variant",
+      "val": 0.47817835211753845,
+      "test": 0.525343120098114,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "strategy": "official_aido_lora_adapter",
+      "family": "AIDO_adapter",
+      "structural_relation": "structural_variant",
+      "val": 0.4764595329761505,
+      "test": 0.5043745040893555,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "family": "STRING_GNN_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.46437814831733704,
+      "test": 0.5000032782554626,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "structural_relation": "structural_variant",
+      "val": 0.43443652987480164,
+      "test": 0.45848551392555237,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    }
+  ],
+  "failures": [],
+  "blocked_artifacts": [],
+  "motifs": {
+    "promising": [
+      "official_string_gnn_attention: unspecified + unspecified val=0.4644",
+      "official_target_gene_head: unspecified + unspecified val=0.5010",
+      "official_aido_string_fusion: unspecified + unspecified val=0.4782",
+      "official_aido_lora_adapter: unspecified + unspecified val=0.4765",
+      "official_class_imbalance_training: unspecified + unspecified val=0.4344"
+    ],
+    "discouraged": []
+  }
+}

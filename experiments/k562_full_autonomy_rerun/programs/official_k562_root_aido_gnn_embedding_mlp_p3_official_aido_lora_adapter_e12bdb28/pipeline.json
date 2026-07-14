@@ -1,0 +1,53 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_aido_lora_adapter",
+  "model_entrypoint": "experiments/k562_full_autonomy_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "AIDO_adapter",
+  "pipeline_program": {
+    "blueprint": "official_aido_lora_adapter",
+    "representation": "cached official perturbation features passed through frozen AIDO.Cell-100M tensor plus trainable LoRA residual",
+    "perturbation_side": "parent-preserved context branch with AIDO hidden-space adapter",
+    "target_side": "official target order with AIDO gene vocabulary features",
+    "fusion": "LoRA-adapted AIDO context bilinear target head added to parent dense logits",
+    "prior": "unspecified",
+    "head": "parent dense all-target head plus AIDO adapter residual DEG head",
+    "training_strategy": "unspecified",
+    "fine_tuning": "frozen AIDO checkpoint tensor with trainable low-rank adapter",
+    "required_artifacts": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "AIDO.Cell-100M frozen backbone tensor with trainable LoRA-style adapter and DEG head"
+  },
+  "implementation_semantics": "parent_preserving_delta",
+  "adapter_type": "frozen_aido_query_weight_plus_trainable_lora_residual",
+  "frozen_parameter_groups": [
+    "frozen_aido_weight loaded from /home/Models/AIDO.Cell-100M/model.safetensors"
+  ],
+  "trainable_parameter_groups": [
+    "parent context trunk",
+    "lora_down",
+    "lora_up",
+    "target DEG residual head"
+  ]
+}
