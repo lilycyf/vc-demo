@@ -1,0 +1,88 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee",
+  "strategy": "official_gene_dropout_augmentation",
+  "blueprint": {
+    "id": "official_gene_dropout_augmentation",
+    "status": "planned",
+    "official_k562": true,
+    "category": "regularization",
+    "paper_family": "gene_dropout_augmentation",
+    "change_level": 2,
+    "role": "Use gene/feature dropout augmentation for robustness under K562 perturbation features.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex records augmentation probability and affected feature groups.",
+    "acceptance": [
+      "Does not alter labels",
+      "Records augmentation",
+      "Reports Macro-F1"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Use gene/feature dropout augmentation for robustness under K562 perturbation features.",
+  "changes": [
+    "program_model:custom_program->official_gene_dropout_augmentation",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee",
+  "program_model_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/model.py",
+  "pipeline_manifest_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_gene_dropout_augmentation",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.45999999999999996,
+    "base": 0.58,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.12,
+    "native_repeat_penalty": 0.0,
+    "count": 1,
+    "family": "gene_dropout_augmentation",
+    "family_count": 1
+  },
+  "structural_signature": "72816382e367b91a1a32648f16b5d9f32314ba46",
+  "parent_structural_signature": "72816382e367b91a1a32648f16b5d9f32314ba46",
+  "structural_relation": "replicate",
+  "implementation_request_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_01b2dbee/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

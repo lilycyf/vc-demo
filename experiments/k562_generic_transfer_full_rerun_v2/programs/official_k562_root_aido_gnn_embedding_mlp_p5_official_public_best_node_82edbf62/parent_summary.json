@@ -1,0 +1,33 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.4459678828716278,
+  "parent_test_macro_f1": 0.4990093410015106,
+  "parent_strategy": "official_temperature_calibrated_head",
+  "parent_config_model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_temperature_calibrated_head_403896b2/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_temperature_calibrated_head"
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {}
+}

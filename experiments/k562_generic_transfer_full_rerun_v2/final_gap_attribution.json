@@ -1,0 +1,63 @@
+{
+  "format": "official_k562_final_gap_attribution.v1",
+  "artifact_gap": {
+    "missing": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings"
+    ],
+    "reconstructed_compatibility": [
+      "official_string_gnn_model_dir"
+    ]
+  },
+  "search_scale_gap": {
+    "trained_nodes": 16,
+    "paper_scale_target_nodes": 600,
+    "estimated_candidate_count": 94500
+  },
+  "epoch_budget_gap": 8,
+  "implementation_gap": {
+    "pending_implementations": 0,
+    "failed_nodes": 1,
+    "family_counts": {
+      "target_gene_aware_head": 6,
+      "AIDO_adapter": 7,
+      "STRING_GNN_attention": 7,
+      "AIDO_STRING_fusion": 9,
+      "Reactome_pathway_pooling": 5,
+      "AIDO_STRING_cross_attention": 5,
+      "STRING_neighborhood_attention": 5,
+      "target_graph_conditioned_head": 4,
+      "official_deg_imbalance": 4,
+      "regulatory_network_prior": 4,
+      "focal_loss": 3,
+      "public_vcharness_best_path": 4,
+      "STRING_laplacian_prior": 3,
+      "class_weighted_CE": 2,
+      "AIDO_STRING_concat": 2,
+      "AIDO_STRING_gated": 2,
+      "AIDO_STRING_bilinear": 2,
+      "STRING_GNN_full_finetune": 2,
+      "target_low_rank_head": 2,
+      "target_bilinear_head": 2,
+      "multimodal_MoE": 2,
+      "temperature_calibration": 2,
+      "gene_dropout_augmentation": 2,
+      "public_static_tree_family": 2,
+      "AIDO_cached_embedding": 3,
+      "AIDO_full_finetune": 3,
+      "AIDO_selective_finetune": 3,
+      "STRING_GNN_frozen_cached": 2,
+      "scGPT_or_single_cell_encoder": 3,
+      "scFoundation_selective_finetune": 3,
+      "layerwise_lr_decay": 1,
+      "checkpoint_ensemble_or_SWA": 1,
+      "public_vcharness_best_path_native_exact": 1
+    },
+    "replicate_nodes": 4,
+    "formal_proxy_policy": "forbidden"
+  },
+  "metric_contract_gap": "external benchmark mode must supply held-out test metric; smoke mode may mark test as missing_or_val_fallback",
+  "stochastic_gap": "single short runs can differ from public/static and paper scores; compare only after 50/150/600-node staged runs"
+}

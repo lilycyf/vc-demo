@@ -1,0 +1,28 @@
+{
+  "best_root": [
+    "official_k562_root_aido_gnn_embedding_mlp",
+    "root",
+    0.4823414087295532,
+    0.5490987300872803
+  ],
+  "best_child": [
+    "official_k562_root_aido_gnn_embedding_mlp_p1_official_layerwise_lr_schedule_6ad83af7",
+    "root",
+    0.4608181416988373,
+    0.5071102380752563
+  ],
+  "objective": false,
+  "counts": {
+    "generated": 108,
+    "trained_children": 14,
+    "pruned": 44,
+    "skipped": 0,
+    "blocked": 4,
+    "failed": 0,
+    "pending": 0,
+    "fallback": 0,
+    "proxy": 0,
+    "backprop_nontrained": 0,
+    "backend_anomaly": 0
+  }
+}

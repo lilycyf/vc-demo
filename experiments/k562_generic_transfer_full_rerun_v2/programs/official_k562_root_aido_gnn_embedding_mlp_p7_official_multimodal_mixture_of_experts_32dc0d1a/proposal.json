@@ -1,0 +1,88 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+  "strategy": "official_multimodal_mixture_of_experts",
+  "blueprint": {
+    "id": "official_multimodal_mixture_of_experts",
+    "status": "planned",
+    "official_k562": true,
+    "category": "multimodal_fusion",
+    "paper_family": "multimodal_MoE",
+    "change_level": 4,
+    "role": "Route perturbations through experts specialized for expression, AIDO, STRING, and target-gene priors.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Experts may require artifacts; missing artifact experts must block or be explicitly inactive in non-strict runs only.",
+    "acceptance": [
+      "Records router inputs",
+      "Reports active experts",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Route perturbations through experts specialized for expression, AIDO, STRING, and target-gene priors.",
+  "changes": [
+    "program_model:gated_mlp->official_multimodal_mixture_of_experts",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+  "program_model_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/model.py",
+  "pipeline_manifest_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_multimodal_mixture_of_experts",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.26,
+    "base": 0.66,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "count": 0,
+    "family": "multimodal_MoE",
+    "family_count": 0
+  },
+  "structural_signature": "9944b65c879ed552105e42809556f67dca7cb1b6",
+  "parent_structural_signature": "b543b809a8ca57cbbcba2b4baa9b7ffc76a77124",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

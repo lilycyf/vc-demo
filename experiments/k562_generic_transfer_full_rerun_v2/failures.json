@@ -1,0 +1,18 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_lora_adapter_e12bdb28",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_aido_lora_adapter",
+      "missing_required_artifacts": [
+        "official_aido_cell_100m_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/AIDO.Cell-100M"
+      ],
+      "blocker_report": "experiments/k562_generic_transfer_full_rerun_v2/artifact_acquisition/official_aido_cell_100m_model_dir_lora_interface_blocker.md",
+      "reason": "/home/Models/AIDO.Cell-100M exists but cannot be loaded as a real AutoModel/AutoTokenizer artifact: Transformers reports unknown model_type cellfoundation and the model directory contains no verified remote architecture/tokenizer code. Strict LoRA cannot be implemented without the real AIDO.Cell-100M interface; h5ad embeddings or compact MLPs would be proxy/fallback."
+    }
+  ]
+}

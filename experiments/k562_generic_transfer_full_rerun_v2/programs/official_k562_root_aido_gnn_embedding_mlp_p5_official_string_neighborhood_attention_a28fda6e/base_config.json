@@ -1,0 +1,38 @@
+{
+  "node_name": "official_k562_root_aido_gnn_embedding_mlp_p5_official_string_neighborhood_attention_a28fda6e",
+  "data": {
+    "dataset_type": "official_k562_tsv",
+    "data_dir": "data/cell_lines/official_k562_cls",
+    "embedding_h5ads": [
+      "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad"
+    ],
+    "n_classes": 3
+  },
+  "model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_string_neighborhood_attention_a28fda6e/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_string_neighborhood_attention"
+  },
+  "training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "pipeline_manifest_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_string_neighborhood_attention_a28fda6e/pipeline.json",
+  "proposal_note": "codex_program_agent blueprint=official_gene_dropout_augmentation; program_model:gated_mlp->official_gene_dropout_augmentation; blueprint_status:planned; custom_model_path:experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f/model.py; hidden_dim:256->256; depth:2->2; lr:0.0003->0.0003"
+}

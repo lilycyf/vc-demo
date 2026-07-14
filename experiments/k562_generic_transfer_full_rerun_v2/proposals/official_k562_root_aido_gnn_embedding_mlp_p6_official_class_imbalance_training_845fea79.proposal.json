@@ -1,0 +1,242 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_845fea79",
+  "strategy": "official_class_imbalance_training",
+  "blueprint": {
+    "id": "official_class_imbalance_training",
+    "status": "implemented",
+    "official_k562": true,
+    "category": "training_strategy",
+    "paper_family": "official_deg_imbalance",
+    "change_level": 1,
+    "role": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_notes": "Implemented as a config-only child in program_agent; patches loss_type/class weights and does not create a node-local model.py.",
+    "acceptance": [
+      "Documents weights/gamma",
+      "Does not tune on test labels",
+      "Reports Macro-F1"
+    ]
+  },
+  "requires_implementation": false,
+  "hypothesis": "Apply official K562 class-imbalance-aware training such as weighted CE or focal loss while keeping the parent architecture unchanged.",
+  "changes": [
+    "program_model:custom_program->official_class_imbalance_training",
+    "blueprint_status:implemented",
+    "model_program:none",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_845fea79",
+  "program_model_path": "",
+  "pipeline_manifest_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_845fea79/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_class_imbalance_training",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.58,
+    "base": 0.74,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.2,
+    "repeat_penalty": 0.36,
+    "native_repeat_penalty": 0.0,
+    "count": 3,
+    "family": "official_deg_imbalance",
+    "family_count": 3
+  },
+  "structural_signature": "d2601d6dd2b6180ae8075851eb00fb7cad576160",
+  "parent_structural_signature": "72816382e367b91a1a32648f16b5d9f32314ba46",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "",
+  "artifact_contract_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_845fea79/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_845fea79/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_generic_transfer_full_rerun_v2/programs/official_k562_root_aido_gnn_embedding_mlp_p6_official_class_imbalance_training_845fea79/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "missing_required_artifacts": [
+      "class_distribution"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "class_distribution"
+  ],
+  "missing_required_artifact_paths": [
+    ""
+  ],
+  "candidate_pool_iteration": 15,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+  "duplicate_screen": {
+    "is_duplicate": true,
+    "reason": "blueprint official_class_imbalance_training reached repeat limit 2"
+  },
+  "cheap_screen_score": {
+    "score": -1.29,
+    "scientific_score": 0.58,
+    "cost_class": "cheap",
+    "cost_bonus": 0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.75,
+    "implementation_penalty": 0.0,
+    "missing_required_artifacts": [
+      "class_distribution"
+    ],
+    "duplicate_reason": "blueprint official_class_imbalance_training reached repeat limit 2",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p12_official_gene_dropout_augmentation_756bd70f",
+      "policy": "uct",
+      "score": 2.019831619526684,
+      "uct": 2.019831619526684,
+      "puct": null,
+      "q": 0.4434729516506195,
+      "Q_v": 0.886945903301239,
+      "exploitation": 0.4434729516506195,
+      "Exploitation": 0.4434729516506195,
+      "exploration": 1.5763586678760644,
+      "Exploration": 1.5763586678760644,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 12,
+      "children": 0,
+      "best_val_macro_f1": 0.4434729516506195,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_aido_cached_embedding_fusion_86a657ed",
+      "policy": "uct",
+      "score": 1.9754764654892083,
+      "uct": 1.9754764654892083,
+      "puct": null,
+      "q": 0.3991177976131439,
+      "Q_v": 0.7982355952262878,
+      "exploitation": 0.3991177976131439,
+      "Exploitation": 0.3991177976131439,
+      "exploration": 1.5763586678760644,
+      "Exploration": 1.5763586678760644,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 12,
+      "children": 0,
+      "best_val_macro_f1": 0.3991177976131439,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "uct",
+      "score": 1.9642844417350884,
+      "uct": 1.9642844417350884,
+      "puct": null,
+      "q": 0.38792577385902405,
+      "Q_v": 0.7758515477180481,
+      "exploitation": 0.38792577385902405,
+      "Exploitation": 0.38792577385902405,
+      "exploration": 1.5763586678760644,
+      "Exploration": 1.5763586678760644,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 12,
+      "children": 0,
+      "best_val_macro_f1": 0.38792577385902405,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "policy": "uct",
+      "score": 1.95356573846513,
+      "uct": 1.95356573846513,
+      "puct": null,
+      "q": 0.37720707058906555,
+      "Q_v": 0.7544141411781311,
+      "exploitation": 0.37720707058906555,
+      "Exploitation": 0.37720707058906555,
+      "exploration": 1.5763586678760644,
+      "Exploration": 1.5763586678760644,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 12,
+      "children": 0,
+      "best_val_macro_f1": 0.37720707058906555,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p8_official_string_laplacian_smoothing_c590de04",
+      "policy": "uct",
+      "score": 1.9492421367424126,
+      "uct": 1.9492421367424126,
+      "puct": null,
+      "q": 0.37288346886634827,
+      "Q_v": 0.7457669377326965,
+      "exploitation": 0.37288346886634827,
+      "Exploitation": 0.37288346886634827,
+      "exploration": 1.5763586678760644,
+      "Exploration": 1.5763586678760644,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 12,
+      "children": 0,
+      "best_val_macro_f1": 0.37288346886634827,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_multimodal_mixture_of_experts_32dc0d1a",
+      "policy": "uct",
+      "score": 1.920169136788189,
+      "uct": 1.920169136788189,
+      "puct": null,
+      "q": 0.34381046891212463,
+      "Q_v": 0.6876209378242493,
+      "exploitation": 0.34381046891212463,
+      "Exploitation": 0.34381046891212463,
+      "exploration": 1.5763586678760644,
+      "Exploration": 1.5763586678760644,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 12,
+      "children": 0,
+      "best_val_macro_f1": 0.34381046891212463,
+      "stage": "improve"
+    }
+  ],
+  "candidate_pool_rank": 4,
+  "candidate_pool_size": 6,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "global_queue_generate_many_train_best_available"
+}
