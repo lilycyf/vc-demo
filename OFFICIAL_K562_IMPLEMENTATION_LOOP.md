@@ -177,9 +177,22 @@ Formal K562 runs must treat a missing required artifact as an acquisition task b
 
 The negative missing-artifact smoke is the only case where stopping immediately after queue creation is acceptable; formal scale runs must perform the acquisition pass.
 
+
+## Parent-Preserving Implementation Semantics
+
+For official K562 full runs, a selected blueprint is a delta on the selected parent. Codex must preserve useful parent routes by default:
+
+- keep parent dense/context trunks and dense target-logit branches unless the node explicitly tests replacement;
+- attach graph/pathway/target/fusion modules as residual, gated, additive, bilinear, or attention branches;
+- use search memory to reuse motifs that have approached or beaten the root;
+- record whether the implementation is parent-preserving, replacement, or ablation in `pipeline.json`;
+- never call a simplified proxy a full implementation.
+
+This policy is intended to keep the search competitive while retaining strict artifact and audit guardrails.
+
 ## Experiment Codex Handoff Semantics
 
-Experiment Codex should now behave as an auditor/operator of the loop, not as the default implementer.
+Experiment Codex should behave as an active model engineer within the loop, not as a passive reporter and not as an unconstrained optimizer.
 
 Default behavior:
 

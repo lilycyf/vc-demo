@@ -27,7 +27,6 @@ Pass only if the run type is explicit:
 - Full runs must explicitly report whether best generated child beats best root on validation Macro-F1.
 - Full runs must explicitly report whether best generated child reaches `target_val_macro_f1`.
 - Full runs with `trained selected rollouts = 0` or `best generated child = none` fail acceptance as `framework_failed_no_generated_child_trained`.
-- Full runs with `trained selected rollouts = 0` or `best generated child = none` fail acceptance as `framework_failed_no_generated_child_trained`.
 
 ## Task Contract
 
@@ -84,7 +83,8 @@ Pass only if:
 - native smoke passes
 - `train_pending` passes or records a real failure
 - no compact/proxy/fallback implementation is used in formal transfer tests
-- `implementation_skipped` is not used as a broad substitute for implementing artifact-present selected nodes in `full_cellline_run`
+- selected child implementations preserve useful parent structure by default and implement the selected blueprint as a delta/residual/composition unless replacement is explicitly requested
+- reports distinguish weak faithful minimal implementations from parent-preserving competitive implementations
 - `implementation_skipped` is not used as a broad substitute for implementing artifact-present selected nodes in `full_cellline_run`
 
 ## Audit Counters

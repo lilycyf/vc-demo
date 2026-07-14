@@ -153,13 +153,32 @@ Expected root families, subject to source-backed availability:
 
 ## Realtime Implementation Loop
 
+### Codex Autonomy During Implementation
+
+A selected blueprint is a mutation request, not a command to discard the parent model. Unless the proposal explicitly says `replace_parent`, Codex must implement the child as:
+
+```text
+child = parent pipeline + selected blueprint delta
+```
+
+Default implementation behavior:
+
+- Preserve parent dense/context trunk and dense target-logit branch when they exist.
+- Add target/graph/pathway/fusion/loss changes as residual, gated, additive, bilinear, attention, calibration, or training-strategy deltas.
+- Keep the strongest validated parent signal available as a competitive route; biological priors should augment it, not erase it.
+- Read `search_memory.json` and parent metrics before choosing the concrete architecture.
+- Reuse motifs that have already beaten or approached the root, unless the selected blueprint explicitly tests a different hypothesis.
+- If the selected blueprint is low-rank/graph/pathway/fusion, include a dense residual branch by default so the node tests whether the new module improves the parent rather than whether the new module can replace the parent from scratch.
+
+This is not fallback. The artifact-backed selected module must be real when claimed; the dense/residual parent branch is the competitive baseline path preserved inside the child.
+
 When `implementation_queue.json` contains a selected planned node, the experiment Codex must handle it immediately, not leave it for a later run:
 
 1. Read node-local `IMPLEMENTATION_REQUEST.md`, `CODEX_IMPLEMENTATION_TASK.md` if present, `artifact_contract.json`, `smoke_contract.json`, `base_config.json`, and `pipeline.json`.
 2. If required artifacts are missing, run acquisition or block. Do not write `model.py`.
 3. If required artifacts are present, implement only node-local `model.py` and node-local pipeline metadata. Tiny helpers may live under `src/vc_demo/official_<slug>/` only when necessary.
 4. Run compile, native smoke, and `train_pending`.
-5. In `loop_self_test`, if no safe real implementation can be produced, mark the node `implementation_skipped`, clear it from `implementation_queue.json`, and continue global search. In `full_cellline_run`, do not auto-skip an artifact-present selected node; stop with `requires_realtime_implementation`, implement node-local `model.py` in the same Codex session, then resume. Only documented artifact/source/contract blockers may prevent implementation.
+5. In `loop_self_test`, if no safe real implementation can be produced, mark the node `implementation_skipped`, clear it from `implementation_queue.json`, and continue global search. In `full_cellline_run`, do not passively auto-skip an artifact-present selected node. Treat `requires_realtime_implementation` as an immediate same-session task: implement node-local `model.py`, smoke/train it, and resume. If a real implementation cannot be produced after documented attempts, mark that selected candidate as implementation-infeasible/skipped with a precise reason, clear the queue item, and continue the global queue. Only documented artifact/source/contract blockers may prevent implementation.
 6. Resume or continue the same run without `--reset`.
 
 Allowed edits during pending implementation:
@@ -201,18 +220,7 @@ For `RUN_TYPE=full_cellline_run`, proposal exhaustion alone is not a valid compl
 - the trained-rollout budget was not reached and feasible queued candidates remain;
 - best generated child cannot be compared to best root.
 
-Such a run must be reported as `framework_failed_no_generated_child_trained` or `requires_realtime_implementation`, not as a completed full experiment.
-
-## Full-Run Completion Gate
-
-For `RUN_TYPE=full_cellline_run`, proposal exhaustion alone is not a valid completion condition. The run is invalid if:
-
-- no generated child was trained;
-- selected artifact-present planned nodes were converted directly to `implementation_skipped`;
-- the trained-rollout budget was not reached and feasible queued candidates remain;
-- best generated child cannot be compared to best root.
-
-Such a run must be reported as `framework_failed_no_generated_child_trained` or `requires_realtime_implementation`, not as a completed full experiment.
+Such a run must be reported as `framework_failed_no_generated_child_trained` or `requires_realtime_implementation_action_needed`, not as a completed full experiment. `requires_realtime_implementation` is not a final state unless the same-session implementation attempt was not performed.
 
 ## Reports
 

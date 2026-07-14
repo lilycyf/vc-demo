@@ -111,7 +111,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     implementation_request_path = child_dir / "IMPLEMENTATION_REQUEST.md"
     artifact_contract = render_artifact_contract(child_name, blueprint, child, registry_audit)
     smoke_contract = render_smoke_contract(child_name, child)
-    parent_summary = render_parent_summary(parent_name, parent_node, parent_config)
+    parent_summary = render_parent_summary(parent_name, parent_node, parent_config, search_memory)
     write_json(artifact_contract_path, artifact_contract)
     write_json(smoke_contract_path, smoke_contract)
     write_json(parent_summary_path, parent_summary)
@@ -357,7 +357,8 @@ def render_smoke_contract(child_name: str, child_config: dict[str, Any]) -> dict
     }
 
 
-def render_parent_summary(parent_name: str, parent_node: dict[str, Any], parent_config: dict[str, Any]) -> dict[str, Any]:
+def render_parent_summary(parent_name: str, parent_node: dict[str, Any], parent_config: dict[str, Any], search_memory: dict[str, Any] | None = None) -> dict[str, Any]:
+    memory = search_memory or {}
     return {
         "format": "vc_demo_parent_summary.v1",
         "parent": parent_name,
@@ -368,6 +369,9 @@ def render_parent_summary(parent_name: str, parent_node: dict[str, Any], parent_
         "parent_config_model": parent_config.get("model", {}),
         "parent_config_training": parent_config.get("training", {}),
         "parent_artifact_usage": parent_node.get("artifact_usage", {}),
+        "search_memory_promising_motifs": (memory.get("motifs", {}) or {}).get("promising", []),
+        "search_memory_discouraged_motifs": (memory.get("motifs", {}) or {}).get("discouraged", []),
+        "recent_successes": memory.get("successes", [])[:5],
     }
 
 
@@ -379,10 +383,19 @@ def render_implementation_request(child_name: str, blueprint: dict[str, Any], pa
         f"# Implementation Request: {child_name}", "",
         "## Research Task", "", "K562 CRISPR perturbation DEG three-class classification on the official task contract. The node must predict logits for all 6,640 target genes and 3 DEG classes.", "",
         "## Parent", "", f"`{parent_name}`", f"- parent val Macro-F1: `{parent_summary.get('parent_best_val_macro_f1')}`", f"- parent strategy: `{parent_summary.get('parent_strategy')}`", "",
+        "## Search Memory", "", "Promising motifs from previous trained children:", *(f"- {item}" for item in parent_summary.get("search_memory_promising_motifs", [])[:8]), "", "Discouraged motifs/families:", *(f"- {item}" for item in parent_summary.get("search_memory_discouraged_motifs", [])[:8]), "",
         "## Blueprint", "",
         f"- id: `{blueprint['id']}`", f"- status: `{blueprint['status']}`", f"- category: `{blueprint['category']}`", f"- paper family: `{blueprint.get('paper_family', '')}`", f"- role: {blueprint['role']}", f"- requires: {requires}", f"- missing required artifacts now: {missing}", "",
         "## Contract Files", "", "- `artifact_contract.json`: required/present/missing artifacts and strict-mode policy", "- `smoke_contract.json`: compile, forward/backward, and training-smoke commands", "- `parent_summary.json`: parent score/config/artifact context", "- `pipeline.json`: executable pipeline grammar and artifact claims", "",
-        "## Implementation Notes", "", blueprint.get("implementation_notes", ""), "", "## Pipeline Grammar", "", json_dumps_program(blueprint["id"]), "",
+        "## Implementation Notes", "", blueprint.get("implementation_notes", ""), "",
+        "## Codex Autonomy / Architecture Policy", "",
+        "The selected blueprint is a research delta, not the entire child model specification.",
+        "Implement `child = parent pipeline + selected blueprint modification` unless this request explicitly says to replace the parent.",
+        "Preserve useful parent dense/context trunks, dense target-logit branches, residual routes, and validated artifact branches by default.",
+        "Add target/graph/pathway/fusion modules as residual, gated, additive, bilinear, or attention branches that can improve the parent signal.",
+        "Use search-memory motifs and parent metrics to choose a competitive artifact-backed design; do not write the most minimal isolated module if it discards known useful parent structure.",
+        "Record in `pipeline.json` whether the implementation is parent_preserving_delta, replacement, or ablation.", "",
+        "## Pipeline Grammar", "", json_dumps_program(blueprint["id"]), "",
         "## Required File", "", "Create this file:", "", "```text", child_config["model"]["custom_model_path"], "```", "",
         "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits, which is `[batch, 6640, 3]` for official K562.", "",
         "## Acceptance Criteria", "", acceptance, "",

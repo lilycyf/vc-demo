@@ -66,10 +66,12 @@ def render_codex_task(strategy: str, request_path: Path) -> str:
     return "\n".join([
         f"# Codex Implementation Task: `{strategy}`",
         "",
-        "Implement the pending node-local `model.py` for this blueprint.",
+        "Implement the pending node-local `model.py` for this blueprint as a parent-preserving child when possible.",
+        "Treat the blueprint as a research delta, not as permission to discard the parent pipeline by default.",
         "Do not modify data splits, labels, metrics, or artifact files.",
         "Do not fabricate missing artifacts. If the model requires a missing artifact, stop and update acquisition queue instead.",
-        "Do not implement a compact/proxy/simplified stand-in. Formal K562 search requires exact public static execution or a real artifact-backed full blueprint implementation.",
+        "Do not implement a compact/proxy/simplified stand-in. Formal search requires a real artifact-backed implementation, but Codex may preserve parent dense/residual routes and compose the selected module competitively.",
+        "Use parent_summary.json and search_memory motifs from the original request to retain useful branches unless replacement is explicitly requested.",
         "Do not import vc_demo.official_k562.native_models.OfficialK562NativeModel; that helper is smoke-only and forbidden for formal runs.",
         "",
         "## Blueprint",
@@ -253,7 +255,6 @@ def main() -> None:
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--repair-attempts", type=int, default=3)
-    parser.add_argument("--allow-skip", action="store_true", help="Loop/self-test only: allow unimplemented nodes to be marked implementation_skipped instead of stopping for realtime Codex implementation.")
     parser.add_argument("--allow-skip", action="store_true", help="Loop/self-test only: allow unimplemented nodes to be marked implementation_skipped instead of stopping for realtime Codex implementation.")
     args = parser.parse_args()
     implement_pending(args.run_dir, args.max_nodes, args.train, args.max_epochs, args.repair_attempts, allow_skip=args.allow_skip)

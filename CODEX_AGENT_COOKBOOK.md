@@ -21,7 +21,30 @@ repo harness = orchestrator, state machine, queue writer, evaluator, auditor
 Codex window = coding agent, artifact researcher, implementation fixer, experiment runner
 ```
 
-Do not add code that tries to call Codex/OpenAI APIs from inside this repo for the formal run. If a selected node needs implementation, the harness writes `IMPLEMENTATION_REQUEST.md` or `CODEX_IMPLEMENTATION_TASK.md`; the active Codex agent must handle that task during the current run. For loop/self-tests, an unimplemented node may be marked `implementation_skipped` and the global queue may continue. For `full_cellline_run`, artifact-present selected nodes must not be auto-skipped: the run must stop with `requires_realtime_implementation` so the active Codex can implement node-local `model.py`, smoke/train it, and resume.
+Do not add code that tries to call Codex/OpenAI APIs from inside this repo for the formal run. If a selected node needs implementation, the harness writes `IMPLEMENTATION_REQUEST.md` or `CODEX_IMPLEMENTATION_TASK.md`; the active Codex agent must handle that task during the current run. For loop/self-tests, an unimplemented node may be marked `implementation_skipped` and the global queue may continue. For `full_cellline_run`, artifact-present selected nodes must not be passively auto-skipped or left for a later Codex. `requires_realtime_implementation` is an action point for the current Codex session: inspect the task, implement node-local `model.py`, smoke/train it, and resume. If a real implementation cannot be produced after documented attempts, mark the candidate as implementation-infeasible/skipped with a precise reason and continue the global queue; do not leave a pending queue for later.
+
+
+## Codex Autonomy Policy
+
+The guardrails protect scientific validity; they do not define the entire model. Codex is expected to act as an active model engineer inside those boundaries.
+
+Hard constraints:
+
+- Do not change split semantics, label construction, target-gene order, reward metric, test-label usage, or artifact provenance.
+- Do not fabricate artifacts, train fallback models, or call compact/proxy/simplified stand-ins real implementations.
+- Do not backpropagate reward for untrained, skipped, blocked, failed, or pruned proposals.
+
+Autonomous choices Codex should make during selected-node implementation:
+
+- Treat the selected blueprint as a research hypothesis or mutation, not as the full model specification.
+- Implement child nodes as `parent pipeline + selected modification` by default.
+- Preserve useful parent structure, especially dense/context trunks, dense target-logit branches, residual routes, and proven artifact branches, unless the request explicitly says to replace them.
+- Add biological/target/graph modules as residual, gated, additive, bilinear, or attention branches that can compete with the parent baseline instead of deleting the parent signal.
+- Use `search_memory.json`, `parent_summary.json`, previous successful motifs, and failure/blocker records to decide the concrete implementation.
+- If a faithful implementation has multiple valid designs, choose the most competitive artifact-backed design that fits the current GPU and documents the choice.
+- If an artifact/source/contract is impossible to verify, suppress or block that family and continue the global queue; do not let one unavailable family end the search when feasible families remain.
+
+A full run should therefore produce competitive, auditable children, not a sequence of isolated minimal blueprint demos.
 
 ## What Codex May Change
 
