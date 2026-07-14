@@ -58,7 +58,7 @@ Rules for searched artifacts:
 
 - Prefer official model/project pages, paper author repositories, HuggingFace datasets from the authors, STRING/Reactome/GO/MSigDB official releases, or documented checkpoints.
 - Record URL, version/date, file size or checksum when feasible, filtering rules, alignment procedure, and gene/cell coverage.
-- If the source is license-gated, ambiguous, missing, or too large for the current budget, stop and write a blocker. Do not fabricate a substitute.
+- Stop with a blocker only when the source cannot be verified, the public files are incomplete/non-equivalent, the tensor contract cannot be proven, the source is license-gated/manual-approval-only, or the artifact is infeasible for the current approved compute/storage budget. Otherwise acquire/build it immediately, audit it, and resume the same run. Do not fabricate a substitute.
 
 ## What Does Not Require Search
 
@@ -77,7 +77,7 @@ Rules for searched artifacts:
 4. If preflight is not ready, fix only the reported setup issue or stop with a blocker.
 5. Run `python -m vc_demo.harness.autonomous_run` with the task budget.
 6. If `implementation_queue.json` is non-empty, handle the selected node immediately. In `full_cellline_run`, artifact-present selected nodes must be implemented, compiled, native-smoked, trained, and backpropagated before the run can be considered valid. `implementation_skipped` is allowed only for loop/self-tests or after a documented artifact/contract blocker; it is not a substitute for writing `model.py` in a full run.
-7. If `acquisition_queue.json` is non-empty, run `artifact_acquisition`; if it emits `ACQUIRE_<artifact>.md`, search/download/build the real artifact, audit it, update registry, and resume. Stop with a blocker only after the acquisition attempt fails with documented source/provenance/alignment reasons.
+7. If `acquisition_queue.json` is non-empty, handle it in the same Codex session: run `artifact_acquisition`, execute any known resolver, and if it emits `ACQUIRE_<artifact>.md`, immediately search/download/build the real source-backed artifact, audit it, update registry, and resume. Do not hand it off or stop at queue creation. Stop with a blocker only after the acquisition attempt proves no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified.
 8. Resume or continue the same run directory without changing data/splits/metrics.
 9. Write `final_conclusion.md` with best root, best overall, improvement, artifact use, failures/blockers, and whether the result supports the research question.
 10. Commit only allowed files and push the run branch.

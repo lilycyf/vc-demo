@@ -7,7 +7,8 @@ import traceback
 from pathlib import Path
 from typing import Any
 
-from vc_demo.harness.artifact_registry import audit_registry, load_registry, summarize_missing_requirements
+from vc_demo.harness.artifact_acquisition import resolve_item, source_map
+from vc_demo.harness.artifact_registry import audit_registry, load_registry, requirements_for_blueprint, summarize_missing_requirements
 from vc_demo.harness.executor import run_node
 from vc_demo.harness.implementation_agent import implement_pending
 from vc_demo.harness.mcts import backpropagate, select_parent
@@ -112,6 +113,72 @@ def add_pending_node(tree: dict[str, Any], name: str, config_path: Path, parent:
     enrich_node_from_proposal(node, proposal, config_path, name)
     tree["nodes"][name] = node
     link_child(tree, parent, name)
+
+
+def refresh_node_artifact_contract(proposal: dict[str, Any], registry_audit: dict[str, Any]) -> None:
+    contract_path = Path(str(proposal.get("artifact_contract_path") or ""))
+    if not contract_path.exists():
+        return
+    contract = read_json(contract_path)
+    strategy = str(proposal.get("strategy") or contract.get("blueprint") or "")
+    rows = requirements_for_blueprint(registry_audit, strategy) if strategy else []
+    contract["artifact_rows"] = rows
+    contract["required_artifacts"] = [str(row.get("id")) for row in rows]
+    contract["present_required_artifacts"] = [str(row.get("id")) for row in rows if row.get("present")]
+    contract["missing_required_artifacts"] = [str(row.get("id")) for row in rows if not row.get("present")]
+    contract["refreshed_after_realtime_acquisition"] = True
+    write_json(contract_path, contract)
+
+
+def attempt_realtime_artifact_acquisition(
+    run_dir: Path,
+    args: argparse.Namespace,
+    child_name: str,
+    proposal: dict[str, Any],
+    missing_summary: dict[str, Any],
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Try source-backed acquisition before a selected rollout is blocked.
+
+    The strict policy is: missing artifact -> run deterministic resolver or create
+    a research task -> re-audit -> only block when the artifact is still missing
+    because source/provenance/tensor contract cannot be verified yet.
+    """
+    output_dir = run_dir / "artifact_acquisition"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    registry_path = args.artifact_registry or Path("configs/artifacts/k562_registry.json")
+    registry = load_registry(registry_path, "K562")
+    sources_path = Path("configs/artifacts/acquisition_sources.json")
+    if args.artifact_registry:
+        sibling_sources = Path(args.artifact_registry).parent / "acquisition_sources.json"
+        if sibling_sources.exists():
+            sources_path = sibling_sources
+    sources = source_map(sources_path)
+    missing_ids = list(missing_summary.get("missing_required_artifacts", []) or [])
+    missing_paths = list(missing_summary.get("missing_required_artifact_paths", []) or [])
+    missing_sources = list(missing_summary.get("missing_required_artifact_sources", []) or [])
+    results: list[dict[str, Any]] = []
+    for idx, artifact_id in enumerate(missing_ids):
+        item = {
+            "node": child_name,
+            "strategy": proposal.get("strategy"),
+            "artifact_id": artifact_id,
+            "expected_path": missing_paths[idx] if idx < len(missing_paths) else "",
+            "source": missing_sources[idx] if idx < len(missing_sources) else "",
+        }
+        results.append(resolve_item(item, sources, registry, output_dir, execute_known=True))
+    report = {
+        "node": child_name,
+        "strategy": proposal.get("strategy"),
+        "policy": "realtime_source_backed_acquisition_before_block",
+        "items": results,
+    }
+    existing_path = output_dir / "realtime_acquisition_results.jsonl"
+    with existing_path.open("a") as f:
+        import json as _json
+
+        f.write(_json.dumps(report) + "\n")
+    refreshed_audit = audit_registry(load_registry(registry_path, "K562"))
+    return results, refreshed_audit
 
 
 def add_blocked_missing_artifact_node(
@@ -631,31 +698,62 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         append_mcts_trace(run_dir, {"event": "expansion", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "candidate_list": compact_candidates(scored), "requires_implementation": proposal.get("requires_implementation", False), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "scientific_selection": proposal.get("scientific_selection", {}), "structural_relation": proposal.get("structural_relation", ""), "duplicate_skips": duplicate_skips, "depth": len(lineage(tree, parent_name))})
 
         if proposal["missing_required_artifacts"] and not args.allow_missing_artifact_fallbacks:
-            add_blocked_missing_artifact_node(tree, child_name, child_config_path, parent_name, iteration, proposal, missing_summary)
-            failures.append({
-                "node": child_name,
-                "parent": parent_name,
-                "error": "requires_artifact_acquisition",
-                "strategy": proposal.get("strategy"),
-                "missing_required_artifacts": proposal["missing_required_artifacts"],
-                "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
-            })
-            no_improve += 1
-            memory = rebuild_memory_from_tree(run_dir, tree, failures)
+            acquisition_results: list[dict[str, Any]] = []
+            if args.enable_acquisition_loop:
+                acquisition_results, registry_audit = attempt_realtime_artifact_acquisition(run_dir, args, child_name, proposal, missing_summary)
+                refreshed_missing = summarize_missing_requirements(registry_audit, str(proposal.get("strategy", "")))
+                proposal["realtime_acquisition_results"] = acquisition_results
+                proposal["missing_required_artifacts"] = refreshed_missing.get("missing_required_artifacts", [])
+                proposal["missing_required_artifact_paths"] = refreshed_missing.get("missing_required_artifact_paths", [])
+                proposal["missing_required_artifact_sources"] = refreshed_missing.get("missing_required_artifact_sources", [])
+                refresh_node_artifact_contract(proposal, registry_audit)
+                write_json(child_config_path, child_config)
+                write_json(proposal_path, proposal)
+                append_mcts_trace(run_dir, {
+                    "event": "realtime_artifact_acquisition_attempt",
+                    "iteration": iteration,
+                    "selected_parent": parent_name,
+                    "child": child_name,
+                    "chosen_blueprint": proposal.get("strategy"),
+                    "items": acquisition_results,
+                    "remaining_missing_required_artifacts": proposal["missing_required_artifacts"],
+                })
+                missing_summary = refreshed_missing
+            if proposal["missing_required_artifacts"]:
+                add_blocked_missing_artifact_node(tree, child_name, child_config_path, parent_name, iteration, proposal, missing_summary)
+                failures.append({
+                    "node": child_name,
+                    "parent": parent_name,
+                    "error": "requires_artifact_acquisition",
+                    "strategy": proposal.get("strategy"),
+                    "missing_required_artifacts": proposal["missing_required_artifacts"],
+                    "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
+                    "acquisition_results": acquisition_results,
+                })
+                no_improve += 1
+                memory = rebuild_memory_from_tree(run_dir, tree, failures)
+                append_mcts_trace(run_dir, {
+                    "event": "artifact_acquisition_block_continued",
+                    "iteration": iteration,
+                    "selected_parent": parent_name,
+                    "child": child_name,
+                    "chosen_blueprint": proposal.get("strategy"),
+                    "missing_required_artifacts": proposal["missing_required_artifacts"],
+                    "policy": "block_only_after_realtime_acquisition_or_verified_unavailable_source",
+                })
+                write_tree_and_failures(run_dir, tree, failures)
+                if proposal_budget is not None and generated_proposals >= proposal_budget and not queued_candidates(tree):
+                    stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
+                    break
+                continue
             append_mcts_trace(run_dir, {
-                "event": "artifact_acquisition_block_continued",
+                "event": "artifact_acquisition_resolved_selected_rollout",
                 "iteration": iteration,
                 "selected_parent": parent_name,
                 "child": child_name,
                 "chosen_blueprint": proposal.get("strategy"),
-                "missing_required_artifacts": proposal["missing_required_artifacts"],
-                "policy": "block_selected_node_record_artifact_memory_and_continue_search",
+                "policy": "resolver_succeeded_continue_to_implementation_or_training",
             })
-            write_tree_and_failures(run_dir, tree, failures)
-            if proposal_budget is not None and generated_proposals >= proposal_budget and not queued_candidates(tree):
-                stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
-                break
-            continue
 
         if proposal.get("requires_implementation"):
             add_pending_node(tree, child_name, child_config_path, parent_name, iteration, proposal)
@@ -776,6 +874,7 @@ def main() -> None:
     parser.add_argument("--allow-planned-blueprints", action="store_true")
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--enable-implementation-loop", action="store_true", help="Automatically materialize selected planned nodes, run native smoke, train_pending, and repair-log failures before returning to MCTS.")
+    parser.add_argument("--enable-acquisition-loop", action=argparse.BooleanOptionalAction, default=True, help="Before blocking a selected rollout for missing artifacts, run source-backed acquisition resolvers, re-audit, and continue if resolved. Disable only for negative smoke tests.")
     parser.add_argument("--allow-implementation-skip", action="store_true", help="Loop/self-test only: allow missing node-local templates to become implementation_skipped. Formal full runs should leave this disabled so the active Codex must implement selected artifact-present nodes before resume.")
     parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum compile/native-smoke/train repair attempts for the automatic implementation loop.")
     parser.add_argument("--force-blueprint", default=None)

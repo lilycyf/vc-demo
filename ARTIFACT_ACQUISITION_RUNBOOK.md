@@ -22,7 +22,7 @@ python -m vc_demo.harness.artifact_acquisition \
   --execute-known
 ```
 
-If this writes `ACQUIRE_<artifact>.md`, follow `ARTIFACT_ACQUISITION_AGENT_PROMPT.md` and the generated task. The correct behavior is active source-backed acquisition, not waiting passively and not training a fallback.
+If this writes `ACQUIRE_<artifact>.md`, the same experiment Codex must follow the generated task immediately. The correct behavior is active source-backed acquisition plus resume, not waiting passively, not handing off by default, and not training a fallback.
 
 ## Required Behavior
 
@@ -36,12 +36,12 @@ When `acquisition_queue.json` is non-empty, the Codex agent must not simply repo
 6. Update `configs/artifacts/k562_registry.json` only with source-backed metadata.
 7. Run `python -m vc_demo.harness.artifact_registry --cell-line K562` and save/update audit output.
 8. Resume the search from the same run dir or restart a clean run, still without fallback.
-9. If acquisition fails, write a blocker report that lists the sources checked, why each source is insufficient, and what approval/file would be needed next.
+9. If and only if acquisition fails because no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified, write a blocker report that lists the sources checked, why each source is insufficient, and what approval/file would be needed next.
 
 
 ## Blocker Threshold
 
-A missing artifact may remain blocked only after an acquisition attempt has been made. A valid blocker must include:
+A missing artifact may remain blocked only after a realtime acquisition attempt has been made in the same experiment session. A valid blocker must include:
 
 - artifact id and triggering blueprint/node;
 - sources searched, including official/project repositories and public model/data hosts when relevant;
