@@ -685,9 +685,6 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     if args.proposal_selection_mode == "global_queue" and trained_node_budget is not None and trained_rollouts == 0:
         if str(stop_reason).startswith("proposal budget exhausted"):
             stop_reason = "framework_failed_no_generated_child_trained: proposal budget exhausted before any generated rollout trained"
-    if args.proposal_selection_mode == "global_queue" and trained_node_budget is not None and trained_rollouts == 0:
-        if str(stop_reason).startswith("proposal budget exhausted"):
-            stop_reason = "framework_failed_no_generated_child_trained: proposal budget exhausted before any generated rollout trained"
     memory = rebuild_memory_from_tree(run_dir, tree, failures)
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
