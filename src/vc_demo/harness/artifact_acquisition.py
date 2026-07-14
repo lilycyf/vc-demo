@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from vc_demo.harness.artifact_registry import audit_registry, load_registry
+from vc_demo.harness.artifact_registry import audit_registry, canonical_artifact_id, load_registry
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -140,7 +140,7 @@ def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_ite
 
 
 def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], registry: dict[str, Any], output_dir: Path, execute_known: bool) -> dict[str, Any]:
-    artifact_id = str(item.get("artifact_id", ""))
+    artifact_id = canonical_artifact_id(str(item.get("artifact_id", "")))
     src = sources.get(artifact_id, {})
     reg = registry_entry(registry, artifact_id)
     expected_path = Path(str(item.get("expected_path") or src.get("expected_path") or reg.get("path") or ""))

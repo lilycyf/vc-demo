@@ -114,6 +114,7 @@
         "pathway_pooling"
       ],
       "required_for_blueprints": [
+        "official_pathway_pooling_reactome",
         "pathway_pooling_encoder"
       ],
       "do_not_fabricate": true,
@@ -256,6 +257,59 @@
       ],
       "required_for_blueprints": [
         "official_public_best_node"
+      ],
+      "do_not_fabricate": true
+    },
+    {
+      "id": "class_distribution",
+      "family": "training_metadata",
+      "provider": "repo-derived-official-k562-train-split",
+      "status": "derived_expected_present",
+      "path": "data/artifacts/official_k562/class_distribution_train.json",
+      "source": "Derived from data/cell_lines/official_k562_cls/train.tsv labels only by scripts/build_official_k562_class_distribution.py; no validation/test labels are read.",
+      "usable_for": [
+        "class_weighted_loss",
+        "focal_loss",
+        "imbalance_audit"
+      ],
+      "required_for_blueprints": [
+        "official_class_imbalance_training",
+        "official_weighted_ce_training",
+        "official_focal_loss_training",
+        "class_balanced_deg_classifier",
+        "focal_loss_training_strategy"
+      ],
+      "do_not_fabricate": true,
+      "leakage_guardrail": "train split only"
+    },
+    {
+      "id": "regulatory_network_artifact",
+      "family": "regulatory_prior",
+      "provider": "TBD source-backed regulatory network",
+      "status": "definition_required_before_acquisition",
+      "path": "data/artifacts/regulatory/k562_regulatory_network.tsv",
+      "source": "No default source is assumed. A run must define a source-backed regulatory network contract, vocabulary, edge semantics, and target-gene alignment before using this artifact.",
+      "usable_for": [
+        "regulatory_network_prior"
+      ],
+      "required_for_blueprints": [
+        "official_regulatory_network_prior"
+      ],
+      "do_not_fabricate": true
+    },
+    {
+      "id": "single_cell_foundation_model_artifact",
+      "family": "single_cell_foundation_model",
+      "provider": "scGPT or equivalent source-backed single-cell foundation model",
+      "status": "missing_until_downloaded_or_built",
+      "path": "data/artifacts/single_cell_foundation_model",
+      "source": "Source-backed scGPT/single-cell foundation checkpoint or row-aligned encoder output; exact source, vocabulary, normalization, and row order must be recorded before use.",
+      "usable_for": [
+        "cell_state_encoder",
+        "single_cell_foundation_model"
+      ],
+      "required_for_blueprints": [
+        "official_scgpt_cell_encoder"
       ],
       "do_not_fabricate": true
     }

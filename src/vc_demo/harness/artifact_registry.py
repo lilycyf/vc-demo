@@ -6,6 +6,18 @@ from pathlib import Path
 from typing import Any
 
 
+ARTIFACT_ID_ALIASES: dict[str, str] = {
+    # Historical blueprint names kept for backward compatibility.
+    "pathway_memberships": "pathway_membership_matrix",
+    "pathway_membership": "pathway_membership_matrix",
+    "pathway_membership_targets": "pathway_membership_matrix",
+}
+
+
+def canonical_artifact_id(artifact_id: str) -> str:
+    return ARTIFACT_ID_ALIASES.get(str(artifact_id), str(artifact_id))
+
+
 def read_json(path: Path) -> dict[str, Any]:
     with path.open() as f:
         return json.load(f)
@@ -64,18 +76,18 @@ def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
 
 def requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str) -> list[dict[str, Any]]:
     artifacts = list(registry_audit.get("artifacts", []))
-    by_id = {str(artifact.get("id")): artifact for artifact in artifacts}
+    by_id = {canonical_artifact_id(str(artifact.get("id"))): artifact for artifact in artifacts}
     required_ids: list[str] = []
     for artifact in artifacts:
         if blueprint_id in artifact.get("required_for_blueprints", []):
-            artifact_id = str(artifact.get("id"))
+            artifact_id = canonical_artifact_id(str(artifact.get("id")))
             if artifact_id not in required_ids:
                 required_ids.append(artifact_id)
     try:
         from vc_demo.harness.model_blueprints import blueprint_by_id
 
         for artifact_id in blueprint_by_id(blueprint_id).get("requires", []) or []:
-            artifact_id = str(artifact_id)
+            artifact_id = canonical_artifact_id(str(artifact_id))
             if artifact_id not in required_ids:
                 required_ids.append(artifact_id)
     except Exception:

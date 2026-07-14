@@ -34,7 +34,7 @@ This is the explicit official K562 MCTS search-space checklist. It intentionally
 | `official_target_low_rank_head` | `planned` | `target_low_rank_head` | 4 | `cheap` | planned_for_codex_on_selection | official_essential_deg_with_split_h5ad |
 | `official_target_bilinear_head` | `planned` | `target_bilinear_head` | 4 | `cheap` | planned_for_codex_on_selection | official_essential_deg_with_split_h5ad |
 | `official_target_graph_conditioned_head` | `planned` | `target_graph_conditioned_head` | 5 | `medium` | planned_for_codex_on_selection | official_string_gnn_keep20_graph, official_essential_deg_with_split_h5ad |
-| `official_pathway_pooling_reactome` | `planned` | `Reactome_pathway_pooling` | 5 | `medium` | planned_for_codex_on_selection | pathway_memberships, official_essential_deg_with_split_h5ad |
+| `official_pathway_pooling_reactome` | `planned` | `Reactome_pathway_pooling` | 5 | `medium` | planned_for_codex_on_selection | pathway_membership_matrix, official_essential_deg_with_split_h5ad |
 | `official_regulatory_network_prior` | `planned` | `regulatory_network_prior` | 5 | `medium` | planned_for_codex_on_selection | regulatory_network_artifact, official_essential_deg_with_split_h5ad |
 | `official_weighted_ce_training` | `planned` | `class_weighted_CE` | 1 | `cheap` | planned_for_codex_on_selection | official_essential_deg_with_split_h5ad, class_distribution |
 | `official_focal_loss_training` | `planned` | `focal_loss` | 1 | `cheap` | planned_for_codex_on_selection | official_essential_deg_with_split_h5ad, class_distribution |

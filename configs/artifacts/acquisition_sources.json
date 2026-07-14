@@ -186,6 +186,51 @@
       "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/GNN_Simple_Official_(D=256).h5ad --output data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
       "can_execute_automatically": true,
       "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "class_distribution",
+      "resolver": "derive_from_official_train_split_labels",
+      "expected_path": "data/artifacts/official_k562/class_distribution_train.json",
+      "source": "Official K562 train.tsv labels only; validation/test labels are not read.",
+      "command": "python scripts/build_official_k562_class_distribution.py --train-tsv data/cell_lines/official_k562_cls/train.tsv --output data/artifacts/official_k562/class_distribution_train.json",
+      "can_execute_automatically": true,
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+    },
+    {
+      "id": "regulatory_network_artifact",
+      "resolver": "definition_required_before_acquisition",
+      "expected_path": "data/artifacts/regulatory/k562_regulatory_network.tsv",
+      "source": "No default regulatory network is assumed. Codex must select and justify a public source before building this artifact.",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Which source-backed regulatory network is appropriate for K562 DEG perturbation prediction?",
+        "What edge semantics, species, version, and evidence thresholds are used?",
+        "How are source/target genes aligned to the official K562 perturbation and target gene vocabularies?",
+        "Does the source create leakage from validation/test DEG labels?"
+      ],
+      "required_outputs": [
+        "regulatory edge artifact",
+        "source/provenance/coverage summary",
+        "registry update"
+      ]
+    },
+    {
+      "id": "single_cell_foundation_model_artifact",
+      "resolver": "codex_research_download_or_encode_from_official_single_cell_foundation_source",
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "source": "Official/public scGPT or equivalent single-cell foundation checkpoint or row-aligned encoder output.",
+      "can_execute_automatically": false,
+      "research_questions": [
+        "Is there an official/public model checkpoint suitable for these K562 perturbation rows?",
+        "What gene vocabulary and normalization are required?",
+        "Can the official train/val/test rows be encoded without label leakage?",
+        "What exact file layout should be written under data/artifacts/single_cell_foundation_model?"
+      ],
+      "required_outputs": [
+        "checkpoint or row-aligned embeddings",
+        "vocabulary/row-order/coverage summary",
+        "registry update"
+      ]
     }
   ]
 }
