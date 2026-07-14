@@ -73,7 +73,7 @@ The script writes `transfer_invocation.json` and `transfer_invocation.md` into t
 
 ### Root-Beating Objective For Full Runs
 
-A `full_cellline_run` is not complete merely because it trains many nodes. Its primary objective is to find a generated child that both beats the best root and reaches the user-specified target validation Macro-F1. The final report must include:
+A `full_cellline_run` is not complete merely because it generates proposals or trains roots. Its primary objective is to find a generated child that both beats the best root and reaches the user-specified target validation Macro-F1. The final report must include:
 
 - best root val/test Macro-F1
 - best generated child val/test Macro-F1
@@ -158,7 +158,7 @@ When `implementation_queue.json` contains a selected planned node, the experimen
 2. If required artifacts are missing, run acquisition or block. Do not write `model.py`.
 3. If required artifacts are present, implement only node-local `model.py` and node-local pipeline metadata. Tiny helpers may live under `src/vc_demo/official_<slug>/` only when necessary.
 4. Run compile, native smoke, and `train_pending`.
-5. If no safe real implementation can be produced, mark the node `implementation_skipped`, clear it from `implementation_queue.json`, and continue global search. Do not leave pending implementation tasks for later.
+5. In `loop_self_test`, if no safe real implementation can be produced, mark the node `implementation_skipped`, clear it from `implementation_queue.json`, and continue global search. In `full_cellline_run`, do not auto-skip an artifact-present selected node; stop with `requires_realtime_implementation`, implement node-local `model.py` in the same Codex session, then resume. Only documented artifact/source/contract blockers may prevent implementation.
 6. Resume or continue the same run without `--reset`.
 
 Allowed edits during pending implementation:
@@ -190,6 +190,28 @@ Forbidden edits:
 - unselected proposals are pruned, not trained
 - selected rollout must train before backprop
 - generated child must not route to `external_static_node` unless it is explicitly a public static wrapper candidate
+
+## Full-Run Completion Gate
+
+For `RUN_TYPE=full_cellline_run`, proposal exhaustion alone is not a valid completion condition. The run is invalid if:
+
+- no generated child was trained;
+- selected artifact-present planned nodes were converted directly to `implementation_skipped`;
+- the trained-rollout budget was not reached and feasible queued candidates remain;
+- best generated child cannot be compared to best root.
+
+Such a run must be reported as `framework_failed_no_generated_child_trained` or `requires_realtime_implementation`, not as a completed full experiment.
+
+## Full-Run Completion Gate
+
+For `RUN_TYPE=full_cellline_run`, proposal exhaustion alone is not a valid completion condition. The run is invalid if:
+
+- no generated child was trained;
+- selected artifact-present planned nodes were converted directly to `implementation_skipped`;
+- the trained-rollout budget was not reached and feasible queued candidates remain;
+- best generated child cannot be compared to best root.
+
+Such a run must be reported as `framework_failed_no_generated_child_trained` or `requires_realtime_implementation`, not as a completed full experiment.
 
 ## Reports
 

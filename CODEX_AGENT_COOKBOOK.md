@@ -21,7 +21,7 @@ repo harness = orchestrator, state machine, queue writer, evaluator, auditor
 Codex window = coding agent, artifact researcher, implementation fixer, experiment runner
 ```
 
-Do not add code that tries to call Codex/OpenAI APIs from inside this repo for the formal run. If a selected node needs implementation, the harness writes `IMPLEMENTATION_REQUEST.md` or `CODEX_IMPLEMENTATION_TASK.md`; the active Codex agent must handle that task during the current run. If it cannot safely implement a real artifact-backed `model.py`, the node is marked `implementation_skipped`, removed from the implementation queue, and the global queue continues.
+Do not add code that tries to call Codex/OpenAI APIs from inside this repo for the formal run. If a selected node needs implementation, the harness writes `IMPLEMENTATION_REQUEST.md` or `CODEX_IMPLEMENTATION_TASK.md`; the active Codex agent must handle that task during the current run. For loop/self-tests, an unimplemented node may be marked `implementation_skipped` and the global queue may continue. For `full_cellline_run`, artifact-present selected nodes must not be auto-skipped: the run must stop with `requires_realtime_implementation` so the active Codex can implement node-local `model.py`, smoke/train it, and resume.
 
 ## What Codex May Change
 
@@ -76,7 +76,7 @@ Rules for searched artifacts:
 3. Run `python -m vc_demo.harness.preflight`.
 4. If preflight is not ready, fix only the reported setup issue or stop with a blocker.
 5. Run `python -m vc_demo.harness.autonomous_run` with the task budget.
-6. If `implementation_queue.json` is non-empty, handle the selected node immediately: implement only the node-local `model.py` / node-local metadata, run compile/native smoke/train, or mark `implementation_skipped` if no safe real implementation can be produced. Do not leave implementation work for a later Codex.
+6. If `implementation_queue.json` is non-empty, handle the selected node immediately. In `full_cellline_run`, artifact-present selected nodes must be implemented, compiled, native-smoked, trained, and backpropagated before the run can be considered valid. `implementation_skipped` is allowed only for loop/self-tests or after a documented artifact/contract blocker; it is not a substitute for writing `model.py` in a full run.
 7. If `acquisition_queue.json` is non-empty, run `artifact_acquisition`; if it emits `ACQUIRE_<artifact>.md`, search/download/build the real artifact, audit it, update registry, and resume. Stop with a blocker only after the acquisition attempt fails with documented source/provenance/alignment reasons.
 8. Resume or continue the same run directory without changing data/splits/metrics.
 9. Write `final_conclusion.md` with best root, best overall, improvement, artifact use, failures/blockers, and whether the result supports the research question.
@@ -90,7 +90,7 @@ Stop the formal run when one of these is true:
 - No-improvement criterion is reached.
 - A missing artifact requires source research and cannot be acquired safely.
 - No queued executable candidate remains after skipped implementations and documented artifact blockers.
-- Repeated implementation repair attempts fail and the failure is recorded as failed or `implementation_skipped`.
+- Repeated implementation repair attempts fail and the failure is recorded. In `full_cellline_run`, this is a real failure unless an artifact/source/contract blocker is documented.
 
 ## Required Records
 

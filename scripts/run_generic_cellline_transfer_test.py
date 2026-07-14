@@ -109,6 +109,8 @@ def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, exp
         "--implementation-repair-attempts",
         str(args.implementation_repair_attempts),
     ]
+    if level.run_type != "full_cellline_run":
+        cmd.append("--allow-implementation-skip")
     if args.resume:
         return cmd
     return [*cmd, "--reset"]

@@ -29,7 +29,7 @@ def _generic_program_source(blueprint_id: str) -> str:
     return templates[blueprint_id]
 
 
-def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
+def materialize_model(program_dir: Path, strategy: str, allow_skip: bool = False) -> dict[str, Any]:
     model_path = program_dir / "model.py"
     try:
         source = render_program_source(strategy)
@@ -40,7 +40,10 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
             request = program_dir / "IMPLEMENTATION_REQUEST.md"
             task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
             task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "implementation_skipped", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "strict formal mode requires Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"}
+            reason = "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+            if allow_skip:
+                return {"status": "implementation_skipped", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": reason}
+            return {"status": "requires_realtime_implementation", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": reason}
         try:
             source = _generic_program_source(strategy)
             source_kind = "implementation_agent_template"
@@ -48,7 +51,10 @@ def materialize_model(program_dir: Path, strategy: str) -> dict[str, Any]:
             request = program_dir / "IMPLEMENTATION_REQUEST.md"
             task = program_dir / "CODEX_IMPLEMENTATION_TASK.md"
             task.write_text(render_codex_task(strategy, request), encoding="utf-8")
-            return {"status": "implementation_skipped", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": "no safe local template exists; Codex must implement a real node-local model or mark a precise artifact/contract blocker"}
+            reason = "no safe local template exists; the active Codex must implement a real node-local model or mark a precise artifact/contract blocker"
+            if allow_skip:
+                return {"status": "implementation_skipped", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": reason}
+            return {"status": "requires_realtime_implementation", "strategy": strategy, "task_path": str(task), "model_path": str(model_path), "reason": reason}
     model_path.write_text(source, encoding="utf-8")
     py_compile.compile(str(model_path), doraise=True)
     return {"status": "implemented", "strategy": strategy, "source_kind": source_kind, "model_path": str(model_path)}
@@ -161,7 +167,7 @@ def pending_nodes(run_dir: Path) -> list[dict[str, Any]]:
     return list(payload.get("items", []))
 
 
-def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool = False, max_epochs: int | None = None, repair_attempts: int = 3) -> dict[str, Any]:
+def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool = False, max_epochs: int | None = None, repair_attempts: int = 3, allow_skip: bool = False) -> dict[str, Any]:
     items = pending_nodes(run_dir)
     if max_nodes is not None:
         items = items[:max_nodes]
@@ -186,13 +192,19 @@ def implement_pending(run_dir: Path, max_nodes: int | None = None, train: bool =
         for attempt in range(1, repair_attempts + 1):
             row: dict[str, Any] = {"attempt": attempt, "node": node, "strategy": strategy}
             try:
-                impl = materialize_model(program_dir, strategy)
+                impl = materialize_model(program_dir, strategy, allow_skip=allow_skip)
                 row.update({"stage": "materialize", **impl})
                 attempt_rows.append(row)
                 append_jsonl(repair_log, {"time": time.time(), **row})
                 result.update(impl)
                 if impl["status"] != "implemented":
                     reason = str(impl.get("reason") or "no safe realtime implementation generated")
+                    if impl["status"] == "requires_realtime_implementation":
+                        row["status"] = "requires_realtime_implementation"
+                        row["reason"] = reason
+                        result.update({"status": "requires_realtime_implementation", "reason": reason, "task_path": impl.get("task_path"), "model_path": impl.get("model_path")})
+                        append_jsonl(decision_trace, {"time": time.time(), "event": "requires_realtime_implementation", "node": node, "strategy": strategy, "task_path": impl.get("task_path"), "reason": reason})
+                        break
                     row["status"] = "implementation_skipped"
                     row["skip_reason"] = reason
                     result.update({"status": "implementation_skipped", "skip_reason": reason, "task_path": impl.get("task_path"), "model_path": impl.get("model_path")})
@@ -241,8 +253,10 @@ def main() -> None:
     parser.add_argument("--train", action="store_true")
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--repair-attempts", type=int, default=3)
+    parser.add_argument("--allow-skip", action="store_true", help="Loop/self-test only: allow unimplemented nodes to be marked implementation_skipped instead of stopping for realtime Codex implementation.")
+    parser.add_argument("--allow-skip", action="store_true", help="Loop/self-test only: allow unimplemented nodes to be marked implementation_skipped instead of stopping for realtime Codex implementation.")
     args = parser.parse_args()
-    implement_pending(args.run_dir, args.max_nodes, args.train, args.max_epochs, args.repair_attempts)
+    implement_pending(args.run_dir, args.max_nodes, args.train, args.max_epochs, args.repair_attempts, allow_skip=args.allow_skip)
 
 
 FILM_CONDITIONED_RESIDUAL = '''from __future__ import annotations

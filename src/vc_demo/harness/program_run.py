@@ -602,7 +602,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             write_tree_and_failures(run_dir, tree, failures)
             if args.enable_implementation_loop:
                 append_mcts_trace(run_dir, {"event": "implementation_loop_start", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "repair_attempts": args.implementation_repair_attempts})
-                implementation_report = implement_pending(run_dir, max_nodes=1, train=True, max_epochs=args.max_epochs, repair_attempts=args.implementation_repair_attempts)
+                implementation_report = implement_pending(run_dir, max_nodes=1, train=True, max_epochs=args.max_epochs, repair_attempts=args.implementation_repair_attempts, allow_skip=args.allow_implementation_skip)
                 tree = read_json(run_dir / "tree.json")
                 failures = read_json(run_dir / "failures.json").get("failures", []) if (run_dir / "failures.json").exists() else []
                 memory = rebuild_memory_from_tree(run_dir, tree, failures)
@@ -626,6 +626,11 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                     no_improve += 1
                     write_tree_and_failures(run_dir, tree, failures)
                     continue
+                if item.get("status") == "requires_realtime_implementation":
+                    stop_reason = f"realtime implementation required for selected node {child_name}"
+                    append_mcts_trace(run_dir, {"event": "realtime_implementation_required", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "task_path": item.get("task_path"), "reason": item.get("reason"), "policy": "current_codex_must_implement_node_local_model_then_resume"})
+                    write_tree_and_failures(run_dir, tree, failures)
+                    break
                 if item.get("status") == "implementation_skipped":
                     no_improve += 1
                     append_mcts_trace(run_dir, {"event": "implementation_skipped_continued", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "task_path": item.get("task_path"), "skip_reason": item.get("skip_reason"), "policy": "skip_unimplemented_candidate_and_continue_global_queue_without_fallback"})
@@ -677,6 +682,12 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 break
             append_mcts_trace(run_dir, {"event": "early_stop_suppressed_for_family_coverage", "iteration": iteration, "no_improve": no_improve, "family_coverage": coverage, "min_family_coverage_before_stop": args.min_family_coverage_before_stop})
 
+    if args.proposal_selection_mode == "global_queue" and trained_node_budget is not None and trained_rollouts == 0:
+        if str(stop_reason).startswith("proposal budget exhausted"):
+            stop_reason = "framework_failed_no_generated_child_trained: proposal budget exhausted before any generated rollout trained"
+    if args.proposal_selection_mode == "global_queue" and trained_node_budget is not None and trained_rollouts == 0:
+        if str(stop_reason).startswith("proposal budget exhausted"):
+            stop_reason = "framework_failed_no_generated_child_trained: proposal budget exhausted before any generated rollout trained"
     memory = rebuild_memory_from_tree(run_dir, tree, failures)
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
@@ -706,6 +717,7 @@ def main() -> None:
     parser.add_argument("--allow-planned-blueprints", action="store_true")
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--enable-implementation-loop", action="store_true", help="Automatically materialize selected planned nodes, run native smoke, train_pending, and repair-log failures before returning to MCTS.")
+    parser.add_argument("--allow-implementation-skip", action="store_true", help="Loop/self-test only: allow missing node-local templates to become implementation_skipped. Formal full runs should leave this disabled so the active Codex must implement selected artifact-present nodes before resume.")
     parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum compile/native-smoke/train repair attempts for the automatic implementation loop.")
     parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--artifact-registry", type=Path, default=None)

@@ -26,6 +26,8 @@ Pass only if the run type is explicit:
 - Full runs must generate at least 300 proposals unless no feasible non-blocked blueprint path remains.
 - Full runs must explicitly report whether best generated child beats best root on validation Macro-F1.
 - Full runs must explicitly report whether best generated child reaches `target_val_macro_f1`.
+- Full runs with `trained selected rollouts = 0` or `best generated child = none` fail acceptance as `framework_failed_no_generated_child_trained`.
+- Full runs with `trained selected rollouts = 0` or `best generated child = none` fail acceptance as `framework_failed_no_generated_child_trained`.
 
 ## Task Contract
 
@@ -81,6 +83,8 @@ Pass only if:
 - native smoke passes
 - `train_pending` passes or records a real failure
 - no compact/proxy/fallback implementation is used in formal transfer tests
+- `implementation_skipped` is not used as a broad substitute for implementing artifact-present selected nodes in `full_cellline_run`
+- `implementation_skipped` is not used as a broad substitute for implementing artifact-present selected nodes in `full_cellline_run`
 
 ## Audit Counters
 
@@ -121,7 +125,7 @@ The final report must state one of:
 
 - `passed`: generic transfer loop completed with all hard counters at zero
 - `blocked`: source-backed task/artifact could not be verified after acquisition resolver and Codex research acquisition were attempted
-- `failed`: implementation/search failed for a non-artifact reason
+- `failed`: implementation/search failed for a non-artifact reason, including `framework_failed_no_generated_child_trained`, including `framework_failed_no_generated_child_trained`
 - `inconclusive`: run did not reach enough selected rollouts for the requested test level
 
 Do not call a run passed if it only created configs or only reached preflight.

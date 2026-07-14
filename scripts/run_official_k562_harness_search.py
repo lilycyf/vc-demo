@@ -43,6 +43,7 @@ def main() -> None:
     parser.add_argument("--strict-artifacts", action="store_true", default=True)
     parser.add_argument("--enable-repair-loop", action="store_true", help="Compatibility alias for --enable-implementation-loop.")
     parser.add_argument("--enable-implementation-loop", action="store_true", help="Automatically materialize selected planned nodes, run native smoke, train_pending, and repair-log failures.")
+    parser.add_argument("--allow-implementation-skip", action="store_true", help="Loop/self-test only: allow missing node-local templates to become implementation_skipped. Formal full runs should leave this disabled.")
     parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum attempts for compile/native-smoke/train repair in the automatic implementation loop.")
     parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
     parser.add_argument("--reset", action="store_true")
@@ -95,6 +96,7 @@ def main() -> None:
         max_pending_implementations=args.max_pending_implementations,
         enable_implementation_loop=bool(args.enable_implementation_loop or args.enable_repair_loop),
         implementation_repair_attempts=args.implementation_repair_attempts,
+        allow_implementation_skip=args.allow_implementation_skip,
         force_blueprint=args.force_blueprint or None,
         artifact_registry=args.registry,
         artifact_aware_blueprint_policy=False,
