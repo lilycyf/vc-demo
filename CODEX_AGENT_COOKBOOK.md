@@ -137,3 +137,15 @@ See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execu
 ## Paper Alignment Layers 5-8
 
 See `PAPER_ALIGNMENT_LAYERS_5_8.md` for benchmark audit, search scale planning, failure repair workflow, and paper-style final analysis.
+
+## Framework Feedback Loop
+
+The objective is to improve the automatic modeling framework through tasks, not to hand-tune one task. After any search or validation run, Codex must treat the result as feedback for the next search policy:
+
+- If a child beats the root once but fails multi-seed validation, record an instability finding rather than declaring a stable model win.
+- If validation improves but test drops, record a generalization warning; do not tune on test labels.
+- If roots dominate children, prefer parent-preserving delta implementations and avoid replacing strong parent routes with isolated minimal modules.
+- If a family repeatedly blocks on unavailable artifacts, suppress/filter that family after source-backed acquisition proves unavailability, then continue feasible families.
+- If a motif shows positive but unstable lift, prioritize stability proposals such as residual gates, calibration, gene dropout, SWA/ensemble, and multi-seed validation before promotion.
+
+The repo records this as `framework_feedback.json` and `framework_feedback.md`. Search memory includes `framework_feedback`, and proposal ranking may use its ranking boosts/penalties. This feedback is a framework policy signal, not permission to change splits, labels, metrics, target order, or artifact provenance.

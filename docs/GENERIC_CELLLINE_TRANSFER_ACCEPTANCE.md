@@ -130,3 +130,14 @@ The final report must state one of:
 - `inconclusive`: run did not reach enough selected rollouts for the requested test level
 
 Do not call a run passed if it only created configs or only reached preflight.
+
+## Framework Feedback Acceptance
+
+For framework-development runs, acceptance includes a feedback artifact:
+
+- `framework_feedback.json` exists or `search_memory.json` contains `framework_feedback`.
+- Reports distinguish one-run model wins from stable framework improvements.
+- Multi-seed instability, validation/test divergence, root dominance, artifact blockers, and implementation infeasibility are converted into explicit next-run policy or blocker reasons.
+- The next run's proposal ranking records any `feedback_boost` or `feedback_penalty` used for blueprint selection.
+
+A result that improves one cell line but does not update the search/implementation policy is an experiment result, not a framework improvement.

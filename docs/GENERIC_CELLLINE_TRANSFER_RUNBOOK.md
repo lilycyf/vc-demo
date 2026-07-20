@@ -231,3 +231,21 @@ experiments/official_<slug>_generic_transfer_v1/final_generic_transfer_report.md
 ```
 
 It must summarize task contract, artifacts, acquisition attempts, root baselines, proposal pool, selected/pruned rollouts, trained/pending/failed/blocked counts, best root, best child, and acceptance metrics.
+
+## Framework Feedback Phase
+
+A run does not only produce a best model; it should produce search-policy feedback. After a run, generate or refresh:
+
+```bash
+PYTHONPATH=src python scripts/write_framework_feedback.py --run-dir <run-dir> --target-val-macro-f1 <target-if-any>
+```
+
+The feedback layer converts outcomes into next-run policy:
+
+- root dominance -> stronger parent-preserving delta requirement;
+- unstable positive family -> multi-seed validation recommendation and stability/regularization boosts;
+- validation/test divergence -> calibration and robustness boosts;
+- repeated artifact blocker -> suppress/filter dependent family after acquisition proof;
+- target gap -> favor competitive compositions that preserve root signal and add one clear mechanism.
+
+For `full_cellline_run`, do not interpret a one-seed win as a stable framework improvement. If the selected child exceeds the root or target, schedule multi-seed validation before treating that architecture as a promoted motif.

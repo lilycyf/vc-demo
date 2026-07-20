@@ -6,6 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from vc_demo.harness.feedback import build_framework_feedback, write_framework_feedback
 from vc_demo.harness.model_blueprints import blueprint_by_id
 from vc_demo.harness.pipeline_grammar import program_for_blueprint
 
@@ -78,6 +79,9 @@ def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list
     memory["failures"] = list(failures or [])[-50:]
     memory["blocked_artifacts"] = blocked[-50:]
     memory["motifs"] = infer_motifs(successes, list(failures or []), blocked)
+    feedback = build_framework_feedback(run_dir, tree=tree, memory=memory)
+    memory["framework_feedback"] = feedback
+    write_framework_feedback(run_dir, feedback)
     write_memory(run_dir, memory)
     return memory
 

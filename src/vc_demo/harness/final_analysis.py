@@ -22,6 +22,7 @@ def build_analysis(run_dir: Path) -> str:
     benchmark = read_json(run_dir / "benchmark_audit.json") if (run_dir / "benchmark_audit.json").exists() else {}
     scale_plan = read_json(run_dir / "scale_plan.json") if (run_dir / "scale_plan.json").exists() else {}
     repair_report = read_json(run_dir / "repair_tasks" / "repair_tasks.json") if (run_dir / "repair_tasks" / "repair_tasks.json").exists() else {}
+    feedback = read_json(run_dir / "framework_feedback.json") if (run_dir / "framework_feedback.json").exists() else memory.get("framework_feedback", {})
     trained = _trained(tree)
     roots = [(name, node) for name, node in trained if not node.get("parent")]
     best = max(trained, key=lambda item: float(item[1].get("best_val_macro_f1", -1)), default=("", {}))
@@ -78,6 +79,20 @@ def build_analysis(run_dir: Path) -> str:
     motifs = memory.get("motifs", {})
     lines.append(f"- Promising: {', '.join(motifs.get('promising', [])) or 'none recorded'}")
     lines.append(f"- Discouraged: {', '.join(motifs.get('discouraged', [])) or 'none recorded'}")
+    lines += ["", "## Framework Feedback", ""]
+    if feedback:
+        for finding in feedback.get("findings", [])[:8]:
+            lines.append(f"- Finding: {finding}")
+        policy = feedback.get("policy", {}) or {}
+        boosts = policy.get("ranking_boosts", {}) or {}
+        penalties = policy.get("ranking_penalties", {}) or {}
+        guidance = policy.get("implementation_guidance", []) or []
+        lines.append(f"- Ranking boosts: {', '.join(f'{k}={v}' for k, v in boosts.items()) or 'none'}")
+        lines.append(f"- Ranking penalties: {', '.join(f'{k}={v}' for k, v in penalties.items()) or 'none'}")
+        for item in guidance[:5]:
+            lines.append(f"- Implementation guidance: {item}")
+    else:
+        lines.append("- Framework feedback missing; run `PYTHONPATH=src python scripts/write_framework_feedback.py --run-dir <run-dir>` or rebuild search memory.")
     lines += ["", "## Repair Readiness", ""]
     if failures:
         lines.append(f"- Failed nodes needing repair triage: {len(failures)}")

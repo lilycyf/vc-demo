@@ -281,8 +281,13 @@ def scientific_score(blueprint_id: str, memory: dict[str, Any], child_index: int
     early_bonus = 0.20 if child_index <= len(REQUIRED_EARLY_FAMILIES) and blueprint_id in REQUIRED_EARLY_FAMILIES else 0.0
     repeat_penalty = min(0.12 * count, 0.60)
     native_repeat_penalty = 0.45 if blueprint_id == "official_native_public_best_reimplementation" and count > 0 else 0.0
-    score = base + coverage_bonus + family_bonus + early_bonus - repeat_penalty - native_repeat_penalty
-    return {"score": score, "base": base, "coverage_bonus": coverage_bonus, "family_bonus": family_bonus, "early_bonus": early_bonus, "repeat_penalty": repeat_penalty, "native_repeat_penalty": native_repeat_penalty, "count": count, "family": family, "family_count": family_count}
+    feedback_policy = (memory.get("framework_feedback", {}) or {}).get("policy", {}) or {}
+    boosts = feedback_policy.get("ranking_boosts", {}) or {}
+    penalties = feedback_policy.get("ranking_penalties", {}) or {}
+    feedback_boost = float(boosts.get(blueprint_id, 0.0) or boosts.get(family, 0.0) or 0.0)
+    feedback_penalty = float(penalties.get(blueprint_id, 0.0) or penalties.get(family, 0.0) or 0.0)
+    score = base + coverage_bonus + family_bonus + early_bonus + feedback_boost - repeat_penalty - native_repeat_penalty - feedback_penalty
+    return {"score": score, "base": base, "coverage_bonus": coverage_bonus, "family_bonus": family_bonus, "early_bonus": early_bonus, "feedback_boost": feedback_boost, "repeat_penalty": repeat_penalty, "native_repeat_penalty": native_repeat_penalty, "feedback_penalty": feedback_penalty, "count": count, "family": family, "family_count": family_count}
 
 
 def rank_scientific_blueprint_choices(choices: list[str], memory: dict[str, Any], parent_node: dict[str, Any], child_index: int) -> list[str]:
@@ -372,6 +377,7 @@ def render_parent_summary(parent_name: str, parent_node: dict[str, Any], parent_
         "search_memory_promising_motifs": (memory.get("motifs", {}) or {}).get("promising", []),
         "search_memory_discouraged_motifs": (memory.get("motifs", {}) or {}).get("discouraged", []),
         "recent_successes": memory.get("successes", [])[:5],
+        "framework_feedback": memory.get("framework_feedback", {}),
     }
 
 
@@ -395,6 +401,9 @@ def render_implementation_request(child_name: str, blueprint: dict[str, Any], pa
         "Add target/graph/pathway/fusion modules as residual, gated, additive, bilinear, or attention branches that can improve the parent signal.",
         "Use search-memory motifs and parent metrics to choose a competitive artifact-backed design; do not write the most minimal isolated module if it discards known useful parent structure.",
         "Record in `pipeline.json` whether the implementation is parent_preserving_delta, replacement, or ablation.", "",
+        "## Framework Feedback", "",
+        *(f"- {item}" for item in ((parent_summary.get("framework_feedback", {}).get("policy", {}) or {}).get("implementation_guidance", [])[:8])),
+        *(f"- Validation: {item}" for item in ((parent_summary.get("framework_feedback", {}).get("policy", {}) or {}).get("validation_recommendations", [])[:5])), "",
         "## Pipeline Grammar", "", json_dumps_program(blueprint["id"]), "",
         "## Required File", "", "Create this file:", "", "```text", child_config["model"]["custom_model_path"], "```", "",
         "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits, which is `[batch, 6640, 3]` for official K562.", "",
