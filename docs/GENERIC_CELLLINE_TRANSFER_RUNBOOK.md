@@ -249,3 +249,7 @@ The feedback layer converts outcomes into next-run policy:
 - target gap -> favor competitive compositions that preserve root signal and add one clear mechanism.
 
 For `full_cellline_run`, do not interpret a one-seed win as a stable framework improvement. If the selected child exceeds the root or target, schedule multi-seed validation before treating that architecture as a promoted motif.
+
+## Existing Run Directory Guard
+
+If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `nodes/`, or queues, Codex must use `--resume` to continue. A from-scratch run must use a fresh directory. The runner refuses to overwrite existing run state because doing so can erase selected rollout implementations and invalidate MCTS/backprop audit trails.

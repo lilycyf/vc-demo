@@ -116,6 +116,20 @@ def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, exp
     return [*cmd, "--reset"]
 
 
+def run_dir_has_state(run_dir: Path) -> bool:
+    if not run_dir.exists():
+        return False
+    state_markers = [
+        "tree.json",
+        "run_manifest.json",
+        "implementation_queue.json",
+        "acquisition_queue.json",
+        "programs",
+        "nodes",
+    ]
+    return any((run_dir / marker).exists() for marker in state_markers)
+
+
 def write_plan(path: Path, payload: dict[str, object], command: list[str]) -> None:
     path.mkdir(parents=True, exist_ok=True)
     (path / "transfer_invocation.json").write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
@@ -179,6 +193,12 @@ def main() -> None:
 
     run_dir = args.run_dir or Path("experiments") / f"official_{slug}_generic_transfer_v1" / level_name
     experiment = args.experiment or f"official_{slug}_{level_name}"
+    if not args.resume and run_dir_has_state(run_dir):
+        raise SystemExit(
+            f"RUN_DIR already contains run state: {run_dir}. "
+            "Use --resume to continue this run, or choose a fresh RUN_DIR for a from-scratch run. "
+            "Refusing to overwrite tree/program state because that can erase trained selected rollouts."
+        )
     command = build_command(args, roots, run_dir, experiment, level, max_epochs)
     payload = {
         "cell_line": args.cell_line,

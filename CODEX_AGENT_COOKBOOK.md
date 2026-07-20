@@ -149,3 +149,7 @@ The objective is to improve the automatic modeling framework through tasks, not 
 - If a motif shows positive but unstable lift, prioritize stability proposals such as residual gates, calibration, gene dropout, SWA/ensemble, and multi-seed validation before promotion.
 
 The repo records this as `framework_feedback.json` and `framework_feedback.md`. Search memory includes `framework_feedback`, and proposal ranking may use its ranking boosts/penalties. This feedback is a framework policy signal, not permission to change splits, labels, metrics, target order, or artifact provenance.
+
+## Existing Run Directory Guard
+
+If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `nodes/`, or queues, Codex must use `--resume` to continue. A from-scratch run must use a fresh directory. The runner refuses to overwrite existing run state because doing so can erase selected rollout implementations and invalidate MCTS/backprop audit trails.

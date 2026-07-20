@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +24,42 @@ def load_failures(run_dir: Path) -> list[dict[str, Any]]:
         return []
     payload = read_json(path)
     return list(payload.get("failures", []))
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def append_jsonl(path: Path, row: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as f:
+        f.write(json.dumps(row, sort_keys=True) + "\n")
+
+
+def refresh_run_manifest_after_pending_train(run_dir: Path, tree: dict[str, Any], node_name: str, metrics: dict[str, Any], stop_reason: str) -> None:
+    manifest_path = run_dir / "run_manifest.json"
+    if not manifest_path.exists():
+        return
+    manifest = read_json(manifest_path)
+    trained = {name: node for name, node in tree.get("nodes", {}).items() if node.get("status") == "trained"}
+    roots = {name: node for name, node in trained.items() if not node.get("parent")}
+    best = max(trained.items(), key=lambda item: float(item[1].get("best_val_macro_f1", -1)), default=("", {}))
+    best_root = max(roots.items(), key=lambda item: float(item[1].get("best_val_macro_f1", -1)), default=("", {}))
+    manifest.setdefault("search", {})["stop_reason"] = stop_reason
+    manifest.setdefault("results", {}).update({
+        "trained_nodes": len(trained),
+        "best_node": best[0],
+        "best_val_macro_f1": best[1].get("best_val_macro_f1"),
+        "best_test_macro_f1": best[1].get("test_macro_f1"),
+        "best_root": best_root[0],
+        "best_root_val_macro_f1": best_root[1].get("best_val_macro_f1"),
+        "best_root_test_macro_f1": best_root[1].get("test_macro_f1"),
+        "last_manual_train_pending_node": node_name,
+        "last_manual_train_pending_val_macro_f1": metrics.get("best_val_macro_f1"),
+        "last_manual_train_pending_test_macro_f1": metrics.get("test_macro_f1"),
+    })
+    manifest.setdefault("queues", {})["implementation_queue"] = str(run_dir / "implementation_queue.json")
+    write_json(manifest_path, manifest)
 
 
 def write_queue(run_dir: Path, tree: dict[str, Any]) -> None:
@@ -94,14 +131,37 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
             "pipeline": metrics.get("pipeline", {}),
         }
     )
-    backpropagate(tree, node_name, reward(metrics))
+    rollout_reward = reward(metrics)
+    backpropagate(tree, node_name, rollout_reward)
+    backprop = tree.get("mcts", {}).get("last_backpropagation", {})
+    append_jsonl(run_dir / "mcts_trace.jsonl", {
+        "event": "manual_train_pending_backpropagation",
+        "time": _now(),
+        "leaf": node_name,
+        "reward": rollout_reward,
+        "backprop_path": backprop.get("path", []),
+        "best_val_macro_f1": metrics.get("best_val_macro_f1"),
+        "test_macro_f1": metrics.get("test_macro_f1"),
+        "policy": "manual_train_pending_only_trained_nodes_backpropagate",
+    })
+    append_jsonl(run_dir / "agent_decision_trace.jsonl", {
+        "event": "trained_and_backpropagated",
+        "time": _now(),
+        "node": node_name,
+        "strategy": node.get("strategy"),
+        "best_val_macro_f1": metrics.get("best_val_macro_f1"),
+        "test_macro_f1": metrics.get("test_macro_f1"),
+        "source": "train_pending",
+    })
     failures = load_failures(run_dir)
     rebuild_memory_from_tree(run_dir, tree, failures)
     write_json(tree_path, tree)
     write_queue(run_dir, tree)
+    stop_reason = "pending implementation trained"
+    refresh_run_manifest_after_pending_train(run_dir, tree, node_name, metrics, stop_reason)
     if summary is None:
         summary = run_dir / "search_summary.md"
-    write_summary(tree, summary, failures, "pending implementation trained")
+    write_summary(tree, summary, failures, stop_reason)
     result = {"node": node_name, "metrics": metrics, "tree": str(tree_path), "summary": str(summary)}
     print(json.dumps(result, indent=2))
     return result
