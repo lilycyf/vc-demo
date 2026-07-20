@@ -1,0 +1,99 @@
+{
+  "format": "vc_demo_framework_feedback.v1",
+  "created_at": "2026-07-20T06:40:21.369073+00:00",
+  "run_dir": "experiments/k562_framework_feedback_full_run",
+  "target_val_macro_f1": 0.5,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "val": 0.47921982407569885,
+    "test": 0.5464382171630859
+  },
+  "best_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+    "val": 0.5025076270103455,
+    "test": 0.5388522148132324
+  },
+  "strategy_stats": {
+    "official_target_gene_head": {
+      "n": 1,
+      "family": "target_aware",
+      "mean_val": 0.5025076270103455,
+      "std_val": 0.0,
+      "mean_test": 0.5388522148132324,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": 0.023287802934646606,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+    },
+    "official_pathway_pooling_reactome": {
+      "n": 1,
+      "family": "pathway_prior",
+      "mean_val": 0.4757941961288452,
+      "std_val": 0.0,
+      "mean_test": 0.5426248908042908,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": -0.0034256279468536377,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    "official_class_imbalance_training": {
+      "n": 1,
+      "family": "imbalance_training",
+      "mean_val": 0.4123786389827728,
+      "std_val": 0.0,
+      "mean_test": 0.4342430830001831,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": -0.020050466060638428,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5"
+    }
+  },
+  "family_stats": {
+    "target_aware": {
+      "n": 1,
+      "mean_val": 0.5025076270103455,
+      "std_val": 0.0,
+      "mean_delta_vs_parent": 0.023287802934646606,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0
+    },
+    "pathway_prior": {
+      "n": 1,
+      "mean_val": 0.4757941961288452,
+      "std_val": 0.0,
+      "mean_delta_vs_parent": -0.0034256279468536377,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 0.0
+    },
+    "imbalance_training": {
+      "n": 1,
+      "mean_val": 0.4123786389827728,
+      "std_val": 0.0,
+      "mean_delta_vs_parent": -0.020050466060638428,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 0.0
+    }
+  },
+  "findings": [
+    "best_child_lift: best generated child beats best root by 0.0233 validation Macro-F1",
+    "validation_test_divergence: best child improves validation but loses held-out test Macro-F1"
+  ],
+  "policy": {
+    "ranking_boosts": {
+      "official_gene_dropout_augmentation": 0.1,
+      "official_temperature_calibrated_head": 0.08,
+      "official_swa_or_checkpoint_ensemble": 0.08,
+      "official_weighted_ce_training": 0.04
+    },
+    "ranking_penalties": {},
+    "implementation_guidance": [
+      "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+      "Validation/test divergence observed: prioritize regularized residual gates, calibration, and seed checks; avoid unconstrained replacement heads."
+    ],
+    "validation_recommendations": [],
+    "suppressed_families": []
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "status_counts": {
+    "trained": 5,
+    "candidate_queued": 15
+  },
+  "trace_counts": {
+    "selection": 4,
+    "proposal_pool_generated": 4,
+    "proposal_queued": 24,
+    "global_queue_selected": 4,
+    "expansion": 4,
+    "pending_implementation": 3,
+    "implementation_loop_start": 3,
+    "implementation_loop_result": 3,
+    "realtime_implementation_required": 3,
+    "selected_for_training": 1,
+    "backpropagation": 1
+  },
+  "generated_proposals": 18,
+  "trained_selected_rollouts": 3,
+  "pruned": 0,
+  "skipped_or_queued": 15,
+  "blocked": 0,
+  "failed": 0,
+  "pending": 0,
+  "acquisition_queue": 0,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "val": 0.47921982407569885,
+    "test": 0.5464382171630859
+  },
+  "best_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+    "val": 0.5025076270103455,
+    "test": 0.5388522148132324
+  },
+  "delta_child_vs_root": 0.023287802934646606,
+  "delta_child_vs_target": 0.002507627010345459,
+  "fallback_count": 0,
+  "backprop_nontrained_count": 0,
+  "backend_anomaly_count": 0,
+  "trained_nodes": [
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "strategy": "root",
+      "val": 0.43242910504341125,
+      "test": 0.48850569128990173,
+      "backend": "native_train"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "strategy": "root",
+      "val": 0.47921982407569885,
+      "test": 0.5464382171630859,
+      "backend": "native_train"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "val": 0.5025076270103455,
+      "test": 0.5388522148132324,
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "strategy": "official_pathway_pooling_reactome",
+      "val": 0.4757941961288452,
+      "test": 0.5426248908042908,
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "val": 0.4123786389827728,
+      "test": 0.4342430830001831,
+      "backend": "native_train"
+    }
+  ],
+  "tree_total_nodes": 20,
+  "counting_note": "Tree is authoritative: 2 roots plus 18 generated proposals. Trace has duplicate proposal events because one invocation omitted --resume before the corrected resume; this is recorded as framework feedback."
+}

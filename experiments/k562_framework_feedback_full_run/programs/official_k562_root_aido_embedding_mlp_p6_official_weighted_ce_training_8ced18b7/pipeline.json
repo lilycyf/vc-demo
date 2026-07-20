@@ -1,0 +1,36 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_weighted_ce_training",
+  "model_entrypoint": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_embedding_mlp_p6_official_weighted_ce_training_8ced18b7/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "class_weighted_CE",
+  "pipeline_program": {
+    "blueprint": "official_weighted_ce_training",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  }
+}

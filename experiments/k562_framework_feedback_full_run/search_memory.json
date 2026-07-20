@@ -1,0 +1,304 @@
+{
+  "format": "vc_demo_search_memory.v1",
+  "created_at": "2026-07-20T06:09:05.916623+00:00",
+  "updated_at": "2026-07-20T06:38:47.758581+00:00",
+  "events": [
+    {
+      "time": "2026-07-20T06:13:56.770718+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "program_dir": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+          "strategy": "official_target_gene_head",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-20T06:25:29.938099+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "program_dir": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+          "strategy": "official_target_gene_head",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    },
+    {
+      "time": "2026-07-20T06:33:32.335308+00:00",
+      "kind": "implementation_agent",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "strategy": "official_pathway_pooling_reactome",
+      "program_dir": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+          "strategy": "official_pathway_pooling_reactome",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    }
+  ],
+  "blueprint_counts": {
+    "official_target_gene_head": 1,
+    "official_pathway_pooling_reactome": 1,
+    "official_string_gnn_attention": 1,
+    "official_aido_string_fusion": 1,
+    "official_aido_lora_adapter": 1,
+    "official_aido_string_cross_attention": 1,
+    "official_class_imbalance_training": 1,
+    "official_string_neighborhood_attention": 1,
+    "official_target_graph_conditioned_head": 1,
+    "official_weighted_ce_training": 1,
+    "official_regulatory_network_prior": 1,
+    "official_public_best_node": 1,
+    "official_focal_loss_training": 1,
+    "official_aido_cached_embedding_fusion": 1,
+    "official_aido_full_finetune": 1,
+    "official_aido_topk_layer_tuning": 1,
+    "official_scgpt_cell_encoder": 1,
+    "official_scfoundation_top_layer_finetune": 1
+  },
+  "parent_blueprints": {
+    "official_k562_root_aido_gnn_embedding_mlp": [
+      "official_aido_lora_adapter",
+      "official_aido_string_cross_attention",
+      "official_aido_string_fusion",
+      "official_pathway_pooling_reactome",
+      "official_string_gnn_attention",
+      "official_target_gene_head"
+    ],
+    "official_k562_root_aido_embedding_mlp": [
+      "official_class_imbalance_training",
+      "official_public_best_node",
+      "official_regulatory_network_prior",
+      "official_string_neighborhood_attention",
+      "official_target_graph_conditioned_head",
+      "official_weighted_ce_training"
+    ],
+    "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5": [
+      "official_aido_cached_embedding_fusion",
+      "official_aido_full_finetune",
+      "official_aido_topk_layer_tuning",
+      "official_focal_loss_training",
+      "official_scfoundation_top_layer_finetune",
+      "official_scgpt_cell_encoder"
+    ]
+  },
+  "family_counts": {
+    "target_gene_aware_head": 1,
+    "Reactome_pathway_pooling": 1,
+    "STRING_GNN_attention": 1,
+    "AIDO_STRING_fusion": 1,
+    "AIDO_adapter": 1,
+    "AIDO_STRING_cross_attention": 1,
+    "official_deg_imbalance": 1,
+    "STRING_neighborhood_attention": 1,
+    "target_graph_conditioned_head": 1,
+    "class_weighted_CE": 1,
+    "regulatory_network_prior": 1,
+    "public_vcharness_best_path": 1,
+    "focal_loss": 1,
+    "AIDO_cached_embedding": 1,
+    "AIDO_full_finetune": 1,
+    "AIDO_selective_finetune": 1,
+    "scGPT_or_single_cell_encoder": 1,
+    "scFoundation_selective_finetune": 1
+  },
+  "structural_signature_counts": {
+    "841a8f77d14ecd77e5286010e281e10413c6c4f4": 1,
+    "05a1ba5b1c1c309e511319add93f3d858cbc75b0": 1,
+    "930fbba42d4a3a8549fc158bbaf7d2f0fdf9a612": 1,
+    "1123b8802df90e9f4c17ed7477cfcba52678f383": 1,
+    "9d1bce694fc088a4d626218348b38372fb84586d": 1,
+    "deba82298c3d004b00e18f313793047749e3e865": 1,
+    "1f74853a1499c2a3803343a9d6723e5fefb9c620": 1,
+    "bba2a2345669bc31b6d7cf4aa1dc1b88c44af0ad": 1,
+    "5bc1536beaba0d3f8eea24bd9091228f5a47f64e": 1,
+    "7ca5733db56efec64fcc1b4797ce1b4caa921846": 1,
+    "bbe59a339b1fcd9d7acfddff8cd710e3b69f535f": 1,
+    "47c7847a301642e9a6ab8d8e5b93f2e343c21349": 1,
+    "d5282bcb43f1bf67fb33dcf0c7b5a7cec84923ff": 1,
+    "90d8b62d89594e764792aa3febe493c24d02dd81": 1,
+    "a5c2fafd0832e97d2081932a8c46091f25e26630": 1,
+    "2f2ac24b698e823e5ade2d863ed598151b2897b8": 1,
+    "5e6b404bfb0d5f7db52d290a7acd81498ed65461": 1,
+    "fe2e4ab76ccf2a44d0d7d72e754832d1d7dbe49b": 1
+  },
+  "replicate_nodes": [],
+  "successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.5025076270103455,
+      "test": 0.5388522148132324,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "structural_relation": "structural_variant",
+      "val": 0.4757941961288452,
+      "test": 0.5426248908042908,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "structural_relation": "structural_variant",
+      "val": 0.4123786389827728,
+      "test": 0.4342430830001831,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    }
+  ],
+  "failures": [],
+  "blocked_artifacts": [],
+  "motifs": {
+    "promising": [
+      "official_target_gene_head: unspecified + unspecified val=0.5025",
+      "official_pathway_pooling_reactome: unspecified + unspecified val=0.4758",
+      "official_class_imbalance_training: unspecified + unspecified val=0.4124"
+    ],
+    "discouraged": []
+  },
+  "framework_feedback": {
+    "format": "vc_demo_framework_feedback.v1",
+    "created_at": "2026-07-20T06:38:47.734730+00:00",
+    "run_dir": "experiments/k562_framework_feedback_full_run",
+    "target_val_macro_f1": null,
+    "best_root": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "val": 0.47921982407569885,
+      "test": 0.5464382171630859
+    },
+    "best_child": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "val": 0.5025076270103455,
+      "test": 0.5388522148132324
+    },
+    "strategy_stats": {
+      "official_target_gene_head": {
+        "n": 1,
+        "family": "target_aware",
+        "mean_val": 0.5025076270103455,
+        "std_val": 0.0,
+        "mean_test": 0.5388522148132324,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": 0.023287802934646606,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+      },
+      "official_pathway_pooling_reactome": {
+        "n": 1,
+        "family": "pathway_prior",
+        "mean_val": 0.4757941961288452,
+        "std_val": 0.0,
+        "mean_test": 0.5426248908042908,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.0034256279468536377,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+      },
+      "official_class_imbalance_training": {
+        "n": 1,
+        "family": "imbalance_training",
+        "mean_val": 0.4123786389827728,
+        "std_val": 0.0,
+        "mean_test": 0.4342430830001831,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.020050466060638428,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5"
+      }
+    },
+    "family_stats": {
+      "target_aware": {
+        "n": 1,
+        "mean_val": 0.5025076270103455,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": 0.023287802934646606,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0
+      },
+      "pathway_prior": {
+        "n": 1,
+        "mean_val": 0.4757941961288452,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.0034256279468536377,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      },
+      "imbalance_training": {
+        "n": 1,
+        "mean_val": 0.4123786389827728,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.020050466060638428,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      }
+    },
+    "findings": [
+      "best_child_lift: best generated child beats best root by 0.0233 validation Macro-F1",
+      "validation_test_divergence: best child improves validation but loses held-out test Macro-F1"
+    ],
+    "policy": {
+      "ranking_boosts": {
+        "official_gene_dropout_augmentation": 0.1,
+        "official_temperature_calibrated_head": 0.08,
+        "official_swa_or_checkpoint_ensemble": 0.08,
+        "official_weighted_ce_training": 0.04
+      },
+      "ranking_penalties": {},
+      "implementation_guidance": [
+        "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+        "Validation/test divergence observed: prioritize regularized residual gates, calibration, and seed checks; avoid unconstrained replacement heads."
+      ],
+      "validation_recommendations": [],
+      "suppressed_families": []
+    }
+  }
+}

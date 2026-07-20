@@ -1,0 +1,43 @@
+{
+  "node_name": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+  "data": {
+    "dataset_type": "official_k562_tsv",
+    "data_dir": "data/cell_lines/official_k562_cls",
+    "embedding_h5ads": [
+      "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad"
+    ],
+    "n_classes": 3
+  },
+  "model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_string_gnn_attention",
+    "artifacts": {
+      "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+      "string_gnn_model_dir": "/home/Models/STRING_GNN",
+      "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+    },
+    "low_rank_dim": 96
+  },
+  "training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "pipeline_manifest_path": "experiments/k562_framework_feedback_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d/pipeline.json"
+}

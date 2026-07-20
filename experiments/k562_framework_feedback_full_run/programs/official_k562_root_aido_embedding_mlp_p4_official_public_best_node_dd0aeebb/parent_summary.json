@@ -1,0 +1,104 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_embedding_mlp",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.43242910504341125,
+  "parent_test_macro_f1": 0.48850569128990173,
+  "parent_strategy": "root",
+  "parent_config_model": {
+    "model_type": "gated_mlp",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [
+    "official_target_gene_head: unspecified + unspecified val=0.5025"
+  ],
+  "search_memory_discouraged_motifs": [],
+  "recent_successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.5025076270103455,
+      "test": 0.5388522148132324,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    }
+  ],
+  "framework_feedback": {
+    "format": "vc_demo_framework_feedback.v1",
+    "created_at": "2026-07-20T06:31:05.646268+00:00",
+    "run_dir": "experiments/k562_framework_feedback_full_run",
+    "target_val_macro_f1": null,
+    "best_root": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "val": 0.47921982407569885,
+      "test": 0.5464382171630859
+    },
+    "best_child": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "val": 0.5025076270103455,
+      "test": 0.5388522148132324
+    },
+    "strategy_stats": {
+      "official_target_gene_head": {
+        "n": 1,
+        "family": "target_aware",
+        "mean_val": 0.5025076270103455,
+        "std_val": 0.0,
+        "mean_test": 0.5388522148132324,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": 0.023287802934646606,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+      }
+    },
+    "family_stats": {
+      "target_aware": {
+        "n": 1,
+        "mean_val": 0.5025076270103455,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": 0.023287802934646606,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0
+      }
+    },
+    "findings": [
+      "best_child_lift: best generated child beats best root by 0.0233 validation Macro-F1",
+      "validation_test_divergence: best child improves validation but loses held-out test Macro-F1"
+    ],
+    "policy": {
+      "ranking_boosts": {
+        "official_gene_dropout_augmentation": 0.1,
+        "official_temperature_calibrated_head": 0.08,
+        "official_swa_or_checkpoint_ensemble": 0.08,
+        "official_weighted_ce_training": 0.04
+      },
+      "ranking_penalties": {},
+      "implementation_guidance": [
+        "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+        "Validation/test divergence observed: prioritize regularized residual gates, calibration, and seed checks; avoid unconstrained replacement heads."
+      ],
+      "validation_recommendations": [],
+      "suppressed_families": []
+    }
+  }
+}
