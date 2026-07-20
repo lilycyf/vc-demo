@@ -1,0 +1,65 @@
+{
+  "node_name": "official_k562_root_aido_gnn_embedding_mlp_seed_17",
+  "best_val_macro_f1": 0.4706292152404785,
+  "test_macro_f1": 0.5364503860473633,
+  "test_loss": 0.47159963515069747,
+  "training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "loss_type": "weighted_cross_entropy"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8366013669419563,
+      "val_loss": 0.593152591586113,
+      "val_macro_f1": 0.3973514139652252
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6703110193384105,
+      "val_loss": 0.5888508349657059,
+      "val_macro_f1": 0.41832447052001953
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.6456753025794851,
+      "val_loss": 0.577621054649353,
+      "val_macro_f1": 0.416760116815567
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.6213114751481462,
+      "val_loss": 0.5612445384263992,
+      "val_macro_f1": 0.42040082812309265
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.6024013154808132,
+      "val_loss": 0.5529284924268723,
+      "val_macro_f1": 0.4034457206726074
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.5811134717245211,
+      "val_loss": 0.528578320145607,
+      "val_macro_f1": 0.4598524868488312
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.5636510174164827,
+      "val_loss": 0.5174040734767914,
+      "val_macro_f1": 0.4706292152404785
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.5424154626912084,
+      "val_loss": 0.5293613821268082,
+      "val_macro_f1": 0.45980557799339294
+    }
+  ],
+  "config_path": "experiments/k562_best_child_multiseed_validation/configs/root_seed_17.json",
+  "output_dir": "experiments/k562_best_child_multiseed_validation/training_outputs/root/seed_17"
+}

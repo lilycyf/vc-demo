@@ -1,0 +1,40 @@
+{
+  "required_artifacts": {
+    "official_k562_task_manifest": {
+      "path": "data/cell_lines/official_k562_cls/manifest.json",
+      "present": true
+    },
+    "official_k562_train": {
+      "path": "data/cell_lines/official_k562_cls/train.tsv",
+      "present": true
+    },
+    "official_k562_val": {
+      "path": "data/cell_lines/official_k562_cls/val.tsv",
+      "present": true
+    },
+    "official_k562_test": {
+      "path": "data/cell_lines/official_k562_cls/test.tsv",
+      "present": true
+    },
+    "official_target_gene_order": {
+      "path": "data/cell_lines/official_k562_cls/target_genes.tsv",
+      "present": true
+    },
+    "official_essential_deg_with_split_h5ad": {
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "present": true
+    },
+    "aido_embedding_h5ad": {
+      "path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "present": true
+    },
+    "gnn_embedding_h5ad": {
+      "path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "present": true
+    }
+  },
+  "home_models_present_but_not_required": {
+    "aido_model_dir": false,
+    "string_gnn_model_dir": false
+  }
+}

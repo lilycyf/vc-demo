@@ -1,0 +1,65 @@
+{
+  "node_name": "official_k562_fixed_best_child_target_gene_head_seed_3",
+  "best_val_macro_f1": 0.486995130777359,
+  "test_macro_f1": 0.5267457962036133,
+  "test_loss": 0.4728382251880787,
+  "training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.742914536561089,
+      "val_loss": 0.5986987531185151,
+      "val_macro_f1": 0.4261036217212677
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6525278194197293,
+      "val_loss": 0.5687712013721467,
+      "val_macro_f1": 0.4294370114803314
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.6187820482528072,
+      "val_loss": 0.601076391339302,
+      "val_macro_f1": 0.42851129174232483
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.5913609944540879,
+      "val_loss": 0.6838888853788376,
+      "val_macro_f1": 0.43500593304634094
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.5685720981537611,
+      "val_loss": 0.5674828588962555,
+      "val_macro_f1": 0.47501707077026367
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.5354354587094537,
+      "val_loss": 0.5259989947080612,
+      "val_macro_f1": 0.486995130777359
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.5184962066083119,
+      "val_loss": 0.5661765366792679,
+      "val_macro_f1": 0.48008498549461365
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.5028003248675116,
+      "val_loss": 0.6128701716661453,
+      "val_macro_f1": 0.4634028375148773
+    }
+  ],
+  "config_path": "experiments/k562_best_child_multiseed_validation/configs/best_child_seed_3.json",
+  "output_dir": "experiments/k562_best_child_multiseed_validation/training_outputs/best_child/seed_3"
+}
