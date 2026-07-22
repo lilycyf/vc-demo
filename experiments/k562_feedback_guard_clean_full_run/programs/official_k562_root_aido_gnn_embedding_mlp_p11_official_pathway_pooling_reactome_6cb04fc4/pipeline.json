@@ -1,0 +1,51 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_pathway_pooling_reactome",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_pathway_pooling_reactome_6cb04fc4/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad",
+    "official_target_gene_order",
+    "aido_gnn_embedding_input_features"
+  ],
+  "patches": {
+    "model": {
+      "type": "node_local_model_py",
+      "description": "Replicate verified parent-preserving Reactome pathway residual pooling over official K562 target order."
+    }
+  },
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "Reactome_pathway_pooling",
+  "pipeline_program": {
+    "blueprint": "official_pathway_pooling_reactome",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "source-backed Reactome pathway membership matrix",
+    "head": "parent dense logits plus Reactome pathway residual",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "pathway_membership_matrix",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "Reactome pathway prior over official K562 target genes; validation Macro-F1 reward unchanged."
+  },
+  "implementation_semantics": "parent_preserving_pathway_pooling_replicate_delta",
+  "fallback_allowed": false
+}

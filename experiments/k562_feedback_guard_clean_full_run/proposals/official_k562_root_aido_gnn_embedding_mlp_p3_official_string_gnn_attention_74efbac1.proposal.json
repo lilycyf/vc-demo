@@ -1,0 +1,293 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1",
+  "strategy": "official_string_gnn_attention",
+  "blueprint": {
+    "id": "official_string_gnn_attention",
+    "status": "planned",
+    "official_k562": true,
+    "category": "graph_prior",
+    "paper_family": "STRING_GNN_attention",
+    "change_level": 5,
+    "role": "Use STRING_GNN embedding/graph priors with K-hop aggregation or multi-head attention over target-gene neighborhoods.",
+    "requires": [
+      "official_string_gnn_model_dir",
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_notes": "Use the audited STRING_GNN directory. If it is reconstructed rather than original, report that provenance explicitly.",
+    "acceptance": [
+      "Consumes STRING/GNN artifact",
+      "Does not fabricate graph edges",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Use STRING_GNN embedding/graph priors with K-hop aggregation or multi-head attention over target-gene neighborhoods.",
+  "changes": [
+    "program_model:custom_program->official_string_gnn_attention",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1",
+  "program_model_path": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/model.py",
+  "pipeline_manifest_path": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_string_gnn_model_dir",
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "STRING_GNN",
+      "sides": [
+        "gene_graph"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_string_gnn_attention",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.6799999999999999,
+    "base": 0.96,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.2,
+    "feedback_boost": 0.0,
+    "repeat_penalty": 0.48,
+    "native_repeat_penalty": 0.0,
+    "feedback_penalty": 0.0,
+    "count": 4,
+    "family": "STRING_GNN_attention",
+    "family_count": 4
+  },
+  "structural_signature": "930fbba42d4a3a8549fc158bbaf7d2f0fdf9a612",
+  "parent_structural_signature": "606d8cdf402a1af1ef92bc5742e3d019e66e0909",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_string_gnn_attention_74efbac1/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_string_gnn_keep20_graph",
+      "official_string_gnn_model_dir"
+    ],
+    "missing_required_artifacts": [
+      "official_string_gnn_model_dir"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "official_string_gnn_model_dir"
+  ],
+  "missing_required_artifact_paths": [
+    "/home/Models/STRING_GNN"
+  ],
+  "candidate_pool_iteration": 13,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+  "duplicate_screen": {
+    "is_duplicate": true,
+    "reason": "blueprint official_string_gnn_attention reached repeat limit 2"
+  },
+  "cheap_screen_score": {
+    "score": -1.33,
+    "scientific_score": 0.6799999999999999,
+    "cost_class": "medium",
+    "cost_bonus": 0.0,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.75,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "official_string_gnn_model_dir"
+    ],
+    "duplicate_reason": "blueprint official_string_gnn_attention reached repeat limit 2",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+      "policy": "uct",
+      "score": 2.31241834485898,
+      "uct": 2.31241834485898,
+      "puct": null,
+      "q": 0.4869856536388397,
+      "Q_v": 0.9739713072776794,
+      "exploitation": 0.4869856536388397,
+      "Exploitation": 0.4869856536388397,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.4869856536388397,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p6_official_target_low_rank_head_f28a1bc1",
+      "policy": "uct",
+      "score": 2.2685984405315875,
+      "uct": 2.2685984405315875,
+      "puct": null,
+      "q": 0.44316574931144714,
+      "Q_v": 0.8863314986228943,
+      "exploitation": 0.44316574931144714,
+      "Exploitation": 0.44316574931144714,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.44316574931144714,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "uct",
+      "score": 2.2682563694752216,
+      "uct": 2.2682563694752216,
+      "puct": null,
+      "q": 0.4428236782550812,
+      "Q_v": 0.8856473565101624,
+      "exploitation": 0.4428236782550812,
+      "Exploitation": 0.4428236782550812,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.4428236782550812,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p10_official_gene_dropout_augmentation_ed174d61",
+      "policy": "uct",
+      "score": 2.2460567089355945,
+      "uct": 2.2460567089355945,
+      "puct": null,
+      "q": 0.4206240177154541,
+      "Q_v": 0.8412480354309082,
+      "exploitation": 0.4206240177154541,
+      "Exploitation": 0.4206240177154541,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.4206240177154541,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_target_bilinear_head_217a17b9",
+      "policy": "uct",
+      "score": 2.2349147828854083,
+      "uct": 2.2349147828854083,
+      "puct": null,
+      "q": 0.40948209166526794,
+      "Q_v": 0.8189641833305359,
+      "exploitation": 0.40948209166526794,
+      "Exploitation": 0.40948209166526794,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.40948209166526794,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_focal_loss_training_37672209",
+      "policy": "uct",
+      "score": 2.2329793306625842,
+      "uct": 2.2329793306625842,
+      "puct": null,
+      "q": 0.40754663944244385,
+      "Q_v": 0.8150932788848877,
+      "exploitation": 0.40754663944244385,
+      "Exploitation": 0.40754663944244385,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.40754663944244385,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_ddceef70",
+      "policy": "uct",
+      "score": 2.2208263012207508,
+      "uct": 2.2208263012207508,
+      "puct": null,
+      "q": 0.39539361000061035,
+      "Q_v": 0.7907872200012207,
+      "exploitation": 0.39539361000061035,
+      "Exploitation": 0.39539361000061035,
+      "exploration": 1.8254326912201404,
+      "Exploration": 1.8254326912201404,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 28,
+      "children": 0,
+      "best_val_macro_f1": 0.39539361000061035,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.6429188682914595,
+      "uct": 1.6429188682914595,
+      "puct": null,
+      "q": 0.4884138643741608,
+      "Q_v": 2.442069321870804,
+      "exploitation": 0.4884138643741608,
+      "Exploitation": 0.4884138643741608,
+      "exploration": 1.1545050039172986,
+      "Exploration": 1.1545050039172986,
+      "prior": 0.0,
+      "visits": 5,
+      "parent_visits": 28,
+      "children": 6,
+      "best_val_macro_f1": 0.49353158473968506,
+      "stage": "draft"
+    }
+  ],
+  "candidate_pool_rank": 5,
+  "candidate_pool_size": 6,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "global_queue_generate_many_train_best_available"
+}

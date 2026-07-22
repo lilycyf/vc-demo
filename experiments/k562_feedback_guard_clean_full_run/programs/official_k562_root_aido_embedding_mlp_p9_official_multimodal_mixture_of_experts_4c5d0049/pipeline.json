@@ -1,0 +1,52 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_multimodal_mixture_of_experts",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_embedding_mlp_p9_official_multimodal_mixture_of_experts_4c5d0049/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad",
+    "official_target_gene_order",
+    "aido_embedding_input_features"
+  ],
+  "patches": {
+    "model": {
+      "type": "node_local_model_py",
+      "description": "Preserve parent dense AIDO classifier and add routed AIDO context, target low-rank, and target-prior experts using source-backed official K562 target metadata."
+    },
+    "training": {
+      "loss_type": "focal_loss",
+      "description": "Keep parent class-imbalance/focal-loss training configuration."
+    }
+  },
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "multimodal_MoE",
+  "pipeline_program": {
+    "blueprint": "official_multimodal_mixture_of_experts",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "sample-level learned router over parent dense, AIDO context, target low-rank, and target-prior experts",
+    "prior": "unspecified",
+    "head": "mixture-of-experts logits with router weights recorded on the module",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "MoE-style perturbation response predictor using only artifacts declared present under strict mode; missing STRING/scFoundation experts are not fabricated."
+  },
+  "implementation_semantics": "parent_preserving_mixture_of_experts_delta",
+  "fallback_allowed": false
+}

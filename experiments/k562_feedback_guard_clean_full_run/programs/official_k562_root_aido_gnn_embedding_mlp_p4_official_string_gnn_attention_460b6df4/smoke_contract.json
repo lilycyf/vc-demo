@@ -1,0 +1,14 @@
+{
+  "format": "vc_demo_node_smoke_contract.v1",
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_gnn_attention_460b6df4",
+  "expected_output_shape": "[batch, 6640, 3] for official K562; [batch, n_targets, n_classes] in generic spec terms",
+  "compile_command": "python -m compileall -q experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p4_official_string_gnn_attention_460b6df4/model.py",
+  "native_smoke_command": "PYTHONPATH=src python -m vc_demo.harness.native_program_smoke --config <child-config>",
+  "training_smoke_command": "PYTHONPATH=src python -m vc_demo.harness.train_pending --run-dir <run-dir> --node <node> --max-epochs 1",
+  "repair_attempt_limit": {
+    "compile": 3,
+    "forward_shape": 3,
+    "backward": 3,
+    "train": 3
+  }
+}

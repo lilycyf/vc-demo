@@ -1,0 +1,71 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_layerwise_lr_schedule",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p3_official_layerwise_lr_schedule_30ef5f9a/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad",
+    "official_target_gene_order",
+    "aido_gnn_embedding_input_features"
+  ],
+  "patches": {
+    "model": {
+      "type": "node_local_model_py",
+      "description": "Preserve parent official target-gene-aware head; blueprint delta is discriminative/layerwise LR schedule metadata, not architecture replacement."
+    },
+    "training": {
+      "type": "layerwise_lr_schedule",
+      "base_lr": 0.0003,
+      "parameter_groups": [
+        {
+          "name": "input_and_blocks",
+          "lr_multiplier": 0.7
+        },
+        {
+          "name": "context_and_parent_dense_head",
+          "lr_multiplier": 1.0
+        },
+        {
+          "name": "target_gene_residual_head",
+          "lr_multiplier": 1.25
+        },
+        {
+          "name": "bias_and_scales",
+          "lr_multiplier": 1.5
+        }
+      ],
+      "note": "Current train_pending optimizer may consume a single lr, so the node records formal LR groups while preserving the parent model path for strict audit."
+    }
+  },
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "layerwise_lr_decay",
+  "pipeline_program": {
+    "blueprint": "official_layerwise_lr_schedule",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "parent target-gene-aware low-rank/bilinear residual head preserved",
+    "training_strategy": "recorded layerwise/discriminative LR groups for trunk, dense head, target residual head, and bias/scale parameters",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "Layerwise LR schedule training-strategy child over a source-backed official K562 target-aware model; data split and Macro-F1 reward unchanged."
+  },
+  "implementation_semantics": "parent_preserving_layerwise_lr_schedule_delta",
+  "fallback_allowed": false
+}

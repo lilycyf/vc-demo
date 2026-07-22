@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "node_name": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995",
+  "model_type": "custom_program",
+  "output_shape": [
+    2,
+    6640,
+    3
+  ],
+  "trainable_parameters": 6842623
+}

@@ -1,0 +1,28 @@
+{
+  "format": "vc_demo_implementation_blocker.v1",
+  "node": "official_k562_root_aido_embedding_mlp_p12_official_public_static_node_family_wrapper_2d1d6507",
+  "strategy": "official_public_static_node_family_wrapper",
+  "status": "implementation_skipped",
+  "reason": "implementation-infeasible strict public wrapper: VCHarness public node code is present, but exact execution depends on undeclared runtime model directories /home/Models/AIDO.Cell-100M and /home/Models/STRING_GNN, and /home/Models is absent on this pod. No source-backed, shape/vocabulary/provenance-verified acquisition was available during this run, so no fallback/proxy model was trained.",
+  "public_code_path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+  "public_code_present": true,
+  "hidden_runtime_requirements": [
+    {
+      "artifact_id": "official_aido_model_dir",
+      "path": "/home/Models/AIDO.Cell-100M",
+      "present": false
+    },
+    {
+      "artifact_id": "official_string_gnn_model_dir",
+      "path": "/home/Models/STRING_GNN",
+      "present": false
+    }
+  ],
+  "sources_checked": [
+    "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+    "local /home/Models runtime directories"
+  ],
+  "blocker_class": "incomplete_runtime_artifact_contract",
+  "no_fallback": true,
+  "resume_policy": "skip this infeasible selected public wrapper candidate and continue global_queue candidates"
+}

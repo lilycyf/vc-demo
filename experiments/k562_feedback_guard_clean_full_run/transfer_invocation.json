@@ -1,0 +1,30 @@
+{
+  "cell_line": "K562",
+  "cell_line_slug": "k562",
+  "run_type": "full_cellline_run",
+  "level": "full_cellline_run",
+  "level_description": "formal root-beating full cell-line run with model-quality budget",
+  "artifact_constrained_required": true,
+  "proposal_selection_mode": "global_queue",
+  "run_dir": "experiments/k562_feedback_guard_clean_full_run",
+  "experiment": "k562_feedback_guard_clean_full_run",
+  "root_configs": [
+    "configs/official_k562_loop_roots/root_aido_embedding_mlp.json",
+    "configs/official_k562_loop_roots/root_aido_gnn_embedding_mlp.json"
+  ],
+  "resume": true,
+  "max_epochs": 8,
+  "target_val_macro_f1": 0.5,
+  "implementation_repair_attempts": 3,
+  "guardrails": {
+    "no_fallback": true,
+    "no_compact_proxy": true,
+    "strict_artifacts": true,
+    "validation_macro_f1_reward": true,
+    "test_metric_report_only": true,
+    "full_run_forbids_one_epoch": true,
+    "artifact_constrained_blueprint_filter_required": true,
+    "primary_objective": "best_generated_child_beats_best_root_and_reaches_target_score",
+    "target_val_macro_f1": 0.5
+  }
+}

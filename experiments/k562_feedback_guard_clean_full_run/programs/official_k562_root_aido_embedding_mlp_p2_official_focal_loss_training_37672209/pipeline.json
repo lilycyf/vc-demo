@@ -1,0 +1,43 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_focal_loss_training",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_embedding_mlp_p2_official_focal_loss_training_37672209/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution_train_only"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "focal_loss",
+  "pipeline_program": {
+    "blueprint": "official_focal_loss_training",
+    "representation": "cached official AIDO perturbation embeddings",
+    "perturbation_side": "parent residual MLP context trunk",
+    "target_side": "dense all-target logits preserving official target order",
+    "fusion": "none; training-strategy delta only",
+    "prior": "train-only class_distribution artifact for focal/class weighting audit",
+    "head": "parent dense all-target logits",
+    "training_strategy": "focal_loss gamma=2.0 from base_config; validation Macro-F1 reward unchanged",
+    "fine_tuning": "node-local generated model only",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution"
+    ],
+    "paper_alignment": "class-imbalance focal loss training strategy with unchanged task metric"
+  },
+  "implementation_semantics": "parent_preserving_training_delta"
+}

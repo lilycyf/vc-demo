@@ -1,0 +1,44 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_pathway_pooling_reactome",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad",
+    "official_target_gene_order"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "Reactome_pathway_pooling",
+  "pipeline_program": {
+    "blueprint": "official_pathway_pooling_reactome",
+    "representation": "cached official AIDO+GNN perturbation embeddings",
+    "perturbation_side": "parent residual MLP context trunk",
+    "target_side": "Reactome pathway membership aligned to official K562 target-gene order",
+    "fusion": "context-to-pathway class logits pooled back to target genes as gated residual",
+    "prior": "Reactome pathway_membership_matrix with zero residual for uncovered targets",
+    "head": "parent dense logits plus Reactome pathway pooling residual",
+    "training_strategy": "weighted cross entropy from parent config",
+    "fine_tuning": "node-local generated model only",
+    "required_artifacts": [
+      "pathway_membership_matrix",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "pathway-prior pooling over target genes using source-backed Reactome memberships"
+  },
+  "implementation_semantics": "parent_preserving_delta"
+}

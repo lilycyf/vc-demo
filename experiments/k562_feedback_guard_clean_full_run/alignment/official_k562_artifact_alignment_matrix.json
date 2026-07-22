@@ -1,0 +1,310 @@
+{
+  "format": "official_k562_artifact_alignment.v1",
+  "registry_path": "configs/artifacts/k562_registry.json",
+  "cell_line": "K562",
+  "artifacts": [
+    {
+      "id": "esm2_gene_embedding_h5ad",
+      "provider": "ESM2",
+      "family": "gene_embedding",
+      "path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "cross_attention_gene_perturbation",
+        "esm2_gene_projection",
+        "target_gene_embedding_bilinear"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "esm2_k562_target_manifest",
+      "provider": "ESM2",
+      "family": "artifact_manifest",
+      "path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "derived_by:scripts/build_target_gene_artifact.py",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "cross_attention_gene_perturbation",
+        "target_gene_embedding_bilinear"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "aido_gene_or_cell_embeddings",
+      "provider": "AIDO",
+      "family": "foundation_embedding",
+      "path": "data/artifacts/aido",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "public GenBio artifact if available; exact file must be recorded before use",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "aido_embedding_fusion"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "scfoundation_cell_embeddings",
+      "provider": "scFoundation",
+      "family": "cell_embedding",
+      "path": "data/artifacts/scfoundation",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "scfoundation_cell_encoder"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "string_k562_gene_graph",
+      "provider": "STRING",
+      "family": "gene_graph",
+      "path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "present": true,
+      "size_bytes": 8653768,
+      "sha256": "71e501353c8fda92a77d2057f57dae8c7ead36d4b9142497c54654c69710ea88",
+      "source": "STRING official network API v12.0 stable endpoint https://version-12-0.string-db.org/api/tsv/network; built by scripts/build_k562_string_graph.py",
+      "source_url": "https://version-12-0.string-db.org/api/tsv/network",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "ppi_graph_message_passing",
+        "string_gnn_perturbation_propagator"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "pathway_membership_matrix",
+      "provider": "Reactome",
+      "family": "pathway_prior",
+      "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "present": true,
+      "size_bytes": 75429,
+      "sha256": "7c697eb3b1554e5d05e0f023632f529af997d27ca6cb09aaf9ad89753f3da947",
+      "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+      "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "official_pathway_pooling_reactome",
+        "pathway_pooling_encoder"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "provider": "GenBio AI HuggingFace",
+      "family": "official_task_data",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "present": true,
+      "size_bytes": 54536850,
+      "sha256": "8dc810bfd053e3671523a5816c8c5807e990a14b609b486f092a8e31aa522bbf",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "source_url": "",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "official_k562_aido_cell_100m_embedding_h5ad",
+      "provider": "AIDO.Cell-100M",
+      "family": "gene_embedding",
+      "path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "present": true,
+      "size_bytes": 102556306,
+      "sha256": "70e539bb74d78b602bf53c2a273c822b4ba274363f7f3a8b49ae18a9e72b1416",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+      "source_url": "",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "official_k562_aido_embedding_mlp"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "official_string_gnn_keep20_graph",
+      "provider": "STRING_GNN",
+      "family": "gene_graph",
+      "path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "present": true,
+      "size_bytes": 27033534,
+      "sha256": "126b4a202837298c8b5cfd07a3dbe40baeaac84290471da78cedfefa37621d98",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "source_url": "",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "official_k562_string_gnn_attention",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "official_aido_cell_100m_model_dir",
+      "provider": "AIDO.Cell-100M",
+      "family": "foundation_model_checkpoint",
+      "path": "/home/Models/AIDO.Cell-100M",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "Exact AutoModel directory expected by public VCHarness node code; not equivalent to downloaded h5ad embedding.",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_k562_aido_lora_automodel",
+        "official_public_best_node",
+        "official_native_public_best_reimplementation"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "official_string_gnn_model_dir",
+      "provider": "STRING_GNN",
+      "family": "foundation_model_checkpoint",
+      "path": "/home/Models/STRING_GNN",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "official_aido_string_fusion",
+        "official_k562_string_gnn_attention",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_native_public_best_reimplementation"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "official_gnn_simple_embedding_h5ad",
+      "provider": "GNN Simple Official",
+      "family": "gene_embedding",
+      "path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "present": true,
+      "size_bytes": 43536698,
+      "sha256": "58dee3dddb3332dbff43f21225460d20fc3c75f933a4d62c71bbca4699619e25",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+      "source_url": "",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "official_k562_aido_gnn_embedding_mlp"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "official_public_best_node_code",
+      "provider": "VCHarness",
+      "family": "public_node_code",
+      "path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+      "present": true,
+      "size_bytes": 40969,
+      "sha256": "4fb920a774b01a09a7b67067a99207f7a4c3b5c75c916be1777be7d0dc9d009f",
+      "source": "VCHarness public K562 static node code bundled in genbio-ai/VCHarness",
+      "source_url": "",
+      "status": "original_public",
+      "required_by_blueprints": [
+        "official_public_best_node"
+      ],
+      "equivalence_claim": "public artifact available locally; equivalent to the cited public source subject to checksum/source metadata"
+    },
+    {
+      "id": "class_distribution",
+      "provider": "repo-derived-official-k562-train-split",
+      "family": "training_metadata",
+      "path": "data/artifacts/official_k562/class_distribution_train.json",
+      "present": true,
+      "size_bytes": 694,
+      "sha256": "01fd29f03aaa752996c5207bf6d29ed82e7987680a8dd6b55ed054d6ba7b2b78",
+      "source": "Derived from data/cell_lines/official_k562_cls/train.tsv labels only by scripts/build_official_k562_class_distribution.py; no validation/test labels are read.",
+      "source_url": "",
+      "status": "derived",
+      "required_by_blueprints": [
+        "official_class_imbalance_training",
+        "official_weighted_ce_training",
+        "official_focal_loss_training",
+        "class_balanced_deg_classifier",
+        "focal_loss_training_strategy"
+      ],
+      "equivalence_claim": "derived local artifact; usable only with explicit provenance"
+    },
+    {
+      "id": "regulatory_network_artifact",
+      "provider": "TBD source-backed regulatory network",
+      "family": "regulatory_prior",
+      "path": "data/artifacts/regulatory/k562_regulatory_network.tsv",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "No default source is assumed. A run must define a source-backed regulatory network contract, vocabulary, edge semantics, and target-gene alignment before using this artifact.",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "official_regulatory_network_prior"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    },
+    {
+      "id": "single_cell_foundation_model_artifact",
+      "provider": "scGPT or equivalent source-backed single-cell foundation model",
+      "family": "single_cell_foundation_model",
+      "path": "data/artifacts/single_cell_foundation_model",
+      "present": false,
+      "size_bytes": 0,
+      "sha256": "",
+      "source": "Source-backed scGPT/single-cell foundation checkpoint or row-aligned encoder output; exact source, vocabulary, normalization, and row order must be recorded before use.",
+      "source_url": "",
+      "status": "missing",
+      "required_by_blueprints": [
+        "official_scgpt_cell_encoder"
+      ],
+      "equivalence_claim": "unavailable; strict official mode must acquire or block"
+    }
+  ],
+  "present": [
+    "string_k562_gene_graph",
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad",
+    "official_k562_aido_cell_100m_embedding_h5ad",
+    "official_string_gnn_keep20_graph",
+    "official_gnn_simple_embedding_h5ad",
+    "official_public_best_node_code",
+    "class_distribution"
+  ],
+  "missing": [
+    "esm2_gene_embedding_h5ad",
+    "esm2_k562_target_manifest",
+    "aido_gene_or_cell_embeddings",
+    "scfoundation_cell_embeddings",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "regulatory_network_artifact",
+    "single_cell_foundation_model_artifact"
+  ],
+  "reconstructed_compatibility": []
+}

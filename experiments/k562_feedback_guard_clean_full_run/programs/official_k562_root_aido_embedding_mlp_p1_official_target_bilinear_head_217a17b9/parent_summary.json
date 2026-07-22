@@ -1,0 +1,136 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.40551066398620605,
+  "parent_test_macro_f1": 0.4240458309650421,
+  "parent_strategy": "official_class_imbalance_training",
+  "parent_config_model": {
+    "model_type": "gated_mlp",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "program_blueprint": "official_class_imbalance_training"
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "focal_loss",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ],
+    "focal_gamma": 2.0
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [
+    "official_target_gene_head: unspecified + unspecified val=0.4821",
+    "official_class_imbalance_training: unspecified + unspecified val=0.4055"
+  ],
+  "search_memory_discouraged_motifs": [],
+  "recent_successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "strategy": "official_target_gene_head",
+      "family": "target_gene_aware_head",
+      "structural_relation": "structural_variant",
+      "val": 0.48210152983665466,
+      "test": 0.5193837285041809,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "strategy": "official_class_imbalance_training",
+      "family": "official_deg_imbalance",
+      "structural_relation": "structural_variant",
+      "val": 0.40551066398620605,
+      "test": 0.4240458309650421,
+      "parent": "official_k562_root_aido_embedding_mlp"
+    }
+  ],
+  "framework_feedback": {
+    "format": "vc_demo_framework_feedback.v1",
+    "created_at": "2026-07-20T08:47:25.001656+00:00",
+    "run_dir": "experiments/k562_feedback_guard_clean_full_run",
+    "target_val_macro_f1": null,
+    "best_root": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "val": 0.49353158473968506,
+      "test": 0.5434165596961975
+    },
+    "best_child": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "val": 0.48210152983665466,
+      "test": 0.5193837285041809
+    },
+    "strategy_stats": {
+      "official_target_gene_head": {
+        "n": 1,
+        "family": "target_aware",
+        "mean_val": 0.48210152983665466,
+        "std_val": 0.0,
+        "mean_test": 0.5193837285041809,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.011430054903030396,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+      },
+      "official_class_imbalance_training": {
+        "n": 1,
+        "family": "imbalance_training",
+        "mean_val": 0.40551066398620605,
+        "std_val": 0.0,
+        "mean_test": 0.4240458309650421,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.028235584497451782,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5"
+      }
+    },
+    "family_stats": {
+      "target_aware": {
+        "n": 1,
+        "mean_val": 0.48210152983665466,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.011430054903030396,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      },
+      "imbalance_training": {
+        "n": 1,
+        "mean_val": 0.40551066398620605,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.028235584497451782,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      }
+    },
+    "findings": [
+      "root_dominance: best generated child did not beat best root"
+    ],
+    "policy": {
+      "ranking_boosts": {
+        "official_target_gene_head": 0.1,
+        "official_target_low_rank_head": 0.08,
+        "official_target_bilinear_head": 0.08,
+        "official_aido_string_fusion": 0.08,
+        "official_gene_dropout_augmentation": 0.06,
+        "official_temperature_calibrated_head": 0.05
+      },
+      "ranking_penalties": {},
+      "implementation_guidance": [
+        "Root-dominance observed: preserve the best parent dense branch and add the selected module as a residual/gated delta, not as a replacement."
+      ],
+      "validation_recommendations": [],
+      "suppressed_families": []
+    }
+  }
+}

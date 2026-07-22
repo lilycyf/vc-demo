@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "node_name": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+  "model_type": "custom_program",
+  "output_shape": [
+    2,
+    6640,
+    3
+  ],
+  "trainable_parameters": 5999473
+}

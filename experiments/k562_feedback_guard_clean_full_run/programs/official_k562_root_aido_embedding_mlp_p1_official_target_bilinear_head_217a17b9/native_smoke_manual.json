@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "node_name": "official_k562_root_aido_embedding_mlp_p1_official_target_bilinear_head_217a17b9",
+  "model_type": "custom_program",
+  "output_shape": [
+    2,
+    6640,
+    3
+  ],
+  "trainable_parameters": 5896305
+}

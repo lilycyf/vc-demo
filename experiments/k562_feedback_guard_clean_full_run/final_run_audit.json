@@ -1,0 +1,223 @@
+{
+  "format": "vc_demo_k562_feedback_guard_final_audit.v1",
+  "created_at_unix": 1784543796.6745117,
+  "run_dir": "experiments/k562_feedback_guard_clean_full_run",
+  "status_counts": {
+    "trained": 24,
+    "candidate_queued": 42,
+    "implementation_skipped": 1,
+    "pruned_not_selected": 73
+  },
+  "generated_proposals": 138,
+  "trained_selected_rollouts": 22,
+  "trained_total_including_roots": 24,
+  "pruned": 73,
+  "skipped": 1,
+  "blocked": 0,
+  "failed": 0,
+  "pending": 0,
+  "queued_candidates": 42,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "status": "trained",
+    "strategy": null,
+    "val": 0.49353158473968506,
+    "test": 0.5434165596961975,
+    "parent": "",
+    "backend": "native_train"
+  },
+  "best_generated_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_target_graph_conditioned_head_cc233d73",
+    "status": "trained",
+    "strategy": "official_target_graph_conditioned_head",
+    "val": 0.4935244619846344,
+    "test": 0.5413962006568909,
+    "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+    "backend": null
+  },
+  "objective": {
+    "target_val_macro_f1": 0.5,
+    "best_child_beats_best_root": false,
+    "best_child_reaches_target": false,
+    "delta_child_vs_root": -7.12275505065918e-06,
+    "delta_child_vs_target": -0.006475538015365601
+  },
+  "acquisition_queue_count": 0,
+  "acquisition_queue_items": [],
+  "implementation_blockers": [
+    {
+      "format": "vc_demo_implementation_blocker.v1",
+      "node": "official_k562_root_aido_embedding_mlp_p12_official_public_static_node_family_wrapper_2d1d6507",
+      "strategy": "official_public_static_node_family_wrapper",
+      "status": "implementation_skipped",
+      "reason": "implementation-infeasible strict public wrapper: VCHarness public node code is present, but exact execution depends on undeclared runtime model directories /home/Models/AIDO.Cell-100M and /home/Models/STRING_GNN, and /home/Models is absent on this pod. No source-backed, shape/vocabulary/provenance-verified acquisition was available during this run, so no fallback/proxy model was trained.",
+      "public_code_path": "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+      "public_code_present": true,
+      "hidden_runtime_requirements": [
+        {
+          "artifact_id": "official_aido_model_dir",
+          "path": "/home/Models/AIDO.Cell-100M",
+          "present": false
+        },
+        {
+          "artifact_id": "official_string_gnn_model_dir",
+          "path": "/home/Models/STRING_GNN",
+          "present": false
+        }
+      ],
+      "sources_checked": [
+        "/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py",
+        "local /home/Models runtime directories"
+      ],
+      "blocker_class": "incomplete_runtime_artifact_contract",
+      "no_fallback": true,
+      "resume_policy": "skip this infeasible selected public wrapper candidate and continue global_queue candidates"
+    }
+  ],
+  "trace_counts": {
+    "selection": 23,
+    "proposal_pool_generated": 23,
+    "proposal_queued": 65,
+    "global_queue_selected": 23,
+    "expansion": 23,
+    "pending_implementation": 21,
+    "implementation_loop_start": 21,
+    "implementation_loop_result": 21,
+    "realtime_implementation_required": 21,
+    "manual_train_pending_backpropagation": 20,
+    "selected_for_training": 2,
+    "backpropagation": 2,
+    "proposal_pruned": 73,
+    "implementation_skipped": 1
+  },
+  "trained_and_backpropagated_trace_count": 0,
+  "backprop_event_count": 22,
+  "backprop_nontrained_count": 0,
+  "backprop_nontrained_examples": [],
+  "fallback_count": 0,
+  "proxy_count": 0,
+  "backend_anomaly_count": 0,
+  "backend_anomalies": [],
+  "existing_run_guard": "respected: initial invocation created a fresh run dir; all subsequent existing-run invocations used --resume. Destructive no-resume rerun was not attempted.",
+  "train_pending_trace_manifest_guard": "exercised: train_pending wrote metrics back into tree/search_summary and agent_decision_trace includes trained/backprop events for implementation-loop nodes.",
+  "framework_feedback_findings": [
+    "root_dominance: best generated child did not beat best root",
+    "unstable_positive_family:target_aware: mean_delta=0.0019, std=0.0079, win_rate=0.625",
+    "discouraged_family:imbalance_training: repeated negative delta",
+    "target_gap: best child is 0.0065 below target validation Macro-F1"
+  ],
+  "framework_feedback_policy": {
+    "ranking_boosts": {
+      "official_target_gene_head": 0.1,
+      "official_target_low_rank_head": 0.08,
+      "official_target_bilinear_head": 0.08,
+      "official_aido_string_fusion": 0.08,
+      "official_gene_dropout_augmentation": 0.08,
+      "official_temperature_calibrated_head": 0.06,
+      "official_swa_or_checkpoint_ensemble": 0.06
+    },
+    "ranking_penalties": {
+      "imbalance_training": 0.08
+    },
+    "implementation_guidance": [
+      "Root-dominance observed: preserve the best parent dense branch and add the selected module as a residual/gated delta, not as a replacement.",
+      "Target gap remains: favor competitive compositions that retain root performance and test one clear additional mechanism per rollout."
+    ],
+    "validation_recommendations": [
+      "Run multi-seed validation before promoting `target_aware` motifs; positive average lift is not yet stable."
+    ],
+    "suppressed_families": []
+  },
+  "top_trained_children": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_target_graph_conditioned_head_cc233d73",
+      "status": "trained",
+      "strategy": "official_target_graph_conditioned_head",
+      "val": 0.4935244619846344,
+      "test": 0.5413962006568909,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "status": "trained",
+      "strategy": "official_pathway_pooling_reactome",
+      "val": 0.49285516142845154,
+      "test": 0.5406644940376282,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p1_official_swa_or_checkpoint_ensemble_afa3a39a",
+      "status": "trained",
+      "strategy": "official_swa_or_checkpoint_ensemble",
+      "val": 0.4902402460575104,
+      "test": 0.5334185361862183,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_target_bilinear_head_495e575b",
+      "status": "trained",
+      "strategy": "official_target_bilinear_head",
+      "val": 0.48786869645118713,
+      "test": 0.5310251116752625,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+      "status": "trained",
+      "strategy": "official_string_laplacian_smoothing",
+      "val": 0.4869856536388397,
+      "test": 0.5260735750198364,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995",
+      "status": "trained",
+      "strategy": "official_weighted_ce_training",
+      "val": 0.48659539222717285,
+      "test": 0.531215250492096,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+      "status": "trained",
+      "strategy": "official_string_neighborhood_attention",
+      "val": 0.48414871096611023,
+      "test": 0.5352737903594971,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_target_low_rank_head_4ca91b75",
+      "status": "trained",
+      "strategy": "official_target_low_rank_head",
+      "val": 0.48288118839263916,
+      "test": 0.5301808714866638,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "status": "trained",
+      "strategy": "official_target_gene_head",
+      "val": 0.48210152983665466,
+      "test": 0.5193837285041809,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "backend": null
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p3_official_layerwise_lr_schedule_30ef5f9a",
+      "status": "trained",
+      "strategy": "official_layerwise_lr_schedule",
+      "val": 0.4799583852291107,
+      "test": 0.5150392651557922,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "backend": null
+    }
+  ]
+}

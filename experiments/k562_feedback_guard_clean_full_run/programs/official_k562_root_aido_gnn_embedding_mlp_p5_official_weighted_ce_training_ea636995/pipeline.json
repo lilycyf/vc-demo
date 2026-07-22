@@ -1,0 +1,46 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_weighted_ce_training",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad",
+    "class_distribution_train_only",
+    "pathway_membership_matrix",
+    "official_target_gene_order"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 1,
+  "paper_family": "class_weighted_CE",
+  "pipeline_program": {
+    "blueprint": "official_weighted_ce_training",
+    "representation": "cached official AIDO+GNN perturbation embeddings",
+    "perturbation_side": "parent pathway-pooling residual MLP context trunk",
+    "target_side": "Reactome pathway membership aligned to official target order plus dense target logits",
+    "fusion": "preserve parent pathway residual; training-strategy delta only",
+    "prior": "train-only class_distribution and Reactome pathway_membership_matrix",
+    "head": "parent pathway pooling dense/residual logits",
+    "training_strategy": "weighted cross entropy from base_config; validation Macro-F1 reward unchanged",
+    "fine_tuning": "node-local generated model only",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "class_distribution",
+      "pathway_membership_matrix"
+    ],
+    "paper_alignment": "class-weighted CE training on parent-preserved pathway pooling child"
+  },
+  "implementation_semantics": "parent_preserving_training_delta"
+}

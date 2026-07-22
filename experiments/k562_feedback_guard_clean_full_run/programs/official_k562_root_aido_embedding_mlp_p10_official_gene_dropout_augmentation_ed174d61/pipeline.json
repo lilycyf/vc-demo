@@ -1,0 +1,45 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_gene_dropout_augmentation",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_embedding_mlp_p10_official_gene_dropout_augmentation_ed174d61/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 2,
+  "paper_family": "gene_dropout_augmentation",
+  "pipeline_program": {
+    "blueprint": "official_gene_dropout_augmentation",
+    "representation": "cached official AIDO perturbation embeddings",
+    "perturbation_side": "parent residual MLP with training-time feature dropout augmentation",
+    "target_side": "dense all-target logits preserving official target order",
+    "fusion": "none; regularization delta only",
+    "prior": "official DEG task contract",
+    "head": "parent dense all-target logits",
+    "training_strategy": "focal_loss inherited from base_config plus feature dropout augmentation",
+    "fine_tuning": "node-local generated model only",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "feature/gene-dropout style robustness augmentation without label or split changes"
+  },
+  "implementation_semantics": "parent_preserving_regularization_delta",
+  "augmentation": {
+    "feature_dropout_p": 0.08,
+    "applies": "training forward pass over cached perturbation embedding features",
+    "labels_changed": false
+  }
+}

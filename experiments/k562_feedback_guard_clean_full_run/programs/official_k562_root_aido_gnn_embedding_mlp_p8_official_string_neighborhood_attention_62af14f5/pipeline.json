@@ -1,0 +1,52 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_string_neighborhood_attention",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad",
+    "pathway_membership_matrix",
+    "official_target_gene_order"
+  ],
+  "patches": {
+    "model": {
+      "type": "node_local_model_py",
+      "description": "Preserve parent AIDO+GNN dense and Reactome pathway branches; add real STRING keep20 graph neighborhood residual attention-style target factors."
+    }
+  },
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 5,
+  "paper_family": "STRING_neighborhood_attention",
+  "pipeline_program": {
+    "blueprint": "official_string_neighborhood_attention",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "source-backed STRING keep20 graph neighborhood features",
+    "head": "parent dense logits + Reactome pathway residual + STRING neighborhood target residual",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad",
+      "pathway_membership_matrix"
+    ],
+    "paper_alignment": "STRING/PPI neighborhood prior over official K562 target genes while preserving official split and validation Macro-F1 reward."
+  },
+  "implementation_semantics": "parent_preserving_string_neighborhood_attention_delta",
+  "fallback_allowed": false
+}

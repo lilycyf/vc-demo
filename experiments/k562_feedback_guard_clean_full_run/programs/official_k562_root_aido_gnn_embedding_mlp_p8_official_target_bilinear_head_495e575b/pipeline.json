@@ -1,0 +1,48 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_bilinear_head",
+  "model_entrypoint": "experiments/k562_feedback_guard_clean_full_run/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_target_bilinear_head_495e575b/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_essential_deg_with_split_h5ad",
+    "official_target_gene_order",
+    "aido_gnn_embedding_input_features"
+  ],
+  "patches": {
+    "model": {
+      "type": "node_local_model_py",
+      "description": "Preserve parent dense branch and add official target-gene-aware bilinear/low-rank residual head."
+    }
+  },
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true
+  },
+  "change_level": 4,
+  "paper_family": "target_bilinear_head",
+  "pipeline_program": {
+    "blueprint": "official_target_bilinear_head",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "parent dense logits plus target-gene bilinear low-rank residual",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "paper_alignment": "Target bilinear response head over official K562 AIDO+GNN embeddings; validation Macro-F1 reward unchanged."
+  },
+  "implementation_semantics": "parent_preserving_target_bilinear_head_delta",
+  "fallback_allowed": false
+}
