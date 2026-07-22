@@ -153,3 +153,7 @@ The repo records this as `framework_feedback.json` and `framework_feedback.md`. 
 ## Existing Run Directory Guard
 
 If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `nodes/`, or queues, Codex must use `--resume` to continue. A from-scratch run must use a fresh directory. The runner refuses to overwrite existing run state because doing so can erase selected rollout implementations and invalidate MCTS/backprop audit trails.
+
+## Full Run Queue Drain
+
+For `RUN_TYPE=full_cellline_run`, `pending implementation trained` is an intermediate state, not a terminal stop. The standard entrypoint must keep resuming the same `RUN_DIR` until a generated child both beats the best root and reaches the target validation Macro-F1, the trained-rollout budget is exhausted, no-improvement stopping fires, an acquisition/implementation queue requires same-session action, or no feasible queued candidate remains. If generated candidates remain queued and there is no blocker, the run must continue draining the global queue.

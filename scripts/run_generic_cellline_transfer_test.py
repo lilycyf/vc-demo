@@ -74,6 +74,113 @@ def resolve_level_and_epochs(args: argparse.Namespace) -> tuple[str, TransferLev
     return level_name, level, max_epochs
 
 
+def _read_json(path: Path) -> dict[str, object]:
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+
+def _queue_len(run_dir: Path, name: str) -> int:
+    payload = _read_json(run_dir / name)
+    items = payload.get("items", [])
+    return len(items) if isinstance(items, list) else 0
+
+
+def _tree_nodes(run_dir: Path) -> dict[str, dict[str, object]]:
+    tree = _read_json(run_dir / "tree.json")
+    raw = tree.get("nodes", {})
+    if isinstance(raw, dict):
+        return {str(k): v for k, v in raw.items() if isinstance(v, dict)}
+    return {}
+
+
+def _best_generated_child_val(run_dir: Path) -> float | None:
+    vals: list[float] = []
+    for node in _tree_nodes(run_dir).values():
+        if node.get("parent") and node.get("status") == "trained" and node.get("best_val_macro_f1") is not None:
+            vals.append(float(node["best_val_macro_f1"]))
+    return max(vals) if vals else None
+
+
+def _best_root_val(run_dir: Path) -> float | None:
+    vals: list[float] = []
+    for node in _tree_nodes(run_dir).values():
+        if not node.get("parent") and node.get("status") == "trained" and node.get("best_val_macro_f1") is not None:
+            vals.append(float(node["best_val_macro_f1"]))
+    return max(vals) if vals else None
+
+
+def _count_status(run_dir: Path, status: str) -> int:
+    return sum(1 for node in _tree_nodes(run_dir).values() if node.get("status") == status)
+
+
+def full_run_continue_reason(run_dir: Path, target_val_macro_f1: float | None, trained_budget: int) -> tuple[bool, str]:
+    manifest = _read_json(run_dir / "run_manifest.json")
+    search = manifest.get("search", {})
+    stop_reason = str(search.get("stop_reason", "")) if isinstance(search, dict) else ""
+    implementation_items = _queue_len(run_dir, "implementation_queue.json")
+    acquisition_items = _queue_len(run_dir, "acquisition_queue.json")
+    if implementation_items:
+        return False, f"implementation queue requires realtime Codex action ({implementation_items})"
+    if acquisition_items:
+        return False, f"acquisition queue requires source-backed acquisition ({acquisition_items})"
+    best_child_val = _best_generated_child_val(run_dir)
+    best_root_val = _best_root_val(run_dir)
+    if (
+        target_val_macro_f1 is not None
+        and best_child_val is not None
+        and best_child_val >= target_val_macro_f1
+        and (best_root_val is None or best_child_val > best_root_val)
+    ):
+        root_clause = "no trained root" if best_root_val is None else f"best root {best_root_val:.6f}"
+        return False, f"target reached and root beaten by generated child ({best_child_val:.6f} >= {target_val_macro_f1:.6f}; {root_clause})"
+    trained_children = sum(1 for node in _tree_nodes(run_dir).values() if node.get("parent") and node.get("status") == "trained")
+    if trained_children >= trained_budget:
+        return False, f"trained rollout budget exhausted ({trained_children}/{trained_budget})"
+    if stop_reason.startswith("no improvement"):
+        return False, stop_reason
+    if stop_reason.startswith("trained-node budget exhausted"):
+        return False, stop_reason
+    if stop_reason.startswith("proposal budget exhausted") and _count_status(run_dir, "candidate_queued") == 0:
+        return False, stop_reason
+    queued = _count_status(run_dir, "candidate_queued")
+    if queued > 0:
+        return True, f"drain global queue ({queued} queued candidates; stop_reason={stop_reason or 'unknown'})"
+    if stop_reason in {"pending implementation trained", ""}:
+        return True, f"resume after intermediate stop_reason={stop_reason or 'unknown'}"
+    return False, stop_reason or "no continuation condition"
+
+
+def resume_command(args: argparse.Namespace, roots: list[str], run_dir: Path, experiment: str, level: TransferLevel, max_epochs: int) -> list[str]:
+    clone = argparse.Namespace(**vars(args))
+    clone.resume = True
+    return build_command(clone, roots, run_dir, experiment, level, max_epochs)
+
+
+def execute_command_loop(command: list[str], args: argparse.Namespace, roots: list[str], run_dir: Path, experiment: str, level: TransferLevel, max_epochs: int) -> int:
+    env = dict(**__import__("os").environ)
+    env["PYTHONPATH"] = "src" + ((":" + env["PYTHONPATH"]) if env.get("PYTHONPATH") else "")
+    if level.run_type != "full_cellline_run":
+        return subprocess.call(command, env=env)
+    current = list(command)
+    max_cycles = 50
+    for cycle in range(1, max_cycles + 1):
+        print(f"[full_cellline_run] cycle {cycle}: {' '.join(shlex.quote(part) for part in current)}", flush=True)
+        exit_code = subprocess.call(current, env=env)
+        if exit_code != 0:
+            return exit_code
+        should_continue, reason = full_run_continue_reason(run_dir, args.target_val_macro_f1, level.budget_trained_nodes)
+        print(f"[full_cellline_run] continuation_check: continue={should_continue} reason={reason}", flush=True)
+        if not should_continue:
+            return 0
+        current = resume_command(args, roots, run_dir, experiment, level, max_epochs)
+    print(f"full_cellline_run exceeded max continuation cycles ({max_cycles})", file=sys.stderr)
+    return 2
+
+
 def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, experiment: str, level: TransferLevel, max_epochs: int) -> list[str]:
     cmd = [
         sys.executable,
@@ -233,9 +340,7 @@ def main() -> None:
         print(command_text)
         print(f"Invocation written to {run_dir / 'transfer_invocation.md'}")
     if args.execute:
-        env = dict(**__import__("os").environ)
-        env["PYTHONPATH"] = "src" + ((":" + env["PYTHONPATH"]) if env.get("PYTHONPATH") else "")
-        raise SystemExit(subprocess.call(command, env=env))
+        raise SystemExit(execute_command_loop(command, args, roots, run_dir, experiment, level, max_epochs))
 
 
 if __name__ == "__main__":
