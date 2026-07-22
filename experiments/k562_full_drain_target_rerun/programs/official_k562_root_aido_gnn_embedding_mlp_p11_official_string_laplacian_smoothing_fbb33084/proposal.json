@@ -1,0 +1,93 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084",
+  "strategy": "official_string_laplacian_smoothing",
+  "blueprint": {
+    "id": "official_string_laplacian_smoothing",
+    "status": "planned",
+    "official_k562": true,
+    "category": "graph_prior",
+    "paper_family": "STRING_laplacian_prior",
+    "change_level": 5,
+    "role": "Regularize target-gene logits or embeddings with STRING graph Laplacian smoothing.",
+    "requires": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "medium",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex records smoothing strength and graph coverage.",
+    "acceptance": [
+      "Uses real graph adjacency",
+      "Documents smoothing coefficient",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Regularize target-gene logits or embeddings with STRING graph Laplacian smoothing.",
+  "changes": [
+    "program_model:custom_program->official_string_laplacian_smoothing",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084",
+  "program_model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_string_gnn_keep20_graph",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_string_laplacian_smoothing",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 0.58,
+    "base": 0.7,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.0,
+    "feedback_boost": 0.0,
+    "repeat_penalty": 0.12,
+    "native_repeat_penalty": 0.0,
+    "feedback_penalty": 0.0,
+    "count": 1,
+    "family": "STRING_laplacian_prior",
+    "family_count": 1
+  },
+  "structural_signature": "606d8cdf402a1af1ef92bc5742e3d019e66e0909",
+  "parent_structural_signature": "d3eb6c3034dfc408abd078f8142d91c1fb07f939",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_string_gnn_keep20_graph",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

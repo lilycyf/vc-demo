@@ -1,0 +1,115 @@
+{
+  "branch": "k562-full-drain-target-rerun",
+  "run_dir": "experiments/k562_full_drain_target_rerun",
+  "target_val_macro_f1": 0.5,
+  "status_counts": {
+    "trained": 32,
+    "requires_artifact_acquisition": 1,
+    "candidate_queued": 34,
+    "implementation_skipped": 1,
+    "pruned_not_selected": 126
+  },
+  "trained_total": 32,
+  "trained_selected_rollouts": 30,
+  "generated_proposals": 198,
+  "pruned_not_selected": 126,
+  "skipped": 1,
+  "blocked": 1,
+  "failed": 1,
+  "pending": 0,
+  "queued_candidates_remaining": 34,
+  "global_queue_fully_drained": false,
+  "stop_reason": "unresolved source-backed artifact blocker: official_string_gnn_model_dir expected at /home/Models/STRING_GNN is not publicly/materially available in acquired source; only .gitattributes was downloadable from genbio-ai/STRING_GNN, so strict mode forbids fallback/proxy training of STRING_GNN checkpoint-dependent nodes",
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "val_macro_f1": 0.4880986213684082,
+    "test_macro_f1": 0.5436508059501648,
+    "strategy": null,
+    "parent": "",
+    "backend": "native_train"
+  },
+  "best_generated_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+    "val_macro_f1": 0.49478253722190857,
+    "test_macro_f1": 0.5218122005462646,
+    "strategy": "official_string_neighborhood_attention",
+    "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+    "backend": null
+  },
+  "child_beats_root": true,
+  "delta_child_vs_root": 0.006683915853500366,
+  "delta_child_vs_target": -0.005217462778091431,
+  "target_reached": false,
+  "acquisition_queue": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "artifact_id": "official_string_gnn_model_dir",
+      "expected_path": "/home/Models/STRING_GNN",
+      "source": "Exact model directory expected by public VCHarness node code; not equivalent to STRING graph edge file.",
+      "action": "search_download_or_build_real_artifact",
+      "resume_after": "update registry, rerun artifact audit, then resume search without fallback"
+    }
+  ],
+  "artifact_acquisition_report": [
+    {
+      "artifact_id": "official_string_gnn_model_dir",
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "strategy": "official_string_gnn_attention",
+      "expected_path": "/home/Models/STRING_GNN",
+      "resolver": "codex_research_download_from_official_genbio_or_string_gnn_source",
+      "can_execute_automatically": false,
+      "present_before": false,
+      "action": "generated_codex_research_task",
+      "task_path": "experiments/k562_full_drain_target_rerun/artifact_acquisition/ACQUIRE_official_string_gnn_model_dir.md",
+      "present_after": false,
+      "status": "requires_codex_research_download_or_build"
+    }
+  ],
+  "missing_artifacts": [
+    "esm2_gene_embedding_h5ad",
+    "esm2_k562_target_manifest",
+    "aido_gene_or_cell_embeddings",
+    "scfoundation_cell_embeddings",
+    "official_aido_cell_100m_model_dir",
+    "official_string_gnn_model_dir",
+    "regulatory_network_artifact",
+    "single_cell_foundation_model_artifact"
+  ],
+  "fallback_count": 0,
+  "fallback_nodes": [],
+  "proxy_count": 0,
+  "proxy_nodes": [],
+  "backprop_nontrained_count": 0,
+  "backprop_nontrained_nodes": [],
+  "backend_anomaly_count": 0,
+  "backend_anomaly_nodes": [],
+  "trace_event_counts": {
+    "selection": 33,
+    "proposal_pool_generated": 33,
+    "proposal_queued": 66,
+    "global_queue_selected": 33,
+    "expansion": 33,
+    "pending_implementation": 29,
+    "implementation_loop_start": 29,
+    "implementation_loop_result": 29,
+    "realtime_implementation_required": 29,
+    "manual_train_pending_backpropagation": 29,
+    "selected_for_training": 2,
+    "backpropagation": 1,
+    "proposal_pruned": 132,
+    "failure": 1,
+    "implementation_skipped_continued": 1,
+    "artifact_acquisition_block_continued": 1
+  },
+  "source_checks": [
+    {
+      "source": "Hugging Face model repo genbio-ai/STRING_GNN",
+      "result": "download/list files returned only .gitattributes; no checkpoint/config/weights"
+    },
+    {
+      "source": "VCHarness K562 public static code",
+      "result": "requires /home/Models/STRING_GNN and 256-dim STRING_GNN embeddings; graph text file is not equivalent"
+    }
+  ]
+}

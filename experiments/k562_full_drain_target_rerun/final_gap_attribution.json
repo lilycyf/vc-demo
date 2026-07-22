@@ -1,0 +1,65 @@
+{
+  "format": "official_k562_final_gap_attribution.v1",
+  "artifact_gap": {
+    "missing": [
+      "esm2_gene_embedding_h5ad",
+      "esm2_k562_target_manifest",
+      "aido_gene_or_cell_embeddings",
+      "scfoundation_cell_embeddings",
+      "official_aido_cell_100m_model_dir",
+      "official_string_gnn_model_dir",
+      "regulatory_network_artifact",
+      "single_cell_foundation_model_artifact"
+    ],
+    "reconstructed_compatibility": []
+  },
+  "search_scale_gap": {
+    "trained_nodes": 32,
+    "paper_scale_target_nodes": 600,
+    "estimated_candidate_count": 94500
+  },
+  "epoch_budget_gap": 8,
+  "implementation_gap": {
+    "pending_implementations": 0,
+    "failed_nodes": 1,
+    "family_counts": {
+      "target_gene_aware_head": 15,
+      "Reactome_pathway_pooling": 11,
+      "STRING_GNN_attention": 15,
+      "AIDO_STRING_fusion": 17,
+      "AIDO_adapter": 15,
+      "AIDO_STRING_cross_attention": 9,
+      "official_deg_imbalance": 5,
+      "STRING_neighborhood_attention": 5,
+      "target_graph_conditioned_head": 6,
+      "target_low_rank_head": 4,
+      "regulatory_network_prior": 4,
+      "public_vcharness_best_path": 5,
+      "target_bilinear_head": 4,
+      "focal_loss": 4,
+      "AIDO_cached_embedding": 4,
+      "AIDO_full_finetune": 4,
+      "AIDO_selective_finetune": 4,
+      "scGPT_or_single_cell_encoder": 4,
+      "gene_dropout_augmentation": 4,
+      "temperature_calibration": 4,
+      "multimodal_MoE": 4,
+      "public_static_tree_family": 4,
+      "AIDO_STRING_gated": 4,
+      "AIDO_STRING_bilinear": 4,
+      "class_weighted_CE": 5,
+      "STRING_laplacian_prior": 4,
+      "STRING_GNN_frozen_cached": 4,
+      "AIDO_STRING_concat": 4,
+      "scFoundation_selective_finetune": 4,
+      "STRING_GNN_full_finetune": 4,
+      "layerwise_lr_decay": 3,
+      "checkpoint_ensemble_or_SWA": 4,
+      "public_vcharness_best_path_native_exact": 1
+    },
+    "replicate_nodes": 4,
+    "formal_proxy_policy": "forbidden"
+  },
+  "metric_contract_gap": "external benchmark mode must supply held-out test metric; smoke mode may mark test as missing_or_val_fallback",
+  "stochastic_gap": "single short runs can differ from public/static and paper scores; compare only after 50/150/600-node staged runs"
+}

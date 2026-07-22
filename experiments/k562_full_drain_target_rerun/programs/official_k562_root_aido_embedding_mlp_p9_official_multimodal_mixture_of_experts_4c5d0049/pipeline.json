@@ -1,0 +1,52 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_multimodal_mixture_of_experts",
+  "model_entrypoint": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p9_official_multimodal_mixture_of_experts_4c5d0049/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official AIDO parent features",
+    "official target-gene order",
+    "official STRING keep20 graph"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true,
+    "no_compact_proxy": true,
+    "no_fallback": true
+  },
+  "change_level": 4,
+  "paper_family": "multimodal_MoE",
+  "pipeline_program": {
+    "blueprint": "official_multimodal_mixture_of_experts",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_status": "implemented_by_codex",
+  "implementation_type": "parent_preserving_multimodal_moe_delta",
+  "fusion": {
+    "type": "context_gated_mixture_of_experts",
+    "experts": [
+      "dense_parent",
+      "target_low_rank",
+      "string_graph_conditioned"
+    ],
+    "gate": "learned from perturbation context"
+  }
+}

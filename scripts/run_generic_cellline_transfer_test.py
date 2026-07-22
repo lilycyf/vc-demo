@@ -213,6 +213,7 @@ def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, exp
         "--allow-planned-blueprints",
         "--strict-artifacts",
         "--enable-implementation-loop",
+        "--enable-acquisition-loop",
         "--implementation-repair-attempts",
         str(args.implementation_repair_attempts),
     ]

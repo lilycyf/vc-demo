@@ -1,0 +1,384 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.49478253722190857,
+  "parent_test_macro_f1": 0.5218122005462646,
+  "parent_strategy": "official_string_neighborhood_attention",
+  "parent_config_model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_string_neighborhood_attention"
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [
+    "official_target_gene_head: unspecified + unspecified val=0.4458",
+    "official_pathway_pooling_reactome: unspecified + unspecified val=0.4795",
+    "official_class_imbalance_training: unspecified + unspecified val=0.4194",
+    "official_string_neighborhood_attention: unspecified + unspecified val=0.4550",
+    "official_target_graph_conditioned_head: unspecified + unspecified val=0.4527",
+    "official_target_low_rank_head: unspecified + unspecified val=0.4390",
+    "official_target_bilinear_head: unspecified + unspecified val=0.3599",
+    "official_focal_loss_training: unspecified + unspecified val=0.4309",
+    "official_gene_dropout_augmentation: unspecified + unspecified val=0.3953",
+    "official_temperature_calibrated_head: unspecified + unspecified val=0.4307"
+  ],
+  "search_memory_discouraged_motifs": [
+    "official_class_imbalance_training: 1 failure(s)"
+  ],
+  "recent_successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.49478253722190857,
+      "test": 0.5218122005462646,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "structural_relation": "structural_variant",
+      "val": 0.4794532358646393,
+      "test": 0.53495192527771,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+      "strategy": "official_string_laplacian_smoothing",
+      "family": "STRING_laplacian_prior",
+      "structural_relation": "structural_variant",
+      "val": 0.4790508449077606,
+      "test": 0.5260995030403137,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995",
+      "strategy": "official_weighted_ce_training",
+      "family": "class_weighted_CE",
+      "structural_relation": "structural_variant",
+      "val": 0.4757111072540283,
+      "test": 0.5193360447883606,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_pathway_pooling_reactome_6cb04fc4",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "structural_relation": "replicate",
+      "val": 0.4744182825088501,
+      "test": 0.5411747097969055,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    }
+  ],
+  "framework_feedback": {
+    "format": "vc_demo_framework_feedback.v1",
+    "created_at": "2026-07-22T11:41:00.365495+00:00",
+    "run_dir": "experiments/k562_full_drain_target_rerun",
+    "target_val_macro_f1": null,
+    "best_root": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "val": 0.4880986213684082,
+      "test": 0.5436508059501648
+    },
+    "best_child": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+      "val": 0.49478253722190857,
+      "test": 0.5218122005462646
+    },
+    "strategy_stats": {
+      "official_target_gene_head": {
+        "n": 2,
+        "family": "target_aware",
+        "mean_val": 0.4389331340789795,
+        "std_val": 0.009750631256146823,
+        "mean_test": 0.48083077371120453,
+        "std_test": 0.014905633370938528,
+        "mean_delta_vs_parent": -0.032598212361335754,
+        "std_delta_vs_parent": 0.013679033638725979,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+      },
+      "official_pathway_pooling_reactome": {
+        "n": 2,
+        "family": "pathway_prior",
+        "mean_val": 0.4769357591867447,
+        "std_val": 0.003560249660836496,
+        "mean_test": 0.5380633175373077,
+        "std_test": 0.004400173131385848,
+        "mean_delta_vs_parent": -0.006840169429779053,
+        "std_delta_vs_parent": 0.002552961054850384,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+      },
+      "official_class_imbalance_training": {
+        "n": 1,
+        "family": "imbalance_training",
+        "mean_val": 0.4193631112575531,
+        "std_val": 0.0,
+        "mean_test": 0.43950560688972473,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.008313566446304321,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5"
+      },
+      "official_string_neighborhood_attention": {
+        "n": 2,
+        "family": "graph_prior",
+        "mean_val": 0.47487330436706543,
+        "std_val": 0.028155907119763183,
+        "mean_test": 0.5047309547662735,
+        "std_test": 0.02415652944429168,
+        "mean_delta_vs_parent": 0.021308347582817078,
+        "std_delta_vs_parent": 0.008455648262225349,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5"
+      },
+      "official_target_graph_conditioned_head": {
+        "n": 1,
+        "family": "target_aware",
+        "mean_val": 0.45270082354545593,
+        "std_val": 0.0,
+        "mean_test": 0.4874351918697357,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": 0.02502414584159851,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1"
+      },
+      "official_target_low_rank_head": {
+        "n": 1,
+        "family": "target_aware",
+        "mean_val": 0.43896952271461487,
+        "std_val": 0.0,
+        "mean_test": 0.4643228352069855,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": 0.011292845010757446,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p6_official_target_low_rank_head_f28a1bc1"
+      },
+      "official_target_bilinear_head": {
+        "n": 1,
+        "family": "target_aware",
+        "mean_val": 0.3598780632019043,
+        "std_val": 0.0,
+        "mean_test": 0.37165164947509766,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.059485048055648804,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p1_official_target_bilinear_head_217a17b9"
+      },
+      "official_focal_loss_training": {
+        "n": 1,
+        "family": "imbalance_training",
+        "mean_val": 0.4309028089046478,
+        "std_val": 0.0,
+        "mean_test": 0.44677627086639404,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": 0.011539697647094727,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_focal_loss_training_37672209"
+      },
+      "official_gene_dropout_augmentation": {
+        "n": 1,
+        "family": "stability_regularization",
+        "mean_val": 0.39533618092536926,
+        "std_val": 0.0,
+        "mean_test": 0.41506263613700867,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.024026930332183838,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p10_official_gene_dropout_augmentation_ed174d61"
+      },
+      "official_temperature_calibrated_head": {
+        "n": 1,
+        "family": "calibration",
+        "mean_val": 0.4307042360305786,
+        "std_val": 0.0,
+        "mean_test": 0.44731810688972473,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": 0.011341124773025513,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_ddceef70"
+      },
+      "official_multimodal_mixture_of_experts": {
+        "n": 1,
+        "family": "fusion",
+        "mean_val": 0.3612067699432373,
+        "std_val": 0.0,
+        "mean_test": 0.3741171360015869,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.058156341314315796,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p9_official_multimodal_mixture_of_experts_4c5d0049"
+      },
+      "official_weighted_ce_training": {
+        "n": 1,
+        "family": "imbalance_training",
+        "mean_val": 0.4757111072540283,
+        "std_val": 0.0,
+        "mean_test": 0.5193360447883606,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.003742128610610962,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995"
+      },
+      "official_string_laplacian_smoothing": {
+        "n": 1,
+        "family": "graph_prior",
+        "mean_val": 0.4790508449077606,
+        "std_val": 0.0,
+        "mean_test": 0.5260995030403137,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.0004023909568786621,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678"
+      },
+      "official_layerwise_lr_schedule": {
+        "n": 1,
+        "family": "official_layerwise_lr_schedule",
+        "mean_val": 0.4406769275665283,
+        "std_val": 0.0,
+        "mean_test": 0.49912047386169434,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.01428714394569397,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd"
+      },
+      "official_swa_or_checkpoint_ensemble": {
+        "n": 1,
+        "family": "stability_regularization",
+        "mean_val": 0.44309625029563904,
+        "std_val": 0.0,
+        "mean_test": 0.47315704822540283,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.011867821216583252,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p3_official_swa_or_checkpoint_ensemble_7fe2d86a"
+      }
+    },
+    "family_stats": {
+      "target_aware": {
+        "n": 5,
+        "mean_val": 0.4258829355239868,
+        "std_val": 0.03769214515992422,
+        "mean_delta_vs_parent": -0.01767289638519287,
+        "std_delta_vs_parent": 0.035506878531178634,
+        "win_rate_vs_parent": 0.4
+      },
+      "pathway_prior": {
+        "n": 2,
+        "mean_val": 0.4769357591867447,
+        "std_val": 0.003560249660836496,
+        "mean_delta_vs_parent": -0.006840169429779053,
+        "std_delta_vs_parent": 0.002552961054850384,
+        "win_rate_vs_parent": 0.0
+      },
+      "imbalance_training": {
+        "n": 3,
+        "mean_val": 0.4419923424720764,
+        "std_val": 0.029765877767370493,
+        "mean_delta_vs_parent": -0.0001719991366068522,
+        "std_delta_vs_parent": 0.010396989570853027,
+        "win_rate_vs_parent": 0.3333333333333333
+      },
+      "graph_prior": {
+        "n": 3,
+        "mean_val": 0.4762658178806305,
+        "std_val": 0.020054795798630048,
+        "mean_delta_vs_parent": 0.014071434736251831,
+        "std_delta_vs_parent": 0.01388768218291233,
+        "win_rate_vs_parent": 0.6666666666666666
+      },
+      "stability_regularization": {
+        "n": 2,
+        "mean_val": 0.41921621561050415,
+        "std_val": 0.03377146892165768,
+        "mean_delta_vs_parent": -0.017947375774383545,
+        "std_delta_vs_parent": 0.00859778850882834,
+        "win_rate_vs_parent": 0.0
+      },
+      "calibration": {
+        "n": 1,
+        "mean_val": 0.4307042360305786,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": 0.011341124773025513,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 1.0
+      },
+      "fusion": {
+        "n": 1,
+        "mean_val": 0.3612067699432373,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.058156341314315796,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      },
+      "official_layerwise_lr_schedule": {
+        "n": 1,
+        "mean_val": 0.4406769275665283,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.01428714394569397,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      }
+    },
+    "findings": [
+      "best_child_lift: best generated child beats best root by 0.0067 validation Macro-F1",
+      "validation_test_divergence: best child improves validation but loses held-out test Macro-F1",
+      "discouraged_family:target_aware: repeated negative delta",
+      "unstable_positive_family:graph_prior: mean_delta=0.0141, std=0.0139, win_rate=0.6666666666666666"
+    ],
+    "policy": {
+      "ranking_boosts": {
+        "official_gene_dropout_augmentation": 0.1,
+        "official_temperature_calibrated_head": 0.08,
+        "official_swa_or_checkpoint_ensemble": 0.08,
+        "official_weighted_ce_training": 0.04
+      },
+      "ranking_penalties": {
+        "target_aware": 0.08
+      },
+      "implementation_guidance": [
+        "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+        "Validation/test divergence observed: prioritize regularized residual gates, calibration, and seed checks; avoid unconstrained replacement heads."
+      ],
+      "validation_recommendations": [
+        "Run multi-seed validation before promoting `graph_prior` motifs; positive average lift is not yet stable."
+      ],
+      "suppressed_families": []
+    }
+  }
+}

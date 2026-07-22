@@ -95,6 +95,7 @@ def main() -> None:
         allow_planned_blueprints=args.allow_planned_blueprints,
         max_pending_implementations=args.max_pending_implementations,
         enable_implementation_loop=bool(args.enable_implementation_loop or args.enable_repair_loop),
+        enable_acquisition_loop=args.enable_acquisition_loop,
         implementation_repair_attempts=args.implementation_repair_attempts,
         allow_implementation_skip=args.allow_implementation_skip,
         force_blueprint=args.force_blueprint or None,

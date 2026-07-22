@@ -1,0 +1,394 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p7_official_temperature_calibrated_head_382161c4",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.4885011613368988,
+  "parent_test_macro_f1": 0.5373475551605225,
+  "parent_strategy": "official_temperature_calibrated_head",
+  "parent_config_model": {
+    "model_type": "custom_program",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2,
+    "custom_model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_temperature_calibrated_head_382161c4/model.py",
+    "custom_model_class": "GeneratedModel",
+    "program_blueprint": "official_temperature_calibrated_head",
+    "artifacts": {
+      "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+      "string_gnn_model_dir": "/home/Models/STRING_GNN",
+      "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+    },
+    "low_rank_dim": 96
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [
+    "official_target_gene_head: unspecified + unspecified val=0.4458",
+    "official_pathway_pooling_reactome: unspecified + unspecified val=0.4795",
+    "official_class_imbalance_training: unspecified + unspecified val=0.4194",
+    "official_string_neighborhood_attention: unspecified + unspecified val=0.4550",
+    "official_target_graph_conditioned_head: unspecified + unspecified val=0.4527",
+    "official_target_low_rank_head: unspecified + unspecified val=0.4390",
+    "official_target_bilinear_head: unspecified + unspecified val=0.3599",
+    "official_focal_loss_training: unspecified + unspecified val=0.4309",
+    "official_gene_dropout_augmentation: unspecified + unspecified val=0.3953",
+    "official_temperature_calibrated_head: unspecified + unspecified val=0.4307"
+  ],
+  "search_memory_discouraged_motifs": [
+    "official_class_imbalance_training: 1 failure(s)"
+  ],
+  "recent_successes": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+      "strategy": "official_string_neighborhood_attention",
+      "family": "STRING_neighborhood_attention",
+      "structural_relation": "structural_variant",
+      "val": 0.49478253722190857,
+      "test": 0.5218122005462646,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_temperature_calibrated_head_382161c4",
+      "strategy": "official_temperature_calibrated_head",
+      "family": "temperature_calibration",
+      "structural_relation": "structural_variant",
+      "val": 0.4885011613368988,
+      "test": 0.5373475551605225,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "strategy": "official_pathway_pooling_reactome",
+      "family": "Reactome_pathway_pooling",
+      "structural_relation": "structural_variant",
+      "val": 0.4794532358646393,
+      "test": 0.53495192527771,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678",
+      "strategy": "official_string_laplacian_smoothing",
+      "family": "STRING_laplacian_prior",
+      "structural_relation": "structural_variant",
+      "val": 0.4790508449077606,
+      "test": 0.5260995030403137,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995",
+      "strategy": "official_weighted_ce_training",
+      "family": "class_weighted_CE",
+      "structural_relation": "structural_variant",
+      "val": 0.4757111072540283,
+      "test": 0.5193360447883606,
+      "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    }
+  ],
+  "framework_feedback": {
+    "format": "vc_demo_framework_feedback.v1",
+    "created_at": "2026-07-22T11:55:44.559493+00:00",
+    "run_dir": "experiments/k562_full_drain_target_rerun",
+    "target_val_macro_f1": null,
+    "best_root": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "val": 0.4880986213684082,
+      "test": 0.5436508059501648
+    },
+    "best_child": {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+      "val": 0.49478253722190857,
+      "test": 0.5218122005462646
+    },
+    "strategy_stats": {
+      "official_target_gene_head": {
+        "n": 2,
+        "family": "target_aware",
+        "mean_val": 0.4389331340789795,
+        "std_val": 0.009750631256146823,
+        "mean_test": 0.48083077371120453,
+        "std_test": 0.014905633370938528,
+        "mean_delta_vs_parent": -0.032598212361335754,
+        "std_delta_vs_parent": 0.013679033638725979,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+      },
+      "official_pathway_pooling_reactome": {
+        "n": 2,
+        "family": "pathway_prior",
+        "mean_val": 0.4769357591867447,
+        "std_val": 0.003560249660836496,
+        "mean_test": 0.5380633175373077,
+        "std_test": 0.004400173131385848,
+        "mean_delta_vs_parent": -0.006840169429779053,
+        "std_delta_vs_parent": 0.002552961054850384,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+      },
+      "official_class_imbalance_training": {
+        "n": 1,
+        "family": "imbalance_training",
+        "mean_val": 0.4193631112575531,
+        "std_val": 0.0,
+        "mean_test": 0.43950560688972473,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.008313566446304321,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5"
+      },
+      "official_string_neighborhood_attention": {
+        "n": 2,
+        "family": "graph_prior",
+        "mean_val": 0.47487330436706543,
+        "std_val": 0.028155907119763183,
+        "mean_test": 0.5047309547662735,
+        "std_test": 0.02415652944429168,
+        "mean_delta_vs_parent": 0.021308347582817078,
+        "std_delta_vs_parent": 0.008455648262225349,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5"
+      },
+      "official_target_graph_conditioned_head": {
+        "n": 2,
+        "family": "target_aware",
+        "mean_val": 0.46369627118110657,
+        "std_val": 0.01554991117070031,
+        "mean_test": 0.5068128854036331,
+        "std_test": 0.02740419700314713,
+        "mean_delta_vs_parent": 0.010131314396858215,
+        "std_delta_vs_parent": 0.02106164421128822,
+        "win_rate_vs_parent": 0.5,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_target_graph_conditioned_head_cc233d73"
+      },
+      "official_target_low_rank_head": {
+        "n": 2,
+        "family": "target_aware",
+        "mean_val": 0.44481977820396423,
+        "std_val": 0.00827351065638552,
+        "mean_test": 0.47599083185195923,
+        "std_test": 0.016501039101045657,
+        "mean_delta_vs_parent": -0.008543983101844788,
+        "std_delta_vs_parent": 0.028053511351305963,
+        "win_rate_vs_parent": 0.5,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_target_low_rank_head_4ca91b75"
+      },
+      "official_target_bilinear_head": {
+        "n": 2,
+        "family": "target_aware",
+        "mean_val": 0.3932846635580063,
+        "std_val": 0.0472440672963773,
+        "mean_test": 0.4226505607366562,
+        "std_test": 0.07212335197235804,
+        "mean_delta_vs_parent": -0.04387892782688141,
+        "std_delta_vs_parent": 0.022070386883547958,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p8_official_target_bilinear_head_25775217"
+      },
+      "official_focal_loss_training": {
+        "n": 2,
+        "family": "imbalance_training",
+        "mean_val": 0.43602995574474335,
+        "std_val": 0.007250880597541443,
+        "mean_test": 0.4615499824285507,
+        "std_test": 0.020893183257790177,
+        "mean_delta_vs_parent": -0.0011336356401443481,
+        "std_delta_vs_parent": 0.0179227998152879,
+        "win_rate_vs_parent": 0.5,
+        "best_node": "official_k562_root_aido_embedding_mlp_p11_official_focal_loss_training_e2939124"
+      },
+      "official_gene_dropout_augmentation": {
+        "n": 2,
+        "family": "stability_regularization",
+        "mean_val": 0.41574156284332275,
+        "std_val": 0.028857567853772546,
+        "mean_test": 0.455924317240715,
+        "std_test": 0.057787143598225954,
+        "mean_delta_vs_parent": -0.015488117933273315,
+        "std_delta_vs_parent": 0.012075704301098803,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p6_official_gene_dropout_augmentation_14862a55"
+      },
+      "official_temperature_calibrated_head": {
+        "n": 2,
+        "family": "calibration",
+        "mean_val": 0.4596026986837387,
+        "std_val": 0.04086859781583138,
+        "mean_test": 0.4923328310251236,
+        "std_test": 0.06366043337876456,
+        "mean_delta_vs_parent": 0.02700720727443695,
+        "std_delta_vs_parent": 0.02215518634275188,
+        "win_rate_vs_parent": 1.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_temperature_calibrated_head_382161c4"
+      },
+      "official_multimodal_mixture_of_experts": {
+        "n": 1,
+        "family": "fusion",
+        "mean_val": 0.3612067699432373,
+        "std_val": 0.0,
+        "mean_test": 0.3741171360015869,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.058156341314315796,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p9_official_multimodal_mixture_of_experts_4c5d0049"
+      },
+      "official_weighted_ce_training": {
+        "n": 2,
+        "family": "imbalance_training",
+        "mean_val": 0.45741361379623413,
+        "std_val": 0.025876563405445523,
+        "mean_test": 0.5089721977710724,
+        "std_test": 0.014656693010208933,
+        "mean_delta_vs_parent": -0.008663415908813477,
+        "std_delta_vs_parent": 0.006959751241452442,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995"
+      },
+      "official_string_laplacian_smoothing": {
+        "n": 1,
+        "family": "graph_prior",
+        "mean_val": 0.4790508449077606,
+        "std_val": 0.0,
+        "mean_test": 0.5260995030403137,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.0004023909568786621,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_string_laplacian_smoothing_dbe5f678"
+      },
+      "official_layerwise_lr_schedule": {
+        "n": 1,
+        "family": "official_layerwise_lr_schedule",
+        "mean_val": 0.4406769275665283,
+        "std_val": 0.0,
+        "mean_test": 0.49912047386169434,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.01428714394569397,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd"
+      },
+      "official_swa_or_checkpoint_ensemble": {
+        "n": 1,
+        "family": "stability_regularization",
+        "mean_val": 0.44309625029563904,
+        "std_val": 0.0,
+        "mean_test": 0.47315704822540283,
+        "std_test": 0.0,
+        "mean_delta_vs_parent": -0.011867821216583252,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0,
+        "best_node": "official_k562_root_aido_embedding_mlp_p3_official_swa_or_checkpoint_ensemble_7fe2d86a"
+      }
+    },
+    "family_stats": {
+      "target_aware": {
+        "n": 8,
+        "mean_val": 0.43518346175551414,
+        "std_val": 0.03378111027212717,
+        "mean_delta_vs_parent": -0.018722452223300934,
+        "std_delta_vs_parent": 0.027846165231134097,
+        "win_rate_vs_parent": 0.25
+      },
+      "pathway_prior": {
+        "n": 2,
+        "mean_val": 0.4769357591867447,
+        "std_val": 0.003560249660836496,
+        "mean_delta_vs_parent": -0.006840169429779053,
+        "std_delta_vs_parent": 0.002552961054850384,
+        "win_rate_vs_parent": 0.0
+      },
+      "imbalance_training": {
+        "n": 5,
+        "mean_val": 0.44125005006790163,
+        "std_val": 0.021084533714839752,
+        "mean_delta_vs_parent": -0.0055815339088439945,
+        "std_delta_vs_parent": 0.010436624019389591,
+        "win_rate_vs_parent": 0.2
+      },
+      "graph_prior": {
+        "n": 3,
+        "mean_val": 0.4762658178806305,
+        "std_val": 0.020054795798630048,
+        "mean_delta_vs_parent": 0.014071434736251831,
+        "std_delta_vs_parent": 0.01388768218291233,
+        "win_rate_vs_parent": 0.6666666666666666
+      },
+      "stability_regularization": {
+        "n": 3,
+        "mean_val": 0.42485979199409485,
+        "std_val": 0.02580321529878618,
+        "mean_delta_vs_parent": -0.014281352361043295,
+        "std_delta_vs_parent": 0.00879091386732614,
+        "win_rate_vs_parent": 0.0
+      },
+      "calibration": {
+        "n": 2,
+        "mean_val": 0.4596026986837387,
+        "std_val": 0.04086859781583138,
+        "mean_delta_vs_parent": 0.02700720727443695,
+        "std_delta_vs_parent": 0.02215518634275188,
+        "win_rate_vs_parent": 1.0
+      },
+      "fusion": {
+        "n": 1,
+        "mean_val": 0.3612067699432373,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.058156341314315796,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      },
+      "official_layerwise_lr_schedule": {
+        "n": 1,
+        "mean_val": 0.4406769275665283,
+        "std_val": 0.0,
+        "mean_delta_vs_parent": -0.01428714394569397,
+        "std_delta_vs_parent": 0.0,
+        "win_rate_vs_parent": 0.0
+      }
+    },
+    "findings": [
+      "best_child_lift: best generated child beats best root by 0.0067 validation Macro-F1",
+      "validation_test_divergence: best child improves validation but loses held-out test Macro-F1",
+      "discouraged_family:target_aware: repeated negative delta",
+      "discouraged_family:imbalance_training: repeated negative delta",
+      "unstable_positive_family:graph_prior: mean_delta=0.0141, std=0.0139, win_rate=0.6666666666666666",
+      "discouraged_family:stability_regularization: repeated negative delta"
+    ],
+    "policy": {
+      "ranking_boosts": {
+        "official_gene_dropout_augmentation": 0.1,
+        "official_temperature_calibrated_head": 0.08,
+        "official_swa_or_checkpoint_ensemble": 0.08,
+        "official_weighted_ce_training": 0.04
+      },
+      "ranking_penalties": {
+        "target_aware": 0.08,
+        "imbalance_training": 0.08,
+        "stability_regularization": 0.08
+      },
+      "implementation_guidance": [
+        "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+        "Validation/test divergence observed: prioritize regularized residual gates, calibration, and seed checks; avoid unconstrained replacement heads."
+      ],
+      "validation_recommendations": [
+        "Run multi-seed validation before promoting `graph_prior` motifs; positive average lift is not yet stable."
+      ],
+      "suppressed_families": []
+    }
+  }
+}

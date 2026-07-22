@@ -1,0 +1,207 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "child": "official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7",
+  "strategy": "official_aido_full_finetune",
+  "blueprint": {
+    "id": "official_aido_full_finetune",
+    "status": "planned",
+    "official_k562": true,
+    "category": "foundation_model_finetuning",
+    "paper_family": "AIDO_full_finetune",
+    "change_level": 5,
+    "role": "Fine-tune selected AIDO.Cell-100M layers for K562 DEG classification with frozen/unfrozen layer policy recorded.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex implements only when selected. Must load real AIDO.Cell-100M; no random stand-in.",
+    "acceptance": [
+      "Records frozen/trainable AIDO layers",
+      "Forward returns [batch, 6640, 3]",
+      "Does not alter official split"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Fine-tune selected AIDO.Cell-100M layers for K562 DEG classification with frozen/unfrozen layer policy recorded.",
+  "changes": [
+    "program_model:gated_mlp->official_aido_full_finetune",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7",
+  "program_model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_aido_full_finetune",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.2999999999999998,
+    "base": 0.7,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "feedback_boost": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "feedback_penalty": 0.0,
+    "count": 0,
+    "family": "AIDO_full_finetune",
+    "family_count": 0
+  },
+  "structural_signature": "a5c2fafd0832e97d2081932a8c46091f25e26630",
+  "parent_structural_signature": "1f74853a1499c2a3803343a9d6723e5fefb9c620",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p3_official_aido_full_finetune_c2d5a0d7/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [
+      "official_aido_cell_100m_model_dir"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "official_aido_cell_100m_model_dir"
+  ],
+  "missing_required_artifact_paths": [
+    "/home/Models/AIDO.Cell-100M"
+  ],
+  "candidate_pool_iteration": 3,
+  "candidate_pool_parent": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": -0.0400000000000002,
+    "scientific_score": 1.2999999999999998,
+    "cost_class": "expensive",
+    "cost_bonus": -0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "official_aido_cell_100m_model_dir"
+    ],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5",
+      "policy": "uct",
+      "score": 2.3921328135063042,
+      "uct": 2.3921328135063042,
+      "puct": null,
+      "q": 0.4193631112575531,
+      "Q_v": 0.4193631112575531,
+      "exploitation": 0.4193631112575531,
+      "Exploitation": 0.4193631112575531,
+      "exploration": 1.9727697022487514,
+      "Exploration": 1.9727697022487514,
+      "prior": 0.0,
+      "visits": 1,
+      "parent_visits": 7,
+      "children": 0,
+      "best_val_macro_f1": 0.4193631112575531,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.8619220806441876,
+      "uct": 1.8619220806441876,
+      "puct": null,
+      "q": 0.4669632464647293,
+      "Q_v": 0.9339264929294586,
+      "exploitation": 0.4669632464647293,
+      "Exploitation": 0.4669632464647293,
+      "exploration": 1.3949588341794583,
+      "Exploration": 1.3949588341794583,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 7,
+      "children": 6,
+      "best_val_macro_f1": 0.4880986213684082,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "uct",
+      "score": 1.8407867057405087,
+      "uct": 1.8407867057405087,
+      "puct": null,
+      "q": 0.4458278715610504,
+      "Q_v": 0.8916557431221008,
+      "exploitation": 0.4458278715610504,
+      "Exploitation": 0.4458278715610504,
+      "exploration": 1.3949588341794583,
+      "Exploration": 1.3949588341794583,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 7,
+      "children": 0,
+      "best_val_macro_f1": 0.4458278715610504,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "policy": "uct",
+      "score": 1.8184787286601636,
+      "uct": 1.8184787286601636,
+      "puct": null,
+      "q": 0.42351989448070526,
+      "Q_v": 0.8470397889614105,
+      "exploitation": 0.42351989448070526,
+      "Exploitation": 0.42351989448070526,
+      "exploration": 1.3949588341794583,
+      "Exploration": 1.3949588341794583,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 7,
+      "children": 6,
+      "best_val_macro_f1": 0.4276766777038574,
+      "stage": "draft"
+    }
+  ],
+  "candidate_pool_rank": 4,
+  "candidate_pool_size": 6,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "global_queue_generate_many_train_best_available"
+}

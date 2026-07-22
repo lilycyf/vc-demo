@@ -1,0 +1,41 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_temperature_calibrated_head",
+  "model_entrypoint": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_temperature_calibrated_head_382161c4/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true,
+    "no_compact_proxy": true,
+    "no_fallback": true
+  },
+  "change_level": 2,
+  "paper_family": "temperature_calibration",
+  "pipeline_program": {
+    "blueprint": "official_temperature_calibrated_head",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_status": "implemented_by_codex_drain_loop",
+  "implementation_type": "parent_preserving_delta_from_verified_template",
+  "template_source": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p11_official_temperature_calibrated_head_ddceef70/model.py",
+  "drain_loop_note": "Applied only after artifact_contract reported all required artifacts present; no fallback/proxy allowed."
+}

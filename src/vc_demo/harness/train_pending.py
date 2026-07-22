@@ -107,8 +107,9 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
     if not model_path.exists():
         raise FileNotFoundError(f"pending node has no implemented model.py yet: {model_path}")
 
-    proposal_path = Path(str(node.get("proposal", "")))
-    proposal = read_json(proposal_path) if proposal_path.exists() else None
+    proposal_raw = str(node.get("proposal", "") or "")
+    proposal_path = Path(proposal_raw) if proposal_raw else Path()
+    proposal = read_json(proposal_path) if proposal_raw and proposal_path.is_file() else None
     missing = missing_artifacts_for_pending(node, proposal, config)
     if missing and not allow_missing_artifact_fallbacks:
         raise RuntimeError(

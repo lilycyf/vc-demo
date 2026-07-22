@@ -1,0 +1,46 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_layerwise_lr_schedule",
+  "model_entrypoint": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official AIDO parent features"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true,
+    "no_compact_proxy": true,
+    "no_fallback": true
+  },
+  "change_level": 1,
+  "paper_family": "layerwise_lr_decay",
+  "pipeline_program": {
+    "blueprint": "official_layerwise_lr_schedule",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_status": "implemented_by_codex",
+  "implementation_type": "parent_preserving_training_strategy_delta",
+  "training_strategy": {
+    "type": "layerwise_lr_schedule",
+    "model": "parent_style_dense_gated_mlp",
+    "note": "node records strategy; train_pending optimizer support may be limited"
+  }
+}

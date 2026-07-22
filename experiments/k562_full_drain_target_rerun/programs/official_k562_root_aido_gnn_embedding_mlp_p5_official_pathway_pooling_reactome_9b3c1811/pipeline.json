@@ -1,0 +1,51 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_pathway_pooling_reactome",
+  "model_entrypoint": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official_aido_gnn_parent_features",
+    "Reactome pathway membership artifact aligned to official target order",
+    "official target-gene table for 6640 target order"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true,
+    "no_compact_proxy": true,
+    "no_fallback": true
+  },
+  "change_level": 5,
+  "paper_family": "Reactome_pathway_pooling",
+  "pipeline_program": {
+    "blueprint": "official_pathway_pooling_reactome",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_status": "implemented_by_codex",
+  "implementation_type": "parent_preserving_delta",
+  "prior": {
+    "type": "Reactome_pathway_pooling_residual",
+    "artifact": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+    "source": "Reactome official GMT aligned by scripts/build_k562_pathway_membership.py",
+    "covered_targets": 1000,
+    "n_pathways": 1139
+  }
+}

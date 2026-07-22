@@ -1,0 +1,252 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+  "child": "official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109",
+  "strategy": "official_aido_lora_adapter",
+  "blueprint": {
+    "id": "official_aido_lora_adapter",
+    "status": "planned",
+    "official_k562": true,
+    "category": "foundation_model_finetuning",
+    "paper_family": "AIDO_adapter",
+    "change_level": 5,
+    "role": "Use AIDO.Cell-100M as the backbone with frozen parameters plus LoRA/adapters and a DEG classification head.",
+    "requires": [
+      "official_aido_cell_100m_model_dir",
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "expensive",
+    "implementation_notes": "Codex agent must implement a node-local full artifact-backed model that loads AIDO.Cell-100M and documents frozen/trainable parameter groups. Proxy wrappers are forbidden.",
+    "acceptance": [
+      "Loads /home/Models/AIDO.Cell-100M",
+      "No random replacement for AIDO",
+      "Forward returns [batch, 6640, 3]"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Use AIDO.Cell-100M as the backbone with frozen parameters plus LoRA/adapters and a DEG classification head.",
+  "changes": [
+    "program_model:custom_program->official_aido_lora_adapter",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109",
+  "program_model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_aido_cell_100m_model_dir",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    {
+      "provider": "AIDO.Cell-100M",
+      "sides": [
+        "perturbation_gene"
+      ],
+      "requires_present_artifact": true
+    }
+  ],
+  "pipeline_program": {
+    "blueprint": "official_aido_lora_adapter",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.0,
+    "base": 0.92,
+    "coverage_bonus": 0.0,
+    "family_bonus": 0.0,
+    "early_bonus": 0.2,
+    "feedback_boost": 0.0,
+    "repeat_penalty": 0.12,
+    "native_repeat_penalty": 0.0,
+    "feedback_penalty": 0.0,
+    "count": 1,
+    "family": "AIDO_adapter",
+    "family_count": 1
+  },
+  "structural_signature": "9d1bce694fc088a4d626218348b38372fb84586d",
+  "parent_structural_signature": "05a1ba5b1c1c309e511319add93f3d858cbc75b0",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_aido_lora_adapter_b9582109/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad",
+      "official_aido_cell_100m_model_dir"
+    ],
+    "missing_required_artifacts": [
+      "official_aido_cell_100m_model_dir"
+    ],
+    "all_required_present": false
+  },
+  "strict_artifact_mode": true,
+  "missing_required_artifacts": [
+    "official_aido_cell_100m_model_dir"
+  ],
+  "missing_required_artifact_paths": [
+    "/home/Models/AIDO.Cell-100M"
+  ],
+  "candidate_pool_iteration": 6,
+  "candidate_pool_parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+  "duplicate_screen": {
+    "is_duplicate": false,
+    "reason": ""
+  },
+  "cheap_screen_score": {
+    "score": -0.3399999999999999,
+    "scientific_score": 1.0,
+    "cost_class": "expensive",
+    "cost_bonus": -0.08,
+    "structural_bonus": 0.05,
+    "missing_penalty": 1.25,
+    "duplicate_penalty": 0.0,
+    "implementation_penalty": 0.06,
+    "missing_required_artifacts": [
+      "official_aido_cell_100m_model_dir"
+    ],
+    "duplicate_reason": "",
+    "policy": "proposal_pool_scientific_rank_then_feasibility_screen"
+  },
+  "mcts_selected_parent": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+  "mcts_selection_policy": "uct",
+  "mcts_candidates": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811",
+      "policy": "uct",
+      "score": 2.125068683380313,
+      "uct": 2.125068683380313,
+      "puct": null,
+      "q": 0.4794532358646393,
+      "Q_v": 0.9589064717292786,
+      "exploitation": 0.4794532358646393,
+      "Exploitation": 0.4794532358646393,
+      "exploration": 1.6456154475156737,
+      "Exploration": 1.6456154475156737,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 15,
+      "children": 6,
+      "best_val_macro_f1": 0.4794532358646393,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+      "policy": "uct",
+      "score": 2.100579519027896,
+      "uct": 2.100579519027896,
+      "puct": null,
+      "q": 0.4549640715122223,
+      "Q_v": 0.9099281430244446,
+      "exploitation": 0.4549640715122223,
+      "Exploitation": 0.4549640715122223,
+      "exploration": 1.6456154475156737,
+      "Exploration": 1.6456154475156737,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 15,
+      "children": 0,
+      "best_val_macro_f1": 0.4549640715122223,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp_p3_official_target_graph_conditioned_head_7d8e76f1",
+      "policy": "uct",
+      "score": 2.0983162710611296,
+      "uct": 2.0983162710611296,
+      "puct": null,
+      "q": 0.45270082354545593,
+      "Q_v": 0.9054016470909119,
+      "exploitation": 0.45270082354545593,
+      "Exploitation": 0.45270082354545593,
+      "exploration": 1.6456154475156737,
+      "Exploration": 1.6456154475156737,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 15,
+      "children": 0,
+      "best_val_macro_f1": 0.45270082354545593,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042",
+      "policy": "uct",
+      "score": 2.091443319076724,
+      "uct": 2.091443319076724,
+      "puct": null,
+      "q": 0.4458278715610504,
+      "Q_v": 0.8916557431221008,
+      "exploitation": 0.4458278715610504,
+      "Exploitation": 0.4458278715610504,
+      "exploration": 1.6456154475156737,
+      "Exploration": 1.6456154475156737,
+      "prior": 0.0,
+      "visits": 2,
+      "parent_visits": 15,
+      "children": 0,
+      "best_val_macro_f1": 0.4458278715610504,
+      "stage": "improve"
+    },
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp",
+      "policy": "uct",
+      "score": 1.8147659626830965,
+      "uct": 1.8147659626830965,
+      "puct": null,
+      "q": 0.4711265762646993,
+      "Q_v": 1.413379728794098,
+      "exploitation": 0.4711265762646993,
+      "Exploitation": 0.4711265762646993,
+      "exploration": 1.3436393864183973,
+      "Exploration": 1.3436393864183973,
+      "prior": 0.0,
+      "visits": 3,
+      "parent_visits": 15,
+      "children": 6,
+      "best_val_macro_f1": 0.4880986213684082,
+      "stage": "draft"
+    },
+    {
+      "node": "official_k562_root_aido_embedding_mlp",
+      "policy": "uct",
+      "score": 1.60230201316844,
+      "uct": 1.60230201316844,
+      "puct": null,
+      "q": 0.4386761710047722,
+      "Q_v": 1.7547046840190887,
+      "exploitation": 0.4386761710047722,
+      "Exploitation": 0.4386761710047722,
+      "exploration": 1.1636258421636678,
+      "Exploration": 1.1636258421636678,
+      "prior": 0.0,
+      "visits": 4,
+      "parent_visits": 15,
+      "children": 6,
+      "best_val_macro_f1": 0.4276766777038574,
+      "stage": "draft"
+    }
+  ],
+  "candidate_pool_rank": 4,
+  "candidate_pool_size": 6,
+  "candidate_pool_selected": false,
+  "candidate_pool_policy": "global_queue_generate_many_train_best_available"
+}

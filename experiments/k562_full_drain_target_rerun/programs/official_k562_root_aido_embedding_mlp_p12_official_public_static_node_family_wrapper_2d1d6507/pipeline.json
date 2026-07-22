@@ -1,0 +1,40 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_public_static_node_family_wrapper",
+  "model_entrypoint": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p12_official_public_static_node_family_wrapper_2d1d6507/model.py",
+  "training": {
+    "loss_type": "focal_loss",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_public_best_node_code",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true,
+    "no_fallback": true,
+    "no_compact_proxy": true
+  },
+  "change_level": 5,
+  "paper_family": "public_static_tree_family",
+  "pipeline_program": {
+    "blueprint": "official_public_static_node_family_wrapper",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_status": "implementation_skipped",
+  "skip_reason": "strict public static wrapper infeasible on this pod: public code is present, but /home/Models/AIDO.Cell-100M and /home/Models/STRING_GNN runtime model directories are absent; no source-backed checkpoint acquisition completed; fallback/proxy training forbidden"
+}

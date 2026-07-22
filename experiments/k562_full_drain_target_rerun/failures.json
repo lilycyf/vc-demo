@@ -1,0 +1,17 @@
+{
+  "failures": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p2_official_string_gnn_attention_0ea9e05d",
+      "parent": "official_k562_root_aido_gnn_embedding_mlp",
+      "error": "requires_artifact_acquisition",
+      "strategy": "official_string_gnn_attention",
+      "missing_required_artifacts": [
+        "official_string_gnn_model_dir"
+      ],
+      "missing_required_artifact_paths": [
+        "/home/Models/STRING_GNN"
+      ],
+      "acquisition_results": []
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "format": "vc_demo_node_artifact_contract.v1",
+  "node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_c3008326",
+  "blueprint": "official_pathway_pooling_reactome",
+  "strict_official_mode": true,
+  "fallback_allowed": false,
+  "required_artifacts": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "present_required_artifacts": [
+    "pathway_membership_matrix",
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "missing_required_artifacts": [],
+  "artifact_policy": "present_or_acquire_real_artifact_else_block; never train silent fallback in strict official mode",
+  "artifact_rows": [
+    {
+      "id": "pathway_membership_matrix",
+      "family": "pathway_prior",
+      "provider": "Reactome",
+      "status": "expected_present",
+      "path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "source": "Reactome official GMT download aligned to exact K562 target genes; built by scripts/build_k562_pathway_membership.py",
+      "usable_for": [
+        "target_gene",
+        "pathway_pooling"
+      ],
+      "required_for_blueprints": [
+        "official_pathway_pooling_reactome",
+        "pathway_pooling_encoder"
+      ],
+      "do_not_fabricate": true,
+      "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+      "source_file": "ReactomePathways.gmt inside ReactomePathways.gmt.zip",
+      "source_sha256": "8c1dbc8578431da5d2d5118262718c60b553a9be3398e93658daa069e4a9afd4",
+      "source_bytes": 298479,
+      "species_filter": "Homo sapiens pathways only, identified by R-HSA stable IDs",
+      "filtering_rule": "Keep pathways with at least 2 genes overlapping the exact K562 target-gene list.",
+      "n_source_pathways": 2868,
+      "n_kept_pathways": 1139,
+      "membership_shape": [
+        1000,
+        1139
+      ],
+      "covered_target_gene_count": 742,
+      "target_gene_coverage": 0.742,
+      "mean_pathways_per_target_gene": 18.097,
+      "summary_path": "experiments/k562_pathway_membership_artifact_summary.json",
+      "present": true,
+      "resolved_status": "present"
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "family": "official_task_data",
+      "provider": "GenBio AI HuggingFace",
+      "status": "expected_present",
+      "path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "usable_for": [
+        "official_k562_task_contract"
+      ],
+      "required_for_blueprints": [
+        "official_aido_lora_adapter",
+        "official_aido_string_fusion",
+        "official_class_imbalance_training",
+        "official_k562_task",
+        "official_public_best_node",
+        "official_string_gnn_attention",
+        "official_target_gene_head",
+        "official_native_public_best_reimplementation"
+      ],
+      "do_not_fabricate": true,
+      "present": true,
+      "resolved_status": "present"
+    }
+  ],
+  "model_artifacts_config": {
+    "aido_model_dir": "/home/Models/AIDO.Cell-100M",
+    "string_gnn_model_dir": "/home/Models/STRING_GNN",
+    "string_graph_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+  }
+}

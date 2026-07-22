@@ -1,0 +1,90 @@
+{
+  "agent_type": "codex_program_node_agent",
+  "node_kind": "program_node",
+  "parent": "official_k562_root_aido_embedding_mlp_p1_official_string_neighborhood_attention_a25d8fa1",
+  "child": "official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd",
+  "strategy": "official_layerwise_lr_schedule",
+  "blueprint": {
+    "id": "official_layerwise_lr_schedule",
+    "status": "planned",
+    "official_k562": true,
+    "category": "training_strategy",
+    "paper_family": "layerwise_lr_decay",
+    "change_level": 1,
+    "role": "Use layerwise learning-rate decay or discriminative LR for foundation-model fine-tuning.",
+    "requires": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "fallback_allowed": false,
+    "cost_class": "cheap",
+    "implementation_mode": "planned_for_codex_on_selection",
+    "implementation_notes": "Codex records parameter groups and LR schedule.",
+    "acceptance": [
+      "Records LR groups",
+      "Does not change data",
+      "Macro-F1 reward unchanged"
+    ]
+  },
+  "requires_implementation": true,
+  "hypothesis": "Use layerwise learning-rate decay or discriminative LR for foundation-model fine-tuning.",
+  "changes": [
+    "program_model:custom_program->official_layerwise_lr_schedule",
+    "blueprint_status:planned",
+    "custom_model_path:experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/model.py",
+    "hidden_dim:256->256",
+    "depth:2->2",
+    "lr:0.0003->0.0003"
+  ],
+  "program_dir": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd",
+  "program_model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/model.py",
+  "pipeline_manifest_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/pipeline.json",
+  "pipeline_kind": "pipeline_program_node",
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [],
+  "pipeline_program": {
+    "blueprint": "official_layerwise_lr_schedule",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "scientific_selection": {
+    "policy": "scientific_priority_then_feasibility_gate",
+    "score": 1.1400000000000001,
+    "base": 0.54,
+    "coverage_bonus": 0.35,
+    "family_bonus": 0.25,
+    "early_bonus": 0.0,
+    "feedback_boost": 0.0,
+    "repeat_penalty": 0.0,
+    "native_repeat_penalty": 0.0,
+    "feedback_penalty": 0.0,
+    "count": 0,
+    "family": "layerwise_lr_decay",
+    "family_count": 0
+  },
+  "structural_signature": "002c94142e92406f8993376538bb4cc24158cfe4",
+  "parent_structural_signature": "bba2a2345669bc31b6d7cf4aa1dc1b88c44af0ad",
+  "structural_relation": "structural_variant",
+  "implementation_request_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/IMPLEMENTATION_REQUEST.md",
+  "artifact_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/artifact_contract.json",
+  "smoke_contract_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/smoke_contract.json",
+  "parent_summary_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p2_official_layerwise_lr_schedule_331b00bd/parent_summary.json",
+  "limits": "Model choice is manifest-driven. Planned blueprints materialize an implementation request instead of pretending to be executable.",
+  "artifact_selection": {
+    "policy": "feasibility_gate_after_scientific_selection",
+    "required_artifacts": [
+      "official_essential_deg_with_split_h5ad"
+    ],
+    "missing_required_artifacts": [],
+    "all_required_present": true
+  }
+}

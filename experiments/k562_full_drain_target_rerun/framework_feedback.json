@@ -1,0 +1,292 @@
+{
+  "format": "vc_demo_framework_feedback.v1",
+  "created_at": "2026-07-22T12:27:54.574893+00:00",
+  "run_dir": "experiments/k562_full_drain_target_rerun",
+  "target_val_macro_f1": 0.5,
+  "best_root": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp",
+    "val": 0.4880986213684082,
+    "test": 0.5436508059501648
+  },
+  "best_child": {
+    "node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5",
+    "val": 0.49478253722190857,
+    "test": 0.5218122005462646
+  },
+  "strategy_stats": {
+    "official_target_gene_head": {
+      "n": 2,
+      "family": "target_aware",
+      "mean_val": 0.4389331340789795,
+      "std_val": 0.009750631256146823,
+      "mean_test": 0.48083077371120453,
+      "std_test": 0.014905633370938528,
+      "mean_delta_vs_parent": -0.032598212361335754,
+      "std_delta_vs_parent": 0.013679033638725979,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_target_gene_head_d1c96042"
+    },
+    "official_pathway_pooling_reactome": {
+      "n": 2,
+      "family": "pathway_prior",
+      "mean_val": 0.4769357591867447,
+      "std_val": 0.003560249660836496,
+      "mean_test": 0.5380633175373077,
+      "std_test": 0.004400173131385848,
+      "mean_delta_vs_parent": -0.006840169429779053,
+      "std_delta_vs_parent": 0.002552961054850384,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_pathway_pooling_reactome_9b3c1811"
+    },
+    "official_class_imbalance_training": {
+      "n": 2,
+      "family": "imbalance_training",
+      "mean_val": 0.4148455858230591,
+      "std_val": 0.00638874573782685,
+      "mean_test": 0.43237635493278503,
+      "std_test": 0.010082284807079048,
+      "mean_delta_vs_parent": -0.026474788784980774,
+      "std_delta_vs_parent": 0.02568384694062946,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_embedding_mlp_p2_official_class_imbalance_training_83b0bff5"
+    },
+    "official_string_neighborhood_attention": {
+      "n": 2,
+      "family": "graph_prior",
+      "mean_val": 0.47487330436706543,
+      "std_val": 0.028155907119763183,
+      "mean_test": 0.5047309547662735,
+      "std_test": 0.02415652944429168,
+      "mean_delta_vs_parent": 0.021308347582817078,
+      "std_delta_vs_parent": 0.008455648262225349,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p8_official_string_neighborhood_attention_62af14f5"
+    },
+    "official_target_graph_conditioned_head": {
+      "n": 2,
+      "family": "target_aware",
+      "mean_val": 0.46369627118110657,
+      "std_val": 0.01554991117070031,
+      "mean_test": 0.5068128854036331,
+      "std_test": 0.02740419700314713,
+      "mean_delta_vs_parent": 0.010131314396858215,
+      "std_delta_vs_parent": 0.02106164421128822,
+      "win_rate_vs_parent": 0.5,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p10_official_target_graph_conditioned_head_cc233d73"
+    },
+    "official_target_low_rank_head": {
+      "n": 2,
+      "family": "target_aware",
+      "mean_val": 0.44481977820396423,
+      "std_val": 0.00827351065638552,
+      "mean_test": 0.47599083185195923,
+      "std_test": 0.016501039101045657,
+      "mean_delta_vs_parent": -0.008543983101844788,
+      "std_delta_vs_parent": 0.028053511351305963,
+      "win_rate_vs_parent": 0.5,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p6_official_target_low_rank_head_4ca91b75"
+    },
+    "official_target_bilinear_head": {
+      "n": 2,
+      "family": "target_aware",
+      "mean_val": 0.3932846635580063,
+      "std_val": 0.0472440672963773,
+      "mean_test": 0.4226505607366562,
+      "std_test": 0.07212335197235804,
+      "mean_delta_vs_parent": -0.04387892782688141,
+      "std_delta_vs_parent": 0.022070386883547958,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_embedding_mlp_p8_official_target_bilinear_head_25775217"
+    },
+    "official_focal_loss_training": {
+      "n": 2,
+      "family": "imbalance_training",
+      "mean_val": 0.43602995574474335,
+      "std_val": 0.007250880597541443,
+      "mean_test": 0.4615499824285507,
+      "std_test": 0.020893183257790177,
+      "mean_delta_vs_parent": -0.0011336356401443481,
+      "std_delta_vs_parent": 0.0179227998152879,
+      "win_rate_vs_parent": 0.5,
+      "best_node": "official_k562_root_aido_embedding_mlp_p11_official_focal_loss_training_e2939124"
+    },
+    "official_gene_dropout_augmentation": {
+      "n": 2,
+      "family": "stability_regularization",
+      "mean_val": 0.41574156284332275,
+      "std_val": 0.028857567853772546,
+      "mean_test": 0.455924317240715,
+      "std_test": 0.057787143598225954,
+      "mean_delta_vs_parent": -0.015488117933273315,
+      "std_delta_vs_parent": 0.012075704301098803,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_embedding_mlp_p6_official_gene_dropout_augmentation_14862a55"
+    },
+    "official_temperature_calibrated_head": {
+      "n": 2,
+      "family": "calibration",
+      "mean_val": 0.4596026986837387,
+      "std_val": 0.04086859781583138,
+      "mean_test": 0.4923328310251236,
+      "std_test": 0.06366043337876456,
+      "mean_delta_vs_parent": 0.02700720727443695,
+      "std_delta_vs_parent": 0.02215518634275188,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_temperature_calibrated_head_382161c4"
+    },
+    "official_multimodal_mixture_of_experts": {
+      "n": 2,
+      "family": "fusion",
+      "mean_val": 0.4000560790300369,
+      "std_val": 0.05494121979937634,
+      "mean_test": 0.4256986528635025,
+      "std_test": 0.07294728071389751,
+      "mean_delta_vs_parent": -0.03597588837146759,
+      "std_delta_vs_parent": 0.03136789737135416,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_embedding_mlp_p12_official_multimodal_mixture_of_experts_004fa9ff"
+    },
+    "official_weighted_ce_training": {
+      "n": 2,
+      "family": "imbalance_training",
+      "mean_val": 0.45741361379623413,
+      "std_val": 0.025876563405445523,
+      "mean_test": 0.5089721977710724,
+      "std_test": 0.014656693010208933,
+      "mean_delta_vs_parent": -0.008663415908813477,
+      "std_delta_vs_parent": 0.006959751241452442,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p5_official_weighted_ce_training_ea636995"
+    },
+    "official_string_laplacian_smoothing": {
+      "n": 2,
+      "family": "graph_prior",
+      "mean_val": 0.48519182205200195,
+      "std_val": 0.008684653163609292,
+      "mean_test": 0.532853364944458,
+      "std_test": 0.009551403103235828,
+      "mean_delta_vs_parent": 0.007609650492668152,
+      "std_delta_vs_parent": 0.011330737680244497,
+      "win_rate_vs_parent": 0.5,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p11_official_string_laplacian_smoothing_fbb33084"
+    },
+    "official_layerwise_lr_schedule": {
+      "n": 2,
+      "family": "official_layerwise_lr_schedule",
+      "mean_val": 0.46538107097148895,
+      "std_val": 0.03493693465010518,
+      "mean_test": 0.5112788379192352,
+      "std_test": 0.017194523346443905,
+      "mean_delta_vs_parent": 0.0006898939609527588,
+      "std_delta_vs_parent": 0.02118073013175575,
+      "win_rate_vs_parent": 0.5,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759"
+    },
+    "official_swa_or_checkpoint_ensemble": {
+      "n": 2,
+      "family": "stability_regularization",
+      "mean_val": 0.4602460563182831,
+      "std_val": 0.024253488269290992,
+      "mean_test": 0.5035122931003571,
+      "std_test": 0.04292879899131665,
+      "mean_delta_vs_parent": -0.014627248048782349,
+      "std_delta_vs_parent": 0.003902418850472189,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "official_k562_root_aido_gnn_embedding_mlp_p4_official_swa_or_checkpoint_ensemble_9bb25b02"
+    }
+  },
+  "family_stats": {
+    "target_aware": {
+      "n": 8,
+      "mean_val": 0.43518346175551414,
+      "std_val": 0.03378111027212717,
+      "mean_delta_vs_parent": -0.018722452223300934,
+      "std_delta_vs_parent": 0.027846165231134097,
+      "win_rate_vs_parent": 0.25
+    },
+    "pathway_prior": {
+      "n": 2,
+      "mean_val": 0.4769357591867447,
+      "std_val": 0.003560249660836496,
+      "mean_delta_vs_parent": -0.006840169429779053,
+      "std_delta_vs_parent": 0.002552961054850384,
+      "win_rate_vs_parent": 0.0
+    },
+    "imbalance_training": {
+      "n": 6,
+      "mean_val": 0.4360963851213455,
+      "std_val": 0.02269377940903492,
+      "mean_delta_vs_parent": -0.0120906134446462,
+      "std_delta_vs_parent": 0.01847558375689586,
+      "win_rate_vs_parent": 0.16666666666666666
+    },
+    "graph_prior": {
+      "n": 4,
+      "mean_val": 0.4800325632095337,
+      "std_val": 0.01802452138544662,
+      "mean_delta_vs_parent": 0.014458999037742615,
+      "std_delta_vs_parent": 0.011365707279365147,
+      "win_rate_vs_parent": 0.75
+    },
+    "stability_regularization": {
+      "n": 4,
+      "mean_val": 0.4379938095808029,
+      "std_val": 0.03367313892470035,
+      "mean_delta_vs_parent": -0.015057682991027832,
+      "std_delta_vs_parent": 0.0073437638898619356,
+      "win_rate_vs_parent": 0.0
+    },
+    "calibration": {
+      "n": 2,
+      "mean_val": 0.4596026986837387,
+      "std_val": 0.04086859781583138,
+      "mean_delta_vs_parent": 0.02700720727443695,
+      "std_delta_vs_parent": 0.02215518634275188,
+      "win_rate_vs_parent": 1.0
+    },
+    "fusion": {
+      "n": 2,
+      "mean_val": 0.4000560790300369,
+      "std_val": 0.05494121979937634,
+      "mean_delta_vs_parent": -0.03597588837146759,
+      "std_delta_vs_parent": 0.03136789737135416,
+      "win_rate_vs_parent": 0.0
+    },
+    "official_layerwise_lr_schedule": {
+      "n": 2,
+      "mean_val": 0.46538107097148895,
+      "std_val": 0.03493693465010518,
+      "mean_delta_vs_parent": 0.0006898939609527588,
+      "std_delta_vs_parent": 0.02118073013175575,
+      "win_rate_vs_parent": 0.5
+    }
+  },
+  "findings": [
+    "best_child_lift: best generated child beats best root by 0.0067 validation Macro-F1",
+    "validation_test_divergence: best child improves validation but loses held-out test Macro-F1",
+    "discouraged_family:target_aware: repeated negative delta",
+    "discouraged_family:imbalance_training: repeated negative delta",
+    "discouraged_family:stability_regularization: repeated negative delta",
+    "target_gap: best child is 0.0052 below target validation Macro-F1"
+  ],
+  "policy": {
+    "ranking_boosts": {
+      "official_gene_dropout_augmentation": 0.1,
+      "official_temperature_calibrated_head": 0.08,
+      "official_swa_or_checkpoint_ensemble": 0.08,
+      "official_weighted_ce_training": 0.04
+    },
+    "ranking_penalties": {
+      "target_aware": 0.08,
+      "imbalance_training": 0.08,
+      "stability_regularization": 0.08
+    },
+    "implementation_guidance": [
+      "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+      "Validation/test divergence observed: prioritize regularized residual gates, calibration, and seed checks; avoid unconstrained replacement heads.",
+      "Target gap remains: favor competitive compositions that retain root performance and test one clear additional mechanism per rollout."
+    ],
+    "validation_recommendations": [],
+    "suppressed_families": []
+  }
+}

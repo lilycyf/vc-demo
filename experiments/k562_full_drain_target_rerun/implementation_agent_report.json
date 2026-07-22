@@ -1,0 +1,30 @@
+{
+  "items": [
+    {
+      "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759",
+      "strategy": "official_layerwise_lr_schedule",
+      "program_dir": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759",
+      "policy": "strict_auto_materialize_smoke_train",
+      "status": "requires_realtime_implementation",
+      "task_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759/CODEX_IMPLEMENTATION_TASK.md",
+      "model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759/model.py",
+      "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden",
+      "attempts": [
+        {
+          "attempt": 1,
+          "node": "official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759",
+          "strategy": "official_layerwise_lr_schedule",
+          "stage": "materialize",
+          "status": "requires_realtime_implementation",
+          "task_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759/CODEX_IMPLEMENTATION_TASK.md",
+          "model_path": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_gnn_embedding_mlp_p7_official_layerwise_lr_schedule_ffa8e759/model.py",
+          "reason": "strict formal mode requires the active Codex to implement a real artifact-backed node-local model; compact/proxy native implementations are forbidden"
+        }
+      ]
+    }
+  ],
+  "trained": true,
+  "repair_attempts": 3,
+  "repair_log": "experiments/k562_full_drain_target_rerun/repair_log.jsonl",
+  "agent_decision_trace": "experiments/k562_full_drain_target_rerun/agent_decision_trace.jsonl"
+}

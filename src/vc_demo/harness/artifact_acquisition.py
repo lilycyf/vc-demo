@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from vc_demo.harness.artifact_registry import audit_registry, canonical_artifact_id, load_registry
+from vc_demo.harness.artifact_registry import audit_registry, canonical_artifact_id, load_registry, _path_has_substantive_content
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -144,7 +144,7 @@ def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], regis
     src = sources.get(artifact_id, {})
     reg = registry_entry(registry, artifact_id)
     expected_path = Path(str(item.get("expected_path") or src.get("expected_path") or reg.get("path") or ""))
-    present_before = bool(str(expected_path)) and expected_path.exists()
+    present_before = bool(str(expected_path)) and _path_has_substantive_content(expected_path)[0]
     result: dict[str, Any] = {
         "artifact_id": artifact_id,
         "node": item.get("node"),
@@ -166,7 +166,7 @@ def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], regis
         result["action"] = "executed_known_resolver"
         command_result = run_command(str(command))
         result["command_result"] = command_result
-        result["present_after"] = bool(str(expected_path)) and expected_path.exists()
+        result["present_after"] = bool(str(expected_path)) and _path_has_substantive_content(expected_path)[0]
         result["status"] = "acquired" if command_result["returncode"] == 0 and result["present_after"] else "resolver_failed_or_output_missing"
         return result
 

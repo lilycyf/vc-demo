@@ -1,0 +1,59 @@
+{
+  "format": "vc_demo_parent_summary.v1",
+  "parent": "official_k562_root_aido_gnn_embedding_mlp",
+  "parent_status": "trained",
+  "parent_best_val_macro_f1": 0.4880986213684082,
+  "parent_test_macro_f1": 0.5436508059501648,
+  "parent_strategy": "root",
+  "parent_config_model": {
+    "model_type": "gated_mlp",
+    "input_dim": "auto",
+    "hidden_dim": 256,
+    "n_targets": "auto",
+    "n_classes": "auto",
+    "dropout": 0.5,
+    "depth": 2
+  },
+  "parent_config_training": {
+    "epochs": 8,
+    "batch_size": 16,
+    "lr": 0.0003,
+    "weight_decay": 0.01,
+    "loss_type": "weighted_cross_entropy",
+    "class_weights": [
+      2.37,
+      0.51,
+      2.75
+    ]
+  },
+  "parent_artifact_usage": {},
+  "search_memory_promising_motifs": [],
+  "search_memory_discouraged_motifs": [],
+  "recent_successes": [],
+  "framework_feedback": {
+    "format": "vc_demo_framework_feedback.v1",
+    "created_at": "2026-07-22T09:57:59.951864+00:00",
+    "run_dir": "experiments/k562_full_drain_target_rerun",
+    "target_val_macro_f1": null,
+    "best_root": {
+      "node": "",
+      "val": null,
+      "test": null
+    },
+    "best_child": {
+      "node": "",
+      "val": null,
+      "test": null
+    },
+    "strategy_stats": {},
+    "family_stats": {},
+    "findings": [],
+    "policy": {
+      "ranking_boosts": {},
+      "ranking_penalties": {},
+      "implementation_guidance": [],
+      "validation_recommendations": [],
+      "suppressed_families": []
+    }
+  }
+}

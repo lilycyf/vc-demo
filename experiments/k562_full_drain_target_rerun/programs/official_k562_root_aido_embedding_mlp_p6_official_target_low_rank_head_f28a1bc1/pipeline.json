@@ -1,0 +1,48 @@
+{
+  "format": "vc_demo_pipeline_node.v1",
+  "kind": "pipeline_program_node",
+  "strategy": "official_target_low_rank_head",
+  "model_entrypoint": "experiments/k562_full_drain_target_rerun/programs/official_k562_root_aido_embedding_mlp_p6_official_target_low_rank_head_f28a1bc1/model.py",
+  "training": {
+    "loss_type": "weighted_cross_entropy",
+    "loss_notes": "default CrossEntropyLoss over flattened target-gene classes"
+  },
+  "artifact_requirements": [
+    "official_essential_deg_with_split_h5ad"
+  ],
+  "artifact_usage_claims": [
+    "official target-gene table for low-rank head",
+    "official AIDO parent features"
+  ],
+  "patches": {},
+  "guardrails": {
+    "preserve_splits": true,
+    "preserve_metric": "validation Macro-F1",
+    "do_not_fabricate_artifacts": true,
+    "no_compact_proxy": true,
+    "no_fallback": true
+  },
+  "change_level": 4,
+  "paper_family": "target_low_rank_head",
+  "pipeline_program": {
+    "blueprint": "official_target_low_rank_head",
+    "representation": "unspecified",
+    "perturbation_side": "unspecified",
+    "target_side": "unspecified",
+    "fusion": "unspecified",
+    "prior": "unspecified",
+    "head": "unspecified",
+    "training_strategy": "unspecified",
+    "fine_tuning": "unspecified",
+    "required_artifacts": [],
+    "paper_alignment": "blueprint not yet mapped into the grammar"
+  },
+  "implementation_status": "implemented_by_codex",
+  "implementation_type": "parent_preserving_delta",
+  "head": {
+    "type": "target_low_rank_bilinear_head",
+    "rank": 96,
+    "target_feature_source": "data/cell_lines/official_k562_cls/target_genes.tsv",
+    "output_shape": "[batch, 6640, 3]"
+  }
+}

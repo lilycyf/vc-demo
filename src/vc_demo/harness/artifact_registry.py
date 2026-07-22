@@ -54,12 +54,41 @@ def _artifact_manifest_summary(path: Path) -> dict[str, Any]:
     }
 
 
+def _path_has_substantive_content(path: Path) -> tuple[bool, dict[str, Any]]:
+    if not path.exists():
+        return False, {"present_check": "path_missing"}
+    if path.is_file():
+        return path.stat().st_size > 0, {"present_check": "file_exists", "bytes": path.stat().st_size}
+    if not path.is_dir():
+        return True, {"present_check": "special_path_exists"}
+    substantive_files: list[str] = []
+    ignored_files: list[str] = []
+    for child in path.rglob("*"):
+        if not child.is_file():
+            continue
+        rel = child.relative_to(path)
+        parts = rel.parts
+        if any(part.startswith(".") for part in parts) or any(part in {"cache", "__pycache__"} for part in parts):
+            ignored_files.append(str(rel))
+            continue
+        if child.stat().st_size > 0:
+            substantive_files.append(str(rel))
+    return bool(substantive_files), {
+        "present_check": "directory_substantive_files",
+        "substantive_file_count": len(substantive_files),
+        "sample_substantive_files": substantive_files[:8],
+        "ignored_file_count": len(ignored_files),
+    }
+
+
 def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
     audited: list[dict[str, Any]] = []
     for artifact in registry.get("artifacts", []):
         row = dict(artifact)
         path = Path(str(row.get("path", "")))
-        row["present"] = path.exists()
+        present, present_details = _path_has_substantive_content(path)
+        row["present"] = present
+        row["present_details"] = present_details
         row["resolved_status"] = "present" if row["present"] else "missing"
         if row.get("family") == "artifact_manifest":
             row.update(_artifact_manifest_summary(path))

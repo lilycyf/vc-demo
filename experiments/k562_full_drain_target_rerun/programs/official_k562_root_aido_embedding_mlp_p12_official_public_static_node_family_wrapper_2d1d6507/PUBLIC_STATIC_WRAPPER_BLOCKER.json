@@ -1,0 +1,12 @@
+{
+  "node": "official_k562_root_aido_embedding_mlp_p12_official_public_static_node_family_wrapper_2d1d6507",
+  "status": "implementation_skipped",
+  "reason": "strict public static wrapper infeasible on this pod: public code is present, but /home/Models/AIDO.Cell-100M and /home/Models/STRING_GNN runtime model directories are absent; no source-backed checkpoint acquisition completed; fallback/proxy training forbidden",
+  "missing_runtime_artifacts": [
+    "/home/Models/AIDO.Cell-100M",
+    "/home/Models/STRING_GNN"
+  ],
+  "fallback_used": false,
+  "proxy_used": false,
+  "checked_at": 1784720208.0841312
+}
