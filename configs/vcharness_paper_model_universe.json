@@ -6,7 +6,9 @@
     "minimum_rule": "This manifest must include every module family explicitly visible in the VCHarness paper/system overview/public task atlas that is relevant to model search. Local search spaces may gate modules by task/artifact status, but must not omit them from the universe.",
     "may_exceed_paper": true,
     "cannot_be_smaller_than_paper": true,
-    "strict_execution_rule": "A module can be listed without being implemented. If MCTS selects it, Codex must acquire source-backed artifacts or implement a faithful artifact-backed node; otherwise mark blocked. Fallback, compact native, proxy, and random substitutes are forbidden in strict mode."
+    "strict_execution_rule": "A module can be listed without being implemented. If MCTS selects it, Codex must acquire source-backed artifacts or implement a faithful artifact-backed node; otherwise mark blocked. Fallback, compact native, proxy, and random substitutes are forbidden in strict mode.",
+    "cell_line_overfit_guard": "K562 is only a validation/demo projection of the global VCHarness paper model universe. Do not promote K562-specific winners, artifact availability, or task quirks into universal search-space rules.",
+    "task_projection_rule": "Each cell line or task must derive its own source-backed task contract, artifact registry, roots, and task gates from the global universe. A module can be gated out only because the task modality/artifact contract makes it inapplicable or unavailable after acquisition, not because it was weak on K562."
   },
   "source_evidence": [
     {
@@ -63,7 +65,7 @@
       "source": "GenBio AIDO model family / VCHarness system overview",
       "download_policy": "Acquire only from official GenBio/model-hub source when task includes DNA sequence inputs.",
       "rebuild_estimate": "Foundation-model scale; do not train from scratch for this project.",
-      "strict_use_rule": "Task-gated; do not select for K562 DEG unless sequence/regulatory inputs are explicitly added."
+      "strict_use_rule": "Task-gated; do not select for CRISPR DEG unless sequence/regulatory inputs are explicitly added."
     },
     {
       "id": "aido_dna2",
@@ -623,7 +625,7 @@
       "source": "Sequence/regulatory model universe; not default K562 DEG module.",
       "download_policy": "Only select for sequence/regulatory task with explicit inputs.",
       "rebuild_estimate": "Not practical from scratch.",
-      "strict_use_rule": "Not K562 DEG default; include so universe is not smaller for sequence tasks."
+      "strict_use_rule": "Not a generic CRISPR DEG default; include so the universe is not smaller for sequence/regulatory tasks."
     },
     {
       "id": "reactome_pathway_memberships",

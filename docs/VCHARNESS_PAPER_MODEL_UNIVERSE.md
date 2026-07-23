@@ -26,7 +26,7 @@ This document is the repo-level contract for the VCHarness-style model search sp
 
 ## Complete Module Universe
 
-| Module | Family | K562 DEG default? | Current status | Strict rule |
+| Module | Family | CRISPR DEG candidate? | Current status | Strict rule |
 |---|---|---:|---|---|
 | `AIDO.DNA` | AIDO | task-gated | `paper_original_not_downloaded_large` | Task-gated; do not select for K562 DEG unless sequence/regulatory inputs are explicitly added. |
 | `AIDO.DNA2` | AIDO | task-gated | `paper_original_not_downloaded_large` | Task-gated; cannot be silently substituted with nucleotide k-mers. |
@@ -63,15 +63,19 @@ This document is the repo-level contract for the VCHarness-style model search sp
 | `Positional 3M` | positional_embedding | task-gated | `paper_original_source_backed_reimplementation_needed` | Task-gated; coordinates and genome build must be recorded. |
 | `Positional 10M` | positional_embedding | task-gated | `paper_original_source_backed_reimplementation_needed` | Task-gated; cannot use arbitrary target index as positional prior. |
 | `Positional 100M` | positional_embedding | task-gated | `paper_original_source_backed_reimplementation_needed` | Task-gated; genome build required. |
-| `AlphaGenome` | sequence_regulatory_model | task-gated | `paper_original_task_gated_or_extension` | Not K562 DEG default; include so universe is not smaller for sequence tasks. |
+| `AlphaGenome` | sequence_regulatory_model | task-gated | `paper_original_task_gated_or_extension` | Not a generic CRISPR DEG default; include so the universe is not smaller for sequence/regulatory tasks. |
 | `Reactome/pathway memberships` | pathway_prior | yes | `paper_level_derived_public_source` | Must verify target order, pathway source, and coverage. |
 | `Regulatory network prior` | regulatory_prior | yes | `paper_original_acquirable_or_needs_verification` | No fabricated regulatory edges. |
 | `No pretrained / scratch baseline` | baseline | yes | `no_artifact_required` | Must be labeled baseline, not foundation model. |
 | `Public VCHarness static tree nodes` | public_static_tree | task-gated | `paper_original_public_scaffold_acquired` | Scaffold/reference unless exact required artifacts are present. |
 
+## Cell-Line Overfit Guard
+
+K562 is a demo projection used to test the harness. It is not the template cell line and it must not define universal model priorities. The reusable object is the global universe plus task-gated projection mechanism. A new cell line must rebuild or verify its own task contract, artifact registry, roots, gates, and report; it should not inherit K562-specific paths, target order, or winning motifs as defaults.
+
 ## Practical Consequence
 
-A K562 run is allowed to gate out AIDO.DNA, AIDO.DNA2, AlphaGenome, and other sequence-only modules unless the task contract includes sequence/regulatory inputs. That is not considered a smaller search space because the modules remain declared in `configs/vcharness_paper_model_universe.json` and the gate is explicit.
+A CRISPR DEG run, including K562, is allowed to gate out AIDO.DNA, AIDO.DNA2, AlphaGenome, and other sequence-only modules unless the task contract includes sequence/regulatory inputs. That is not considered a smaller search space because the modules remain declared in `configs/vcharness_paper_model_universe.json` and the gate is explicit.
 
 For modules such as STRING_GNN where public code requires `/home/Models/STRING_GNN` but the public primary repository does not expose checkpoint/config files, the correct behavior is `blocked_unavailable_primary_artifact` or a separately labeled `source_backed_reimplementation`, not fallback/proxy training.
 
@@ -83,4 +87,4 @@ Run:
 python scripts/audit_paper_model_universe.py
 ```
 
-The audit fails if a required paper module is missing from the universe manifest or if the K562 search space does not reference the universe manifest.
+The audit fails if a required paper module is missing from the universe manifest or if a paper-aligned task projection, such as the K562 demo projection, does not reference the universe manifest.

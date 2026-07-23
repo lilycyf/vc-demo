@@ -1,6 +1,6 @@
 {
   "id": "official_k562_paper_scale_search_space",
-  "scope": "single_cell_line_K562",
+  "scope": "demo_projection_K562_CRISPR_DEG",
   "paper_scale_contract": {
     "minimum_budget_nodes_for_paper_scale_single_cellline": 600,
     "public_static_scaffold_nodes": 154,
@@ -349,13 +349,14 @@
   },
   "paper_model_universe_manifest": "configs/vcharness_paper_model_universe.json",
   "coverage_requirement": {
-    "rule": "The K562 search space is a task-gated projection of configs/vcharness_paper_model_universe.json. It may add K562-specific combinations, but no VCHarness paper module family may be absent from the universe manifest.",
+    "rule": "This K562 file is only a task-gated demo projection of configs/vcharness_paper_model_universe.json. It may add K562-specific combinations for testing, but it must not redefine the global universe or make K562-specific choices universal.",
     "audit_command": "python scripts/audit_paper_model_universe.py",
     "cannot_be_smaller_than_paper": true,
     "paper_original_modules_must_be_listed_even_when_blocked_or_task_gated": true
   },
   "paper_universe_task_gates": {
-    "K562_DEG_default_selectable": [
+    "selection_rule": "Task-gated modules stay in the universe and count toward paper coverage. K562 uses this list only as a demo projection; a different cell line or task must recompute artifact registry, roots, and gates from its own task contract.",
+    "CRISPR_DEG_candidate_modules_for_K562_demo": [
       "AIDO.Cell-3M",
       "AIDO.Cell-10M",
       "AIDO.Cell-100M",
@@ -388,14 +389,30 @@
       "scratch baseline",
       "public VCHarness static tree nodes"
     ],
-    "task_gated_not_K562_DEG_default": [
+    "task_gated_not_default_for_CRISPR_DEG_demo": [
       "AIDO.DNA",
       "AIDO.DNA2",
       "AlphaGenome",
       "GenotypeVAE unless genotype covariates are available",
       "Positional 3M/10M/100M unless genomic coordinate features are acquired",
       "AIDO.Protein-16B/ProteinRAG-16B unless protein branch compute/storage is approved"
+    ]
+  },
+  "cell_line_overfit_guard": {
+    "role": "K562 is a validation/demo cell line for the generic harness, not the universal template.",
+    "do_not_generalize": [
+      "K562 best child motifs",
+      "K562 artifact availability",
+      "K562 target-gene order",
+      "K562 root dominance behavior",
+      "K562-specific public static wrapper paths"
     ],
-    "selection_rule": "Task-gated modules stay in the universe and count toward paper coverage, but K562 DEG full runs should only select them after the task contract includes the required input modality and artifacts."
+    "must_generalize": [
+      "paper model universe coverage",
+      "task-gated projection mechanism",
+      "source-backed artifact acquisition/block semantics",
+      "MCTS proposal-pool selection and trained-only backprop",
+      "no fallback/proxy guardrails"
+    ]
   }
 }

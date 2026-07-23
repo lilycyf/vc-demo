@@ -151,6 +151,7 @@ Rules:
 - Use task gates to keep incompatible modules out of a specific cell-line run; task gating is not omission.
 - If a module is selected and its source-backed artifact is absent, attempt acquisition/build first. If impossible to verify, block that module family and continue feasible families.
 - Run `python scripts/audit_paper_model_universe.py` before full/paper-aligned experiments and include the result in the final report.
+- Do not overfit framework rules to K562. K562 runs are validation examples; reusable rules must be phrased at task-contract, artifact, proposal, implementation, and audit levels.
 
 ## Framework Feedback Loop
 
