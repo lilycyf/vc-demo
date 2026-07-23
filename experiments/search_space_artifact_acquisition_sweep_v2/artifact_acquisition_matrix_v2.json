@@ -1,0 +1,1719 @@
+{
+  "generated_at": "2026-07-23T10:30:53.049840+00:00",
+  "base_dir": "/workspace/models/search_space_artifacts",
+  "jobs": [
+    {
+      "job": {
+        "module_ids": [
+          "aido_cell_3m"
+        ],
+        "repo_id": "genbio-ai/AIDO.Cell-3M",
+        "local_name": "AIDO.Cell-3M",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 7,
+        "total_size_bytes": 29170658,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 14586852
+          },
+          {
+            "path": "model.safetensors",
+            "size": 14569388
+          },
+          {
+            "path": "LICENSE",
+            "size": 10687
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "README.md",
+            "size": 1230
+          },
+          {
+            "path": "config.json",
+            "size": 886
+          },
+          {
+            "path": "generation_config.json",
+            "size": 96
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.Cell-3M",
+      "started_at": "2026-07-23T10:30:45.452017+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/AIDO.Cell-3M",
+      "downloaded_size_bytes": 14585763,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/LICENSE.lock",
+        ".cache/huggingface/download/LICENSE.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/generation_config.json.lock",
+        ".cache/huggingface/download/generation_config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/trees/7cd7b45fdf7e282eac728cdbf02fe7ce43a6641d.json",
+        ".gitattributes",
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "model.safetensors"
+      ],
+      "duration_seconds": 0.578,
+      "finished_at": "2026-07-23T10:30:45.856574+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "aido_cell_10m"
+        ],
+        "repo_id": "genbio-ai/AIDO.Cell-10M",
+        "local_name": "AIDO.Cell-10M",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "*.safetensors",
+          "pytorch_model.bin",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 6,
+        "total_size_bytes": 44340539,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 44326122
+          },
+          {
+            "path": "LICENSE",
+            "size": 10687
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "README.md",
+            "size": 1229
+          },
+          {
+            "path": "config.json",
+            "size": 886
+          },
+          {
+            "path": "generation_config.json",
+            "size": 96
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.Cell-10M",
+      "started_at": "2026-07-23T10:30:45.948911+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/AIDO.Cell-10M",
+      "downloaded_size_bytes": 44342195,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/LICENSE.lock",
+        ".cache/huggingface/download/LICENSE.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/generation_config.json.lock",
+        ".cache/huggingface/download/generation_config.json.metadata",
+        ".cache/huggingface/download/pytorch_model.bin.lock",
+        ".cache/huggingface/download/pytorch_model.bin.metadata",
+        ".cache/huggingface/trees/498d9f75b930c96bd98fadcdf048eafda9220911.json",
+        ".gitattributes",
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "pytorch_model.bin"
+      ],
+      "duration_seconds": 0.489,
+      "finished_at": "2026-07-23T10:30:46.346004+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "aido_cell_100m"
+        ],
+        "repo_id": "genbio-ai/AIDO.Cell-100M",
+        "local_name": "AIDO.Cell-100M",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "*.png",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 8,
+        "total_size_bytes": 799635175,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 399527266
+          },
+          {
+            "path": "model.safetensors",
+            "size": 399481732
+          },
+          {
+            "path": "AidoCell.png",
+            "size": 608922
+          },
+          {
+            "path": "LICENSE",
+            "size": 10687
+          },
+          {
+            "path": "README.md",
+            "size": 4064
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "config.json",
+            "size": 889
+          },
+          {
+            "path": "generation_config.json",
+            "size": 96
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.Cell-100M",
+      "started_at": "2026-07-23T10:30:46.409422+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/AIDO.Cell-100M",
+      "downloaded_size_bytes": 400110073,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/AidoCell.png.lock",
+        ".cache/huggingface/download/AidoCell.png.metadata",
+        ".cache/huggingface/download/LICENSE.lock",
+        ".cache/huggingface/download/LICENSE.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/generation_config.json.lock",
+        ".cache/huggingface/download/generation_config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/trees/b14a88b962758102e618289f4340f989bd6eebe5.json",
+        ".gitattributes",
+        "AidoCell.png",
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "model.safetensors"
+      ],
+      "duration_seconds": 0.474,
+      "finished_at": "2026-07-23T10:30:46.820127+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "aido_dna"
+        ],
+        "repo_id": "genbio-ai/AIDO.DNA-300M",
+        "local_name": "AIDO.DNA-300M",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 7,
+        "total_size_bytes": 2402324883,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 1201201066
+          },
+          {
+            "path": "model.safetensors",
+            "size": 1201108608
+          },
+          {
+            "path": "LICENSE",
+            "size": 10687
+          },
+          {
+            "path": "README.md",
+            "size": 2166
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "config.json",
+            "size": 742
+          },
+          {
+            "path": "generation_config.json",
+            "size": 95
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.DNA-300M",
+      "started_at": "2026-07-23T10:30:46.886062+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/AIDO.DNA-300M",
+      "downloaded_size_bytes": 1201125783,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/LICENSE.lock",
+        ".cache/huggingface/download/LICENSE.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/generation_config.json.lock",
+        ".cache/huggingface/download/generation_config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/trees/4be7da22b7a779fc6e843d57f33c81fc9808085b.json",
+        ".gitattributes",
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "generation_config.json",
+        "model.safetensors"
+      ],
+      "duration_seconds": 0.44,
+      "finished_at": "2026-07-23T10:30:47.260221+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "aido_dna2"
+        ],
+        "repo_id": "genbio-ai/AIDO.DNA-7B",
+        "local_name": "AIDO.DNA-7B",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "*.safetensors",
+          "*.index.json",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 20,
+        "total_size_bytes": 58281667566,
+        "largest_files": [
+          {
+            "path": "pytorch_model-00003-of-00006.bin",
+            "size": 4970354042
+          },
+          {
+            "path": "pytorch_model-00003-of-00006.safetensors",
+            "size": 4970331400
+          },
+          {
+            "path": "pytorch_model-00005-of-00006.bin",
+            "size": 4944693210
+          },
+          {
+            "path": "pytorch_model-00005-of-00006.safetensors",
+            "size": 4944671504
+          },
+          {
+            "path": "pytorch_model-00002-of-00006.bin",
+            "size": 4944657678
+          },
+          {
+            "path": "pytorch_model-00002-of-00006.safetensors",
+            "size": 4944636360
+          },
+          {
+            "path": "pytorch_model-00001-of-00006.bin",
+            "size": 4844744783
+          },
+          {
+            "path": "pytorch_model-00001-of-00006.safetensors",
+            "size": 4844721440
+          },
+          {
+            "path": "pytorch_model-00004-of-00006.bin",
+            "size": 4818798602
+          },
+          {
+            "path": "pytorch_model-00004-of-00006.safetensors",
+            "size": 4818776832
+          },
+          {
+            "path": "pytorch_model-00006-of-00006.bin",
+            "size": 4617097724
+          },
+          {
+            "path": "pytorch_model-00006-of-00006.safetensors",
+            "size": 4617076168
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.DNA-7B",
+      "started_at": "2026-07-23T10:30:47.333051+00:00",
+      "status": "skipped_large_by_policy",
+      "blocker_reason": "Estimated repo size exceeds 20.0 GB for this RunPod volume; rerun on larger volume to acquire.",
+      "duration_seconds": 0.075,
+      "finished_at": "2026-07-23T10:30:47.335742+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "aido_protein",
+          "aido_protein_16b"
+        ],
+        "repo_id": "genbio-ai/AIDO.Protein-16B",
+        "local_name": "AIDO.Protein-16B",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "pytorch_model*.bin",
+          "*.index.json",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 29,
+        "total_size_bytes": 64242303545,
+        "largest_files": [
+          {
+            "path": "pytorch_model-00010-of-00013.bin",
+            "size": 4998982555
+          },
+          {
+            "path": "pytorch_model-00006-of-00013.bin",
+            "size": 4998982519
+          },
+          {
+            "path": "pytorch_model-00005-of-00013.bin",
+            "size": 4984746078
+          },
+          {
+            "path": "pytorch_model-00009-of-00013.bin",
+            "size": 4984746078
+          },
+          {
+            "path": "pytorch_model-00001-of-00013.bin",
+            "size": 4929373628
+          },
+          {
+            "path": "pytorch_model-00011-of-00013.bin",
+            "size": 4928193721
+          },
+          {
+            "path": "pytorch_model-00007-of-00013.bin",
+            "size": 4928193673
+          },
+          {
+            "path": "pytorch_model-00008-of-00013.bin",
+            "size": 4928193649
+          },
+          {
+            "path": "pytorch_model-00012-of-00013.bin",
+            "size": 4928193649
+          },
+          {
+            "path": "pytorch_model-00002-of-00013.bin",
+            "size": 4928193593
+          },
+          {
+            "path": "pytorch_model-00004-of-00013.bin",
+            "size": 4928193585
+          },
+          {
+            "path": "pytorch_model-00003-of-00013.bin",
+            "size": 4928193521
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.Protein-16B",
+      "started_at": "2026-07-23T10:30:47.392326+00:00",
+      "status": "skipped_large_by_policy",
+      "blocker_reason": "Estimated repo size exceeds 20.0 GB for this RunPod volume; rerun on larger volume to acquire.",
+      "duration_seconds": 0.058,
+      "finished_at": "2026-07-23T10:30:47.393313+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "esm2_35m"
+        ],
+        "repo_id": "facebook/esm2_t12_35M_UR50D",
+        "local_name": "ESM2_t12_35M_UR50D",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "*.txt",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 9,
+        "total_size_bytes": 406425225,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 136051985
+          },
+          {
+            "path": "model.safetensors",
+            "size": 136008798
+          },
+          {
+            "path": "tf_model.h5",
+            "size": 134360208
+          },
+          {
+            "path": "README.md",
+            "size": 1705
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1438
+          },
+          {
+            "path": "config.json",
+            "size": 778
+          },
+          {
+            "path": "special_tokens_map.json",
+            "size": 125
+          },
+          {
+            "path": "tokenizer_config.json",
+            "size": 95
+          },
+          {
+            "path": "vocab.txt",
+            "size": 93
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/ESM2_t12_35M_UR50D",
+      "started_at": "2026-07-23T10:30:47.456855+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/ESM2_t12_35M_UR50D",
+      "downloaded_size_bytes": 136015498,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/download/special_tokens_map.json.lock",
+        ".cache/huggingface/download/special_tokens_map.json.metadata",
+        ".cache/huggingface/download/tokenizer_config.json.lock",
+        ".cache/huggingface/download/tokenizer_config.json.metadata",
+        ".cache/huggingface/download/vocab.txt.lock",
+        ".cache/huggingface/download/vocab.txt.metadata",
+        ".cache/huggingface/trees/6fbf070e65b0b7291e7bbcd451118c216cff79d8.json",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "model.safetensors",
+        "special_tokens_map.json",
+        "tokenizer_config.json",
+        "vocab.txt"
+      ],
+      "duration_seconds": 0.465,
+      "finished_at": "2026-07-23T10:30:47.858859+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "esm2_150m"
+        ],
+        "repo_id": "facebook/esm2_t30_150M_UR50D",
+        "local_name": "ESM2_t30_150M_UR50D",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "*.txt",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 9,
+        "total_size_bytes": 1783981154,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 595364077
+          },
+          {
+            "path": "model.safetensors",
+            "size": 595257706
+          },
+          {
+            "path": "tf_model.h5",
+            "size": 593355136
+          },
+          {
+            "path": "README.md",
+            "size": 1705
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1438
+          },
+          {
+            "path": "config.json",
+            "size": 779
+          },
+          {
+            "path": "special_tokens_map.json",
+            "size": 125
+          },
+          {
+            "path": "tokenizer_config.json",
+            "size": 95
+          },
+          {
+            "path": "vocab.txt",
+            "size": 93
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/ESM2_t30_150M_UR50D",
+      "started_at": "2026-07-23T10:30:47.917183+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/ESM2_t30_150M_UR50D",
+      "downloaded_size_bytes": 595264406,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/download/special_tokens_map.json.lock",
+        ".cache/huggingface/download/special_tokens_map.json.metadata",
+        ".cache/huggingface/download/tokenizer_config.json.lock",
+        ".cache/huggingface/download/tokenizer_config.json.metadata",
+        ".cache/huggingface/download/vocab.txt.lock",
+        ".cache/huggingface/download/vocab.txt.metadata",
+        ".cache/huggingface/trees/a695f6045e2e32885fa60af20c13cb35398ce30c.json",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "model.safetensors",
+        "special_tokens_map.json",
+        "tokenizer_config.json",
+        "vocab.txt"
+      ],
+      "duration_seconds": 0.487,
+      "finished_at": "2026-07-23T10:30:48.345476+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "esm2_650m"
+        ],
+        "repo_id": "facebook/esm2_t33_650M_UR50D",
+        "local_name": "ESM2_t33_650M_UR50D",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "*.txt",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 9,
+        "total_size_bytes": 7824242163,
+        "largest_files": [
+          {
+            "path": "pytorch_model.bin",
+            "size": 2609621831
+          },
+          {
+            "path": "model.safetensors",
+            "size": 2609506392
+          },
+          {
+            "path": "tf_model.h5",
+            "size": 2605109760
+          },
+          {
+            "path": "README.md",
+            "size": 1705
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1438
+          },
+          {
+            "path": "config.json",
+            "size": 724
+          },
+          {
+            "path": "special_tokens_map.json",
+            "size": 125
+          },
+          {
+            "path": "tokenizer_config.json",
+            "size": 95
+          },
+          {
+            "path": "vocab.txt",
+            "size": 93
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/ESM2_t33_650M_UR50D",
+      "started_at": "2026-07-23T10:30:48.412164+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/ESM2_t33_650M_UR50D",
+      "downloaded_size_bytes": 2609513045,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/download/special_tokens_map.json.lock",
+        ".cache/huggingface/download/special_tokens_map.json.metadata",
+        ".cache/huggingface/download/tokenizer_config.json.lock",
+        ".cache/huggingface/download/tokenizer_config.json.metadata",
+        ".cache/huggingface/download/vocab.txt.lock",
+        ".cache/huggingface/download/vocab.txt.metadata",
+        ".cache/huggingface/trees/08e4846e537177426273712802403f7ba8261b6c.json",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "model.safetensors",
+        "special_tokens_map.json",
+        "tokenizer_config.json",
+        "vocab.txt"
+      ],
+      "duration_seconds": 0.48,
+      "finished_at": "2026-07-23T10:30:48.825260+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "esm2_3b"
+        ],
+        "repo_id": "facebook/esm2_t36_3B_UR50D",
+        "local_name": "ESM2_t36_3B_UR50D",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "*.txt",
+          "pytorch_model*.bin",
+          "*.index.json",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 12,
+        "total_size_bytes": 22724413028,
+        "largest_files": [
+          {
+            "path": "pytorch_model-00001-of-00002.bin",
+            "size": 9976735419
+          },
+          {
+            "path": "tf_model-00001-of-00002.h5",
+            "size": 9966769472
+          },
+          {
+            "path": "tf_model-00002-of-00002.h5",
+            "size": 1390433080
+          },
+          {
+            "path": "pytorch_model-00002-of-00002.bin",
+            "size": 1390347055
+          },
+          {
+            "path": "tf_model.h5.index.json",
+            "size": 68328
+          },
+          {
+            "path": "pytorch_model.bin.index.json",
+            "size": 55493
+          },
+          {
+            "path": "README.md",
+            "size": 1705
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1384
+          },
+          {
+            "path": "config.json",
+            "size": 779
+          },
+          {
+            "path": "special_tokens_map.json",
+            "size": 125
+          },
+          {
+            "path": "tokenizer_config.json",
+            "size": 95
+          },
+          {
+            "path": "vocab.txt",
+            "size": 93
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/ESM2_t36_3B_UR50D",
+      "started_at": "2026-07-23T10:30:48.891839+00:00",
+      "status": "already_present_large_repo_not_redownloaded",
+      "downloaded_size_bytes": 11367213859,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/pytorch_model-00001-of-00002.bin.lock",
+        ".cache/huggingface/download/pytorch_model-00001-of-00002.bin.metadata",
+        ".cache/huggingface/download/pytorch_model-00002-of-00002.bin.lock",
+        ".cache/huggingface/download/pytorch_model-00002-of-00002.bin.metadata",
+        ".cache/huggingface/download/pytorch_model.bin.index.json.lock",
+        ".cache/huggingface/download/pytorch_model.bin.index.json.metadata",
+        ".cache/huggingface/download/special_tokens_map.json.lock",
+        ".cache/huggingface/download/special_tokens_map.json.metadata",
+        ".cache/huggingface/download/tf_model.h5.index.json.lock",
+        ".cache/huggingface/download/tf_model.h5.index.json.metadata",
+        ".cache/huggingface/download/tokenizer_config.json.lock",
+        ".cache/huggingface/download/tokenizer_config.json.metadata",
+        ".cache/huggingface/download/vocab.txt.lock",
+        ".cache/huggingface/download/vocab.txt.metadata",
+        ".cache/huggingface/trees/476b639933c8baad5ad09a60ac1a87f987b656fc.json",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "pytorch_model-00001-of-00002.bin",
+        "pytorch_model-00002-of-00002.bin",
+        "pytorch_model.bin.index.json",
+        "special_tokens_map.json",
+        "tf_model.h5.index.json",
+        "tokenizer_config.json",
+        "vocab.txt"
+      ],
+      "blocker_reason": "Local artifact exists; full repo metadata exceeds 20.0 GB so no duplicate download was attempted.",
+      "duration_seconds": 0.309,
+      "finished_at": "2026-07-23T10:30:49.134771+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "scfoundation"
+        ],
+        "repo_id": "genbio-ai/scFoundation",
+        "local_name": "scFoundation_genbio",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.md",
+          "*.ckpt",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 3,
+        "total_size_bytes": 1432590914,
+        "largest_files": [
+          {
+            "path": "models.ckpt",
+            "size": 1432587886
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "README.md",
+            "size": 1509
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/scFoundation_genbio",
+      "started_at": "2026-07-23T10:30:49.210975+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/scFoundation_genbio",
+      "downloaded_size_bytes": 1432591966,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/models.ckpt.lock",
+        ".cache/huggingface/download/models.ckpt.metadata",
+        ".cache/huggingface/trees/cb434153a1acfacd215eefc956ea445f7cc39cc3.json",
+        ".gitattributes",
+        "README.md",
+        "models.ckpt"
+      ],
+      "duration_seconds": 0.381,
+      "finished_at": "2026-07-23T10:30:49.515465+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "scfoundation"
+        ],
+        "repo_id": "perturblab/scfoundation-cell",
+        "local_name": "scfoundation-cell",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "*.safetensors",
+          "*.bin",
+          "*.ckpt",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 4,
+        "total_size_bytes": 477489542,
+        "largest_files": [
+          {
+            "path": "model.pt",
+            "size": 477485967
+          },
+          {
+            "path": "README.md",
+            "size": 1534
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "config.json",
+            "size": 522
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/scfoundation-cell",
+      "started_at": "2026-07-23T10:30:49.585013+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/scfoundation-cell",
+      "downloaded_size_bytes": 477490787,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/model.pt.lock",
+        ".cache/huggingface/download/model.pt.metadata",
+        ".cache/huggingface/trees/7b06458e108e0690fdd7f2ece61a4658069b801a.json",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "model.pt"
+      ],
+      "duration_seconds": 0.444,
+      "finished_at": "2026-07-23T10:30:49.959735+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "scgpt"
+        ],
+        "repo_id": "tdc/scGPT",
+        "local_name": "scGPT_tdc",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "*.safetensors",
+          "*.bin",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 5,
+        "total_size_bytes": 411101097,
+        "largest_files": [
+          {
+            "path": "scgpt_gh_repo_original_model.bin",
+            "size": 207861754
+          },
+          {
+            "path": "model.safetensors",
+            "size": 203233980
+          },
+          {
+            "path": "README.md",
+            "size": 3307
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1589
+          },
+          {
+            "path": "config.json",
+            "size": 467
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/scGPT_tdc",
+      "started_at": "2026-07-23T10:30:50.035315+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/scGPT_tdc",
+      "downloaded_size_bytes": 411102794,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/download/scgpt_gh_repo_original_model.bin.lock",
+        ".cache/huggingface/download/scgpt_gh_repo_original_model.bin.metadata",
+        ".cache/huggingface/trees/acf749f35bf5c0b00633838f02588272ed0d9911.json",
+        ".gitattributes",
+        "README.md",
+        "config.json",
+        "model.safetensors",
+        "scgpt_gh_repo_original_model.bin"
+      ],
+      "duration_seconds": 0.469,
+      "finished_at": "2026-07-23T10:30:50.428866+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "geneformer"
+        ],
+        "repo_id": "nvidia/geneformer_V2_104M",
+        "local_name": "Geneformer-V2-104M",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.json",
+          "*.md",
+          "LICENSE*",
+          "*.py",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 6,
+        "total_size_bytes": 479990372,
+        "largest_files": [
+          {
+            "path": "model.safetensors",
+            "size": 479931352
+          },
+          {
+            "path": "geneformer.py",
+            "size": 38042
+          },
+          {
+            "path": "LICENSE",
+            "size": 11451
+          },
+          {
+            "path": "README.md",
+            "size": 7109
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          },
+          {
+            "path": "config.json",
+            "size": 899
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/Geneformer-V2-104M",
+      "started_at": "2026-07-23T10:30:50.500667+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/Geneformer-V2-104M",
+      "downloaded_size_bytes": 897585281,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/Geneformer-V2-104M/config.json.lock",
+        ".cache/huggingface/download/Geneformer-V2-104M/config.json.metadata",
+        ".cache/huggingface/download/Geneformer-V2-104M/generation_config.json.lock",
+        ".cache/huggingface/download/Geneformer-V2-104M/generation_config.json.metadata",
+        ".cache/huggingface/download/Geneformer-V2-104M/model.safetensors.lock",
+        ".cache/huggingface/download/Geneformer-V2-104M/model.safetensors.metadata",
+        ".cache/huggingface/download/Geneformer-V2-104M/training_args.bin.lock",
+        ".cache/huggingface/download/Geneformer-V2-104M/training_args.bin.metadata",
+        ".cache/huggingface/download/LICENSE.lock",
+        ".cache/huggingface/download/LICENSE.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/config.json.lock",
+        ".cache/huggingface/download/config.json.metadata",
+        ".cache/huggingface/download/geneformer.py.lock",
+        ".cache/huggingface/download/geneformer.py.metadata",
+        ".cache/huggingface/download/model.safetensors.lock",
+        ".cache/huggingface/download/model.safetensors.metadata",
+        ".cache/huggingface/trees/04c2b2e84da7c0f385c3f9ad8f3ec24bab6650e5.json",
+        ".cache/huggingface/trees/d9cddabf221128c33e6a874296c8243190791a84.json",
+        ".gitattributes",
+        "Geneformer-V2-104M/config.json",
+        "Geneformer-V2-104M/generation_config.json",
+        "Geneformer-V2-104M/model.safetensors",
+        "Geneformer-V2-104M/training_args.bin",
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "geneformer.py",
+        "model.safetensors"
+      ],
+      "duration_seconds": 0.671,
+      "finished_at": "2026-07-23T10:30:51.099630+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "transcriptformer"
+        ],
+        "repo_id": "czi-ai/transcriptformer",
+        "local_name": "TranscriptFormer_repo",
+        "repo_type": "space_or_git",
+        "allow_patterns": []
+      },
+      "metadata": {
+        "ok": false,
+        "error": "metadata lookup skipped for non-model git source"
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/TranscriptFormer_repo",
+      "started_at": "2026-07-23T10:30:51.099708+00:00",
+      "status": "not_downloaded_non_hf_model_source",
+      "blocker_reason": "This source is a code repository, not a directly snapshot_download-able HF model artifact in this script. Clone/build instructions are recorded instead.",
+      "duration_seconds": 0.001,
+      "finished_at": "2026-07-23T10:30:51.100511+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "scprint"
+        ],
+        "repo_id": "jkobject/scPRINT",
+        "local_name": "scPRINT",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.md",
+          "*.json",
+          "LICENSE*",
+          "*.ckpt",
+          "*.safetensors",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 79,
+        "total_size_bytes": 28907930252,
+        "largest_files": [
+          {
+            "path": "other_ckpts/w937u4o1.ckpt",
+            "size": 2205671073
+          },
+          {
+            "path": "other_ckpts/ji9krimq.ckpt",
+            "size": 2180479695
+          },
+          {
+            "path": "other_ckpts/o2uniqsx.ckpt",
+            "size": 1237158326
+          },
+          {
+            "path": "large-v1.ckpt",
+            "size": 1237154305
+          },
+          {
+            "path": "cell-transformer.ckpt",
+            "size": 1043261597
+          },
+          {
+            "path": "other_ckpts/cell-transformer-v1.ckpt",
+            "size": 1043261597
+          },
+          {
+            "path": "small-v2.ckpt",
+            "size": 889706878
+          },
+          {
+            "path": "other_ckpts/ybe1896g.ckpt",
+            "size": 863814895
+          },
+          {
+            "path": "other_ckpts/1lzuxvg0.ckpt",
+            "size": 826230076
+          },
+          {
+            "path": "other_ckpts/eapgc67w.ckpt",
+            "size": 826229383
+          },
+          {
+            "path": "other_ckpts/temptest.ckpt",
+            "size": 825901410
+          },
+          {
+            "path": "other_ckpts/tfd7y9hf.ckpt",
+            "size": 819569821
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/scPRINT",
+      "started_at": "2026-07-23T10:30:51.192494+00:00",
+      "status": "skipped_large_by_policy",
+      "blocker_reason": "Estimated repo size exceeds 20.0 GB for this RunPod volume; rerun on larger volume to acquire.",
+      "duration_seconds": 0.093,
+      "finished_at": "2026-07-23T10:30:51.193182+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "genept_all",
+          "genept_bp",
+          "genept_cc",
+          "genept_mf",
+          "genept_ncbi",
+          "genept_n_plus_u"
+        ],
+        "repo_id": "honicky/genept-composable-embeddings",
+        "local_name": "GenePT_composable_embeddings",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*.md",
+          "*.parquet",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 8,
+        "total_size_bytes": 5910582291,
+        "largest_files": [
+          {
+            "path": "embedding_original_large_3.parquet",
+            "size": 1387965064
+          },
+          {
+            "path": "embedding_associations_cell_type_openai_large.parquet",
+            "size": 1037229495
+          },
+          {
+            "path": "embedding_associations_age_cell_type_drugs_pathways_openai_large.parquet",
+            "size": 1037227120
+          },
+          {
+            "path": "embedding_associations_cell_type_tissue_drug_pathway_openai_large.parquet",
+            "size": 1037217767
+          },
+          {
+            "path": "embedding_associations_age_drugs_pathways_openai_large.parquet",
+            "size": 829238967
+          },
+          {
+            "path": "embedding_original_ada_text.parquet",
+            "size": 581700397
+          },
+          {
+            "path": "README.md",
+            "size": 1962
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/GenePT_composable_embeddings",
+      "started_at": "2026-07-23T10:30:51.255713+00:00",
+      "status": "downloaded_or_verified",
+      "snapshot_path": "/workspace/models/search_space_artifacts/GenePT_composable_embeddings",
+      "downloaded_size_bytes": 5910585721,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/download/README.md.lock",
+        ".cache/huggingface/download/README.md.metadata",
+        ".cache/huggingface/download/embedding_associations_age_cell_type_drugs_pathways_openai_large.parquet.lock",
+        ".cache/huggingface/download/embedding_associations_age_cell_type_drugs_pathways_openai_large.parquet.metadata",
+        ".cache/huggingface/download/embedding_associations_age_drugs_pathways_openai_large.parquet.lock",
+        ".cache/huggingface/download/embedding_associations_age_drugs_pathways_openai_large.parquet.metadata",
+        ".cache/huggingface/download/embedding_associations_cell_type_openai_large.parquet.lock",
+        ".cache/huggingface/download/embedding_associations_cell_type_openai_large.parquet.metadata",
+        ".cache/huggingface/download/embedding_associations_cell_type_tissue_drug_pathway_openai_large.parquet.lock",
+        ".cache/huggingface/download/embedding_associations_cell_type_tissue_drug_pathway_openai_large.parquet.metadata",
+        ".cache/huggingface/download/embedding_original_ada_text.parquet.lock",
+        ".cache/huggingface/download/embedding_original_ada_text.parquet.metadata",
+        ".cache/huggingface/download/embedding_original_large_3.parquet.lock",
+        ".cache/huggingface/download/embedding_original_large_3.parquet.metadata",
+        ".cache/huggingface/trees/6c0d1775347791af7970f5360c610687b0a19f3d.json",
+        ".gitattributes",
+        "README.md",
+        "embedding_associations_age_cell_type_drugs_pathways_openai_large.parquet",
+        "embedding_associations_age_drugs_pathways_openai_large.parquet",
+        "embedding_associations_cell_type_openai_large.parquet",
+        "embedding_associations_cell_type_tissue_drug_pathway_openai_large.parquet",
+        "embedding_original_ada_text.parquet",
+        "embedding_original_large_3.parquet"
+      ],
+      "duration_seconds": 0.491,
+      "finished_at": "2026-07-23T10:30:51.683803+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "alphagenome"
+        ],
+        "repo_id": "google/alphagenome-fold-0",
+        "local_name": "AlphaGenome_fold_0",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*README*",
+          "*.ipynb",
+          "_METADATA",
+          "d/*",
+          "ocdbt.process_0/d/*",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "auto",
+        "file_count": 12,
+        "total_size_bytes": 746351603,
+        "largest_files": [
+          {
+            "path": "ocdbt.process_0/d/cef1679b4a9653f56e2c394b01f7013d",
+            "size": 405098496
+          },
+          {
+            "path": "ocdbt.process_0/d/45320157615ab3ea5cd47df095cc09bc",
+            "size": 190533632
+          },
+          {
+            "path": "ocdbt.process_0/d/36cf7d674bedcd37cc906b3cdc396781",
+            "size": 149426176
+          },
+          {
+            "path": "notebook.ipynb",
+            "size": 969961
+          },
+          {
+            "path": "_METADATA",
+            "size": 222864
+          },
+          {
+            "path": "d/569dbac139b7946fab2f10f57d7d96c8",
+            "size": 78846
+          },
+          {
+            "path": "README.md",
+            "size": 16867
+          },
+          {
+            "path": "ocdbt.process_0/d/eaef10c0cdc5e4b9b2306904f620187f",
+            "size": 2320
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1780
+          },
+          {
+            "path": "ocdbt.process_0/manifest.ocdbt",
+            "size": 279
+          },
+          {
+            "path": "_CHECKPOINT_METADATA",
+            "size": 262
+          },
+          {
+            "path": "manifest.ocdbt",
+            "size": 120
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AlphaGenome_fold_0",
+      "started_at": "2026-07-23T10:30:51.800419+00:00",
+      "status": "download_failed_or_blocked",
+      "error_type": "GatedRepoError",
+      "error": "401 Client Error. (Request ID: Root=1-6a61ed5c-7936c8d61ff4bfc70136b961;b8ae1173-9aef-4ddd-9a8a-d82821d915c5)\n\nCannot access gated repo for url https://huggingface.co/google/alphagenome-fold-0/resolve/4ce9fd40aa9a3161644efcb69c47551454c6e5ad/.gitattributes.\nAccess to model google/alphagenome-fold-0 is restricted. You must have access to it and be authenticated to access it. Please log in.",
+      "duration_seconds": 0.56,
+      "finished_at": "2026-07-23T10:30:52.243809+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "alphagenome"
+        ],
+        "repo_id": "google/alphagenome-all-folds",
+        "local_name": "AlphaGenome_all_folds",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*README*",
+          "*.ipynb",
+          "_METADATA",
+          "d/*",
+          "ocdbt.process_0/d/*",
+          ".gitattributes"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "auto",
+        "file_count": 12,
+        "total_size_bytes": 734799353,
+        "largest_files": [
+          {
+            "path": "ocdbt.process_0/d/bda173d4f00d3afcef0a043614df05a6",
+            "size": 414797824
+          },
+          {
+            "path": "ocdbt.process_0/d/48900811ab32b5ad3873d40e96d63846",
+            "size": 165916672
+          },
+          {
+            "path": "ocdbt.process_0/d/6b08a83c9d6a2ade925dbcdd91299ce2",
+            "size": 152793088
+          },
+          {
+            "path": "notebook.ipynb",
+            "size": 969961
+          },
+          {
+            "path": "_METADATA",
+            "size": 222864
+          },
+          {
+            "path": "d/549b1a1ce6bea654c08ac287872a5d99",
+            "size": 77325
+          },
+          {
+            "path": "README.md",
+            "size": 16867
+          },
+          {
+            "path": "ocdbt.process_0/d/41569d1134215cd16b582168403f7509",
+            "size": 2313
+          },
+          {
+            "path": ".gitattributes",
+            "size": 1780
+          },
+          {
+            "path": "ocdbt.process_0/manifest.ocdbt",
+            "size": 277
+          },
+          {
+            "path": "_CHECKPOINT_METADATA",
+            "size": 262
+          },
+          {
+            "path": "manifest.ocdbt",
+            "size": 120
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/AlphaGenome_all_folds",
+      "started_at": "2026-07-23T10:30:52.305622+00:00",
+      "status": "download_failed_or_blocked",
+      "error_type": "GatedRepoError",
+      "error": "401 Client Error. (Request ID: Root=1-6a61ed5c-641f7d3165f6b4bd72962e18;36dbe89f-3e3a-4680-a039-6b81fb369054)\n\nCannot access gated repo for url https://huggingface.co/google/alphagenome-all-folds/resolve/a8f293a76ee73d5b57f3bf2ae146510589fcf187/.gitattributes.\nAccess to model google/alphagenome-all-folds is restricted. You must have access to it and be authenticated to access it. Please log in.",
+      "duration_seconds": 0.382,
+      "finished_at": "2026-07-23T10:30:52.626190+00:00"
+    },
+    {
+      "job": {
+        "module_ids": [
+          "string_gnn_model_dir"
+        ],
+        "repo_id": "genbio-ai/STRING_GNN",
+        "local_name": "STRING_GNN",
+        "repo_type": "model",
+        "allow_patterns": [
+          "*"
+        ],
+        "required_files": [
+          "config.json",
+          "pytorch_model.bin",
+          "model.safetensors",
+          "graph_data.pt",
+          "node_names.json"
+        ]
+      },
+      "metadata": {
+        "ok": true,
+        "private": false,
+        "gated": "False",
+        "file_count": 1,
+        "total_size_bytes": 1519,
+        "largest_files": [
+          {
+            "path": ".gitattributes",
+            "size": 1519
+          }
+        ]
+      },
+      "local_dir": "/workspace/models/search_space_artifacts/STRING_GNN",
+      "started_at": "2026-07-23T10:30:52.682128+00:00",
+      "status": "blocked_unavailable_primary_artifact",
+      "snapshot_path": "/workspace/models/search_space_artifacts/STRING_GNN",
+      "downloaded_size_bytes": 1952,
+      "file_sample": [
+        ".cache/huggingface/.gitignore",
+        ".cache/huggingface/CACHEDIR.TAG",
+        ".cache/huggingface/download/.gitattributes.lock",
+        ".cache/huggingface/download/.gitattributes.metadata",
+        ".cache/huggingface/trees/ffd4e9d47445f16d584379856d63e8b8340bcdc9.json",
+        ".gitattributes"
+      ],
+      "missing_required_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "model.safetensors",
+        "graph_data.pt",
+        "node_names.json"
+      ],
+      "blocker_reason": "Public repo did not expose required model-dir files.",
+      "duration_seconds": 0.365,
+      "finished_at": "2026-07-23T10:30:52.991445+00:00"
+    }
+  ],
+  "symlinks": [
+    {
+      "link": "/home/Models/AIDO.Cell-3M",
+      "target": "/workspace/models/search_space_artifacts/AIDO.Cell-3M",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/AIDO.Cell-10M",
+      "target": "/workspace/models/search_space_artifacts/AIDO.Cell-10M",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/AIDO.Cell-100M",
+      "target": "/workspace/models/search_space_artifacts/AIDO.Cell-100M",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/AIDO.DNA-300M",
+      "target": "/workspace/models/search_space_artifacts/AIDO.DNA-300M",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/AIDO.DNA-7B",
+      "target": "/workspace/models/search_space_artifacts/AIDO.DNA-7B",
+      "status": "not_linked_not_verified"
+    },
+    {
+      "link": "/home/Models/AIDO.Protein-16B",
+      "target": "/workspace/models/search_space_artifacts/AIDO.Protein-16B",
+      "status": "not_linked_not_verified"
+    },
+    {
+      "link": "/home/Models/ESM2_t12_35M_UR50D",
+      "target": "/workspace/models/search_space_artifacts/ESM2_t12_35M_UR50D",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/ESM2_t30_150M_UR50D",
+      "target": "/workspace/models/search_space_artifacts/ESM2_t30_150M_UR50D",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/ESM2_t33_650M_UR50D",
+      "target": "/workspace/models/search_space_artifacts/ESM2_t33_650M_UR50D",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/ESM2_t36_3B_UR50D",
+      "target": "/workspace/models/search_space_artifacts/ESM2_t36_3B_UR50D",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/scFoundation",
+      "target": "/workspace/models/search_space_artifacts/scFoundation_genbio",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/scfoundation-cell",
+      "target": "/workspace/models/search_space_artifacts/scfoundation-cell",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/scGPT",
+      "target": "/workspace/models/search_space_artifacts/scGPT_tdc",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/Geneformer-V2-104M",
+      "target": "/workspace/models/search_space_artifacts/Geneformer-V2-104M",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/scPRINT",
+      "target": "/workspace/models/search_space_artifacts/scPRINT",
+      "status": "not_linked_not_verified"
+    },
+    {
+      "link": "/home/Models/GenePT_composable_embeddings",
+      "target": "/workspace/models/search_space_artifacts/GenePT_composable_embeddings",
+      "status": "already_ok"
+    },
+    {
+      "link": "/home/Models/AlphaGenome_fold_0",
+      "target": "/workspace/models/search_space_artifacts/AlphaGenome_fold_0",
+      "status": "not_linked_not_verified"
+    },
+    {
+      "link": "/home/Models/AlphaGenome_all_folds",
+      "target": "/workspace/models/search_space_artifacts/AlphaGenome_all_folds",
+      "status": "not_linked_not_verified"
+    }
+  ],
+  "policy": {
+    "git_policy": "Do not commit model/data/checkpoint artifacts. Commit only this metadata and replay script.",
+    "download_policy": "Download source-backed public artifacts when directly available. Mark incomplete/gated/non-equivalent sources as blocked with evidence.",
+    "duplicate_weight_policy": "Prefer safetensors over duplicate pytorch/tensorflow weights; download PyTorch weights when safetensors are unavailable."
+  }
+}
