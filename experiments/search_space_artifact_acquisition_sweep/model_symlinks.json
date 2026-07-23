@@ -1,0 +1,52 @@
+{
+  "links": [
+    {
+      "artifact_id": "official_aido_cell_100m_model_dir",
+      "link": "/home/Models/AIDO.Cell-100M",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/AIDO.Cell-100M"
+    },
+    {
+      "artifact_id": "scfoundation_model_checkpoint_genbio",
+      "link": "/home/Models/scFoundation",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/scFoundation_genbio"
+    },
+    {
+      "artifact_id": "scfoundation_cell_model_perturblab",
+      "link": "/home/Models/scfoundation-cell",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/scfoundation-cell"
+    },
+    {
+      "artifact_id": "single_cell_foundation_model_scgpt",
+      "link": "/home/Models/scGPT",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/scGPT_tdc"
+    },
+    {
+      "artifact_id": "geneformer_v2_104m",
+      "link": "/home/Models/Geneformer-V2-104M",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/Geneformer-V2-104M"
+    },
+    {
+      "artifact_id": "esm2_650m_protein_embedding_model",
+      "link": "/home/Models/ESM2_t33_650M_UR50D",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/esm2_t33_650M_UR50D"
+    },
+    {
+      "artifact_id": "scprint_medium_checkpoint",
+      "link": "/home/Models/scPRINT_medium",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/scPRINT_medium"
+    },
+    {
+      "artifact_id": "genept_original_ada_embedding",
+      "link": "/home/Models/GenePT_original_ada",
+      "status": "linked",
+      "target": "/workspace/models/search_space_artifacts/GenePT_original_ada"
+    }
+  ]
+}

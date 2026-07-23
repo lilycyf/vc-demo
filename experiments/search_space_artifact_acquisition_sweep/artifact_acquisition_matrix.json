@@ -1,0 +1,1205 @@
+{
+  "generated_at": "2026-07-23T08:00:45Z",
+  "root": "/workspace/models/search_space_artifacts",
+  "records": [
+    {
+      "artifact_id": "official_aido_cell_100m_model_dir",
+      "name": "AIDO.Cell-100M",
+      "repo_id": "genbio-ai/AIDO.Cell-100M",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/AIDO.Cell-100M",
+      "required_files": [
+        "config.json",
+        "model.safetensors"
+      ],
+      "paper_use": "AIDO cell foundation backbone / LoRA / adapter / cached embedding generation",
+      "download_policy": "download_minimal_safetensors_package",
+      "allow_patterns": [
+        "config.json",
+        "generation_config.json",
+        "model.safetensors",
+        "README.md",
+        "LICENSE",
+        "*.png"
+      ],
+      "started_at": "2026-07-23T08:00:00Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "b14a88b962758102e618289f4340f989bd6eebe5",
+      "hf_sibling_count": 8,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "path": "AidoCell.png",
+          "size": 608922
+        },
+        {
+          "path": "LICENSE",
+          "size": 10687
+        },
+        {
+          "path": "README.md",
+          "size": 4064
+        },
+        {
+          "path": "config.json",
+          "size": 889
+        },
+        {
+          "path": "generation_config.json",
+          "size": 96
+        },
+        {
+          "path": "model.safetensors",
+          "size": 399481732
+        },
+        {
+          "path": "pytorch_model.bin",
+          "size": 399527266
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 400108453,
+      "required_file_checks": [
+        {
+          "path": "config.json",
+          "exists": true,
+          "size": 889,
+          "sha256": "d1f5fe34a2f76ecf61b6954b4c60360229501ce51473fd03248675c3066f096a"
+        },
+        {
+          "path": "model.safetensors",
+          "exists": true,
+          "size": 399481732,
+          "sha256": "4602f09951c5a2f8cb814363f68cd63d8d7bd145e02560b852f6652df78bec77"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:04Z"
+    },
+    {
+      "artifact_id": "official_string_gnn_model_dir",
+      "name": "Official STRING_GNN model dir",
+      "repo_id": "genbio-ai/STRING_GNN",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/STRING_GNN_OFFICIAL_UNAVAILABLE",
+      "required_files": [
+        "config.json",
+        "model.safetensors",
+        "pytorch_model.bin",
+        "graph_data.pt",
+        "node_names.json"
+      ],
+      "paper_use": "Official public VCHarness STRING_GNN AutoModel.from_pretrained(/home/Models/STRING_GNN) branch",
+      "download_policy": "validate_only_do_not_substitute_graph_or_cached_embeddings",
+      "validate_only": true,
+      "allow_patterns": [
+        "*"
+      ],
+      "started_at": "2026-07-23T08:00:04Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "ffd4e9d47445f16d584379856d63e8b8340bcdc9",
+      "hf_sibling_count": 1,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1519
+        }
+      ],
+      "missing_required_in_source": [
+        "config.json",
+        "model.safetensors",
+        "pytorch_model.bin",
+        "graph_data.pt",
+        "node_names.json"
+      ],
+      "status": "blocked_unavailable_primary_artifact",
+      "downloaded": false,
+      "blocker_reason": "required files are absent from public source file tree",
+      "finished_at": "2026-07-23T08:00:04Z"
+    },
+    {
+      "artifact_id": "scfoundation_model_checkpoint_genbio",
+      "name": "GenBio scFoundation checkpoint",
+      "repo_id": "genbio-ai/scFoundation",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/scFoundation_genbio",
+      "required_files": [
+        "models.ckpt"
+      ],
+      "paper_use": "single-cell foundation model artifact; needs downstream K562 row-aligned embedding build before strict use",
+      "download_policy": "download_checkpoint_then_mark_needs_encoder_contract_alignment",
+      "allow_patterns": [
+        "README.md",
+        "models.ckpt"
+      ],
+      "started_at": "2026-07-23T08:00:04Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "cb434153a1acfacd215eefc956ea445f7cc39cc3",
+      "hf_sibling_count": 3,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "path": "README.md",
+          "size": 1509
+        },
+        {
+          "path": "models.ckpt",
+          "size": 1432587886
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 1432590347,
+      "required_file_checks": [
+        {
+          "path": "models.ckpt",
+          "exists": true,
+          "size": 1432587886,
+          "sha256": "9f40bf324d3d0084c4b288d06f5af4fddd12206e2a3f022551d12e89e33a0ea9"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:12Z"
+    },
+    {
+      "artifact_id": "scfoundation_cell_model_perturblab",
+      "name": "PerturbLab scFoundation cell model",
+      "repo_id": "perturblab/scfoundation-cell",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/scfoundation-cell",
+      "required_files": [
+        "config.json",
+        "model.pt"
+      ],
+      "paper_use": "alternative public scFoundation-style cell encoder checkpoint",
+      "download_policy": "download_checkpoint_as_non_genbio_alternative",
+      "allow_patterns": [
+        "README.md",
+        "config.json",
+        "model.pt"
+      ],
+      "started_at": "2026-07-23T08:00:12Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "7b06458e108e0690fdd7f2ece61a4658069b801a",
+      "hf_sibling_count": 4,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "path": "README.md",
+          "size": 1534
+        },
+        {
+          "path": "config.json",
+          "size": 522
+        },
+        {
+          "path": "model.pt",
+          "size": 477485967
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 477489168,
+      "required_file_checks": [
+        {
+          "path": "config.json",
+          "exists": true,
+          "size": 522,
+          "sha256": "623dcf22371c8ff49ee005d792e8ed0d2e9ceb9c2ff93bfe2649fc52033c371d"
+        },
+        {
+          "path": "model.pt",
+          "exists": true,
+          "size": 477485967,
+          "sha256": "2446c2fb99a0e183cdc9872b7e9e55ac74f7ec82db7ba0799c83be75cde66dc6"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:18Z"
+    },
+    {
+      "artifact_id": "single_cell_foundation_model_scgpt",
+      "name": "scGPT public checkpoint",
+      "repo_id": "tdc/scGPT",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/scGPT_tdc",
+      "required_files": [
+        "config.json",
+        "model.safetensors"
+      ],
+      "paper_use": "single-cell foundation encoder alternative; needs K562 tokenization/row contract adapter",
+      "download_policy": "download_minimal_safetensors_package",
+      "allow_patterns": [
+        "README.md",
+        "config.json",
+        "model.safetensors"
+      ],
+      "started_at": "2026-07-23T08:00:18Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "acf749f35bf5c0b00633838f02588272ed0d9911",
+      "hf_sibling_count": 5,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1589
+        },
+        {
+          "path": "README.md",
+          "size": 3307
+        },
+        {
+          "path": "config.json",
+          "size": 467
+        },
+        {
+          "path": "model.safetensors",
+          "size": 203233980
+        },
+        {
+          "path": "scgpt_gh_repo_original_model.bin",
+          "size": 207861754
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 203239227,
+      "required_file_checks": [
+        {
+          "path": "config.json",
+          "exists": true,
+          "size": 467,
+          "sha256": "c8bf8e037352a5cc697bbf3c35cad5a15819e889de34a3810bccd58cdfb9491a"
+        },
+        {
+          "path": "model.safetensors",
+          "exists": true,
+          "size": 203233980,
+          "sha256": "cabd40e6e22514865825975940f2c61ac1395f3317bba9f773858cd72914064c"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:22Z"
+    },
+    {
+      "artifact_id": "geneformer_v2_104m",
+      "name": "Geneformer V2 104M",
+      "repo_id": "ctheodoris/Geneformer",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/Geneformer-V2-104M",
+      "required_files": [
+        "Geneformer-V2-104M/config.json",
+        "Geneformer-V2-104M/model.safetensors"
+      ],
+      "paper_use": "single-cell/gene foundation encoder alternative",
+      "download_policy": "download_v2_104m_only_not_316m",
+      "allow_patterns": [
+        "README.md",
+        "Geneformer-V2-104M/config.json",
+        "Geneformer-V2-104M/generation_config.json",
+        "Geneformer-V2-104M/model.safetensors",
+        "Geneformer-V2-104M/training_args.bin"
+      ],
+      "started_at": "2026-07-23T08:00:22Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "04c2b2e84da7c0f385c3f9ad8f3ec24bab6650e5",
+      "hf_sibling_count": 87,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1270
+        },
+        {
+          "path": ".gitignore",
+          "size": 3078
+        },
+        {
+          "path": ".pre-commit-config.yaml",
+          "size": 737
+        },
+        {
+          "path": ".readthedocs.yaml",
+          "size": 396
+        },
+        {
+          "path": "Geneformer-V1-10M/config.json",
+          "size": 565
+        },
+        {
+          "path": "Geneformer-V1-10M/model.safetensors",
+          "size": 41183536
+        },
+        {
+          "path": "Geneformer-V1-10M/pytorch_model.bin",
+          "size": 41216562
+        },
+        {
+          "path": "Geneformer-V1-10M/training_args.bin",
+          "size": 2607
+        },
+        {
+          "path": "Geneformer-V2-104M/config.json",
+          "size": 590
+        },
+        {
+          "path": "Geneformer-V2-104M/generation_config.json",
+          "size": 90
+        },
+        {
+          "path": "Geneformer-V2-104M/model.safetensors",
+          "size": 417571156
+        },
+        {
+          "path": "Geneformer-V2-104M/training_args.bin",
+          "size": 5496
+        },
+        {
+          "path": "Geneformer-V2-104M_CLcancer/config.json",
+          "size": 762
+        },
+        {
+          "path": "Geneformer-V2-104M_CLcancer/generation_config.json",
+          "size": 90
+        },
+        {
+          "path": "Geneformer-V2-104M_CLcancer/model.safetensors",
+          "size": 417571156
+        },
+        {
+          "path": "Geneformer-V2-104M_CLcancer/training_args.bin",
+          "size": 4984
+        },
+        {
+          "path": "Geneformer-V2-316M/config.json",
+          "size": 591
+        },
+        {
+          "path": "Geneformer-V2-316M/generation_config.json",
+          "size": 90
+        },
+        {
+          "path": "Geneformer-V2-316M/model.safetensors",
+          "size": 1265455076
+        },
+        {
+          "path": "Geneformer-V2-316M/training_args.bin",
+          "size": 5432
+        },
+        {
+          "path": "MANIFEST.in",
+          "size": 482
+        },
+        {
+          "path": "README.md",
+          "size": 9470
+        },
+        {
+          "path": "config.json",
+          "size": 591
+        },
+        {
+          "path": "docs/Makefile",
+          "size": 638
+        },
+        {
+          "path": "docs/make.bat",
+          "size": 804
+        },
+        {
+          "path": "docs/requirements.txt",
+          "size": 42
+        },
+        {
+          "path": "docs/source/_static/css/custom.css",
+          "size": 664
+        },
+        {
+          "path": "docs/source/_static/gf_logo.png",
+          "size": 48230
+        },
+        {
+          "path": "docs/source/about.rst",
+          "size": 4203
+        },
+        {
+          "path": "docs/source/api.rst",
+          "size": 597
+        },
+        {
+          "path": "docs/source/conf.py",
+          "size": 2292
+        },
+        {
+          "path": "docs/source/geneformer.classifier.rst",
+          "size": 210
+        },
+        {
+          "path": "docs/source/geneformer.emb_extractor.rst",
+          "size": 622
+        },
+        {
+          "path": "docs/source/geneformer.in_silico_perturber.rst",
+          "size": 377
+        },
+        {
+          "path": "docs/source/geneformer.in_silico_perturber_stats.rst",
+          "size": 672
+        },
+        {
+          "path": "docs/source/geneformer.mtl_classifier.rst",
+          "size": 261
+        },
+        {
+          "path": "docs/source/geneformer.tokenizer.rst",
+          "size": 319
+        },
+        {
+          "path": "docs/source/getstarted.rst",
+          "size": 1399
+        },
+        {
+          "path": "docs/source/index.rst",
+          "size": 347
+        },
+        {
+          "path": "examples/cell_classification.ipynb",
+          "size": 106053
+        },
+        {
+          "path": "examples/distributed_multitask_cell_classification.ipynb",
+          "size": 5109
+        },
+        {
+          "path": "examples/extract_and_plot_cell_embeddings.ipynb",
+          "size": 1127225
+        },
+        {
+          "path": "examples/gene_classification.ipynb",
+          "size": 180470
+        },
+        {
+          "path": "examples/in_silico_perturbation.ipynb",
+          "size": 6268
+        },
+        {
+          "path": "examples/multitask_cell_classification.ipynb",
+          "size": 13808
+        },
+        {
+          "path": "examples/pretraining_new_model/obtain_nonzero_median_digests.ipynb",
+          "size": 80073
+        },
+        {
+          "path": "examples/pretraining_new_model/pretrain_geneformer_w_deepspeed.py",
+          "size": 4962
+        },
+        {
+          "path": "examples/tokenizing_scRNAseq_data.ipynb",
+          "size": 4327
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/config.json",
+          "size": 930
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/optimizer.pt",
+          "size": 73720721
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/pytorch_model.bin",
+          "size": 41115113
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/rng_state.pth",
+          "size": 14657
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/scheduler.pt",
+          "size": 623
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/trainer_state.json",
+          "size": 3726
+        },
+        {
+          "path": "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/training_args.bin",
+          "size": 2607
+        },
+        {
+          "path": "geneformer/__init__.py",
+          "size": 1646
+        },
+        {
+          "path": "geneformer/classifier.py",
+          "size": 67433
+        },
+        {
+          "path": "geneformer/classifier_utils.py",
+          "size": 24410
+        },
+        {
+          "path": "geneformer/collator_for_classification.py",
+          "size": 31653
+        },
+        {
+          "path": "geneformer/emb_extractor.py",
+          "size": 35355
+        },
+        {
+          "path": "geneformer/ensembl_mapping_dict_gc104M.pkl",
+          "size": 3957652
+        },
+        {
+          "path": "geneformer/evaluation_utils.py",
+          "size": 10527
+        },
+        {
+          "path": "geneformer/gene_dictionaries_30m/ensembl_mapping_dict_gc30M.pkl",
+          "size": 584125
+        },
+        {
+          "path": "geneformer/gene_dictionaries_30m/gene_median_dictionary_gc30M.pkl",
+          "size": 940965
+        },
+        {
+          "path": "geneformer/gene_dictionaries_30m/gene_name_id_dict_gc30M.pkl",
+          "size": 1117117
+        },
+        {
+          "path": "geneformer/gene_dictionaries_30m/token_dictionary_gc30M.pkl",
+          "size": 788424
+        },
+        {
+          "path": "geneformer/gene_median_dictionary_gc104M.pkl",
+          "size": 1512661
+        },
+        {
+          "path": "geneformer/gene_name_id_dict_gc104M.pkl",
+          "size": 1660882
+        },
+        {
+          "path": "geneformer/in_silico_perturber.py",
+          "size": 67539
+        },
+        {
+          "path": "geneformer/in_silico_perturber_stats.py",
+          "size": 45892
+        },
+        {
+          "path": "geneformer/mtl/__init__.py",
+          "size": 64
+        },
+        {
+          "path": "geneformer/mtl/collators.py",
+          "size": 2881
+        },
+        {
+          "path": "geneformer/mtl/data.py",
+          "size": 8484
+        },
+        {
+          "path": "geneformer/mtl/eval_utils.py",
+          "size": 3501
+        },
+        {
+          "path": "geneformer/mtl/model.py",
+          "size": 4442
+        },
+        {
+          "path": "geneformer/mtl/train.py",
+          "size": 30277
+        },
+        {
+          "path": "geneformer/mtl/utils.py",
+          "size": 25924
+        },
+        {
+          "path": "geneformer/mtl_classifier.py",
+          "size": 14505
+        },
+        {
+          "path": "geneformer/perturber_utils.py",
+          "size": 32453
+        },
+        {
+          "path": "geneformer/pretrainer.py",
+          "size": 29452
+        },
+        {
+          "path": "geneformer/token_dictionary_gc104M.pkl",
+          "size": 425590
+        },
+        {
+          "path": "geneformer/tokenizer.py",
+          "size": 34686
+        },
+        {
+          "path": "generation_config.json",
+          "size": 90
+        },
+        {
+          "path": "model.safetensors",
+          "size": 1265455076
+        },
+        {
+          "path": "requirements.txt",
+          "size": 382
+        },
+        {
+          "path": "setup.py",
+          "size": 1087
+        },
+        {
+          "path": "training_args.bin",
+          "size": 5432
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 417603019,
+      "required_file_checks": [
+        {
+          "path": "Geneformer-V2-104M/config.json",
+          "exists": true,
+          "size": 590,
+          "sha256": "467d4492f0dd53b4d60afffe20812db484ca1cf9fdbeb6a6e060e93564f70859"
+        },
+        {
+          "path": "Geneformer-V2-104M/model.safetensors",
+          "exists": true,
+          "size": 417571156,
+          "sha256": "fff5cba29ddd8792991fa77b4872246fbe548a178cebda3775cdc72b67780e7f"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:26Z"
+    },
+    {
+      "artifact_id": "esm2_650m_protein_embedding_model",
+      "name": "ESM2 650M",
+      "repo_id": "facebook/esm2_t33_650M_UR50D",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/esm2_t33_650M_UR50D",
+      "required_files": [
+        "config.json",
+        "model.safetensors",
+        "vocab.txt"
+      ],
+      "paper_use": "protein/gene product embedding branch for perturbation/target genes",
+      "download_policy": "download_transformers_safetensors_package",
+      "allow_patterns": [
+        "README.md",
+        "config.json",
+        "model.safetensors",
+        "special_tokens_map.json",
+        "tokenizer_config.json",
+        "vocab.txt"
+      ],
+      "started_at": "2026-07-23T08:00:26Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "08e4846e537177426273712802403f7ba8261b6c",
+      "hf_sibling_count": 9,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1438
+        },
+        {
+          "path": "README.md",
+          "size": 1705
+        },
+        {
+          "path": "config.json",
+          "size": 724
+        },
+        {
+          "path": "model.safetensors",
+          "size": 2609506392
+        },
+        {
+          "path": "pytorch_model.bin",
+          "size": 2609621831
+        },
+        {
+          "path": "special_tokens_map.json",
+          "size": 125
+        },
+        {
+          "path": "tf_model.h5",
+          "size": 2605109760
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size": 95
+        },
+        {
+          "path": "vocab.txt",
+          "size": 93
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 2609511506,
+      "required_file_checks": [
+        {
+          "path": "config.json",
+          "exists": true,
+          "size": 724,
+          "sha256": "539095c22efc52a09d6147074ba4ca119f76a890df5901213b2b55f7d2f96b2b"
+        },
+        {
+          "path": "model.safetensors",
+          "exists": true,
+          "size": 2609506392,
+          "sha256": "a08adabb949fa67ad3c14b509d04fd60368b35007b0095e3358f81200c4f4db0"
+        },
+        {
+          "path": "vocab.txt",
+          "exists": true,
+          "size": 93,
+          "sha256": "0b82cc0a7c7cf9e567b1e5892d793285b9fbae822c964ca48696f7db44598e03"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:34Z"
+    },
+    {
+      "artifact_id": "scprint_medium_checkpoint",
+      "name": "scPRINT medium checkpoint",
+      "repo_id": "jkobject/scPRINT",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/scPRINT_medium",
+      "required_files": [
+        "medium-v1.5.ckpt"
+      ],
+      "paper_use": "single-cell foundation / GRN-capable alternative; needs strict loader integration before use",
+      "download_policy": "download_medium_checkpoint_only_not_all_other_ckpts",
+      "allow_patterns": [
+        "README.md",
+        "medium-v1.5.ckpt",
+        "TFs.txt",
+        "attention_bias.npz"
+      ],
+      "started_at": "2026-07-23T08:00:34Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "8e1ad1a1bc40c1fc2f4f1700fe27923eea9a2bed",
+      "hf_sibling_count": 79,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1786
+        },
+        {
+          "path": ".mmap",
+          "size": 414330880
+        },
+        {
+          "path": "CONTRIBUTING.md",
+          "size": 3625
+        },
+        {
+          "path": "README.md",
+          "size": 7203
+        },
+        {
+          "path": "TFs.txt",
+          "size": 232480
+        },
+        {
+          "path": "attention_bias.npz",
+          "size": 263952453
+        },
+        {
+          "path": "cell-transformer.ckpt",
+          "size": 1043261597
+        },
+        {
+          "path": "embeddings/.mmap",
+          "size": 414330880
+        },
+        {
+          "path": "esm-ft.ckpt",
+          "size": 421896120
+        },
+        {
+          "path": "figure1.png",
+          "size": 2392805
+        },
+        {
+          "path": "gNNpgpo6gATjuxTE7CCp.h5ad",
+          "size": 746061852
+        },
+        {
+          "path": "large-v1.ckpt",
+          "size": 1237154305
+        },
+        {
+          "path": "logo.png",
+          "size": 84466
+        },
+        {
+          "path": "medium-v1.5.ckpt",
+          "size": 221742980
+        },
+        {
+          "path": "medium-v1.ckpt",
+          "size": 303278001
+        },
+        {
+          "path": "other_ckpts/0ayw97iw.ckpt",
+          "size": 174596353
+        },
+        {
+          "path": "other_ckpts/1lnm8pgh.ckpt",
+          "size": 176390313
+        },
+        {
+          "path": "other_ckpts/1lzuxvg0.ckpt",
+          "size": 826230076
+        },
+        {
+          "path": "other_ckpts/2r91mcri.ckpt",
+          "size": 174588101
+        },
+        {
+          "path": "other_ckpts/44p3fv3v.ckpt",
+          "size": 174595971
+        },
+        {
+          "path": "other_ckpts/4u5c4plu.ckpt",
+          "size": 174721407
+        },
+        {
+          "path": "other_ckpts/4v84b9nm.ckpt",
+          "size": 174596671
+        },
+        {
+          "path": "other_ckpts/5im83h36.ckpt",
+          "size": 221774382
+        },
+        {
+          "path": "other_ckpts/85xx85ja.ckpt",
+          "size": 221785236
+        },
+        {
+          "path": "other_ckpts/8vmjnnsb.ckpt",
+          "size": 174594061
+        },
+        {
+          "path": "other_ckpts/9q261ics.ckpt",
+          "size": 180201183
+        },
+        {
+          "path": "other_ckpts/bgbeshmq.ckpt",
+          "size": 421896120
+        },
+        {
+          "path": "other_ckpts/bk37305v.ckpt",
+          "size": 174594061
+        },
+        {
+          "path": "other_ckpts/bv1r4d3h.ckpt",
+          "size": 174594825
+        },
+        {
+          "path": "other_ckpts/bv6d9wpl.ckpt",
+          "size": 176185127
+        },
+        {
+          "path": "other_ckpts/c60vguww.ckpt",
+          "size": 128876737
+        },
+        {
+          "path": "other_ckpts/cell-transformer-v1.ckpt",
+          "size": 1043261597
+        },
+        {
+          "path": "other_ckpts/dipgk9u5.ckpt",
+          "size": 174594061
+        },
+        {
+          "path": "other_ckpts/dsemm200.ckpt",
+          "size": 214002893
+        },
+        {
+          "path": "other_ckpts/eapgc67w.ckpt",
+          "size": 826229383
+        },
+        {
+          "path": "other_ckpts/efwkxesx.ckpt",
+          "size": 174597563
+        },
+        {
+          "path": "other_ckpts/esm-ft-v1.ckpt",
+          "size": 421896120
+        },
+        {
+          "path": "other_ckpts/fkcgp56s.ckpt",
+          "size": 176181211
+        },
+        {
+          "path": "other_ckpts/gp90j8vn.ckpt",
+          "size": 174604087
+        },
+        {
+          "path": "other_ckpts/hobjefdj.ckpt",
+          "size": 174594061
+        },
+        {
+          "path": "other_ckpts/ji9krimq.ckpt",
+          "size": 2180479695
+        },
+        {
+          "path": "other_ckpts/jsls4j6n.ckpt",
+          "size": 174596671
+        },
+        {
+          "path": "other_ckpts/jwkcrxb9.ckpt",
+          "size": 179302297
+        },
+        {
+          "path": "other_ckpts/l2su2z5q.ckpt",
+          "size": 176187037
+        },
+        {
+          "path": "other_ckpts/l44og0s3.ckpt",
+          "size": 174598589
+        },
+        {
+          "path": "other_ckpts/ldh1fw8d.ckpt",
+          "size": 174597435
+        },
+        {
+          "path": "other_ckpts/lg84geoq.ckpt",
+          "size": 174596479
+        },
+        {
+          "path": "other_ckpts/lgd8fxlr.ckpt",
+          "size": 418760768
+        },
+        {
+          "path": "other_ckpts/mask-v1.5.ckpt",
+          "size": 418755328
+        },
+        {
+          "path": "other_ckpts/mxu0p3fs.ckpt",
+          "size": 127259285
+        },
+        {
+          "path": "other_ckpts/nmc2l1gf.ckpt",
+          "size": 174748025
+        },
+        {
+          "path": "other_ckpts/npayct6q.ckpt",
+          "size": 266181447
+        },
+        {
+          "path": "other_ckpts/o2uniqsx.ckpt",
+          "size": 1237158326
+        },
+        {
+          "path": "other_ckpts/ogvvg2z7-v1.ckpt",
+          "size": 178811587
+        },
+        {
+          "path": "other_ckpts/op7at8xm.ckpt",
+          "size": 172112593
+        },
+        {
+          "path": "other_ckpts/p0znio7y.ckpt",
+          "size": 757334723
+        },
+        {
+          "path": "other_ckpts/pdtx1huk.ckpt",
+          "size": 418760593
+        },
+        {
+          "path": "other_ckpts/qn2tyayf.ckpt",
+          "size": 174596671
+        },
+        {
+          "path": "other_ckpts/r18nhnuz.ckpt",
+          "size": 174595009
+        },
+        {
+          "path": "other_ckpts/r2n83z4k.ckpt",
+          "size": 128803773
+        },
+        {
+          "path": "other_ckpts/s6alkcvp.ckpt",
+          "size": 174597245
+        },
+        {
+          "path": "other_ckpts/s8wwlmxr.ckpt",
+          "size": 174596863
+        },
+        {
+          "path": "other_ckpts/te0uwaz1.ckpt",
+          "size": 174597945
+        },
+        {
+          "path": "other_ckpts/temptest.ckpt",
+          "size": 825901410
+        },
+        {
+          "path": "other_ckpts/tf-masking-v1.ckpt",
+          "size": 418760593
+        },
+        {
+          "path": "other_ckpts/tfd7y9hf.ckpt",
+          "size": 819569821
+        },
+        {
+          "path": "other_ckpts/u5udxv4v.ckpt",
+          "size": 187391943
+        },
+        {
+          "path": "other_ckpts/ujzjjsi3.ckpt",
+          "size": 777959181
+        },
+        {
+          "path": "other_ckpts/w937u4o1.ckpt",
+          "size": 2205671073
+        },
+        {
+          "path": "other_ckpts/wcg8g3hr.ckpt",
+          "size": 174594953
+        },
+        {
+          "path": "other_ckpts/xz238fyr.ckpt",
+          "size": 174597563
+        },
+        {
+          "path": "other_ckpts/xzp23r4p.ckpt",
+          "size": 221775592
+        },
+        {
+          "path": "other_ckpts/ybe1896g.ckpt",
+          "size": 863814895
+        },
+        {
+          "path": "other_ckpts/yfvvk4cb.ckpt",
+          "size": 177759263
+        },
+        {
+          "path": "other_ckpts/z3abxa21-nogen.ckpt",
+          "size": 174597053
+        },
+        {
+          "path": "other_ckpts/z3abxa21.ckpt",
+          "size": 174597053
+        },
+        {
+          "path": "small-v1.ckpt",
+          "size": 111120529
+        },
+        {
+          "path": "small-v2.ckpt",
+          "size": 889706878
+        },
+        {
+          "path": "yBCKp6HmXuHa0cZptMo7.h5ad",
+          "size": 105171035
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 485959214,
+      "required_file_checks": [
+        {
+          "path": "medium-v1.5.ckpt",
+          "exists": true,
+          "size": 221742980,
+          "sha256": "96ff7c5d9e1ad5076e818bde3c38f498c95cd354cc42029d90691b5ba2964ff8"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:40Z"
+    },
+    {
+      "artifact_id": "genept_original_ada_embedding",
+      "name": "GenePT original Ada gene embeddings",
+      "repo_id": "honicky/genept-composable-embeddings",
+      "repo_type": "model",
+      "local_dir": "/workspace/models/search_space_artifacts/GenePT_original_ada",
+      "required_files": [
+        "embedding_original_ada_text.parquet"
+      ],
+      "paper_use": "gene-language embedding prior; needs target/perturbation gene ID alignment",
+      "download_policy": "download_smallest_original_embedding_table",
+      "allow_patterns": [
+        "README.md",
+        "embedding_original_ada_text.parquet"
+      ],
+      "started_at": "2026-07-23T08:00:40Z",
+      "hf_private": false,
+      "hf_gated": "False",
+      "hf_sha": "6c0d1775347791af7970f5360c610687b0a19f3d",
+      "hf_sibling_count": 8,
+      "hf_siblings": [
+        {
+          "path": ".gitattributes",
+          "size": 1519
+        },
+        {
+          "path": "README.md",
+          "size": 1962
+        },
+        {
+          "path": "embedding_associations_age_cell_type_drugs_pathways_openai_large.parquet",
+          "size": 1037227120
+        },
+        {
+          "path": "embedding_associations_age_drugs_pathways_openai_large.parquet",
+          "size": 829238967
+        },
+        {
+          "path": "embedding_associations_cell_type_openai_large.parquet",
+          "size": 1037229495
+        },
+        {
+          "path": "embedding_associations_cell_type_tissue_drug_pathway_openai_large.parquet",
+          "size": 1037217767
+        },
+        {
+          "path": "embedding_original_ada_text.parquet",
+          "size": 581700397
+        },
+        {
+          "path": "embedding_original_large_3.parquet",
+          "size": 1387965064
+        }
+      ],
+      "missing_required_in_source": [],
+      "downloaded": true,
+      "status": "acquired_public_source",
+      "local_size_bytes": 581705065,
+      "required_file_checks": [
+        {
+          "path": "embedding_original_ada_text.parquet",
+          "exists": true,
+          "size": 581700397,
+          "sha256": "a1ebb884cd6a4701047099cecfe528c014ef5c576bca0a0aac6897295f33ee60"
+        }
+      ],
+      "finished_at": "2026-07-23T08:00:45Z"
+    }
+  ]
+}
