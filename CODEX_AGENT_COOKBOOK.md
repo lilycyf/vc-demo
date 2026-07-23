@@ -10,6 +10,7 @@ Rules live in the repo documents, not in copied chat prompts.
 - `docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md` is the canonical source for how to execute a generic cell-line run.
 - `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md` is the canonical source for pass/fail checks.
 - `ARTIFACT_ACQUISITION_RUNBOOK.md` is the canonical source for source-backed artifact acquisition.
+- `docs/VCHARNESS_PAPER_MODEL_UNIVERSE.md` and `configs/vcharness_paper_model_universe.json` are the canonical source for the paper-level module universe. Search spaces may be task-gated, but they must not be smaller than this universe.
 - K562-specific details belong in `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`, not in generic prompts.
 
 Experiment prompts must be variable-only handoffs. They should name the branch, cell line, run type, target score, run directory, and output branch, then instruct Codex to read the repo docs. Do not duplicate long cookbook/runbook rules in prompts; duplicated rules drift and become stale.
@@ -98,12 +99,13 @@ Rules for searched artifacts:
 2. Create a new run branch.
 3. Run `python -m vc_demo.harness.preflight`.
 4. If preflight is not ready, fix only the reported setup issue or stop with a blocker.
-5. Run `python -m vc_demo.harness.autonomous_run` with the task budget.
-6. If `implementation_queue.json` is non-empty, handle the selected node immediately. In `full_cellline_run`, artifact-present selected nodes must be implemented, compiled, native-smoked, trained, and backpropagated before the run can be considered valid. `implementation_skipped` is allowed only for loop/self-tests or after a documented artifact/contract blocker; it is not a substitute for writing `model.py` in a full run.
-7. If `acquisition_queue.json` is non-empty, handle it in the same Codex session: run `artifact_acquisition`, execute any known resolver, and if it emits `ACQUIRE_<artifact>.md`, immediately search/download/build the real source-backed artifact, audit it, update registry, and resume. Do not hand it off or stop at queue creation. Stop with a blocker only after the acquisition attempt proves no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified.
-8. Resume or continue the same run directory without changing data/splits/metrics.
-9. Write `final_conclusion.md` with best root, best overall, improvement, artifact use, failures/blockers, and whether the result supports the research question.
-10. Commit only allowed files and push the run branch.
+5. For paper-aligned or full cell-line runs, run `python scripts/audit_paper_model_universe.py` before search. If it fails, fix the search-space manifest before training.
+6. Run `python -m vc_demo.harness.autonomous_run` with the task budget.
+7. If `implementation_queue.json` is non-empty, handle the selected node immediately. In `full_cellline_run`, artifact-present selected nodes must be implemented, compiled, native-smoked, trained, and backpropagated before the run can be considered valid. `implementation_skipped` is allowed only for loop/self-tests or after a documented artifact/contract blocker; it is not a substitute for writing `model.py` in a full run.
+8. If `acquisition_queue.json` is non-empty, handle it in the same Codex session: run `artifact_acquisition`, execute any known resolver, and if it emits `ACQUIRE_<artifact>.md`, immediately search/download/build the real source-backed artifact, audit it, update registry, and resume. Do not hand it off or stop at queue creation. Stop with a blocker only after the acquisition attempt proves no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified.
+9. Resume or continue the same run directory without changing data/splits/metrics.
+10. Write `final_conclusion.md` with best root, best overall, improvement, artifact use, failures/blockers, and whether the result supports the research question.
+11. Commit only allowed files and push the run branch.
 
 ## Stop Conditions
 
@@ -137,6 +139,18 @@ See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execu
 ## Paper Alignment Layers 5-8
 
 See `PAPER_ALIGNMENT_LAYERS_5_8.md` for benchmark audit, search scale planning, failure repair workflow, and paper-style final analysis.
+
+
+## Paper Model Universe Guard
+
+Formal paper-aligned search spaces must reference `configs/vcharness_paper_model_universe.json`. The universe includes paper-original modules whether they are implemented, acquired, task-gated, source-backed reimplementation candidates, or blocked unavailable artifacts.
+
+Rules:
+
+- Do not remove a paper module from the universe because it is hard, unavailable, expensive, or not selected for the current task.
+- Use task gates to keep incompatible modules out of a specific cell-line run; task gating is not omission.
+- If a module is selected and its source-backed artifact is absent, attempt acquisition/build first. If impossible to verify, block that module family and continue feasible families.
+- Run `python scripts/audit_paper_model_universe.py` before full/paper-aligned experiments and include the result in the final report.
 
 ## Framework Feedback Loop
 

@@ -1,0 +1,694 @@
+{
+  "id": "vcharness_paper_model_universe",
+  "version": 1,
+  "scope": "VCHarness paper-level module universe across perturbation-response and adjacent virtual-cell tasks",
+  "coverage_policy": {
+    "minimum_rule": "This manifest must include every module family explicitly visible in the VCHarness paper/system overview/public task atlas that is relevant to model search. Local search spaces may gate modules by task/artifact status, but must not omit them from the universe.",
+    "may_exceed_paper": true,
+    "cannot_be_smaller_than_paper": true,
+    "strict_execution_rule": "A module can be listed without being implemented. If MCTS selects it, Codex must acquire source-backed artifacts or implement a faithful artifact-backed node; otherwise mark blocked. Fallback, compact native, proxy, and random substitutes are forbidden in strict mode."
+  },
+  "source_evidence": [
+    {
+      "id": "paper_biorxiv",
+      "url": "https://www.biorxiv.org/content/10.64898/2026.04.11.717183v1",
+      "note": "VCHarness paper/preprint."
+    },
+    {
+      "id": "genbio_blog",
+      "url": "https://genbio.ai/harnessing-ai-to-build-virtual-cells-vcharness/",
+      "note": "GenBio overview describing closed-loop VCHarness, biological foundation model library, MCTS, and four CRISPR cell-line benchmarks."
+    },
+    {
+      "id": "public_vcharness_repo",
+      "url": "https://github.com/genbio-ai/VCHarness",
+      "note": "Public static case-study scaffold for HepG2, Jurkat, K562, and hTERT-RPE1 classification tracks."
+    },
+    {
+      "id": "scfoundation_hf",
+      "url": "https://huggingface.co/genbio-ai/scFoundation",
+      "note": "Public scFoundation model page; encoder-only limitation must be recorded when used."
+    }
+  ],
+  "paper_reported_scale": {
+    "public_static_scaffold_nodes_observed": 154,
+    "paper_level_node_count_from_project_docs": 1344,
+    "minimum_single_cellline_search_budget": 600,
+    "note": "The public GitHub scaffold is a case-study tree. The internal orchestrator and some exact original checkpoints are not fully public."
+  },
+  "status_taxonomy": {
+    "paper_original_acquired_public_source": "Module or source-backed public artifact is acquired locally and can be used after audit.",
+    "paper_original_acquired_public_source_but_task_embedding_contract_pending": "Checkpoint exists, but the selected node must still verify row order, vocabulary, and extraction for the cell-line task.",
+    "paper_original_blocked_unavailable_primary_artifact": "The original artifact expected by paper/public code is not verifiably downloadable from primary sources.",
+    "paper_original_acquirable_or_needs_verification": "Belongs to the paper universe; Codex must acquire and verify before training.",
+    "paper_original_source_backed_reimplementation_needed": "No exact artifact has been verified; a documented public-data reimplementation is allowed but must be labeled.",
+    "paper_original_task_gated_or_extension": "In the broader universe, but only selectable for task contracts with the needed modality.",
+    "paper_level_derived_public_source": "Source-backed derived artifact, not necessarily the original checkpoint.",
+    "paper_original_public_scaffold_acquired": "Public scaffold/code is available, but exact execution may still require non-public model dirs.",
+    "no_artifact_required": "Baseline/ablation requiring only task data."
+  },
+  "modules": [
+    {
+      "id": "aido_dna",
+      "display_name": "AIDO.DNA",
+      "family": "AIDO",
+      "paper_presence": "system_overview",
+      "task_applicability": [
+        "DNA_sequence_tasks",
+        "MPRA",
+        "regulatory_sequence_tasks"
+      ],
+      "artifact_status": "paper_original_not_downloaded_large",
+      "local_path": "",
+      "source": "GenBio AIDO model family / VCHarness system overview",
+      "download_policy": "Acquire only from official GenBio/model-hub source when task includes DNA sequence inputs.",
+      "rebuild_estimate": "Foundation-model scale; do not train from scratch for this project.",
+      "strict_use_rule": "Task-gated; do not select for K562 DEG unless sequence/regulatory inputs are explicitly added."
+    },
+    {
+      "id": "aido_dna2",
+      "display_name": "AIDO.DNA2",
+      "family": "AIDO",
+      "paper_presence": "system_overview",
+      "task_applicability": [
+        "DNA_sequence_tasks",
+        "MPRA",
+        "regulatory_sequence_tasks"
+      ],
+      "artifact_status": "paper_original_not_downloaded_large",
+      "local_path": "",
+      "source": "GenBio AIDO model family / VCHarness system overview",
+      "download_policy": "Acquire official source if a sequence task requires it.",
+      "rebuild_estimate": "Foundation-model scale; outside ordinary K562 DEG rerun.",
+      "strict_use_rule": "Task-gated; cannot be silently substituted with nucleotide k-mers."
+    },
+    {
+      "id": "aido_cell_3m",
+      "display_name": "AIDO.Cell 3M",
+      "family": "AIDO.Cell",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquirable_or_needs_verification",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Search official GenBio/model-hub source; verify hidden size/vocab/config before marking present.",
+      "rebuild_estimate": "Weeks-months pretraining; hours-days downstream adapter.",
+      "strict_use_rule": "May be selected for K562 only after real checkpoint or cached embeddings are verified."
+    },
+    {
+      "id": "aido_cell_10m",
+      "display_name": "AIDO.Cell 10M",
+      "family": "AIDO.Cell",
+      "paper_presence": "task_atlas_motif_and_discovered_architecture",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquirable_or_needs_verification",
+      "local_path": "",
+      "source": "VCHarness Jurkat motif and task atlas",
+      "download_policy": "Search official GenBio/model-hub source; verify checkpoint before use.",
+      "rebuild_estimate": "Weeks-months pretraining; downstream fine-tune hours-days.",
+      "strict_use_rule": "Must load real AIDO.Cell-10M or block."
+    },
+    {
+      "id": "aido_cell_100m",
+      "display_name": "AIDO.Cell-100M",
+      "family": "AIDO.Cell",
+      "paper_presence": "system_overview_and_K562_best_path",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquired_public_source",
+      "local_path": "/home/Models/AIDO.Cell-100M",
+      "source": "Downloaded to /workspace/models/search_space_artifacts/AIDO.Cell-100M; symlinked under /home/Models.",
+      "download_policy": "Replay experiments/search_space_artifact_acquisition_sweep/DOWNLOAD_REPLAY.sh.",
+      "rebuild_estimate": "Not needed; public artifact acquired.",
+      "strict_use_rule": "Usable as paper-original when checksum/provenance audit passes."
+    },
+    {
+      "id": "aido_protein",
+      "display_name": "AIDO.Protein",
+      "family": "AIDO.Protein",
+      "paper_presence": "system_overview",
+      "task_applicability": [
+        "protein_representation",
+        "CRISPR_DEG_with_protein_branch"
+      ],
+      "artifact_status": "paper_original_acquirable_or_needs_verification",
+      "local_path": "",
+      "source": "VCHarness system overview",
+      "download_policy": "Search official GenBio source; verify model card/config/weights.",
+      "rebuild_estimate": "Foundation-model scale if training from scratch.",
+      "strict_use_rule": "Protein branch only; no random protein embedding substitute."
+    },
+    {
+      "id": "aido_protein_16b",
+      "display_name": "AIDO Protein 16B / AIDOprot seq+struct",
+      "family": "AIDO.Protein",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "protein_representation",
+        "CRISPR_DEG_with_protein_branch"
+      ],
+      "artifact_status": "paper_original_not_downloaded_large",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Acquire only when compute/storage budget allows; verify official checkpoint.",
+      "rebuild_estimate": "Not practical to rebuild for this project.",
+      "strict_use_rule": "Large protein branch; require explicit artifact and GPU budget."
+    },
+    {
+      "id": "proteinrag_16b_struct",
+      "display_name": "ProteinRAG 16B + structure",
+      "family": "protein_foundation_model",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "protein_representation",
+        "CRISPR_DEG_with_protein_branch"
+      ],
+      "artifact_status": "paper_original_not_downloaded_large",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Research public source; if unavailable mark blocked.",
+      "rebuild_estimate": "Not practical from scratch; requires protein LM/RAG infrastructure.",
+      "strict_use_rule": "Must be source-backed; graph/protein cache is not equivalent."
+    },
+    {
+      "id": "esm2_35m",
+      "display_name": "ESM2 35M",
+      "family": "ESM2",
+      "paper_presence": "task_atlas_motif_size_sweep",
+      "task_applicability": [
+        "protein_representation",
+        "perturbation_gene_protein_branch"
+      ],
+      "artifact_status": "paper_original_acquirable_public_source",
+      "local_path": "",
+      "source": "Meta ESM2 public model family / VCHarness size sweep",
+      "download_policy": "Download from facebook/esm2_t12_35M_UR50D or official mirror when selected.",
+      "rebuild_estimate": "Not needed; public checkpoint exists.",
+      "strict_use_rule": "Must map perturbed/target genes to protein sequences and record coverage."
+    },
+    {
+      "id": "esm2_150m",
+      "display_name": "ESM2 150M",
+      "family": "ESM2",
+      "paper_presence": "task_atlas_motif_size_sweep",
+      "task_applicability": [
+        "protein_representation",
+        "perturbation_gene_protein_branch"
+      ],
+      "artifact_status": "paper_original_acquirable_public_source",
+      "local_path": "",
+      "source": "Meta ESM2 public model family / VCHarness size sweep",
+      "download_policy": "Download from facebook/esm2_t30_150M_UR50D or official mirror when selected.",
+      "rebuild_estimate": "Not needed; public checkpoint exists.",
+      "strict_use_rule": "Must record sequence source and coverage."
+    },
+    {
+      "id": "esm2_650m",
+      "display_name": "ESM2 650M",
+      "family": "ESM2",
+      "paper_presence": "task_atlas_motif_and_HepG2_branch",
+      "task_applicability": [
+        "protein_representation",
+        "perturbation_gene_protein_branch"
+      ],
+      "artifact_status": "paper_original_acquired_public_source",
+      "local_path": "/home/Models/ESM2_t33_650M_UR50D",
+      "source": "Downloaded public ESM2 650M artifact.",
+      "download_policy": "Replay DOWNLOAD_REPLAY.sh.",
+      "rebuild_estimate": "Not needed; public checkpoint acquired.",
+      "strict_use_rule": "Use real checkpoint/derived embeddings only."
+    },
+    {
+      "id": "esm2_3b",
+      "display_name": "ESM2 3B",
+      "family": "ESM2",
+      "paper_presence": "task_atlas_motif_and_HepG2_branch",
+      "task_applicability": [
+        "protein_representation",
+        "perturbation_gene_protein_branch"
+      ],
+      "artifact_status": "paper_original_not_downloaded_large",
+      "local_path": "",
+      "source": "Meta ESM2 public model family / VCHarness HepG2 branch",
+      "download_policy": "Download from facebook/esm2_t36_3B_UR50D only with storage/GPU approval.",
+      "rebuild_estimate": "Not needed but large inference cost.",
+      "strict_use_rule": "Large model; must be explicit in cost report."
+    },
+    {
+      "id": "string_gnn_model_dir",
+      "display_name": "STRING_GNN official model directory",
+      "family": "STRING_GNN",
+      "paper_presence": "system_overview_and_discovered_architectures",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_original_blocked_unavailable_primary_artifact",
+      "local_path": "/home/Models/STRING_GNN",
+      "source": "genbio-ai/STRING_GNN public HF repo checked; only .gitattributes visible at sweep time.",
+      "download_policy": "Do not mark present until config/weights/graph_data.pt/node_names.json are source-backed.",
+      "rebuild_estimate": "1-4 weeks for compatibility reimplementation/training depending graph objective; not numerically equivalent to original.",
+      "strict_use_rule": "Required for original static wrappers; STRING graph or cached embeddings are not substitutes."
+    },
+    {
+      "id": "string_ppi_graph",
+      "display_name": "STRING PPI graph / keep20 graph",
+      "family": "STRING",
+      "paper_presence": "graph_prior_supporting_artifact",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_level_derived_public_source",
+      "local_path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "source": "STRING v12 API / official STRING public data.",
+      "download_policy": "Rebuild from STRING public data for each cell-line gene vocabulary.",
+      "rebuild_estimate": "Minutes-hours to rebuild graph; no model training.",
+      "strict_use_rule": "Usable for graph priors but not equivalent to STRING_GNN checkpoint."
+    },
+    {
+      "id": "string_spectral",
+      "display_name": "STRING Spectral",
+      "family": "STRING_variant",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Derive spectral features from source-backed STRING graph; record method/checksum.",
+      "rebuild_estimate": "Minutes-hours after graph acquisition.",
+      "strict_use_rule": "Derived graph feature, not official model unless exact artifact is published."
+    },
+    {
+      "id": "string_seq",
+      "display_name": "STRING Seq",
+      "family": "STRING_variant",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Derive sequence/neighbor features from STRING graph with documented recipe.",
+      "rebuild_estimate": "Hours-days depending recipe.",
+      "strict_use_rule": "Must be auditable source-backed derived artifact."
+    },
+    {
+      "id": "string_wavegc",
+      "display_name": "STRING WaveGC",
+      "family": "STRING_variant",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Reimplement graph wavelet convolution features from STRING source if selected.",
+      "rebuild_estimate": "Days-weeks for faithful training/evaluation.",
+      "strict_use_rule": "Do not collapse to simple Laplacian and call it WaveGC."
+    },
+    {
+      "id": "string_net",
+      "display_name": "STRING Net",
+      "family": "STRING_variant",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Reimplement network embedding/graph net from STRING public graph if selected.",
+      "rebuild_estimate": "Days-weeks.",
+      "strict_use_rule": "Must document architecture; simple graph degree is not enough."
+    },
+    {
+      "id": "gnn_simple_official_d256",
+      "display_name": "GNN Simple Official D256",
+      "family": "GNN_embedding",
+      "paper_presence": "expert_baseline_and_public_embedding",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "graph_prior"
+      ],
+      "artifact_status": "paper_original_acquired_public_source",
+      "local_path": "data/artifacts/gene_embeddings/GNN_Simple_Official_D256.h5ad",
+      "source": "genbio-ai/foundation-models-perturbation public dataset.",
+      "download_policy": "Replay repo artifact/data preparation flow.",
+      "rebuild_estimate": "Not needed if h5ad is present; original training recipe not required for cached baseline.",
+      "strict_use_rule": "Usable as cached embedding/root, not as STRING_GNN model dir."
+    },
+    {
+      "id": "scfoundation",
+      "display_name": "scFoundation",
+      "family": "single_cell_foundation_model",
+      "paper_presence": "system_overview",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquired_public_source_but_task_embedding_contract_pending",
+      "local_path": "/home/Models/scFoundation",
+      "source": "genbio-ai/scFoundation public model; encoder-only limitation documented on HF.",
+      "download_policy": "Replay DOWNLOAD_REPLAY.sh, then implement task-row embedding extraction if selected.",
+      "rebuild_estimate": "Checkpoint acquired; K562 row-aligned embeddings may take hours-days.",
+      "strict_use_rule": "Checkpoint present is not enough; selected node must verify row/vocab/order contract."
+    },
+    {
+      "id": "scgpt",
+      "display_name": "scGPT",
+      "family": "single_cell_foundation_model",
+      "paper_presence": "system_overview_and_task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquired_public_source_but_task_embedding_contract_pending",
+      "local_path": "/home/Models/scGPT",
+      "source": "tdc/scGPT public model acquired.",
+      "download_policy": "Replay DOWNLOAD_REPLAY.sh, then verify gene vocabulary/expression encoder contract.",
+      "rebuild_estimate": "Checkpoint acquired; task adapter/embedding extraction hours-days.",
+      "strict_use_rule": "Must not use random expression encoder as scGPT."
+    },
+    {
+      "id": "geneformer",
+      "display_name": "Geneformer",
+      "family": "single_cell_foundation_model",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquired_public_source_but_task_embedding_contract_pending",
+      "local_path": "/home/Models/Geneformer-V2-104M",
+      "source": "Geneformer public checkpoint acquired.",
+      "download_policy": "Replay DOWNLOAD_REPLAY.sh; verify tokenizer/gene vocabulary against task.",
+      "rebuild_estimate": "Checkpoint acquired; downstream extraction hours-days.",
+      "strict_use_rule": "Must verify gene token vocabulary and cell input contract."
+    },
+    {
+      "id": "transcriptformer",
+      "display_name": "TranscriptFormer",
+      "family": "single_cell_foundation_model",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquirable_or_needs_verification",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list",
+      "download_policy": "Search official public checkpoint/source when selected.",
+      "rebuild_estimate": "Not practical to pretrain; downstream adapter if acquired.",
+      "strict_use_rule": "Must be official/source-backed before selection can train."
+    },
+    {
+      "id": "scprint",
+      "display_name": "scPRINT",
+      "family": "single_cell_foundation_model",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "single_cell_expression"
+      ],
+      "artifact_status": "paper_original_acquired_public_source_but_task_embedding_contract_pending",
+      "local_path": "/home/Models/scPRINT_medium",
+      "source": "Public scPRINT medium artifact acquired.",
+      "download_policy": "Replay DOWNLOAD_REPLAY.sh; verify task encoder contract on selection.",
+      "rebuild_estimate": "Checkpoint acquired; extraction/adapter hours-days.",
+      "strict_use_rule": "Must verify gene vocabulary and row alignment."
+    },
+    {
+      "id": "genept_all",
+      "display_name": "GenePT All",
+      "family": "gene_text_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior"
+      ],
+      "artifact_status": "paper_original_acquired_public_source",
+      "local_path": "/home/Models/GenePT_original_ada",
+      "source": "GenePT original ada embeddings acquired.",
+      "download_policy": "Replay DOWNLOAD_REPLAY.sh.",
+      "rebuild_estimate": "Not needed if embedding table maps target genes.",
+      "strict_use_rule": "Must record mapping coverage and missing genes."
+    },
+    {
+      "id": "genept_bp",
+      "display_name": "GenePT BP",
+      "family": "gene_text_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list / Gene Ontology biological process descriptions.",
+      "download_policy": "Derive from public GO BP descriptions and embedding model with documented version.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Must distinguish derived BP subset from paper original artifact."
+    },
+    {
+      "id": "genept_cc",
+      "display_name": "GenePT CC",
+      "family": "gene_text_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list / GO cellular component descriptions.",
+      "download_policy": "Derive from public GO CC descriptions and embedding model with documented version.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Must document exact text corpus."
+    },
+    {
+      "id": "genept_mf",
+      "display_name": "GenePT MF",
+      "family": "gene_text_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list / GO molecular function descriptions.",
+      "download_policy": "Derive from public GO MF descriptions and embedding model with documented version.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Must document exact text corpus."
+    },
+    {
+      "id": "genept_ncbi",
+      "display_name": "GenePT NCBI",
+      "family": "gene_text_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list / NCBI gene summaries.",
+      "download_policy": "Derive from public NCBI gene summaries and embedding model with documented version.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Must document source snapshot."
+    },
+    {
+      "id": "genept_n_plus_u",
+      "display_name": "GenePT N+U",
+      "family": "gene_text_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list / combined NCBI and UniProt text.",
+      "download_policy": "Derive from public NCBI/UniProt text with documented embedding model.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Must not mix undocumented text snapshots."
+    },
+    {
+      "id": "depmap",
+      "display_name": "DepMap",
+      "family": "functional_genomics_prior",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "gene_prior",
+        "essentiality_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "DepMap public releases / VCHarness task-atlas motif list.",
+      "download_policy": "Download public DepMap release and align genes/cell lines when selected.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Must record release, gene IDs, and whether K562-specific signal is used."
+    },
+    {
+      "id": "genotypevae",
+      "display_name": "GenotypeVAE",
+      "family": "genotype_prior",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "genotype_context",
+        "CRISPR_DEG_if_genotype_available"
+      ],
+      "artifact_status": "paper_original_acquirable_or_needs_verification",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list.",
+      "download_policy": "Search public checkpoint/source; otherwise source-backed reimplementation requires genotype data.",
+      "rebuild_estimate": "Weeks if training from genotype cohorts.",
+      "strict_use_rule": "Task-gated; not selected for K562 unless genotype inputs exist."
+    },
+    {
+      "id": "positional_3m",
+      "display_name": "Positional 3M",
+      "family": "positional_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "gene_order_or_sequence_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list.",
+      "download_policy": "Derive documented positional embeddings only if task has genomic coordinate contract.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Task-gated; coordinates and genome build must be recorded."
+    },
+    {
+      "id": "positional_10m",
+      "display_name": "Positional 10M",
+      "family": "positional_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "gene_order_or_sequence_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list.",
+      "download_policy": "Derive with documented genome build/coordinate source.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Task-gated; cannot use arbitrary target index as positional prior."
+    },
+    {
+      "id": "positional_100m",
+      "display_name": "Positional 100M",
+      "family": "positional_embedding",
+      "paper_presence": "task_atlas_motif",
+      "task_applicability": [
+        "gene_order_or_sequence_prior"
+      ],
+      "artifact_status": "paper_original_source_backed_reimplementation_needed",
+      "local_path": "",
+      "source": "VCHarness task-atlas motif list.",
+      "download_policy": "Derive with documented genome build/coordinate source.",
+      "rebuild_estimate": "Hours-days.",
+      "strict_use_rule": "Task-gated; genome build required."
+    },
+    {
+      "id": "alphagenome",
+      "display_name": "AlphaGenome",
+      "family": "sequence_regulatory_model",
+      "paper_presence": "paper_level_extension_or_sequence_task_module",
+      "task_applicability": [
+        "MPRA",
+        "variant_effect",
+        "regulatory_sequence_tasks"
+      ],
+      "artifact_status": "paper_original_task_gated_or_extension",
+      "local_path": "",
+      "source": "Sequence/regulatory model universe; not default K562 DEG module.",
+      "download_policy": "Only select for sequence/regulatory task with explicit inputs.",
+      "rebuild_estimate": "Not practical from scratch.",
+      "strict_use_rule": "Not K562 DEG default; include so universe is not smaller for sequence tasks."
+    },
+    {
+      "id": "reactome_pathway_memberships",
+      "display_name": "Reactome/pathway memberships",
+      "family": "pathway_prior",
+      "paper_presence": "architecture_prior",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "pathway_prior"
+      ],
+      "artifact_status": "paper_level_derived_public_source",
+      "local_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "source": "Reactome public pathway database or equivalent source-backed pathway release.",
+      "download_policy": "Build per cell-line target vocabulary through artifact acquisition resolver.",
+      "rebuild_estimate": "Minutes-hours.",
+      "strict_use_rule": "Must verify target order, pathway source, and coverage."
+    },
+    {
+      "id": "regulatory_network_prior",
+      "display_name": "Regulatory network prior",
+      "family": "regulatory_prior",
+      "paper_presence": "architecture_prior",
+      "task_applicability": [
+        "CRISPR_DEG",
+        "regulatory_prior"
+      ],
+      "artifact_status": "paper_original_acquirable_or_needs_verification",
+      "local_path": "",
+      "source": "Public regulatory network source to be selected by acquisition resolver.",
+      "download_policy": "Search/download source-backed network; block if source cannot be verified.",
+      "rebuild_estimate": "Hours-days for public network alignment; weeks for de novo inference.",
+      "strict_use_rule": "No fabricated regulatory edges."
+    },
+    {
+      "id": "scratch_baseline",
+      "display_name": "No pretrained / scratch baseline",
+      "family": "baseline",
+      "paper_presence": "expert_baseline_or_ablation",
+      "task_applicability": [
+        "all"
+      ],
+      "artifact_status": "no_artifact_required",
+      "local_path": "",
+      "source": "Baseline control.",
+      "download_policy": "None.",
+      "rebuild_estimate": "Minutes-hours downstream training only.",
+      "strict_use_rule": "Must be labeled baseline, not foundation model."
+    },
+    {
+      "id": "public_vcharness_static_tree",
+      "display_name": "Public VCHarness static tree nodes",
+      "family": "public_static_tree",
+      "paper_presence": "public_case_study_scaffold",
+      "task_applicability": [
+        "HepG2_cls",
+        "Jurkat_cls",
+        "K562_cls",
+        "hTERT-RPE1_cls"
+      ],
+      "artifact_status": "paper_original_public_scaffold_acquired",
+      "local_path": "/workspace/_external/VCHarness",
+      "source": "https://github.com/genbio-ai/VCHarness.",
+      "download_policy": "Git clone public repo; parse each cell-line static tree as benchmark scaffold.",
+      "rebuild_estimate": "Not needed; static case-study code is public, but hidden model dirs may still block exact execution.",
+      "strict_use_rule": "Scaffold/reference unless exact required artifacts are present."
+    }
+  ]
+}

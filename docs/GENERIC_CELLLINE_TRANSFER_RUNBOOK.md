@@ -22,7 +22,7 @@ Required prompt fields:
 | `RUN_DIR` | Fresh experiment directory |
 | `TARGET_VAL_MACRO_F1` | Required for `full_cellline_run`; optional for loop tests |
 
-The prompt should say: read `CODEX_AGENT_COOKBOOK.md`, this runbook, `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md`, and `ARTIFACT_ACQUISITION_RUNBOOK.md`. If `CELL_LINE_ID=K562`, also read `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`.
+The prompt should say: read `CODEX_AGENT_COOKBOOK.md`, this runbook, `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md`, `ARTIFACT_ACQUISITION_RUNBOOK.md`, and `docs/VCHARNESS_PAPER_MODEL_UNIVERSE.md`. If `CELL_LINE_ID=K562`, also read `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`.
 
 Do not paste detailed runtime rules into the prompt. If a rule needs to change, update the cookbook/runbook first.
 
@@ -56,6 +56,16 @@ Use `scripts/run_generic_cellline_transfer_test.py` to expand a short request in
 | `transfer_64x16` | 64 | 16 | default transfer test |
 | `transfer_150x40` | 150 | 40 | loop/self-test pressure test after 64x16 passes |
 | `full_cellline_run` | 300 | 100 | root-beating full cell-line run; default 8 epochs |
+
+## Paper Universe Audit
+
+Before a `full_cellline_run` or paper-aligned search, run:
+
+```bash
+python scripts/audit_paper_model_universe.py
+```
+
+If the audit fails, fix the manifest/search-space contract before training. A task-specific search may gate incompatible modules, but it must not omit them from `configs/vcharness_paper_model_universe.json`.
 
 ## Standard Invocation
 

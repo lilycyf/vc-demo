@@ -63,6 +63,30 @@
     {
       "family": "training_strategy",
       "role": "weighted CE, focal loss, layerwise LR, SWA/checkpoint ensemble"
+    },
+    {
+      "family": "ESM2_size_sweep",
+      "role": "protein language model branches at 35M/150M/650M/3B scale"
+    },
+    {
+      "family": "gene_text_and_functional_priors",
+      "role": "GenePT GO/NCBI/UniProt, DepMap, and genotype priors"
+    },
+    {
+      "family": "single_cell_foundation_expanded",
+      "role": "Geneformer, TranscriptFormer, scPRINT, scGPT, scFoundation, AIDO.Cell size sweep"
+    },
+    {
+      "family": "STRING_variant_family",
+      "role": "STRING Spectral, Seq, WaveGC, Net, GNN Simple, and original STRING_GNN"
+    },
+    {
+      "family": "sequence_and_regulatory_task_gated",
+      "role": "AIDO.DNA/DNA2 and AlphaGenome when a sequence/regulatory task is requested"
+    },
+    {
+      "family": "scratch_and_ablation_controls",
+      "role": "no-pretrained and ablation controls so gains are interpretable"
     }
   ],
   "codex_on_demand_rules": {
@@ -139,7 +163,21 @@
         "single-cell foundation encoder",
         "STRING_GNN",
         "public static wrapper",
-        "native public-best reimplementation"
+        "native public-best reimplementation",
+        "AIDO.DNA",
+        "AIDO.DNA2",
+        "AIDO.Cell 3M",
+        "AIDO.Cell 10M",
+        "AIDO.Cell 100M",
+        "AIDO.Protein",
+        "AIDO Protein 16B",
+        "ProteinRAG 16B + structure",
+        "scGPT",
+        "scFoundation",
+        "Geneformer",
+        "TranscriptFormer",
+        "scPRINT",
+        "No pretrained / scratch baseline"
       ]
     },
     {
@@ -159,7 +197,12 @@
         "K-hop attention",
         "message passing",
         "Laplacian smoothing",
-        "graph-conditioned head"
+        "graph-conditioned head",
+        "STRING Spectral",
+        "STRING Seq",
+        "STRING WaveGC",
+        "STRING Net",
+        "GNN Simple Official D256"
       ]
     },
     {
@@ -202,13 +245,47 @@
         "Reactome pooling",
         "regulatory network prior"
       ]
+    },
+    {
+      "dimension": "protein_language_model",
+      "options": [
+        "ESM2 35M",
+        "ESM2 150M",
+        "ESM2 650M",
+        "ESM2 3B"
+      ]
+    },
+    {
+      "dimension": "gene_text_and_functional_prior",
+      "options": [
+        "GenePT All",
+        "GenePT BP",
+        "GenePT CC",
+        "GenePT MF",
+        "GenePT NCBI",
+        "GenePT N+U",
+        "DepMap",
+        "GenotypeVAE"
+      ]
+    },
+    {
+      "dimension": "positional_or_sequence_prior",
+      "options": [
+        "Positional 3M",
+        "Positional 10M",
+        "Positional 100M",
+        "AlphaGenome"
+      ]
     }
   ],
   "candidate_expansion_contract": {
     "method": "manifest_cross_product_with_blueprint_constraints",
     "estimated_candidate_formula": "sum of valid backbone x adapter x graph_prior x fusion x target_head x training_strategy x prior combinations after artifact/status constraints",
     "do_not_preimplement_all_candidates": true,
-    "planned_candidate_execution": "MCTS may select a planned blueprint; Codex implements that node only after selection."
+    "planned_candidate_execution": "MCTS may select a planned blueprint; Codex implements that node only after selection.",
+    "paper_universe_manifest_required": true,
+    "minimum_universe_modules_required": 40,
+    "task_gating_is_not_omission": true
   },
   "artifact_policies": [
     {
@@ -269,5 +346,56 @@
       "official_pathway_pooling_reactome",
       "official_public_best_node"
     ]
+  },
+  "paper_model_universe_manifest": "configs/vcharness_paper_model_universe.json",
+  "coverage_requirement": {
+    "rule": "The K562 search space is a task-gated projection of configs/vcharness_paper_model_universe.json. It may add K562-specific combinations, but no VCHarness paper module family may be absent from the universe manifest.",
+    "audit_command": "python scripts/audit_paper_model_universe.py",
+    "cannot_be_smaller_than_paper": true,
+    "paper_original_modules_must_be_listed_even_when_blocked_or_task_gated": true
+  },
+  "paper_universe_task_gates": {
+    "K562_DEG_default_selectable": [
+      "AIDO.Cell-3M",
+      "AIDO.Cell-10M",
+      "AIDO.Cell-100M",
+      "AIDO cached embedding",
+      "scFoundation",
+      "scGPT",
+      "Geneformer",
+      "TranscriptFormer",
+      "scPRINT",
+      "STRING_GNN",
+      "STRING graph/PPI",
+      "STRING Spectral",
+      "STRING Seq",
+      "STRING WaveGC",
+      "STRING Net",
+      "GNN Simple Official D256",
+      "ESM2 35M",
+      "ESM2 150M",
+      "ESM2 650M",
+      "ESM2 3B",
+      "GenePT All",
+      "GenePT BP",
+      "GenePT CC",
+      "GenePT MF",
+      "GenePT NCBI",
+      "GenePT N+U",
+      "DepMap",
+      "Reactome/pathway memberships",
+      "regulatory network priors",
+      "scratch baseline",
+      "public VCHarness static tree nodes"
+    ],
+    "task_gated_not_K562_DEG_default": [
+      "AIDO.DNA",
+      "AIDO.DNA2",
+      "AlphaGenome",
+      "GenotypeVAE unless genotype covariates are available",
+      "Positional 3M/10M/100M unless genomic coordinate features are acquired",
+      "AIDO.Protein-16B/ProteinRAG-16B unless protein branch compute/storage is approved"
+    ],
+    "selection_rule": "Task-gated modules stay in the universe and count toward paper coverage, but K562 DEG full runs should only select them after the task contract includes the required input modality and artifacts."
   }
 }
