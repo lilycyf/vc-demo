@@ -1,0 +1,149 @@
+{
+  "artifact_id": "geneformer_v2_104m_alternative_single_cell_foundation",
+  "status": "downloaded_public_alternative_not_vcharness_original",
+  "repo_id": "ctheodoris/Geneformer",
+  "local_dir": "/workspace/models/Geneformer",
+  "downloaded_at": "2026-07-29T08:27:57Z",
+  "files": [
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/.gitignore",
+      "bytes": 1,
+      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/config.json.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/config.json.metadata",
+      "bytes": 101,
+      "sha256": "11daf7ae25d1ea4a8c9298be163647ed093a3a5392579a00893d384893c66077"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/generation_config.json.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/generation_config.json.metadata",
+      "bytes": 101,
+      "sha256": "b7f9a5684a695e5336b1cbbb4f103aa20206b82305142a0f609aab13a6cd60c2"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/model.safetensors.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/model.safetensors.metadata",
+      "bytes": 124,
+      "sha256": "7dec3037551751b4acd82b6a6e9d9c5898cb2d3a67be7bb012c88f97ae65e7d4"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/training_args.bin.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/Geneformer-V2-104M/training_args.bin.metadata",
+      "bytes": 125,
+      "sha256": "8442830855e4d795b9dec94fc5912e06546d5c1925f2f46972bb7eadf589e75c"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/README.md.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/README.md.metadata",
+      "bytes": 100,
+      "sha256": "42e26442e3a491c1bb389d6ccca04206e5a203fdab8fde6a665353fb80a9c401"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/ensembl_mapping_dict_gc104M.pkl.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/ensembl_mapping_dict_gc104M.pkl.metadata",
+      "bytes": 125,
+      "sha256": "6699e50bfbeed138c220b24d47cc84ce6516c6e4018ddaddb98e4b53e0f42155"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/gene_median_dictionary_gc104M.pkl.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/gene_median_dictionary_gc104M.pkl.metadata",
+      "bytes": 125,
+      "sha256": "c29189207ad73b4770ac7977042bb833b8e83336e6762fde7075a6fc92ac2601"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/gene_name_id_dict_gc104M.pkl.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/gene_name_id_dict_gc104M.pkl.metadata",
+      "bytes": 125,
+      "sha256": "7a74c905e1d027358c2226ac160466f35cdfbafa339d8e1a70872411efc78d8b"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/token_dictionary_gc104M.pkl.lock",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/workspace/models/Geneformer/.cache/huggingface/download/geneformer/token_dictionary_gc104M.pkl.metadata",
+      "bytes": 125,
+      "sha256": "d53ef12792b4773cef7230f76e214c28a891a37723de5d6c4f96464846cbe0cc"
+    },
+    {
+      "path": "/workspace/models/Geneformer/Geneformer-V2-104M/config.json",
+      "bytes": 590,
+      "sha256": "467d4492f0dd53b4d60afffe20812db484ca1cf9fdbeb6a6e060e93564f70859"
+    },
+    {
+      "path": "/workspace/models/Geneformer/Geneformer-V2-104M/generation_config.json",
+      "bytes": 90,
+      "sha256": "bf1ba320993168b0d6ee5ff170df2108454d239b28eaac5948d30ee6993cccc1"
+    },
+    {
+      "path": "/workspace/models/Geneformer/Geneformer-V2-104M/model.safetensors",
+      "bytes": 417571156,
+      "sha256": "fff5cba29ddd8792991fa77b4872246fbe548a178cebda3775cdc72b67780e7f"
+    },
+    {
+      "path": "/workspace/models/Geneformer/Geneformer-V2-104M/training_args.bin",
+      "bytes": 5496,
+      "sha256": "0d8ddd9e4f35b5fe23a3adaae03aa4480705ca82eed546a488f970adb3752d9d"
+    },
+    {
+      "path": "/workspace/models/Geneformer/README.md",
+      "bytes": 9470,
+      "sha256": "56d6e570b349cbedae9a54634421c94e7af8ea467ce0fdd79193372ae3cbdbd8"
+    },
+    {
+      "path": "/workspace/models/Geneformer/geneformer/ensembl_mapping_dict_gc104M.pkl",
+      "bytes": 3957652,
+      "sha256": "0819bcbd869cfa14279449b037eb9ed1d09a91310e77bd1a19d927465030e95c"
+    },
+    {
+      "path": "/workspace/models/Geneformer/geneformer/gene_median_dictionary_gc104M.pkl",
+      "bytes": 1512661,
+      "sha256": "a51c53f6a771d64508dfaf61529df70e394c53bd20856926117ae5d641a24bf5"
+    },
+    {
+      "path": "/workspace/models/Geneformer/geneformer/gene_name_id_dict_gc104M.pkl",
+      "bytes": 1660882,
+      "sha256": "fabfa0c2f49c598c59ae432a32c3499a5908c033756c663b5e0cddf58deea8e1"
+    },
+    {
+      "path": "/workspace/models/Geneformer/geneformer/token_dictionary_gc104M.pkl",
+      "bytes": 425590,
+      "sha256": "67c445f4385127adfc48dcc072320cd65d6822829bf27dd38070e6e787bc597f"
+    }
+  ]
+}

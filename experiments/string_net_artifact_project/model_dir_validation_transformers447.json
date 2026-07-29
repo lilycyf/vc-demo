@@ -1,0 +1,49 @@
+{
+  "status": "passed_with_warnings",
+  "model_dirs": [
+    {
+      "path": "/home/Models/AIDO.Cell-100M",
+      "repo_id": "genbio-ai/AIDO.Cell-100M",
+      "files": [
+        "LICENSE",
+        "OS_scRNA_gene_index.19264.tsv",
+        "README.md",
+        "config.json",
+        "configuration_cellfoundation.py",
+        "gene_id_to_aido_index.json",
+        "generation_config.json",
+        "model.original_with_bert_prefix.safetensors",
+        "model.safetensors",
+        "modeling_cellfoundation.py",
+        "tokenization_cellfoundation.py",
+        "tokenizer_config.json"
+      ],
+      "has_config": true,
+      "has_weight": true,
+      "tokenizer_files": [
+        "tokenizer_config.json"
+      ],
+      "warnings": [],
+      "status": "usable_with_warnings"
+    },
+    {
+      "path": "/home/Models/STRING_GNN",
+      "repo_id": "genbio-ai/STRING_GNN",
+      "files": [
+        "README.md",
+        "config.json",
+        "configuration_string_gnn_compat.py",
+        "graph_data.pt",
+        "modeling_string_gnn_compat.py",
+        "node_embeddings.pt",
+        "node_names.json",
+        "pytorch_model.bin"
+      ],
+      "has_config": true,
+      "has_weight": true,
+      "tokenizer_files": [],
+      "warnings": [],
+      "status": "usable_with_warnings"
+    }
+  ]
+}

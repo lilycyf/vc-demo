@@ -14,7 +14,11 @@ from safetensors.torch import load_file, save_file
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-MODELGENERATOR_AIDO = Path("/workspace/_external/ModelGenerator/huggingface/aido.cell/aido_cell")
+MODELGENERATOR_AIDO_CANDIDATES = [
+    Path("/workspace/_external/ModelGenerator/huggingface/gb.cell/gb_cell"),
+    Path("/workspace/_external/ModelGenerator/huggingface/aido.cell/aido_cell"),
+]
+MODELGENERATOR_AIDO = next((path for path in MODELGENERATOR_AIDO_CANDIDATES if path.exists()), MODELGENERATOR_AIDO_CANDIDATES[0])
 AIDO_DIR = Path("/home/Models/AIDO.Cell-100M")
 STRING_DIR = Path("/home/Models/STRING_GNN")
 AIDO_EMBEDDING_H5AD = REPO_ROOT / "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad"

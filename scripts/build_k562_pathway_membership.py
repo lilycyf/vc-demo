@@ -17,9 +17,25 @@ USER_AGENT = "vc-demo pathway artifact builder; source-backed Reactome download"
 
 
 def load_target_genes(data_dir: Path) -> list[str]:
+    target_tsv = data_dir / "target_genes.tsv"
+    if target_tsv.exists():
+        rows = [line.strip().split("\t") for line in target_tsv.read_text().splitlines() if line.strip()]
+        if rows:
+            header = [col.lower() for col in rows[0]]
+            if "symbol" in header:
+                idx = header.index("symbol")
+                rows = rows[1:]
+            elif "gene_id" in header:
+                idx = header.index("gene_id")
+                rows = rows[1:]
+            else:
+                idx = 0
+            genes = [row[idx] for row in rows if len(row) > idx and row[idx]]
+            if genes:
+                return genes
     train = data_dir / "train.npz"
     if not train.exists():
-        raise FileNotFoundError(f"missing train split: {train}")
+        raise FileNotFoundError(f"missing target_genes.tsv or train split: {target_tsv}, {train}")
     with np.load(train, allow_pickle=True) as z:
         if "target_genes" not in z.files:
             raise KeyError(f"{train} does not contain target_genes")

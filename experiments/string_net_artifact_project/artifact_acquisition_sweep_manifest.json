@@ -1,0 +1,563 @@
+{
+  "generated_at": "2026-07-29T08:20:43Z",
+  "items": [
+    {
+      "id": "public_vcharness_repo",
+      "type": "source_code_repo",
+      "status": "present",
+      "source": "https://github.com/genbio-ai/VCHarness.git",
+      "local_path": "/workspace/_external/VCHarness",
+      "command": {
+        "cmd": [
+          "git",
+          "clone",
+          "https://github.com/genbio-ai/VCHarness.git",
+          "/workspace/_external/VCHarness"
+        ],
+        "returncode": 0,
+        "seconds": 9.98,
+        "stdout_tail": "",
+        "stderr_tail": "Cloning into '/workspace/_external/VCHarness'...\nUpdating files:  13% (257/1888)\nUpdating files:  14% (265/1888)\nUpdating files:  15% (284/1888)\nUpdating files:  16% (303/1888)\nUpdating files:  17% (321/1888)\nUpdating files:  18% (340/1888)\nUpdating files:  19% (359/1888)\nUpdating files:  20% (378/1888)\nUpdating files:  21% (397/1888)\nUpdating files:  22% (416/1888)\nUpdating files:  23% (435/1888)\nUpdating files:  24% (454/1888)\nUpdating files:  25% (472/1888)\nUpdating files:  25% (488/1888)\nUpdating files:  26% (491/1888)\nUpdating files:  27% (510/1888)\nUpdating files:  28% (529/1888)\nUpdating files:  29% (548/1888)\nUpdating files:  30% (567/1888)\nUpdating files:  31% (586/1888)\nUpdating files:  32% (605/1888)\nUpdating files:  33% (624/1888)\nUpdating files:  34% (642/1888)\nUpdating files:  35% (661/1888)\nUpdating files:  36% (680/1888)\nUpdating files:  37% (699/1888)\nUpdating files:  38% (718/1888)\nUpdating files:  38% (733/1888)\nUpdating files:  39% (737/1888)\nUpdating files:  40% (756/1888)\nUpdating files:  41% (775/1888)\nUpdating files:  42% (793/1888)\nUpdating files:  43% (812/1888)\nUpdating files:  44% (831/1888)\nUpdating files:  45% (850/1888)\nUpdating files:  46% (869/1888)\nUpdating files:  47% (888/1888)\nUpdating files:  48% (907/1888)\nUpdating files:  49% (926/1888)\nUpdating files:  50% (944/1888)\nUpdating files:  51% (963/1888)\nUpdating files:  52% (982/1888)\nUpdating files:  52% (990/1888)\nUpdating files:  53% (1001/1888)\nUpdating files:  54% (1020/1888)\nUpdating files:  55% (1039/1888)\nUpdating files:  56% (1058/1888)\nUpdating files:  57% (1077/1888)\nUpdating files:  58% (1096/1888)\nUpdating files:  59% (1114/1888)\nUpdating files:  60% (1133/1888)\nUpdating files:  61% (1152/1888)\nUpdating files:  62% (1171/1888)\nUpdating files:  63% (1190/1888)\nUpdating files:  64% (1209/1888)\nUpdating files:  65% (1228/1888)\nUpdating files:  65% (1241/1888)\nUpdating files:  66% (1247/1888)\nUpdating files:  67% (1265/1888)\nUpdating files:  68% (1284/1888)\nUpdating files:  69% (1303/1888)\nUpdating files:  70% (1322/1888)\nUpdating files:  71% (1341/1888)\nUpdating files:  72% (1360/1888)\nUpdating files:  73% (1379/1888)\nUpdating files:  74% (1398/1888)\nUpdating files:  75% (1416/1888)\nUpdating files:  76% (1435/1888)\nUpdating files:  77% (1454/1888)\nUpdating files:  77% (1467/1888)\nUpdating files:  78% (1473/1888)\nUpdating files:  79% (1492/1888)\nUpdating files:  80% (1511/1888)\nUpdating files:  81% (1530/1888)\nUpdating files:  82% (1549/1888)\nUpdating files:  83% (1568/1888)\nUpdating files:  84% (1586/1888)\nUpdating files:  85% (1605/1888)\nUpdating files:  86% (1624/1888)\nUpdating files:  87% (1643/1888)\nUpdating files:  88% (1662/1888)\nUpdating files:  89% (1681/1888)\nUpdating files:  90% (1700/1888)\nUpdating files:  90% (1716/1888)\nUpdating files:  91% (1719/1888)\nUpdating files:  92% (1737/1888)\nUpdating files:  93% (1756/1888)\nUpdating files:  94% (1775/1888)\nUpdating files:  95% (1794/1888)\nUpdating files:  96% (1813/1888)\nUpdating files:  97% (1832/1888)\nUpdating files:  98% (1851/1888)\nUpdating files:  99% (1870/1888)\nUpdating files: 100% (1888/1888)\nUpdating files: 100% (1888/1888), done.\n"
+      },
+      "file_info": {
+        "path": "/workspace/_external/VCHarness",
+        "exists": true,
+        "kind": "dir",
+        "file_count": 1914,
+        "bytes": 102186541
+      }
+    },
+    {
+      "id": "public_modelgenerator_repo",
+      "type": "source_code_repo",
+      "status": "present",
+      "source": "https://github.com/genbio-ai/ModelGenerator.git",
+      "local_path": "/workspace/_external/ModelGenerator",
+      "command": {
+        "cmd": [
+          "git",
+          "clone",
+          "https://github.com/genbio-ai/ModelGenerator.git",
+          "/workspace/_external/ModelGenerator"
+        ],
+        "returncode": 0,
+        "seconds": 4.162,
+        "stdout_tail": "",
+        "stderr_tail": "Cloning into '/workspace/_external/ModelGenerator'...\nUpdating files:  30% (173/563)\nUpdating files:  31% (175/563)\nUpdating files:  32% (181/563)\nUpdating files:  33% (186/563)\nUpdating files:  34% (192/563)\nUpdating files:  35% (198/563)\nUpdating files:  36% (203/563)\nUpdating files:  37% (209/563)\nUpdating files:  38% (214/563)\nUpdating files:  39% (220/563)\nUpdating files:  40% (226/563)\nUpdating files:  41% (231/563)\nUpdating files:  42% (237/563)\nUpdating files:  43% (243/563)\nUpdating files:  44% (248/563)\nUpdating files:  45% (254/563)\nUpdating files:  46% (259/563)\nUpdating files:  47% (265/563)\nUpdating files:  48% (271/563)\nUpdating files:  49% (276/563)\nUpdating files:  50% (282/563)\nUpdating files:  51% (288/563)\nUpdating files:  52% (293/563)\nUpdating files:  53% (299/563)\nUpdating files:  54% (305/563)\nUpdating files:  55% (310/563)\nUpdating files:  56% (316/563)\nUpdating files:  57% (321/563)\nUpdating files:  58% (327/563)\nUpdating files:  59% (333/563)\nUpdating files:  60% (338/563)\nUpdating files:  61% (344/563)\nUpdating files:  62% (350/563)\nUpdating files:  63% (355/563)\nUpdating files:  64% (361/563)\nUpdating files:  65% (366/563)\nUpdating files:  66% (372/563)\nUpdating files:  67% (378/563)\nUpdating files:  68% (383/563)\nUpdating files:  69% (389/563)\nUpdating files:  70% (395/563)\nUpdating files:  71% (400/563)\nUpdating files:  72% (406/563)\nUpdating files:  73% (411/563)\nUpdating files:  74% (417/563)\nUpdating files:  75% (423/563)\nUpdating files:  76% (428/563)\nUpdating files:  77% (434/563)\nUpdating files:  78% (440/563)\nUpdating files:  79% (445/563)\nUpdating files:  80% (451/563)\nUpdating files:  81% (457/563)\nUpdating files:  82% (462/563)\nUpdating files:  83% (468/563)\nUpdating files:  84% (473/563)\nUpdating files:  85% (479/563)\nUpdating files:  86% (485/563)\nUpdating files:  87% (490/563)\nUpdating files:  88% (496/563)\nUpdating files:  89% (502/563)\nUpdating files:  90% (507/563)\nUpdating files:  91% (513/563)\nUpdating files:  92% (518/563)\nUpdating files:  93% (524/563)\nUpdating files:  94% (530/563)\nUpdating files:  95% (535/563)\nUpdating files:  96% (541/563)\nUpdating files:  97% (547/563)\nUpdating files:  98% (552/563)\nUpdating files:  99% (558/563)\nUpdating files: 100% (563/563)\nUpdating files: 100% (563/563), done.\n"
+      },
+      "file_info": {
+        "path": "/workspace/_external/ModelGenerator",
+        "exists": true,
+        "kind": "dir",
+        "file_count": 589,
+        "bytes": 31413440
+      }
+    },
+    {
+      "id": "official_essential_deg_with_split_h5ad",
+      "type": "public_hf_dataset_file",
+      "description": "official task h5ad",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "local_path": "/workspace/vc-demo/data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "status": "present",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/download_foundation_artifact.py",
+          "--path",
+          "essential/essential_deg_with_split.h5ad",
+          "--output",
+          "/workspace/vc-demo/data/artifacts/official_k562/essential_deg_with_split.h5ad"
+        ],
+        "returncode": 0,
+        "seconds": 1.309,
+        "stdout_tail": "{\n  \"status\": \"downloaded\",\n  \"source\": \"https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation/resolve/main/essential/essential_deg_with_split.h5ad\",\n  \"path\": \"/workspace/vc-demo/data/artifacts/official_k562/essential_deg_with_split.h5ad\",\n  \"bytes\": 54536850\n}\n",
+        "stderr_tail": ""
+      },
+      "file_info": {
+        "path": "/workspace/vc-demo/data/artifacts/official_k562/essential_deg_with_split.h5ad",
+        "exists": true,
+        "kind": "file",
+        "bytes": 54536850,
+        "sha256": "8dc810bfd053e3671523a5816c8c5807e990a14b609b486f092a8e31aa522bbf"
+      }
+    },
+    {
+      "id": "official_k562_aido_cell_100m_embedding_h5ad",
+      "type": "public_hf_dataset_file",
+      "description": "AIDO.Cell-100M cached K562 embedding",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+      "local_path": "/workspace/vc-demo/data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "status": "present",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/download_foundation_artifact.py",
+          "--path",
+          "gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+          "--output",
+          "/workspace/vc-demo/data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad"
+        ],
+        "returncode": 0,
+        "seconds": 58.49,
+        "stdout_tail": "{\n  \"status\": \"downloaded\",\n  \"source\": \"https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation/resolve/main/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_%28D%3D640%29.h5ad\",\n  \"path\": \"/workspace/vc-demo/data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad\",\n  \"bytes\": 102556306\n}\n",
+        "stderr_tail": ""
+      },
+      "file_info": {
+        "path": "/workspace/vc-demo/data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+        "exists": true,
+        "kind": "file",
+        "bytes": 102556306,
+        "sha256": "70e539bb74d78b602bf53c2a273c822b4ba274363f7f3a8b49ae18a9e72b1416"
+      }
+    },
+    {
+      "id": "official_gnn_simple_embedding_h5ad",
+      "type": "public_hf_dataset_file",
+      "description": "GNN Simple official D256 embedding",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+      "local_path": "/workspace/vc-demo/data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "status": "present",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/download_foundation_artifact.py",
+          "--path",
+          "gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+          "--output",
+          "/workspace/vc-demo/data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad"
+        ],
+        "returncode": 0,
+        "seconds": 40.706,
+        "stdout_tail": "{\n  \"status\": \"downloaded\",\n  \"source\": \"https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation/resolve/main/gene_embeddings/GNN_Simple_Official_%28D%3D256%29.h5ad\",\n  \"path\": \"/workspace/vc-demo/data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad\",\n  \"bytes\": 43536698\n}\n",
+        "stderr_tail": ""
+      },
+      "file_info": {
+        "path": "/workspace/vc-demo/data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+        "exists": true,
+        "kind": "file",
+        "bytes": 43536698,
+        "sha256": "58dee3dddb3332dbff43f21225460d20fc3c75f933a4d62c71bbca4699619e25"
+      }
+    },
+    {
+      "id": "official_string_gnn_keep20_graph",
+      "type": "public_hf_dataset_file",
+      "description": "STRING keep20 graph source",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "local_path": "/workspace/vc-demo/data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "status": "present",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/download_foundation_artifact.py",
+          "--path",
+          "gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+          "--output",
+          "/workspace/vc-demo/data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+        ],
+        "returncode": 0,
+        "seconds": 0.786,
+        "stdout_tail": "{\n  \"status\": \"downloaded\",\n  \"source\": \"https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation/resolve/main/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt\",\n  \"path\": \"/workspace/vc-demo/data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt\",\n  \"bytes\": 27033534\n}\n",
+        "stderr_tail": ""
+      },
+      "file_info": {
+        "path": "/workspace/vc-demo/data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+        "exists": true,
+        "kind": "file",
+        "bytes": 27033534,
+        "sha256": "126b4a202837298c8b5cfd07a3dbe40baeaac84290471da78cedfefa37621d98"
+      }
+    },
+    {
+      "id": "esm2_gene_embedding_h5ad",
+      "type": "public_hf_dataset_file",
+      "description": "ESM2 gene embedding D1280",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+      "local_path": "/workspace/vc-demo/data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "status": "present",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/download_foundation_artifact.py",
+          "--path",
+          "gene_embeddings/ESM2_(D=1280).h5ad",
+          "--output",
+          "/workspace/vc-demo/data/artifacts/gene_embeddings/ESM2_D1280.h5ad"
+        ],
+        "returncode": 0,
+        "seconds": 107.69,
+        "stdout_tail": "{\n  \"status\": \"downloaded\",\n  \"source\": \"https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation/resolve/main/gene_embeddings/ESM2_%28D%3D1280%29.h5ad\",\n  \"path\": \"/workspace/vc-demo/data/artifacts/gene_embeddings/ESM2_D1280.h5ad\",\n  \"bytes\": 242230762\n}\n",
+        "stderr_tail": ""
+      },
+      "file_info": {
+        "path": "/workspace/vc-demo/data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+        "exists": true,
+        "kind": "file",
+        "bytes": 242230762,
+        "sha256": "43e099440857d8084856c5f86c7f6b47488fcedf1b703eeb1a1384bb7a489e59"
+      }
+    },
+    {
+      "id": "official_k562_task_contract",
+      "type": "derived_artifact_or_audit",
+      "status": "present_or_completed",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/build_official_k562_task.py",
+          "build"
+        ],
+        "returncode": 0,
+        "seconds": 1.412,
+        "stdout_tail": "{\n  \"format\": \"official_k562_tsv\",\n  \"schema_version\": \"vc_demo.official_k562.v1\",\n  \"source\": {\n    \"name\": \"genbio-ai/foundation-models-perturbation essential/essential_deg_with_split.h5ad\",\n    \"url\": \"https://huggingface.co/datasets/genbio-ai/foundation-models-perturbation\",\n    \"path\": \"data/artifacts/official_k562/essential_deg_with_split.h5ad\",\n    \"sha256\": \"8dc810bfd053e3671523a5816c8c5807e990a14b609b486f092a8e31aa522bbf\",\n    \"bytes\": 54536850\n  },\n  \"contract\": {\n    \"cell_line\": \"K-562\",\n    \"fold\": 0,\n    \"val_fraction\": 0.1,\n    \"val_seed\": 20260414,\n    \"n_genes\": 6640,\n    \"n_classes\": 3,\n    \"expected_train_rows\": 1388,\n    \"expected_train_pool_rows\": 1542,\n    \"label_values\": [\n      -1,\n      0,\n      1\n    ]\n  },\n  \"cell_line\": \"K-562\",\n  \"fold\": 0,\n  \"val_fraction\": 0.1,\n  \"val_seed\": 20260414,\n  \"n_obs_all_cell_lines\": 7847,\n  \"n_perturbations_cell_line\": 1963,\n  \"n_target_genes\": 6640,\n  \"n_classes\": 3,\n  \"label_values\": [\n    -1,\n    0,\n    1\n  ],\n  \"label_remap_for_training\": {\n    \"-1\": 0,\n    \"0\": 1,\n    \"1\": 2\n  },\n  \"split_sizes\": {\n    \"train\": 1388,\n    \"val\": 154,\n    \"test\": 421\n  },\n  \"train_pool_rows_before_val_split\": 1542,\n  \"label_counts_by_split\": {\n    \"train\": {\n      \"-1\": 405816,\n      \"0\": 8510952,\n      \"1\": 299552\n    },\n    \"val\": {\n      \"-1\": 32336,\n      \"0\": 963695,\n      \"1\": 26529\n    },\n    \"test\": {\n      \"-1\": 89553,\n      \"0\": 2637627,\n      \"1\": 68260\n    }\n  },\n  \"train_class_frequency_raw_labels\": {\n    \"-1\": 0.044032325266483804,\n    \"0\": 0.9234653310648936,\n    \"1\": 0.03250234366862262\n  },\n  \"files\": {\n    \"train\": \"train.tsv\",\n    \"val\": \"val.tsv\",\n    \"test\": \"test.tsv\",\n    \"target_genes\": \"target_genes.tsv\"\n  },\n  \"official_vcharness_alignment\": {\n    \"matches_n_genes_6640\": true,\n    \"matches_train_rows_1388\": true,\n    \"matches_train_pool_rows_1542\": true,\n    \"tsv_columns_match_public_node_code\": [\n      \"pert_id\",\n      \"symbol\",\n      \"label\"\n    ]\n  }\n}\n",
+        "stderr_tail": ""
+      }
+    },
+    {
+      "id": "official_k562_task_validate",
+      "type": "derived_artifact_or_audit",
+      "status": "present_or_completed",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/build_official_k562_task.py",
+          "validate"
+        ],
+        "returncode": 0,
+        "seconds": 1.679,
+        "stdout_tail": "{\n  \"status\": \"passed\",\n  \"data_dir\": \"data/cell_lines/official_k562_cls\",\n  \"split_sizes\": {\n    \"train\": 1388,\n    \"val\": 154,\n    \"test\": 421\n  },\n  \"target_gene_rows\": 6640,\n  \"n_genes_seen\": [\n    6640\n  ],\n  \"label_counts_by_split\": {\n    \"train\": {\n      \"-1\": 405816,\n      \"0\": 8510952,\n      \"1\": 299552\n    },\n    \"val\": {\n      \"-1\": 32336,\n      \"0\": 963695,\n      \"1\": 26529\n    },\n    \"test\": {\n      \"-1\": 89553,\n      \"0\": 2637627,\n      \"1\": 68260\n    }\n  },\n  \"issues\": []\n}\n",
+        "stderr_tail": ""
+      }
+    },
+    {
+      "id": "class_distribution",
+      "type": "derived_artifact_or_audit",
+      "status": "present_or_completed",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/build_official_k562_class_distribution.py",
+          "--train-tsv",
+          "data/cell_lines/official_k562_cls/train.tsv",
+          "--output",
+          "data/artifacts/official_k562/class_distribution_train.json"
+        ],
+        "returncode": 0,
+        "seconds": 1.022,
+        "stdout_tail": "{\n  \"output\": \"data/artifacts/official_k562/class_distribution_train.json\",\n  \"n_train_rows\": 1388,\n  \"n_target_genes\": 6640,\n  \"counts\": {\n    \"-1\": 405816,\n    \"0\": 8510952,\n    \"1\": 299552\n  }\n}\n",
+        "stderr_tail": ""
+      }
+    },
+    {
+      "id": "pathway_membership_matrix",
+      "type": "derived_artifact_or_audit",
+      "status": "failed_or_requires_review",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/build_k562_pathway_membership.py",
+          "--data-dir",
+          "data/cell_lines/official_k562_cls",
+          "--output",
+          "data/artifacts/pathways/k562_target_pathway_membership.npz",
+          "--summary",
+          "/workspace/vc-demo/experiments/string_net_artifact_project/k562_pathway_membership_artifact_summary.json"
+        ],
+        "returncode": 1,
+        "seconds": 0.144,
+        "stdout_tail": "",
+        "stderr_tail": "Traceback (most recent call last):\n  File \"/workspace/vc-demo/scripts/build_k562_pathway_membership.py\", line 148, in <module>\n    main()\n  File \"/workspace/vc-demo/scripts/build_k562_pathway_membership.py\", line 95, in main\n    target_genes = load_target_genes(args.data_dir)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/vc-demo/scripts/build_k562_pathway_membership.py\", line 22, in load_target_genes\n    raise FileNotFoundError(f\"missing train split: {train}\")\nFileNotFoundError: missing train split: data/cell_lines/official_k562_cls/train.npz\n"
+      }
+    },
+    {
+      "id": "official_aido_cell_100m_model_dir",
+      "type": "public_hf_model_snapshot",
+      "status": "present_with_runtime_compatibility_to_verify",
+      "source": "huggingface:model/genbio-ai/AIDO.Cell-100M",
+      "local_path": "/home/Models/AIDO.Cell-100M",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/download_hf_model_snapshot.py",
+          "--repo-id",
+          "genbio-ai/AIDO.Cell-100M",
+          "--output-dir",
+          "/home/Models/AIDO.Cell-100M",
+          "--include",
+          "config.json",
+          "generation_config.json",
+          "model.safetensors",
+          "README.md",
+          "LICENSE",
+          "--manifest",
+          "/workspace/vc-demo/experiments/string_net_artifact_project/aido_cell_100m_model_dir_manifest.json"
+        ],
+        "returncode": 0,
+        "seconds": 8.16,
+        "stdout_tail": "{\n  \"repo_id\": \"genbio-ai/AIDO.Cell-100M\",\n  \"sha\": \"a983b388e1025860f2c413ecef60e76078253c24\",\n  \"private\": false,\n  \"gated\": false,\n  \"downloads\": [\n    {\n      \"filename\": \"config.json\",\n      \"path\": \"/home/Models/AIDO.Cell-100M/config.json\",\n      \"bytes\": 889,\n      \"sha256\": \"d1f5fe34a2f76ecf61b6954b4c60360229501ce51473fd03248675c3066f096a\",\n      \"source\": \"https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/config.json\"\n    },\n    {\n      \"filename\": \"generation_config.json\",\n      \"path\": \"/home/Models/AIDO.Cell-100M/generation_config.json\",\n      \"bytes\": 96,\n      \"sha256\": \"7ba0b709b1fb48256348a0bd98404e764584c5d7d41c50e91e8d9364927f01f2\",\n      \"source\": \"https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/generation_config.json\"\n    },\n    {\n      \"filename\": \"model.safetensors\",\n      \"path\": \"/home/Models/AIDO.Cell-100M/model.safetensors\",\n      \"bytes\": 399481732,\n      \"sha256\": \"4602f09951c5a2f8cb814363f68cd63d8d7bd145e02560b852f6652df78bec77\",\n      \"source\": \"https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/model.safetensors\"\n    },\n    {\n      \"filename\": \"README.md\",\n      \"path\": \"/home/Models/AIDO.Cell-100M/README.md\",\n      \"bytes\": 4038,\n      \"sha256\": \"0a01193baad116d95b5ddbe3cec7971960eb0f9452669717cdeb505dbed7f8e7\",\n      \"source\": \"https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/README.md\"\n    },\n    {\n      \"filename\": \"LICENSE\",\n      \"path\": \"/home/Models/AIDO.Cell-100M/LICENSE\",\n      \"bytes\": 10687,\n      \"sha256\": \"1093f6e45737ac90258c839421be3bcdb2c89ef286c6ca1161edbd758b56d88b\",\n      \"source\": \"https://huggingface.co/genbio-ai/AIDO.Cell-100M/resolve/main/LICENSE\"\n    }\n  ],\n  \"validation\": {\n    \"path\": \"/home/Models/AIDO.Cell-100M\",\n    \"repo_id\": \"genbio-ai/AIDO.Cell-100M\",\n    \"files\": [\n      \"LICENSE\",\n      \"README.md\",\n      \"config.json\",\n      \"generation_config.json\",\n      \"model.safetensors\"\n    ],\n    \"has_config\": true,\n    \"has_weight\": true,\n    \"tokenizer_files\": [],\n    \"warnings\": [\n      \"no tokenizer files detected; public VCHarness code calls AutoTokenizer.from_pretrained, so runtime equivalence is not yet proven\"\n    ],\n    \"status\": \"usable_with_warnings\"\n  }\n}\n",
+        "stderr_tail": ""
+      },
+      "file_info": {
+        "path": "/home/Models/AIDO.Cell-100M",
+        "exists": true,
+        "kind": "dir",
+        "file_count": 5,
+        "bytes": 399497442
+      },
+      "manifest_path": "/workspace/vc-demo/experiments/string_net_artifact_project/aido_cell_100m_model_dir_manifest.json"
+    },
+    {
+      "id": "official_string_gnn_model_dir",
+      "type": "public_model_probe",
+      "source": "huggingface:model/genbio-ai/STRING_GNN",
+      "status": "blocked_unavailable_or_not_direct_checkpoint",
+      "expected_files": [
+        "config.json",
+        "model.safetensors",
+        "pytorch_model.bin",
+        "graph_data.pt",
+        "node_names.json"
+      ],
+      "available_files": [
+        ".gitattributes"
+      ],
+      "missing_expected_files": [
+        "config.json",
+        "model.safetensors",
+        "pytorch_model.bin",
+        "graph_data.pt",
+        "node_names.json"
+      ],
+      "raw_ok": true,
+      "gated": false,
+      "private": false
+    },
+    {
+      "id": "scfoundation_candidate_xcompass",
+      "type": "public_model_probe",
+      "source": "huggingface:model/xCompass-AI/scFoundation",
+      "status": "blocked_unavailable_or_not_direct_checkpoint",
+      "expected_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "model.safetensors"
+      ],
+      "available_files": [],
+      "missing_expected_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "model.safetensors"
+      ],
+      "raw_ok": false,
+      "gated": null,
+      "private": null
+    },
+    {
+      "id": "scgpt_candidate_bowang",
+      "type": "public_model_probe",
+      "source": "huggingface:model/bowang-lab/scGPT",
+      "status": "blocked_unavailable_or_not_direct_checkpoint",
+      "expected_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "model.safetensors"
+      ],
+      "available_files": [],
+      "missing_expected_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "model.safetensors"
+      ],
+      "raw_ok": false,
+      "gated": null,
+      "private": null
+    },
+    {
+      "id": "geneformer_candidate_ctheodoris",
+      "type": "public_model_probe",
+      "source": "huggingface:model/ctheodoris/Geneformer",
+      "status": "present_public_checkpoint_repo",
+      "expected_files": [
+        "config.json",
+        "pytorch_model.bin",
+        "model.safetensors"
+      ],
+      "available_files": [
+        ".gitattributes",
+        ".gitignore",
+        ".pre-commit-config.yaml",
+        ".readthedocs.yaml",
+        "Geneformer-V1-10M/config.json",
+        "Geneformer-V1-10M/model.safetensors",
+        "Geneformer-V1-10M/pytorch_model.bin",
+        "Geneformer-V1-10M/training_args.bin",
+        "Geneformer-V2-104M/config.json",
+        "Geneformer-V2-104M/generation_config.json",
+        "Geneformer-V2-104M/model.safetensors",
+        "Geneformer-V2-104M/training_args.bin",
+        "Geneformer-V2-104M_CLcancer/config.json",
+        "Geneformer-V2-104M_CLcancer/generation_config.json",
+        "Geneformer-V2-104M_CLcancer/model.safetensors",
+        "Geneformer-V2-104M_CLcancer/training_args.bin",
+        "Geneformer-V2-316M/config.json",
+        "Geneformer-V2-316M/generation_config.json",
+        "Geneformer-V2-316M/model.safetensors",
+        "Geneformer-V2-316M/training_args.bin",
+        "MANIFEST.in",
+        "README.md",
+        "config.json",
+        "docs/Makefile",
+        "docs/make.bat",
+        "docs/requirements.txt",
+        "docs/source/_static/css/custom.css",
+        "docs/source/_static/gf_logo.png",
+        "docs/source/about.rst",
+        "docs/source/api.rst",
+        "docs/source/conf.py",
+        "docs/source/geneformer.classifier.rst",
+        "docs/source/geneformer.emb_extractor.rst",
+        "docs/source/geneformer.in_silico_perturber.rst",
+        "docs/source/geneformer.in_silico_perturber_stats.rst",
+        "docs/source/geneformer.mtl_classifier.rst",
+        "docs/source/geneformer.tokenizer.rst",
+        "docs/source/getstarted.rst",
+        "docs/source/index.rst",
+        "examples/cell_classification.ipynb",
+        "examples/distributed_multitask_cell_classification.ipynb",
+        "examples/extract_and_plot_cell_embeddings.ipynb",
+        "examples/gene_classification.ipynb",
+        "examples/in_silico_perturbation.ipynb",
+        "examples/multitask_cell_classification.ipynb",
+        "examples/pretraining_new_model/obtain_nonzero_median_digests.ipynb",
+        "examples/pretraining_new_model/pretrain_geneformer_w_deepspeed.py",
+        "examples/tokenizing_scRNAseq_data.ipynb",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/config.json",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/optimizer.pt",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/pytorch_model.bin",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/rng_state.pth",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/scheduler.pt",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/trainer_state.json",
+        "fine_tuned_models/Geneformer-V1-10M_CellClassifier_cardiomyopathies_220224/training_args.bin",
+        "geneformer/__init__.py",
+        "geneformer/classifier.py",
+        "geneformer/classifier_utils.py",
+        "geneformer/collator_for_classification.py",
+        "geneformer/emb_extractor.py",
+        "geneformer/ensembl_mapping_dict_gc104M.pkl",
+        "geneformer/evaluation_utils.py",
+        "geneformer/gene_dictionaries_30m/ensembl_mapping_dict_gc30M.pkl",
+        "geneformer/gene_dictionaries_30m/gene_median_dictionary_gc30M.pkl",
+        "geneformer/gene_dictionaries_30m/gene_name_id_dict_gc30M.pkl",
+        "geneformer/gene_dictionaries_30m/token_dictionary_gc30M.pkl",
+        "geneformer/gene_median_dictionary_gc104M.pkl",
+        "geneformer/gene_name_id_dict_gc104M.pkl",
+        "geneformer/in_silico_perturber.py",
+        "geneformer/in_silico_perturber_stats.py",
+        "geneformer/mtl/__init__.py",
+        "geneformer/mtl/collators.py",
+        "geneformer/mtl/data.py",
+        "geneformer/mtl/eval_utils.py",
+        "geneformer/mtl/model.py",
+        "geneformer/mtl/train.py",
+        "geneformer/mtl/utils.py",
+        "geneformer/mtl_classifier.py",
+        "geneformer/perturber_utils.py",
+        "geneformer/pretrainer.py",
+        "geneformer/token_dictionary_gc104M.pkl",
+        "geneformer/tokenizer.py",
+        "generation_config.json",
+        "model.safetensors",
+        "requirements.txt",
+        "setup.py",
+        "training_args.bin"
+      ],
+      "missing_expected_files": [
+        "pytorch_model.bin"
+      ],
+      "raw_ok": true,
+      "gated": false,
+      "private": false
+    },
+    {
+      "id": "official_public_node_compatibility_preparation",
+      "type": "compatibility_reconstruction",
+      "status": "failed_or_partial",
+      "caveat": "STRING_GNN compatibility reconstruction is not the original checkpoint; AIDO compatibility patches use public ModelGenerator source and AIDO checkpoint.",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/prepare_official_k562_missing_files.py",
+          "--output",
+          "/workspace/vc-demo/experiments/string_net_artifact_project/missing_files_preparation.json"
+        ],
+        "returncode": 1,
+        "seconds": 1.359,
+        "stdout_tail": "",
+        "stderr_tail": "Traceback (most recent call last):\n  File \"/workspace/vc-demo/scripts/prepare_official_k562_missing_files.py\", line 465, in <module>\n    main()\n  File \"/workspace/vc-demo/scripts/prepare_official_k562_missing_files.py\", line 454, in main\n    \"aido\": prepare_aido_dir(args.aido_dir, args.modelgenerator_aido, args.aido_embedding_h5ad),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/workspace/vc-demo/scripts/prepare_official_k562_missing_files.py\", line 234, in prepare_aido_dir\n    shutil.copy2(src, dst)\n  File \"/usr/lib/python3.11/shutil.py\", line 448, in copy2\n    copyfile(src, dst, follow_symlinks=follow_symlinks)\n  File \"/usr/lib/python3.11/shutil.py\", line 256, in copyfile\n    with open(src, 'rb') as fsrc:\n         ^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/workspace/_external/ModelGenerator/huggingface/aido.cell/aido_cell/models/configuration_cellfoundation.py'\n"
+      },
+      "file_info_aido": {
+        "path": "/home/Models/AIDO.Cell-100M",
+        "exists": true,
+        "kind": "dir",
+        "file_count": 5,
+        "bytes": 399497442
+      },
+      "file_info_string": {
+        "path": "/home/Models/STRING_GNN",
+        "exists": false
+      }
+    },
+    {
+      "id": "official_model_dir_validation",
+      "type": "validation",
+      "status": "completed",
+      "command": {
+        "cmd": [
+          "python",
+          "scripts/validate_official_model_dirs.py",
+          "--output",
+          "/workspace/vc-demo/experiments/string_net_artifact_project/model_dir_validation.json"
+        ],
+        "returncode": 0,
+        "seconds": 0.099,
+        "stdout_tail": "{\n  \"status\": \"passed_with_warnings\",\n  \"model_dirs\": [\n    {\n      \"path\": \"/home/Models/AIDO.Cell-100M\",\n      \"repo_id\": \"genbio-ai/AIDO.Cell-100M\",\n      \"files\": [\n        \"LICENSE\",\n        \"README.md\",\n        \"config.json\",\n        \"generation_config.json\",\n        \"model.safetensors\"\n      ],\n      \"has_config\": true,\n      \"has_weight\": true,\n      \"tokenizer_files\": [],\n      \"warnings\": [\n        \"no tokenizer files detected; public VCHarness code calls AutoTokenizer.from_pretrained, so runtime equivalence is not yet proven\"\n      ],\n      \"status\": \"usable_with_warnings\"\n    },\n    {\n      \"path\": \"/home/Models/STRING_GNN\",\n      \"repo_id\": \"genbio-ai/STRING_GNN\",\n      \"status\": \"missing\",\n      \"warnings\": [\n        \"directory does not exist; Hugging Face repo currently lists no weight files\"\n      ]\n    }\n  ]\n}\n",
+        "stderr_tail": ""
+      }
+    },
+    {
+      "id": "artifact_registry_audit_k562",
+      "type": "validation",
+      "status": "completed",
+      "command": {
+        "cmd": [
+          "python",
+          "-m",
+          "vc_demo.harness.artifact_registry",
+          "--cell-line",
+          "K562"
+        ],
+        "returncode": 0,
+        "seconds": 0.102,
+        "stdout_tail": "Official_(D=256).h5ad\",\n      \"usable_for\": [\n        \"perturbation_gene\",\n        \"official_k562_gnn_embedding_baseline\"\n      ],\n      \"required_for_blueprints\": [\n        \"official_k562_aido_gnn_embedding_mlp\"\n      ],\n      \"do_not_fabricate\": true,\n      \"present\": true,\n      \"resolved_status\": \"present\"\n    },\n    {\n      \"id\": \"official_public_best_node_code\",\n      \"family\": \"public_node_code\",\n      \"provider\": \"VCHarness\",\n      \"status\": \"expected_present\",\n      \"path\": \"/workspace/_external/VCHarness/K562_cls/static/node2-1-1-1-1-1_code.py\",\n      \"source\": \"VCHarness public K562 static node code bundled in genbio-ai/VCHarness\",\n      \"usable_for\": [\n        \"official_vcharness_best_node_wrapper\"\n      ],\n      \"required_for_blueprints\": [\n        \"official_public_best_node\"\n      ],\n      \"do_not_fabricate\": true,\n      \"present\": true,\n      \"resolved_status\": \"present\"\n    },\n    {\n      \"id\": \"class_distribution\",\n      \"family\": \"training_metadata\",\n      \"provider\": \"repo-derived-official-k562-train-split\",\n      \"status\": \"derived_expected_present\",\n      \"path\": \"data/artifacts/official_k562/class_distribution_train.json\",\n      \"source\": \"Derived from data/cell_lines/official_k562_cls/train.tsv labels only by scripts/build_official_k562_class_distribution.py; no validation/test labels are read.\",\n      \"usable_for\": [\n        \"class_weighted_loss\",\n        \"focal_loss\",\n        \"imbalance_audit\"\n      ],\n      \"required_for_blueprints\": [\n        \"official_class_imbalance_training\",\n        \"official_weighted_ce_training\",\n        \"official_focal_loss_training\",\n        \"class_balanced_deg_classifier\",\n        \"focal_loss_training_strategy\"\n      ],\n      \"do_not_fabricate\": true,\n      \"leakage_guardrail\": \"train split only\",\n      \"present\": true,\n      \"resolved_status\": \"present\"\n    },\n    {\n      \"id\": \"regulatory_network_artifact\",\n      \"family\": \"regulatory_prior\",\n      \"provider\": \"TBD source-backed regulatory network\",\n      \"status\": \"definition_required_before_acquisition\",\n      \"path\": \"data/artifacts/regulatory/k562_regulatory_network.tsv\",\n      \"source\": \"No default source is assumed. A run must define a source-backed regulatory network contract, vocabulary, edge semantics, and target-gene alignment before using this artifact.\",\n      \"usable_for\": [\n        \"regulatory_network_prior\"\n      ],\n      \"required_for_blueprints\": [\n        \"official_regulatory_network_prior\"\n      ],\n      \"do_not_fabricate\": true,\n      \"present\": false,\n      \"resolved_status\": \"missing\"\n    },\n    {\n      \"id\": \"single_cell_foundation_model_artifact\",\n      \"family\": \"single_cell_foundation_model\",\n      \"provider\": \"scGPT or equivalent source-backed single-cell foundation model\",\n      \"status\": \"missing_until_downloaded_or_built\",\n      \"path\": \"data/artifacts/single_cell_foundation_model\",\n      \"source\": \"Source-backed scGPT/single-cell foundation checkpoint or row-aligned encoder output; exact source, vocabulary, normalization, and row order must be recorded before use.\",\n      \"usable_for\": [\n        \"cell_state_encoder\",\n        \"single_cell_foundation_model\"\n      ],\n      \"required_for_blueprints\": [\n        \"official_scgpt_cell_encoder\"\n      ],\n      \"do_not_fabricate\": true,\n      \"present\": false,\n      \"resolved_status\": \"missing\"\n    }\n  ],\n  \"present_artifacts\": [\n    \"esm2_gene_embedding_h5ad\",\n    \"official_essential_deg_with_split_h5ad\",\n    \"official_k562_aido_cell_100m_embedding_h5ad\",\n    \"official_string_gnn_keep20_graph\",\n    \"official_aido_cell_100m_model_dir\",\n    \"official_gnn_simple_embedding_h5ad\",\n    \"official_public_best_node_code\",\n    \"class_distribution\"\n  ],\n  \"missing_artifacts\": [\n    \"esm2_k562_target_manifest\",\n    \"aido_gene_or_cell_embeddings\",\n    \"scfoundation_cell_embeddings\",\n    \"string_k562_gene_graph\",\n    \"pathway_membership_matrix\",\n    \"official_string_gnn_model_dir\",\n    \"regulatory_network_artifact\",\n    \"single_cell_foundation_model_artifact\"\n  ]\n}\n",
+        "stderr_tail": ""
+      }
+    },
+    {
+      "id": "disk_usage_after_acquisition",
+      "type": "disk_audit",
+      "status": "completed",
+      "command": {
+        "cmd": [
+          "bash",
+          "-lc",
+          "du -sh /workspace/models /workspace/vc-demo/data /workspace/_external 2>/dev/null || true; df -h /workspace"
+        ],
+        "returncode": 0,
+        "seconds": 0.482,
+        "stdout_tail": "385M\t/workspace/models\n486M\t/workspace/vc-demo/data\n320M\t/workspace/_external\nFilesystem                    Size  Used Avail Use% Mounted on\nmfs#ca-mtl-3.runpod.net:9421  755T  426T  329T  57% /workspace\n",
+        "stderr_tail": ""
+      }
+    }
+  ]
+}
