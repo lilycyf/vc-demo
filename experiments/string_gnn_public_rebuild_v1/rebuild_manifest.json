@@ -1,0 +1,142 @@
+{
+  "status": "completed",
+  "seconds": 188.19,
+  "data_manifest": {
+    "node_count": 18866,
+    "teacher_shape": [
+      18866,
+      256
+    ],
+    "teacher_sha256": "58dee3dddb3332dbff43f21225460d20fc3c75f933a4d62c71bbca4699619e25",
+    "graph_sha256": "126b4a202837298c8b5cfd07a3dbe40baeaac84290471da78cedfefa37621d98",
+    "node_order_sha256": "42fffd3aa77b58ba08567ff58e7f2cd983396050b2b60a291c01719a162bd638",
+    "graph_stats": {
+      "raw_edges": 393006,
+      "kept_undirected_pairs": 392832,
+      "directed_edges": 785664,
+      "node_coverage": 1.0
+    },
+    "split_counts": {
+      "train": 15092,
+      "val": 1886,
+      "test": 1888
+    },
+    "torch_version": "2.4.1+cu124",
+    "cuda": "12.4",
+    "gpu": "NVIDIA L40",
+    "config": {
+      "graph_tsv": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "teacher_h5ad": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "output_dir": "/workspace/artifacts/string_gnn_rebuild_v1_multiseed",
+      "export_dir": "/workspace/models/STRING_GNN_PublicRebuild_v1",
+      "hidden_dim": 512,
+      "output_dim": 256,
+      "layers": 3,
+      "dropout": 0.1,
+      "lr": 0.002,
+      "weight_decay": 0.0001,
+      "epochs": 100,
+      "patience": 20,
+      "seeds": [
+        3,
+        7,
+        11
+      ],
+      "smoothness_weight": 0.01,
+      "smooth_edges": 100000,
+      "train_fraction": 0.8,
+      "val_fraction": 0.1,
+      "device": "cuda"
+    }
+  },
+  "export": {
+    "export_dir": "/workspace/models/STRING_GNN_PublicRebuild_v1",
+    "best_seed": 7,
+    "best_val_cosine": 0.5337441563606262,
+    "embedding_shape": [
+      18866,
+      256
+    ]
+  },
+  "auto_model_smoke": {
+    "status": "ok",
+    "class": "StringGNNPublicRebuildModel",
+    "last_hidden_state_shape": [
+      18866,
+      256
+    ]
+  },
+  "symlink": "/home/Models/STRING_GNN_PUBLIC_REBUILD",
+  "caveat": "This is a public rebuild trained from public graph and teacher embeddings, not the unpublished GenBio/VCHarness original STRING_GNN checkpoint.",
+  "seed_summaries": [
+    {
+      "seed": 3,
+      "best_epoch": 99,
+      "best_metrics": {
+        "train": {
+          "mse": 0.000992157612927258,
+          "cosine": 0.9896660447120667
+        },
+        "val": {
+          "mse": 0.024508770555257797,
+          "cosine": 0.529594361782074
+        },
+        "test": {
+          "mse": 0.024364296346902847,
+          "cosine": 0.5333338379859924
+        },
+        "neighbor_preservation": {
+          "top10_overlap": 0.425,
+          "sample_size": 1024
+        }
+      },
+      "seconds": 60.288
+    },
+    {
+      "seed": 7,
+      "best_epoch": 98,
+      "best_metrics": {
+        "train": {
+          "mse": 0.0009436092805117369,
+          "cosine": 0.9906224608421326
+        },
+        "val": {
+          "mse": 0.024539722129702568,
+          "cosine": 0.5337441563606262
+        },
+        "test": {
+          "mse": 0.024220280349254608,
+          "cosine": 0.5389178991317749
+        },
+        "neighbor_preservation": {
+          "top10_overlap": 0.437109375,
+          "sample_size": 1024
+        }
+      },
+      "seconds": 62.645
+    },
+    {
+      "seed": 11,
+      "best_epoch": 100,
+      "best_metrics": {
+        "train": {
+          "mse": 0.0009454294922761619,
+          "cosine": 0.9913788437843323
+        },
+        "val": {
+          "mse": 0.023506179451942444,
+          "cosine": 0.5283446311950684
+        },
+        "test": {
+          "mse": 0.02325074002146721,
+          "cosine": 0.5356168746948242
+        },
+        "neighbor_preservation": {
+          "top10_overlap": 0.42666015625,
+          "sample_size": 1024
+        }
+      },
+      "seconds": 60.605
+    }
+  ]
+}
