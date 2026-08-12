@@ -1,236 +1,382 @@
 {
-  "schema_version": "vc_demo_artifact_acquisition_sources.v1",
-  "cell_line": "K562",
-  "default_policy": {
-    "formal_search": "never_fabricate_artifacts",
-    "when_missing": "verify_existing_then_execute_known_resolver_then_generate_codex_research_task",
-    "source_priority": [
-      "official_or_primary_source",
-      "published_author_dataset",
-      "approved_public_repository"
-    ],
-    "forbidden": [
-      "random_embeddings",
-      "synthetic_graph_edges",
-      "unversioned_downloads_marked_as_real"
-    ]
-  },
   "artifacts": [
     {
-      "id": "esm2_gene_embedding_h5ad",
-      "resolver": "download_from_known_huggingface_dataset",
-      "expected_path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
-      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad",
+      "can_execute_automatically": true,
       "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/ESM2_(D=1280).h5ad --output data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "expected_path": "data/artifacts/gene_embeddings/ESM2_D1280.h5ad",
+      "id": "esm2_gene_embedding_h5ad",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "resolver": "download_from_known_huggingface_dataset",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/ESM2_(D=1280).h5ad"
     },
     {
-      "id": "esm2_k562_target_manifest",
-      "resolver": "derive_from_known_esm2_embedding",
-      "expected_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
-      "source": "derived_by:scripts/build_target_gene_artifact.py from ESM2_D1280.h5ad and K562 data split target genes",
+      "can_execute_automatically": true,
       "command": "python scripts/build_target_gene_artifact.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --embedding-h5ad data/artifacts/gene_embeddings/ESM2_D1280.h5ad --artifact-name ESM2_D1280 --gene-column symbol --summary experiments/k562_target_aware_artifact_manifest_summary.json",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "expected_path": "data/cell_lines/k562_concat_esm2_gene_embedding/artifact_manifest.json",
+      "id": "esm2_k562_target_manifest",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "resolver": "derive_from_known_esm2_embedding",
+      "source": "derived_by:scripts/build_target_gene_artifact.py from ESM2_D1280.h5ad and K562 data split target genes"
     },
     {
-      "id": "string_k562_gene_graph",
-      "resolver": "build_from_official_string_api",
-      "expected_path": "data/artifacts/string/k562_target_graph_edges.tsv",
-      "source": "STRING official API v12 stable endpoint; K562 perturbation+target induced subgraph",
+      "can_execute_automatically": true,
       "command": "python scripts/build_k562_string_graph.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --output data/artifacts/string/k562_target_graph_edges.tsv --summary experiments/k562_string_graph_artifact_summary.json",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "expected_path": "data/artifacts/string/k562_target_graph_edges.tsv",
+      "id": "string_k562_gene_graph",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "resolver": "build_from_official_string_api",
+      "source": "STRING official API v12 stable endpoint; K562 perturbation+target induced subgraph"
     },
     {
-      "id": "pathway_membership_matrix",
-      "resolver": "build_from_official_reactome_gmt",
-      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
-      "source": "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes",
       "can_execute_automatically": true,
+      "command": "python scripts/build_k562_pathway_membership.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --output data/artifacts/pathways/k562_target_pathway_membership.npz --summary experiments/k562_pathway_membership_artifact_summary.json",
+      "expected_path": "data/artifacts/pathways/k562_target_pathway_membership.npz",
+      "id": "pathway_membership_matrix",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "required_outputs": [
+        "membership npz",
+        "summary json with Reactome source/version/coverage/filtering",
+        "registry metadata update"
+      ],
       "research_questions": [
         "Which public pathway source can be used without license ambiguity for this repo?",
         "What version/date/source URL is used?",
         "How are pathway identifiers and target gene symbols aligned?",
         "What is target gene coverage and pathway count?"
       ],
-      "required_outputs": [
-        "membership npz",
-        "summary json with Reactome source/version/coverage/filtering",
-        "registry metadata update"
-      ],
-      "command": "python scripts/build_k562_pathway_membership.py --data-dir data/cell_lines/k562_concat_esm2_gene_embedding --output data/artifacts/pathways/k562_target_pathway_membership.npz --summary experiments/k562_pathway_membership_artifact_summary.json",
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "resolver": "build_from_official_reactome_gmt",
+      "source": "Reactome official GMT download https://reactome.org/download/current/ReactomePathways.gmt.zip aligned to exact K562 target genes"
     },
     {
-      "id": "scfoundation_cell_embeddings",
-      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
-      "expected_path": "data/artifacts/scfoundation",
-      "source": "precomputed scFoundation cell-state embedding or approved encoder output; exact source must be documented before use",
       "can_execute_automatically": false,
+      "expected_path": "data/artifacts/scfoundation",
+      "id": "scfoundation_cell_embeddings",
+      "required_outputs": [
+        "embedding files or encoder output",
+        "summary json with source/checkpoint/vocabulary/coverage",
+        "registry update"
+      ],
       "research_questions": [
         "Is there an official/public scFoundation artifact matching these K562 perturbation rows?",
         "If not precomputed, what official checkpoint/code can encode the exact train/val/test cells?",
         "What input normalization and gene vocabulary are required?",
         "What file layout should the repo read at data/artifacts/scfoundation?"
       ],
-      "required_outputs": [
-        "embedding files or encoder output",
-        "summary json with source/checkpoint/vocabulary/coverage",
-        "registry update"
-      ]
+      "resolver": "codex_research_download_or_encode_from_official_scfoundation_source",
+      "source": "precomputed scFoundation cell-state embedding or approved encoder output; exact source must be documented before use"
     },
     {
-      "id": "aido_gene_or_cell_embeddings",
-      "resolver": "codex_research_download_from_official_genbio_or_aido_source",
-      "expected_path": "data/artifacts/aido",
-      "source": "official/public AIDO artifact if available; exact file and source must be recorded",
       "can_execute_automatically": false,
+      "expected_path": "data/artifacts/aido",
+      "id": "aido_gene_or_cell_embeddings",
+      "required_outputs": [
+        "artifact files",
+        "alignment summary",
+        "registry update"
+      ],
       "research_questions": [
         "Which AIDO artifact family is required for the selected blueprint: gene, protein, cell, or multimodal?",
         "Is a public GenBio AI/HuggingFace artifact available?",
         "How is it aligned to perturbation genes, target genes, or cell rows?"
       ],
-      "required_outputs": [
-        "artifact files",
-        "alignment summary",
-        "registry update"
-      ]
+      "resolver": "codex_research_download_from_official_genbio_or_aido_source",
+      "source": "official/public AIDO artifact if available; exact file and source must be recorded"
     },
     {
-      "id": "pretrained_encoder",
-      "resolver": "definition_required_before_acquisition",
-      "expected_path": "data/artifacts/pretrained_encoder",
-      "source": "must be specified by blueprint before use; can be local pretraining output or official checkpoint",
       "can_execute_automatically": false,
+      "expected_path": "data/artifacts/pretrained_encoder",
+      "id": "pretrained_encoder",
+      "required_outputs": [
+        "definition note",
+        "checkpoint or rejected-blueprint decision",
+        "registry update if real artifact is acquired"
+      ],
       "research_questions": [
         "Which encoder architecture/checkpoint is intended by selective_adapter_finetune?",
         "Is this a pretrained cell encoder, perturbation encoder, gene encoder, or previous root checkpoint?",
         "What tensor contract does the adapter expect?"
       ],
-      "required_outputs": [
-        "definition note",
-        "checkpoint or rejected-blueprint decision",
-        "registry update if real artifact is acquired"
-      ]
+      "resolver": "definition_required_before_acquisition",
+      "source": "must be specified by blueprint before use; can be local pretraining output or official checkpoint"
     },
     {
-      "id": "official_essential_deg_with_split_h5ad",
-      "resolver": "download_from_known_huggingface_dataset",
-      "expected_path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
-      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad",
+      "can_execute_automatically": true,
       "command": "python scripts/download_foundation_artifact.py --path essential/essential_deg_with_split.h5ad --output data/artifacts/official_k562/essential_deg_with_split.h5ad",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python scripts/build_official_k562_task.py build && python scripts/build_official_k562_task.py validate"
+      "expected_path": "data/artifacts/official_k562/essential_deg_with_split.h5ad",
+      "id": "official_essential_deg_with_split_h5ad",
+      "post_acquisition_audit": "python scripts/build_official_k562_task.py build && python scripts/build_official_k562_task.py validate",
+      "resolver": "download_from_known_huggingface_dataset",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/essential/essential_deg_with_split.h5ad"
     },
     {
-      "id": "official_k562_aido_cell_100m_embedding_h5ad",
-      "resolver": "download_from_known_huggingface_dataset",
-      "expected_path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
-      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad",
+      "can_execute_automatically": true,
       "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad --output data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
-    },
-    {
-      "id": "official_string_gnn_keep20_graph",
+      "expected_path": "data/artifacts/official_k562/AIDOcell_100M_essential_K562_D640.h5ad",
+      "id": "official_k562_aido_cell_100m_embedding_h5ad",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
       "resolver": "download_from_known_huggingface_dataset",
-      "expected_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
-      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt",
-      "command": "python scripts/download_foundation_artifact.py --path gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt --output data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/AIDOcell_100M_essential_K-562_2025_11_26_(D=640).h5ad"
     },
     {
-      "id": "official_aido_cell_100m_model_dir",
-      "resolver": "download_selected_files_from_public_huggingface_model",
-      "expected_path": "/home/Models/AIDO.Cell-100M",
-      "source": "Exact AutoModel directory expected by official VCHarness public node code.",
       "can_execute_automatically": true,
-      "research_questions": [
-        "Is /home/Models/AIDO.Cell-100M publicly downloadable as a HuggingFace model or GenBio release?",
-        "What tokenizer/model revision matches the public VCHarness generated code?",
-        "Can the downloaded h5ad embedding replace this checkpoint for an embedding-only baseline, and how should that limitation be recorded?"
-      ],
+      "command": "python scripts/download_foundation_artifact.py --path gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt --output data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "expected_path": "data/artifacts/official_k562/9606.protein.links.ensembl_900_keep20_adaptive.txt",
+      "id": "official_string_gnn_keep20_graph",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "resolver": "download_from_known_huggingface_dataset",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gnn/9606.protein.links.ensembl_900_keep20_adaptive.txt"
+    },
+    {
+      "can_execute_automatically": true,
+      "command": "python scripts/download_hf_model_snapshot.py --repo-id genbio-ai/AIDO.Cell-100M --output-dir /home/Models/AIDO.Cell-100M --include config.json generation_config.json model.safetensors README.md LICENSE --manifest experiments/official_k562_task_contract/aido_cell_100m_model_dir_manifest.json",
+      "expected_path": "/home/Models/AIDO.Cell-100M",
+      "id": "official_aido_cell_100m_model_dir",
+      "post_acquisition_audit": "python scripts/validate_official_model_dirs.py --output experiments/official_k562_task_contract/model_dir_validation.json",
       "required_outputs": [
         "model directory or explicit blocker report",
         "source URL/revision/checksum",
         "registry update"
       ],
-      "command": "python scripts/download_hf_model_snapshot.py --repo-id genbio-ai/AIDO.Cell-100M --output-dir /home/Models/AIDO.Cell-100M --include config.json generation_config.json model.safetensors README.md LICENSE --manifest experiments/official_k562_task_contract/aido_cell_100m_model_dir_manifest.json",
-      "post_acquisition_audit": "python scripts/validate_official_model_dirs.py --output experiments/official_k562_task_contract/model_dir_validation.json"
+      "research_questions": [
+        "Is /home/Models/AIDO.Cell-100M publicly downloadable as a HuggingFace model or GenBio release?",
+        "What tokenizer/model revision matches the public VCHarness generated code?",
+        "Can the downloaded h5ad embedding replace this checkpoint for an embedding-only baseline, and how should that limitation be recorded?"
+      ],
+      "resolver": "download_selected_files_from_public_huggingface_model",
+      "source": "Exact AutoModel directory expected by official VCHarness public node code."
     },
     {
-      "id": "official_string_gnn_model_dir",
-      "resolver": "codex_research_download_from_official_genbio_or_string_gnn_source",
-      "expected_path": "/home/Models/STRING_GNN",
-      "source": "Hugging Face model repo genbio-ai/STRING_GNN exists, but API currently lists only .gitattributes; exact model weights remain unavailable.",
       "can_execute_automatically": false,
+      "expected_path": "/home/Models/STRING_GNN",
+      "id": "official_string_gnn_model_dir",
+      "required_outputs": [
+        "model directory or explicit blocker report",
+        "source/build procedure",
+        "registry update"
+      ],
       "research_questions": [
         "Is /home/Models/STRING_GNN publicly downloadable, or must it be trained from gnn/9606...keep20 graph?",
         "What node embedding dimensionality and vocabulary are expected by VCHarness K562 best node?",
         "How should the repo distinguish STRING graph source data from trained STRING_GNN checkpoint?"
       ],
-      "required_outputs": [
-        "model directory or explicit blocker report",
-        "source/build procedure",
-        "registry update"
-      ]
+      "resolver": "codex_research_download_from_official_genbio_or_string_gnn_source",
+      "source": "Hugging Face model repo genbio-ai/STRING_GNN exists, but API currently lists only .gitattributes; exact model weights remain unavailable."
     },
     {
-      "id": "official_gnn_simple_embedding_h5ad",
-      "resolver": "download_from_known_huggingface_dataset",
-      "expected_path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
-      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad",
+      "can_execute_automatically": true,
       "command": "python scripts/download_foundation_artifact.py --path gene_embeddings/GNN_Simple_Official_(D=256).h5ad --output data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "expected_path": "data/artifacts/official_k562/GNN_Simple_Official_D256.h5ad",
+      "id": "official_gnn_simple_embedding_h5ad",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "resolver": "download_from_known_huggingface_dataset",
+      "source": "huggingface:genbio-ai/foundation-models-perturbation/gene_embeddings/GNN_Simple_Official_(D=256).h5ad"
     },
     {
-      "id": "class_distribution",
-      "resolver": "derive_from_official_train_split_labels",
-      "expected_path": "data/artifacts/official_k562/class_distribution_train.json",
-      "source": "Official K562 train.tsv labels only; validation/test labels are not read.",
+      "can_execute_automatically": true,
       "command": "python scripts/build_official_k562_class_distribution.py --train-tsv data/cell_lines/official_k562_cls/train.tsv --output data/artifacts/official_k562/class_distribution_train.json",
-      "can_execute_automatically": true,
-      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562"
+      "expected_path": "data/artifacts/official_k562/class_distribution_train.json",
+      "id": "class_distribution",
+      "post_acquisition_audit": "python -m vc_demo.harness.artifact_registry --cell-line K562",
+      "resolver": "derive_from_official_train_split_labels",
+      "source": "Official K562 train.tsv labels only; validation/test labels are not read."
     },
     {
-      "id": "regulatory_network_artifact",
-      "resolver": "definition_required_before_acquisition",
-      "expected_path": "data/artifacts/regulatory/k562_regulatory_network.tsv",
-      "source": "No default regulatory network is assumed. Codex must select and justify a public source before building this artifact.",
       "can_execute_automatically": false,
+      "expected_path": "data/artifacts/regulatory/k562_regulatory_network.tsv",
+      "id": "regulatory_network_artifact",
+      "required_outputs": [
+        "regulatory edge artifact",
+        "source/provenance/coverage summary",
+        "registry update"
+      ],
       "research_questions": [
         "Which source-backed regulatory network is appropriate for K562 DEG perturbation prediction?",
         "What edge semantics, species, version, and evidence thresholds are used?",
         "How are source/target genes aligned to the official K562 perturbation and target gene vocabularies?",
         "Does the source create leakage from validation/test DEG labels?"
       ],
-      "required_outputs": [
-        "regulatory edge artifact",
-        "source/provenance/coverage summary",
-        "registry update"
-      ]
+      "resolver": "definition_required_before_acquisition",
+      "source": "No default regulatory network is assumed. Codex must select and justify a public source before building this artifact."
     },
     {
-      "id": "single_cell_foundation_model_artifact",
-      "resolver": "codex_research_download_or_encode_from_official_single_cell_foundation_source",
-      "expected_path": "data/artifacts/single_cell_foundation_model",
-      "source": "Official/public scGPT or equivalent single-cell foundation checkpoint or row-aligned encoder output.",
       "can_execute_automatically": false,
+      "expected_path": "data/artifacts/single_cell_foundation_model",
+      "id": "single_cell_foundation_model_artifact",
+      "required_outputs": [
+        "checkpoint or row-aligned embeddings",
+        "vocabulary/row-order/coverage summary",
+        "registry update"
+      ],
       "research_questions": [
         "Is there an official/public model checkpoint suitable for these K562 perturbation rows?",
         "What gene vocabulary and normalization are required?",
         "Can the official train/val/test rows be encoded without label leakage?",
         "What exact file layout should be written under data/artifacts/single_cell_foundation_model?"
       ],
+      "resolver": "codex_research_download_or_encode_from_official_single_cell_foundation_source",
+      "source": "Official/public scGPT or equivalent single-cell foundation checkpoint or row-aligned encoder output."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "/home/Models/scGPT/whole_human",
+      "id": "scgpt_whole_human_checkpoint",
+      "primary_sources": [
+        "https://github.com/bowang-lab/scGPT",
+        "https://scgpt.readthedocs.io/en/latest/"
+      ],
       "required_outputs": [
-        "checkpoint or row-aligned embeddings",
-        "vocabulary/row-order/coverage summary",
+        "model directory or blocker report",
+        "source URL/revision/file sizes",
+        "vocab/gene coverage audit",
+        "embedding/export contract"
+      ],
+      "research_questions": [
+        "Which official scGPT whole-human checkpoint folder is the correct source for this run?",
+        "Does it contain model weights, vocab, args/config, and compatible gene identifiers?",
+        "What preprocessing/tokenization is required for the active h5ad?",
+        "Can embeddings be generated without validation/test label leakage?"
+      ],
+      "resolver": "codex_research_download_from_scgpt_model_zoo",
+      "source": "Official scGPT repository/model zoo; verify checkpoint folder contains model weights and vocab.json before use."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "/home/Models/Geneformer",
+      "id": "geneformer_checkpoint",
+      "primary_sources": [
+        "https://huggingface.co/ctheodoris/Geneformer",
+        "https://geneformer.readthedocs.io/"
+      ],
+      "required_outputs": [
+        "model directory or blocker report",
+        "download command/source revision",
+        "tokenizer/vocabulary coverage audit"
+      ],
+      "research_questions": [
+        "Which Geneformer variant is appropriate for the active task and compute budget?",
+        "Can the model/tokenizer files be downloaded with git-lfs or huggingface_hub?",
+        "How are h5ad genes mapped to Geneformer vocabulary and rank-value tokens?"
+      ],
+      "resolver": "codex_research_download_from_geneformer_huggingface",
+      "source": "Hugging Face ctheodoris/Geneformer; requires git-lfs/model files and tokenizer/vocab validation."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "/home/Models/UCE",
+      "id": "uce_checkpoint",
+      "primary_sources": [
+        "https://github.com/snap-stanford/UCE"
+      ],
+      "required_outputs": [
+        "UCE model files or generated row embeddings",
+        "source/version summary",
+        "input/output shape audit"
+      ],
+      "research_questions": [
+        "Which UCE model depth/weights are appropriate for the task and available GPU?",
+        "Does the h5ad satisfy UCE input contract: counts in X and gene names in var_names?",
+        "What obsm key and embedding dimension are produced?"
+      ],
+      "resolver": "codex_research_download_or_run_uce_embedding",
+      "source": "Official UCE repository; embedding scripts may download required files when run."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "data/artifacts/<cell_line>/esm2_gene_embeddings.npz",
+      "id": "esm2_gene_or_protein_embeddings",
+      "primary_sources": [
+        "https://huggingface.co/facebook/esm2_t33_650M_UR50D"
+      ],
+      "required_outputs": [
+        "aligned npz artifact",
+        "coverage/row-order summary",
         "registry update"
-      ]
+      ],
+      "research_questions": [
+        "What source-backed gene-to-protein mapping is used?",
+        "What target/feature gene coverage is achieved?",
+        "What embedding dimension and row order are written?"
+      ],
+      "resolver": "codex_build_gene_or_protein_embeddings_from_esm2",
+      "source": "Public ESM2 model plus source-backed gene-to-protein mapping; align to target gene order."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "data/artifacts/<cell_line>/drug_embeddings.npz",
+      "id": "chemical_encoder_checkpoint_or_drug_fingerprints",
+      "primary_sources": [
+        "PubChem/PubChemPy or other source-backed drug-name-to-SMILES lookup",
+        "RDKit",
+        "ChemBERTa-compatible public model if selected"
+      ],
+      "required_outputs": [
+        "drug embedding/fingerprint npz",
+        "SMILES source table",
+        "coverage and alias-resolution summary"
+      ],
+      "research_questions": [
+        "Can every perturbation drug be mapped to a verifiable SMILES string?",
+        "Are salts/aliases normalized consistently?",
+        "Are fingerprint or encoder embedding rows aligned to perturbation drug order?"
+      ],
+      "resolver": "codex_resolve_drug_smiles_then_compute_embeddings",
+      "source": "Public drug identifiers/SMILES plus RDKit fingerprints or public chemical encoder."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "data/artifacts/<cell_line>/string_gene_graph.tsv",
+      "id": "string_gene_graph",
+      "primary_sources": [
+        "https://string-db.org/"
+      ],
+      "required_outputs": [
+        "aligned graph TSV",
+        "source/version/filtering summary",
+        "coverage audit"
+      ],
+      "research_questions": [
+        "What STRING version and score threshold are used?",
+        "How are gene identifiers mapped and filtered?",
+        "What target/feature coverage is achieved?"
+      ],
+      "resolver": "build_from_official_string_api_or_download",
+      "source": "STRING official API/download for human 9606, aligned to active feature/target genes."
+    },
+    {
+      "can_execute_automatically": false,
+      "expected_path": "data/artifacts/<cell_line>/reactome_pathway_membership.npz",
+      "id": "reactome_pathway_membership",
+      "primary_sources": [
+        "https://reactome.org/download/current/ReactomePathways.gmt.zip"
+      ],
+      "required_outputs": [
+        "membership npz",
+        "pathway metadata",
+        "coverage/shape summary"
+      ],
+      "research_questions": [
+        "What Reactome version/date is used?",
+        "How many pathways and target genes are covered?",
+        "What row/column order is written?"
+      ],
+      "resolver": "build_from_official_reactome_gmt",
+      "source": "Reactome official GMT, aligned to active target gene order."
     }
-  ]
+  ],
+  "cell_line": "generic_with_k562_legacy_entries",
+  "default_policy": {
+    "forbidden": [
+      "random_embeddings",
+      "synthetic_graph_edges",
+      "unversioned_downloads_marked_as_real"
+    ],
+    "formal_search": "never_fabricate_artifacts",
+    "source_priority": [
+      "official_or_primary_source",
+      "published_author_dataset",
+      "approved_public_repository"
+    ],
+    "when_missing": "verify_existing_then_execute_known_resolver_then_generate_codex_research_task"
+  },
+  "schema_version": "vc_demo_artifact_acquisition_sources.v1"
 }

@@ -6,6 +6,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from vc_demo.harness.artifact_registry import default_registry_path
+
 
 def _git(args: list[str]) -> str:
     try:
@@ -25,6 +27,9 @@ def build_run_manifest(run_dir: Path, args: Any, tree: dict[str, Any], failures:
     best_root = max(roots, key=lambda item: float(item[1].get("best_val_macro_f1", -1.0)), default=("", {}))
     acquisition_queue = run_dir / "acquisition_queue.json"
     implementation_queue = run_dir / "implementation_queue.json"
+    cell_line = getattr(args, "cell_line", "K562")
+    registry_path = getattr(args, "artifact_registry", None) or default_registry_path(cell_line)
+    acquisition_sources = getattr(args, "acquisition_sources", Path("configs/artifacts/acquisition_sources.json"))
     return {
         "format": "vc_demo_run_manifest.v1",
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -48,14 +53,14 @@ def build_run_manifest(run_dir: Path, args: Any, tree: dict[str, Any], failures:
             "stop_reason": stop_reason,
         },
         "artifacts": {
-            "registry_path": str(getattr(args, "artifact_registry", "") or "configs/artifacts/k562_registry.json"),
+            "registry_path": str(registry_path),
             "present_artifacts": registry_audit.get("present_artifacts", []),
             "missing_artifacts": registry_audit.get("missing_artifacts", []),
         },
         "queues": {
             "implementation_queue": str(implementation_queue),
             "acquisition_queue": str(acquisition_queue),
-            "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {acquisition_queue} --registry {getattr(args, 'artifact_registry', None) or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known",
+            "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {acquisition_queue} --registry {registry_path} --sources {acquisition_sources} --cell-line {cell_line} --output-dir {run_dir / 'artifact_acquisition'} --execute-known",
         },
         "results": {
             "trained_nodes": len(trained),

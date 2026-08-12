@@ -26,7 +26,7 @@ def main() -> None:
 
     if normalized in {"k562", "k-562"}:
         script = Path(__file__).resolve().with_name("run_official_k562_harness_search.py")
-        os.execv(sys.executable, [sys.executable, str(script), *remaining])
+        os.execv(sys.executable, [sys.executable, str(script), "--cell-line", cell_line, *remaining])
 
     repo = Path.cwd()
     expected = {

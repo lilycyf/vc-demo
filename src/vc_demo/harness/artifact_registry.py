@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -23,10 +24,35 @@ def read_json(path: Path) -> dict[str, Any]:
         return json.load(f)
 
 
+def _slugify_cell_line(cell_line: str | None) -> str:
+    text = str(cell_line or "K562").strip().lower().replace("+", "plus")
+    slug = re.sub(r"[^a-z0-9]+", "_", text).strip("_")
+    return slug or "k562"
+
+
 def default_registry_path(cell_line: str | None = None) -> Path:
     if (cell_line or "").upper() == "K562":
         return Path("configs/artifacts/k562_registry.json")
-    return Path("configs/artifacts/k562_registry.json")
+    slug = _slugify_cell_line(cell_line)
+    candidate = Path("configs/artifacts") / f"{slug}_registry.json"
+    return candidate
+
+
+def artifact_path(row: dict[str, Any]) -> Path:
+    raw = row.get("path") or row.get("expected_path") or ""
+    return Path(str(raw))
+
+
+def path_is_present(path: Path, artifact: dict[str, Any] | None = None) -> bool:
+    if not str(path):
+        return False
+    if not path.exists():
+        return False
+    if path.is_dir():
+        # Model/checkpoint directories must contain real files; an empty marker
+        # directory is not a present foundation artifact.
+        return any(child.is_file() for child in path.rglob("*"))
+    return path.is_file() and path.stat().st_size > 0
 
 
 def load_registry(path: str | Path | None = None, cell_line: str | None = None) -> dict[str, Any]:
@@ -58,8 +84,9 @@ def audit_registry(registry: dict[str, Any]) -> dict[str, Any]:
     audited: list[dict[str, Any]] = []
     for artifact in registry.get("artifacts", []):
         row = dict(artifact)
-        path = Path(str(row.get("path", "")))
-        row["present"] = path.exists()
+        path = artifact_path(row)
+        row.setdefault("path", str(path) if str(path) else "")
+        row["present"] = path_is_present(path, row)
         row["resolved_status"] = "present" if row["present"] else "missing"
         if row.get("family") == "artifact_manifest":
             row.update(_artifact_manifest_summary(path))
@@ -95,7 +122,7 @@ def requirements_for_blueprint(registry_audit: dict[str, Any], blueprint_id: str
 
     rows: list[dict[str, Any]] = []
     for artifact_id in required_ids:
-        row = dict(by_id.get(artifact_id, {"id": artifact_id, "present": False, "resolved_status": "missing", "path": "", "source": "not listed in artifact registry"}))
+        row = dict(by_id.get(artifact_id, {"id": artifact_id, "present": False, "resolved_status": "missing", "path": "", "expected_path": "", "source": "not listed in artifact registry"}))
         row.setdefault("present", False)
         row.setdefault("resolved_status", "present" if row.get("present") else "missing")
         rows.append(row)

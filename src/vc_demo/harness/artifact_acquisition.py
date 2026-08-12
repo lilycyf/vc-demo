@@ -79,10 +79,10 @@ def artifact_specific_task_lines(artifact_id: str) -> list[str]:
             "This artifact must not be treated as a generic embedding table. Before blocking or resuming, complete this protocol:",
             "",
             "1. Search official/primary sources for scFoundation code, checkpoints, and any precomputed K562/cell-state embeddings. Check official project repositories, paper-author links, HuggingFace, Zenodo, Figshare, and model cards before declaring unavailable.",
-            "2. Determine whether the source provides precomputed cell embeddings or an encoder/checkpoint that can encode the official K562 rows.",
+            "2. Determine whether the source provides precomputed cell embeddings or an encoder/checkpoint that can encode the active cell-line rows.",
             "3. Verify the tensor contract: row count/order, train/val/test split ids, perturbation ids, gene vocabulary, normalization, embedding dimension, and expected file names under `data/artifacts/scfoundation`.",
             "4. Enforce leakage guardrails: do not fit or tune embeddings using validation/test labels, DEG targets, or test metrics. Source-backed pretrained weights may encode the official input rows only through their allowed encoder path.",
-            "5. If a defensible source exists, write a reproducible build/download script or exact command, produce a summary JSON with URL/revision/checksum-or-size/vocabulary coverage/split coverage, update `configs/artifacts/k562_registry.json`, and rerun artifact audit.",
+            "5. If a defensible source exists, write a reproducible build/download script or exact command, produce a summary JSON with URL/revision/checksum-or-size/vocabulary coverage/split coverage, update the active cell-line registry, and rerun artifact audit.",
             "6. If no defensible source exists, write a blocker report listing every source checked and classify the reason as unavailable weights, license/manual approval, missing tensor contract, vocabulary mismatch, row/order mismatch, or leakage risk.",
             "",
             "Do not use random projections, root-model hidden states, AIDO/GNN embeddings, or ordinary expression MLP outputs as a scFoundation substitute.",
@@ -90,9 +90,9 @@ def artifact_specific_task_lines(artifact_id: str) -> list[str]:
     return []
 
 
-def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_item: dict[str, Any], output_dir: Path) -> Path:
+def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_item: dict[str, Any], output_dir: Path, cell_line: str, registry_path: Path) -> Path:
     artifact_id = queue_item.get("artifact_id")
-    expected_path = queue_item.get("expected_path") or source.get("expected_path") or registry_item.get("path") or ""
+    expected_path = queue_item.get("expected_path") or source.get("expected_path") or registry_item.get("path") or registry_item.get("expected_path") or ""
     task_path = output_dir / f"ACQUIRE_{artifact_id}.md"
     research_questions = source.get("research_questions", []) or []
     required_outputs = source.get("required_outputs", []) or []
@@ -115,8 +115,8 @@ def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_ite
         "2. Prefer exact public artifacts from the paper authors, official model/project repositories, HuggingFace datasets, STRING/Reactome/GO/MSigDB official releases, or documented checkpoints.",
         "3. Download/build only source-backed artifacts. Record URL, version/date, checksum or file size, filtering rules, and coverage.",
         "4. Write the artifact to the expected path or update the registry path if a better audited layout is necessary.",
-        "5. Update `configs/artifacts/k562_registry.json` with source-backed metadata only.",
-        "6. Run `python -m vc_demo.harness.artifact_registry --cell-line K562` and save the audit JSON/summary.",
+        f"5. Update `{registry_path}` with source-backed metadata only.",
+        f"6. Run `python -m vc_demo.harness.artifact_registry --cell-line {cell_line} --registry {registry_path}` and save the audit JSON/summary.",
         "7. Resume the strict search without `--allow-missing-artifact-fallbacks`.",
         "",
         "## Research Questions",
@@ -139,14 +139,16 @@ def render_task(queue_item: dict[str, Any], source: dict[str, Any], registry_ite
     return task_path
 
 
-def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], registry: dict[str, Any], output_dir: Path, execute_known: bool) -> dict[str, Any]:
+def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], registry: dict[str, Any], output_dir: Path, execute_known: bool, cell_line: str, registry_path: Path) -> dict[str, Any]:
     artifact_id = canonical_artifact_id(str(item.get("artifact_id", "")))
     src = sources.get(artifact_id, {})
     reg = registry_entry(registry, artifact_id)
-    expected_path = Path(str(item.get("expected_path") or src.get("expected_path") or reg.get("path") or ""))
+    expected_path = Path(str(item.get("expected_path") or src.get("expected_path") or reg.get("path") or reg.get("expected_path") or ""))
     present_before = bool(str(expected_path)) and expected_path.exists()
     result: dict[str, Any] = {
         "artifact_id": artifact_id,
+        "cell_line": cell_line,
+        "registry_path": str(registry_path),
         "node": item.get("node"),
         "strategy": item.get("strategy"),
         "expected_path": str(expected_path),
@@ -170,7 +172,7 @@ def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], regis
         result["status"] = "acquired" if command_result["returncode"] == 0 and result["present_after"] else "resolver_failed_or_output_missing"
         return result
 
-    task_path = render_task(item, src, reg, output_dir)
+    task_path = render_task(item, src, reg, output_dir, cell_line, registry_path)
     result["action"] = "generated_codex_research_task"
     result["task_path"] = str(task_path)
     result["present_after"] = False
@@ -181,7 +183,7 @@ def resolve_item(item: dict[str, Any], sources: dict[str, dict[str, Any]], regis
 def main() -> None:
     parser = argparse.ArgumentParser(description="Resolve or prepare source-backed acquisition for missing VCHarness artifacts.")
     parser.add_argument("--queue", type=Path, required=True)
-    parser.add_argument("--registry", type=Path, default=Path("configs/artifacts/k562_registry.json"))
+    parser.add_argument("--registry", type=Path, default=None)
     parser.add_argument("--sources", type=Path, default=Path("configs/artifacts/acquisition_sources.json"))
     parser.add_argument("--cell-line", default="K562")
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -190,9 +192,12 @@ def main() -> None:
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
     queue = load_queue(args.queue)
+    if args.registry is None:
+        from vc_demo.harness.artifact_registry import default_registry_path
+        args.registry = default_registry_path(args.cell_line)
     registry = load_registry(args.registry, args.cell_line)
     sources = source_map(args.sources)
-    results = [resolve_item(item, sources, registry, args.output_dir, args.execute_known) for item in queue]
+    results = [resolve_item(item, sources, registry, args.output_dir, args.execute_known, args.cell_line, args.registry) for item in queue]
     audit = audit_registry(load_registry(args.registry, args.cell_line))
     report = {
         "created_at": datetime.now(timezone.utc).isoformat(),

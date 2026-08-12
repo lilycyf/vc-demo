@@ -145,7 +145,8 @@ def attempt_realtime_artifact_acquisition(
     """
     output_dir = run_dir / "artifact_acquisition"
     output_dir.mkdir(parents=True, exist_ok=True)
-    registry_path = args.artifact_registry or Path("configs/artifacts/k562_registry.json")
+    cell_line = getattr(args, "cell_line", "K562")
+    registry_path = args.artifact_registry or default_registry_path(cell_line)
     registry = load_registry(registry_path, "K562")
     sources_path = Path("configs/artifacts/acquisition_sources.json")
     if args.artifact_registry:
@@ -849,7 +850,8 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
     run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
-    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {args.artifact_registry or Path('configs/artifacts/k562_registry.json')} --sources configs/artifacts/acquisition_sources.json --cell-line K562 --output-dir {run_dir / 'artifact_acquisition'} --execute-known", "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count, "generated_proposals": generated_proposals, "proposal_budget": proposal_budget, "trained_rollouts_this_invocation": trained_rollouts, "trained_node_budget": trained_node_budget, "candidate_pool_size": args.candidate_pool_size, "proposal_selection_mode": args.proposal_selection_mode, "queued_candidates": len(queued_candidates(tree))}
+    acquisition_command = f"python -m vc_demo.harness.artifact_acquisition --queue {run_dir / 'acquisition_queue.json'} --registry {registry_path} --sources {getattr(args, 'acquisition_sources', Path('configs/artifacts/acquisition_sources.json'))} --cell-line {cell_line} --output-dir {run_dir / 'artifact_acquisition'} --execute-known"
+    result = {"tree": str(run_dir / "tree.json"), "summary": str(args.summary), "mcts_trace": str(run_dir / "mcts_trace.jsonl"), "implementation_queue": str(run_dir / "implementation_queue.json"), "acquisition_queue": str(run_dir / "acquisition_queue.json"), "artifact_acquisition_command": acquisition_command, "run_manifest": str(run_manifest_path), "search_memory": str(run_dir / "search_memory.json"), "stop_reason": stop_reason, "failures": len(failures), "pending_implementations": pending_count, "generated_proposals": generated_proposals, "proposal_budget": proposal_budget, "trained_rollouts_this_invocation": trained_rollouts, "trained_node_budget": trained_node_budget, "candidate_pool_size": args.candidate_pool_size, "proposal_selection_mode": args.proposal_selection_mode, "queued_candidates": len(queued_candidates(tree))}
     print(json.dumps(result, indent=2))
     return result
 
@@ -879,6 +881,8 @@ def main() -> None:
     parser.add_argument("--implementation-repair-attempts", type=int, default=3, help="Maximum compile/native-smoke/train repair attempts for the automatic implementation loop.")
     parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--artifact-registry", type=Path, default=None)
+    parser.add_argument("--cell-line", default="K562")
+    parser.add_argument("--acquisition-sources", type=Path, default=Path("configs/artifacts/acquisition_sources.json"))
     parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Prefer executable blueprints whose required artifacts are already present before blueprints that would trigger acquisition.")
     parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true", help="Allow planned artifact blueprints to train explicit fallback models when required artifacts are missing. Default is strict: block and stop.")
     parser.add_argument("--official-blueprint-space", action="store_true", help="Restrict child proposals to official K562 paper-level blueprints.")

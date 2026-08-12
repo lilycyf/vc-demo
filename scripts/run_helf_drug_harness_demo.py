@@ -149,11 +149,15 @@ def load_artifact_registry(path: Path) -> dict[str, dict[str, Any]]:
 
 
 def artifact_is_present(item: dict[str, Any]) -> bool:
-    expected = item.get("expected_path")
-    status = str(item.get("status", ""))
-    if expected and Path(str(expected)).exists():
-        return True
-    return status in {"present", "available"} and bool(expected) and Path(str(expected)).exists()
+    expected = item.get("path") or item.get("expected_path")
+    if not expected:
+        return False
+    path = Path(str(expected))
+    if not path.exists():
+        return False
+    if path.is_dir():
+        return any(child.is_file() for child in path.rglob("*"))
+    return path.is_file() and path.stat().st_size > 0
 
 
 def missing_required_artifacts(required: list[str], registry: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:

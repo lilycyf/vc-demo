@@ -8,13 +8,14 @@ from pathlib import Path
 from typing import Any
 
 from vc_demo.harness.implementation_agent import implement_pending
+from vc_demo.harness.artifact_registry import default_registry_path
 from vc_demo.harness.program_run import run_search
 from vc_demo.harness.state import read_json, write_json
 
 
 
 
-def run_known_acquisition(run_dir: Path, registry: Path | None) -> dict[str, Any]:
+def run_known_acquisition(run_dir: Path, registry: Path | None, cell_line: str, sources: Path) -> dict[str, Any]:
     output_dir = run_dir / "artifact_acquisition"
     cmd = [
         sys.executable,
@@ -23,11 +24,11 @@ def run_known_acquisition(run_dir: Path, registry: Path | None) -> dict[str, Any
         "--queue",
         str(run_dir / "acquisition_queue.json"),
         "--registry",
-        str(registry or Path("configs/artifacts/k562_registry.json")),
+        str(registry or default_registry_path(cell_line)),
         "--sources",
-        "configs/artifacts/acquisition_sources.json",
+        str(sources),
         "--cell-line",
-        "K562",
+        cell_line,
         "--output-dir",
         str(output_dir),
         "--execute-known",
@@ -58,7 +59,7 @@ def autonomous_loop(args: argparse.Namespace) -> dict[str, Any]:
         cycle_row: dict[str, Any] = {"cycle": cycle, "search": result, "implementation_items": len(impl), "acquisition_items": len(acq)}
         if acq:
             if args.auto_acquire_known:
-                acquisition_result = run_known_acquisition(run_dir, args.artifact_registry)
+                acquisition_result = run_known_acquisition(run_dir, args.artifact_registry, args.cell_line, args.acquisition_sources)
                 cycle_row["artifact_acquisition"] = acquisition_result
                 if acquisition_result.get("returncode") == 0 and acquisition_complete(acquisition_result):
                     cycle_row["status"] = "known_artifacts_acquired_resume_search"
@@ -73,8 +74,9 @@ def autonomous_loop(args: argparse.Namespace) -> dict[str, Any]:
             impl_report = implement_pending(run_dir, max_nodes=args.max_auto_implement_nodes, train=True, max_epochs=args.max_epochs, repair_attempts=args.repair_attempts)
             cycle_row["implementation_agent"] = impl_report
             statuses = {str(item.get("status")) for item in impl_report.get("items", [])}
-            if any(status != "implemented" for status in statuses):
-                cycle_row["status"] = "implementation_skipped"
+            successful_statuses = {"implemented", "trained"}
+            if any(status not in successful_statuses for status in statuses):
+                cycle_row["status"] = "implementation_requires_attention"
                 cycles.append(cycle_row)
                 break
             cycles.append(cycle_row)
@@ -111,6 +113,8 @@ def main() -> None:
     parser.add_argument("--max-pending-implementations", type=int, default=1)
     parser.add_argument("--force-blueprint", default=None)
     parser.add_argument("--artifact-registry", type=Path, default=None)
+    parser.add_argument("--cell-line", default="K562")
+    parser.add_argument("--acquisition-sources", type=Path, default=Path("configs/artifacts/acquisition_sources.json"))
     parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True)
     parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true")
     parser.add_argument("--reset", action="store_true")

@@ -14,6 +14,11 @@ Rules live in the repo documents, not in copied chat prompts.
 
 Experiment prompts must be variable-only handoffs. They should name the branch, cell line, run type, target score, run directory, and output branch, then instruct Codex to read the repo docs. Do not duplicate long cookbook/runbook rules in prompts; duplicated rules drift and become stale.
 
+
+## Generic Foundation Artifact Harness
+
+The reusable framework is described in `docs/GENERIC_FOUNDATION_ARTIFACT_HARNESS.md`. Treat cell-line registries and task docs as configuration. Do not hard-code K562/HELF assumptions into generic orchestration, artifact acquisition, implementation-agent status handling, or queue draining.
+
 ## Mental Model
 
 ```text

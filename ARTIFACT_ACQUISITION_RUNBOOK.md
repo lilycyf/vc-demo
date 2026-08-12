@@ -15,9 +15,9 @@ Before doing manual research, run the acquisition resolver. It verifies already-
 ```bash
 python -m vc_demo.harness.artifact_acquisition \
   --queue <run_dir>/acquisition_queue.json \
-  --registry configs/artifacts/k562_registry.json \
+  --registry <configs/artifacts/<cell_line>_registry.json> \
   --sources configs/artifacts/acquisition_sources.json \
-  --cell-line K562 \
+  --cell-line <CELL_LINE_ID> \
   --output-dir <run_dir>/artifact_acquisition \
   --execute-known
 ```
@@ -33,8 +33,8 @@ When `acquisition_queue.json` is non-empty, the Codex agent must not simply repo
 3. Prefer existing public GenBio/HuggingFace artifacts when available.
 4. For graph/pathway artifacts, build an aligned artifact from a public source only if source, version, filtering, and gene coverage can be documented.
 5. Write the artifact under the expected `data/artifacts/...` path.
-6. Update `configs/artifacts/k562_registry.json` only with source-backed metadata.
-7. Run `python -m vc_demo.harness.artifact_registry --cell-line K562` and save/update audit output.
+6. Update the active cell-line registry only with source-backed metadata.
+7. Run `python -m vc_demo.harness.artifact_registry --cell-line <CELL_LINE_ID> --registry <active registry>` and save/update audit output.
 8. Resume the search from the same run dir or restart a clean run, still without fallback.
 9. If and only if acquisition fails because no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified, write a blocker report that lists the sources checked, why each source is insufficient, and what approval/file would be needed next.
 
@@ -59,6 +59,8 @@ For `scfoundation_cell_embeddings`, do not block immediately after the strict se
 - Do not mark an artifact as present unless the expected file exists and the source is recorded.
 
 ## Current K562 Priorities
+
+This section is K562-specific. For other cell lines, use the active registry and generated `ACQUIRE_<artifact>.md` task instead of copying K562 artifact assumptions.
 
 1. `pretrained_encoder`
    - Needed by `selective_adapter_finetune`.

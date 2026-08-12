@@ -16,6 +16,7 @@ from scripts.audit_official_k562_paper_scale_search_space import build_audit as 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run vc_demo MCTS/program search on the official K562 TSV task backend.")
+    parser.add_argument("--cell-line", default="K562", help="Accepted by the generic dispatcher; this wrapper only supports K562/K-562.")
     parser.add_argument("--experiment", default="official_k562_harness_backend_smoke")
     parser.add_argument("--run-dir", type=Path, default=Path("experiments/official_k562_harness_backend_smoke"))
     parser.add_argument("--root-configs", nargs="+", type=Path, default=list(OfficialK562BackendSpec.root_configs))
@@ -48,6 +49,8 @@ def main() -> None:
     parser.add_argument("--enable-acquisition-loop", action="store_true", help="Accepted for paper-level runbooks; missing artifacts are recorded in acquisition_queue.json.")
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
+    if args.cell_line.lower().replace("_", "-") not in {"k562", "k-562"}:
+        raise SystemExit("run_official_k562_harness_search.py only supports CELL_LINE_ID=K562")
     if args.candidate_pool_size < 1:
         raise SystemExit("--candidate-pool-size must be >= 1")
     if args.official_blueprint_space and args.candidate_pool_size < 2:
@@ -99,6 +102,8 @@ def main() -> None:
         allow_implementation_skip=args.allow_implementation_skip,
         force_blueprint=args.force_blueprint or None,
         artifact_registry=args.registry,
+        cell_line=args.cell_line,
+        acquisition_sources=Path("configs/artifacts/acquisition_sources.json"),
         artifact_aware_blueprint_policy=False,
         allow_missing_artifact_fallbacks=False,
         official_blueprint_space=args.official_blueprint_space,
