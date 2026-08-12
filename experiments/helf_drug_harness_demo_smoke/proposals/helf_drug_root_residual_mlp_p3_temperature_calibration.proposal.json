@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 3,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.1600358933210373,
+    "priority": 0.7,
+    "score": 0.3500358933210373
+  },
+  "child": "helf_drug_root_residual_mlp_p3_temperature_calibration",
+  "hypothesis": "Test temperature_calibration for HELF drug identity prediction.",
+  "parent": "helf_drug_root_residual_mlp",
+  "strategy": "temperature_calibration"
+}

@@ -206,12 +206,118 @@ class TargetAwareBilinearFusion(nn.Module):
         return logits + residual + self.bias.unsqueeze(0)
 
 
+class FeatureDropoutMLP(nn.Module):
+    """MLP with input-level feature dropout for sparse expression signatures."""
+
+    def __init__(self, spec: ModelSpec) -> None:
+        super().__init__()
+        self.feature_dropout = nn.Dropout(min(max(float(spec.dropout) * 1.5, 0.05), 0.6))
+        layers: list[nn.Module] = []
+        dim = spec.input_dim
+        for _ in range(spec.depth):
+            layers.extend(mlp_block(dim, spec.hidden_dim, spec.dropout))
+            dim = spec.hidden_dim
+        self.encoder = nn.Sequential(*layers)
+        self.head = nn.Linear(dim, spec.n_targets * spec.n_classes)
+        self.n_targets = spec.n_targets
+        self.n_classes = spec.n_classes
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.encoder(self.feature_dropout(x))
+        return self.head(z).view(x.shape[0], self.n_targets, self.n_classes)
+
+
+class FilmResidualMLP(nn.Module):
+    """FiLM-conditioned residual MLP; useful as a larger structural child."""
+
+    def __init__(self, spec: ModelSpec) -> None:
+        super().__init__()
+        hidden = int(spec.hidden_dim)
+        self.input = nn.Sequential(nn.Linear(spec.input_dim, hidden), nn.LayerNorm(hidden), nn.GELU())
+        self.mod = nn.Linear(spec.input_dim, hidden * 2)
+        self.blocks = nn.ModuleList([ResidualBlock(hidden, spec.dropout) for _ in range(max(1, int(spec.depth)))])
+        self.norm = nn.LayerNorm(hidden)
+        self.head = nn.Linear(hidden, spec.n_targets * spec.n_classes)
+        self.n_targets = spec.n_targets
+        self.n_classes = spec.n_classes
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.input(x)
+        gamma, beta = self.mod(x).chunk(2, dim=-1)
+        gamma = torch.tanh(gamma)
+        for block in self.blocks:
+            z = block(z) * (1.0 + gamma) + 0.05 * beta
+        z = self.norm(z)
+        return self.head(z).view(x.shape[0], self.n_targets, self.n_classes)
+
+
+class MixtureOfExpertsMLP(nn.Module):
+    """Small open-source MoE-style classifier over expression features."""
+
+    def __init__(self, spec: ModelSpec) -> None:
+        super().__init__()
+        hidden = int(spec.hidden_dim)
+        n_experts = 3
+        self.experts = nn.ModuleList([
+            nn.Sequential(
+                nn.Linear(spec.input_dim, hidden),
+                nn.LayerNorm(hidden),
+                nn.GELU(),
+                nn.Dropout(spec.dropout),
+                nn.Linear(hidden, hidden),
+                nn.GELU(),
+            )
+            for _ in range(n_experts)
+        ])
+        self.router = nn.Sequential(nn.Linear(spec.input_dim, hidden), nn.GELU(), nn.Linear(hidden, n_experts), nn.Softmax(dim=-1))
+        self.norm = nn.LayerNorm(hidden)
+        self.head = nn.Linear(hidden, spec.n_targets * spec.n_classes)
+        self.n_targets = spec.n_targets
+        self.n_classes = spec.n_classes
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        weights = self.router(x)
+        expert_outputs = torch.stack([expert(x) for expert in self.experts], dim=1)
+        z = torch.sum(expert_outputs * weights.unsqueeze(-1), dim=1)
+        return self.head(self.norm(z)).view(x.shape[0], self.n_targets, self.n_classes)
+
+
+class TemperatureCalibratedMLP(nn.Module):
+    """Classifier with learned per-sample temperature to test calibration-oriented heads."""
+
+    def __init__(self, spec: ModelSpec) -> None:
+        super().__init__()
+        hidden = int(spec.hidden_dim)
+        self.encoder = nn.Sequential(
+            nn.Linear(spec.input_dim, hidden),
+            nn.LayerNorm(hidden),
+            nn.GELU(),
+            nn.Dropout(spec.dropout),
+            nn.Linear(hidden, hidden),
+            nn.GELU(),
+        )
+        self.logits = nn.Linear(hidden, spec.n_targets * spec.n_classes)
+        self.temperature = nn.Sequential(nn.Linear(hidden, spec.n_targets), nn.Softplus())
+        self.n_targets = spec.n_targets
+        self.n_classes = spec.n_classes
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.encoder(x)
+        logits = self.logits(z).view(x.shape[0], self.n_targets, self.n_classes)
+        temp = self.temperature(z).view(x.shape[0], self.n_targets, 1).clamp_min(0.25) + 0.75
+        return logits / temp
+
+
 MODEL_TYPES = {
     "mlp": PerturbationMLP,
     "residual_mlp": ResidualPerturbationMLP,
     "gated_mlp": GatedPerturbationMLP,
     "low_rank_mlp": LowRankPerturbationMLP,
     "target_aware_bilinear": TargetAwareBilinearFusion,
+    "feature_dropout_mlp": FeatureDropoutMLP,
+    "film_residual_mlp": FilmResidualMLP,
+    "mixture_of_experts_mlp": MixtureOfExpertsMLP,
+    "temperature_calibrated_mlp": TemperatureCalibratedMLP,
 }
 
 

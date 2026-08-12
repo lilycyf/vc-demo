@@ -1,0 +1,285 @@
+{
+  "events": [],
+  "experiment": "helf_drug_harness_demo_smoke",
+  "last_backprop_path": [
+    "helf_drug_root_residual_mlp_p3_temperature_calibration",
+    "helf_drug_root_residual_mlp"
+  ],
+  "nodes": {
+    "helf_drug_root_gated_mlp": {
+      "best_val_macro_f1": 0.10981511324644089,
+      "children": [],
+      "config": "configs/helf_drug_roots/root_gated_mlp.json",
+      "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_gated_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.10215729475021362,
+      "value": 0.10981511324644089,
+      "visits": 1
+    },
+    "helf_drug_root_mlp": {
+      "best_val_macro_f1": 0.15662695467472076,
+      "children": [
+        "helf_drug_root_mlp_p5_feature_dropout",
+        "helf_drug_root_mlp_p6_temperature_calibration",
+        "helf_drug_root_mlp_p7_weighted_ce",
+        "helf_drug_root_mlp_p8_focal_loss",
+        "helf_drug_root_mlp_p9_temperature_calibration",
+        "helf_drug_root_mlp_p10_weighted_ce",
+        "helf_drug_root_mlp_p11_focal_loss",
+        "helf_drug_root_mlp_p12_dropout_low"
+      ],
+      "config": "configs/helf_drug_roots/root_mlp.json",
+      "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.11730542033910751,
+      "value": 0.15662695467472076,
+      "visits": 1
+    },
+    "helf_drug_root_mlp_p10_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.66,
+        "score": 0.34262695467472076
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p10_weighted_ce.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p10_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p11_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.62,
+        "score": 0.33862695467472076
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p11_focal_loss.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p11_focal_loss.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p12_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.6,
+        "score": 0.33662695467472076
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p12_dropout_low.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p12_dropout_low.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p5_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.72,
+        "score": 0.34862695467472077
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p5_feature_dropout.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p5_feature_dropout.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p6_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.7,
+        "score": 0.34662695467472077
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p6_temperature_calibration.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p6_temperature_calibration.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p7_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.66,
+        "score": 0.34262695467472076
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p7_weighted_ce.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p7_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p8_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.62,
+        "score": 0.33862695467472076
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p8_focal_loss.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p8_focal_loss.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_mlp_p9_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.15662695467472076,
+        "priority": 0.7,
+        "score": 0.34662695467472077
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p9_temperature_calibration.json",
+      "parent": "helf_drug_root_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_mlp_p9_temperature_calibration.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_drug_root_residual_mlp": {
+      "best_val_macro_f1": 0.1600358933210373,
+      "children": [
+        "helf_drug_root_residual_mlp_p1_low_rank_head",
+        "helf_drug_root_residual_mlp_p2_feature_dropout",
+        "helf_drug_root_residual_mlp_p3_temperature_calibration",
+        "helf_drug_root_residual_mlp_p4_weighted_ce"
+      ],
+      "config": "configs/helf_drug_roots/root_residual_mlp.json",
+      "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_residual_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.14300577342510223,
+      "value": 0.41395304817706347,
+      "visits": 4
+    },
+    "helf_drug_root_residual_mlp_p1_low_rank_head": {
+      "best_val_macro_f1": 0.015267175622284412,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.1600358933210373,
+        "priority": 0.76,
+        "score": 0.3560358933210373
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p1_low_rank_head.json",
+      "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_residual_mlp_p1_low_rank_head/metrics.json",
+      "parent": "helf_drug_root_residual_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p1_low_rank_head.proposal.json",
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.025523582473397255,
+      "value": 0.030534351244568825,
+      "visits": 2
+    },
+    "helf_drug_root_residual_mlp_p2_feature_dropout": {
+      "best_val_macro_f1": 0.10721898078918457,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.1600358933210373,
+        "priority": 0.72,
+        "score": 0.3520358933210373
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p2_feature_dropout.json",
+      "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_residual_mlp_p2_feature_dropout/metrics.json",
+      "parent": "helf_drug_root_residual_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p2_feature_dropout.proposal.json",
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.08392763137817383,
+      "value": 0.21443796157836914,
+      "visits": 2
+    },
+    "helf_drug_root_residual_mlp_p3_temperature_calibration": {
+      "best_val_macro_f1": 0.1314309984445572,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.1600358933210373,
+        "priority": 0.7,
+        "score": 0.3500358933210373
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p3_temperature_calibration.json",
+      "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_residual_mlp_p3_temperature_calibration/metrics.json",
+      "parent": "helf_drug_root_residual_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p3_temperature_calibration.proposal.json",
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.09245515614748001,
+      "value": 0.2628619968891144,
+      "visits": 2
+    },
+    "helf_drug_root_residual_mlp_p4_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.1600358933210373,
+        "priority": 0.66,
+        "score": 0.3460358933210373
+      },
+      "children": [],
+      "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p4_weighted_ce.json",
+      "parent": "helf_drug_root_residual_mlp",
+      "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p4_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    }
+  },
+  "root_nodes": [
+    "helf_drug_root_mlp",
+    "helf_drug_root_residual_mlp",
+    "helf_drug_root_gated_mlp"
+  ],
+  "task_id": "HELF_DRUG"
+}

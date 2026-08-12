@@ -1,0 +1,49 @@
+{
+  "id": "helf_drug_open_source_search_space_v1",
+  "task_id": "HELF_DRUG",
+  "goal": "Small VCHarness-style demo over open-source PyTorch architectures for single-cell drug identity classification.",
+  "prediction_problem": "Input HELF single-cell expression; predict 12-way Drug label.",
+  "reward": "validation Macro-F1",
+  "test_policy": "test Macro-F1 is final-report only",
+  "input_contract": "real_npz features [cells, selected_genes]; labels [cells, 1]",
+  "output_contract": "logits [batch, 1, 12]",
+  "search_dimensions": {
+    "backbone": [
+      "mlp",
+      "residual_mlp",
+      "gated_mlp",
+      "film_residual_mlp",
+      "mixture_of_experts_mlp"
+    ],
+    "head": [
+      "dense",
+      "low_rank_mlp",
+      "temperature_calibrated_mlp"
+    ],
+    "regularization": [
+      "dropout_low",
+      "dropout_high",
+      "feature_dropout_mlp",
+      "weight_decay"
+    ],
+    "optimization": [
+      "lr_low",
+      "lr_high",
+      "weighted_cross_entropy",
+      "focal_loss"
+    ],
+    "capacity": [
+      "hidden_dim",
+      "depth",
+      "low_rank_dim"
+    ]
+  },
+  "artifact_policy": "Only source h5ad and derived NPZ are required; no foundation-model artifact is required for this demo.",
+  "not_in_scope": [
+    "AIDO",
+    "STRING_GNN",
+    "scFoundation",
+    "protein embeddings",
+    "unseen-drug generalization"
+  ]
+}

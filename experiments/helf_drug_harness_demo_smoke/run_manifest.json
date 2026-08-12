@@ -1,0 +1,47 @@
+{
+  "artifact_blockers": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.1314309984445572,
+    "cheap_screen_score": {
+      "cost_bonus": 0.04,
+      "novelty": 0.08,
+      "parent_val": 0.1600358933210373,
+      "priority": 0.7,
+      "score": 0.3500358933210373
+    },
+    "children": [],
+    "config": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p3_temperature_calibration.json",
+    "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_residual_mlp_p3_temperature_calibration/metrics.json",
+    "parent": "helf_drug_root_residual_mlp",
+    "proposal": "experiments/helf_drug_harness_demo_smoke/proposals/helf_drug_root_residual_mlp_p3_temperature_calibration.proposal.json",
+    "status": "trained",
+    "strategy": "temperature_calibration",
+    "test_macro_f1": 0.09245515614748001,
+    "value": 0.2628619968891144,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.1600358933210373,
+    "children": [
+      "helf_drug_root_residual_mlp_p1_low_rank_head",
+      "helf_drug_root_residual_mlp_p2_feature_dropout",
+      "helf_drug_root_residual_mlp_p3_temperature_calibration",
+      "helf_drug_root_residual_mlp_p4_weighted_ce"
+    ],
+    "config": "configs/helf_drug_roots/root_residual_mlp.json",
+    "metrics": "experiments/helf_drug_harness_demo_smoke/nodes/helf_drug_root_residual_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.14300577342510223,
+    "value": 0.41395304817706347,
+    "visits": 4
+  },
+  "experiment": "helf_drug_harness_demo_smoke",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 12,
+  "pruned_not_selected": 9,
+  "run_dir": "experiments/helf_drug_harness_demo_smoke",
+  "stop_reason": "trained-node budget exhausted (3/3)",
+  "trained_selected_rollouts": 3
+}

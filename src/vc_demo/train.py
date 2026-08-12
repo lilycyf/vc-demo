@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 import torch
@@ -102,7 +103,8 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     val_loader = DataLoader(val_dataset, batch_size=batch_size)
     test_loader = DataLoader(test_dataset, batch_size=batch_size)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    force_cpu = os.environ.get("VC_DEMO_FORCE_CPU", "").lower() in {"1", "true", "yes"}
+    device = torch.device("cuda" if torch.cuda.is_available() and not force_cpu else "cpu")
     model = build_model(config).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
     loss_fn = build_loss(config, device)

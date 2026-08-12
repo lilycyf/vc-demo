@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 4,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.15662695467472076,
+    "priority": 0.62,
+    "score": 0.33862695467472076
+  },
+  "child": "helf_drug_root_mlp_p8_focal_loss",
+  "hypothesis": "Test focal_loss for HELF drug identity prediction.",
+  "parent": "helf_drug_root_mlp",
+  "strategy": "focal_loss"
+}

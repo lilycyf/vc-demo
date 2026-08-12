@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.15662695467472076,
+    "priority": 0.72,
+    "score": 0.34862695467472077
+  },
+  "child": "helf_drug_root_mlp_p5_feature_dropout",
+  "hypothesis": "Test feature_dropout for HELF drug identity prediction.",
+  "parent": "helf_drug_root_mlp",
+  "strategy": "feature_dropout"
+}

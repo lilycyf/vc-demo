@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.1600358933210373,
+    "priority": 0.76,
+    "score": 0.3560358933210373
+  },
+  "child": "helf_drug_root_residual_mlp_p1_low_rank_head",
+  "hypothesis": "Test low_rank_head for HELF drug identity prediction.",
+  "parent": "helf_drug_root_residual_mlp",
+  "strategy": "low_rank_head"
+}

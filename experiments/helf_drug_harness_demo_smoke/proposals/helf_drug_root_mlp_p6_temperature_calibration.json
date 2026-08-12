@@ -1,0 +1,25 @@
+{
+  "data": {
+    "data_dir": "data/cell_lines/helf_drug_cls",
+    "dataset_type": "real_npz",
+    "n_classes": 12
+  },
+  "model": {
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "low_rank_dim": 16,
+    "model_type": "temperature_calibrated_mlp",
+    "n_classes": "auto",
+    "n_targets": "auto"
+  },
+  "node_name": "helf_drug_root_mlp_p6_temperature_calibration",
+  "training": {
+    "batch_size": 128,
+    "epochs": 8,
+    "loss_type": "cross_entropy",
+    "lr": 0.0003,
+    "weight_decay": 0.0001
+  }
+}
