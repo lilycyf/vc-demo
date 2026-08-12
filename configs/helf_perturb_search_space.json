@@ -1,63 +1,239 @@
 {
-  "candidate_dimensions": {
-    "backbone": [
+  "artifact_registry": "configs/artifacts/helf_perturb_registry.json",
+  "baseline_family": {
+    "implemented_model_types": [
       "mlp",
       "residual_mlp",
       "gated_mlp",
+      "low_rank_mlp",
       "film_residual_mlp",
-      "mixture_of_experts_mlp"
+      "mixture_of_experts_mlp",
+      "feature_dropout_mlp",
+      "temperature_calibrated_mlp"
     ],
-    "capacity": [
-      "hidden_128",
-      "hidden_256",
-      "hidden_512",
-      "depth_2",
-      "depth_3"
+    "purpose": "sanity check and lower bound, not the main scientific search space"
+  },
+  "estimated_candidate_count_lower_bound": 2400,
+  "foundation_families": [
+    {
+      "blueprints": [
+        {
+          "codex_action": "download checkpoint, tokenize HELF h5ad by scGPT vocab, implement frozen encoder + DEG head",
+          "id": "scgpt_cell_encoder",
+          "required_artifacts": [
+            "scgpt_whole_human_checkpoint"
+          ]
+        },
+        {
+          "codex_action": "implement LoRA/adapter or top-layer tuning over scGPT with strict shape smoke",
+          "id": "scgpt_adapter_finetune",
+          "required_artifacts": [
+            "scgpt_whole_human_checkpoint"
+          ]
+        },
+        {
+          "codex_action": "tokenize rank-value transcriptomes, extract perturb/control embeddings, train DEG head",
+          "id": "geneformer_cell_encoder",
+          "required_artifacts": [
+            "geneformer_checkpoint"
+          ]
+        },
+        {
+          "codex_action": "fine-tune controlled adapter/head with fixed split and val reward",
+          "id": "geneformer_adapter_head",
+          "required_artifacts": [
+            "geneformer_checkpoint"
+          ]
+        },
+        {
+          "codex_action": "acquire checkpoint or service embeddings, align vocabulary, train frozen embedding head",
+          "id": "scfoundation_cell_encoder",
+          "required_artifacts": [
+            "scfoundation_checkpoint_or_service_output"
+          ]
+        },
+        {
+          "codex_action": "generate UCE embeddings for treated/control cells, train delta embedding head",
+          "id": "uce_cell_embedding",
+          "required_artifacts": [
+            "uce_checkpoint"
+          ]
+        }
+      ],
+      "family": "single_cell_foundation_encoder"
+    },
+    {
+      "blueprints": [
+        {
+          "codex_action": "align target genes to protein embeddings and implement target-aware bilinear/cross-attention head",
+          "id": "esm2_target_gene_head",
+          "required_artifacts": [
+            "esm2_gene_or_protein_embeddings"
+          ]
+        },
+        {
+          "codex_action": "fuse expression delta context with target-gene protein embeddings",
+          "id": "protein_embedding_fusion",
+          "required_artifacts": [
+            "esm2_gene_or_protein_embeddings"
+          ]
+        }
+      ],
+      "family": "gene_or_protein_foundation_prior"
+    },
+    {
+      "blueprints": [
+        {
+          "codex_action": "resolve drug names to SMILES, compute RDKit fingerprints, fuse with expression delta",
+          "id": "rdkit_drug_fingerprint_fusion",
+          "required_artifacts": [
+            "chemical_encoder_checkpoint_or_drug_fingerprints"
+          ]
+        },
+        {
+          "codex_action": "download public chemical encoder if available, encode perturbing drug, train cross-attention head",
+          "id": "chemberta_drug_encoder",
+          "required_artifacts": [
+            "chemical_encoder_checkpoint_or_drug_fingerprints"
+          ]
+        },
+        {
+          "codex_action": "cross-attend drug embedding to target-gene embedding table",
+          "id": "drug_target_cross_attention",
+          "required_artifacts": [
+            "chemical_encoder_checkpoint_or_drug_fingerprints",
+            "esm2_gene_or_protein_embeddings"
+          ]
+        }
+      ],
+      "family": "chemical_perturbation_encoder"
+    },
+    {
+      "blueprints": [
+        {
+          "codex_action": "build STRING graph aligned to feature/target genes and implement message passing head",
+          "id": "string_graph_message_passing",
+          "required_artifacts": [
+            "string_gene_graph"
+          ]
+        },
+        {
+          "codex_action": "regularize/smooth target logits over real STRING edges",
+          "id": "graph_laplacian_head",
+          "required_artifacts": [
+            "string_gene_graph"
+          ]
+        },
+        {
+          "codex_action": "pool target genes through Reactome membership matrix before class head",
+          "id": "pathway_pooling_encoder",
+          "required_artifacts": [
+            "reactome_pathway_membership"
+          ]
+        },
+        {
+          "codex_action": "select source-backed regulatory graph and implement TF-target attention",
+          "id": "tf_regulatory_attention",
+          "required_artifacts": [
+            "regulatory_network_prior"
+          ]
+        }
+      ],
+      "family": "network_and_pathway_prior"
+    },
+    {
+      "blueprints": [
+        {
+          "codex_action": "fuse cell-state foundation embedding with drug embedding",
+          "id": "cell_foundation_plus_drug_fusion",
+          "required_artifacts": [
+            "scgpt_whole_human_checkpoint",
+            "chemical_encoder_checkpoint_or_drug_fingerprints"
+          ]
+        },
+        {
+          "codex_action": "combine cell embedding, target embedding, and graph prior through gated/cross attention",
+          "id": "cell_gene_graph_tri_modal_fusion",
+          "required_artifacts": [
+            "geneformer_checkpoint",
+            "esm2_gene_or_protein_embeddings",
+            "string_gene_graph"
+          ]
+        },
+        {
+          "codex_action": "drug-to-pathway-to-target hierarchical prediction",
+          "id": "pathway_drug_target_fusion",
+          "required_artifacts": [
+            "chemical_encoder_checkpoint_or_drug_fingerprints",
+            "reactome_pathway_membership",
+            "esm2_gene_or_protein_embeddings"
+          ]
+        }
+      ],
+      "family": "multimodal_fusion"
+    }
+  ],
+  "id": "helf_perturb_foundation_artifact_search_space_v2",
+  "reporting_requirements": [
+    "artifact status table: present/acquired/built/blocked",
+    "which foundation modules were actually used",
+    "which selected proposals were blocked and why",
+    "best baseline vs best foundation-artifact child",
+    "no fallback/proxy audit"
+  ],
+  "scope": "foundation-artifact-aware VCHarness-style perturbation response demo",
+  "search_space_policy": {
+    "forbidden": [
+      "fallback foundation embeddings",
+      "compact/proxy replacements for foundation modules",
+      "training pruned proposals",
+      "test-guided selection"
     ],
-    "perturbation_features": [
-      "delta_expression_only",
-      "delta_expression_plus_drug_onehot",
-      "feature_dropout_regularized_delta"
+    "foundation_artifacts_are_core_search_dimensions": true,
+    "lightweight_pytorch_models_are_baselines_only": true,
+    "missing_artifact_rule": "try source-backed acquisition/build first; block only when source, shape, vocabulary, or provenance cannot be verified",
+    "selected_rollout_rule": "selected proposal must acquire/verify required artifacts, implement a faithful node, smoke, train, then backprop"
+  },
+  "task_id": "HELF_PERTURB_DEG",
+  "tunable_parameters": {
+    "artifact_mode": [
+      "frozen_embedding",
+      "adapter_finetune",
+      "top_layer_finetune",
+      "full_finetune_when_feasible"
     ],
-    "regularization": [
-      "dropout_low",
-      "dropout_medium",
-      "dropout_high",
-      "weight_decay_low",
-      "weight_decay_medium"
+    "fusion": [
+      "concat",
+      "gated",
+      "bilinear",
+      "cross_attention",
+      "late_fusion",
+      "mixture_of_experts"
     ],
-    "target_head": [
-      "dense_all_targets",
-      "low_rank_target_factor_head",
-      "temperature_calibrated_head"
-    ],
-    "training_strategy": [
+    "loss": [
       "cross_entropy",
       "weighted_cross_entropy",
-      "focal_loss"
+      "focal_loss",
+      "class_balanced_loss"
+    ],
+    "optimizer": [
+      "adamw",
+      "layerwise_lr",
+      "warmup_cosine",
+      "swa_or_checkpoint_ensemble"
+    ],
+    "regularization": [
+      "dropout",
+      "feature_dropout",
+      "weight_decay",
+      "label_smoothing"
+    ],
+    "target_head": [
+      "dense",
+      "low_rank",
+      "target_specific",
+      "target_embedding_bilinear",
+      "pathway_hierarchical"
     ]
-  },
-  "id": "helf_perturb_open_source_search_space_v1",
-  "implemented_model_types": [
-    "mlp",
-    "residual_mlp",
-    "gated_mlp",
-    "low_rank_mlp",
-    "film_residual_mlp",
-    "mixture_of_experts_mlp",
-    "feature_dropout_mlp",
-    "temperature_calibrated_mlp"
-  ],
-  "required_artifacts": [
-    "source_h5ad_only"
-  ],
-  "scope": "small open-source VCHarness-style perturbation response demo",
-  "selection_policy": "MCTS-style parent selection plus proposal pool cheap screening; selected rollouts only are trained",
-  "strict_rules": [
-    "no fallback artifacts",
-    "validation Macro-F1 reward only",
-    "test Macro-F1 report-only",
-    "drug-level split fixed after preprocessing"
-  ],
-  "task_id": "HELF_PERTURB_DEG"
+  }
 }

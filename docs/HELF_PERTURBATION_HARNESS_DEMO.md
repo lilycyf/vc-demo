@@ -18,7 +18,7 @@ This is perturbation-related because the model predicts the transcriptional resp
 
 ## Why This Is Smaller Than The Paper Task
 
-The paper-scale VCHarness task predicts CRISPR perturbation DEG labels with large biological foundation artifacts. This demo intentionally avoids unavailable foundation checkpoints and uses only the provided h5ad to create a runnable, auditable harness loop.
+The paper-scale VCHarness task predicts perturbation DEG labels with large biological foundation artifacts. This demo now has two tiers: a lightweight baseline tier that always runs from the provided h5ad, and a formal foundation-artifact tier that searches over source-backed single-cell, gene/protein, chemical, graph, pathway, and regulatory modules.
 
 ## Prepare Data
 
@@ -40,12 +40,13 @@ VC_DEMO_FORCE_CPU=1 PYTHONPATH=src python3 scripts/run_helf_drug_harness_demo.py
 
 ## Search Space
 
-The open-source search space includes MLP, residual MLP, gated MLP, FiLM residual MLP, mixture-of-experts MLP, dense heads, low-rank target heads, temperature-calibrated heads, weighted CE, focal loss, dropout, width, depth, and learning-rate variants.
+The lightweight baseline search space includes MLP, residual MLP, gated MLP, FiLM residual MLP, mixture-of-experts MLP, dense heads, low-rank target heads, temperature-calibrated heads, weighted CE, focal loss, dropout, width, depth, and learning-rate variants. The formal search space is foundation-artifact-aware and is defined in `configs/helf_perturb_search_space.json` plus `docs/HELF_PERTURBATION_FOUNDATION_SEARCH_SPACE.md`. It includes scGPT, Geneformer, scFoundation, UCE, ESM2, drug encoders, STRING, Reactome, regulatory priors, and multimodal fusion blueprints.
 
 ## Guardrails
 
-- No foundation model checkpoint is required.
-- No fallback artifact is allowed or needed.
+- Lightweight smoke can run without foundation model checkpoints.
+- Formal foundation search must acquire/build required artifacts or strict-block the selected node.
+- No fallback artifact is allowed.
 - Test metrics are report-only.
 - Generated proposals not selected by the proposal pool are pruned and not trained.
 - Data outputs and node checkpoints must not be committed.
