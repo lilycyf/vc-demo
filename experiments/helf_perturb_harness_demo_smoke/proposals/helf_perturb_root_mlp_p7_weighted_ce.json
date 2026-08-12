@@ -1,0 +1,31 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "model": {
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "model_type": "mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "helf_perturb_root_mlp_p7_weighted_ce",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "class_weights": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "device": "auto",
+    "loss_type": "weighted_cross_entropy",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

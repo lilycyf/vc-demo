@@ -1,0 +1,27 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "model": {
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "model_type": "mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "helf_perturb_root_mlp_p8_focal_loss",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "focal_gamma": 2.0,
+    "loss_type": "focal_loss",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

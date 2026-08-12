@@ -149,7 +149,7 @@ def best_rows(tree: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | No
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Run a small VCHarness-style HELF drug identity demo.")
+    parser = argparse.ArgumentParser(description="Run a small VCHarness-style HELF demo over NPZ task data.")
     parser.add_argument("--root-configs", nargs="+", required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--experiment", default="helf_drug_harness_demo")
@@ -168,7 +168,14 @@ def main() -> None:
     args.run_dir.mkdir(parents=True, exist_ok=True)
     proposal_dir = args.run_dir / "proposals"
     proposal_dir.mkdir(parents=True, exist_ok=True)
-    tree = {"experiment": args.experiment, "task_id": "HELF_DRUG", "nodes": {}, "root_nodes": [], "events": []}
+    first_root = read_json(Path(args.root_configs[0]))
+    data_dir = Path(first_root.get("dataset", {}).get("data_dir", ""))
+    task_manifest = {}
+    if data_dir and (data_dir / "manifest.json").exists():
+        task_manifest = read_json(data_dir / "manifest.json")
+    task_id = str(task_manifest.get("task_id", "HELF_DEMO"))
+    task_label = str(task_manifest.get("task_type", task_id))
+    tree = {"experiment": args.experiment, "task_id": task_id, "task_type": task_label, "nodes": {}, "root_nodes": [], "events": []}
     rng = random.Random(args.seed)
 
     for root in args.root_configs:
@@ -198,7 +205,7 @@ def main() -> None:
                 generated += 1
                 child = f"{parent}_p{generated}_{transform['id']}"
                 cfg = apply_transform(parent_cfg, transform["id"], child)
-                proposal = {"strategy": transform["id"], "parent": parent, "child": child, "candidate_rank": rank, "candidate_pool_size": args.candidate_pool_size, "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)), "hypothesis": f"Test {transform['id']} for HELF drug identity prediction."}
+                proposal = {"strategy": transform["id"], "parent": parent, "child": child, "candidate_rank": rank, "candidate_pool_size": args.candidate_pool_size, "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)), "hypothesis": f"Test {transform['id']} for {task_label}."}
                 cfg_path = proposal_dir / f"{child}.json"
                 prop_path = proposal_dir / f"{child}.proposal.json"
                 write_json(cfg_path, cfg)
@@ -245,7 +252,7 @@ def main() -> None:
     }
     write_json(args.run_dir / "tree.json", tree)
     write_json(args.run_dir / "run_manifest.json", summary)
-    lines = ["# HELF Drug Harness Demo Report", "", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Failed: `{failed}`", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
+    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Failed: `{failed}`", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
     if best_child:
         lines += [f"- Strategy: `{best_child.get('strategy')}`", f"- Val Macro-F1: `{best_child.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_child.get('test_macro_f1')}`"]
     else:

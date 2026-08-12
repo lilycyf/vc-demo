@@ -1,0 +1,63 @@
+{
+  "candidate_dimensions": {
+    "backbone": [
+      "mlp",
+      "residual_mlp",
+      "gated_mlp",
+      "film_residual_mlp",
+      "mixture_of_experts_mlp"
+    ],
+    "capacity": [
+      "hidden_128",
+      "hidden_256",
+      "hidden_512",
+      "depth_2",
+      "depth_3"
+    ],
+    "perturbation_features": [
+      "delta_expression_only",
+      "delta_expression_plus_drug_onehot",
+      "feature_dropout_regularized_delta"
+    ],
+    "regularization": [
+      "dropout_low",
+      "dropout_medium",
+      "dropout_high",
+      "weight_decay_low",
+      "weight_decay_medium"
+    ],
+    "target_head": [
+      "dense_all_targets",
+      "low_rank_target_factor_head",
+      "temperature_calibrated_head"
+    ],
+    "training_strategy": [
+      "cross_entropy",
+      "weighted_cross_entropy",
+      "focal_loss"
+    ]
+  },
+  "id": "helf_perturb_open_source_search_space_v1",
+  "implemented_model_types": [
+    "mlp",
+    "residual_mlp",
+    "gated_mlp",
+    "low_rank_mlp",
+    "film_residual_mlp",
+    "mixture_of_experts_mlp",
+    "feature_dropout_mlp",
+    "temperature_calibrated_mlp"
+  ],
+  "required_artifacts": [
+    "source_h5ad_only"
+  ],
+  "scope": "small open-source VCHarness-style perturbation response demo",
+  "selection_policy": "MCTS-style parent selection plus proposal pool cheap screening; selected rollouts only are trained",
+  "strict_rules": [
+    "no fallback artifacts",
+    "validation Macro-F1 reward only",
+    "test Macro-F1 report-only",
+    "drug-level split fixed after preprocessing"
+  ],
+  "task_id": "HELF_PERTURB_DEG"
+}

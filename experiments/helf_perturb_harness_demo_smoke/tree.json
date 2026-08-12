@@ -1,0 +1,377 @@
+{
+  "events": [],
+  "experiment": "helf_perturb_harness_demo_smoke",
+  "last_backprop_path": [
+    "helf_perturb_root_residual_mlp_p3_temperature_calibration",
+    "helf_perturb_root_residual_mlp"
+  ],
+  "nodes": {
+    "helf_perturb_root_gated_mlp": {
+      "best_val_macro_f1": 0.33863863348960876,
+      "children": [
+        "helf_perturb_root_gated_mlp_p13_temperature_calibration",
+        "helf_perturb_root_gated_mlp_p14_weighted_ce",
+        "helf_perturb_root_gated_mlp_p15_focal_loss",
+        "helf_perturb_root_gated_mlp_p16_dropout_low"
+      ],
+      "config": "configs/helf_perturb_roots/root_gated_mlp.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_gated_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.33878469467163086,
+      "value": 0.33863863348960876,
+      "visits": 1
+    },
+    "helf_perturb_root_gated_mlp_p13_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33863863348960876,
+        "priority": 0.7,
+        "score": 0.5286386334896087
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p13_temperature_calibration.json",
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p13_temperature_calibration.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p14_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33863863348960876,
+        "priority": 0.66,
+        "score": 0.5246386334896087
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p14_weighted_ce.json",
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p14_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33863863348960876,
+        "priority": 0.62,
+        "score": 0.5206386334896087
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p15_focal_loss.json",
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p15_focal_loss.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p16_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33863863348960876,
+        "priority": 0.6,
+        "score": 0.5186386334896087
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p16_dropout_low.json",
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_gated_mlp_p16_dropout_low.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp": {
+      "best_val_macro_f1": 0.33251529932022095,
+      "children": [],
+      "config": "configs/helf_perturb_roots/root_low_rank_mlp.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_low_rank_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.3359313905239105,
+      "value": 0.33251529932022095,
+      "visits": 1
+    },
+    "helf_perturb_root_mlp": {
+      "best_val_macro_f1": 0.3403705656528473,
+      "children": [
+        "helf_perturb_root_mlp_p5_feature_dropout",
+        "helf_perturb_root_mlp_p6_temperature_calibration",
+        "helf_perturb_root_mlp_p7_weighted_ce",
+        "helf_perturb_root_mlp_p8_focal_loss",
+        "helf_perturb_root_mlp_p9_temperature_calibration",
+        "helf_perturb_root_mlp_p10_weighted_ce",
+        "helf_perturb_root_mlp_p11_focal_loss",
+        "helf_perturb_root_mlp_p12_dropout_low"
+      ],
+      "config": "configs/helf_perturb_roots/root_mlp.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.33976951241493225,
+      "value": 0.6785658895969391,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p10_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.66,
+        "score": 0.5263705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p10_weighted_ce.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p10_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.62,
+        "score": 0.5223705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p11_focal_loss.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p11_focal_loss.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.6,
+        "score": 0.5203705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p12_dropout_low.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p12_dropout_low.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p5_feature_dropout": {
+      "best_val_macro_f1": 0.3381953239440918,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.72,
+        "score": 0.5323705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p5_feature_dropout.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_mlp_p5_feature_dropout/metrics.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p5_feature_dropout.proposal.json",
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.34195730090141296,
+      "value": 0.6763906478881836,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p6_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.7,
+        "score": 0.5303705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p6_temperature_calibration.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p6_temperature_calibration.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.66,
+        "score": 0.5263705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p7_weighted_ce.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p7_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.62,
+        "score": 0.5223705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p8_focal_loss.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p8_focal_loss.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p9_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3403705656528473,
+        "priority": 0.7,
+        "score": 0.5303705656528472
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p9_temperature_calibration.json",
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_mlp_p9_temperature_calibration.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp": {
+      "best_val_macro_f1": 0.34085917472839355,
+      "children": [
+        "helf_perturb_root_residual_mlp_p1_low_rank_head",
+        "helf_perturb_root_residual_mlp_p2_feature_dropout",
+        "helf_perturb_root_residual_mlp_p3_temperature_calibration",
+        "helf_perturb_root_residual_mlp_p4_weighted_ce"
+      ],
+      "config": "configs/helf_perturb_roots/root_residual_mlp.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_residual_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.3398761749267578,
+      "value": 1.3538693189620972,
+      "visits": 4
+    },
+    "helf_perturb_root_residual_mlp_p1_low_rank_head": {
+      "best_val_macro_f1": 0.33745741844177246,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34085917472839355,
+        "priority": 0.76,
+        "score": 0.5368591747283935
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p1_low_rank_head.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_residual_mlp_p1_low_rank_head/metrics.json",
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p1_low_rank_head.proposal.json",
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.33531835675239563,
+      "value": 0.6749148368835449,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p2_feature_dropout": {
+      "best_val_macro_f1": 0.33991721272468567,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34085917472839355,
+        "priority": 0.72,
+        "score": 0.5328591747283935
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p2_feature_dropout.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_residual_mlp_p2_feature_dropout/metrics.json",
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p2_feature_dropout.proposal.json",
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.3342452347278595,
+      "value": 0.6798344254493713,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p3_temperature_calibration": {
+      "best_val_macro_f1": 0.3356355130672455,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34085917472839355,
+        "priority": 0.7,
+        "score": 0.5308591747283935
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p3_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_residual_mlp_p3_temperature_calibration/metrics.json",
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p3_temperature_calibration.proposal.json",
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.3410279452800751,
+      "value": 0.671271026134491,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p4_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34085917472839355,
+        "priority": 0.66,
+        "score": 0.5268591747283935
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p4_weighted_ce.json",
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p4_weighted_ce.proposal.json",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    }
+  },
+  "root_nodes": [
+    "helf_perturb_root_mlp",
+    "helf_perturb_root_residual_mlp",
+    "helf_perturb_root_gated_mlp",
+    "helf_perturb_root_low_rank_mlp"
+  ],
+  "task_id": "HELF_PERTURB_DEG",
+  "task_type": "drug_perturbation_target_gene_deg_direction_prediction"
+}

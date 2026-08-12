@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.3403705656528473,
+    "priority": 0.7,
+    "score": 0.5303705656528472
+  },
+  "child": "helf_perturb_root_mlp_p9_temperature_calibration",
+  "hypothesis": "Test temperature_calibration for drug_perturbation_target_gene_deg_direction_prediction.",
+  "parent": "helf_perturb_root_mlp",
+  "strategy": "temperature_calibration"
+}

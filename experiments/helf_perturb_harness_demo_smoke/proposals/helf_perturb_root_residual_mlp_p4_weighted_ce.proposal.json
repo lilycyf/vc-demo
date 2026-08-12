@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 4,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.34085917472839355,
+    "priority": 0.66,
+    "score": 0.5268591747283935
+  },
+  "child": "helf_perturb_root_residual_mlp_p4_weighted_ce",
+  "hypothesis": "Test weighted_ce for drug_perturbation_target_gene_deg_direction_prediction.",
+  "parent": "helf_perturb_root_residual_mlp",
+  "strategy": "weighted_ce"
+}

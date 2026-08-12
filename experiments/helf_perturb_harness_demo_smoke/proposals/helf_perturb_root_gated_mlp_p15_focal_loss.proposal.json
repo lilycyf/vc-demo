@@ -1,0 +1,15 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 3,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.33863863348960876,
+    "priority": 0.62,
+    "score": 0.5206386334896087
+  },
+  "child": "helf_perturb_root_gated_mlp_p15_focal_loss",
+  "hypothesis": "Test focal_loss for drug_perturbation_target_gene_deg_direction_prediction.",
+  "parent": "helf_perturb_root_gated_mlp",
+  "strategy": "focal_loss"
+}

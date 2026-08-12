@@ -1,0 +1,47 @@
+{
+  "artifact_blockers": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.33991721272468567,
+    "cheap_screen_score": {
+      "cost_bonus": 0.04,
+      "novelty": 0.08,
+      "parent_val": 0.34085917472839355,
+      "priority": 0.72,
+      "score": 0.5328591747283935
+    },
+    "children": [],
+    "config": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p2_feature_dropout.json",
+    "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_residual_mlp_p2_feature_dropout/metrics.json",
+    "parent": "helf_perturb_root_residual_mlp",
+    "proposal": "experiments/helf_perturb_harness_demo_smoke/proposals/helf_perturb_root_residual_mlp_p2_feature_dropout.proposal.json",
+    "status": "trained",
+    "strategy": "feature_dropout",
+    "test_macro_f1": 0.3342452347278595,
+    "value": 0.6798344254493713,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.34085917472839355,
+    "children": [
+      "helf_perturb_root_residual_mlp_p1_low_rank_head",
+      "helf_perturb_root_residual_mlp_p2_feature_dropout",
+      "helf_perturb_root_residual_mlp_p3_temperature_calibration",
+      "helf_perturb_root_residual_mlp_p4_weighted_ce"
+    ],
+    "config": "configs/helf_perturb_roots/root_residual_mlp.json",
+    "metrics": "experiments/helf_perturb_harness_demo_smoke/nodes/helf_perturb_root_residual_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.3398761749267578,
+    "value": 1.3538693189620972,
+    "visits": 4
+  },
+  "experiment": "helf_perturb_harness_demo_smoke",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 16,
+  "pruned_not_selected": 12,
+  "run_dir": "experiments/helf_perturb_harness_demo_smoke",
+  "stop_reason": "trained-node budget exhausted (4/4)",
+  "trained_selected_rollouts": 4
+}
