@@ -1,0 +1,31 @@
+{
+  "blueprint_id": "scgpt_cell_encoder",
+  "candidate_pool_size": 8,
+  "candidate_rank": 3,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.08,
+    "parent_val": 0.4129134714603424,
+    "priority": 1.1,
+    "score": 0.6029134714603424
+  },
+  "child": "helf_perturb_root_gated_mlp_p2_foundation_graph_laplacian_head_p19_foundation_scgpt_cell_encoder",
+  "codex_action": "download checkpoint, tokenize HELF h5ad by scGPT vocab, implement frozen encoder + DEG head",
+  "family": "single_cell_foundation_encoder",
+  "hypothesis": "Test foundation_scgpt_cell_encoder for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [
+    {
+      "acquisition_policy": "download_from_primary_source_if_available_else_block",
+      "artifact_id": "scgpt_whole_human_checkpoint",
+      "expected_path": "/home/Models/scGPT/whole_human",
+      "provenance_requirement": "source-backed validation required",
+      "status": "planned_requires_acquisition"
+    }
+  ],
+  "parent": "helf_perturb_root_gated_mlp_p2_foundation_graph_laplacian_head",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "scgpt_whole_human_checkpoint"
+  ],
+  "strategy": "foundation_scgpt_cell_encoder"
+}

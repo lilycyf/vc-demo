@@ -95,3 +95,9 @@ A formal run should report:
 - blocked artifacts and exact blocker evidence;
 - whether any selected foundation node used fallback/proxy, which must be zero;
 - whether the best child beats the best root on validation Macro-F1.
+
+## HELF Foundation Child Implementation Rule
+
+For the HELF perturbation demo, Reactome and STRING artifacts are aligned target-gene priors. They should be used as target-aware residual/gating information on top of the dense perturbation-response branch. They must not replace the expression-delta/drug-context branch by default.
+
+The current executable implementation uses `artifact_augmented_residual_mlp` for source-backed, aligned artifact children. This model preserves dense logits and adds a learned gated artifact residual from Reactome membership and/or STRING graph features.

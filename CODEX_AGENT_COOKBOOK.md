@@ -143,6 +143,27 @@ See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execu
 
 See `PAPER_ALIGNMENT_LAYERS_5_8.md` for benchmark audit, search scale planning, failure repair workflow, and paper-style final analysis.
 
+
+## Foundation Artifact Augmentation Policy
+
+Foundation artifacts are scientific priors and context, not automatic replacements for a strong parent model. For formal runs, artifact-present foundation children should default to a parent-preserving augmentation design:
+
+```text
+final logits = parent/dense logits + learned gate(context) * artifact residual
+```
+
+Rules:
+
+- Preserve the useful parent dense/context path unless the blueprint explicitly declares an ablation or replacement experiment.
+- Use source-backed artifacts as residual, gated, bilinear, attention, smoothing, calibration, or target-geometry signals.
+- Initialize artifact residual strength conservatively so a weak or incomplete prior cannot dominate the parent branch at step 0.
+- Record the augmentation policy in the proposal/tree/report.
+- If required artifacts are present and aligned, the candidate is executable and should not be marked `requires_external_codex` only because it is a foundation blueprint.
+- If required artifacts are missing, run acquisition; block only after source/provenance/shape/vocabulary/order cannot be verified.
+- Do not use compact/proxy/fallback artifacts. A small model is acceptable only as the trainable head around real artifacts and preserved parent features, not as a fake foundation model.
+
+Queue selection may include a rollout-feasibility bonus for artifact-present foundation candidates. This is not a scientific score claiming the artifact is better; it prevents verifiable, executable foundation proposals from being repeatedly pruned behind missing-checkpoint families or tie-break artifacts.
+
 ## Framework Feedback Loop
 
 The objective is to improve the automatic modeling framework through tasks, not to hand-tune one task. After any search or validation run, Codex must treat the result as feedback for the next search policy:

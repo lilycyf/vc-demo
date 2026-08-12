@@ -53,3 +53,30 @@ Examples:
 ## Operational Rule
 
 A short experiment prompt should only provide variables such as branch, cell line, run type, target score, and run directory. Codex must read the repo docs and apply this generic framework. Long copied prompts should not re-encode framework rules.
+
+## Parent-Preserving Foundation Children
+
+A reusable foundation-aware run must distinguish artifact acquisition from artifact use. Once an artifact is source-backed and aligned, the default implementation pattern is augmentation:
+
+```text
+strong dense parent branch -> base logits
+source-backed artifact branch -> residual correction
+final logits = base logits + gated residual correction
+```
+
+This policy is generic across cell lines. It avoids the common failure mode where a pathway/graph/foundation prior replaces the dense perturbation signal and underperforms a root. Search should still explore ablations, but ablations must be explicitly labeled and should not be the default child behavior.
+
+Candidate-pool behavior:
+
+- Generate both artifact-present and missing-artifact foundation proposals.
+- Missing artifacts go through acquisition/block logic.
+- Artifact-present foundation proposals receive enough rollout priority to be trained, so the framework can test whether real priors help.
+- The priority is a feasibility/coverage control, not a biological claim.
+
+Required audit fields for trained foundation children:
+
+- `proposal_type = foundation_artifact_blueprint`
+- `required_artifacts` and `missing_required_artifacts`
+- `foundation_augmentation_policy`
+- `fallback/proxy = 0`
+- best validation Macro-F1 and report-only test Macro-F1

@@ -150,7 +150,7 @@ def validate_arrays(features: torch.Tensor, labels: torch.Tensor, split: Split, 
 
 
 def build_datasets(config: dict) -> tuple[Dataset, Dataset, Dataset]:
-    data_cfg = config.get("data", {})
+    data_cfg = config.get("data") or config.get("dataset", {})
     dataset_type = data_cfg.get("dataset_type", "synthetic")
     if dataset_type == "synthetic":
         spec_cfg = {k: v for k, v in data_cfg.items() if k != "dataset_type"}

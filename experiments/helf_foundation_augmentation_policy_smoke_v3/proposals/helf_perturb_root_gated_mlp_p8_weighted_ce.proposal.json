@@ -1,0 +1,21 @@
+{
+  "blueprint_id": null,
+  "candidate_pool_size": 8,
+  "candidate_rank": 8,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.40055227279663086,
+    "priority": 0.66,
+    "score": 0.5865522727966308
+  },
+  "child": "helf_perturb_root_gated_mlp_p8_weighted_ce",
+  "codex_action": null,
+  "family": null,
+  "hypothesis": "Test weighted_ce for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "helf_perturb_root_gated_mlp",
+  "proposal_type": "lightweight_executable_transform",
+  "required_artifacts": [],
+  "strategy": "weighted_ce"
+}

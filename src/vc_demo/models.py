@@ -308,6 +308,91 @@ class TemperatureCalibratedMLP(nn.Module):
         return logits / temp
 
 
+class ArtifactAugmentedResidualMLP(nn.Module):
+    """Parent-preserving dense model with real artifact residual correction.
+
+    Foundation/pathway/graph artifacts are treated as augmentation signals, not
+    replacements for the dense perturbation-response path. The dense branch can
+    solve the task on its own; aligned target-gene artifacts add a gated residual
+    whose scale is initialized near zero. This makes artifact usage competitive
+    and auditable: a bad prior can stay mostly closed, while a useful prior can
+    improve parent logits.
+    """
+
+    artifact_usage_mode = "parent_dense_logits_plus_gated_artifact_residual"
+    fallback = "none"
+    proxy = "none"
+
+    def __init__(self, spec: ModelSpec) -> None:
+        super().__init__()
+        hidden = int(spec.hidden_dim)
+        self.n_targets = int(spec.n_targets)
+        self.n_classes = int(spec.n_classes)
+        self.input = nn.Sequential(nn.Linear(int(spec.input_dim), hidden), nn.GELU())
+        self.blocks = nn.Sequential(*[ResidualBlock(hidden, float(spec.dropout)) for _ in range(max(1, int(spec.depth)))])
+        self.norm = nn.LayerNorm(hidden)
+        self.dense_head = nn.Linear(hidden, self.n_targets * self.n_classes)
+
+        artifact_tables = self._load_artifact_tables(spec)
+        if not artifact_tables:
+            raise ValueError("artifact_augmented_residual_mlp requires at least one aligned target-gene artifact table")
+        target_features = torch.cat(artifact_tables, dim=1)
+        if int(target_features.shape[0]) != self.n_targets:
+            raise ValueError(f"artifact rows {target_features.shape[0]} do not match n_targets {self.n_targets}")
+        self.register_buffer("target_artifacts", target_features, persistent=False)
+        artifact_dim = int(target_features.shape[1])
+        rank = max(16, min(int(spec.low_rank_dim), hidden, 128))
+        self.context_to_rank = nn.Linear(hidden, rank * self.n_classes)
+        self.artifact_to_rank = nn.Sequential(nn.LayerNorm(artifact_dim), nn.Linear(artifact_dim, rank))
+        self.artifact_bias = nn.Sequential(nn.LayerNorm(artifact_dim), nn.Linear(artifact_dim, self.n_classes))
+        self.gate = nn.Sequential(nn.Linear(hidden, self.n_targets), nn.Sigmoid())
+        self.residual_scale = nn.Parameter(torch.tensor(-2.5))
+        nn.init.zeros_(self.artifact_bias[-1].weight)
+        nn.init.zeros_(self.artifact_bias[-1].bias)
+
+    @staticmethod
+    def _load_artifact_tables(spec: ModelSpec) -> list[torch.Tensor]:
+        artifacts = dict(spec.artifacts or {})
+        entries = []
+        for key in ["artifact_target_embeddings", "target_artifact_embeddings", "artifact_tables"]:
+            value = artifacts.get(key)
+            if isinstance(value, list):
+                entries.extend(value)
+            elif isinstance(value, dict):
+                entries.append(value)
+        for key in ["pathway_membership_path", "reactome_pathway_membership", "string_graph_features_path", "string_gene_graph_features"]:
+            value = artifacts.get(key)
+            if value:
+                entries.append({"path": value, "key": "target_gene_embeddings"})
+        tables: list[torch.Tensor] = []
+        seen: set[tuple[str, str]] = set()
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            path = str(entry.get("path") or "")
+            key = str(entry.get("key") or "target_gene_embeddings")
+            marker = (path, key)
+            if not path or marker in seen:
+                continue
+            seen.add(marker)
+            table = _load_npz_array(path, key)
+            if table.ndim != 2:
+                raise ValueError(f"artifact table {path}:{key} must be 2-D [n_targets, dim], got {tuple(table.shape)}")
+            tables.append(table.float())
+        return tables
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        z = self.norm(self.blocks(self.input(x)))
+        dense_logits = self.dense_head(z).view(x.shape[0], self.n_targets, self.n_classes)
+        artifacts = self.target_artifacts.to(device=x.device, dtype=x.dtype)
+        context_rank = self.context_to_rank(z).view(x.shape[0], -1, self.n_classes)
+        artifact_rank = self.artifact_to_rank(artifacts)
+        artifact_delta = torch.einsum("brc,nr->bnc", context_rank, artifact_rank) + self.artifact_bias(artifacts).unsqueeze(0)
+        gate = self.gate(z).unsqueeze(-1)
+        scale = torch.sigmoid(self.residual_scale)
+        return dense_logits + scale * gate * artifact_delta
+
+
 MODEL_TYPES = {
     "mlp": PerturbationMLP,
     "residual_mlp": ResidualPerturbationMLP,
@@ -318,6 +403,7 @@ MODEL_TYPES = {
     "film_residual_mlp": FilmResidualMLP,
     "mixture_of_experts_mlp": MixtureOfExpertsMLP,
     "temperature_calibrated_mlp": TemperatureCalibratedMLP,
+    "artifact_augmented_residual_mlp": ArtifactAugmentedResidualMLP,
 }
 
 

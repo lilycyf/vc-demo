@@ -101,6 +101,45 @@ def uct_select_parent(tree: dict[str, Any], max_children: int, exploration: floa
     return sorted(candidates, reverse=True)[0][1]
 
 
+
+def apply_foundation_augmentation(parent: dict[str, Any], transform: dict[str, Any], child_name: str) -> dict[str, Any]:
+    """Materialize artifact-present foundation proposals as parent-preserving augmentation.
+
+    The selected foundation artifact is a residual/gated correction on top of a
+    strong dense parent path. It must not replace the dense branch unless a future
+    blueprint explicitly marks itself as an ablation.
+    """
+    cfg = copy.deepcopy(parent)
+    cfg["node_name"] = child_name
+    model = cfg.setdefault("model", {})
+    training = cfg.setdefault("training", {})
+    model["model_type"] = "artifact_augmented_residual_mlp"
+    model.setdefault("hidden_dim", 256)
+    model.setdefault("depth", 2)
+    model.setdefault("dropout", 0.15)
+    model.setdefault("low_rank_dim", 64)
+    artifacts = model.setdefault("artifacts", {})
+    tables: list[dict[str, str]] = []
+    required = set(transform.get("required_artifacts", []))
+    if "reactome_pathway_membership" in required:
+        tables.append({"artifact_id": "reactome_pathway_membership", "path": "data/artifacts/helf/reactome_pathway_membership.npz", "key": "target_gene_embeddings"})
+    if "string_gene_graph" in required:
+        tables.append({"artifact_id": "string_gene_graph", "path": "data/artifacts/helf/string_gene_graph_features.npz", "key": "target_gene_embeddings"})
+    if not tables:
+        # Artifact-heavy checkpoints such as scGPT/Geneformer should remain in
+        # acquisition/block unless a real aligned embedding artifact is built.
+        tables.extend([])
+    artifacts["artifact_tables"] = tables
+    model["foundation_augmentation_policy"] = {
+        "mode": "parent_dense_logits_plus_gated_artifact_residual",
+        "preserve_parent_dense_path": True,
+        "artifact_branch_initial_scale": "sigmoid(-2.5)",
+        "no_fallback_or_proxy": True,
+    }
+    training.setdefault("loss_type", "cross_entropy")
+    return cfg
+
+
 def apply_transform(parent: dict[str, Any], transform_id: str, child_name: str) -> dict[str, Any]:
     cfg = copy.deepcopy(parent)
     cfg["node_name"] = child_name
@@ -197,15 +236,27 @@ def load_foundation_blueprints(path: Path) -> list[dict[str, Any]]:
     return blueprints
 
 
-def choose_candidate_pool(transforms: list[dict[str, Any]], foundation: list[dict[str, Any]], parent_val: float, strategy_counts: dict[str, int], rng: random.Random, pool_size: int) -> list[dict[str, Any]]:
+def _has_present_required_artifacts(transform: dict[str, Any], registry: dict[str, dict[str, Any]]) -> bool:
+    required = transform.get("required_artifacts", [])
+    return bool(required) and not missing_required_artifacts(required, registry)
+
+
+def choose_candidate_pool(transforms: list[dict[str, Any]], foundation: list[dict[str, Any]], parent_val: float, strategy_counts: dict[str, int], rng: random.Random, pool_size: int, registry: dict[str, dict[str, Any]] | None = None) -> list[dict[str, Any]]:
     light = transforms[:]
     found = foundation[:]
+    registry = registry or {}
     rng.shuffle(light)
     rng.shuffle(found)
     light = sorted(light, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
     found = sorted(found, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
+
+    present_foundation = [t for t in found if _has_present_required_artifacts(t, registry)]
+    other_foundation = [t for t in found if t not in present_foundation]
     foundation_slots = min(len(found), max(1, pool_size // 2)) if found else 0
-    selected = found[:foundation_slots]
+    executable_slots = min(len(present_foundation), max(1, foundation_slots // 2)) if present_foundation else 0
+    selected = present_foundation[:executable_slots]
+    selected.extend(other_foundation[: max(0, foundation_slots - len(selected))])
+    selected.extend([t for t in present_foundation[executable_slots:] if t not in selected][: max(0, foundation_slots - len(selected))])
     selected.extend(light[: max(0, pool_size - len(selected))])
     return selected[:pool_size]
 
@@ -277,16 +328,22 @@ def main() -> None:
             parent = uct_select_parent(tree, args.max_children, args.exploration)
             parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
             parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
-            transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size)
-            write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint")})
+            transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size, artifact_registry)
+            write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint"), "materializable_foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint" and _has_present_required_artifacts(t, artifact_registry))})
             for rank, transform in enumerate(transforms, start=1):
                 if generated >= args.budget_proposals:
                     break
                 generated += 1
                 child = f"{parent}_p{generated}_{transform['id']}"
-                cfg = apply_transform(parent_cfg, transform["id"], child) if not transform.get("proposal_type") else copy.deepcopy(parent_cfg)
-                cfg["node_name"] = child
                 missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
+                if transform.get("proposal_type") == "foundation_artifact_blueprint" and not missing_artifacts:
+                    cfg = apply_foundation_augmentation(parent_cfg, transform, child)
+                else:
+                    cfg = apply_transform(parent_cfg, transform["id"], child) if not transform.get("proposal_type") else copy.deepcopy(parent_cfg)
+                    cfg["node_name"] = child
+                score_row = cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0))
+                if transform.get("proposal_type") == "foundation_artifact_blueprint" and transform.get("required_artifacts") and not missing_artifacts:
+                    score_row = {**score_row, "rollout_feasibility_bonus": 0.08, "score": float(score_row["score"]) + 0.08}
                 proposal = {
                     "strategy": transform["id"],
                     "parent": parent,
@@ -299,7 +356,7 @@ def main() -> None:
                     "required_artifacts": transform.get("required_artifacts", []),
                     "missing_required_artifacts": missing_artifacts,
                     "codex_action": transform.get("codex_action"),
-                    "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)),
+                    "cheap_screen_score": score_row,
                     "hypothesis": f"Test {transform['id']} for {task_label}.",
                 }
                 cfg.setdefault("metadata", {})["proposal_type"] = proposal["proposal_type"]
@@ -332,11 +389,15 @@ def main() -> None:
             write_json(args.run_dir / "tree.json", tree)
             continue
         if proposal.get("proposal_type") == "foundation_artifact_blueprint":
-            node.update({"status": "needs_implementation", "blocked_reason": "foundation artifact is present but this demo runner has no automatic model materializer"})
-            skipped += 1
-            write_json(args.run_dir / "implementation_queue.json", {"items": [{"node": selected, "proposal": node.get("proposal"), "reason": node.get("blocked_reason")}]})
-            write_json(args.run_dir / "tree.json", tree)
-            continue
+            cfg_for_foundation = read_json(Path(node["config"]))
+            tables = cfg_for_foundation.get("model", {}).get("artifacts", {}).get("artifact_tables", [])
+            if not tables:
+                node.update({"status": "implementation_skipped", "blocked_reason": "selected foundation blueprint requires a real aligned model/embedding artifact that has not been materialized"})
+                skipped += 1
+                write_trace(args.run_dir, {"event": "implementation_skipped", "node": selected, "reason": node.get("blocked_reason")})
+                write_json(args.run_dir / "tree.json", tree)
+                continue
+            node["foundation_augmentation_policy"] = cfg_for_foundation.get("model", {}).get("foundation_augmentation_policy", {})
         try:
             metrics = run_config(read_json(Path(node["config"])), args.run_dir, args.max_epochs)
             node.update({"status": "trained", "best_val_macro_f1": metrics["best_val_macro_f1"], "test_macro_f1": metrics["test_macro_f1"], "metrics": metrics.get("metrics_path", str(args.run_dir / "nodes" / selected / "metrics.json")), "visits": 1, "value": float(metrics["best_val_macro_f1"])})
@@ -373,9 +434,11 @@ def main() -> None:
         "backprop_nontrained_count": 0,
         "artifact_blockers": blocked,
     }
+    trained_foundation = sum(1 for n in tree["nodes"].values() if n.get("status") == "trained" and n.get("proposal_type") == "foundation_artifact_blueprint")
+    summary["trained_foundation_artifact_children"] = trained_foundation
     write_json(args.run_dir / "tree.json", tree)
     write_json(args.run_dir / "run_manifest.json", summary)
-    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority, but selected blueprints are blocked unless required artifacts have source-backed, shape/order/provenance-verifiable files. Lightweight PyTorch transforms are the executable baseline path for this demo.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
+    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Trained foundation-artifact children: `{trained_foundation}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority. If their required source-backed artifacts are present and aligned, they are materialized as parent-preserving gated residual augmentations: dense parent logits remain intact and the artifact branch adds a learnable correction. Missing or unaligned foundation model artifacts are acquired or blocked; no fallback/proxy is allowed.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
     if best_child:
         lines += [f"- Strategy: `{best_child.get('strategy')}`", f"- Val Macro-F1: `{best_child.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_child.get('test_macro_f1')}`"]
     else:

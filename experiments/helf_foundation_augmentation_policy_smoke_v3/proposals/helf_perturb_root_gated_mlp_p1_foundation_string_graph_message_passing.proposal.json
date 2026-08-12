@@ -1,0 +1,24 @@
+{
+  "blueprint_id": "string_graph_message_passing",
+  "candidate_pool_size": 8,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.08,
+    "parent_val": 0.40055227279663086,
+    "priority": 0.9900000000000001,
+    "rollout_feasibility_bonus": 0.08,
+    "score": 0.6595522727966309
+  },
+  "child": "helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing",
+  "codex_action": "build STRING graph aligned to feature/target genes and implement message passing head",
+  "family": "network_and_pathway_prior",
+  "hypothesis": "Test foundation_string_graph_message_passing for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "helf_perturb_root_gated_mlp",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "string_gene_graph"
+  ],
+  "strategy": "foundation_string_graph_message_passing"
+}

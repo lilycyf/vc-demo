@@ -1,0 +1,69 @@
+{
+  "artifact_blockers": 0,
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.4183642864227295,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.08,
+      "parent_val": 0.3937942683696747,
+      "priority": 0.9800000000000001,
+      "rollout_feasibility_bonus": 0.08,
+      "score": 0.6517942683696747
+    },
+    "children": [],
+    "config": "experiments/helf_foundation_augmentation_policy_smoke_v3/proposals/helf_perturb_root_residual_mlp_p9_foundation_graph_laplacian_head.json",
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "metrics": "experiments/helf_foundation_augmentation_policy_smoke_v3/nodes/helf_perturb_root_residual_mlp_p9_foundation_graph_laplacian_head/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "helf_perturb_root_residual_mlp",
+    "proposal": "experiments/helf_foundation_augmentation_policy_smoke_v3/proposals/helf_perturb_root_residual_mlp_p9_foundation_graph_laplacian_head.proposal.json",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "string_gene_graph"
+    ],
+    "status": "trained",
+    "strategy": "foundation_graph_laplacian_head",
+    "test_macro_f1": 0.40721526741981506,
+    "value": 0.836728572845459,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.40055227279663086,
+    "children": [
+      "helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing",
+      "helf_perturb_root_gated_mlp_p2_foundation_graph_laplacian_head",
+      "helf_perturb_root_gated_mlp_p3_foundation_scgpt_cell_encoder",
+      "helf_perturb_root_gated_mlp_p4_foundation_scgpt_adapter_finetune",
+      "helf_perturb_root_gated_mlp_p5_low_rank_head",
+      "helf_perturb_root_gated_mlp_p6_feature_dropout",
+      "helf_perturb_root_gated_mlp_p7_temperature_calibration",
+      "helf_perturb_root_gated_mlp_p8_weighted_ce"
+    ],
+    "config": "configs/helf_perturb_roots/root_gated_mlp.json",
+    "metrics": "experiments/helf_foundation_augmentation_policy_smoke_v3/nodes/helf_perturb_root_gated_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.39280009269714355,
+    "value": 2.0020174384117126,
+    "visits": 5
+  },
+  "blocked": 0,
+  "experiment": "helf_foundation_augmentation_policy_smoke_v3",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 32,
+  "proxy_count": 0,
+  "pruned_not_selected": 26,
+  "requires_artifact_acquisition": 0,
+  "run_dir": "experiments/helf_foundation_augmentation_policy_smoke_v3",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (6/6)",
+  "trained_foundation_artifact_children": 5,
+  "trained_selected_rollouts": 6
+}

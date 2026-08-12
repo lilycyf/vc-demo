@@ -70,7 +70,7 @@ def build_loss(config: dict, device: torch.device) -> nn.Module:
 def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> dict:
     config = json.loads(json.dumps(config))
     model_cfg = config.setdefault("model", {})
-    data_cfg = config.get("data", {})
+    data_cfg = config.get("data") or config.get("dataset", {})
     x = sample["x"]
     y = sample["y"]
     if model_cfg.get("input_dim", "auto") == "auto":
@@ -103,8 +103,18 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     val_loader = DataLoader(val_dataset, batch_size=batch_size)
     test_loader = DataLoader(test_dataset, batch_size=batch_size)
 
-    force_cpu = os.environ.get("VC_DEMO_FORCE_CPU", "").lower() in {"1", "true", "yes"}
-    device = torch.device("cuda" if torch.cuda.is_available() and not force_cpu else "cpu")
+    requested_device = str(config.get("training", {}).get("device", "auto")).lower()
+    force_cpu = os.environ.get("VC_DEMO_FORCE_CPU", "").lower() in {"1", "true", "yes"} or requested_device == "cpu"
+    cuda_usable = torch.cuda.is_available() and not force_cpu
+    if cuda_usable and requested_device in {"auto", "cuda"}:
+        capability = torch.cuda.get_device_capability()
+        arch = f"sm_{capability[0]}{capability[1]}"
+        supported_arches = set(torch.cuda.get_arch_list())
+        if supported_arches and arch not in supported_arches:
+            cuda_usable = False
+    if requested_device == "cuda" and not cuda_usable and not force_cpu:
+        raise RuntimeError("training.device='cuda' was requested, but CUDA is unavailable or unsupported by this PyTorch build")
+    device = torch.device("cuda" if cuda_usable else "cpu")
     model = build_model(config).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
     loss_fn = build_loss(config, device)
@@ -135,7 +145,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     test = evaluate(model, test_loader, device, config)
     result = {
         "node_name": config.get("node_name", output_dir.name),
-        "dataset_type": config.get("data", {}).get("dataset_type", "synthetic"),
+        "dataset_type": (config.get("data") or config.get("dataset", {})).get("dataset_type", "synthetic"),
         "device": str(device),
         "best_val_macro_f1": best_val,
         "test_macro_f1": test["macro_f1"],
