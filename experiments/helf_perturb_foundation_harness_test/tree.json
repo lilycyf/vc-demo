@@ -1,0 +1,2717 @@
+{
+  "artifact_registry": "configs/artifacts/helf_perturb_registry.json",
+  "events": [],
+  "experiment": "helf_perturb_foundation_harness_test",
+  "last_backprop_path": [
+    "helf_perturb_root_mlp_p12_weighted_ce_p55_focal_loss",
+    "helf_perturb_root_mlp_p12_weighted_ce",
+    "helf_perturb_root_mlp"
+  ],
+  "nodes": {
+    "helf_perturb_root_gated_mlp": {
+      "best_val_macro_f1": 0.3386666774749756,
+      "children": [
+        "helf_perturb_root_gated_mlp_p13_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_gated_mlp_p14_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+        "helf_perturb_root_gated_mlp_p16_weighted_ce",
+        "helf_perturb_root_gated_mlp_p17_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_gated_mlp_p18_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+        "helf_perturb_root_gated_mlp_p20_weighted_ce"
+      ],
+      "config": "configs/helf_perturb_roots/root_gated_mlp.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.33416426181793213,
+      "value": 2.3780089616775513,
+      "visits": 7
+    },
+    "helf_perturb_root_gated_mlp_p13_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 1.1,
+        "score": 0.5286666774749755
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p13_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p13_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p14_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 1.09,
+        "score": 0.5276666774749755
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p14_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p14_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration": {
+      "best_val_macro_f1": 0.33580079674720764,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 0.7,
+        "score": 0.5286666774749755
+      },
+      "children": [
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p85_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p86_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p87_focal_loss",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p88_dropout_low",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p89_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p90_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p91_focal_loss",
+        "helf_perturb_root_gated_mlp_p15_temperature_calibration_p92_dropout_low"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp_p15_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.33983758091926575,
+      "value": 0.6716015934944153,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p85_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 1.1,
+        "score": 0.5258007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p85_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p85_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p86_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 1.09,
+        "score": 0.5248007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p86_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p86_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p87_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 0.62,
+        "score": 0.5178007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p87_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p87_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p88_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 0.6,
+        "score": 0.5158007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p88_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p88_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p89_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 1.1,
+        "score": 0.5258007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p89_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p89_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p90_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 1.09,
+        "score": 0.5248007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p90_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p90_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p91_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 0.62,
+        "score": 0.5178007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p91_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p91_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p15_temperature_calibration_p92_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33580079674720764,
+        "priority": 0.6,
+        "score": 0.5158007967472076
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p92_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p15_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p15_temperature_calibration_p92_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p16_weighted_ce": {
+      "best_val_macro_f1": 0.34386131167411804,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 0.66,
+        "score": 0.5246666774749755
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p16_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp_p16_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p16_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33333078026771545,
+      "value": 0.6877226233482361,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p17_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 1.1,
+        "score": 0.5286666774749755
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p17_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p17_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p18_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 1.09,
+        "score": 0.5276666774749755
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p18_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p18_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration": {
+      "best_val_macro_f1": 0.33958783745765686,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 0.7,
+        "score": 0.5286666774749755
+      },
+      "children": [
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p69_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p70_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p71_focal_loss",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p72_dropout_low",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p73_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p74_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p75_focal_loss",
+        "helf_perturb_root_gated_mlp_p19_temperature_calibration_p76_dropout_low"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp_p19_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.3362561762332916,
+      "value": 1.3583046793937683,
+      "visits": 4
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p69_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 1.1,
+        "score": 0.5295878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p69_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p69_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p70_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 1.09,
+        "score": 0.5285878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p70_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p70_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p71_focal_loss": {
+      "best_val_macro_f1": 0.33757326006889343,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 0.62,
+        "score": 0.5215878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p71_focal_loss.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp_p19_temperature_calibration_p71_focal_loss/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p71_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "focal_loss",
+      "test_macro_f1": 0.339409202337265,
+      "value": 0.6751465201377869,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p72_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 0.6,
+        "score": 0.5195878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p72_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p72_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p73_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 1.1,
+        "score": 0.5295878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p73_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p73_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p74_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 1.09,
+        "score": 0.5285878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p74_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p74_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p75_focal_loss": {
+      "best_val_macro_f1": 0.34155574440956116,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 0.62,
+        "score": 0.5215878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p75_focal_loss.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp_p19_temperature_calibration_p75_focal_loss/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p75_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "focal_loss",
+      "test_macro_f1": 0.33390602469444275,
+      "value": 0.6831114888191223,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p19_temperature_calibration_p76_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33958783745765686,
+        "priority": 0.6,
+        "score": 0.5195878374576568
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p76_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p19_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p19_temperature_calibration_p76_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p20_weighted_ce": {
+      "best_val_macro_f1": 0.34096333384513855,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3386666774749756,
+        "priority": 0.66,
+        "score": 0.5246666774749755
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p20_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_gated_mlp_p20_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_gated_mlp_p20_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33505937457084656,
+      "value": 0.6819266676902771,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp": {
+      "best_val_macro_f1": 0.33809909224510193,
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p21_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_low_rank_mlp_p22_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_low_rank_mlp_p23_temperature_calibration",
+        "helf_perturb_root_low_rank_mlp_p24_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p25_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_low_rank_mlp_p26_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_low_rank_mlp_p27_temperature_calibration",
+        "helf_perturb_root_low_rank_mlp_p28_weighted_ce"
+      ],
+      "config": "configs/helf_perturb_roots/root_low_rank_mlp.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_low_rank_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.34236979484558105,
+      "value": 1.6790069043636322,
+      "visits": 5
+    },
+    "helf_perturb_root_low_rank_mlp_p21_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 1.1,
+        "score": 0.5280990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p21_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p21_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p22_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 1.09,
+        "score": 0.5270990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p22_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p22_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p23_temperature_calibration": {
+      "best_val_macro_f1": 0.33599504828453064,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 0.7,
+        "score": 0.5280990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p23_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_low_rank_mlp_p23_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p23_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.3375074565410614,
+      "value": 0.6719900965690613,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p24_weighted_ce": {
+      "best_val_macro_f1": 0.329548716545105,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 0.66,
+        "score": 0.5240990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p24_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_low_rank_mlp_p24_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p24_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.32743391394615173,
+      "value": 0.65909743309021,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p25_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 1.1,
+        "score": 0.5280990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p25_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p25_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p26_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 1.09,
+        "score": 0.5270990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p26_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p26_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p27_temperature_calibration": {
+      "best_val_macro_f1": 0.3443106412887573,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 0.7,
+        "score": 0.5280990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p27_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_low_rank_mlp_p27_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p27_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.3445211350917816,
+      "value": 0.6886212825775146,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p28_weighted_ce": {
+      "best_val_macro_f1": 0.33105340600013733,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33809909224510193,
+        "priority": 0.66,
+        "score": 0.5240990922451019
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p28_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_low_rank_mlp_p28_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_low_rank_mlp_p28_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33035120368003845,
+      "value": 0.6621068120002747,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp": {
+      "best_val_macro_f1": 0.3444710969924927,
+      "children": [
+        "helf_perturb_root_mlp_p5_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p6_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p7_feature_dropout",
+        "helf_perturb_root_mlp_p8_temperature_calibration",
+        "helf_perturb_root_mlp_p9_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p10_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p11_temperature_calibration",
+        "helf_perturb_root_mlp_p12_weighted_ce"
+      ],
+      "config": "configs/helf_perturb_roots/root_mlp.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.33704137802124023,
+      "value": 3.3954246640205383,
+      "visits": 10
+    },
+    "helf_perturb_root_mlp_p10_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 1.09,
+        "score": 0.5334710969924926
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p10_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p10_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration": {
+      "best_val_macro_f1": 0.33906397223472595,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 0.7,
+        "score": 0.5344710969924926
+      },
+      "children": [
+        "helf_perturb_root_mlp_p11_temperature_calibration_p37_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p38_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p39_weighted_ce",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p40_focal_loss",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p41_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p42_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p43_weighted_ce",
+        "helf_perturb_root_mlp_p11_temperature_calibration_p44_focal_loss"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p11_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.34036874771118164,
+      "value": 1.3587506413459778,
+      "visits": 4
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p37_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 1.1,
+        "score": 0.5290639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p37_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p37_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p38_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 1.09,
+        "score": 0.5280639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p38_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p38_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p39_weighted_ce": {
+      "best_val_macro_f1": 0.33953073620796204,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 0.66,
+        "score": 0.5250639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p39_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p11_temperature_calibration_p39_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p39_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33583590388298035,
+      "value": 0.6790614724159241,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p40_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 0.62,
+        "score": 0.5210639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p40_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p40_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p41_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 1.1,
+        "score": 0.5290639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p41_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p41_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p42_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 1.09,
+        "score": 0.5280639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p42_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p42_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p43_weighted_ce": {
+      "best_val_macro_f1": 0.34109196066856384,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 0.66,
+        "score": 0.5250639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p43_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p11_temperature_calibration_p43_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p43_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33655276894569397,
+      "value": 0.6821839213371277,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p11_temperature_calibration_p44_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33906397223472595,
+        "priority": 0.62,
+        "score": 0.5210639722347259
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p44_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p11_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p11_temperature_calibration_p44_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce": {
+      "best_val_macro_f1": 0.33950909972190857,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 0.66,
+        "score": 0.5304710969924926
+      },
+      "children": [
+        "helf_perturb_root_mlp_p12_weighted_ce_p49_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p12_weighted_ce_p50_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p12_weighted_ce_p51_focal_loss",
+        "helf_perturb_root_mlp_p12_weighted_ce_p52_dropout_low",
+        "helf_perturb_root_mlp_p12_weighted_ce_p53_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p12_weighted_ce_p54_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p12_weighted_ce_p55_focal_loss",
+        "helf_perturb_root_mlp_p12_weighted_ce_p56_dropout_low"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p12_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33642980456352234,
+      "value": 1.0209174752235413,
+      "visits": 3
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p49_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 1.1,
+        "score": 0.5295090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p49_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p49_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p50_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 1.09,
+        "score": 0.5285090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p50_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p50_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p51_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 0.62,
+        "score": 0.5215090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p51_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p51_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p52_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 0.6,
+        "score": 0.5195090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p52_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p52_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p53_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 1.1,
+        "score": 0.5295090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p53_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p53_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p54_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 1.09,
+        "score": 0.5285090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p54_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p54_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p55_focal_loss": {
+      "best_val_macro_f1": 0.3418992757797241,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 0.62,
+        "score": 0.5215090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p55_focal_loss.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p12_weighted_ce_p55_focal_loss/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p55_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "focal_loss",
+      "test_macro_f1": 0.3408057987689972,
+      "value": 0.6837985515594482,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p12_weighted_ce_p56_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.33950909972190857,
+        "priority": 0.6,
+        "score": 0.5195090997219085
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p56_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p12_weighted_ce",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p12_weighted_ce_p56_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p5_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 1.1,
+        "score": 0.5344710969924926
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p5_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p5_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p6_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 1.09,
+        "score": 0.5334710969924926
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p6_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p6_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout": {
+      "best_val_macro_f1": 0.333950400352478,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 0.72,
+        "score": 0.5364710969924926
+      },
+      "children": [
+        "helf_perturb_root_mlp_p7_feature_dropout_p61_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p7_feature_dropout_p62_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p7_feature_dropout_p63_focal_loss",
+        "helf_perturb_root_mlp_p7_feature_dropout_p64_dropout_low",
+        "helf_perturb_root_mlp_p7_feature_dropout_p65_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p7_feature_dropout_p66_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p7_feature_dropout_p67_focal_loss",
+        "helf_perturb_root_mlp_p7_feature_dropout_p68_dropout_low"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p7_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.3386361598968506,
+      "value": 0.667900800704956,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p61_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 1.1,
+        "score": 0.523950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p61_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p61_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p62_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 1.09,
+        "score": 0.522950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p62_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p62_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p63_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 0.62,
+        "score": 0.515950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p63_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p63_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p64_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 0.6,
+        "score": 0.513950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p64_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p64_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p65_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 1.1,
+        "score": 0.523950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p65_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p65_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p66_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 1.09,
+        "score": 0.522950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p66_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p66_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p67_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 0.62,
+        "score": 0.515950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p67_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p67_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p7_feature_dropout_p68_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.333950400352478,
+        "priority": 0.6,
+        "score": 0.513950400352478
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p68_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p7_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p7_feature_dropout_p68_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration": {
+      "best_val_macro_f1": 0.3375741243362427,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 0.7,
+        "score": 0.5344710969924926
+      },
+      "children": [
+        "helf_perturb_root_mlp_p8_temperature_calibration_p29_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p30_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p31_weighted_ce",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p32_focal_loss",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p33_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p34_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p35_weighted_ce",
+        "helf_perturb_root_mlp_p8_temperature_calibration_p36_focal_loss"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p8_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.3385903537273407,
+      "value": 1.3534822463989258,
+      "visits": 4
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p29_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 1.1,
+        "score": 0.5275741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p29_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p29_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p30_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 1.09,
+        "score": 0.5265741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p30_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p30_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p31_weighted_ce": {
+      "best_val_macro_f1": 0.3423728942871094,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 0.66,
+        "score": 0.5235741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p31_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p8_temperature_calibration_p31_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p31_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.3370246887207031,
+      "value": 0.6847457885742188,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p32_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 0.62,
+        "score": 0.5195741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p32_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p32_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p33_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 1.1,
+        "score": 0.5275741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p33_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p33_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p34_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 1.09,
+        "score": 0.5265741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p34_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p34_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p35_weighted_ce": {
+      "best_val_macro_f1": 0.33596110343933105,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 0.66,
+        "score": 0.5235741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p35_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_mlp_p8_temperature_calibration_p35_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p35_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.3323424160480499,
+      "value": 0.6719222068786621,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p8_temperature_calibration_p36_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3375741243362427,
+        "priority": 0.62,
+        "score": 0.5195741243362426
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p36_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p8_temperature_calibration",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p8_temperature_calibration_p36_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p9_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3444710969924927,
+        "priority": 1.1,
+        "score": 0.5344710969924926
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p9_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_mlp_p9_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp": {
+      "best_val_macro_f1": 0.34924936294555664,
+      "children": [
+        "helf_perturb_root_residual_mlp_p1_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_residual_mlp_p2_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout",
+        "helf_perturb_root_residual_mlp_p93_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_residual_mlp_p94_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_residual_mlp_p95_focal_loss",
+        "helf_perturb_root_residual_mlp_p96_dropout_low"
+      ],
+      "config": "configs/helf_perturb_roots/root_residual_mlp.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.35048195719718933,
+      "value": 2.08849760890007,
+      "visits": 6
+    },
+    "helf_perturb_root_residual_mlp_p1_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 1.1,
+        "score": 0.5392493629455566
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p1_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p1_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p2_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 1.09,
+        "score": 0.5382493629455566
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p2_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p2_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head": {
+      "best_val_macro_f1": 0.3321429193019867,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 0.76,
+        "score": 0.5452493629455566
+      },
+      "children": [
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p77_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p78_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p79_focal_loss",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p80_dropout_low",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p81_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p82_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p83_focal_loss",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p84_dropout_low"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp_p3_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.3266468942165375,
+      "value": 0.6642858386039734,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p77_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 1.1,
+        "score": 0.5221429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p77_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p77_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p78_foundation_scgpt_adapter_finetune": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 1.09,
+        "score": 0.5211429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p78_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p78_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p79_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 0.62,
+        "score": 0.5141429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p79_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p79_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p80_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 0.6,
+        "score": 0.5121429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p80_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p80_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p81_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 1.1,
+        "score": 0.5221429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p81_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p81_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p82_foundation_scgpt_adapter_finetune": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 1.09,
+        "score": 0.5211429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p82_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p82_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p83_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 0.62,
+        "score": 0.5141429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p83_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p83_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p84_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3321429193019867,
+        "priority": 0.6,
+        "score": 0.5121429193019866
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p84_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p84_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout": {
+      "best_val_macro_f1": 0.3368573486804962,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 0.72,
+        "score": 0.5412493629455566
+      },
+      "children": [
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p57_foundation_scgpt_cell_encoder",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p58_foundation_scgpt_adapter_finetune",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p59_focal_loss",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p60_dropout_low"
+      ],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp_p4_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.33736562728881836,
+      "value": 1.0135560631752014,
+      "visits": 3
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 1.1,
+        "score": 0.5268573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 1.09,
+        "score": 0.5258573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce": {
+      "best_val_macro_f1": 0.339841365814209,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 0.66,
+        "score": 0.5228573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.33190253376960754,
+      "value": 0.679682731628418,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 0.62,
+        "score": 0.5188573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p57_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 1.1,
+        "score": 0.5268573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p57_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p57_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p58_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 1.09,
+        "score": 0.5258573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p58_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p58_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p59_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 0.62,
+        "score": 0.5188573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p59_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p59_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p60_dropout_low": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.3368573486804962,
+        "priority": 0.6,
+        "score": 0.5168573486804962
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p60_dropout_low.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p60_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "dropout_low",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p93_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 1.1,
+        "score": 0.5392493629455566
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p93_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p93_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p94_foundation_scgpt_adapter_finetune": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 1.09,
+        "score": 0.5382493629455566
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p94_foundation_scgpt_adapter_finetune.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p94_foundation_scgpt_adapter_finetune.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_adapter_finetune",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p95_focal_loss": {
+      "best_val_macro_f1": 0.3694060742855072,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 0.62,
+        "score": 0.5312493629455566
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p95_focal_loss.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp_p95_focal_loss/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p95_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "focal_loss",
+      "test_macro_f1": 0.36407771706581116,
+      "value": 0.7388121485710144,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p96_dropout_low": {
+      "best_val_macro_f1": 0.36100053787231445,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.34924936294555664,
+        "priority": 0.6,
+        "score": 0.5292493629455566
+      },
+      "children": [],
+      "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p96_dropout_low.json",
+      "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp_p96_dropout_low/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p96_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "dropout_low",
+      "test_macro_f1": 0.35876595973968506,
+      "value": 0.7220010757446289,
+      "visits": 2
+    }
+  },
+  "root_nodes": [
+    "helf_perturb_root_mlp",
+    "helf_perturb_root_residual_mlp",
+    "helf_perturb_root_gated_mlp",
+    "helf_perturb_root_low_rank_mlp"
+  ],
+  "search_space_config": "configs/helf_perturb_search_space.json",
+  "task_id": "HELF_PERTURB_DEG",
+  "task_type": "drug_perturbation_target_gene_deg_direction_prediction"
+}

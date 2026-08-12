@@ -1,0 +1,59 @@
+{
+  "artifact_blockers": 46,
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.3694060742855072,
+    "cheap_screen_score": {
+      "cost_bonus": 0.04,
+      "novelty": 0.08,
+      "parent_val": 0.34924936294555664,
+      "priority": 0.62,
+      "score": 0.5312493629455566
+    },
+    "children": [],
+    "config": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p95_focal_loss.json",
+    "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp_p95_focal_loss/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "helf_perturb_root_residual_mlp",
+    "proposal": "experiments/helf_perturb_foundation_harness_test/proposals/helf_perturb_root_residual_mlp_p95_focal_loss.proposal.json",
+    "proposal_type": "lightweight_executable_transform",
+    "required_artifacts": [],
+    "status": "trained",
+    "strategy": "focal_loss",
+    "test_macro_f1": 0.36407771706581116,
+    "value": 0.7388121485710144,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.34924936294555664,
+    "children": [
+      "helf_perturb_root_residual_mlp_p1_foundation_scgpt_cell_encoder",
+      "helf_perturb_root_residual_mlp_p2_foundation_scgpt_adapter_finetune",
+      "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "helf_perturb_root_residual_mlp_p93_foundation_scgpt_cell_encoder",
+      "helf_perturb_root_residual_mlp_p94_foundation_scgpt_adapter_finetune",
+      "helf_perturb_root_residual_mlp_p95_focal_loss",
+      "helf_perturb_root_residual_mlp_p96_dropout_low"
+    ],
+    "config": "configs/helf_perturb_roots/root_residual_mlp.json",
+    "metrics": "experiments/helf_perturb_foundation_harness_test/nodes/helf_perturb_root_residual_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.35048195719718933,
+    "value": 2.08849760890007,
+    "visits": 6
+  },
+  "blocked": 46,
+  "experiment": "helf_perturb_foundation_harness_test",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 96,
+  "proxy_count": 0,
+  "pruned_not_selected": 26,
+  "requires_artifact_acquisition": 46,
+  "run_dir": "experiments/helf_perturb_foundation_harness_test",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (24/24)",
+  "trained_selected_rollouts": 24
+}

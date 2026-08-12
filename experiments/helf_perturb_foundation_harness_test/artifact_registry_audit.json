@@ -1,0 +1,238 @@
+{
+  "artifacts": {
+    "chemical_encoder_checkpoint_or_drug_fingerprints": {
+      "acquisition_policy": "resolve_smiles_from_public_source_then_compute_fingerprints_or_encoder_embeddings",
+      "expected_path": "data/artifacts/helf/drug_embeddings.npz",
+      "id": "chemical_encoder_checkpoint_or_drug_fingerprints",
+      "kind": "drug_or_chemical_embedding",
+      "must_validate": [
+        "drug_name_to_smiles_mapping",
+        "coverage_for_all_perturbation_drugs",
+        "fingerprint_or_embedding_dim",
+        "source_url"
+      ],
+      "present": false,
+      "primary_sources": [
+        "RDKit fingerprints from SMILES",
+        "ChemBERTa or PubChem-compatible public encoder"
+      ],
+      "required_by_blueprints": [
+        "drug_encoder_fusion",
+        "chemical_context_adapter",
+        "drug_target_cross_attention"
+      ],
+      "status": "planned_requires_acquisition_or_build"
+    },
+    "esm2_gene_or_protein_embeddings": {
+      "acquisition_policy": "download_model_or_public_embedding_then_build_aligned_npz",
+      "expected_path": "data/artifacts/helf/esm2_gene_embeddings.npz",
+      "id": "esm2_gene_or_protein_embeddings",
+      "kind": "gene_or_protein_embedding",
+      "must_validate": [
+        "gene_to_protein_mapping",
+        "target_gene_order_alignment",
+        "embedding_dim",
+        "coverage"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://huggingface.co/facebook/esm2_t33_650M_UR50D"
+      ],
+      "required_by_blueprints": [
+        "esm2_target_gene_head",
+        "esm2_perturbation_gene_prior",
+        "protein_embedding_fusion"
+      ],
+      "status": "planned_requires_acquisition_or_build"
+    },
+    "geneformer_checkpoint": {
+      "acquisition_policy": "download_from_huggingface_if_license_and_size_allow_else_block",
+      "expected_path": "/home/Models/Geneformer",
+      "id": "geneformer_checkpoint",
+      "kind": "single_cell_foundation_model",
+      "must_validate": [
+        "git_lfs_files",
+        "tokenizer",
+        "gene_vocab",
+        "input_rank_length",
+        "embedding_shape"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://huggingface.co/ctheodoris/Geneformer",
+        "https://geneformer.readthedocs.io/"
+      ],
+      "required_by_blueprints": [
+        "geneformer_cell_encoder",
+        "geneformer_rank_value_encoder",
+        "geneformer_adapter_head"
+      ],
+      "status": "planned_requires_acquisition"
+    },
+    "helf_perturb_deg_npz": {
+      "acquisition_policy": "derive_locally",
+      "expected_path": "data/cell_lines/helf_perturb_deg_cls",
+      "id": "helf_perturb_deg_npz",
+      "kind": "task_dataset",
+      "present": true,
+      "provenance_requirement": "derived by scripts/prepare_helf_perturbation_demo.py from helf_source_h5ad; do not commit",
+      "required_by": [
+        "all_roots",
+        "all_generated_nodes"
+      ],
+      "status": "derived_runtime_data"
+    },
+    "helf_source_h5ad": {
+      "acquisition_policy": "user_supplied",
+      "expected_path": "data/raw/merged_data.h5ad",
+      "id": "helf_source_h5ad",
+      "kind": "source_dataset",
+      "present": true,
+      "provenance_requirement": "user-provided h5ad; do not commit",
+      "required_by": [
+        "all_roots",
+        "all_generated_nodes"
+      ],
+      "status": "present_or_user_provided_runtime_data"
+    },
+    "reactome_pathway_membership": {
+      "acquisition_policy": "build_from_public_GMT",
+      "expected_path": "data/artifacts/helf/reactome_pathway_membership.npz",
+      "id": "reactome_pathway_membership",
+      "kind": "pathway_prior",
+      "must_validate": [
+        "pathway_version",
+        "target_gene_coverage",
+        "pathway_count",
+        "membership_shape"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://reactome.org/download/current/ReactomePathways.gmt.zip"
+      ],
+      "required_by_blueprints": [
+        "pathway_pooling_encoder",
+        "reactome_prior_head",
+        "pathway_attention_fusion"
+      ],
+      "status": "planned_requires_build"
+    },
+    "regulatory_network_prior": {
+      "acquisition_policy": "Codex must select and justify source before build",
+      "expected_path": "data/artifacts/helf/regulatory_network.tsv",
+      "id": "regulatory_network_prior",
+      "kind": "regulatory_network_prior",
+      "must_validate": [
+        "source_version",
+        "edge_semantics",
+        "no_label_leakage",
+        "target_gene_coverage"
+      ],
+      "present": false,
+      "primary_sources": [
+        "DoRothEA",
+        "TRRUST",
+        "ENCODE-derived regulatory network if justified"
+      ],
+      "required_by_blueprints": [
+        "tf_regulatory_attention",
+        "regulatory_graph_head"
+      ],
+      "status": "planned_requires_source_selection"
+    },
+    "scfoundation_checkpoint_or_service_output": {
+      "acquisition_policy": "download_or_document_service_export; block if no verifiable artifact",
+      "expected_path": "/home/Models/scFoundation",
+      "id": "scfoundation_checkpoint_or_service_output",
+      "kind": "single_cell_foundation_model",
+      "must_validate": [
+        "checkpoint_or_service_access",
+        "gene_vocabulary",
+        "normalization_contract",
+        "embedding_shape",
+        "terms_of_use"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://github.com/biomap-research/scFoundation",
+        "https://aigp.biomap.com/"
+      ],
+      "required_by_blueprints": [
+        "scfoundation_cell_encoder",
+        "scfoundation_top_layer_finetune",
+        "scfoundation_embedding_fusion"
+      ],
+      "status": "planned_requires_acquisition"
+    },
+    "scgpt_whole_human_checkpoint": {
+      "acquisition_policy": "download_from_primary_source_if_available_else_block",
+      "expected_path": "/home/Models/scGPT/whole_human",
+      "id": "scgpt_whole_human_checkpoint",
+      "kind": "single_cell_foundation_model",
+      "must_validate": [
+        "checkpoint_files",
+        "vocab_file",
+        "gene_symbol_or_ensembl_mapping",
+        "embedding_shape",
+        "license_or_usage_terms"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://github.com/bowang-lab/scGPT",
+        "https://scgpt.readthedocs.io/en/latest/"
+      ],
+      "required_by_blueprints": [
+        "scgpt_cell_encoder",
+        "scgpt_adapter_finetune",
+        "scgpt_perturbation_head"
+      ],
+      "status": "planned_requires_acquisition"
+    },
+    "string_gene_graph": {
+      "acquisition_policy": "build_from_official_STRING_API_or_download",
+      "expected_path": "data/artifacts/helf/string_gene_graph.tsv",
+      "id": "string_gene_graph",
+      "kind": "gene_network_prior",
+      "must_validate": [
+        "species_human_9606",
+        "edge_score_threshold",
+        "target_gene_coverage",
+        "feature_gene_coverage",
+        "version"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://string-db.org/"
+      ],
+      "required_by_blueprints": [
+        "string_graph_message_passing",
+        "graph_laplacian_head",
+        "target_graph_conditioned_head"
+      ],
+      "status": "planned_requires_build"
+    },
+    "uce_checkpoint": {
+      "acquisition_policy": "download_from_primary_source_if_available_else_block",
+      "expected_path": "/home/Models/UCE",
+      "id": "uce_checkpoint",
+      "kind": "single_cell_foundation_model",
+      "must_validate": [
+        "model_weights",
+        "species",
+        "gene_names_format",
+        "obsm_key",
+        "embedding_dim"
+      ],
+      "present": false,
+      "primary_sources": [
+        "https://github.com/snap-stanford/UCE"
+      ],
+      "required_by_blueprints": [
+        "uce_cell_embedding",
+        "uce_delta_embedding_head"
+      ],
+      "status": "planned_requires_acquisition"
+    }
+  },
+  "registry": "configs/artifacts/helf_perturb_registry.json"
+}

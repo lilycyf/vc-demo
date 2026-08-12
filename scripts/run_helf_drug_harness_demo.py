@@ -140,6 +140,76 @@ def cheap_score(transform: dict[str, Any], parent_val: float, seen_strategy_coun
     return {"score": score, "parent_val": parent_val, "priority": transform["priority"], "cost_bonus": cost_bonus, "novelty": novelty}
 
 
+
+def load_artifact_registry(path: Path) -> dict[str, dict[str, Any]]:
+    if not path.exists():
+        return {}
+    payload = read_json(path)
+    return {str(item.get("id")): item for item in payload.get("artifacts", [])}
+
+
+def artifact_is_present(item: dict[str, Any]) -> bool:
+    expected = item.get("expected_path")
+    status = str(item.get("status", ""))
+    if expected and Path(str(expected)).exists():
+        return True
+    return status in {"present", "available"} and bool(expected) and Path(str(expected)).exists()
+
+
+def missing_required_artifacts(required: list[str], registry: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
+    missing = []
+    for artifact_id in required:
+        item = registry.get(artifact_id, {"id": artifact_id, "status": "not_registered"})
+        if not artifact_is_present(item):
+            missing.append({
+                "artifact_id": artifact_id,
+                "expected_path": item.get("expected_path"),
+                "status": item.get("status", "missing"),
+                "acquisition_policy": item.get("acquisition_policy", "unknown"),
+                "provenance_requirement": item.get("provenance_requirement", "source-backed validation required"),
+            })
+    return missing
+
+
+def load_foundation_blueprints(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    payload = read_json(path)
+    blueprints: list[dict[str, Any]] = []
+    for family_index, family in enumerate(payload.get("foundation_families", [])):
+        family_id = str(family.get("id") or family.get("family") or family.get("name") or f"family_{family_index}")
+        for blueprint_index, blueprint in enumerate(family.get("blueprints", [])):
+            blueprint_id = str(blueprint.get("id") or f"blueprint_{family_index}_{blueprint_index}")
+            blueprints.append({
+                "id": f"foundation_{blueprint_id}",
+                "blueprint_id": blueprint_id,
+                "family": family_id,
+                "priority": 1.10 - min(0.30, 0.01 * len(blueprints)),
+                "cost": "artifact_required",
+                "proposal_type": "foundation_artifact_blueprint",
+                "required_artifacts": [str(x) for x in blueprint.get("required_artifacts", [])],
+                "codex_action": blueprint.get("codex_action", "source-backed implementation required"),
+            })
+    return blueprints
+
+
+def choose_candidate_pool(transforms: list[dict[str, Any]], foundation: list[dict[str, Any]], parent_val: float, strategy_counts: dict[str, int], rng: random.Random, pool_size: int) -> list[dict[str, Any]]:
+    light = transforms[:]
+    found = foundation[:]
+    rng.shuffle(light)
+    rng.shuffle(found)
+    light = sorted(light, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
+    found = sorted(found, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
+    foundation_slots = min(len(found), max(1, pool_size // 2)) if found else 0
+    selected = found[:foundation_slots]
+    selected.extend(light[: max(0, pool_size - len(selected))])
+    return selected[:pool_size]
+
+
+def write_trace(run_dir: Path, event: dict[str, Any]) -> None:
+    with (run_dir / "mcts_trace.jsonl").open("a") as fh:
+        fh.write(json.dumps(event, sort_keys=True) + "\n")
+
 def best_rows(tree: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | None]:
     trained = [(name, n) for name, n in tree["nodes"].items() if n.get("status") == "trained"]
     best_root = max(((name, n) for name, n in trained if not n.get("parent")), key=lambda x: x[1].get("best_val_macro_f1", -1))[1]
@@ -161,6 +231,8 @@ def main() -> None:
     parser.add_argument("--exploration", type=float, default=1.2)
     parser.add_argument("--seed", type=int, default=17)
     parser.add_argument("--reset", action="store_true")
+    parser.add_argument("--search-space-config", type=Path, default=Path("configs/helf_perturb_search_space.json"))
+    parser.add_argument("--artifact-registry", type=Path, default=Path("configs/artifacts/helf_perturb_registry.json"))
     args = parser.parse_args()
 
     if args.reset and args.run_dir.exists():
@@ -175,7 +247,12 @@ def main() -> None:
         task_manifest = read_json(data_dir / "manifest.json")
     task_id = str(task_manifest.get("task_id", "HELF_DEMO"))
     task_label = str(task_manifest.get("task_type", task_id))
-    tree = {"experiment": args.experiment, "task_id": task_id, "task_type": task_label, "nodes": {}, "root_nodes": [], "events": []}
+    artifact_registry = load_artifact_registry(args.artifact_registry)
+    foundation_blueprints = load_foundation_blueprints(args.search_space_config)
+    artifact_audit = {artifact_id: {**item, "present": artifact_is_present(item)} for artifact_id, item in artifact_registry.items()}
+    write_json(args.run_dir / "artifact_registry_audit.json", {"registry": str(args.artifact_registry), "artifacts": artifact_audit})
+    acquisition_queue: dict[str, Any] = {"items": []}
+    tree = {"experiment": args.experiment, "task_id": task_id, "task_type": task_label, "nodes": {}, "root_nodes": [], "events": [], "search_space_config": str(args.search_space_config), "artifact_registry": str(args.artifact_registry)}
     rng = random.Random(args.seed)
 
     for root in args.root_configs:
@@ -183,7 +260,7 @@ def main() -> None:
         cfg = read_json(cfg_path)
         metrics = run_config(cfg, args.run_dir, args.max_epochs)
         add_node(tree, cfg["node_name"], cfg_path, "", "trained", metrics)
-    generated = trained_children = failed = 0
+    generated = trained_children = failed = blocked = skipped = 0
     strategy_counts: dict[str, int] = {}
     queued: list[tuple[float, str]] = []
     stop_reason = "budget exhausted"
@@ -196,21 +273,41 @@ def main() -> None:
             parent = uct_select_parent(tree, args.max_children, args.exploration)
             parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
             parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
-            transforms = SEARCH_TRANSFORMS[:]
-            rng.shuffle(transforms)
-            transforms = sorted(transforms, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
-            for rank, transform in enumerate(transforms[: args.candidate_pool_size], start=1):
+            transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size)
+            write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint")})
+            for rank, transform in enumerate(transforms, start=1):
                 if generated >= args.budget_proposals:
                     break
                 generated += 1
                 child = f"{parent}_p{generated}_{transform['id']}"
-                cfg = apply_transform(parent_cfg, transform["id"], child)
-                proposal = {"strategy": transform["id"], "parent": parent, "child": child, "candidate_rank": rank, "candidate_pool_size": args.candidate_pool_size, "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)), "hypothesis": f"Test {transform['id']} for {task_label}."}
+                cfg = apply_transform(parent_cfg, transform["id"], child) if not transform.get("proposal_type") else copy.deepcopy(parent_cfg)
+                cfg["node_name"] = child
+                missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
+                proposal = {
+                    "strategy": transform["id"],
+                    "parent": parent,
+                    "child": child,
+                    "candidate_rank": rank,
+                    "candidate_pool_size": args.candidate_pool_size,
+                    "proposal_type": transform.get("proposal_type", "lightweight_executable_transform"),
+                    "blueprint_id": transform.get("blueprint_id"),
+                    "family": transform.get("family"),
+                    "required_artifacts": transform.get("required_artifacts", []),
+                    "missing_required_artifacts": missing_artifacts,
+                    "codex_action": transform.get("codex_action"),
+                    "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)),
+                    "hypothesis": f"Test {transform['id']} for {task_label}.",
+                }
+                cfg.setdefault("metadata", {})["proposal_type"] = proposal["proposal_type"]
+                cfg["metadata"]["required_artifacts"] = proposal["required_artifacts"]
                 cfg_path = proposal_dir / f"{child}.json"
                 prop_path = proposal_dir / f"{child}.proposal.json"
                 write_json(cfg_path, cfg)
                 write_json(prop_path, proposal)
                 add_node(tree, child, cfg_path, parent, "candidate_queued", proposal=proposal)
+                tree["nodes"][child]["proposal_type"] = proposal["proposal_type"]
+                tree["nodes"][child]["required_artifacts"] = proposal["required_artifacts"]
+                tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
                 queued.append((proposal["cheap_screen_score"]["score"], child))
             write_json(args.run_dir / "tree.json", tree)
         if not queued:
@@ -221,11 +318,27 @@ def main() -> None:
         node = tree["nodes"][selected]
         proposal = read_json(Path(node["proposal"]))
         node["status"] = "selected_for_training"
+        write_trace(args.run_dir, {"event": "selected_for_training", "node": selected, "proposal_type": proposal.get("proposal_type"), "strategy": proposal.get("strategy")})
+        if proposal.get("missing_required_artifacts"):
+            node.update({"status": "requires_artifact_acquisition", "blocked_reason": "missing source-backed foundation artifact", "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
+            acquisition_queue["items"].append({"node": selected, "proposal": node.get("proposal"), "strategy": proposal.get("strategy"), "family": proposal.get("family"), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "resolution": "block until source, shape, vocabulary/order, and provenance can be verified"})
+            write_json(args.run_dir / "acquisition_queue.json", acquisition_queue)
+            write_trace(args.run_dir, {"event": "artifact_acquisition_block", "node": selected, "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
+            blocked += 1
+            write_json(args.run_dir / "tree.json", tree)
+            continue
+        if proposal.get("proposal_type") == "foundation_artifact_blueprint":
+            node.update({"status": "needs_implementation", "blocked_reason": "foundation artifact is present but this demo runner has no automatic model materializer"})
+            skipped += 1
+            write_json(args.run_dir / "implementation_queue.json", {"items": [{"node": selected, "proposal": node.get("proposal"), "reason": node.get("blocked_reason")}]})
+            write_json(args.run_dir / "tree.json", tree)
+            continue
         try:
             metrics = run_config(read_json(Path(node["config"])), args.run_dir, args.max_epochs)
             node.update({"status": "trained", "best_val_macro_f1": metrics["best_val_macro_f1"], "test_macro_f1": metrics["test_macro_f1"], "metrics": metrics.get("metrics_path", str(args.run_dir / "nodes" / selected / "metrics.json")), "visits": 1, "value": float(metrics["best_val_macro_f1"])})
             strategy_counts[proposal["strategy"]] = strategy_counts.get(proposal["strategy"], 0) + 1
             backprop(tree, selected, float(metrics["best_val_macro_f1"]))
+            write_trace(args.run_dir, {"event": "trained_and_backpropagated", "node": selected, "reward": float(metrics["best_val_macro_f1"])})
             trained_children += 1
         except Exception as exc:
             node.update({"status": "failed", "error": repr(exc)})
@@ -236,6 +349,7 @@ def main() -> None:
         if tree["nodes"].get(name, {}).get("status") == "candidate_queued":
             tree["nodes"][name]["status"] = "pruned_not_selected"
             tree["nodes"][name]["pruned_reason"] = "not selected before trained-node budget/stop condition"
+            write_trace(args.run_dir, {"event": "proposal_pruned", "node": name, "reason": tree["nodes"][name]["pruned_reason"]})
     best_root, best_child = best_rows(tree)
     summary = {
         "experiment": args.experiment,
@@ -244,20 +358,35 @@ def main() -> None:
         "generated_proposals": generated,
         "trained_selected_rollouts": trained_children,
         "pruned_not_selected": sum(1 for n in tree["nodes"].values() if n.get("status") == "pruned_not_selected"),
+        "skipped": skipped,
+        "blocked": blocked,
+        "requires_artifact_acquisition": sum(1 for n in tree["nodes"].values() if n.get("status") == "requires_artifact_acquisition"),
         "failed": failed,
         "best_root": best_root,
         "best_generated_child": best_child,
         "fallback_count": 0,
-        "artifact_blockers": 0,
+        "proxy_count": 0,
+        "backprop_nontrained_count": 0,
+        "artifact_blockers": blocked,
     }
     write_json(args.run_dir / "tree.json", tree)
     write_json(args.run_dir / "run_manifest.json", summary)
-    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Failed: `{failed}`", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
+    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority, but selected blueprints are blocked unless required artifacts have source-backed, shape/order/provenance-verifiable files. Lightweight PyTorch transforms are the executable baseline path for this demo.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
     if best_child:
         lines += [f"- Strategy: `{best_child.get('strategy')}`", f"- Val Macro-F1: `{best_child.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_child.get('test_macro_f1')}`"]
     else:
         lines.append("No generated child was trained.")
+    if acquisition_queue["items"]:
+        lines += ["", "## Acquisition / Blocker Summary", ""]
+        for item in acquisition_queue["items"][:20]:
+            missing_ids = ", ".join(x.get("artifact_id", "unknown") for x in item.get("missing_required_artifacts", []))
+            lines.append(f"- `{item.get('strategy')}` blocked for `{missing_ids}`.")
     (args.run_dir / "final_report.md").write_text("\n".join(lines) + "\n")
+    (args.run_dir / "search_summary.md").write_text("\n".join(lines) + "\n")
+    if not acquisition_queue["items"]:
+        write_json(args.run_dir / "acquisition_queue.json", acquisition_queue)
+    write_json(args.run_dir / "implementation_queue.json", {"items": []})
+    write_json(args.run_dir / "failures.json", {"items": [n for n in tree["nodes"].values() if n.get("status") == "failed"]})
     print(json.dumps(summary, indent=2))
 
 
