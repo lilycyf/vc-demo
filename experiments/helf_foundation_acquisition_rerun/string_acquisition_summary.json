@@ -1,0 +1,11 @@
+{
+  "artifact_id": "string_gene_graph",
+  "status": "present",
+  "source_url": "https://string-db.org/api/tsv/network",
+  "source_version": "STRING network API species=9606 required_score=400",
+  "target_gene_count": 512,
+  "edge_count": 2229,
+  "target_gene_coverage_count": 447,
+  "target_gene_coverage_fraction": 0.873046875,
+  "filtering_rule": "POST HELF target genes to official STRING network API; keep target-target edges returned for species 9606 at required_score=400; deduplicate undirected pairs by max score."
+}

@@ -1,0 +1,2527 @@
+{
+  "artifact_registry": "configs/artifacts/helf_perturb_registry.json",
+  "events": [],
+  "experiment": "helf_foundation_acquisition_rerun",
+  "last_backprop_path": [
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration",
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+    "helf_perturb_root_low_rank_mlp"
+  ],
+  "nodes": {
+    "helf_perturb_root_gated_mlp": {
+      "best_val_macro_f1": 0.40650567412376404,
+      "children": [
+        "helf_perturb_root_gated_mlp_p21_foundation_string_graph_message_passing",
+        "helf_perturb_root_gated_mlp_p22_foundation_graph_laplacian_head",
+        "helf_perturb_root_gated_mlp_p23_low_rank_head",
+        "helf_perturb_root_gated_mlp_p24_feature_dropout",
+        "helf_perturb_root_gated_mlp_p25_foundation_string_graph_message_passing",
+        "helf_perturb_root_gated_mlp_p26_foundation_graph_laplacian_head",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head",
+        "helf_perturb_root_gated_mlp_p28_feature_dropout"
+      ],
+      "config": "configs/helf_perturb_roots/root_gated_mlp.json",
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_gated_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.40506473183631897,
+      "value": 2.0452596843242645,
+      "visits": 5
+    },
+    "helf_perturb_root_gated_mlp_p21_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.40650567412376404,
+        "priority": 1.7400000000000002,
+        "score": 0.540505674123764
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p21_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p21_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p22_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.40650567412376404,
+        "priority": 1.73,
+        "score": 0.49950567412376407
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p22_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p22_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p23_low_rank_head": {
+      "best_val_macro_f1": 0.4055844247341156,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40650567412376404,
+        "priority": 0.76,
+        "score": 0.602505674123764
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p23_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_gated_mlp_p23_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p23_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.40102025866508484,
+      "value": 0.8111688494682312,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p24_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40650567412376404,
+        "priority": 0.72,
+        "score": 0.598505674123764
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p24_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p24_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p25_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.40650567412376404,
+        "priority": 1.7400000000000002,
+        "score": 0.540505674123764
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p25_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p25_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p26_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.40650567412376404,
+        "priority": 1.73,
+        "score": 0.49950567412376407
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p26_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p26_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head": {
+      "best_val_macro_f1": 0.4111238420009613,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40650567412376404,
+        "priority": 0.76,
+        "score": 0.602505674123764
+      },
+      "children": [
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p53_foundation_string_graph_message_passing",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p54_foundation_graph_laplacian_head",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p56_weighted_ce",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p57_foundation_string_graph_message_passing",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p58_foundation_graph_laplacian_head",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration",
+        "helf_perturb_root_gated_mlp_p27_low_rank_head_p60_weighted_ce"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_gated_mlp_p27_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.40707167983055115,
+      "value": 1.6442934274673462,
+      "visits": 4
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p53_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4111238420009613,
+        "priority": 1.7400000000000002,
+        "score": 0.5451238420009613
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p53_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p53_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p54_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4111238420009613,
+        "priority": 1.73,
+        "score": 0.5041238420009614
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p54_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p54_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration": {
+      "best_val_macro_f1": 0.4108540117740631,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4111238420009613,
+        "priority": 0.7,
+        "score": 0.6011238420009613
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.40984082221984863,
+      "value": 0.8217080235481262,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p56_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4111238420009613,
+        "priority": 0.66,
+        "score": 0.5971238420009612
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p56_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p56_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p57_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4111238420009613,
+        "priority": 1.7400000000000002,
+        "score": 0.5451238420009613
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p57_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p57_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p58_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4111238420009613,
+        "priority": 1.73,
+        "score": 0.5041238420009614
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p58_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p58_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration": {
+      "best_val_macro_f1": 0.4111917316913605,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4111238420009613,
+        "priority": 0.7,
+        "score": 0.6011238420009613
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.41530588269233704,
+      "value": 0.822383463382721,
+      "visits": 2
+    },
+    "helf_perturb_root_gated_mlp_p27_low_rank_head_p60_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4111238420009613,
+        "priority": 0.66,
+        "score": 0.5971238420009612
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p60_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p27_low_rank_head_p60_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_gated_mlp_p28_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40650567412376404,
+        "priority": 0.72,
+        "score": 0.598505674123764
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p28_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_gated_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_gated_mlp_p28_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp": {
+      "best_val_macro_f1": 0.4098086357116699,
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+        "helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder",
+        "helf_perturb_root_low_rank_mlp_p10_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p11_low_rank_head",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout"
+      ],
+      "config": "configs/helf_perturb_roots/root_low_rank_mlp.json",
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.4070413410663605,
+      "value": 4.817616373300552,
+      "visits": 12
+    },
+    "helf_perturb_root_low_rank_mlp_p10_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4098086357116699,
+        "priority": 1.7400000000000002,
+        "score": 0.5438086357116699
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p10_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p10_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p11_low_rank_head": {
+      "best_val_macro_f1": 0.41026970744132996,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 0.76,
+        "score": 0.6058086357116699
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p11_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p11_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p11_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.4073825776576996,
+      "value": 0.8205394148826599,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout": {
+      "best_val_macro_f1": 0.4127305746078491,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 0.72,
+        "score": 0.6018086357116699
+      },
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p65_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p66_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p68_weighted_ce"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p12_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.41241255402565,
+      "value": 1.2396382987499237,
+      "visits": 3
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p65_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4127305746078491,
+        "priority": 1.7400000000000002,
+        "score": 0.5467305746078491
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p65_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p65_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p66_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4127305746078491,
+        "priority": 1.73,
+        "score": 0.5057305746078492
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p66_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p66_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration": {
+      "best_val_macro_f1": 0.41417714953422546,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4127305746078491,
+        "priority": 0.7,
+        "score": 0.6027305746078491
+      },
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p69_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p70_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p71_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p72_focal_loss",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p73_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p74_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p75_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p76_focal_loss"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.41413259506225586,
+      "value": 0.8283542990684509,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p69_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41417714953422546,
+        "priority": 1.7400000000000002,
+        "score": 0.5481771495342255
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p69_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p69_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p70_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.41417714953422546,
+        "priority": 1.73,
+        "score": 0.5071771495342255
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p70_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p70_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p71_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41417714953422546,
+        "priority": 0.66,
+        "score": 0.6001771495342254
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p71_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p71_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p72_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41417714953422546,
+        "priority": 0.62,
+        "score": 0.5961771495342254
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p72_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p72_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p73_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41417714953422546,
+        "priority": 1.7400000000000002,
+        "score": 0.5481771495342255
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p73_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p73_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p74_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.41417714953422546,
+        "priority": 1.73,
+        "score": 0.5071771495342255
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p74_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p74_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p75_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41417714953422546,
+        "priority": 0.66,
+        "score": 0.6001771495342254
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p75_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p75_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p76_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41417714953422546,
+        "priority": 0.62,
+        "score": 0.5961771495342254
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p76_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p76_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p68_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4127305746078491,
+        "priority": 0.66,
+        "score": 0.5987305746078491
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p68_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p68_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head": {
+      "best_val_macro_f1": 0.3236095607280731,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 1.73,
+        "score": 0.6628086357116699
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "trained",
+      "strategy": "foundation_graph_laplacian_head",
+      "test_macro_f1": 0.3071387708187103,
+      "value": 0.6472191214561462,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder": {
+      "best_val_macro_f1": 0.3940390646457672,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 1.7200000000000002,
+        "score": 0.6618086357116699
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "status": "trained",
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.3852689266204834,
+      "value": 0.7880781292915344,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head": {
+      "best_val_macro_f1": 0.4115696847438812,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 0.76,
+        "score": 0.6058086357116699
+      },
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p37_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p38_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p40_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p41_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p42_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p44_weighted_ce"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p7_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.4110495150089264,
+      "value": 1.6488962471485138,
+      "visits": 4
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p37_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4115696847438812,
+        "priority": 1.7400000000000002,
+        "score": 0.5455696847438812
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p37_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p37_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p38_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4115696847438812,
+        "priority": 1.73,
+        "score": 0.5045696847438813
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p38_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p38_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration": {
+      "best_val_macro_f1": 0.4131992757320404,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4115696847438812,
+        "priority": 0.7,
+        "score": 0.6015696847438812
+      },
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p85_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p86_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p87_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p88_focal_loss",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p89_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p90_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p91_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p92_focal_loss"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.41142773628234863,
+      "value": 0.8263985514640808,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p85_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4131992757320404,
+        "priority": 1.7400000000000002,
+        "score": 0.5471992757320404
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p85_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p85_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p86_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4131992757320404,
+        "priority": 1.73,
+        "score": 0.5061992757320405
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p86_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p86_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p87_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4131992757320404,
+        "priority": 0.66,
+        "score": 0.5991992757320403
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p87_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p87_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p88_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4131992757320404,
+        "priority": 0.62,
+        "score": 0.5951992757320403
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p88_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p88_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p89_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4131992757320404,
+        "priority": 1.7400000000000002,
+        "score": 0.5471992757320404
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p89_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p89_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p90_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4131992757320404,
+        "priority": 1.73,
+        "score": 0.5061992757320405
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p90_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p90_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p91_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4131992757320404,
+        "priority": 0.66,
+        "score": 0.5991992757320403
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p91_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p91_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p92_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4131992757320404,
+        "priority": 0.62,
+        "score": 0.5951992757320403
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p92_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p92_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p40_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4115696847438812,
+        "priority": 0.66,
+        "score": 0.5975696847438812
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p40_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p40_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p41_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4115696847438812,
+        "priority": 1.7400000000000002,
+        "score": 0.5455696847438812
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p41_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p41_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p42_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4115696847438812,
+        "priority": 1.73,
+        "score": 0.5045696847438813
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p42_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p42_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration": {
+      "best_val_macro_f1": 0.41255760192871094,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4115696847438812,
+        "priority": 0.7,
+        "score": 0.6015696847438812
+      },
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p81_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p82_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p83_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p84_focal_loss",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p93_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p94_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p95_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p96_focal_loss"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.4143044948577881,
+      "value": 0.8251152038574219,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p81_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41255760192871094,
+        "priority": 1.7400000000000002,
+        "score": 0.546557601928711
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p81_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p81_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p82_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.41255760192871094,
+        "priority": 1.73,
+        "score": 0.505557601928711
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p82_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p82_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p83_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41255760192871094,
+        "priority": 0.66,
+        "score": 0.5985576019287109
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p83_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p83_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p84_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41255760192871094,
+        "priority": 0.62,
+        "score": 0.5945576019287109
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p84_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p84_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p93_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41255760192871094,
+        "priority": 1.7400000000000002,
+        "score": 0.546557601928711
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p93_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p93_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p94_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.41255760192871094,
+        "priority": 1.73,
+        "score": 0.505557601928711
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p94_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p94_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p95_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41255760192871094,
+        "priority": 0.66,
+        "score": 0.5985576019287109
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p95_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p95_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p96_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41255760192871094,
+        "priority": 0.62,
+        "score": 0.5945576019287109
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p96_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p96_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p44_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4115696847438812,
+        "priority": 0.66,
+        "score": 0.5975696847438812
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p44_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p7_low_rank_head_p44_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout": {
+      "best_val_macro_f1": 0.4108932912349701,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 0.72,
+        "score": 0.6018086357116699
+      },
+      "children": [
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p61_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p62_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p64_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p77_foundation_string_graph_message_passing",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p78_foundation_graph_laplacian_head",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p79_weighted_ce",
+        "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p80_focal_loss"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p8_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.4155609905719757,
+      "value": 1.235639363527298,
+      "visits": 3
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p61_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4108932912349701,
+        "priority": 1.7400000000000002,
+        "score": 0.5448932912349701
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p61_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p61_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p62_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4108932912349701,
+        "priority": 1.73,
+        "score": 0.5038932912349702
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p62_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p62_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration": {
+      "best_val_macro_f1": 0.4138527810573578,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4108932912349701,
+        "priority": 0.7,
+        "score": 0.60089329123497
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.4163181483745575,
+      "value": 0.8277055621147156,
+      "visits": 2
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p64_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4108932912349701,
+        "priority": 0.66,
+        "score": 0.59689329123497
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p64_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p64_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p77_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4108932912349701,
+        "priority": 1.7400000000000002,
+        "score": 0.5448932912349701
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p77_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p77_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p78_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4108932912349701,
+        "priority": 1.73,
+        "score": 0.5038932912349702
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p78_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p78_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p79_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4108932912349701,
+        "priority": 0.66,
+        "score": 0.59689329123497
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p79_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p79_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p80_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4108932912349701,
+        "priority": 0.62,
+        "score": 0.59289329123497
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p80_focal_loss.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p8_feature_dropout_p80_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder": {
+      "best_val_macro_f1": 0.3909090459346771,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4098086357116699,
+        "priority": 1.7200000000000002,
+        "score": 0.6618086357116699
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "status": "trained",
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.3846481740474701,
+      "value": 0.7818180918693542,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp": {
+      "best_val_macro_f1": 0.40976858139038086,
+      "children": [
+        "helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder",
+        "helf_perturb_root_mlp_p14_foundation_string_graph_message_passing",
+        "helf_perturb_root_mlp_p15_low_rank_head",
+        "helf_perturb_root_mlp_p16_feature_dropout",
+        "helf_perturb_root_mlp_p17_foundation_string_graph_message_passing",
+        "helf_perturb_root_mlp_p18_foundation_pathway_pooling_encoder",
+        "helf_perturb_root_mlp_p19_low_rank_head",
+        "helf_perturb_root_mlp_p20_feature_dropout"
+      ],
+      "config": "configs/helf_perturb_roots/root_mlp.json",
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.414092093706131,
+      "value": 2.441264122724533,
+      "visits": 6
+    },
+    "helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder": {
+      "best_val_macro_f1": 0.3958495557308197,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.40976858139038086,
+        "priority": 1.7200000000000002,
+        "score": 0.6617685813903809
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "status": "trained",
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.38794633746147156,
+      "value": 0.7916991114616394,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p14_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.40976858139038086,
+        "priority": 1.7400000000000002,
+        "score": 0.5437685813903809
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p14_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p14_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p15_low_rank_head": {
+      "best_val_macro_f1": 0.40521833300590515,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40976858139038086,
+        "priority": 0.76,
+        "score": 0.6057685813903808
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p15_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp_p15_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p15_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.4052025377750397,
+      "value": 0.8104366660118103,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p16_feature_dropout": {
+      "best_val_macro_f1": 0.40967726707458496,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40976858139038086,
+        "priority": 0.72,
+        "score": 0.6017685813903808
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p16_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp_p16_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p16_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.410656601190567,
+      "value": 0.8193545341491699,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p17_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.40976858139038086,
+        "priority": 1.7400000000000002,
+        "score": 0.5437685813903809
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p17_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p17_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p18_foundation_pathway_pooling_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.40976858139038086,
+        "priority": 1.7200000000000002,
+        "score": 0.5417685813903809
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p18_foundation_pathway_pooling_encoder.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p18_foundation_pathway_pooling_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_pathway_pooling_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head": {
+      "best_val_macro_f1": 0.4106117784976959,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40976858139038086,
+        "priority": 0.76,
+        "score": 0.6057685813903808
+      },
+      "children": [
+        "helf_perturb_root_mlp_p19_low_rank_head_p45_foundation_string_graph_message_passing",
+        "helf_perturb_root_mlp_p19_low_rank_head_p46_foundation_graph_laplacian_head",
+        "helf_perturb_root_mlp_p19_low_rank_head_p47_temperature_calibration",
+        "helf_perturb_root_mlp_p19_low_rank_head_p48_weighted_ce",
+        "helf_perturb_root_mlp_p19_low_rank_head_p49_foundation_string_graph_message_passing",
+        "helf_perturb_root_mlp_p19_low_rank_head_p50_foundation_graph_laplacian_head",
+        "helf_perturb_root_mlp_p19_low_rank_head_p51_temperature_calibration",
+        "helf_perturb_root_mlp_p19_low_rank_head_p52_weighted_ce"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp_p19_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.406653493642807,
+      "value": 0.8212235569953918,
+      "visits": 2
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p45_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4106117784976959,
+        "priority": 1.7400000000000002,
+        "score": 0.5446117784976959
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p45_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p45_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p46_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4106117784976959,
+        "priority": 1.73,
+        "score": 0.503611778497696
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p46_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p46_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p47_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4106117784976959,
+        "priority": 0.7,
+        "score": 0.6006117784976959
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p47_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p47_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p48_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4106117784976959,
+        "priority": 0.66,
+        "score": 0.5966117784976959
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p48_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p48_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p49_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4106117784976959,
+        "priority": 1.7400000000000002,
+        "score": 0.5446117784976959
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p49_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p49_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p50_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4106117784976959,
+        "priority": 1.73,
+        "score": 0.503611778497696
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p50_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p50_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p51_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4106117784976959,
+        "priority": 0.7,
+        "score": 0.6006117784976959
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p51_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p51_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p19_low_rank_head_p52_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4106117784976959,
+        "priority": 0.66,
+        "score": 0.5966117784976959
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p52_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp_p19_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p19_low_rank_head_p52_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_mlp_p20_feature_dropout": {
+      "best_val_macro_f1": 0.4101386070251465,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.40976858139038086,
+        "priority": 0.72,
+        "score": 0.6017685813903808
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p20_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp_p20_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p20_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.4135395288467407,
+      "value": 0.820277214050293,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp": {
+      "best_val_macro_f1": 0.42217501997947693,
+      "children": [
+        "helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+        "helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout"
+      ],
+      "config": "configs/helf_perturb_roots/root_residual_mlp.json",
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_residual_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.42074063420295715,
+      "value": 1.8976490795612335,
+      "visits": 5
+    },
+    "helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing": {
+      "best_val_macro_f1": 0.3381015360355377,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.42217501997947693,
+        "priority": 1.7400000000000002,
+        "score": 0.6761750199794769
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "trained",
+      "strategy": "foundation_string_graph_message_passing",
+      "test_macro_f1": 0.3219967484474182,
+      "value": 0.6762030720710754,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head": {
+      "best_val_macro_f1": 0.31900492310523987,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.42217501997947693,
+        "priority": 1.73,
+        "score": 0.6751750199794769
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "trained",
+      "strategy": "foundation_graph_laplacian_head",
+      "test_macro_f1": 0.31138864159584045,
+      "value": 0.6380098462104797,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head": {
+      "best_val_macro_f1": 0.4079616963863373,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.42217501997947693,
+        "priority": 0.76,
+        "score": 0.6181750199794769
+      },
+      "children": [
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p29_foundation_string_graph_message_passing",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p30_foundation_graph_laplacian_head",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p31_feature_dropout",
+        "helf_perturb_root_residual_mlp_p3_low_rank_head_p32_temperature_calibration"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_residual_mlp_p3_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.40772220492362976,
+      "value": 0.8159233927726746,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p29_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4079616963863373,
+        "priority": 1.7400000000000002,
+        "score": 0.5419616963863373
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p29_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p29_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p30_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4079616963863373,
+        "priority": 1.73,
+        "score": 0.5009616963863374
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p30_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p30_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p31_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4079616963863373,
+        "priority": 0.72,
+        "score": 0.5999616963863372
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p31_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p31_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p3_low_rank_head_p32_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4079616963863373,
+        "priority": 0.7,
+        "score": 0.5979616963863372
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p32_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p3_low_rank_head_p32_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout": {
+      "best_val_macro_f1": 0.4104059040546417,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.42217501997947693,
+        "priority": 0.72,
+        "score": 0.6141750199794769
+      },
+      "children": [
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p33_foundation_string_graph_message_passing",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p34_foundation_graph_laplacian_head",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p35_temperature_calibration",
+        "helf_perturb_root_residual_mlp_p4_feature_dropout_p36_weighted_ce"
+      ],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_residual_mlp_p4_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.4099613130092621,
+      "value": 0.8208118081092834,
+      "visits": 2
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p33_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4104059040546417,
+        "priority": 1.7400000000000002,
+        "score": 0.5444059040546417
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p33_foundation_string_graph_message_passing.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p33_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p34_foundation_graph_laplacian_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.08,
+        "parent_val": 0.4104059040546417,
+        "priority": 1.73,
+        "score": 0.5034059040546418
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p34_foundation_graph_laplacian_head.json",
+      "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p34_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_graph_laplacian_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p35_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4104059040546417,
+        "priority": 0.7,
+        "score": 0.6004059040546417
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p35_temperature_calibration.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p35_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "helf_perturb_root_residual_mlp_p4_feature_dropout_p36_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4104059040546417,
+        "priority": 0.66,
+        "score": 0.5964059040546417
+      },
+      "children": [],
+      "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p36_weighted_ce.json",
+      "materialization_note": "lightweight executable transform",
+      "materialized": true,
+      "missing_required_artifacts": [],
+      "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_residual_mlp_p4_feature_dropout_p36_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    }
+  },
+  "root_nodes": [
+    "helf_perturb_root_mlp",
+    "helf_perturb_root_residual_mlp",
+    "helf_perturb_root_gated_mlp",
+    "helf_perturb_root_low_rank_mlp"
+  ],
+  "search_space_config": "configs/helf_perturb_search_space.json",
+  "task_id": "HELF_PERTURB_DEG",
+  "task_type": "drug_perturbation_target_gene_deg_direction_prediction"
+}

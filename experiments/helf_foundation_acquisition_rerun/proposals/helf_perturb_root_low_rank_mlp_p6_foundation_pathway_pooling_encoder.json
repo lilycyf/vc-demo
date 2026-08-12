@@ -1,0 +1,35 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "metadata": {
+    "artifact_manifest_path": "data/artifacts/helf/reactome_pathway_membership.npz.manifest.json",
+    "foundation_materializer": "target_aware_bilinear_from_aligned_target_artifact",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "reactome_pathway_membership"
+    ]
+  },
+  "model": {
+    "artifact_manifest_path": "data/artifacts/helf/reactome_pathway_membership.npz.manifest.json",
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "low_rank_dim": 48,
+    "model_type": "target_aware_bilinear",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

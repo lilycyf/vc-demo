@@ -1,0 +1,11 @@
+{
+  "artifact_id": "reactome_pathway_membership",
+  "status": "present",
+  "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+  "source_version": "Reactome current download at acquisition time",
+  "target_gene_count": 512,
+  "pathway_count": 455,
+  "target_gene_coverage_count": 333,
+  "target_gene_coverage_fraction": 0.650390625,
+  "filtering_rule": "Keep pathways with 3-256 HELF target genes, sorted by target coverage, capped at 512 pathways."
+}

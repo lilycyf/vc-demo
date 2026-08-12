@@ -1,0 +1,39 @@
+{
+  "run_dir": "experiments/helf_foundation_acquisition_rerun",
+  "cell_line_or_task": "HELF_PERTURB_DEG",
+  "source_backed_acquisitions": [
+    {
+      "artifact_id": "reactome_pathway_membership",
+      "status": "present",
+      "source_url": "https://reactome.org/download/current/ReactomePathways.gmt.zip",
+      "source_version": "Reactome current download at acquisition time",
+      "target_gene_count": 512,
+      "pathway_count": 455,
+      "target_gene_coverage_count": 333,
+      "target_gene_coverage_fraction": 0.650390625,
+      "filtering_rule": "Keep pathways with 3-256 HELF target genes, sorted by target coverage, capped at 512 pathways."
+    },
+    {
+      "artifact_id": "string_gene_graph",
+      "status": "present",
+      "source_url": "https://string-db.org/api/tsv/network",
+      "source_version": "STRING network API species=9606 required_score=400",
+      "target_gene_count": 512,
+      "edge_count": 2229,
+      "target_gene_coverage_count": 447,
+      "target_gene_coverage_fraction": 0.873046875,
+      "filtering_rule": "POST HELF target genes to official STRING network API; keep target-target edges returned for species 9606 at required_score=400; deduplicate undirected pairs by max score."
+    }
+  ],
+  "selected_missing_artifact_blockers": [],
+  "registry_missing_not_selected_in_final_run": [
+    "chemical_encoder_checkpoint_or_drug_fingerprints",
+    "esm2_gene_or_protein_embeddings",
+    "geneformer_checkpoint",
+    "regulatory_network_prior",
+    "scfoundation_checkpoint_or_service_output",
+    "scgpt_whole_human_checkpoint",
+    "uce_checkpoint"
+  ],
+  "policy": "No fabricated artifacts; no fallback/proxy; acquired artifacts aligned to HELF target gene order."
+}

@@ -1,0 +1,25 @@
+{
+  "blueprint_id": "graph_laplacian_head",
+  "candidate_pool_size": 4,
+  "candidate_rank": 2,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": -0.08,
+    "parent_val": 0.4108932912349701,
+    "priority": 1.73,
+    "score": 0.5038932912349702
+  },
+  "child": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p78_foundation_graph_laplacian_head",
+  "codex_action": "regularize/smooth target logits over real STRING edges",
+  "family": "network_and_pathway_prior",
+  "hypothesis": "Test foundation_graph_laplacian_head for drug_perturbation_target_gene_deg_direction_prediction.",
+  "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+  "materialized": true,
+  "missing_required_artifacts": [],
+  "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "string_gene_graph"
+  ],
+  "strategy": "foundation_graph_laplacian_head"
+}

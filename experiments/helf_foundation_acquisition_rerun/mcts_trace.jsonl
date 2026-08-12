@@ -1,0 +1,144 @@
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_residual_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_string_graph_message_passing"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing", "reward": 0.3381015360355377}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_graph_laplacian_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head", "reward": 0.31900492310523987}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_graph_laplacian_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p5_foundation_graph_laplacian_head", "reward": 0.3236095607280731}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_pathway_pooling_encoder"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p9_foundation_pathway_pooling_encoder", "reward": 0.3909090459346771}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_pathway_pooling_encoder"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p6_foundation_pathway_pooling_encoder", "reward": 0.3940390646457672}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_gated_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_pathway_pooling_encoder"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder", "reward": 0.3958495557308197}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_gated_mlp", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_residual_mlp_p3_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_residual_mlp_p3_low_rank_head", "reward": 0.4079616963863373}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_residual_mlp_p3_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_residual_mlp_p4_feature_dropout", "proposal_type": "lightweight_executable_transform", "strategy": "feature_dropout"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_residual_mlp_p4_feature_dropout", "reward": 0.4104059040546417}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_residual_mlp_p4_feature_dropout", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head", "reward": 0.4115696847438812}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p11_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p11_low_rank_head", "reward": 0.41026970744132996}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_mlp_p19_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_mlp_p19_low_rank_head", "reward": 0.4106117784976959}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_mlp_p19_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_mlp_p15_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_mlp_p15_low_rank_head", "reward": 0.40521833300590515}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_mlp_p19_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head", "reward": 0.4111238420009613}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_gated_mlp_p23_low_rank_head", "proposal_type": "lightweight_executable_transform", "strategy": "low_rank_head"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_gated_mlp_p23_low_rank_head", "reward": 0.4055844247341156}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout", "proposal_type": "lightweight_executable_transform", "strategy": "feature_dropout"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout", "reward": 0.4108932912349701}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout", "proposal_type": "lightweight_executable_transform", "strategy": "feature_dropout"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout", "reward": 0.4127305746078491}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration", "proposal_type": "lightweight_executable_transform", "strategy": "temperature_calibration"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration", "reward": 0.41417714953422546}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_mlp_p20_feature_dropout", "proposal_type": "lightweight_executable_transform", "strategy": "feature_dropout"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_mlp_p20_feature_dropout", "reward": 0.4101386070251465}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_mlp_p16_feature_dropout", "proposal_type": "lightweight_executable_transform", "strategy": "feature_dropout"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_mlp_p16_feature_dropout", "reward": 0.40967726707458496}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p8_feature_dropout", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration", "proposal_type": "lightweight_executable_transform", "strategy": "temperature_calibration"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration", "reward": 0.41255760192871094}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration", "proposal_type": "lightweight_executable_transform", "strategy": "temperature_calibration"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration", "reward": 0.4131992757320404}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration", "proposal_type": "lightweight_executable_transform", "strategy": "temperature_calibration"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p59_temperature_calibration", "reward": 0.4111917316913605}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration", "proposal_type": "lightweight_executable_transform", "strategy": "temperature_calibration"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration", "reward": 0.4108540117740631}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "parent": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration", "pool_size": 4}
+{"event": "selected_for_training", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration", "proposal_type": "lightweight_executable_transform", "strategy": "temperature_calibration"}
+{"event": "trained_and_backpropagated", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p63_temperature_calibration", "reward": 0.4138527810573578}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p51_temperature_calibration", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p47_temperature_calibration", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p4_feature_dropout_p35_temperature_calibration", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p75_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p71_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p3_low_rank_head_p31_feature_dropout", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p91_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p87_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p68_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p95_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p83_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p28_feature_dropout", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p24_feature_dropout", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p3_low_rank_head_p32_temperature_calibration", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p44_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p40_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p60_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p56_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p79_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p64_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p52_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p48_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p4_feature_dropout_p36_weighted_ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p76_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p72_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p92_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p88_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p96_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p84_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p80_focal_loss", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p73_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p69_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p89_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p85_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p65_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p93_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p81_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p41_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p37_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p57_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p53_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p77_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p61_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p49_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p45_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p4_feature_dropout_p33_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p10_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p17_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p14_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p3_low_rank_head_p29_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p18_foundation_pathway_pooling_encoder", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p25_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p21_foundation_string_graph_message_passing", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p74_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p70_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p90_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p86_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p66_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p94_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p43_temperature_calibration_p82_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p42_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p38_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p58_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p27_low_rank_head_p54_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p78_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_low_rank_mlp_p8_feature_dropout_p62_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p50_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_mlp_p19_low_rank_head_p46_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p4_feature_dropout_p34_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_residual_mlp_p3_low_rank_head_p30_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p26_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "helf_perturb_root_gated_mlp_p22_foundation_graph_laplacian_head", "reason": "not selected before trained-node budget/stop condition"}

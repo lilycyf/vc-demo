@@ -70,7 +70,7 @@ def build_loss(config: dict, device: torch.device) -> nn.Module:
 def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> dict:
     config = json.loads(json.dumps(config))
     model_cfg = config.setdefault("model", {})
-    data_cfg = config.get("data", {})
+    data_cfg = config.get("data") or config.get("dataset", {})
     x = sample["x"]
     y = sample["y"]
     if model_cfg.get("input_dim", "auto") == "auto":
@@ -135,7 +135,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     test = evaluate(model, test_loader, device, config)
     result = {
         "node_name": config.get("node_name", output_dir.name),
-        "dataset_type": config.get("data", {}).get("dataset_type", "synthetic"),
+        "dataset_type": (config.get("data") or config.get("dataset", {})).get("dataset_type", "synthetic"),
         "device": str(device),
         "best_val_macro_f1": best_val,
         "test_macro_f1": test["macro_f1"],

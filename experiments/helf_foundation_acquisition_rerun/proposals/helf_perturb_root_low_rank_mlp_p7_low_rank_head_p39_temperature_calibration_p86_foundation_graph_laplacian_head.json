@@ -1,0 +1,35 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "metadata": {
+    "artifact_manifest_path": "data/artifacts/helf/string_gene_graph.tsv.manifest.json",
+    "foundation_materializer": "target_aware_bilinear_from_aligned_target_artifact",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "string_gene_graph"
+    ]
+  },
+  "model": {
+    "artifact_manifest_path": "data/artifacts/helf/string_gene_graph.tsv.manifest.json",
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "low_rank_dim": 48,
+    "model_type": "target_aware_bilinear",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "helf_perturb_root_low_rank_mlp_p7_low_rank_head_p39_temperature_calibration_p86_foundation_graph_laplacian_head",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

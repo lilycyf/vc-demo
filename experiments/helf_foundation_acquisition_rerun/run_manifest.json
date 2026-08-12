@@ -1,0 +1,112 @@
+{
+  "artifact_blockers": 0,
+  "backprop_nontrained_count": 0,
+  "best_foundation_artifact_child": {
+    "best_val_macro_f1": 0.3958495557308197,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.08,
+      "parent_val": 0.40976858139038086,
+      "priority": 1.7200000000000002,
+      "score": 0.6617685813903809
+    },
+    "children": [],
+    "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder.json",
+    "materialization_note": "materialized target_aware_bilinear from aligned target artifact manifest",
+    "materialized": true,
+    "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder/metrics.json",
+    "missing_required_artifacts": [],
+    "node": "helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder",
+    "parent": "helf_perturb_root_mlp",
+    "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_mlp_p13_foundation_pathway_pooling_encoder.proposal.json",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "reactome_pathway_membership"
+    ],
+    "status": "trained",
+    "strategy": "foundation_pathway_pooling_encoder",
+    "test_macro_f1": 0.38794633746147156,
+    "value": 0.7916991114616394,
+    "visits": 2
+  },
+  "best_foundation_child_minus_best_root_val_macro_f1": -0.026325464248657227,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.41417714953422546,
+    "cheap_screen_score": {
+      "cost_bonus": 0.04,
+      "novelty": 0.08,
+      "parent_val": 0.4127305746078491,
+      "priority": 0.7,
+      "score": 0.6027305746078491
+    },
+    "children": [
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p69_foundation_string_graph_message_passing",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p70_foundation_graph_laplacian_head",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p71_weighted_ce",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p72_focal_loss",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p73_foundation_string_graph_message_passing",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p74_foundation_graph_laplacian_head",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p75_weighted_ce",
+      "helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration_p76_focal_loss"
+    ],
+    "config": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration.json",
+    "materialization_note": "lightweight executable transform",
+    "materialized": true,
+    "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "helf_perturb_root_low_rank_mlp_p12_feature_dropout",
+    "proposal": "experiments/helf_foundation_acquisition_rerun/proposals/helf_perturb_root_low_rank_mlp_p12_feature_dropout_p67_temperature_calibration.proposal.json",
+    "proposal_type": "lightweight_executable_transform",
+    "required_artifacts": [],
+    "status": "trained",
+    "strategy": "temperature_calibration",
+    "test_macro_f1": 0.41413259506225586,
+    "value": 0.8283542990684509,
+    "visits": 2
+  },
+  "best_generated_child_minus_best_root_val_macro_f1": -0.007997870445251465,
+  "best_root": {
+    "best_val_macro_f1": 0.42217501997947693,
+    "children": [
+      "helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "helf_perturb_root_residual_mlp_p2_foundation_graph_laplacian_head",
+      "helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "helf_perturb_root_residual_mlp_p4_feature_dropout"
+    ],
+    "config": "configs/helf_perturb_roots/root_residual_mlp.json",
+    "metrics": "experiments/helf_foundation_acquisition_rerun/nodes/helf_perturb_root_residual_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.42074063420295715,
+    "value": 1.8976490795612335,
+    "visits": 5
+  },
+  "blocked": 0,
+  "blocked_blueprints": [],
+  "experiment": "helf_foundation_acquisition_rerun",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 96,
+  "nontrained_backprop_nodes": [],
+  "objective_target_met_by_best_generated_child": true,
+  "objective_target_val_macro_f1": 0.36,
+  "proxy_count": 0,
+  "pruned_not_selected": 72,
+  "requires_artifact_acquisition": 0,
+  "run_dir": "experiments/helf_foundation_acquisition_rerun",
+  "skipped": 0,
+  "skipped_artifact_suppressed": 0,
+  "status_counts": {
+    "pruned_not_selected": 72,
+    "trained": 28
+  },
+  "stop_reason": "trained-node budget exhausted (24/24)",
+  "suppressed_artifacts": [],
+  "trace_event_counts": {
+    "proposal_pool_generated": 24,
+    "proposal_pruned": 72,
+    "selected_for_training": 24,
+    "trained_and_backpropagated": 24
+  },
+  "trained_selected_rollouts": 24
+}

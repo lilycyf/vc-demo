@@ -1,0 +1,23 @@
+{
+  "blueprint_id": null,
+  "candidate_pool_size": 4,
+  "candidate_rank": 3,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.4111238420009613,
+    "priority": 0.7,
+    "score": 0.6011238420009613
+  },
+  "child": "helf_perturb_root_gated_mlp_p27_low_rank_head_p55_temperature_calibration",
+  "codex_action": null,
+  "family": null,
+  "hypothesis": "Test temperature_calibration for drug_perturbation_target_gene_deg_direction_prediction.",
+  "materialization_note": "lightweight executable transform",
+  "materialized": true,
+  "missing_required_artifacts": [],
+  "parent": "helf_perturb_root_gated_mlp_p27_low_rank_head",
+  "proposal_type": "lightweight_executable_transform",
+  "required_artifacts": [],
+  "strategy": "temperature_calibration"
+}

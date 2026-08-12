@@ -1,0 +1,23 @@
+{
+  "blueprint_id": null,
+  "candidate_pool_size": 4,
+  "candidate_rank": 3,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.40976858139038086,
+    "priority": 0.76,
+    "score": 0.6057685813903808
+  },
+  "child": "helf_perturb_root_mlp_p19_low_rank_head",
+  "codex_action": null,
+  "family": null,
+  "hypothesis": "Test low_rank_head for drug_perturbation_target_gene_deg_direction_prediction.",
+  "materialization_note": "lightweight executable transform",
+  "materialized": true,
+  "missing_required_artifacts": [],
+  "parent": "helf_perturb_root_mlp",
+  "proposal_type": "lightweight_executable_transform",
+  "required_artifacts": [],
+  "strategy": "low_rank_head"
+}

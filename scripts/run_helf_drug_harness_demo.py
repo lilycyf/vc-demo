@@ -90,7 +90,18 @@ def uct_select_parent(tree: dict[str, Any], max_children: int, exploration: floa
     for name, node in tree["nodes"].items():
         if node.get("status") != "trained":
             continue
-        if len(node.get("children", [])) >= max_children:
+        active_children = [
+            child for child in node.get("children", [])
+            if tree["nodes"].get(child, {}).get("status") not in {
+                "requires_artifact_acquisition",
+                "blocked_missing_artifact",
+                "skipped_artifact_suppressed",
+                "pruned_not_selected",
+                "failed",
+                "needs_implementation",
+            }
+        ]
+        if len(active_children) >= max_children:
             continue
         visits = max(1, int(node.get("visits", 1)))
         q = float(node.get("value", 0.0)) / visits
@@ -175,6 +186,35 @@ def missing_required_artifacts(required: list[str], registry: dict[str, dict[str
     return missing
 
 
+
+
+def companion_artifact_manifest(artifact_path: str | Path) -> Path:
+    path = Path(str(artifact_path))
+    if path.suffix:
+        return path.with_suffix(path.suffix + ".manifest.json")
+    return path / "artifact_manifest.json"
+
+
+def apply_foundation_blueprint(parent: dict[str, Any], transform: dict[str, Any], child_name: str, registry: dict[str, dict[str, Any]]) -> tuple[dict[str, Any], bool, str]:
+    cfg = copy.deepcopy(parent)
+    cfg["node_name"] = child_name
+    blueprint_id = str(transform.get("blueprint_id") or "")
+    required = list(transform.get("required_artifacts", []))
+    if blueprint_id in {"pathway_pooling_encoder", "esm2_target_gene_head", "protein_embedding_fusion", "string_graph_message_passing", "graph_laplacian_head"} and required:
+        artifact = registry.get(required[0], {})
+        artifact_path = artifact.get("path") or artifact.get("expected_path") or ""
+        manifest_path = companion_artifact_manifest(artifact_path)
+        if manifest_path.exists():
+            model = cfg.setdefault("model", {})
+            model["model_type"] = "target_aware_bilinear"
+            model["artifact_manifest_path"] = str(manifest_path)
+            model.setdefault("low_rank_dim", 64)
+            cfg.setdefault("metadata", {})["foundation_materializer"] = "target_aware_bilinear_from_aligned_target_artifact"
+            cfg["metadata"]["artifact_manifest_path"] = str(manifest_path)
+            return cfg, True, "materialized target_aware_bilinear from aligned target artifact manifest"
+        return cfg, False, f"missing companion artifact manifest: {manifest_path}"
+    return cfg, False, f"no native materializer for foundation blueprint {blueprint_id}"
+
 def load_foundation_blueprints(path: Path) -> list[dict[str, Any]]:
     if not path.exists():
         return []
@@ -197,13 +237,13 @@ def load_foundation_blueprints(path: Path) -> list[dict[str, Any]]:
     return blueprints
 
 
-def choose_candidate_pool(transforms: list[dict[str, Any]], foundation: list[dict[str, Any]], parent_val: float, strategy_counts: dict[str, int], rng: random.Random, pool_size: int) -> list[dict[str, Any]]:
+def choose_candidate_pool(transforms: list[dict[str, Any]], foundation: list[dict[str, Any]], parent_val: float, strategy_counts: dict[str, int], rng: random.Random, pool_size: int, suppressed_artifacts: set[str], blocked_blueprints: set[str]) -> list[dict[str, Any]]:
     light = transforms[:]
-    found = foundation[:]
+    found = [bp for bp in foundation if bp.get("blueprint_id") not in blocked_blueprints and not any(str(a) in suppressed_artifacts for a in bp.get("required_artifacts", []))]
     rng.shuffle(light)
     rng.shuffle(found)
     light = sorted(light, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
-    found = sorted(found, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
+    found = sorted(found, key=lambda t: (bool(t.get("all_required_artifacts_present")), cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"]), reverse=True)
     foundation_slots = min(len(found), max(1, pool_size // 2)) if found else 0
     selected = found[:foundation_slots]
     selected.extend(light[: max(0, pool_size - len(selected))])
@@ -254,8 +294,16 @@ def main() -> None:
     artifact_registry = load_artifact_registry(args.artifact_registry)
     foundation_blueprints = load_foundation_blueprints(args.search_space_config)
     artifact_audit = {artifact_id: {**item, "present": artifact_is_present(item)} for artifact_id, item in artifact_registry.items()}
-    write_json(args.run_dir / "artifact_registry_audit.json", {"registry": str(args.artifact_registry), "artifacts": artifact_audit})
+    for blueprint in foundation_blueprints:
+        required = list(blueprint.get("required_artifacts", []))
+        ready = bool(required) and not missing_required_artifacts(required, artifact_registry)
+        blueprint["all_required_artifacts_present"] = ready
+        if ready:
+            blueprint["priority"] = float(blueprint.get("priority", 0.0)) + 0.75
+    write_json(args.run_dir / "artifact_registry_audit.json", {"registry": str(args.artifact_registry), "artifacts": artifact_audit, "ready_foundation_blueprints": [bp for bp in foundation_blueprints if bp.get("all_required_artifacts_present")]})
     acquisition_queue: dict[str, Any] = {"items": []}
+    suppressed_artifacts: set[str] = set()
+    blocked_blueprints: set[str] = set()
     tree = {"experiment": args.experiment, "task_id": task_id, "task_type": task_label, "nodes": {}, "root_nodes": [], "events": [], "search_space_config": str(args.search_space_config), "artifact_registry": str(args.artifact_registry)}
     rng = random.Random(args.seed)
 
@@ -274,66 +322,105 @@ def main() -> None:
             stop_reason = f"trained-node budget exhausted ({trained_children}/{args.budget_trained_nodes})"
             break
         if generated < args.budget_proposals:
-            parent = uct_select_parent(tree, args.max_children, args.exploration)
-            parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
-            parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
-            transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size)
-            write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint")})
-            for rank, transform in enumerate(transforms, start=1):
-                if generated >= args.budget_proposals:
+            try:
+                parent = uct_select_parent(tree, args.max_children, args.exploration)
+            except RuntimeError:
+                stop_reason = f"no expandable trained parent remains after {generated} generated proposals; draining queued candidates"
+                if not queued:
                     break
-                generated += 1
-                child = f"{parent}_p{generated}_{transform['id']}"
-                cfg = apply_transform(parent_cfg, transform["id"], child) if not transform.get("proposal_type") else copy.deepcopy(parent_cfg)
-                cfg["node_name"] = child
-                missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
-                proposal = {
-                    "strategy": transform["id"],
-                    "parent": parent,
-                    "child": child,
-                    "candidate_rank": rank,
-                    "candidate_pool_size": args.candidate_pool_size,
-                    "proposal_type": transform.get("proposal_type", "lightweight_executable_transform"),
-                    "blueprint_id": transform.get("blueprint_id"),
-                    "family": transform.get("family"),
-                    "required_artifacts": transform.get("required_artifacts", []),
-                    "missing_required_artifacts": missing_artifacts,
-                    "codex_action": transform.get("codex_action"),
-                    "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)),
-                    "hypothesis": f"Test {transform['id']} for {task_label}.",
-                }
-                cfg.setdefault("metadata", {})["proposal_type"] = proposal["proposal_type"]
-                cfg["metadata"]["required_artifacts"] = proposal["required_artifacts"]
-                cfg_path = proposal_dir / f"{child}.json"
-                prop_path = proposal_dir / f"{child}.proposal.json"
-                write_json(cfg_path, cfg)
-                write_json(prop_path, proposal)
-                add_node(tree, child, cfg_path, parent, "candidate_queued", proposal=proposal)
-                tree["nodes"][child]["proposal_type"] = proposal["proposal_type"]
-                tree["nodes"][child]["required_artifacts"] = proposal["required_artifacts"]
-                tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
-                queued.append((proposal["cheap_screen_score"]["score"], child))
+                parent = ""
+            if parent:
+                parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
+                parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
+                transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size, suppressed_artifacts, blocked_blueprints)
+                write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint")})
+                for rank, transform in enumerate(transforms, start=1):
+                    if generated >= args.budget_proposals:
+                        break
+                    generated += 1
+                    child = f"{parent}_p{generated}_{transform['id']}"
+                    if transform.get("proposal_type"):
+                        cfg, materialized, materialization_note = apply_foundation_blueprint(parent_cfg, transform, child, artifact_registry)
+                    else:
+                        cfg = apply_transform(parent_cfg, transform["id"], child)
+                        materialized, materialization_note = True, "lightweight executable transform"
+                    missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
+                    proposal = {
+                        "strategy": transform["id"],
+                        "parent": parent,
+                        "child": child,
+                        "candidate_rank": rank,
+                        "candidate_pool_size": args.candidate_pool_size,
+                        "proposal_type": transform.get("proposal_type", "lightweight_executable_transform"),
+                        "blueprint_id": transform.get("blueprint_id"),
+                        "family": transform.get("family"),
+                        "required_artifacts": transform.get("required_artifacts", []),
+                        "missing_required_artifacts": missing_artifacts,
+                        "materialized": materialized,
+                        "materialization_note": materialization_note,
+                        "codex_action": transform.get("codex_action"),
+                        "cheap_screen_score": cheap_score(transform, parent_val, strategy_counts.get(transform["id"], 0)),
+                        "hypothesis": f"Test {transform['id']} for {task_label}.",
+                    }
+                    cfg.setdefault("metadata", {})["proposal_type"] = proposal["proposal_type"]
+                    cfg["metadata"]["required_artifacts"] = proposal["required_artifacts"]
+                    cfg_path = proposal_dir / f"{child}.json"
+                    prop_path = proposal_dir / f"{child}.proposal.json"
+                    write_json(cfg_path, cfg)
+                    write_json(prop_path, proposal)
+                    add_node(tree, child, cfg_path, parent, "candidate_queued", proposal=proposal)
+                    tree["nodes"][child]["proposal_type"] = proposal["proposal_type"]
+                    tree["nodes"][child]["required_artifacts"] = proposal["required_artifacts"]
+                    tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
+                    tree["nodes"][child]["materialized"] = materialized
+                    tree["nodes"][child]["materialization_note"] = materialization_note
+                    queued.append((proposal["cheap_screen_score"]["score"], child))
             write_json(args.run_dir / "tree.json", tree)
         if not queued:
             stop_reason = f"proposal budget exhausted ({generated}/{args.budget_proposals})"
             break
         queued.sort(reverse=True)
-        _, selected = queued.pop(0)
-        node = tree["nodes"][selected]
-        proposal = read_json(Path(node["proposal"]))
+        selected = ""
+        proposal: dict[str, Any] = {}
+        node: dict[str, Any] = {}
+        while queued:
+            _, candidate = queued.pop(0)
+            candidate_node = tree["nodes"][candidate]
+            candidate_proposal = read_json(Path(candidate_node["proposal"]))
+            candidate_artifacts = {str(x) for x in candidate_proposal.get("required_artifacts", [])}
+            candidate_blueprint = str(candidate_proposal.get("blueprint_id") or "")
+            if candidate_artifacts.intersection(suppressed_artifacts) or candidate_blueprint in blocked_blueprints:
+                candidate_node["status"] = "skipped_artifact_suppressed"
+                candidate_node["skipped_reason"] = "artifact or blueprint was blocked by a prior source-backed acquisition check"
+                write_trace(args.run_dir, {"event": "proposal_skipped", "node": candidate, "reason": candidate_node["skipped_reason"], "suppressed_artifacts": sorted(suppressed_artifacts)})
+                skipped += 1
+                continue
+            selected = candidate
+            node = candidate_node
+            proposal = candidate_proposal
+            break
+        if not selected:
+            continue
         node["status"] = "selected_for_training"
         write_trace(args.run_dir, {"event": "selected_for_training", "node": selected, "proposal_type": proposal.get("proposal_type"), "strategy": proposal.get("strategy")})
         if proposal.get("missing_required_artifacts"):
             node.update({"status": "requires_artifact_acquisition", "blocked_reason": "missing source-backed foundation artifact", "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
-            acquisition_queue["items"].append({"node": selected, "proposal": node.get("proposal"), "strategy": proposal.get("strategy"), "family": proposal.get("family"), "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "resolution": "block until source, shape, vocabulary/order, and provenance can be verified"})
+            for missing in proposal.get("missing_required_artifacts", []):
+                artifact_id = str(missing.get("artifact_id", "unknown"))
+                suppressed_artifacts.add(artifact_id)
+                acquisition_queue["items"].append({"artifact_id": artifact_id, "expected_path": missing.get("expected_path"), "node": selected, "proposal": node.get("proposal"), "strategy": proposal.get("strategy"), "family": proposal.get("family"), "missing_required_artifacts": [missing], "resolution": "block until source, shape, vocabulary/order, and provenance can be verified"})
+            if proposal.get("blueprint_id"):
+                blocked_blueprints.add(str(proposal.get("blueprint_id")))
             write_json(args.run_dir / "acquisition_queue.json", acquisition_queue)
-            write_trace(args.run_dir, {"event": "artifact_acquisition_block", "node": selected, "missing_required_artifacts": proposal.get("missing_required_artifacts", [])})
+            write_trace(args.run_dir, {"event": "artifact_acquisition_block", "node": selected, "missing_required_artifacts": proposal.get("missing_required_artifacts", []), "suppressed_artifacts": sorted(suppressed_artifacts)})
             blocked += 1
             write_json(args.run_dir / "tree.json", tree)
             continue
-        if proposal.get("proposal_type") == "foundation_artifact_blueprint":
+        if proposal.get("proposal_type") == "foundation_artifact_blueprint" and not proposal.get("materialized"):
             node.update({"status": "needs_implementation", "blocked_reason": "foundation artifact is present but this demo runner has no automatic model materializer"})
             skipped += 1
+            if proposal.get("blueprint_id"):
+                blocked_blueprints.add(str(proposal.get("blueprint_id")))
             write_json(args.run_dir / "implementation_queue.json", {"items": [{"node": selected, "proposal": node.get("proposal"), "reason": node.get("blocked_reason")}]})
             write_json(args.run_dir / "tree.json", tree)
             continue
@@ -362,6 +449,7 @@ def main() -> None:
         "generated_proposals": generated,
         "trained_selected_rollouts": trained_children,
         "pruned_not_selected": sum(1 for n in tree["nodes"].values() if n.get("status") == "pruned_not_selected"),
+        "skipped_artifact_suppressed": sum(1 for n in tree["nodes"].values() if n.get("status") == "skipped_artifact_suppressed"),
         "skipped": skipped,
         "blocked": blocked,
         "requires_artifact_acquisition": sum(1 for n in tree["nodes"].values() if n.get("status") == "requires_artifact_acquisition"),
@@ -372,6 +460,8 @@ def main() -> None:
         "proxy_count": 0,
         "backprop_nontrained_count": 0,
         "artifact_blockers": blocked,
+        "suppressed_artifacts": sorted(suppressed_artifacts),
+        "blocked_blueprints": sorted(blocked_blueprints),
     }
     write_json(args.run_dir / "tree.json", tree)
     write_json(args.run_dir / "run_manifest.json", summary)
