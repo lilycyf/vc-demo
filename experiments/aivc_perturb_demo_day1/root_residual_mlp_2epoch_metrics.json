@@ -1,0 +1,29 @@
+{
+  "node_name": "aivc_helf_perturb_root_residual_mlp",
+  "dataset_type": "real_npz",
+  "device": "cpu",
+  "best_val_macro_f1": 0.3974067270755768,
+  "test_macro_f1": 0.3928609788417816,
+  "test_loss": 0.6314877867698669,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.8631618065493447,
+      "val_loss": 0.555900976061821,
+      "val_macro_f1": 0.3930317461490631
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.5519330288682666,
+      "val_loss": 0.5359413325786591,
+      "val_macro_f1": 0.3974067270755768
+    }
+  ],
+  "training": {
+    "epochs": 2,
+    "batch_size": 32,
+    "lr": 0.0005,
+    "weight_decay": 0.0001,
+    "loss_type": "cross_entropy"
+  }
+}

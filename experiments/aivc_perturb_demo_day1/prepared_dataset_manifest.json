@@ -1,0 +1,81 @@
+{
+  "format": "npz",
+  "task_id": "HELF_PERTURB_DEG",
+  "task_type": "drug_perturbation_target_gene_deg_direction_prediction",
+  "source_h5ad": "data/raw/merged_data.h5ad",
+  "n_cells": 9156,
+  "n_genes_original": 31942,
+  "n_feature_genes": 1024,
+  "n_drug_onehot_features": 10,
+  "n_features": 1034,
+  "n_targets": 512,
+  "n_classes": 3,
+  "class_names": [
+    "down",
+    "unchanged",
+    "up"
+  ],
+  "perturbation_drugs": [
+    "HY-10443-Balapiravir",
+    "HY-108969-Pyrazoloacridine",
+    "HY-13543-Tretazicar",
+    "HY-13744-Rubitecan",
+    "HY-16209-Forodesine (hydrochloride)",
+    "HY-16405-PR-104",
+    "HY-16503-Treosulfan",
+    "HY-75800-Lomibuvir",
+    "HY-B0021-Doxifluridine",
+    "HY-N0112-Dihydromyricetin"
+  ],
+  "drug_splits": {
+    "train": [
+      "HY-16405-PR-104",
+      "HY-75800-Lomibuvir",
+      "HY-10443-Balapiravir",
+      "HY-N0112-Dihydromyricetin",
+      "HY-13543-Tretazicar",
+      "HY-B0021-Doxifluridine",
+      "HY-108969-Pyrazoloacridine"
+    ],
+    "val": [
+      "HY-16209-Forodesine (hydrochloride)",
+      "HY-13744-Rubitecan"
+    ],
+    "test": [
+      "HY-16503-Treosulfan"
+    ]
+  },
+  "split_policy": "drug-level split before bootstrap; validation/test drugs are held-out perturbations",
+  "control_policy": "Treat == Ctrl or Drug in DMSO/medium/control aliases",
+  "feature_policy": "raw_counts -> CPM(1e4) -> log1p -> treated-control pseudobulk delta over high-variance feature genes + perturbation drug one-hot; z-score using train rows only",
+  "label_policy": "target-gene treated-control logCPM delta: <= -0.25 down, >= 0.25 up, otherwise unchanged",
+  "reward": "validation Macro-F1 over flattened target-gene DEG direction labels",
+  "test_policy": "test Macro-F1 is report-only and must not drive search",
+  "files": {
+    "train": "train.npz",
+    "val": "val.npz",
+    "test": "test.npz"
+  },
+  "counts_by_split": {
+    "train": 448,
+    "val": 128,
+    "test": 64
+  },
+  "label_counts_by_split": {
+    "train": {
+      "down": 8501,
+      "unchanged": 178987,
+      "up": 41888
+    },
+    "val": {
+      "down": 2319,
+      "unchanged": 53016,
+      "up": 10201
+    },
+    "test": {
+      "down": 1820,
+      "unchanged": 24618,
+      "up": 6330
+    }
+  }
+}
