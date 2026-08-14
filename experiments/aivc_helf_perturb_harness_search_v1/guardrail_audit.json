@@ -1,0 +1,51 @@
+{
+  "artifact_blockers_by_artifact_id": {
+    "scgpt_whole_human_checkpoint": 8
+  },
+  "backend_anomaly_count": 0,
+  "backprop_nontrained_count": 0,
+  "best_child_beats_best_root": true,
+  "best_generated_child": {
+    "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss",
+    "strategy": "focal_loss",
+    "test_macro_f1": 0.43781033158302307,
+    "val_macro_f1": 0.4455164968967438
+  },
+  "best_root": {
+    "node": "aivc_helf_perturb_root_residual_mlp",
+    "test_macro_f1": 0.4275474548339844,
+    "val_macro_f1": 0.4296294152736664
+  },
+  "blocked": 8,
+  "experiment": "aivc_helf_perturb_harness_search_v1",
+  "external_static_node_count": 0,
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 64,
+  "pending": 0,
+  "proxy_count": 0,
+  "pruned_node_training_count": 0,
+  "pruned_nodes_trained": [],
+  "pruned_not_selected": 40,
+  "requires_artifact_acquisition": 8,
+  "run_dir": "experiments/aivc_helf_perturb_harness_search_v1",
+  "skipped": 0,
+  "status_counts": {
+    "pruned_not_selected": 40,
+    "requires_artifact_acquisition": 8,
+    "trained": 20
+  },
+  "target_reached": true,
+  "target_val_macro_f1": 0.42,
+  "test_guided_selection": false,
+  "trace_event_counts": {
+    "artifact_acquisition_block": 8,
+    "proposal_pool_generated": 16,
+    "proposal_pruned": 40,
+    "selected_for_training": 24,
+    "trained_and_backpropagated": 16
+  },
+  "trained_foundation_artifact_children": 3,
+  "trained_roots": 4,
+  "trained_selected_rollouts": 16
+}

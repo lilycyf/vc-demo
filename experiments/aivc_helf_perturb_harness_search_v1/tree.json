@@ -1,0 +1,1741 @@
+{
+  "artifact_registry": "configs/artifacts/helf_perturb_registry.json",
+  "events": [],
+  "experiment": "aivc_helf_perturb_harness_search_v1",
+  "last_backprop_path": [
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p35_weighted_ce",
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+    "aivc_helf_perturb_root_gated_mlp"
+  ],
+  "nodes": {
+    "aivc_helf_perturb_root_gated_mlp": {
+      "best_val_macro_f1": 0.41396939754486084,
+      "children": [
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+        "aivc_helf_perturb_root_gated_mlp_p10_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_gated_mlp_p11_low_rank_head",
+        "aivc_helf_perturb_root_gated_mlp_p12_feature_dropout",
+        "aivc_helf_perturb_root_gated_mlp_p41_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_gated_mlp_p42_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_gated_mlp_p43_weighted_ce",
+        "aivc_helf_perturb_root_gated_mlp_p44_focal_loss"
+      ],
+      "config": "configs/aivc_helf_perturb_roots/root_gated_mlp.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_gated_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.4142128527164459,
+      "value": 1.7019210457801819,
+      "visits": 4
+    },
+    "aivc_helf_perturb_root_gated_mlp_p10_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 1.1,
+        "score": 0.6039693975448608
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p10_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p10_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p11_low_rank_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 0.76,
+        "score": 0.6099693975448608
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p11_low_rank_head.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p11_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "low_rank_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p12_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 0.72,
+        "score": 0.6059693975448608
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p12_feature_dropout.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p12_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p41_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41396939754486084,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5529693975448609
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p41_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p41_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p42_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 1.1,
+        "score": 0.6039693975448608
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p42_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p42_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p43_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 0.66,
+        "score": 0.5999693975448608
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p43_weighted_ce.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p43_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p44_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 0.62,
+        "score": 0.5959693975448608
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p44_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p44_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder": {
+      "best_val_macro_f1": 0.4283546507358551,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41396939754486084,
+        "priority": 0.9700000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.6709693975448607
+      },
+      "children": [
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p33_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p34_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p35_weighted_ce",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p36_focal_loss",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p37_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p38_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p39_weighted_ce",
+        "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p40_focal_loss"
+      ],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder.json",
+      "foundation_augmentation_policy": {
+        "artifact_branch_initial_scale": "sigmoid(-2.5)",
+        "mode": "parent_dense_logits_plus_gated_artifact_residual",
+        "no_fallback_or_proxy": true,
+        "preserve_parent_dense_path": true
+      },
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "status": "trained",
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.4344172775745392,
+      "value": 1.7163062989711761,
+      "visits": 4
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p33_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4283546507358551,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5673546507358551
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p33_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p33_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p34_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4283546507358551,
+        "priority": 1.1,
+        "score": 0.618354650735855
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p34_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p34_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p35_weighted_ce": {
+      "best_val_macro_f1": 0.4278531074523926,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4283546507358551,
+        "priority": 0.66,
+        "score": 0.614354650735855
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p35_weighted_ce.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p35_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p35_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.434516042470932,
+      "value": 0.8557062149047852,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p36_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4283546507358551,
+        "priority": 0.62,
+        "score": 0.610354650735855
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p36_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p36_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p37_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4283546507358551,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5673546507358551
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p37_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p37_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p38_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4283546507358551,
+        "priority": 1.1,
+        "score": 0.618354650735855
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p38_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p38_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p39_weighted_ce": {
+      "best_val_macro_f1": 0.43174389004707336,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4283546507358551,
+        "priority": 0.66,
+        "score": 0.614354650735855
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p39_weighted_ce.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p39_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p39_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.43099287152290344,
+      "value": 0.8634877800941467,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p40_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4283546507358551,
+        "priority": 0.62,
+        "score": 0.610354650735855
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p40_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_gated_mlp_p9_foundation_pathway_pooling_encoder_p40_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp": {
+      "best_val_macro_f1": 0.41154399514198303,
+      "children": [
+        "aivc_helf_perturb_root_low_rank_mlp_p13_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_low_rank_mlp_p14_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_low_rank_mlp_p15_low_rank_head",
+        "aivc_helf_perturb_root_low_rank_mlp_p16_feature_dropout",
+        "aivc_helf_perturb_root_low_rank_mlp_p17_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_low_rank_mlp_p18_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_low_rank_mlp_p19_feature_dropout",
+        "aivc_helf_perturb_root_low_rank_mlp_p20_temperature_calibration"
+      ],
+      "config": "configs/aivc_helf_perturb_roots/root_low_rank_mlp.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_low_rank_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.40930914878845215,
+      "value": 0.41154399514198303,
+      "visits": 1
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p13_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41154399514198303,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.550543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p13_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p13_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p14_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41154399514198303,
+        "priority": 1.1,
+        "score": 0.601543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p14_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p14_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p15_low_rank_head": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41154399514198303,
+        "priority": 0.76,
+        "score": 0.607543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p15_low_rank_head.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p15_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "low_rank_head",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p16_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41154399514198303,
+        "priority": 0.72,
+        "score": 0.603543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p16_feature_dropout.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p16_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p17_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41154399514198303,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.550543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p17_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p17_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p18_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41154399514198303,
+        "priority": 1.1,
+        "score": 0.601543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p18_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p18_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p19_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41154399514198303,
+        "priority": 0.72,
+        "score": 0.603543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p19_feature_dropout.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p19_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_low_rank_mlp_p20_temperature_calibration": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41154399514198303,
+        "priority": 0.7,
+        "score": 0.601543995141983
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p20_temperature_calibration.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_low_rank_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_low_rank_mlp_p20_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "temperature_calibration",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp": {
+      "best_val_macro_f1": 0.4211423695087433,
+      "children": [
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head",
+        "aivc_helf_perturb_root_mlp_p6_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_mlp_p7_low_rank_head",
+        "aivc_helf_perturb_root_mlp_p8_feature_dropout"
+      ],
+      "config": "configs/aivc_helf_perturb_roots/root_mlp.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.4215599596500397,
+      "value": 3.868585765361786,
+      "visits": 9
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head": {
+      "best_val_macro_f1": 0.4309576451778412,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4211423695087433,
+        "priority": 0.9800000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.6791423695087432
+      },
+      "children": [
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p21_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p22_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce"
+      ],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head.json",
+      "foundation_augmentation_policy": {
+        "artifact_branch_initial_scale": "sigmoid(-2.5)",
+        "mode": "parent_dense_logits_plus_gated_artifact_residual",
+        "no_fallback_or_proxy": true,
+        "preserve_parent_dense_path": true
+      },
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "trained",
+      "strategy": "foundation_graph_laplacian_head",
+      "test_macro_f1": 0.4357532262802124,
+      "value": 3.469106912612915,
+      "visits": 8
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p21_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.4309576451778412,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5699576451778412
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p21_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p21_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p22_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4309576451778412,
+        "priority": 1.1,
+        "score": 0.6209576451778411
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p22_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p22_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration": {
+      "best_val_macro_f1": 0.41941872239112854,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4309576451778412,
+        "priority": 0.7,
+        "score": 0.6209576451778411
+      },
+      "children": [
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p53_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p54_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p55_weighted_ce",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p56_focal_loss"
+      ],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "temperature_calibration",
+      "test_macro_f1": 0.4164835512638092,
+      "value": 0.8388374447822571,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p53_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41941872239112854,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5584187223911286
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p53_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p53_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p54_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41941872239112854,
+        "priority": 1.1,
+        "score": 0.6094187223911285
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p54_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p54_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p55_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41941872239112854,
+        "priority": 0.66,
+        "score": 0.6054187223911285
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p55_weighted_ce.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p55_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p56_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41941872239112854,
+        "priority": 0.62,
+        "score": 0.6014187223911285
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p56_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p23_temperature_calibration_p56_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce": {
+      "best_val_macro_f1": 0.43921545147895813,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4309576451778412,
+        "priority": 0.66,
+        "score": 0.6169576451778411
+      },
+      "children": [
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p57_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p58_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p60_dropout_low",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p61_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p62_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p63_focal_loss",
+        "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p64_dropout_low"
+      ],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.43380677700042725,
+      "value": 2.6269883513450623,
+      "visits": 6
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p57_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.43921545147895813,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5782154514789581
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p57_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p57_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p58_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.43921545147895813,
+        "priority": 1.1,
+        "score": 0.6292154514789581
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p58_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p58_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss": {
+      "best_val_macro_f1": 0.4455164968967438,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43921545147895813,
+        "priority": 0.62,
+        "score": 0.6212154514789582
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "focal_loss",
+      "test_macro_f1": 0.43781033158302307,
+      "value": 0.8910329937934875,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p60_dropout_low": {
+      "best_val_macro_f1": 0.433935284614563,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43921545147895813,
+        "priority": 0.6,
+        "score": 0.6192154514789581
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p60_dropout_low.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p60_dropout_low/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p60_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "dropout_low",
+      "test_macro_f1": 0.431092768907547,
+      "value": 0.867870569229126,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p61_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.43921545147895813,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5782154514789581
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p61_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p61_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p62_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.43921545147895813,
+        "priority": 1.1,
+        "score": 0.6292154514789581
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p62_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p62_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p63_focal_loss": {
+      "best_val_macro_f1": 0.4363410472869873,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43921545147895813,
+        "priority": 0.62,
+        "score": 0.6212154514789582
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p63_focal_loss.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p63_focal_loss/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p63_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "focal_loss",
+      "test_macro_f1": 0.43391934037208557,
+      "value": 0.8726820945739746,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p64_dropout_low": {
+      "best_val_macro_f1": 0.43276461958885193,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43921545147895813,
+        "priority": 0.6,
+        "score": 0.6192154514789581
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p64_dropout_low.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p64_dropout_low/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p64_dropout_low.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "dropout_low",
+      "test_macro_f1": 0.4315832555294037,
+      "value": 0.8655292391777039,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_mlp_p6_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4211423695087433,
+        "priority": 1.1,
+        "score": 0.6111423695087432
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p6_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p6_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_mlp_p7_low_rank_head": {
+      "best_val_macro_f1": 0.40929412841796875,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4211423695087433,
+        "priority": 0.76,
+        "score": 0.6171423695087432
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p7_low_rank_head.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p7_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p7_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.41318079829216003,
+      "value": 0.8185882568359375,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_mlp_p8_feature_dropout": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4211423695087433,
+        "priority": 0.72,
+        "score": 0.6131423695087432
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p8_feature_dropout.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p8_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "feature_dropout",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp": {
+      "best_val_macro_f1": 0.4296294152736664,
+      "children": [
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_residual_mlp_p3_low_rank_head",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout"
+      ],
+      "config": "configs/aivc_helf_perturb_roots/root_residual_mlp.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp/metrics.json",
+      "parent": "",
+      "status": "trained",
+      "test_macro_f1": 0.4275474548339844,
+      "value": 2.551765114068985,
+      "visits": 6
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing": {
+      "best_val_macro_f1": 0.43062320351600647,
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4296294152736664,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.6886294152736663
+      },
+      "children": [
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p25_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p26_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p27_weighted_ce",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p28_focal_loss",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p29_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p30_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p31_weighted_ce",
+        "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p32_focal_loss"
+      ],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing.json",
+      "foundation_augmentation_policy": {
+        "artifact_branch_initial_scale": "sigmoid(-2.5)",
+        "mode": "parent_dense_logits_plus_gated_artifact_residual",
+        "no_fallback_or_proxy": true,
+        "preserve_parent_dense_path": true
+      },
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "trained",
+      "strategy": "foundation_string_graph_message_passing",
+      "test_macro_f1": 0.4307219982147217,
+      "value": 1.7242757380008698,
+      "visits": 4
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p25_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.43062320351600647,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5696232035160065
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p25_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p25_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p26_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.43062320351600647,
+        "priority": 1.1,
+        "score": 0.6206232035160064
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p26_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p26_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p27_weighted_ce": {
+      "best_val_macro_f1": 0.43218016624450684,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43062320351600647,
+        "priority": 0.66,
+        "score": 0.6166232035160064
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p27_weighted_ce.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p27_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p27_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.4434739053249359,
+      "value": 0.8643603324890137,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p28_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43062320351600647,
+        "priority": 0.62,
+        "score": 0.6126232035160064
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p28_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p28_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p29_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.43062320351600647,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5696232035160065
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p29_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p29_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p30_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.43062320351600647,
+        "priority": 1.1,
+        "score": 0.6206232035160064
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p30_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p30_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p31_weighted_ce": {
+      "best_val_macro_f1": 0.43084916472435,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43062320351600647,
+        "priority": 0.66,
+        "score": 0.6166232035160064
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p31_weighted_ce.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p31_weighted_ce/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p31_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "weighted_ce",
+      "test_macro_f1": 0.43878278136253357,
+      "value": 0.8616983294487,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p32_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.43062320351600647,
+        "priority": 0.62,
+        "score": 0.6126232035160064
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p32_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_p32_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder": {
+      "blocked_reason": "missing source-backed foundation artifact",
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.4296294152736664,
+        "priority": 1.1,
+        "score": 0.6196294152736663
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_residual_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "requires_artifact_acquisition",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p3_low_rank_head": {
+      "best_val_macro_f1": 0.408715158700943,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4296294152736664,
+        "priority": 0.76,
+        "score": 0.6256294152736664
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p3_low_rank_head.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp_p3_low_rank_head/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p3_low_rank_head.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "low_rank_head",
+      "test_macro_f1": 0.41066014766693115,
+      "value": 0.817430317401886,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout": {
+      "best_val_macro_f1": 0.41976800560951233,
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.4296294152736664,
+        "priority": 0.72,
+        "score": 0.6216294152736663
+      },
+      "children": [
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p49_foundation_string_graph_message_passing",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p50_foundation_scgpt_cell_encoder",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p51_weighted_ce",
+        "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p52_focal_loss"
+      ],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout.json",
+      "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout/metrics.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "required_artifacts": [],
+      "status": "trained",
+      "strategy": "feature_dropout",
+      "test_macro_f1": 0.41668829321861267,
+      "value": 0.8395360112190247,
+      "visits": 2
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41976800560951233,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5587680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p45_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41976800560951233,
+        "priority": 1.1,
+        "score": 0.6097680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p46_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41976800560951233,
+        "priority": 0.66,
+        "score": 0.6057680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p47_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41976800560951233,
+        "priority": 0.62,
+        "score": 0.6017680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p48_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p49_foundation_string_graph_message_passing": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": -0.04,
+        "parent_val": 0.41976800560951233,
+        "priority": 0.9900000000000001,
+        "rollout_feasibility_bonus": 0.08,
+        "score": 0.5587680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p49_foundation_string_graph_message_passing.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p49_foundation_string_graph_message_passing.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_string_graph_message_passing",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p50_foundation_scgpt_cell_encoder": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.0,
+        "novelty": 0.08,
+        "parent_val": 0.41976800560951233,
+        "priority": 1.1,
+        "score": 0.6097680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p50_foundation_scgpt_cell_encoder.json",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p50_foundation_scgpt_cell_encoder.proposal.json",
+      "proposal_type": "foundation_artifact_blueprint",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [
+        "scgpt_whole_human_checkpoint"
+      ],
+      "status": "pruned_not_selected",
+      "strategy": "foundation_scgpt_cell_encoder",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p51_weighted_ce": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41976800560951233,
+        "priority": 0.66,
+        "score": 0.6057680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p51_weighted_ce.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p51_weighted_ce.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "weighted_ce",
+      "value": 0.0,
+      "visits": 0
+    },
+    "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p52_focal_loss": {
+      "cheap_screen_score": {
+        "cost_bonus": 0.04,
+        "novelty": 0.08,
+        "parent_val": 0.41976800560951233,
+        "priority": 0.62,
+        "score": 0.6017680056095123
+      },
+      "children": [],
+      "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p52_focal_loss.json",
+      "missing_required_artifacts": [],
+      "parent": "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout",
+      "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_p52_focal_loss.proposal.json",
+      "proposal_type": "lightweight_executable_transform",
+      "pruned_reason": "not selected before trained-node budget/stop condition",
+      "required_artifacts": [],
+      "status": "pruned_not_selected",
+      "strategy": "focal_loss",
+      "value": 0.0,
+      "visits": 0
+    }
+  },
+  "root_nodes": [
+    "aivc_helf_perturb_root_mlp",
+    "aivc_helf_perturb_root_residual_mlp",
+    "aivc_helf_perturb_root_gated_mlp",
+    "aivc_helf_perturb_root_low_rank_mlp"
+  ],
+  "search_space_config": "configs/helf_perturb_search_space.json",
+  "task_id": "HELF_PERTURB_DEG",
+  "task_type": "drug_perturbation_target_gene_deg_direction_prediction"
+}

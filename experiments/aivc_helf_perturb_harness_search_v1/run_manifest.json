@@ -1,0 +1,56 @@
+{
+  "artifact_blockers": 8,
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.4455164968967438,
+    "cheap_screen_score": {
+      "cost_bonus": 0.04,
+      "novelty": 0.08,
+      "parent_val": 0.43921545147895813,
+      "priority": 0.62,
+      "score": 0.6212154514789582
+    },
+    "children": [],
+    "config": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss.json",
+    "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce",
+    "proposal": "experiments/aivc_helf_perturb_harness_search_v1/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_p24_weighted_ce_p59_focal_loss.proposal.json",
+    "proposal_type": "lightweight_executable_transform",
+    "required_artifacts": [],
+    "status": "trained",
+    "strategy": "focal_loss",
+    "test_macro_f1": 0.43781033158302307,
+    "value": 0.8910329937934875,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.4296294152736664,
+    "children": [
+      "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing",
+      "aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder",
+      "aivc_helf_perturb_root_residual_mlp_p3_low_rank_head",
+      "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout"
+    ],
+    "config": "configs/aivc_helf_perturb_roots/root_residual_mlp.json",
+    "metrics": "experiments/aivc_helf_perturb_harness_search_v1/nodes/aivc_helf_perturb_root_residual_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.4275474548339844,
+    "value": 2.551765114068985,
+    "visits": 6
+  },
+  "blocked": 8,
+  "experiment": "aivc_helf_perturb_harness_search_v1",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_proposals": 64,
+  "proxy_count": 0,
+  "pruned_not_selected": 40,
+  "requires_artifact_acquisition": 8,
+  "run_dir": "experiments/aivc_helf_perturb_harness_search_v1",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (16/16)",
+  "trained_foundation_artifact_children": 3,
+  "trained_selected_rollouts": 16
+}
