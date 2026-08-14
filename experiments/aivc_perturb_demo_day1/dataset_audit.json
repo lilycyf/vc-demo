@@ -1,0 +1,323 @@
+{
+  "source_h5ad": "data/raw/merged_data.h5ad",
+  "n_cells": 9156,
+  "n_genes": 31942,
+  "x": {
+    "shape": [
+      9156,
+      31942
+    ],
+    "type": "_CSRDataset",
+    "nnz": null,
+    "density": null
+  },
+  "obs_columns": [
+    "Sample",
+    "Drug",
+    "CellLines",
+    "Dose",
+    "FixedTimePoint",
+    "BioRep",
+    "Batch",
+    "Well",
+    "Treat"
+  ],
+  "var_columns": [],
+  "present_key_columns": [
+    "Treat",
+    "Drug",
+    "Dose",
+    "FixedTimePoint",
+    "CellLines",
+    "BioRep",
+    "Batch",
+    "Well",
+    "Sample"
+  ],
+  "missing_key_columns": [],
+  "column_audit": {
+    "Treat": {
+      "n_unique": 2,
+      "top": {
+        "Treat": 7958,
+        "Ctrl": 1198
+      },
+      "truncated": false
+    },
+    "Drug": {
+      "n_unique": 12,
+      "top": {
+        "HY-N0112-Dihydromyricetin": 890,
+        "HY-16405-PR-104": 850,
+        "HY-16209-Forodesine (hydrochloride)": 826,
+        "HY-75800-Lomibuvir": 823,
+        "HY-108969-Pyrazoloacridine": 785,
+        "HY-13744-Rubitecan": 770,
+        "HY-10443-Balapiravir": 765,
+        "HY-16503-Treosulfan": 758,
+        "HY-13543-Tretazicar": 752,
+        "HY-B0021-Doxifluridine": 739,
+        "DMSO": 610,
+        "medium": 588
+      },
+      "truncated": false
+    },
+    "Dose": {
+      "n_unique": 1,
+      "top": {
+        "10umol": 9156
+      },
+      "truncated": false
+    },
+    "FixedTimePoint": {
+      "n_unique": 1,
+      "top": {
+        "48h": 9156
+      },
+      "truncated": false
+    },
+    "CellLines": {
+      "n_unique": 1,
+      "top": {
+        "HELF": 9156
+      },
+      "truncated": false
+    },
+    "BioRep": {
+      "n_unique": 1,
+      "top": {
+        "Rep1": 9156
+      },
+      "truncated": false
+    },
+    "Batch": {
+      "n_unique": 2,
+      "top": {
+        "S3": 7958,
+        "S1": 1198
+      },
+      "truncated": false
+    },
+    "Well": {
+      "n_unique": 14,
+      "top": {
+        "47": 890,
+        "27": 850,
+        "34": 826,
+        "10": 823,
+        "31": 785,
+        "23": 770,
+        "45": 765,
+        "59": 758,
+        "73": 752,
+        "21": 739,
+        "85": 339,
+        "92": 309,
+        "84": 301,
+        "93": 249
+      },
+      "truncated": false
+    },
+    "Sample": {
+      "n_unique": 14,
+      "top": {
+        "S3_47": 890,
+        "S3_27": 850,
+        "S3_34": 826,
+        "S3_10": 823,
+        "S3_31": 785,
+        "S3_23": 770,
+        "S3_45": 765,
+        "S3_59": 758,
+        "S3_73": 752,
+        "S3_21": 739,
+        "S1_85": 339,
+        "S1_92": 309,
+        "S1_84": 301,
+        "S1_93": 249
+      },
+      "truncated": false
+    }
+  },
+  "control_candidates": {
+    "Treat": [
+      "Ctrl"
+    ],
+    "Drug": [
+      "DMSO"
+    ]
+  },
+  "condition_summary": {
+    "columns": [
+      "CellLines",
+      "Drug",
+      "Dose",
+      "FixedTimePoint"
+    ],
+    "n_conditions": 12,
+    "n_cells_per_condition": {
+      "min": 588,
+      "median": 767.5,
+      "mean": 763.0,
+      "max": 890
+    },
+    "top_conditions": [
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-N0112-Dihydromyricetin",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 890
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-16405-PR-104",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 850
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-16209-Forodesine (hydrochloride)",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 826
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-75800-Lomibuvir",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 823
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-108969-Pyrazoloacridine",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 785
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-13744-Rubitecan",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 770
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-10443-Balapiravir",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 765
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-16503-Treosulfan",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 758
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-13543-Tretazicar",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 752
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "HY-B0021-Doxifluridine",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 739
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "DMSO",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 610
+      },
+      {
+        "CellLines": "HELF",
+        "Drug": "medium",
+        "Dose": "10umol",
+        "FixedTimePoint": "48h",
+        "n_cells": 588
+      }
+    ]
+  },
+  "split_feasibility": {
+    "heldout_Drug": {
+      "n_groups": 12,
+      "min_cells_per_group": 588,
+      "median_cells_per_group": 767.5
+    },
+    "heldout_CellLines": {
+      "n_groups": 1,
+      "min_cells_per_group": 9156,
+      "median_cells_per_group": 9156.0
+    },
+    "heldout_Batch": {
+      "n_groups": 2,
+      "min_cells_per_group": 1198,
+      "median_cells_per_group": 4578.0
+    },
+    "heldout_BioRep": {
+      "n_groups": 1,
+      "min_cells_per_group": 9156,
+      "median_cells_per_group": 9156.0
+    }
+  },
+  "gene_name_examples": [
+    "A1BG",
+    "A1BG-AS1",
+    "A1CF",
+    "A2M",
+    "A2M-AS1",
+    "A2ML1",
+    "A2ML1-AS1",
+    "A3GALT2",
+    "A4GALT",
+    "A4GNT",
+    "AAAS",
+    "AACS",
+    "AADAC",
+    "AADACL2",
+    "AADACL2-AS1",
+    "AADACL3",
+    "AADACL4",
+    "AADAT",
+    "AAGAB",
+    "AAK1",
+    "AAMDC",
+    "AAMP",
+    "AANAT",
+    "AAR2",
+    "AARD",
+    "AARS",
+    "AARS2",
+    "AARSD1",
+    "AASDH",
+    "AASDHPPT"
+  ],
+  "obs_name_examples": [
+    "S1_84_2_1_2-AAAGCTGATT_CATCAGAATG_AACACGAC",
+    "S1_84_5_1_5-ACGTCTAGTC_TTAGGACCGG_GGACGTAT",
+    "S1_84_4_1_4-AAATCGTTCT_CAATTACCGT_ACAGCACT",
+    "S1_84_1_1_1-CAACTCTCTC_CATCAGAATG_AACACGAC",
+    "S1_84_5_1_5-ACATTCGTAT_TTAGGACCGG_GGACGTAT",
+    "S1_84_1_1_1-CAACTCTCTC_CAATTACCGT_AACACGAC",
+    "S1_84_3_1_3-AACCTCATTT_TTGCTAACGG_AACACGAC",
+    "S1_84_2_1_2-ACATTCGTAT_TTAATTGAAT_GGTCTACA",
+    "S1_84_2_1_2-AACTTGGATT_TTCCAACCGC_AACACGAC",
+    "S1_84_3_1_3-ACTTATGGTT_TCAATCGCAT_CTCACAGT"
+  ],
+  "layers": [
+    "raw_counts"
+  ],
+  "obsm": [],
+  "uns_keys": [],
+  "target_gene_note": "Day-1 draft recommends selecting 512-2000 target genes after a full pseudobulk pass. Use high-expression/high-variance genes and force-include marker/pathway genes that map to Reactome/STRING."
+}

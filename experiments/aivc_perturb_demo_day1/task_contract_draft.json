@@ -1,0 +1,80 @@
+{
+  "task_id": "aivc_drug_dose_time_perturb_response_demo",
+  "research_question": "Given CellLine, Drug, Dose, FixedTimePoint and baseline expression context, predict target-gene perturbation response and rank drug-dose-time conditions.",
+  "data_source": "data/raw/merged_data.h5ad",
+  "unit_of_prediction": "CellLines x Drug x Dose x FixedTimePoint pseudobulk condition",
+  "input_columns": [
+    "Treat",
+    "Drug",
+    "Dose",
+    "FixedTimePoint",
+    "CellLines",
+    "BioRep",
+    "Batch",
+    "Well",
+    "Sample"
+  ],
+  "required_columns_status": {
+    "Treat": true,
+    "Drug": true,
+    "Dose": true,
+    "FixedTimePoint": true,
+    "CellLines": true,
+    "BioRep": true,
+    "Batch": true,
+    "Well": true,
+    "Sample": true
+  },
+  "recommended_label": {
+    "type": "target_gene_DEG_three_class",
+    "classes": [
+      "down",
+      "unchanged",
+      "up"
+    ],
+    "construction": "Compare each treated pseudobulk condition against matched control/baseline within CellLine and FixedTimePoint when possible; threshold logFC to three classes."
+  },
+  "recommended_splits": [
+    "heldout_drug",
+    "heldout_cellline_if_multiple_celllines_are_available",
+    "heldout_batch_or_biorep_as_secondary_robustness_check"
+  ],
+  "reward_metric": "validation Macro-F1 on target-gene DEG classes; test Macro-F1 report-only",
+  "first_search_space": {
+    "roots": [
+      "linear_or_logreg",
+      "residual_mlp",
+      "drug_dose_time_metadata_mlp",
+      "pseudobulk_delta_mlp"
+    ],
+    "source_backed_artifacts": [
+      "Reactome pathway membership",
+      "STRING target-gene graph",
+      "RDKit Morgan fingerprint"
+    ],
+    "optional_foundation_artifacts": [
+      "ChemBERTa drug embedding",
+      "UCE/scGPT/Geneformer/scFoundation cell embedding branch"
+    ],
+    "heads": [
+      "dense",
+      "low_rank_target_head",
+      "pathway_hierarchical_head",
+      "graph_smoothed_head"
+    ],
+    "fusion": [
+      "concat",
+      "gated_residual",
+      "bilinear",
+      "cross_attention",
+      "MoE"
+    ]
+  },
+  "guardrails": [
+    "No random-cell split for final claim",
+    "No test metric in search reward",
+    "No fallback/proxy foundation artifact",
+    "Artifact branches must preserve dense parent branch and add auditable residual/fusion"
+  ],
+  "day1_status": "dataset_audited_task_contract_draft"
+}
