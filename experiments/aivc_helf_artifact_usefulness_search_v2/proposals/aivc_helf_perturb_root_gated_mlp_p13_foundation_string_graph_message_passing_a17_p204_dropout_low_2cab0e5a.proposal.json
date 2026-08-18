@@ -1,0 +1,21 @@
+{
+  "blueprint_id": null,
+  "candidate_pool_size": 6,
+  "candidate_rank": 6,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.4312750995159149,
+    "priority": 0.6,
+    "score": 0.6112750995159149
+  },
+  "child": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p204_dropout_low_2cab0e5a",
+  "codex_action": null,
+  "family": null,
+  "hypothesis": "Test dropout_low for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17c2d5f",
+  "proposal_type": "lightweight_executable_transform",
+  "required_artifacts": [],
+  "strategy": "dropout_low"
+}

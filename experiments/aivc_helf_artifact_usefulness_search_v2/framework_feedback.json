@@ -1,0 +1,375 @@
+{
+  "format": "vc_demo_framework_feedback.v1",
+  "created_at": "2026-08-18T07:19:12.396245+00:00",
+  "run_dir": "experiments/aivc_helf_artifact_usefulness_search_v2",
+  "target_val_macro_f1": 0.42,
+  "best_root": {
+    "node": "aivc_helf_perturb_root_residual_mlp",
+    "val": 0.4292716979980469,
+    "test": 0.4248248040676117
+  },
+  "best_child": {
+    "node": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f_p31_dense_matched_capacity_no_artifact_control_control_8950845e",
+    "val": 0.44976553320884705,
+    "test": 0.4499788284301758
+  },
+  "strategy_stats": {
+    "low_rank_head": {
+      "n": 14,
+      "family": "low_rank_head",
+      "mean_val": 0.4125463621956961,
+      "std_val": 0.0013890077343049723,
+      "mean_test": 0.4127330758741924,
+      "std_test": 0.0024688157108729023,
+      "mean_delta_vs_parent": -0.01911157156739916,
+      "std_delta_vs_parent": 0.0036117423302052046,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p106_low_rank_head_6d72f62b"
+    },
+    "feature_dropout": {
+      "n": 17,
+      "family": "stability_regularization",
+      "mean_val": 0.4191499089493471,
+      "std_val": 0.0019380834511175903,
+      "mean_test": 0.4185527352725758,
+      "std_test": 0.0027128972453038048,
+      "mean_delta_vs_parent": -0.01264239935313954,
+      "std_delta_vs_parent": 0.0039325354782372875,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p101_feature_dropout_1d2ac252"
+    },
+    "temperature_calibration": {
+      "n": 23,
+      "family": "calibration",
+      "mean_val": 0.41824715033821436,
+      "std_val": 0.0015760714253925463,
+      "mean_test": 0.41892922961193585,
+      "std_test": 0.0027478475859999815,
+      "mean_delta_vs_parent": -0.013509737408679464,
+      "std_delta_vs_parent": 0.003082969554219107,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p78_temperature_calibration_b3121343"
+    },
+    "weighted_ce": {
+      "n": 24,
+      "family": "imbalance_training",
+      "mean_val": 0.43115390961368877,
+      "std_val": 0.001717649841986183,
+      "mean_test": 0.4343992161254088,
+      "std_test": 0.0034564509122985746,
+      "mean_delta_vs_parent": 4.723419745763143e-05,
+      "std_delta_vs_parent": 0.0018888162483134518,
+      "win_rate_vs_parent": 0.5416666666666666,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p144_weighted_ce_d9210ff9"
+    },
+    "foundation_string_graph_message_passing": {
+      "n": 4,
+      "family": "graph_prior",
+      "mean_val": 0.42937831580638885,
+      "std_val": 0.0022037087037232966,
+      "mean_test": 0.434562049806118,
+      "std_test": 0.005027923595384922,
+      "mean_delta_vs_parent": 0.010768882930278778,
+      "std_delta_vs_parent": 0.006795830269178832,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17c2d5f"
+    },
+    "dense_matched_capacity_no_artifact_control": {
+      "n": 11,
+      "family": "dense_matched_capacity_no_artifact_control",
+      "mean_val": 0.4441786923191764,
+      "std_val": 0.004280230636197804,
+      "mean_test": 0.4445833374153484,
+      "std_test": 0.004943115066558538,
+      "mean_delta_vs_parent": 0.025059122930873524,
+      "std_delta_vs_parent": 0.01064146807190401,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f_p31_dense_matched_capacity_no_artifact_control_control_8950845e"
+    },
+    "foundation_graph_laplacian_head": {
+      "n": 5,
+      "family": "graph_prior",
+      "mean_val": 0.4326198935508728,
+      "std_val": 0.0042655635943580385,
+      "mean_test": 0.43319339752197267,
+      "std_test": 0.005341387757649135,
+      "mean_delta_vs_parent": 0.015103662014007568,
+      "std_delta_vs_parent": 0.007162246837825076,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9"
+    },
+    "foundation_pathway_pooling_encoder": {
+      "n": 2,
+      "family": "pathway_prior",
+      "mean_val": 0.4292617291212082,
+      "std_val": 0.0015920761290747667,
+      "mean_test": 0.4298861026763916,
+      "std_test": 0.003082072591056148,
+      "mean_delta_vs_parent": 0.005113542079925537,
+      "std_delta_vs_parent": 0.018479117142207444,
+      "win_rate_vs_parent": 0.5,
+      "best_node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a97102c4"
+    }
+  },
+  "family_stats": {
+    "low_rank_head": {
+      "n": 14,
+      "mean_val": 0.4125463621956961,
+      "std_val": 0.0013890077343049723,
+      "mean_delta_vs_parent": -0.01911157156739916,
+      "std_delta_vs_parent": 0.0036117423302052046,
+      "win_rate_vs_parent": 0.0
+    },
+    "stability_regularization": {
+      "n": 17,
+      "mean_val": 0.4191499089493471,
+      "std_val": 0.0019380834511175903,
+      "mean_delta_vs_parent": -0.01264239935313954,
+      "std_delta_vs_parent": 0.0039325354782372875,
+      "win_rate_vs_parent": 0.0
+    },
+    "calibration": {
+      "n": 23,
+      "mean_val": 0.41824715033821436,
+      "std_val": 0.0015760714253925463,
+      "mean_delta_vs_parent": -0.013509737408679464,
+      "std_delta_vs_parent": 0.003082969554219107,
+      "win_rate_vs_parent": 0.0
+    },
+    "imbalance_training": {
+      "n": 24,
+      "mean_val": 0.43115390961368877,
+      "std_val": 0.001717649841986183,
+      "mean_delta_vs_parent": 4.723419745763143e-05,
+      "std_delta_vs_parent": 0.0018888162483134518,
+      "win_rate_vs_parent": 0.5416666666666666
+    },
+    "graph_prior": {
+      "n": 9,
+      "mean_val": 0.43117919233110213,
+      "std_val": 0.003719876548941932,
+      "mean_delta_vs_parent": 0.013177093532350328,
+      "std_delta_vs_parent": 0.006941697288798483,
+      "win_rate_vs_parent": 1.0
+    },
+    "dense_matched_capacity_no_artifact_control": {
+      "n": 11,
+      "mean_val": 0.4441786923191764,
+      "std_val": 0.004280230636197804,
+      "mean_delta_vs_parent": 0.025059122930873524,
+      "std_delta_vs_parent": 0.01064146807190401,
+      "win_rate_vs_parent": 1.0
+    },
+    "pathway_prior": {
+      "n": 2,
+      "mean_val": 0.4292617291212082,
+      "std_val": 0.0015920761290747667,
+      "mean_delta_vs_parent": 0.005113542079925537,
+      "std_delta_vs_parent": 0.018479117142207444,
+      "win_rate_vs_parent": 0.5
+    }
+  },
+  "artifact_usefulness": {
+    "format": "vc_demo_artifact_usefulness_report.v1",
+    "run_dir": "experiments/aivc_helf_artifact_usefulness_search_v2",
+    "counts": {
+      "trained_roots": 4,
+      "trained_children": 100,
+      "trained_foundation_artifact_children": 11,
+      "trained_dense_no_artifact_children": 89,
+      "trained_dense_matched_controls": 11
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_residual_mlp",
+      "val_macro_f1": 0.4292716979980469,
+      "test_macro_f1": 0.4248248040676117
+    },
+    "best_generated_child": {
+      "node": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f_p31_dense_matched_capacity_no_artifact_control_control_8950845e",
+      "val_macro_f1": 0.44976553320884705,
+      "test_macro_f1": 0.4499788284301758
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9",
+      "val_macro_f1": 0.4375234842300415,
+      "test_macro_f1": 0.4299347698688507
+    },
+    "best_dense_no_artifact_child": {
+      "node": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f_p31_dense_matched_capacity_no_artifact_control_control_8950845e",
+      "val_macro_f1": 0.44976553320884705,
+      "test_macro_f1": 0.4499788284301758
+    },
+    "best_dense_matched_no_artifact_control": {
+      "node": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f_p31_dense_matched_capacity_no_artifact_control_control_8950845e",
+      "val_macro_f1": 0.44976553320884705,
+      "test_macro_f1": 0.4499788284301758
+    },
+    "deltas": {
+      "best_child_vs_root_val": 0.02049383521080017,
+      "foundation_vs_root_val": 0.008251786231994629,
+      "foundation_vs_best_dense_no_artifact_val": -0.012242048978805542,
+      "foundation_vs_dense_matched_control_val": -0.012242048978805542
+    },
+    "paired_comparisons": [
+      {
+        "artifact_child": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17c2d5f",
+        "control_child": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_p13_dense_matched_capacity_no_artifact_control_control_2ccd4e84",
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4312750995159149,
+        "artifact_test_macro_f1": 0.4420815408229828,
+        "control_val_macro_f1": 0.4467560946941376,
+        "control_test_macro_f1": 0.4482943117618561,
+        "artifact_incremental_val_gain": -0.015480995178222656
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606",
+        "control_child": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f60_p37_dense_matched_capacity_no_artifact_control_control_ebe15993",
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.43241938948631287,
+        "artifact_test_macro_f1": 0.4426151216030121,
+        "control_val_macro_f1": 0.43852365016937256,
+        "control_test_macro_f1": 0.43392741680145264,
+        "artifact_incremental_val_gain": -0.006104260683059692
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_low_rank_mlp_p19_foundation_string_graph_message_passing_0c38fb5a",
+        "control_child": "aivc_helf_perturb_root_low_rank_mlp_p19_foundation_string_graph_message_pass_p19_dense_matched_capacity_no_artifact_control_control_1819a082",
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4262031614780426,
+        "artifact_test_macro_f1": 0.43256592750549316,
+        "control_val_macro_f1": 0.4442417621612549,
+        "control_test_macro_f1": 0.44712400436401367,
+        "artifact_incremental_val_gain": -0.01803860068321228
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9",
+        "control_child": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734a_p25_dense_matched_capacity_no_artifact_control_control_3b51d371",
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4375234842300415,
+        "artifact_test_macro_f1": 0.4299347698688507,
+        "control_val_macro_f1": 0.44029712677001953,
+        "control_test_macro_f1": 0.44239458441734314,
+        "artifact_incremental_val_gain": -0.0027736425399780273
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_low_rank_mlp_p49_foundation_graph_laplacian_head_dd485df6",
+        "control_child": "aivc_helf_perturb_root_low_rank_mlp_p49_foundation_graph_laplacian_head_dd48_p49_dense_matched_capacity_no_artifact_control_control_7c3f411f",
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.42725589871406555,
+        "artifact_test_macro_f1": 0.4305996894836426,
+        "control_val_macro_f1": 0.4459019601345062,
+        "control_test_macro_f1": 0.4405183792114258,
+        "artifact_incremental_val_gain": -0.018646061420440674
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a97102c4",
+        "control_child": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a_p61_dense_matched_capacity_no_artifact_control_control_4ae062d1",
+        "artifact_strategy": "foundation_pathway_pooling_encoder",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4303874969482422,
+        "artifact_test_macro_f1": 0.4277067482471466,
+        "control_val_macro_f1": 0.4478359520435333,
+        "control_test_macro_f1": 0.44674810767173767,
+        "artifact_incremental_val_gain": -0.017448455095291138
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f",
+        "control_child": "aivc_helf_perturb_root_mlp_p31_foundation_graph_laplacian_head_29e4f32f_p31_dense_matched_capacity_no_artifact_control_control_8950845e",
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4298115670681,
+        "artifact_test_macro_f1": 0.43231329321861267,
+        "control_val_macro_f1": 0.44976553320884705,
+        "control_test_macro_f1": 0.4499788284301758,
+        "artifact_incremental_val_gain": -0.01995396614074707
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066",
+        "control_child": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd106_p7_dense_matched_capacity_no_artifact_control_control_b0835292",
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.42982712388038635,
+        "artifact_test_macro_f1": 0.43162861466407776,
+        "control_val_macro_f1": 0.4493443965911865,
+        "control_test_macro_f1": 0.44990113377571106,
+        "artifact_incremental_val_gain": -0.01951727271080017
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p43_foundation_graph_laplacian_head_3c7eac46",
+        "control_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passi_p43_dense_matched_capacity_no_artifact_control_control_0e0eeb2d",
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4360891282558441,
+        "artifact_test_macro_f1": 0.43050411343574524,
+        "control_val_macro_f1": 0.4379824697971344,
+        "control_test_macro_f1": 0.44516900181770325,
+        "artifact_incremental_val_gain": -0.0018933415412902832
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p55_foundation_pathway_pooling_encoder_e0d74e07",
+        "control_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passi_p55_dense_matched_capacity_no_artifact_control_control_1f5b0f0c",
+        "artifact_strategy": "foundation_pathway_pooling_encoder",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.4281359612941742,
+        "artifact_test_macro_f1": 0.4320654571056366,
+        "control_val_macro_f1": 0.44513341784477234,
+        "control_test_macro_f1": 0.4397967755794525,
+        "artifact_incremental_val_gain": -0.016997456550598145
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+        "control_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.43020787835121155,
+        "artifact_test_macro_f1": 0.43197211623191833,
+        "control_val_macro_f1": 0.44018325209617615,
+        "control_test_macro_f1": 0.4465641677379608,
+        "artifact_incremental_val_gain": -0.0099753737449646
+      }
+    ],
+    "verdict": {
+      "child_beats_root": true,
+      "foundation_artifact_beats_root": true,
+      "foundation_artifact_beats_dense_control": false,
+      "artifact_incremental_gain_proven": false
+    }
+  },
+  "findings": [
+    "artifact_incremental_gain_not_proven: best artifact child does not beat dense matched-capacity/no-artifact comparator",
+    "best_child_lift: best generated child beats best root by 0.0205 validation Macro-F1",
+    "discouraged_family:low_rank_head: repeated negative delta",
+    "discouraged_family:stability_regularization: repeated negative delta",
+    "discouraged_family:calibration: repeated negative delta",
+    "unstable_positive_family:imbalance_training: mean_delta=0.0000, std=0.0019, win_rate=0.5416666666666666"
+  ],
+  "policy": {
+    "ranking_boosts": {
+      "dense_matched_capacity_no_artifact_control": 0.1,
+      "artifact_residual_gate": 0.08,
+      "artifact_attention_bias": 0.06,
+      "official_gene_dropout_augmentation": 0.08,
+      "official_temperature_calibrated_head": 0.06,
+      "official_swa_or_checkpoint_ensemble": 0.06
+    },
+    "ranking_penalties": {
+      "low_rank_head": 0.08,
+      "stability_regularization": 0.08,
+      "calibration": 0.08
+    },
+    "implementation_guidance": [
+      "Artifact gain is not proven beyond dense control: preserve the strong dense branch, add artifact only as a small gated residual/attention bias, and train a paired no-artifact control whenever possible.",
+      "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search."
+    ],
+    "validation_recommendations": [
+      "Require artifact-vs-dense-control attribution before claiming biological prior usefulness.",
+      "Run multi-seed validation before promoting `imbalance_training` motifs; positive average lift is not yet stable."
+    ],
+    "suppressed_families": []
+  }
+}

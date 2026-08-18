@@ -1,0 +1,1316 @@
+{
+  "items": [
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p134_foundation_scgpt_cell_encoder_53c4bc25",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p134_foundation_scgpt_cell_encoder_53c4bc25.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p128_foundation_scgpt_cell_encoder_cf733a50",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p128_foundation_scgpt_cell_encoder_cf733a50.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p135_foundation_scgpt_adapter_finetune_1bc78cad",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p135_foundation_scgpt_adapter_finetune_1bc78cad.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p129_foundation_scgpt_adapter_finetune_818bcc92",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p25_foundation_graph_laplacian_head_734aadb9_p129_foundation_scgpt_adapter_finetune_818bcc92.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p56_foundation_scgpt_cell_encoder_74043618",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p56_foundation_scgpt_cell_encoder_74043618.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p57_foundation_scgpt_adapter_finetune_b718574d",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p57_foundation_scgpt_adapter_finetune_b718574d.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p164_foundation_scgpt_cell_encoder_1c344a6c",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p164_foundation_scgpt_cell_encoder_1c344a6c.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p158_foundation_scgpt_cell_encoder_22331a75",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p158_foundation_scgpt_cell_encoder_22331a75.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p152_foundation_scgpt_cell_encoder_313229a5",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p152_foundation_scgpt_cell_encoder_313229a5.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p146_foundation_scgpt_cell_encoder_eae28b3d",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p146_foundation_scgpt_cell_encoder_eae28b3d.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p140_foundation_scgpt_cell_encoder_c1302e1a",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p140_foundation_scgpt_cell_encoder_c1302e1a.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p122_foundation_scgpt_cell_encoder_91117877",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p122_foundation_scgpt_cell_encoder_91117877.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p116_foundation_scgpt_cell_encoder_07c8edf0",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p116_foundation_scgpt_cell_encoder_07c8edf0.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p110_foundation_scgpt_cell_encoder_a6ae2e1a",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p110_foundation_scgpt_cell_encoder_a6ae2e1a.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p165_foundation_scgpt_adapter_finetune_d0b79247",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p165_foundation_scgpt_adapter_finetune_d0b79247.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p159_foundation_scgpt_adapter_finetune_0221000b",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p159_foundation_scgpt_adapter_finetune_0221000b.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p153_foundation_scgpt_adapter_finetune_d02f65d6",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p153_foundation_scgpt_adapter_finetune_d02f65d6.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p147_foundation_scgpt_adapter_finetune_605c9265",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p147_foundation_scgpt_adapter_finetune_605c9265.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p141_foundation_scgpt_adapter_finetune_14a3227c",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p141_foundation_scgpt_adapter_finetune_14a3227c.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p123_foundation_scgpt_adapter_finetune_384f11d3",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p123_foundation_scgpt_adapter_finetune_384f11d3.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p117_foundation_scgpt_adapter_finetune_2302f0d4",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p117_foundation_scgpt_adapter_finetune_2302f0d4.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p111_foundation_scgpt_adapter_finetune_cbbe9278",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p111_foundation_scgpt_adapter_finetune_cbbe9278.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p212_foundation_scgpt_cell_encoder_52b5c62c",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p212_foundation_scgpt_cell_encoder_52b5c62c.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p206_foundation_scgpt_cell_encoder_5d79437a",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p206_foundation_scgpt_cell_encoder_5d79437a.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p200_foundation_scgpt_cell_encoder_7be0c3b9",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p200_foundation_scgpt_cell_encoder_7be0c3b9.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p194_foundation_scgpt_cell_encoder_96c9d70b",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p194_foundation_scgpt_cell_encoder_96c9d70b.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p188_foundation_scgpt_cell_encoder_250d0a6f",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p188_foundation_scgpt_cell_encoder_250d0a6f.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p182_foundation_scgpt_cell_encoder_207c2a12",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p182_foundation_scgpt_cell_encoder_207c2a12.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p176_foundation_scgpt_cell_encoder_b3640d7a",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p176_foundation_scgpt_cell_encoder_b3640d7a.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p170_foundation_scgpt_cell_encoder_373f16e4",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p170_foundation_scgpt_cell_encoder_373f16e4.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p104_foundation_scgpt_cell_encoder_4f7c6909",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p104_foundation_scgpt_cell_encoder_4f7c6909.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p296_foundation_scgpt_cell_encoder_61a5afea",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p296_foundation_scgpt_cell_encoder_61a5afea.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p290_foundation_scgpt_cell_encoder_6b75c41e",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p290_foundation_scgpt_cell_encoder_6b75c41e.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p284_foundation_scgpt_cell_encoder_3ad9d6e2",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p284_foundation_scgpt_cell_encoder_3ad9d6e2.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p278_foundation_scgpt_cell_encoder_399703e1",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p278_foundation_scgpt_cell_encoder_399703e1.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p272_foundation_scgpt_cell_encoder_bdd3116e",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p272_foundation_scgpt_cell_encoder_bdd3116e.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p266_foundation_scgpt_cell_encoder_0be51f3e",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p266_foundation_scgpt_cell_encoder_0be51f3e.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p260_foundation_scgpt_cell_encoder_8d0b3637",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p260_foundation_scgpt_cell_encoder_8d0b3637.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p254_foundation_scgpt_cell_encoder_de6eef9d",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p254_foundation_scgpt_cell_encoder_de6eef9d.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p248_foundation_scgpt_cell_encoder_25754c45",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p248_foundation_scgpt_cell_encoder_25754c45.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p242_foundation_scgpt_cell_encoder_468fc4f7",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p242_foundation_scgpt_cell_encoder_468fc4f7.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p236_foundation_scgpt_cell_encoder_654dae15",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p236_foundation_scgpt_cell_encoder_654dae15.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p230_foundation_scgpt_cell_encoder_7a7b344a",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p230_foundation_scgpt_cell_encoder_7a7b344a.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p224_foundation_scgpt_cell_encoder_0e528009",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p224_foundation_scgpt_cell_encoder_0e528009.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p218_foundation_scgpt_cell_encoder_a9d96b7e",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p218_foundation_scgpt_cell_encoder_a9d96b7e.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p213_foundation_scgpt_adapter_finetune_00509a3b",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p213_foundation_scgpt_adapter_finetune_00509a3b.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p207_foundation_scgpt_adapter_finetune_f3920071",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p207_foundation_scgpt_adapter_finetune_f3920071.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p201_foundation_scgpt_adapter_finetune_18b81003",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p201_foundation_scgpt_adapter_finetune_18b81003.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p195_foundation_scgpt_adapter_finetune_9410c51f",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p195_foundation_scgpt_adapter_finetune_9410c51f.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p189_foundation_scgpt_adapter_finetune_cf7f83d8",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p189_foundation_scgpt_adapter_finetune_cf7f83d8.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p183_foundation_scgpt_adapter_finetune_e1e12082",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p183_foundation_scgpt_adapter_finetune_e1e12082.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p177_foundation_scgpt_adapter_finetune_ee918b0e",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p177_foundation_scgpt_adapter_finetune_ee918b0e.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p171_foundation_scgpt_adapter_finetune_1988ae49",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p171_foundation_scgpt_adapter_finetune_1988ae49.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p105_foundation_scgpt_adapter_finetune_737cb5fb",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_gated_mlp_p13_foundation_string_graph_message_passing_a17_p105_foundation_scgpt_adapter_finetune_737cb5fb.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p44_foundation_scgpt_cell_encoder_98e8137a",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p44_foundation_scgpt_cell_encoder_98e8137a.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p98_foundation_scgpt_cell_encoder_75040ccb",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p98_foundation_scgpt_cell_encoder_75040ccb.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p92_foundation_scgpt_cell_encoder_dc97f916",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p92_foundation_scgpt_cell_encoder_dc97f916.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p297_foundation_scgpt_adapter_finetune_6a6ade59",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p297_foundation_scgpt_adapter_finetune_6a6ade59.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p291_foundation_scgpt_adapter_finetune_17c69c44",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p291_foundation_scgpt_adapter_finetune_17c69c44.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p285_foundation_scgpt_adapter_finetune_86b4015b",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p285_foundation_scgpt_adapter_finetune_86b4015b.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p279_foundation_scgpt_adapter_finetune_d05da3c8",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p279_foundation_scgpt_adapter_finetune_d05da3c8.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p273_foundation_scgpt_adapter_finetune_b42364ba",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p273_foundation_scgpt_adapter_finetune_b42364ba.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p267_foundation_scgpt_adapter_finetune_c658314c",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p267_foundation_scgpt_adapter_finetune_c658314c.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p261_foundation_scgpt_adapter_finetune_d56e5713",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p261_foundation_scgpt_adapter_finetune_d56e5713.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p255_foundation_scgpt_adapter_finetune_3d95677f",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p255_foundation_scgpt_adapter_finetune_3d95677f.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p249_foundation_scgpt_adapter_finetune_984b9e70",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p249_foundation_scgpt_adapter_finetune_984b9e70.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p243_foundation_scgpt_adapter_finetune_3d6598f4",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p243_foundation_scgpt_adapter_finetune_3d6598f4.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p237_foundation_scgpt_adapter_finetune_fabab9ea",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p237_foundation_scgpt_adapter_finetune_fabab9ea.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p231_foundation_scgpt_adapter_finetune_546e6fd5",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p231_foundation_scgpt_adapter_finetune_546e6fd5.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p225_foundation_scgpt_adapter_finetune_e8ae5b41",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p225_foundation_scgpt_adapter_finetune_e8ae5b41.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p219_foundation_scgpt_adapter_finetune_1b225760",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p219_foundation_scgpt_adapter_finetune_1b225760.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder_f1fe4162",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder_f1fe4162.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p45_foundation_scgpt_adapter_finetune_f1436ecf",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p45_foundation_scgpt_adapter_finetune_f1436ecf.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p99_foundation_scgpt_adapter_finetune_39948079",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p99_foundation_scgpt_adapter_finetune_39948079.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p93_foundation_scgpt_adapter_finetune_71bbab91",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p93_foundation_scgpt_adapter_finetune_71bbab91.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p3_foundation_scgpt_adapter_finetune_365e0867",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p3_foundation_scgpt_adapter_finetune_365e0867.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p86_foundation_scgpt_cell_encoder_2d082b9b",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p86_foundation_scgpt_cell_encoder_2d082b9b.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p80_foundation_scgpt_cell_encoder_89d0c28b",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p80_foundation_scgpt_cell_encoder_89d0c28b.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p74_foundation_scgpt_cell_encoder_9fb79c17",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p74_foundation_scgpt_cell_encoder_9fb79c17.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_cell_encoder"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p87_foundation_scgpt_adapter_finetune_e2b5cf78",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p87_foundation_scgpt_adapter_finetune_e2b5cf78.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p81_foundation_scgpt_adapter_finetune_7d91dd92",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p81_foundation_scgpt_adapter_finetune_7d91dd92.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    },
+    {
+      "family": "single_cell_foundation_encoder",
+      "missing_required_artifacts": [
+        {
+          "acquisition_policy": "download_from_primary_source_if_available_else_block",
+          "artifact_id": "scgpt_whole_human_checkpoint",
+          "expected_path": "/home/Models/scGPT/whole_human",
+          "provenance_requirement": "source-backed validation required",
+          "status": "planned_requires_acquisition"
+        }
+      ],
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p75_foundation_scgpt_adapter_finetune_9f756879",
+      "proposal": "experiments/aivc_helf_artifact_usefulness_search_v2/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p75_foundation_scgpt_adapter_finetune_9f756879.proposal.json",
+      "resolution": "block until source, shape, vocabulary/order, and provenance can be verified",
+      "strategy": "foundation_scgpt_adapter_finetune"
+    }
+  ]
+}

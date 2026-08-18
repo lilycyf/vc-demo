@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 import math
 import random
@@ -50,6 +51,19 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
+def safe_node_name(parent: str, proposal_index: int, transform_id: str, suffix: str = "") -> str:
+    """Keep node and proposal filenames below filesystem limits.
+
+    Artifact-usefulness runs can create deep trees. Names should remain stable
+    and readable without embedding the full ancestor path in every child.
+    """
+    base_parent = parent[:80]
+    digest = hashlib.sha1(f"{parent}:{proposal_index}:{transform_id}:{suffix}".encode()).hexdigest()[:8]
+    tail = f"_p{proposal_index}_{transform_id}{suffix}_{digest}"
+    max_parent_len = max(16, 140 - len(tail))
+    return f"{base_parent[:max_parent_len]}{tail}"
+
+
 def run_config(config: dict[str, Any], run_dir: Path, max_epochs: int) -> dict[str, Any]:
     out = run_dir / "nodes" / str(config["node_name"])
     started = time.time()
@@ -86,9 +100,15 @@ def backprop(tree: dict[str, Any], node: str, reward: float) -> None:
 
 def uct_select_parent(tree: dict[str, Any], max_children: int, exploration: float) -> str:
     candidates = []
-    total = sum(max(1, int(n.get("visits", 0))) for n in tree["nodes"].values() if n.get("status") == "trained")
+    expandable = [
+        n for n in tree["nodes"].values()
+        if n.get("status") == "trained" and n.get("proposal_type") != "artifact_usefulness_control"
+    ]
+    total = sum(max(1, int(n.get("visits", 0))) for n in expandable)
     for name, node in tree["nodes"].items():
         if node.get("status") != "trained":
+            continue
+        if node.get("proposal_type") == "artifact_usefulness_control":
             continue
         if len(node.get("children", [])) >= max_children:
             continue
@@ -410,7 +430,11 @@ def main() -> None:
             stop_reason = f"trained-node budget exhausted ({trained_children}/{args.budget_trained_nodes})"
             break
         if generated < args.budget_proposals:
-            parent = uct_select_parent(tree, args.max_children, args.exploration)
+            try:
+                parent = uct_select_parent(tree, args.max_children, args.exploration)
+            except RuntimeError as exc:
+                stop_reason = str(exc)
+                break
             parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
             parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
             transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size, artifact_registry)
@@ -419,7 +443,7 @@ def main() -> None:
                 if generated >= args.budget_proposals:
                     break
                 generated += 1
-                child = f"{parent}_p{generated}_{transform['id']}"
+                child = safe_node_name(parent, generated, transform["id"])
                 missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
                 if transform.get("proposal_type") == "foundation_artifact_blueprint" and not missing_artifacts:
                     cfg = apply_foundation_augmentation(parent_cfg, transform, child)
@@ -456,7 +480,7 @@ def main() -> None:
                 tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
                 queued.append((proposal["cheap_screen_score"]["score"], child))
                 if proposal["proposal_type"] == "foundation_artifact_blueprint" and proposal["required_artifacts"] and not missing_artifacts:
-                    control_child = f"{child}_dense_control"
+                    control_child = safe_node_name(child, generated, "dense_matched_capacity_no_artifact_control", suffix="_control")
                     control_cfg = apply_artifact_matched_dense_control(parent_cfg, control_child, transform["id"])
                     control_score = {
                         "score": float(score_row["score"]) + 0.015,

@@ -1,0 +1,49 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_heldout_drug_perturb_response_demo",
+  "metadata": {
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "scgpt_whole_human_checkpoint"
+    ]
+  },
+  "model": {
+    "artifacts": {
+      "artifact_tables": [
+        {
+          "artifact_id": "string_gene_graph",
+          "key": "target_gene_embeddings",
+          "path": "data/artifacts/helf/string_gene_graph_features.npz"
+        }
+      ]
+    },
+    "depth": 2,
+    "dropout": 0.15,
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "low_rank_dim": 64,
+    "model_type": "artifact_augmented_residual_mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_perturb_root_mlp_p7_foundation_string_graph_message_passing_d8dd1066_p92_foundation_scgpt_cell_encoder_dc97f916",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "loss_type": "cross_entropy",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "blueprint_id": null,
+  "candidate_pool_size": 6,
+  "candidate_rank": 4,
+  "cheap_screen_score": {
+    "cost_bonus": 0.04,
+    "novelty": 0.08,
+    "parent_val": 0.4303874969482422,
+    "priority": 0.66,
+    "score": 0.6163874969482421
+  },
+  "child": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a9710_p244_weighted_ce_8dfeea87",
+  "codex_action": null,
+  "family": null,
+  "hypothesis": "Test weighted_ce for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "aivc_helf_perturb_root_low_rank_mlp_p61_foundation_pathway_pooling_encoder_a97102c4",
+  "proposal_type": "lightweight_executable_transform",
+  "required_artifacts": [],
+  "strategy": "weighted_ce"
+}

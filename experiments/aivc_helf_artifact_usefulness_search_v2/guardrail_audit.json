@@ -1,0 +1,38 @@
+{
+  "format": "vc_demo_guardrail_audit.v1",
+  "run_dir": "experiments/aivc_helf_artifact_usefulness_search_v2",
+  "status_counts": {
+    "trained": 104,
+    "pruned_not_selected": 168,
+    "requires_artifact_acquisition": 82
+  },
+  "proposal_type_counts": {
+    "": 4,
+    "artifact_usefulness_control": 50,
+    "foundation_artifact_blueprint": 150,
+    "lightweight_executable_transform": 150
+  },
+  "generated_proposals": 300,
+  "trained_selected_rollouts": 100,
+  "pruned_not_selected": 168,
+  "blocked": 82,
+  "requires_artifact_acquisition": 82,
+  "failed": 0,
+  "fallback_count": 0,
+  "proxy_count": 0,
+  "compact_proxy_count": 0,
+  "backprop_nontrained_count": 0,
+  "backend_anomaly_count": 0,
+  "pruned_node_training_count": 0,
+  "test_guided_selection": false,
+  "backend_anomalies": [],
+  "nontrained_backprop_nodes": [],
+  "pruned_trained_nodes": [],
+  "verdict": {
+    "no_fallback": true,
+    "no_proxy": true,
+    "no_nontrained_backprop": true,
+    "no_backend_anomaly": true,
+    "no_pruned_training": true
+  }
+}

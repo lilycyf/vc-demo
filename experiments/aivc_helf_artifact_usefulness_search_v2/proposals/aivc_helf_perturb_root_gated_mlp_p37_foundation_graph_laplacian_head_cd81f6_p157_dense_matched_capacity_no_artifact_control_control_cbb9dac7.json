@@ -1,0 +1,43 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_heldout_drug_perturb_response_demo",
+  "metadata": {
+    "artifact_usefulness_control": {
+      "control_type": "dense_matched_capacity_no_artifact",
+      "paired_source_strategy": "foundation_pathway_pooling_encoder",
+      "purpose": "estimate capacity/loss gain separately from artifact incremental gain"
+    },
+    "paired_artifact_child": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f606_p157_foundation_pathway_pooling_encoder_48bed9d9",
+    "proposal_type": "artifact_usefulness_control",
+    "required_artifacts": [
+      "string_gene_graph"
+    ]
+  },
+  "model": {
+    "artifacts": {
+      "artifact_tables": []
+    },
+    "depth": 3,
+    "dropout": 0.15,
+    "hidden_dim": 512,
+    "input_dim": "auto",
+    "low_rank_dim": 64,
+    "model_type": "residual_mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_perturb_root_gated_mlp_p37_foundation_graph_laplacian_head_cd81f6_p157_dense_matched_capacity_no_artifact_control_control_cbb9dac7",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "loss_type": "cross_entropy",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}
