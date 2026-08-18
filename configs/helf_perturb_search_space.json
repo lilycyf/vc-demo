@@ -182,19 +182,22 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "align target genes to protein embeddings and implement target-aware bilinear/cross-attention head",
+          "codex_action": "align target genes to protein embeddings and implement target-aware bilinear/cross-attention head; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "esm2_target_gene_head",
-          "implementation_status": "acquirable_or_buildable_then_planned",
+          "implementation_status": "implemented_source_backed_target_protein_embedding_head",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "esm2_gene_or_protein_embeddings"
           ],
-          "search_space_status": "selectable"
+          "search_space_status": "selectable_executable",
+          "implementation_notes": [
+            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+          ]
         },
         {
           "artifact_contract": {
@@ -205,19 +208,22 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "fuse expression delta context with target-gene protein embeddings",
+          "codex_action": "fuse expression delta context with target-gene protein embeddings; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "protein_embedding_fusion",
-          "implementation_status": "acquirable_or_buildable_then_planned",
+          "implementation_status": "implemented_source_backed_target_protein_embedding_fusion",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "esm2_gene_or_protein_embeddings"
           ],
-          "search_space_status": "selectable"
+          "search_space_status": "selectable_executable",
+          "implementation_notes": [
+            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+          ]
         }
       ],
       "family": "gene_or_protein_foundation_prior",
@@ -234,19 +240,22 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "resolve drug names to SMILES, compute RDKit fingerprints, fuse with expression delta",
+          "codex_action": "resolve drug names to SMILES, compute RDKit fingerprints, fuse with expression delta; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "rdkit_drug_fingerprint_fusion",
-          "implementation_status": "planned_requires_drug_smiles_artifact",
+          "implementation_status": "implemented_source_backed_drug_fingerprint_fusion",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints"
           ],
-          "search_space_status": "selectable"
+          "search_space_status": "selectable_executable",
+          "implementation_notes": [
+            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+          ]
         },
         {
           "artifact_contract": {
@@ -257,19 +266,22 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "download public chemical encoder if available, encode perturbing drug, train cross-attention head",
+          "codex_action": "download public chemical encoder if available, encode perturbing drug, train cross-attention head; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "chemberta_drug_encoder",
-          "implementation_status": "acquirable_or_buildable_then_planned",
+          "implementation_status": "implemented_source_backed_drug_fingerprint_executable_alternative",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints"
           ],
-          "search_space_status": "selectable"
+          "search_space_status": "selectable_executable",
+          "implementation_notes": [
+            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+          ]
         },
         {
           "artifact_contract": {
@@ -281,20 +293,23 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "cross-attend drug embedding to target-gene embedding table",
+          "codex_action": "cross-attend drug embedding to target-gene embedding table; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "drug_target_cross_attention",
-          "implementation_status": "acquirable_or_buildable_then_planned",
+          "implementation_status": "implemented_source_backed_drug_target_artifact_fusion",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints",
             "esm2_gene_or_protein_embeddings"
           ],
-          "search_space_status": "selectable"
+          "search_space_status": "selectable_executable",
+          "implementation_notes": [
+            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+          ]
         }
       ],
       "family": "chemical_perturbation_encoder",
@@ -463,21 +478,24 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "drug-to-pathway-to-target hierarchical prediction",
+          "codex_action": "drug-to-pathway-to-target hierarchical prediction; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "pathway_drug_target_fusion",
-          "implementation_status": "acquirable_or_buildable_then_planned",
+          "implementation_status": "implemented_source_backed_pathway_drug_target_fusion",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints",
             "reactome_pathway_membership",
             "esm2_gene_or_protein_embeddings"
           ],
-          "search_space_status": "selectable"
+          "search_space_status": "selectable_executable",
+          "implementation_notes": [
+            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+          ]
         }
       ],
       "family": "multimodal_fusion",

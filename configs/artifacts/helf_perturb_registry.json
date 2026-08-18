@@ -133,7 +133,17 @@
         "esm2_perturbation_gene_prior",
         "protein_embedding_fusion"
       ],
-      "status": "planned_requires_acquisition_or_build"
+      "status": "acquired_source_backed_runtime_artifact",
+      "source_backed_summary": "experiments/aivc_search_space_manifest_audit/helf_esm2_target_embedding_artifact_summary.json",
+      "validated_artifact": {
+        "model_name": "facebook/esm2_t6_8M_UR50D",
+        "coverage": 0.9609375,
+        "embedding_shape": [
+          512,
+          320
+        ],
+        "note": "ESM2 t33 650M is downloadable but this Blackwell pod torch build cannot run CUDA; t6 artifact is source-backed executable mode."
+      }
     },
     {
       "acquisition_policy": "resolve_smiles_from_public_source_then_compute_fingerprints_or_encoder_embeddings",
@@ -155,7 +165,16 @@
         "chemical_context_adapter",
         "drug_target_cross_attention"
       ],
-      "status": "planned_requires_acquisition_or_build"
+      "status": "acquired_source_backed_runtime_artifact",
+      "source_backed_summary": "experiments/aivc_search_space_manifest_audit/helf_drug_fingerprint_artifact_summary.json",
+      "validated_artifact": {
+        "source": "PubChem PUG REST + RDKit Morgan fingerprints",
+        "coverage": 1.0,
+        "embedding_shape": [
+          10,
+          2054
+        ]
+      }
     },
     {
       "acquisition_policy": "build_from_official_STRING_API_or_download",

@@ -125,11 +125,18 @@ def apply_foundation_augmentation(parent: dict[str, Any], transform: dict[str, A
         tables.append({"artifact_id": "reactome_pathway_membership", "path": "data/artifacts/helf/reactome_pathway_membership.npz", "key": "target_gene_embeddings"})
     if "string_gene_graph" in required:
         tables.append({"artifact_id": "string_gene_graph", "path": "data/artifacts/helf/string_gene_graph_features.npz", "key": "target_gene_embeddings"})
-    if not tables:
+    if "esm2_gene_or_protein_embeddings" in required:
+        tables.append({"artifact_id": "esm2_gene_or_protein_embeddings", "path": "data/artifacts/helf/esm2_gene_embeddings.npz", "key": "target_gene_embeddings"})
+    drug_tables: list[dict[str, str]] = []
+    if "chemical_encoder_checkpoint_or_drug_fingerprints" in required:
+        drug_tables.append({"artifact_id": "chemical_encoder_checkpoint_or_drug_fingerprints", "path": "data/artifacts/helf/drug_embeddings.npz", "key": "drug_embeddings"})
+        artifacts["drug_onehot_dim"] = 10
+    if not tables and not drug_tables:
         # Artifact-heavy checkpoints such as scGPT/Geneformer should remain in
         # acquisition/block unless a real aligned embedding artifact is built.
         tables.extend([])
     artifacts["artifact_tables"] = tables
+    artifacts["drug_embedding_tables"] = drug_tables
     model["foundation_augmentation_policy"] = {
         "mode": "parent_dense_logits_plus_gated_artifact_residual",
         "preserve_parent_dense_path": True,
@@ -459,7 +466,7 @@ def main() -> None:
                     control_child = f"{child}_dense_control"
                     control_cfg = apply_artifact_matched_dense_control(parent_cfg, control_child, transform["id"])
                     control_score = {
-                        "score": float(score_row["score"]) + 0.015,
+                        "score": float(score_row["score"]) - 0.025,
                         "parent_val": parent_val,
                         "priority": transform["priority"],
                         "cost_bonus": 0.0,
@@ -515,8 +522,10 @@ def main() -> None:
             continue
         if proposal.get("proposal_type") == "foundation_artifact_blueprint":
             cfg_for_foundation = read_json(Path(node["config"]))
-            tables = cfg_for_foundation.get("model", {}).get("artifacts", {}).get("artifact_tables", [])
-            if not tables:
+            artifacts_cfg = cfg_for_foundation.get("model", {}).get("artifacts", {})
+            tables = artifacts_cfg.get("artifact_tables", [])
+            drug_tables = artifacts_cfg.get("drug_embedding_tables", [])
+            if not tables and not drug_tables:
                 node.update({"status": "implementation_skipped", "blocked_reason": "selected foundation blueprint requires a real aligned model/embedding artifact that has not been materialized"})
                 skipped += 1
                 write_trace(args.run_dir, {"event": "implementation_skipped", "node": selected, "reason": node.get("blocked_reason")})

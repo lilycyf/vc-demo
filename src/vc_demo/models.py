@@ -333,22 +333,46 @@ class ArtifactAugmentedResidualMLP(nn.Module):
         self.norm = nn.LayerNorm(hidden)
         self.dense_head = nn.Linear(hidden, self.n_targets * self.n_classes)
 
+        self.drug_onehot_dim = int((spec.artifacts or {}).get("drug_onehot_dim", 0) or 0)
+        drug_tables = self._load_drug_tables(spec)
+        self.has_drug_artifacts = bool(drug_tables)
+        if drug_tables:
+            drug_features = torch.cat(drug_tables, dim=1)
+            if self.drug_onehot_dim <= 0:
+                self.drug_onehot_dim = int(drug_features.shape[0])
+            if int(drug_features.shape[0]) != self.drug_onehot_dim:
+                raise ValueError(f"drug artifact rows {drug_features.shape[0]} do not match drug_onehot_dim {self.drug_onehot_dim}")
+            self.register_buffer("drug_artifacts", drug_features, persistent=False)
+            self.drug_to_hidden = nn.Sequential(nn.LayerNorm(int(drug_features.shape[1])), nn.Linear(int(drug_features.shape[1]), hidden), nn.GELU())
+            self.drug_gate = nn.Sequential(nn.Linear(hidden, hidden), nn.Sigmoid())
+        else:
+            self.register_buffer("drug_artifacts", torch.empty(0), persistent=False)
+            self.drug_to_hidden = None
+            self.drug_gate = None
+
         artifact_tables = self._load_artifact_tables(spec)
-        if not artifact_tables:
-            raise ValueError("artifact_augmented_residual_mlp requires at least one aligned target-gene artifact table")
-        target_features = torch.cat(artifact_tables, dim=1)
-        if int(target_features.shape[0]) != self.n_targets:
-            raise ValueError(f"artifact rows {target_features.shape[0]} do not match n_targets {self.n_targets}")
-        self.register_buffer("target_artifacts", target_features, persistent=False)
-        artifact_dim = int(target_features.shape[1])
+        if not artifact_tables and not drug_tables:
+            raise ValueError("artifact_augmented_residual_mlp requires at least one aligned target-gene or perturbation-drug artifact table")
         rank = max(16, min(int(spec.low_rank_dim), hidden, 128))
-        self.context_to_rank = nn.Linear(hidden, rank * self.n_classes)
-        self.artifact_to_rank = nn.Sequential(nn.LayerNorm(artifact_dim), nn.Linear(artifact_dim, rank))
-        self.artifact_bias = nn.Sequential(nn.LayerNorm(artifact_dim), nn.Linear(artifact_dim, self.n_classes))
-        self.gate = nn.Sequential(nn.Linear(hidden, self.n_targets), nn.Sigmoid())
         self.residual_scale = nn.Parameter(torch.tensor(-2.5))
-        nn.init.zeros_(self.artifact_bias[-1].weight)
-        nn.init.zeros_(self.artifact_bias[-1].bias)
+        if artifact_tables:
+            target_features = torch.cat(artifact_tables, dim=1)
+            if int(target_features.shape[0]) != self.n_targets:
+                raise ValueError(f"artifact rows {target_features.shape[0]} do not match n_targets {self.n_targets}")
+            self.register_buffer("target_artifacts", target_features, persistent=False)
+            artifact_dim = int(target_features.shape[1])
+            self.context_to_rank = nn.Linear(hidden, rank * self.n_classes)
+            self.artifact_to_rank = nn.Sequential(nn.LayerNorm(artifact_dim), nn.Linear(artifact_dim, rank))
+            self.artifact_bias = nn.Sequential(nn.LayerNorm(artifact_dim), nn.Linear(artifact_dim, self.n_classes))
+            self.gate = nn.Sequential(nn.Linear(hidden, self.n_targets), nn.Sigmoid())
+            nn.init.zeros_(self.artifact_bias[-1].weight)
+            nn.init.zeros_(self.artifact_bias[-1].bias)
+        else:
+            self.register_buffer("target_artifacts", torch.empty(0), persistent=False)
+            self.context_to_rank = None
+            self.artifact_to_rank = None
+            self.artifact_bias = None
+            self.gate = None
 
     @staticmethod
     def _load_artifact_tables(spec: ModelSpec) -> list[torch.Tensor]:
@@ -381,9 +405,49 @@ class ArtifactAugmentedResidualMLP(nn.Module):
             tables.append(table.float())
         return tables
 
+    @staticmethod
+    def _load_drug_tables(spec: ModelSpec) -> list[torch.Tensor]:
+        artifacts = dict(spec.artifacts or {})
+        entries = []
+        for key in ["drug_artifact_embeddings", "drug_embedding_tables"]:
+            value = artifacts.get(key)
+            if isinstance(value, list):
+                entries.extend(value)
+            elif isinstance(value, dict):
+                entries.append(value)
+        value = artifacts.get("drug_embeddings_path")
+        if value:
+            entries.append({"path": value, "key": "drug_embeddings"})
+        tables: list[torch.Tensor] = []
+        seen: set[tuple[str, str]] = set()
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            path = str(entry.get("path") or "")
+            key = str(entry.get("key") or "drug_embeddings")
+            marker = (path, key)
+            if not path or marker in seen:
+                continue
+            seen.add(marker)
+            table = _load_npz_array(path, key)
+            if table.ndim != 2:
+                raise ValueError(f"drug artifact table {path}:{key} must be 2-D [n_drugs, dim], got {tuple(table.shape)}")
+            tables.append(table.float())
+        return tables
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        z = self.norm(self.blocks(self.input(x)))
+        z = self.input(x)
+        if self.has_drug_artifacts:
+            if x.shape[1] < self.drug_onehot_dim:
+                raise ValueError(f"input_dim {x.shape[1]} is smaller than drug_onehot_dim {self.drug_onehot_dim}")
+            drug_onehot = x[:, -self.drug_onehot_dim:]
+            drug_features = drug_onehot @ self.drug_artifacts.to(device=x.device, dtype=x.dtype)
+            drug_context = self.drug_to_hidden(drug_features)
+            z = z + self.drug_gate(drug_context) * drug_context
+        z = self.norm(self.blocks(z))
         dense_logits = self.dense_head(z).view(x.shape[0], self.n_targets, self.n_classes)
+        if self.target_artifacts.numel() == 0:
+            return dense_logits
         artifacts = self.target_artifacts.to(device=x.device, dtype=x.dtype)
         context_rank = self.context_to_rank(z).view(x.shape[0], -1, self.n_classes)
         artifact_rank = self.artifact_to_rank(artifacts)

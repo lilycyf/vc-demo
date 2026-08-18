@@ -1,0 +1,3564 @@
+{
+  "format": "helf_esm2_target_gene_embeddings.v1",
+  "artifact_id": "esm2_gene_or_protein_embeddings",
+  "output": "data/artifacts/helf/esm2_gene_embeddings.npz",
+  "model_name": "facebook/esm2_t6_8M_UR50D",
+  "source": "Cached UniProt human protein TSV + HuggingFace ESM2 mean-pooled protein embeddings",
+  "uniprot_cache": "data/artifacts/helf/uniprot_human_sequences.tsv",
+  "n_targets": 512,
+  "covered_targets": 492,
+  "coverage": 0.9609375,
+  "embedding_shape": [
+    512,
+    320
+  ],
+  "device": "cpu",
+  "missing_target_genes": [
+    "FP236383.3",
+    "MEG8",
+    "ZFPM2-AS1",
+    "XIST",
+    "PALM2-AKAP2",
+    "MIR222HG",
+    "FTX",
+    "MIR100HG",
+    "SNHG14",
+    "PVT1",
+    "AC073114.1",
+    "MIR31HG",
+    "MEG3",
+    "MSC-AS1",
+    "MIR4435-2HG",
+    "NR2F1-AS1",
+    "RNF217-AS1",
+    "CYTOR",
+    "AC004917.1",
+    "NEAT1"
+  ],
+  "sequence_rows": [
+    {
+      "gene": "HMGA2",
+      "accession": "P52926",
+      "entry_type": "reviewed",
+      "protein_name": "High mobility group protein HMGI-C (High mobility group AT-hook protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FMN1",
+      "accession": "Q68DA7",
+      "entry_type": "reviewed",
+      "protein_name": "Formin-1 (Limb deformity protein homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-CO1",
+      "accession": "P00395",
+      "entry_type": "reviewed",
+      "protein_name": "Cytochrome c oxidase subunit 1 (EC 7.1.1.9) (Cytochrome c oxidase polypeptide I)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-ND5",
+      "accession": "P03915",
+      "entry_type": "reviewed",
+      "protein_name": "NADH-ubiquinone oxidoreductase chain 5 (EC 7.1.1.2) (NADH dehydrogenase subunit 5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IGFBP5",
+      "accession": "P24593",
+      "entry_type": "reviewed",
+      "protein_name": "Insulin-like growth factor-binding protein 5 (IBP-5) (IGF-binding protein 5) (IGFBP-5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PDE5A",
+      "accession": "O76074",
+      "entry_type": "reviewed",
+      "protein_name": "cGMP-specific 3',5'-cyclic phosphodiesterase (EC 3.1.4.35) (cGMP-binding cGMP-specific phosphodiesterase) (CGB-PDE)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ROBO2",
+      "accession": "Q9HCK4",
+      "entry_type": "reviewed",
+      "protein_name": "Roundabout homolog 2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PLCB4",
+      "accession": "Q15147",
+      "entry_type": "reviewed",
+      "protein_name": "1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-4 (EC 3.1.4.11) (Phosphoinositide phospholipase C-beta-4) (Phospholipase C-beta-4) (PLC-beta-4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZFPM2",
+      "accession": "Q8WW38",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein ZFPM2 (Friend of GATA protein 2) (FOG-2) (Friend of GATA 2) (hFOG-2) (Zinc finger protein 89B) (Zinc finger protein multitype 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NCKAP5",
+      "accession": "O14513",
+      "entry_type": "reviewed",
+      "protein_name": "Nck-associated protein 5 (NAP-5) (Peripheral clock protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CCBE1",
+      "accession": "Q6UXH8",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen and calcium-binding EGF domain-containing protein 1 (Full of fluid protein homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CHRM2",
+      "accession": "P08172",
+      "entry_type": "reviewed",
+      "protein_name": "Muscarinic acetylcholine receptor M2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL4A1",
+      "accession": "P02462",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-1(IV) chain [Cleaved into: Arresten]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-ND4",
+      "accession": "P03905",
+      "entry_type": "reviewed",
+      "protein_name": "NADH-ubiquinone oxidoreductase chain 4 (EC 7.1.1.2) (NADH dehydrogenase subunit 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TMTC1",
+      "accession": "Q8IUR5",
+      "entry_type": "reviewed",
+      "protein_name": "Protein O-mannosyl-transferase TMTC1 (EC 2.4.1.109) (Transmembrane O-mannosyltransferase targeting cadherins 1) (Transmembrane and tetratricopeptide repeat-containing 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FMN2",
+      "accession": "Q9NZ56",
+      "entry_type": "reviewed",
+      "protein_name": "Formin-2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EML5",
+      "accession": "Q05BV3",
+      "entry_type": "reviewed",
+      "protein_name": "Echinoderm microtubule-associated protein-like 5 (EMAP-5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UACA",
+      "accession": "Q9BZF9",
+      "entry_type": "reviewed",
+      "protein_name": "Uveal autoantigen with coiled-coil domains and ankyrin repeats",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KIRREL3",
+      "accession": "Q8IZU9",
+      "entry_type": "reviewed",
+      "protein_name": "Kin of IRRE-like protein 3 (Kin of irregular chiasm-like protein 3) (Nephrin-like protein 2) [Cleaved into: Processed kin of IRRE-like protein 3]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "THSD4",
+      "accession": "Q6ZMP0",
+      "entry_type": "reviewed",
+      "protein_name": "Thrombospondin type-1 domain-containing protein 4 (A disintegrin and metalloproteinase with thrombospondin motifs-like protein 6) (ADAMTS-like protein 6) (ADAMTSL-6)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AFF3",
+      "accession": "P51826",
+      "entry_type": "reviewed",
+      "protein_name": "AF4/FMR2 family member 3 (Lymphoid nuclear protein related to AF4) (Protein LAF-4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IGFBP7",
+      "accession": "Q16270",
+      "entry_type": "reviewed",
+      "protein_name": "Insulin-like growth factor-binding protein 7 (IBP-7) (IGF-binding protein 7) (IGFBP-7) (IGFBP-rP1) (MAC25 protein) (PGI2-stimulating factor) (Prostacyclin-stimulating factor) (Tumor-derived adhesion factor) (TAF)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SMURF2",
+      "accession": "Q9HAU4",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase SMURF2 (hSMURF2) (EC 2.3.2.26) (HECT-type E3 ubiquitin transferase SMURF2) (SMAD ubiquitination regulatory factor 2) (SMAD-specific E3 ubiquitin-protein ligase 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LMO7",
+      "accession": "Q8WWI1",
+      "entry_type": "reviewed",
+      "protein_name": "LIM domain only protein 7 (LMO-7) (F-box only protein 20) (LOMP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL4A2",
+      "accession": "P08572",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-2(IV) chain [Cleaved into: Canstatin]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DDAH1",
+      "accession": "O94760",
+      "entry_type": "reviewed",
+      "protein_name": "N(G),N(G)-dimethylarginine dimethylaminohydrolase 1 (DDAH-1) (Dimethylarginine dimethylaminohydrolase 1) (EC 3.5.3.18) (DDAHI) (Dimethylargininase-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IL1RAPL1",
+      "accession": "Q9NZN1",
+      "entry_type": "reviewed",
+      "protein_name": "Interleukin-1 receptor accessory protein-like 1 (IL-1-RAPL-1) (IL-1RAPL-1) (IL1RAPL-1) (EC 3.2.2.6) (Oligophrenin-4) (Three immunoglobulin domain-containing IL-1 receptor-related 2) (TIGIRR-2) (X-linked interleukin-1 receptor accessory protein-like 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CRIM1",
+      "accession": "Q9NZV1",
+      "entry_type": "reviewed",
+      "protein_name": "Cysteine-rich motor neuron 1 protein (CRIM-1) (Cysteine-rich repeat-containing protein S52) [Cleaved into: Processed cysteine-rich motor neuron 1 protein]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GRIK2",
+      "accession": "Q13002",
+      "entry_type": "reviewed",
+      "protein_name": "Glutamate receptor ionotropic, kainate 2 (GluK2) (Excitatory amino acid receptor 4) (EAA4) (Glutamate receptor 6) (GluR-6) (GluR6)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GPC6",
+      "accession": "Q9Y625",
+      "entry_type": "reviewed",
+      "protein_name": "Glypican-6 [Cleaved into: Secreted glypican-6]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "P3H2",
+      "accession": "Q8IVL5",
+      "entry_type": "reviewed",
+      "protein_name": "Prolyl 3-hydroxylase 2 (EC 1.14.11.7) (Leprecan-like protein 1) (Myxoid liposarcoma-associated protein 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "VEGFC",
+      "accession": "P49767",
+      "entry_type": "reviewed",
+      "protein_name": "Vascular endothelial growth factor C (VEGF-C) (Flt4 ligand) (Flt4-L) (Vascular endothelial growth factor-related protein) (VRP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEGR1",
+      "accession": "Q7Z3B1",
+      "entry_type": "reviewed",
+      "protein_name": "Neuronal growth regulator 1 (IgLON family member 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FBN2",
+      "accession": "P35556",
+      "entry_type": "reviewed",
+      "protein_name": "Fibrillin-2 [Cleaved into: Placensin]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MYLK",
+      "accession": "Q15746",
+      "entry_type": "reviewed",
+      "protein_name": "Myosin light chain kinase, smooth muscle (MLCK) (smMLCK) (EC 2.7.11.18) (Kinase-related protein) (KRP) (Telokin) [Cleaved into: Myosin light chain kinase, smooth muscle, deglutamylated form]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZNF804A",
+      "accession": "Q7Z570",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein 804A",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BDNF",
+      "accession": "P23560",
+      "entry_type": "reviewed",
+      "protein_name": "Neurotrophic factor BDNF precursor form (proBDNF) (Abrineurin) (Brain-derived neurotrophic factor) [Cleaved into: Neurotrophic factor BDNF]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FN1",
+      "accession": "P02751",
+      "entry_type": "reviewed",
+      "protein_name": "Fibronectin (FN) (Cold-insoluble globulin) (CIG) [Cleaved into: Anastellin; Ugl-Y1; Ugl-Y2; Ugl-Y3]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAGI2",
+      "accession": "Q86UL8",
+      "entry_type": "reviewed",
+      "protein_name": "Membrane-associated guanylate kinase, WW and PDZ domain-containing protein 2 (Atrophin-1-interacting protein 1) (AIP-1) (Atrophin-1-interacting protein A) (Membrane-associated guanylate kinase inverted 2) (MAGI-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PDE1C",
+      "accession": "Q14123",
+      "entry_type": "reviewed",
+      "protein_name": "Dual specificity calcium/calmodulin-dependent 3',5'-cyclic nucleotide phosphodiesterase 1C (Cam-PDE 1C) (EC 3.1.4.17) (Hcam3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FP236383.3",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SLC8A1",
+      "accession": "P32418",
+      "entry_type": "reviewed",
+      "protein_name": "Sodium/calcium exchanger 1 (Na(+)/Ca(2+)-exchange protein 1) (Solute carrier family 8 member 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "HERC4",
+      "accession": "Q5GLZ8",
+      "entry_type": "reviewed",
+      "protein_name": "Probable E3 ubiquitin-protein ligase HERC4 (EC 2.3.2.26) (HECT domain and RCC1-like domain-containing protein 4) (HECT-type E3 ubiquitin transferase HERC4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL1A1",
+      "accession": "P02452",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-1(I) chain (Alpha-1 type I collagen)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL12A1",
+      "accession": "Q99715",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-1(XII) chain",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANO4",
+      "accession": "Q32M45",
+      "entry_type": "reviewed",
+      "protein_name": "Anoctamin-4 (Transmembrane protein 16D)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TXNRD1",
+      "accession": "Q16881",
+      "entry_type": "reviewed",
+      "protein_name": "Thioredoxin reductase 1, cytoplasmic (TR) (EC 1.8.1.9) (Gene associated with retinoic and interferon-induced mortality 12 protein) (GRIM-12) (Gene associated with retinoic and IFN-induced mortality 12 protein) (KM-102-derived reductase-like factor) (Peroxidase TXNRD1) (EC 1.11.1.2) (Thioredoxin reductase TR1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-CYB",
+      "accession": "P00156",
+      "entry_type": "reviewed",
+      "protein_name": "Cytochrome b (Complex III subunit 3) (Complex III subunit III) (Cytochrome b-c1 complex subunit 3) (Ubiquinol-cytochrome-c reductase complex cytochrome b subunit)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NAV3",
+      "accession": "Q8IVL0",
+      "entry_type": "reviewed",
+      "protein_name": "Neuron navigator 3 (Pore membrane and/or filament-interacting-like protein 1) (Steerin-3) (Unc-53 homolog 3) (unc53H3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SGCD",
+      "accession": "Q92629",
+      "entry_type": "reviewed",
+      "protein_name": "Delta-sarcoglycan (Delta-SG) (35 kDa dystrophin-associated glycoprotein) (35DAG)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SLC7A11",
+      "accession": "Q9UPY5",
+      "entry_type": "reviewed",
+      "protein_name": "Cystine/glutamate transporter (Amino acid transport system xc-) (Calcium channel blocker resistance protein CCBR1) (Solute carrier family 7 member 11) (xCT)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NLGN1",
+      "accession": "Q8N2Q7",
+      "entry_type": "reviewed",
+      "protein_name": "Neuroligin-1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-ATP6",
+      "accession": "P00846",
+      "entry_type": "reviewed",
+      "protein_name": "ATP synthase F(0) complex subunit a (F-ATPase protein 6) (Proton-conducting channel, ATP synthase F(0) complex subunit a)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "THBS1",
+      "accession": "P07996",
+      "entry_type": "reviewed",
+      "protein_name": "Thrombospondin-1 (Glycoprotein G)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SGIP1",
+      "accession": "Q9BQI5",
+      "entry_type": "reviewed",
+      "protein_name": "SH3-containing GRB2-like protein 3-interacting protein 1 (Endophilin-3-interacting protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RBMS3",
+      "accession": "Q6XE24",
+      "entry_type": "reviewed",
+      "protein_name": "RNA-binding motif, single-stranded-interacting protein 3",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SEMA5A",
+      "accession": "Q13591",
+      "entry_type": "reviewed",
+      "protein_name": "Semaphorin-5A (Semaphorin-F) (Sema F)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NECTIN3",
+      "accession": "Q9NQS3",
+      "entry_type": "reviewed",
+      "protein_name": "Nectin-3 (CDw113) (Nectin cell adhesion molecule 3) (Poliovirus receptor-related protein 3) (CD antigen CD113)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MEG8",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DCBLD2",
+      "accession": "Q96PD2",
+      "entry_type": "reviewed",
+      "protein_name": "Discoidin, CUB and LCCL domain-containing protein 2 (CUB, LCCL and coagulation factor V/VIII-homology domains protein 1) (Endothelial and smooth muscle cell-derived neuropilin-like protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ITGA1",
+      "accession": "P56199",
+      "entry_type": "reviewed",
+      "protein_name": "Integrin alpha-1 (CD49 antigen-like family member A) (Laminin and collagen receptor) (VLA-1) (CD antigen CD49a)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GREM1",
+      "accession": "O60565",
+      "entry_type": "reviewed",
+      "protein_name": "Gremlin-1 (Cell proliferation-inducing gene 2 protein) (Cysteine knot superfamily 1, BMP antagonist 1) (DAN domain family member 2) (Down-regulated in Mos-transformed cells protein) (Increased in high glucose protein 2) (IHG-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LTBP1",
+      "accession": "Q14766",
+      "entry_type": "reviewed",
+      "protein_name": "Latent-transforming growth factor beta-binding protein 1 (LTBP-1) (Transforming growth factor beta-1-binding protein 1) (TGF-beta1-BP-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CALD1",
+      "accession": "Q05682",
+      "entry_type": "reviewed",
+      "protein_name": "Caldesmon (CDM)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EDIL3",
+      "accession": "O43854",
+      "entry_type": "reviewed",
+      "protein_name": "EGF-like repeat and discoidin I-like domain-containing protein 3 (Developmentally-regulated endothelial cell locus 1 protein) (Integrin-binding protein DEL1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PARD3B",
+      "accession": "Q8TEW8",
+      "entry_type": "reviewed",
+      "protein_name": "Partitioning defective 3 homolog B (Amyotrophic lateral sclerosis 2 chromosomal region candidate gene 19 protein) (PAR3-beta) (Partitioning defective 3-like protein) (PAR3-L protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CAMK2D",
+      "accession": "Q13557",
+      "entry_type": "reviewed",
+      "protein_name": "Calcium/calmodulin-dependent protein kinase type II subunit delta (CaM kinase II subunit delta) (CaMK-II subunit delta) (EC 2.7.11.17)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NAALADL2",
+      "accession": "Q58DX5",
+      "entry_type": "reviewed",
+      "protein_name": "Inactive N-acetylated-alpha-linked acidic dipeptidase-like protein 2 (NAALADase L2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDH13",
+      "accession": "P55290",
+      "entry_type": "reviewed",
+      "protein_name": "Cadherin-13 (Heart cadherin) (H-cadherin) (P105) (Truncated cadherin) (T-cad) (T-cadherin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZEB1",
+      "accession": "P37275",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger E-box-binding homeobox 1 (NIL-2-A zinc finger protein) (Negative regulator of IL2) (Transcription factor 8) (TCF-8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ABCC4",
+      "accession": "O15439",
+      "entry_type": "reviewed",
+      "protein_name": "ATP-binding cassette sub-family C member 4 (EC 7.6.2.-) (EC 7.6.2.2) (EC 7.6.2.3) (MRP/cMOAT-related ABC transporter) (Multi-specific organic anion transporter B) (MOAT-B) (Multidrug resistance-associated protein 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ALCAM",
+      "accession": "Q13740",
+      "entry_type": "reviewed",
+      "protein_name": "CD166 antigen (Activated leukocyte cell adhesion molecule) (CD antigen CD166)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CFAP299",
+      "accession": "Q6V702",
+      "entry_type": "reviewed",
+      "protein_name": "Cilia- and flagella-associated protein 299",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LDB2",
+      "accession": "O43679",
+      "entry_type": "reviewed",
+      "protein_name": "LIM domain-binding protein 2 (LDB-2) (Carboxyl-terminal LIM domain-binding protein 1) (CLIM-1) (LIM domain-binding factor CLIM1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAGI1",
+      "accession": "Q6P9H4",
+      "entry_type": "reviewed",
+      "protein_name": "Connector enhancer of kinase suppressor of ras 3 (Connector enhancer of KSR 3) (CNK homolog protein 3) (CNK3) (CNKSR family member 3) (Maguin-like protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZFPM2-AS1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PALLD",
+      "accession": "Q8WX93",
+      "entry_type": "reviewed",
+      "protein_name": "Palladin (SIH002) (Sarcoma antigen NY-SAR-77)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SMAD3",
+      "accession": "P84022",
+      "entry_type": "reviewed",
+      "protein_name": "SMAD family member 3 (SMAD 3) (hSMAD3) (JV15-2) (Mothers against decapentaplegic homolog 3) (MAD homolog 3) (Mad3) (Mothers against DPP homolog 3) (hMAD-3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LPAR1",
+      "accession": "Q92633",
+      "entry_type": "reviewed",
+      "protein_name": "Lysophosphatidic acid receptor 1 (LPA receptor 1) (LPA-1) (Lysophosphatidic acid receptor Edg-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL6A3",
+      "accession": "P12111",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-3(VI) chain",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARHGEF28",
+      "accession": "Q8N1W1",
+      "entry_type": "reviewed",
+      "protein_name": "Rho guanine nucleotide exchange factor 28 (190 kDa guanine nucleotide exchange factor) (p190-RhoGEF) (p190RhoGEF) (Rho guanine nucleotide exchange factor)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FRMD6",
+      "accession": "Q96NE9",
+      "entry_type": "reviewed",
+      "protein_name": "FERM domain-containing protein 6 (Willin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TCF4",
+      "accession": "P15884",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription factor 4 (TCF-4) (Class B basic helix-loop-helix protein 19) (bHLHb19) (Immunoglobulin transcription factor 2) (ITF-2) (SL3-3 enhancer factor 2) (SEF-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRKD1",
+      "accession": "Q15139",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase D1 (EC 2.7.11.13) (Protein kinase C mu type) (Protein kinase D) (nPKC-D1) (nPKC-mu)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRKG1",
+      "accession": "Q13976",
+      "entry_type": "reviewed",
+      "protein_name": "cGMP-dependent protein kinase 1 (cGK 1) (cGK1) (EC 2.7.11.12) (cGMP-dependent protein kinase I) (cGKI)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SH3RF1",
+      "accession": "Q7Z6J0",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase SH3RF1 (EC 2.3.2.27) (Plenty of SH3s) (Protein POSH) (RING finger protein 142) (RING-type E3 ubiquitin transferase SH3RF1) (SH3 domain-containing RING finger protein 1) (SH3 multiple domains protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MBNL1",
+      "accession": "Q9NR56",
+      "entry_type": "reviewed",
+      "protein_name": "Muscleblind-like protein 1 (Triplet-expansion RNA-binding protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SOX5",
+      "accession": "P35711",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription factor SOX-5",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ADAMTS6",
+      "accession": "Q9UKP5",
+      "entry_type": "reviewed",
+      "protein_name": "A disintegrin and metalloproteinase with thrombospondin motifs 6 (ADAM-TS 6) (ADAM-TS6) (ADAMTS-6) (EC 3.4.24.-)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATXN1",
+      "accession": "P54253",
+      "entry_type": "reviewed",
+      "protein_name": "Ataxin-1 (Spinocerebellar ataxia type 1 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TPM1",
+      "accession": "P09493",
+      "entry_type": "reviewed",
+      "protein_name": "Tropomyosin alpha-1 chain (Alpha-tropomyosin) (Tropomyosin-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SLC4A4",
+      "accession": "Q9Y6R1",
+      "entry_type": "reviewed",
+      "protein_name": "Electrogenic sodium bicarbonate cotransporter 1 (Sodium bicarbonate cotransporter) (Na(+)/HCO3(-) cotransporter) (Solute carrier family 4 member 4) (kNBC1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STARD13",
+      "accession": "Q9Y3M8",
+      "entry_type": "reviewed",
+      "protein_name": "StAR-related lipid transfer protein 13 (46H23.2) (Deleted in liver cancer 2 protein) (DLC-2) (Rho GTPase-activating protein) (START domain-containing protein 13) (StARD13)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "XIST",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRKCA",
+      "accession": "P17252",
+      "entry_type": "reviewed",
+      "protein_name": "Protein kinase C alpha type (PKC-A) (PKC-alpha) (EC 2.7.11.13)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PTPRK",
+      "accession": "Q15262",
+      "entry_type": "reviewed",
+      "protein_name": "Receptor-type tyrosine-protein phosphatase kappa (Protein-tyrosine phosphatase kappa) (R-PTP-kappa) (EC 3.1.3.48)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DLC1",
+      "accession": "P63167",
+      "entry_type": "reviewed",
+      "protein_name": "Dynein light chain 1, cytoplasmic (8 kDa dynein light chain) (DLC8) (Dynein light chain LC8-type 1) (Protein inhibitor of neuronal nitric oxide synthase) (PIN)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CADM1",
+      "accession": "Q9BY67",
+      "entry_type": "reviewed",
+      "protein_name": "Cell adhesion molecule 1 (Immunoglobulin superfamily member 4) (IgSF4) (Nectin-like protein 2) (NECL-2) (Spermatogenic immunoglobulin superfamily) (SgIgSF) (Synaptic cell adhesion molecule) (SynCAM) (Tumor suppressor in lung cancer 1) (TSLC-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL1A2",
+      "accession": "P08123",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-2(I) chain (Alpha-2 type I collagen)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SGCZ",
+      "accession": "Q96LD1",
+      "entry_type": "reviewed",
+      "protein_name": "Zeta-sarcoglycan (Zeta-SG) (ZSG1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PDLIM5",
+      "accession": "Q96HC4",
+      "entry_type": "reviewed",
+      "protein_name": "PDZ and LIM domain protein 5 (Enigma homolog) (Enigma-like PDZ and LIM domains protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MSRB3",
+      "accession": "Q8IXL7",
+      "entry_type": "reviewed",
+      "protein_name": "Methionine-R-sulfoxide reductase B3 (MsrB3) (EC 1.8.4.12) (EC 1.8.4.14)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LUZP2",
+      "accession": "Q86TE4",
+      "entry_type": "reviewed",
+      "protein_name": "Leucine zipper protein 2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SOX6",
+      "accession": "P35712",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription factor SOX-6",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SCN9A",
+      "accession": "Q15858",
+      "entry_type": "reviewed",
+      "protein_name": "Sodium channel protein type 9 subunit alpha (Neuroendocrine sodium channel) (hNE-Na) (Peripheral sodium channel 1) (PN1) (Sodium channel protein type IX subunit alpha) (Voltage-gated sodium channel subunit alpha Nav1.7)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SYNE1",
+      "accession": "Q8NF91",
+      "entry_type": "reviewed",
+      "protein_name": "Nesprin-1 (Enaptin) (KASH domain-containing protein 1) (KASH1) (Myocyte nuclear envelope protein 1) (Myne-1) (Nuclear envelope spectrin repeat protein 1) (Synaptic nuclear envelope protein 1) (Syne-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "VCL",
+      "accession": "P18206",
+      "entry_type": "reviewed",
+      "protein_name": "Vinculin (Metavinculin) (MV)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SAMD4A",
+      "accession": "Q9UPU9",
+      "entry_type": "reviewed",
+      "protein_name": "Protein Smaug homolog 1 (Smaug 1) (hSmaug1) (Sterile alpha motif domain-containing protein 4A) (SAM domain-containing protein 4A)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MYO10",
+      "accession": "Q9HD67",
+      "entry_type": "reviewed",
+      "protein_name": "Unconventional myosin-X (Unconventional myosin-10)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TRHDE",
+      "accession": "Q9UKU6",
+      "entry_type": "reviewed",
+      "protein_name": "Thyrotropin-releasing hormone-degrading ectoenzyme (TRH-DE) (TRH-degrading ectoenzyme) (EC 3.4.19.6) (Pyroglutamyl-peptidase II) (PAP-II) (TRH-specific aminopeptidase) (Thyroliberinase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SMYD3",
+      "accession": "Q9H7B4",
+      "entry_type": "reviewed",
+      "protein_name": "Histone-lysine N-methyltransferase SMYD3 (EC 2.1.1.354) (SET and MYND domain-containing protein 3) (Zinc finger MYND domain-containing protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SRGAP1",
+      "accession": "Q7Z6B7",
+      "entry_type": "reviewed",
+      "protein_name": "SLIT-ROBO Rho GTPase-activating protein 1 (srGAP1) (Rho GTPase-activating protein 13)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PTPRG",
+      "accession": "P23470",
+      "entry_type": "reviewed",
+      "protein_name": "Receptor-type tyrosine-protein phosphatase gamma (Protein-tyrosine phosphatase gamma) (R-PTP-gamma) (EC 3.1.3.48)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRR16",
+      "accession": "Q569H4",
+      "entry_type": "reviewed",
+      "protein_name": "Protein Largen (Mesenchymal stem cell protein DSC54) (Proline-rich protein 16)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GAS6",
+      "accession": "Q14393",
+      "entry_type": "reviewed",
+      "protein_name": "Growth arrest-specific protein 6 (GAS-6) (AXL receptor tyrosine kinase ligand)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RAI14",
+      "accession": "Q9P0K7",
+      "entry_type": "reviewed",
+      "protein_name": "Ankycorbin (Ankyrin repeat and coiled-coil structure-containing protein) (Novel retinal pigment epithelial cell protein) (Retinoic acid-induced protein 14)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PALM2-AKAP2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CD44",
+      "accession": "P16070",
+      "entry_type": "reviewed",
+      "protein_name": "CD44 antigen (CDw44) (Epican) (Extracellular matrix receptor III) (ECMR-III) (GP90 lymphocyte homing/adhesion receptor) (HUTCH-I) (Heparan sulfate proteoglycan) (Hermes antigen) (Hyaluronate receptor) (Phagocytic glycoprotein 1) (PGP-1) (Phagocytic glycoprotein I) (PGP-I) (CD antigen CD44)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDK6",
+      "accession": "Q00534",
+      "entry_type": "reviewed",
+      "protein_name": "Cyclin-dependent kinase 6 (EC 2.7.11.22) (Cell division protein kinase 6) (Serine/threonine-protein kinase PLSTIRE)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MIR222HG",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FTX",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ITGA2",
+      "accession": "P17301",
+      "entry_type": "reviewed",
+      "protein_name": "Integrin alpha-2 (CD49 antigen-like family member B) (Collagen receptor) (Platelet membrane glycoprotein Ia) (GPIa) (VLA-2 subunit alpha) (CD antigen CD49b)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GLIS3",
+      "accession": "Q8NEA6",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein GLIS3 (GLI-similar 3) (Zinc finger protein 515)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KLF12",
+      "accession": "Q9Y4X4",
+      "entry_type": "reviewed",
+      "protein_name": "Krueppel-like factor 12 (Transcriptional repressor AP-2rep)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NAV2",
+      "accession": "Q8IVL1",
+      "entry_type": "reviewed",
+      "protein_name": "Neuron navigator 2 (EC 3.6.4.12) (Helicase APC down-regulated 1) (Pore membrane and/or filament-interacting-like protein 2) (Retinoic acid inducible in neuroblastoma 1) (Steerin-2) (Unc-53 homolog 2) (unc53H2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GBE1",
+      "accession": "Q04446",
+      "entry_type": "reviewed",
+      "protein_name": "1,4-alpha-glucan-branching enzyme (EC 2.4.1.18) (Brancher enzyme) (Glycogen-branching enzyme)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DIAPH2",
+      "accession": "O60879",
+      "entry_type": "reviewed",
+      "protein_name": "Protein diaphanous homolog 2 (Diaphanous-related formin-2) (DRF2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KLF7",
+      "accession": "O75840",
+      "entry_type": "reviewed",
+      "protein_name": "Krueppel-like factor 7 (Ubiquitous krueppel-like factor)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MEIS1",
+      "accession": "O00470",
+      "entry_type": "reviewed",
+      "protein_name": "Homeobox protein Meis1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IMMP2L",
+      "accession": "Q96T52",
+      "entry_type": "reviewed",
+      "protein_name": "Mitochondrial inner membrane protease subunit 2 (EC 3.4.21.-) (IMP2-like protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ELL2",
+      "accession": "O00472",
+      "entry_type": "reviewed",
+      "protein_name": "RNA polymerase II elongation factor ELL2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CPED1",
+      "accession": "A4D0V7",
+      "entry_type": "reviewed",
+      "protein_name": "Cadherin-like and PC-esterase domain-containing protein 1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IGF1R",
+      "accession": "P08069",
+      "entry_type": "reviewed",
+      "protein_name": "Insulin-like growth factor 1 receptor (EC 2.7.10.1) (Insulin-like growth factor I receptor) (IGF-I receptor) (CD antigen CD221) [Cleaved into: Insulin-like growth factor 1 receptor alpha chain; Insulin-like growth factor 1 receptor beta chain]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARID5B",
+      "accession": "Q14865",
+      "entry_type": "reviewed",
+      "protein_name": "AT-rich interactive domain-containing protein 5B (ARID domain-containing protein 5B) (MRF1-like protein) (Modulator recognition factor 2) (MRF-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MIR100HG",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ASPH",
+      "accession": "Q12797",
+      "entry_type": "reviewed",
+      "protein_name": "Aspartyl/asparaginyl beta-hydroxylase (EC 1.14.11.16) (Aspartate beta-hydroxylase) (ASP beta-hydroxylase) (Peptide-aspartate beta-dioxygenase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TANC2",
+      "accession": "Q9HCD6",
+      "entry_type": "reviewed",
+      "protein_name": "Protein TANC2 (Tetratricopeptide repeat, ankyrin repeat and coiled-coil domain-containing protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DOCK10",
+      "accession": "Q96BY6",
+      "entry_type": "reviewed",
+      "protein_name": "Dedicator of cytokinesis protein 10 (Zizimin-3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL5A2",
+      "accession": "P05997",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-2(V) chain",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FARP1",
+      "accession": "Q9Y4F1",
+      "entry_type": "reviewed",
+      "protein_name": "FERM, ARHGEF and pleckstrin domain-containing protein 1 (Chondrocyte-derived ezrin-like protein) (FERM, RhoGEF and pleckstrin domain-containing protein 1) (Pleckstrin homology domain-containing family C member 2) (PH domain-containing family C member 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PDGFC",
+      "accession": "Q9NRA1",
+      "entry_type": "reviewed",
+      "protein_name": "Platelet-derived growth factor C (PDGF-C) (Fallotein) (Spinal cord-derived growth factor) (SCDGF) (VEGF-E) [Cleaved into: Platelet-derived growth factor C, latent form (PDGFC latent form); Platelet-derived growth factor C, receptor-binding form (PDGFC receptor-binding form)]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SEPTIN11",
+      "accession": "Q9NVA2",
+      "entry_type": "reviewed",
+      "protein_name": "Septin-11",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDH6",
+      "accession": "P55285",
+      "entry_type": "reviewed",
+      "protein_name": "Cadherin-6 (Kidney cadherin) (K-cadherin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAML2",
+      "accession": "Q8IZL2",
+      "entry_type": "reviewed",
+      "protein_name": "Mastermind-like protein 2 (Mam-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MGAT5",
+      "accession": "Q09328",
+      "entry_type": "reviewed",
+      "protein_name": "Alpha-1,6-mannosylglycoprotein 6-beta-N-acetylglucosaminyltransferase A (EC 2.4.1.155) (Alpha-mannoside beta-1,6-N-acetylglucosaminyltransferase V) (GlcNAc-T V) (GNT-V) (Mannoside acetylglucosaminyltransferase 5) (N-acetylglucosaminyl-transferase V) [Cleaved into: Secreted alpha-1,6-mannosylglycoprotein 6-beta-N-acetylglucosaminyltransferase A (Secreted beta-1,6-N-acetylglucosaminyltransferase V) (Secreted GNT-V)]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FNDC3B",
+      "accession": "Q53EP0",
+      "entry_type": "reviewed",
+      "protein_name": "Fibronectin type III domain-containing protein 3B (Factor for adipocyte differentiation 104) (HCV NS5A-binding protein 37)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ITGB1",
+      "accession": "P05556",
+      "entry_type": "reviewed",
+      "protein_name": "Integrin beta-1 (Fibronectin receptor subunit beta) (Glycoprotein IIa) (GPIIA) (VLA-4 subunit beta) (CD antigen CD29)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATP8B1",
+      "accession": "O43520",
+      "entry_type": "reviewed",
+      "protein_name": "Phospholipid-transporting ATPase IC (EC 7.6.2.1) (ATPase class I type 8B member 1) (Familial intrahepatic cholestasis type 1) (P4-ATPase flippase complex alpha subunit ATP8B1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SNHG14",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TLE4",
+      "accession": "Q04727",
+      "entry_type": "reviewed",
+      "protein_name": "Transducin-like enhancer protein 4 (Grg-4) (Groucho-related protein 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RBPMS",
+      "accession": "Q93062",
+      "entry_type": "reviewed",
+      "protein_name": "RNA-binding protein with multiple splicing (RBP-MS) (RBPMS) (Heart and RRM expressed sequence) (Hermes)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ASAP1",
+      "accession": "Q9ULH1",
+      "entry_type": "reviewed",
+      "protein_name": "Arf-GAP with SH3 domain, ANK repeat and PH domain-containing protein 1 (130 kDa phosphatidylinositol 4,5-bisphosphate-dependent ARF1 GTPase-activating protein) (ADP-ribosylation factor-directed GTPase-activating protein 1) (ARF GTPase-activating protein 1) (Development and differentiation-enhancing factor 1) (DEF-1) (Differentiation-enhancing factor 1) (PIP2-dependent ARF1 GAP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "WNT5B",
+      "accession": "Q9H1J7",
+      "entry_type": "reviewed",
+      "protein_name": "Protein Wnt-5b",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FBXL7",
+      "accession": "Q9UJT9",
+      "entry_type": "reviewed",
+      "protein_name": "F-box/LRR-repeat protein 7 (F-box and leucine-rich repeat protein 7) (F-box protein FBL6/FBL7)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MBD5",
+      "accession": "Q9P267",
+      "entry_type": "reviewed",
+      "protein_name": "Methyl-CpG-binding domain protein 5 (Methyl-CpG-binding protein MBD5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PVT1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-CO3",
+      "accession": "P00414",
+      "entry_type": "reviewed",
+      "protein_name": "Cytochrome c oxidase subunit 3 (EC 7.1.1.9) (Cytochrome c oxidase polypeptide III)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "HIPK2",
+      "accession": "Q9H2X6",
+      "entry_type": "reviewed",
+      "protein_name": "Homeodomain-interacting protein kinase 2 (hHIPk2) (EC 2.7.11.1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NABP1",
+      "accession": "Q96AH0",
+      "entry_type": "reviewed",
+      "protein_name": "SOSS complex subunit B2 (Nucleic acid-binding protein 1) (Oligonucleotide/oligosaccharide-binding fold-containing protein 2A) (Sensor of single-strand DNA complex subunit B2) (Sensor of ssDNA subunit B2) (SOSS-B2) (Single-stranded DNA-binding protein 2) (hSSB2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZBTB20",
+      "accession": "Q9HC78",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger and BTB domain-containing protein 20 (Dendritic-derived BTB/POZ zinc finger protein) (Zinc finger protein 288)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BNC2",
+      "accession": "Q6ZN30",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein basonuclin-2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AC073114.1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TTC28",
+      "accession": "Q96AY4",
+      "entry_type": "reviewed",
+      "protein_name": "Tetratricopeptide repeat protein 28 (TPR repeat protein 28) (TPR repeat-containing big gene cloned at Keio)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ENAH",
+      "accession": "Q8N8S7",
+      "entry_type": "reviewed",
+      "protein_name": "Protein enabled homolog",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MACF1",
+      "accession": "Q9UPN3",
+      "entry_type": "reviewed",
+      "protein_name": "Microtubule-actin cross-linking factor 1, isoforms 1/2/3/4/5 (620 kDa actin-binding protein) (ABP620) (Actin cross-linking family protein 7) (Macrophin-1) (Trabeculin-alpha)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BICC1",
+      "accession": "Q9H694",
+      "entry_type": "reviewed",
+      "protein_name": "Protein bicaudal C homolog 1 (Bic-C)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RASAL2",
+      "accession": "Q9UJF2",
+      "entry_type": "reviewed",
+      "protein_name": "Ras GTPase-activating protein nGAP (RAS protein activator-like 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MIR31HG",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARSJ",
+      "accession": "Q5FYB0",
+      "entry_type": "reviewed",
+      "protein_name": "Arylsulfatase J (ASJ) (EC 3.1.6.-)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZSWIM6",
+      "accession": "Q9HCJ5",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger SWIM domain-containing protein 6",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PTPRM",
+      "accession": "P28827",
+      "entry_type": "reviewed",
+      "protein_name": "Receptor-type tyrosine-protein phosphatase mu (Protein-tyrosine phosphatase mu) (R-PTP-mu) (EC 3.1.3.48)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IGF2BP2",
+      "accession": "Q9Y6M1",
+      "entry_type": "reviewed",
+      "protein_name": "Insulin-like growth factor 2 mRNA-binding protein 2 (IGF2 mRNA-binding protein 2) (IMP-2) (Hepatocellular carcinoma autoantigen p62) (IGF-II mRNA-binding protein 2) (VICKZ family member 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ASCC3",
+      "accession": "Q8N3C0",
+      "entry_type": "reviewed",
+      "protein_name": "Activating signal cointegrator 1 complex subunit 3 (EC 5.6.2.4) (ASC-1 complex subunit p200) (ASC1p200) (Helicase, ATP binding 1) (Trip4 complex subunit p200)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MYH9",
+      "accession": "P35579",
+      "entry_type": "reviewed",
+      "protein_name": "Myosin-9 (Cellular myosin heavy chain, type A) (Myosin heavy chain 9) (Myosin heavy chain, non-muscle IIa) (Non-muscle myosin heavy chain A) (NMMHC-A) (Non-muscle myosin heavy chain IIa) (NMMHC II-a) (NMMHC-IIA)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SEMA6D",
+      "accession": "Q8NFY4",
+      "entry_type": "reviewed",
+      "protein_name": "Semaphorin-6D",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SEMA3A",
+      "accession": "Q14563",
+      "entry_type": "reviewed",
+      "protein_name": "Semaphorin-3A (Semaphorin III) (Sema III)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EXOC6B",
+      "accession": "Q9Y2D4",
+      "entry_type": "reviewed",
+      "protein_name": "Exocyst complex component 6B (Exocyst complex component Sec15B) (SEC15-like protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GLS",
+      "accession": "O94925",
+      "entry_type": "reviewed",
+      "protein_name": "Glutaminase kidney isoform, mitochondrial (GLS) (EC 3.5.1.2) (K-glutaminase) (L-glutamine amidohydrolase) [Cleaved into: Glutaminase kidney isoform, mitochondrial 68 kDa chain; Glutaminase kidney isoform, mitochondrial 65 kDa chain]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DIAPH3",
+      "accession": "Q9NSV4",
+      "entry_type": "reviewed",
+      "protein_name": "Protein diaphanous homolog 3 (Diaphanous-related formin-3) (DRF3) (MDia2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SIPA1L1",
+      "accession": "O43166",
+      "entry_type": "reviewed",
+      "protein_name": "Signal-induced proliferation-associated 1-like protein 1 (SIPA1-like protein 1) (High-risk human papilloma viruses E6 oncoproteins targeted protein 1) (E6-targeted protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ACTN1",
+      "accession": "P12814",
+      "entry_type": "reviewed",
+      "protein_name": "Alpha-actinin-1 (Alpha-actinin cytoskeletal isoform) (F-actin cross-linking protein) (Non-muscle alpha-actinin-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EGFR",
+      "accession": "P00533",
+      "entry_type": "reviewed",
+      "protein_name": "Epidermal growth factor receptor (EC 2.7.10.1) (Proto-oncogene c-ErbB-1) (Receptor tyrosine-protein kinase erbB-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANGPT1",
+      "accession": "Q15389",
+      "entry_type": "reviewed",
+      "protein_name": "Angiopoietin-1 (ANG-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EPB41L2",
+      "accession": "O43491",
+      "entry_type": "reviewed",
+      "protein_name": "Band 4.1-like protein 2 (Erythrocyte membrane protein band 4.1-like 2) (Generally expressed protein 4.1) (4.1G)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IGF2BP3",
+      "accession": "O00425",
+      "entry_type": "reviewed",
+      "protein_name": "Insulin-like growth factor 2 mRNA-binding protein 3 (IGF2 mRNA-binding protein 3) (IMP-3) (IGF-II mRNA-binding protein 3) (KH domain-containing protein overexpressed in cancer) (hKOC) (VICKZ family member 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PDZRN3",
+      "accession": "Q9UPQ7",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase PDZRN3 (EC 2.3.2.27) (Ligand of Numb protein X 3) (PDZ domain-containing RING finger protein 3) (RING-type E3 ubiquitin transferase PDZRN3) (Semaphorin cytoplasmic domain-associated protein 3) (Protein SEMACAP3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FOXN3",
+      "accession": "O00409",
+      "entry_type": "reviewed",
+      "protein_name": "Forkhead box protein N3 (Checkpoint suppressor 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KCNMA1",
+      "accession": "Q12791",
+      "entry_type": "reviewed",
+      "protein_name": "Calcium-activated potassium channel subunit alpha-1 (BK channel) (BKCA alpha) (Calcium-activated potassium channel, subfamily M subunit alpha-1) (K(VCA)alpha) (KCa1.1) (Maxi K channel) (MaxiK) (Slo-alpha) (Slo1) (Slowpoke homolog) (Slo homolog) (hSlo)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FOXP1",
+      "accession": "Q9H334",
+      "entry_type": "reviewed",
+      "protein_name": "Forkhead box protein P1 (Mac-1-regulated forkhead) (MFH)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAML3",
+      "accession": "Q96JK9",
+      "entry_type": "reviewed",
+      "protein_name": "Mastermind-like protein 3 (Mam-3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "VPS13B",
+      "accession": "Q7Z7G8",
+      "entry_type": "reviewed",
+      "protein_name": "Intermembrane lipid transfer protein VPS13B (Cohen syndrome protein 1) (Vacuolar protein sorting-associated protein 13B)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PAM",
+      "accession": "O75592",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase MYCBP2 (EC 2.3.2.33) (Myc-binding protein 2) (Protein associated with Myc)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RANBP17",
+      "accession": "Q9H2T7",
+      "entry_type": "reviewed",
+      "protein_name": "Ran-binding protein 17",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KLHL5",
+      "accession": "Q96PQ7",
+      "entry_type": "reviewed",
+      "protein_name": "Kelch-like protein 5",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RTN4",
+      "accession": "Q9NQC3",
+      "entry_type": "reviewed",
+      "protein_name": "Reticulon-4 (Foocen) (Neurite outgrowth inhibitor) (Nogo protein) (Neuroendocrine-specific protein) (NSP) (Neuroendocrine-specific protein C homolog) (RTN-x) (Reticulon-5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TNS3",
+      "accession": "Q68CZ2",
+      "entry_type": "reviewed",
+      "protein_name": "Tensin-3 (EC 3.1.3.-) (Tensin-like SH2 domain-containing protein 1) (Tumor endothelial marker 6)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MEG3",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NXN",
+      "accession": "Q6DKJ4",
+      "entry_type": "reviewed",
+      "protein_name": "Nucleoredoxin (EC 1.8.1.8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SLC4A7",
+      "accession": "Q9Y6M7",
+      "entry_type": "reviewed",
+      "protein_name": "Sodium bicarbonate cotransporter 3 (Electroneutral Na/HCO(3) cotransporter) (Sodium bicarbonate cotransporter 2) (Sodium bicarbonate cotransporter 2b) (Bicarbonate transporter) (Solute carrier family 4 member 7)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EXT1",
+      "accession": "Q16394",
+      "entry_type": "reviewed",
+      "protein_name": "Exostosin-1 (EC 2.4.1.225) (Exostosin glycosyltransferase 1) (Heparan sulfate co-polymerase subunit EXT1) (Multiple exostoses protein 1) (N-acetylglucosaminyl-proteoglycan 4-beta-glucuronosyltransferase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FAT1",
+      "accession": "Q14517",
+      "entry_type": "reviewed",
+      "protein_name": "Protocadherin Fat 1 (Cadherin family member 7) (Cadherin-related tumor suppressor homolog) (Protein fat homolog) [Cleaved into: Protocadherin Fat 1, nuclear form]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LPP",
+      "accession": "Q93052",
+      "entry_type": "reviewed",
+      "protein_name": "Lipoma-preferred partner (LIM domain-containing preferred translocation partner in lipoma)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BACH1",
+      "accession": "O14867",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription regulator protein BACH1 (BTB and CNC homolog 1) (HA2303)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STAG1",
+      "accession": "Q8WVM7",
+      "entry_type": "reviewed",
+      "protein_name": "Cohesin subunit SA-1 (SCC3 homolog 1) (Stromal antigen 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PEAK1",
+      "accession": "Q9H792",
+      "entry_type": "reviewed",
+      "protein_name": "Inactive tyrosine-protein kinase PEAK1 (Pseudopodium-enriched atypical kinase 1) (Sugen kinase 269) (Tyrosine-protein kinase SgK269)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATP2B4",
+      "accession": "P23634",
+      "entry_type": "reviewed",
+      "protein_name": "Plasma membrane calcium-transporting ATPase 4 (PMCA4) (EC 7.2.2.10) (Matrix-remodeling-associated protein 1) (Plasma membrane calcium ATPase isoform 4) (Plasma membrane calcium pump isoform 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ADK",
+      "accession": "P55263",
+      "entry_type": "reviewed",
+      "protein_name": "Adenosine kinase (AK) (EC 2.7.1.20) (Adenosine 5'-phosphotransferase) (N6,N6-dimethyladenosine kinase) (EC 2.7.1.-) (N6-isopentenyladenosine kinase) (EC 2.7.1.-) (N6-methyladenosine kinase) (EC 2.7.1.-)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GSE1",
+      "accession": "Q14687",
+      "entry_type": "reviewed",
+      "protein_name": "Genetic suppressor element 1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PICALM",
+      "accession": "Q13492",
+      "entry_type": "reviewed",
+      "protein_name": "Phosphatidylinositol-binding clathrin assembly protein (Clathrin assembly lymphoid myeloid leukemia protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NLK",
+      "accession": "Q9UBE8",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase NLK (EC 2.7.11.24) (Nemo-like kinase) (Protein LAK1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PLCB1",
+      "accession": "Q9NQ66",
+      "entry_type": "reviewed",
+      "protein_name": "1-phosphatidylinositol 4,5-bisphosphate phosphodiesterase beta-1 (EC 3.1.4.11) (PLC-154) (Phosphoinositide phospholipase C-beta-1) (Phospholipase C-I) (PLC-I) (Phospholipase C-beta-1) (PLC-beta-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZFAND3",
+      "accession": "Q9H8U3",
+      "entry_type": "reviewed",
+      "protein_name": "AN1-type zinc finger protein 3 (Testis-expressed protein 27)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CORO1C",
+      "accession": "Q9ULV4",
+      "entry_type": "reviewed",
+      "protein_name": "Coronin-1C (Coronin-3) (hCRNN4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TSC22D1",
+      "accession": "Q15714",
+      "entry_type": "reviewed",
+      "protein_name": "TSC22 domain family protein 1 (Cerebral protein 2) (HUCEP-2) (Regulatory protein TSC-22) (TGFB-stimulated clone 22 homolog) (Transforming growth factor beta-1-induced transcript 4 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TEAD1",
+      "accession": "P28347",
+      "entry_type": "reviewed",
+      "protein_name": "Transcriptional enhancer factor TEF-1 (NTEF-1) (Protein GT-IIC) (TEA domain family member 1) (TEAD-1) (Transcription factor 13) (TCF-13)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LHFPL6",
+      "accession": "Q9Y693",
+      "entry_type": "reviewed",
+      "protein_name": "LHFPL tetraspan subfamily member 6 protein (Lipoma HMGIC fusion partner)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRIM2",
+      "accession": "P49643",
+      "entry_type": "reviewed",
+      "protein_name": "DNA primase large subunit (DNA primase 58 kDa subunit) (p58)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UBE2E2",
+      "accession": "Q96LR5",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin-conjugating enzyme E2 E2 (EC 2.3.2.23) (E2 ubiquitin-conjugating enzyme E2) (UbcH8) (Ubiquitin carrier protein E2) (Ubiquitin-protein ligase E2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PTK2",
+      "accession": "Q05397",
+      "entry_type": "reviewed",
+      "protein_name": "Focal adhesion kinase 1 (FADK 1) (EC 2.7.10.2) (Focal adhesion kinase-related nonkinase) (FRNK) (Protein phosphatase 1 regulatory subunit 71) (PPP1R71) (Protein-tyrosine kinase 2) (p125FAK) (pp125FAK)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MSC-AS1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SH3RF3",
+      "accession": "Q8TEJ3",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase SH3RF3 (EC 2.3.2.27) (Plenty of SH3s 2) (SH3 domain-containing RING finger protein 3) (SH3 multiple domains protein 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAP4",
+      "accession": "P27816",
+      "entry_type": "reviewed",
+      "protein_name": "Microtubule-associated protein 4 (MAP-4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RBMS1",
+      "accession": "P29558",
+      "entry_type": "reviewed",
+      "protein_name": "RNA-binding motif, single-stranded-interacting protein 1 (Single-stranded DNA-binding protein MSSP-1) (Suppressor of CDC2 with RNA-binding motif 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEK7",
+      "accession": "Q8TDX7",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase Nek7 (EC 2.7.11.34) (Never in mitosis A-related kinase 7) (NimA-related protein kinase 7)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-ND2",
+      "accession": "P03891",
+      "entry_type": "reviewed",
+      "protein_name": "NADH-ubiquinone oxidoreductase chain 2 (EC 7.1.1.2) (NADH dehydrogenase subunit 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SBF2",
+      "accession": "Q86WG5",
+      "entry_type": "reviewed",
+      "protein_name": "Myotubularin-related protein 13 (Inactive phosphatidylinositol 3-phosphatase 13) (SET-binding factor 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RIN2",
+      "accession": "Q8WYP3",
+      "entry_type": "reviewed",
+      "protein_name": "Ras and Rab interactor 2 (Ras association domain family 4) (Ras inhibitor JC265) (Ras interaction/interference protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CCDC50",
+      "accession": "Q8IVM0",
+      "entry_type": "reviewed",
+      "protein_name": "Coiled-coil domain-containing protein 50 (Protein Ymer)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AGAP1",
+      "accession": "Q9UPQ3",
+      "entry_type": "reviewed",
+      "protein_name": "Arf-GAP with GTPase, ANK repeat and PH domain-containing protein 1 (AGAP-1) (Centaurin-gamma-2) (Cnt-g2) (GTP-binding and GTPase-activating protein 1) (GGAP1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARHGAP10",
+      "accession": "A1A4S6",
+      "entry_type": "reviewed",
+      "protein_name": "Rho GTPase-activating protein 10 (GTPase regulator associated with focal adhesion kinase 2) (GRAF2) (Graf-related protein 2) (Rho-type GTPase-activating protein 10)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GLI2",
+      "accession": "P10070",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription activator GLI2 (GLI family zinc finger protein 2) (Tax helper protein) [Cleaved into: Transcription repressor GLI2R]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SCFD2",
+      "accession": "Q8WU76",
+      "entry_type": "reviewed",
+      "protein_name": "Sec1 family domain-containing protein 2 (Syntaxin-binding protein 1-like 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UTRN",
+      "accession": "P46939",
+      "entry_type": "reviewed",
+      "protein_name": "Utrophin (Dystrophin-related protein 1) (DRP-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "JAZF1",
+      "accession": "Q86VZ6",
+      "entry_type": "reviewed",
+      "protein_name": "Juxtaposed with another zinc finger protein 1 (TAK1-interacting protein 27) (Zinc finger protein 802)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LIMS1",
+      "accession": "P48059",
+      "entry_type": "reviewed",
+      "protein_name": "LIM and senescent cell antigen-like-containing domain protein 1 (Particularly interesting new Cys-His protein 1) (PINCH-1) (Renal carcinoma antigen NY-REN-48)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MYOF",
+      "accession": "Q9NZM1",
+      "entry_type": "reviewed",
+      "protein_name": "Myoferlin (Fer-1-like protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GPR176",
+      "accession": "Q14439",
+      "entry_type": "reviewed",
+      "protein_name": "G protein-coupled receptor 176 (HB-954)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAP4K4",
+      "accession": "O95819",
+      "entry_type": "reviewed",
+      "protein_name": "Mitogen-activated protein kinase kinase kinase kinase 4 (EC 2.7.11.1) (HPK/GCK-like kinase HGK) (MAPK/ERK kinase kinase kinase 4) (MEK kinase kinase 4) (MEKKK 4) (Nck-interacting kinase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MICAL2",
+      "accession": "O94851",
+      "entry_type": "reviewed",
+      "protein_name": "[F-actin]-monooxygenase MICAL2 (EC 1.14.13.225) (MICAL C-terminal-like protein) (Mical-cL) (Molecule interacting with CasL protein 2) (MICAL-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAP1B",
+      "accession": "P46821",
+      "entry_type": "reviewed",
+      "protein_name": "Microtubule-associated protein 1B (MAP-1B) [Cleaved into: MAP1B heavy chain; MAP1 light chain LC1]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FBN1",
+      "accession": "P35555",
+      "entry_type": "reviewed",
+      "protein_name": "Fibrillin-1 [Cleaved into: Asprosin]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RIC1",
+      "accession": "Q4ADV7",
+      "entry_type": "reviewed",
+      "protein_name": "Guanine nucleotide exchange factor subunit RIC1 (Connexin-43-interacting protein of 150 kDa) (Protein RIC1 homolog) (RAB6A-GEF complex partner protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ERBIN",
+      "accession": "Q96RT1",
+      "entry_type": "reviewed",
+      "protein_name": "Erbin (Densin-180-like protein) (Erbb2-interacting protein) (Protein LAP2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MIR4435-2HG",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EVI5",
+      "accession": "O60447",
+      "entry_type": "reviewed",
+      "protein_name": "Ecotropic viral integration site 5 protein homolog (EVI-5) (Neuroblastoma stage 4S gene protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RUNX1",
+      "accession": "Q01196",
+      "entry_type": "reviewed",
+      "protein_name": "Runt-related transcription factor 1 (Acute myeloid leukemia 1 protein) (Core-binding factor subunit alpha-2) (CBF-alpha-2) (Oncogene AML-1) (Polyomavirus enhancer-binding protein 2 alpha B subunit) (PEA2-alpha B) (PEBP2-alpha B) (SL3-3 enhancer factor 1 alpha B subunit) (SL3/AKV core-binding factor alpha B subunit)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EIF4G3",
+      "accession": "O43432",
+      "entry_type": "reviewed",
+      "protein_name": "Eukaryotic translation initiation factor 4 gamma 3 (eIF-4-gamma 3) (eIF-4G 3) (eIF4G 3) (eIF-4-gamma II) (eIF4GII)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NTM",
+      "accession": "Q9P121",
+      "entry_type": "reviewed",
+      "protein_name": "Neurotrimin (hNT) (IgLON family member 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BIRC6",
+      "accession": "Q9NR09",
+      "entry_type": "reviewed",
+      "protein_name": "Dual E2 ubiquitin-conjugating enzyme/E3 ubiquitin-protein ligase BIRC6 (EC 2.3.2.24) (BIR repeat-containing ubiquitin-conjugating enzyme) (BRUCE) (Baculoviral IAP repeat-containing protein 6) (Ubiquitin-conjugating BIR domain enzyme apollon) (APOLLON)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AKT3",
+      "accession": "Q9Y243",
+      "entry_type": "reviewed",
+      "protein_name": "RAC-gamma serine/threonine-protein kinase (EC 2.7.11.1) (Protein kinase Akt-3) (Protein kinase B gamma) (PKB gamma) (RAC-PK-gamma) (STK-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SVIL",
+      "accession": "O95425",
+      "entry_type": "reviewed",
+      "protein_name": "Supervillin (Archvillin) (p205/p250)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SND1",
+      "accession": "Q7KZF4",
+      "entry_type": "reviewed",
+      "protein_name": "Staphylococcal nuclease domain-containing protein 1 (EC 3.1.31.1) (100 kDa coactivator) (EBNA2 coactivator p100) (Tudor domain-containing protein 11) (p100 co-activator)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FERMT2",
+      "accession": "Q96AC1",
+      "entry_type": "reviewed",
+      "protein_name": "Fermitin family homolog 2 (Kindlin-2) (Mitogen-inducible gene 2 protein) (MIG-2) (Pleckstrin homology domain-containing family C member 1) (PH domain-containing family C member 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MITF",
+      "accession": "O75030",
+      "entry_type": "reviewed",
+      "protein_name": "Microphthalmia-associated transcription factor (Class E basic helix-loop-helix protein 32) (bHLHe32)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "JMJD1C",
+      "accession": "Q15652",
+      "entry_type": "reviewed",
+      "protein_name": "Jumonji domain-containing protein 1C (EC 1.14.11.-) (Thyroid receptor-interacting protein 8) (TR-interacting protein 8) (TRIP-8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TCF12",
+      "accession": "Q99081",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription factor 12 (TCF-12) (Class B basic helix-loop-helix protein 20) (bHLHb20) (DNA-binding protein HTF4) (E-box-binding protein) (Transcription factor HTF-4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MBNL2",
+      "accession": "Q5VZF2",
+      "entry_type": "reviewed",
+      "protein_name": "Muscleblind-like protein 2 (Muscleblind-like protein 1) (Muscleblind-like protein-like) (Muscleblind-like protein-like 39)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEO1",
+      "accession": "Q92859",
+      "entry_type": "reviewed",
+      "protein_name": "Neogenin (Immunoglobulin superfamily DCC subclass member 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDH11",
+      "accession": "P55287",
+      "entry_type": "reviewed",
+      "protein_name": "Cadherin-11 (OSF-4) (Osteoblast cadherin) (OB-cadherin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RERE",
+      "accession": "Q9P2R6",
+      "entry_type": "reviewed",
+      "protein_name": "Arginine-glutamic acid dipeptide repeats protein (Atrophin-1-like protein) (Atrophin-1-related protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FCHSD2",
+      "accession": "O94868",
+      "entry_type": "reviewed",
+      "protein_name": "F-BAR and double SH3 domains protein 2 (Carom) (Protein nervous wreck 1) (NWK1) (SH3 multiple domains protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NAV1",
+      "accession": "Q8NEY1",
+      "entry_type": "reviewed",
+      "protein_name": "Neuron navigator 1 (Pore membrane and/or filament-interacting-like protein 3) (Steerin-1) (Unc-53 homolog 1) (unc53H1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EXOC4",
+      "accession": "Q96A65",
+      "entry_type": "reviewed",
+      "protein_name": "Exocyst complex component 4 (Exocyst complex component Sec8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PSD3",
+      "accession": "Q9NYI0",
+      "entry_type": "reviewed",
+      "protein_name": "PH and SEC7 domain-containing protein 3 (Epididymis tissue protein Li 20mP) (Exchange factor for ADP-ribosylation factor guanine nucleotide factor 6 D) (Exchange factor for ARF6 D) (Hepatocellular carcinoma-associated antigen 67) (Pleckstrin homology and SEC7 domain-containing protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TRIO",
+      "accession": "O75962",
+      "entry_type": "reviewed",
+      "protein_name": "Triple functional domain protein (EC 2.7.11.1) (PTPRF-interacting protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CTIF",
+      "accession": "O43310",
+      "entry_type": "reviewed",
+      "protein_name": "CBP80/20-dependent translation initiation factor",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NF1",
+      "accession": "P21359",
+      "entry_type": "reviewed",
+      "protein_name": "Neurofibromin (Neurofibromatosis-related protein NF-1) [Cleaved into: Neurofibromin truncated]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAN2A1",
+      "accession": "Q16706",
+      "entry_type": "reviewed",
+      "protein_name": "Alpha-mannosidase 2 (EC 3.2.1.114) (Golgi alpha-mannosidase II) (AMan II) (Man II) (Mannosidase alpha class 2A member 1) (Mannosyl-oligosaccharide 1,3-1,6-alpha-mannosidase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CALU",
+      "accession": "O43852",
+      "entry_type": "reviewed",
+      "protein_name": "Calumenin (Crocalbin) (IEF SSP 9302)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TAOK3",
+      "accession": "Q9H2K8",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase TAO3 (EC 2.7.11.1) (Cutaneous T-cell lymphoma-associated antigen HD-CL-09) (CTCL-associated antigen HD-CL-09) (Dendritic cell-derived protein kinase) (JNK/SAPK-inhibitory kinase) (Jun kinase-inhibitory kinase) (Kinase from chicken homolog A) (hKFC-A) (Thousand and one amino acid protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MED13L",
+      "accession": "Q71F56",
+      "entry_type": "reviewed",
+      "protein_name": "Mediator of RNA polymerase II transcription subunit 13-like (Mediator complex subunit 13-like) (Thyroid hormone receptor-associated protein 2) (Thyroid hormone receptor-associated protein complex 240 kDa component-like)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "XYLT1",
+      "accession": "Q86Y38",
+      "entry_type": "reviewed",
+      "protein_name": "Xylosyltransferase 1 (EC 2.4.2.26) (Peptide O-xylosyltransferase 1) (Xylosyltransferase I) (XT-I) (XylT-I)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DOCK1",
+      "accession": "Q14185",
+      "entry_type": "reviewed",
+      "protein_name": "Dedicator of cytokinesis protein 1 (180 kDa protein downstream of CRK) (DOCK180)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DIP2C",
+      "accession": "Q9Y2E4",
+      "entry_type": "reviewed",
+      "protein_name": "Disco-interacting protein 2 homolog C (DIP2 homolog C)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-ND1",
+      "accession": "P03886",
+      "entry_type": "reviewed",
+      "protein_name": "NADH-ubiquinone oxidoreductase chain 1 (EC 7.1.1.2) (NADH dehydrogenase subunit 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CACNA2D1",
+      "accession": "P54289",
+      "entry_type": "reviewed",
+      "protein_name": "Voltage-dependent calcium channel subunit alpha-2/delta-1 (Voltage-gated calcium channel subunit alpha-2/delta-1) [Cleaved into: Voltage-dependent calcium channel subunit alpha-2-1; Voltage-dependent calcium channel subunit delta-1]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "USP53",
+      "accession": "Q70EK8",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin carboxyl-terminal hydrolase 53 (EC 3.4.19.12) (Ubiquitin-specific peptidase 53)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UBR5",
+      "accession": "O95071",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase UBR5 (EC 2.3.2.26) (E3 ubiquitin-protein ligase, HECT domain-containing 1) (Hyperplastic discs protein homolog) (hHYD) (Progestin-induced protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NFAT5",
+      "accession": "O94916",
+      "entry_type": "reviewed",
+      "protein_name": "Nuclear factor of activated T-cells 5 (NF-AT5) (T-cell transcription factor NFAT5) (Tonicity-responsive enhancer-binding protein) (TonE-binding protein) (TonEBP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARID1B",
+      "accession": "Q8NFD5",
+      "entry_type": "reviewed",
+      "protein_name": "AT-rich interactive domain-containing protein 1B (ARID domain-containing protein 1B) (BRG1-associated factor 250b) (BAF250B) (BRG1-binding protein hELD/OSA1) (Osa homolog 2) (hOsa2) (p250R)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MTHFD1L",
+      "accession": "Q6UB35",
+      "entry_type": "reviewed",
+      "protein_name": "Monofunctional C1-tetrahydrofolate synthase, mitochondrial (EC 6.3.4.3) (Formyltetrahydrofolate synthetase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LAMC1",
+      "accession": "P11047",
+      "entry_type": "reviewed",
+      "protein_name": "Laminin subunit gamma-1 (Laminin B2 chain) (Laminin-1 subunit gamma) (Laminin-10 subunit gamma) (Laminin-11 subunit gamma) (Laminin-2 subunit gamma) (Laminin-3 subunit gamma) (Laminin-4 subunit gamma) (Laminin-6 subunit gamma) (Laminin-7 subunit gamma) (Laminin-8 subunit gamma) (Laminin-9 subunit gamma) (S-laminin subunit gamma) (S-LAM gamma)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZNF407",
+      "accession": "Q9C0G0",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein 407",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARHGEF12",
+      "accession": "Q9NZN5",
+      "entry_type": "reviewed",
+      "protein_name": "Rho guanine nucleotide exchange factor 12 (Leukemia-associated RhoGEF)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ETV6",
+      "accession": "P41212",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription factor ETV6 (ETS translocation variant 6) (ETS-related protein Tel1) (Tel)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATP10A",
+      "accession": "O60312",
+      "entry_type": "reviewed",
+      "protein_name": "Phospholipid-transporting ATPase VA (EC 7.6.2.1) (ATPase class V type 10A) (Aminophospholipid translocase VA) (P4-ATPase flippase complex alpha subunit ATP10A)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BCAT1",
+      "accession": "P54687",
+      "entry_type": "reviewed",
+      "protein_name": "Branched-chain-amino-acid aminotransferase, cytosolic (BCAT(c)) (EC 2.6.1.42)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TBL1XR1",
+      "accession": "Q9BZK7",
+      "entry_type": "reviewed",
+      "protein_name": "F-box-like/WD repeat-containing protein TBL1XR1 (Nuclear receptor corepressor/HDAC3 complex subunit TBLR1) (TBL1-related protein 1) (Transducin beta-like 1X-related protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANKRD17",
+      "accession": "O75179",
+      "entry_type": "reviewed",
+      "protein_name": "Ankyrin repeat domain-containing protein 17 (Gene trap ankyrin repeat protein) (Serologically defined breast cancer antigen NY-BR-16)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SPATS2L",
+      "accession": "Q9NUQ6",
+      "entry_type": "reviewed",
+      "protein_name": "SPATS2-like protein (DNA polymerase-transactivated protein 6) (Stress granule and nucleolar protein) (SGNP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "OSBPL3",
+      "accession": "Q9H4L5",
+      "entry_type": "reviewed",
+      "protein_name": "Oxysterol-binding protein-related protein 3 (ORP-3) (OSBP-related protein 3) (Phosphoinositide transfer protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANKRD28",
+      "accession": "O15084",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein phosphatase 6 regulatory ankyrin repeat subunit A (PP6-ARS-A) (Serine/threonine-protein phosphatase 6 regulatory subunit ARS-A) (Ankyrin repeat domain-containing protein 28) (Phosphatase interactor targeting protein hnRNP K) (PITK)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RABGAP1L",
+      "accession": "Q5R372",
+      "entry_type": "reviewed",
+      "protein_name": "Rab GTPase-activating protein 1-like",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PARD3",
+      "accession": "Q8TEW0",
+      "entry_type": "reviewed",
+      "protein_name": "Partitioning defective 3 homolog (PAR-3) (PARD-3) (Atypical PKC isotype-specific-interacting protein) (ASIP) (CTCL tumor antigen se2-5) (PAR3-alpha)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "OXR1",
+      "accession": "O43613",
+      "entry_type": "reviewed",
+      "protein_name": "Orexin/Hypocretin receptor type 1 (Hypocretin receptor type 1) (Orexin receptor type 1) (Ox-1-R) (Ox1-R) (Ox1R)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RBFOX2",
+      "accession": "O43251",
+      "entry_type": "reviewed",
+      "protein_name": "RNA binding protein fox-1 homolog 2 (Fox-1 homolog B) (Hexaribonucleotide-binding protein 2) (RNA-binding motif protein 9) (RNA-binding protein 9) (Repressor of tamoxifen transcriptional activity)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDC42BPA",
+      "accession": "Q5VT25",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase MRCK alpha (EC 2.7.11.1) (CDC42-binding protein kinase alpha) (DMPK-like alpha) (Myotonic dystrophy kinase-related CDC42-binding kinase alpha) (MRCK alpha) (Myotonic dystrophy protein kinase-like alpha)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CHD2",
+      "accession": "O14647",
+      "entry_type": "reviewed",
+      "protein_name": "ATP-dependent chromatin remodeler CHD2 (EC 3.6.4.-) (Chromo domain-containing protein 2) (CHD-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CLIC4",
+      "accession": "Q9Y696",
+      "entry_type": "reviewed",
+      "protein_name": "Chloride intracellular channel protein 4 (Glutaredoxin-like oxidoreductase CLIC4) (EC 1.8.-.-) (Intracellular chloride ion channel protein p64H1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NR2F1-AS1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FER",
+      "accession": "P16591",
+      "entry_type": "reviewed",
+      "protein_name": "Tyrosine-protein kinase Fer (EC 2.7.10.2) (Feline encephalitis virus-related kinase FER) (Fujinami poultry sarcoma/Feline sarcoma-related protein Fer) (Proto-oncogene c-Fer) (Tyrosine kinase 3) (p94-Fer)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CCSER2",
+      "accession": "Q9H7U1",
+      "entry_type": "reviewed",
+      "protein_name": "Serine-rich coiled-coil domain-containing protein 2 (Coiled-coil serine-rich protein 2) (Protein GCAP14 homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MRTFA",
+      "accession": "Q969V6",
+      "entry_type": "reviewed",
+      "protein_name": "Myocardin-related transcription factor A (MRTF-A) (MKL/myocardin-like protein 1) (Megakaryoblastic leukemia 1 protein) (Megakaryocytic acute leukemia protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ACTR3",
+      "accession": "P61158",
+      "entry_type": "reviewed",
+      "protein_name": "Actin-related protein 3 (Actin-like protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KMT2C",
+      "accession": "Q8NEZ4",
+      "entry_type": "reviewed",
+      "protein_name": "Histone-lysine N-methyltransferase 2C (Lysine N-methyltransferase 2C) (EC 2.1.1.364) (Homologous to ALR protein) (Myeloid/lymphoid or mixed-lineage leukemia protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAP4K3",
+      "accession": "Q8IVH8",
+      "entry_type": "reviewed",
+      "protein_name": "Mitogen-activated protein kinase kinase kinase kinase 3 (EC 2.7.11.1) (Germinal center kinase-related protein kinase) (GLK) (MAPK/ERK kinase kinase kinase 3) (MEK kinase kinase 3) (MEKKK 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FSTL1",
+      "accession": "Q12841",
+      "entry_type": "reviewed",
+      "protein_name": "Follistatin-related protein 1 (Follistatin-like protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SLC38A2",
+      "accession": "Q96QD8",
+      "entry_type": "reviewed",
+      "protein_name": "Sodium-coupled neutral amino acid symporter 2 (Amino acid transporter A2) (Protein 40-9-1) (Solute carrier family 38 member 2) (System A amino acid transporter 2) (System A transporter 1) (System N amino acid transporter 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "APBB2",
+      "accession": "Q92870",
+      "entry_type": "reviewed",
+      "protein_name": "Amyloid beta precursor protein binding family B member 2 (Amyloid-beta (A4) precursor protein-binding family B member 2) (Protein Fe65-like 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COL8A1",
+      "accession": "P27658",
+      "entry_type": "reviewed",
+      "protein_name": "Collagen alpha-1(VIII) chain (Endothelial collagen) [Cleaved into: Vastatin]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PPP1R12A",
+      "accession": "O14974",
+      "entry_type": "reviewed",
+      "protein_name": "Protein phosphatase 1 regulatory subunit 12A (Myosin phosphatase-targeting subunit 1) (Myosin phosphatase target subunit 1) (Protein phosphatase myosin-binding subunit)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FAM155A",
+      "accession": "B1AL88",
+      "entry_type": "reviewed",
+      "protein_name": "NALCN channel auxiliary factor 1 (Transmembrane protein FAM155A)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BICD1",
+      "accession": "Q96G01",
+      "entry_type": "reviewed",
+      "protein_name": "Protein bicaudal D homolog 1 (Bic-D 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AFAP1",
+      "accession": "Q8N556",
+      "entry_type": "reviewed",
+      "protein_name": "Actin filament-associated protein 1 (110 kDa actin filament-associated protein) (AFAP-110)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GALNT5",
+      "accession": "Q7Z7M9",
+      "entry_type": "reviewed",
+      "protein_name": "Polypeptide N-acetylgalactosaminyltransferase 5 (EC 2.4.1.41) (Polypeptide GalNAc transferase 5) (GalNAc-T5) (pp-GaNTase 5) (Protein-UDP acetylgalactosaminyltransferase 5) (UDP-GalNAc:polypeptide N-acetylgalactosaminyltransferase 5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STK39",
+      "accession": "Q9UEW8",
+      "entry_type": "reviewed",
+      "protein_name": "STE20/SPS1-related proline-alanine-rich protein kinase (Ste-20-related kinase) (EC 2.7.11.1) (DCHT) (Serine/threonine-protein kinase 39)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DST",
+      "accession": "Q03001",
+      "entry_type": "reviewed",
+      "protein_name": "Dystonin (230 kDa bullous pemphigoid antigen) (230/240 kDa bullous pemphigoid antigen) (Bullous pemphigoid antigen 1) (BPA) (Bullous pemphigoid antigen) (Dystonia musculorum protein) (Hemidesmosomal plaque protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PPP3CA",
+      "accession": "Q08209",
+      "entry_type": "reviewed",
+      "protein_name": "Protein phosphatase 3 catalytic subunit alpha (EC 3.1.3.16) (CAM-PRP catalytic subunit) (Calcineurin A alpha) (Calmodulin-dependent calcineurin A subunit alpha isoform) (CNA alpha) (Serine/threonine-protein phosphatase 2B catalytic subunit alpha isoform)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PCCA",
+      "accession": "P05165",
+      "entry_type": "reviewed",
+      "protein_name": "Propionyl-CoA carboxylase alpha chain, mitochondrial (PCCase subunit alpha) (EC 6.4.1.3) (Propanoyl-CoA:carbon dioxide ligase subunit alpha)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CLASP1",
+      "accession": "Q7Z460",
+      "entry_type": "reviewed",
+      "protein_name": "CLIP-associating protein 1 (Cytoplasmic linker-associated protein 1) (Multiple asters homolog 1) (Protein Orbit homolog 1) (hOrbit1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ADAM9",
+      "accession": "Q13443",
+      "entry_type": "reviewed",
+      "protein_name": "Disintegrin and metalloproteinase domain-containing protein 9 (ADAM 9) (EC 3.4.24.-) (Cellular disintegrin-related protein) (Meltrin-gamma) (Metalloprotease/disintegrin/cysteine-rich protein 9) (Myeloma cell metalloproteinase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SPIDR",
+      "accession": "Q14159",
+      "entry_type": "reviewed",
+      "protein_name": "DNA repair-scaffolding protein (Scaffolding protein involved in DNA repair)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ERC1",
+      "accession": "Q8IUD2",
+      "entry_type": "reviewed",
+      "protein_name": "ELKS/Rab6-interacting/CAST family member 1 (ERC-1) (Rab6-interacting protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RBPJ",
+      "accession": "Q06330",
+      "entry_type": "reviewed",
+      "protein_name": "Recombining binding protein suppressor of hairless (CBF-1) (J kappa-recombination signal-binding protein) (RBP-J kappa) (RBP-J) (RBP-JK) (Renal carcinoma antigen NY-REN-30)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TMEM117",
+      "accession": "Q9H0C3",
+      "entry_type": "reviewed",
+      "protein_name": "Transmembrane protein 117",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANTXR1",
+      "accession": "Q9H6X2",
+      "entry_type": "reviewed",
+      "protein_name": "Anthrax toxin receptor 1 (Tumor endothelial marker 8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TBC1D5",
+      "accession": "Q92609",
+      "entry_type": "reviewed",
+      "protein_name": "TBC1 domain family member 5",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UBASH3B",
+      "accession": "Q8TF42",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin-associated and SH3 domain-containing protein B (EC 3.1.3.48) (Cbl-interacting protein p70) (Suppressor of T-cell receptor signaling 1) (STS-1) (T-cell ubiquitin ligand 2) (TULA-2) (Tyrosine-protein phosphatase STS1/TULA2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "USP34",
+      "accession": "Q70CQ2",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin carboxyl-terminal hydrolase 34 (EC 3.4.19.12) (Deubiquitinating enzyme 34) (Ubiquitin thioesterase 34) (Ubiquitin-specific-processing protease 34)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAPK8",
+      "accession": "P45983",
+      "entry_type": "reviewed",
+      "protein_name": "Mitogen-activated protein kinase 8 (MAP kinase 8) (MAPK 8) (EC 2.7.11.24) (JNK-46) (Stress-activated protein kinase 1c) (SAPK1c) (Stress-activated protein kinase JNK1) (c-Jun N-terminal kinase 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LAMB1",
+      "accession": "P07942",
+      "entry_type": "reviewed",
+      "protein_name": "Laminin subunit beta-1 (Laminin B1 chain) (Laminin-1 subunit beta) (Laminin-10 subunit beta) (Laminin-12 subunit beta) (Laminin-2 subunit beta) (Laminin-6 subunit beta) (Laminin-8 subunit beta)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TBL1X",
+      "accession": "O60907",
+      "entry_type": "reviewed",
+      "protein_name": "F-box-like/WD repeat-containing protein TBL1X (SMAP55) (Transducin beta-like protein 1X) (Transducin-beta-like protein 1, X-linked)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARL15",
+      "accession": "Q9NXU5",
+      "entry_type": "reviewed",
+      "protein_name": "ADP-ribosylation factor-like protein 15 (ADP-ribosylation factor-related protein 2) (ARF-related protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANXA2",
+      "accession": "P07355",
+      "entry_type": "reviewed",
+      "protein_name": "Annexin A2 (Annexin II) (Annexin-2) (Calpactin I heavy chain) (Calpactin-1 heavy chain) (Chromobindin-8) (Lipocortin II) (Placental anticoagulant protein IV) (PAP-IV) (Protein I) (p36)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DOCK4",
+      "accession": "Q8N1I0",
+      "entry_type": "reviewed",
+      "protein_name": "Dedicator of cytokinesis protein 4",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NBAS",
+      "accession": "A2RRP1",
+      "entry_type": "reviewed",
+      "protein_name": "NBAS subunit of NRZ tethering complex (Neuroblastoma-amplified gene protein) (Neuroblastoma-amplified sequence)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MNAT1",
+      "accession": "P51948",
+      "entry_type": "reviewed",
+      "protein_name": "CDK-activating kinase assembly factor MAT1 (CDK7/cyclin-H assembly factor) (Cyclin-G1-interacting protein) (Menage a trois) (RING finger protein 66) (RING finger protein MAT1) (p35) (p36)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CCDC14",
+      "accession": "Q49A88",
+      "entry_type": "reviewed",
+      "protein_name": "Coiled-coil domain-containing protein 14",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SIPA1L3",
+      "accession": "O60292",
+      "entry_type": "reviewed",
+      "protein_name": "Signal-induced proliferation-associated 1-like protein 3 (SIPA1-like protein 3) (SPA-1-like protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RASA1",
+      "accession": "P20936",
+      "entry_type": "reviewed",
+      "protein_name": "Ras GTPase-activating protein 1 (GAP) (GTPase-activating protein) (RasGAP) (Ras p21 protein activator) (p120GAP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BTBD9",
+      "accession": "Q96Q07",
+      "entry_type": "reviewed",
+      "protein_name": "BTB/POZ domain-containing protein 9",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RNF217-AS1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MKLN1",
+      "accession": "Q9UL63",
+      "entry_type": "reviewed",
+      "protein_name": "Muskelin",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DMD",
+      "accession": "P11532",
+      "entry_type": "reviewed",
+      "protein_name": "Dystrophin",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EHBP1",
+      "accession": "Q8NDI1",
+      "entry_type": "reviewed",
+      "protein_name": "EH domain-binding protein 1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BCAS3",
+      "accession": "Q9H6U6",
+      "entry_type": "reviewed",
+      "protein_name": "BCAS3 microtubule associated cell migration factor (Breast carcinoma-amplified sequence 3) (GAOB1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SEC24D",
+      "accession": "O94855",
+      "entry_type": "reviewed",
+      "protein_name": "Protein transport protein Sec24D (SEC24-related protein D)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RABGEF1",
+      "accession": "Q9UJ41",
+      "entry_type": "reviewed",
+      "protein_name": "Rab5 GDP/GTP exchange factor (RAP1) (Rabaptin-5-associated exchange factor for Rab5) (Rabex-5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "QKI",
+      "accession": "Q96PU8",
+      "entry_type": "reviewed",
+      "protein_name": "KH domain-containing RNA-binding protein QKI (Protein quaking) (Hqk) (HqkI)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CHD9",
+      "accession": "Q3L8U1",
+      "entry_type": "reviewed",
+      "protein_name": "ATP-dependent chromatin remodeler CHD9 (EC 3.6.4.-) (Chromatin-related mesenchymal modulator) (CReMM) (Chromatin-remodeling factor CHROM1) (Chromo domain-containing protein 9) (CHD-9) (Kismet homolog 2) (PPAR-alpha-interacting complex protein 320 kDa) (Peroxisomal proliferator-activated receptor A-interacting complex 320 kDa protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NUMB",
+      "accession": "P49757",
+      "entry_type": "reviewed",
+      "protein_name": "Protein numb homolog (h-Numb) (Protein S171)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PTPN14",
+      "accession": "Q15678",
+      "entry_type": "reviewed",
+      "protein_name": "Tyrosine-protein phosphatase non-receptor type 14 (EC 3.1.3.48) (Protein-tyrosine phosphatase pez)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RGMB",
+      "accession": "Q6NW40",
+      "entry_type": "reviewed",
+      "protein_name": "Repulsive guidance molecule B (DRG11-responsive axonal guidance and outgrowth of neurite) (DRAGON)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MTCL1",
+      "accession": "Q9Y4B5",
+      "entry_type": "reviewed",
+      "protein_name": "Microtubule cross-linking factor 1 (Coiled-coil domain-containing protein 165) (PAR-1-interacting protein) (SOGA family member 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MDM2",
+      "accession": "Q00987",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase Mdm2 (EC 2.3.2.27) (Double minute 2 protein) (Hdm2) (Oncoprotein Mdm2) (RING-type E3 ubiquitin transferase Mdm2) (p53-binding protein Mdm2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATP13A3",
+      "accession": "Q9H7F0",
+      "entry_type": "reviewed",
+      "protein_name": "Polyamine-transporting ATPase 13A3 (ATPase family homolog up-regulated in senescence cells 1) (Putrescine transporting ATPase) (EC 7.6.2.16)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PCNX2",
+      "accession": "A6NKB5",
+      "entry_type": "reviewed",
+      "protein_name": "Pecanex-like protein 2 (Pecanex homolog protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEDD4",
+      "accession": "P46934",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase NEDD4 (EC 2.3.2.26) (Cell proliferation-inducing gene 53 protein) (HECT-type E3 ubiquitin transferase NEDD4) (Neural precursor cell expressed developmentally down-regulated protein 4) (NEDD-4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ROBO1",
+      "accession": "Q9Y6N7",
+      "entry_type": "reviewed",
+      "protein_name": "Roundabout homolog 1 (Deleted in U twenty twenty) (H-Robo-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZCCHC7",
+      "accession": "Q8N3Z6",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger CCHC domain-containing protein 7 (TRAMP-like complex RNA-binding factor ZCCHC7)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AHNAK",
+      "accession": "Q09666",
+      "entry_type": "reviewed",
+      "protein_name": "Neuroblast differentiation-associated protein AHNAK (Desmoyokin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SRPK2",
+      "accession": "P78362",
+      "entry_type": "reviewed",
+      "protein_name": "SRSF protein kinase 2 (EC 2.7.11.1) (SFRS protein kinase 2) (Serine/arginine-rich protein-specific kinase 2) (SR-protein-specific kinase 2) [Cleaved into: SRSF protein kinase 2 N-terminal; SRSF protein kinase 2 C-terminal]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "REV3L",
+      "accession": "O60673",
+      "entry_type": "reviewed",
+      "protein_name": "DNA polymerase zeta catalytic subunit (EC 2.7.7.7) (Protein reversionless 3-like) (REV3-like) (hREV3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BMPR2",
+      "accession": "Q13873",
+      "entry_type": "reviewed",
+      "protein_name": "Bone morphogenetic protein receptor type-2 (BMP type-2 receptor) (BMPR-2) (EC 2.7.11.30) (Bone morphogenetic protein receptor type II) (BMP type II receptor) (BMPR-II)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDK14",
+      "accession": "O94921",
+      "entry_type": "reviewed",
+      "protein_name": "Cyclin-dependent kinase 14 (EC 2.7.11.22) (Cell division protein kinase 14) (Serine/threonine-protein kinase PFTAIRE-1) (hPFTAIRE1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TTC3",
+      "accession": "P53804",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase TTC3 (EC 2.3.2.27) (Protein DCRR1) (RING finger protein 105) (RING-type E3 ubiquitin transferase TTC3) (TPR repeat protein D) (Tetratricopeptide repeat protein 3) (TPR repeat protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CSPP1",
+      "accession": "Q1MSJ5",
+      "entry_type": "reviewed",
+      "protein_name": "Centrosome and spindle pole-associated protein 1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MYO1B",
+      "accession": "O43795",
+      "entry_type": "reviewed",
+      "protein_name": "Unconventional myosin-Ib (MYH-1c) (Myosin I alpha) (MMI-alpha) (MMIa)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PXDN",
+      "accession": "Q92626",
+      "entry_type": "reviewed",
+      "protein_name": "Peroxidasin homolog (EC 1.11.2.-) (Melanoma-associated antigen MG50) (Peroxidasin 1) (hsPxd01) (Vascular peroxidase 1) (p53-responsive gene 2 protein) [Cleaved into: PXDN active fragment]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PCNX1",
+      "accession": "Q96RV3",
+      "entry_type": "reviewed",
+      "protein_name": "Pecanex-like protein 1 (Pecanex homolog protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SSH2",
+      "accession": "Q76I76",
+      "entry_type": "reviewed",
+      "protein_name": "Protein phosphatase Slingshot homolog 2 (EC 3.1.3.16) (EC 3.1.3.48) (SSH-like protein 2) (SSH-2L) (hSSH-2L)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ME1",
+      "accession": "P48163",
+      "entry_type": "reviewed",
+      "protein_name": "NADP-dependent malic enzyme (NADP-ME) (EC 1.1.1.40) (Malic enzyme 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANKRD11",
+      "accession": "Q6UB99",
+      "entry_type": "reviewed",
+      "protein_name": "Ankyrin repeat domain-containing protein 11 (Ankyrin repeat-containing cofactor 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DPYD",
+      "accession": "Q12882",
+      "entry_type": "reviewed",
+      "protein_name": "Dihydropyrimidine dehydrogenase [NADP(+)] (DHPDHase) (DPD) (EC 1.3.1.2) (Dihydrothymine dehydrogenase) (Dihydrouracil dehydrogenase)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SPRED1",
+      "accession": "Q7Z699",
+      "entry_type": "reviewed",
+      "protein_name": "Sprouty-related, EVH1 domain-containing protein 1 (Spred-1) (hSpred1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CYTOR",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CUX1",
+      "accession": "P39880",
+      "entry_type": "reviewed",
+      "protein_name": "Homeobox protein cut-like 1 (CCAAT displacement protein) (CDP) (CDP/Cux p200) (Homeobox protein cux-1) [Cleaved into: CDP/Cux p110]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RORA",
+      "accession": "P35398",
+      "entry_type": "reviewed",
+      "protein_name": "Nuclear receptor ROR-alpha (Nuclear receptor RZR-alpha) (Nuclear receptor subfamily 1 group F member 1) (RAR-related orphan receptor A) (Retinoid-related orphan receptor-alpha)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "HIF1A",
+      "accession": "Q16665",
+      "entry_type": "reviewed",
+      "protein_name": "Hypoxia-inducible factor 1-alpha (HIF-1-alpha) (HIF1-alpha) (ARNT-interacting protein) (Basic-helix-loop-helix-PAS protein MOP1) (Class E basic helix-loop-helix protein 78) (bHLHe78) (Member of PAS protein 1) (PAS domain-containing protein 8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RAPGEF2",
+      "accession": "Q9Y4G8",
+      "entry_type": "reviewed",
+      "protein_name": "Rap guanine nucleotide exchange factor 2 (Cyclic nucleotide ras GEF) (CNrasGEF) (Neural RAP guanine nucleotide exchange protein) (nRap GEP) (PDZ domain-containing guanine nucleotide exchange factor 1) (PDZ-GEF1) (RA-GEF-1) (Ras/Rap1-associating GEF-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "METTL15",
+      "accession": "A6NJ78",
+      "entry_type": "reviewed",
+      "protein_name": "12S rRNA N(4)-cytidine methyltransferase METTL15 (12S rRNA m4C methyltransferase) (EC 2.1.1.-) (Methyltransferase 5 domain-containing protein 1) (Methyltransferase-like protein 15)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EEA1",
+      "accession": "Q15075",
+      "entry_type": "reviewed",
+      "protein_name": "Early endosome antigen 1 (Endosome-associated protein p162) (Zinc finger FYVE domain-containing protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RAB3B",
+      "accession": "P20337",
+      "entry_type": "reviewed",
+      "protein_name": "Ras-related protein Rab-3B (EC 3.6.5.2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SPARC",
+      "accession": "P09486",
+      "entry_type": "reviewed",
+      "protein_name": "SPARC (Basement-membrane protein 40) (BM-40) (Osteonectin) (ON) (Secreted protein acidic and rich in cysteine)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COP1",
+      "accession": "Q5EG05",
+      "entry_type": "reviewed",
+      "protein_name": "Caspase recruitment domain-containing protein 16 (Caspase recruitment domain-only protein 1) (CARD-only protein 1) (Caspase-1 inhibitor COP) (Pseudo interleukin-1 beta converting enzyme) (Pseudo-ICE) (Pseudo-IL1B-converting enzyme)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FAF1",
+      "accession": "Q9UNN5",
+      "entry_type": "reviewed",
+      "protein_name": "FAS-associated factor 1 (hFAF1) (UBX domain-containing protein 12) (UBX domain-containing protein 3A)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PARVA",
+      "accession": "Q9NVD7",
+      "entry_type": "reviewed",
+      "protein_name": "Alpha-parvin (Actopaxin) (CH-ILKBP) (Calponin-like integrin-linked kinase-binding protein) (Matrix-remodeling-associated protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SEC31A",
+      "accession": "O94979",
+      "entry_type": "reviewed",
+      "protein_name": "Protein transport protein Sec31A (ABP125) (ABP130) (SEC31-like protein 1) (SEC31-related protein A) (Web1-like protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FBXL17",
+      "accession": "Q9UF56",
+      "entry_type": "reviewed",
+      "protein_name": "F-box/LRR-repeat protein 17 (F-box and leucine-rich repeat protein 17) (F-box only protein 13)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GSK3B",
+      "accession": "P49841",
+      "entry_type": "reviewed",
+      "protein_name": "Glycogen synthase kinase-3 beta (GSK-3 beta) (EC 2.7.11.26) (Serine/threonine-protein kinase GSK3B) (EC 2.7.11.1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEXN",
+      "accession": "Q0ZGT2",
+      "entry_type": "reviewed",
+      "protein_name": "Nexilin (F-actin-binding protein) (Nelin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UBE2E3",
+      "accession": "Q969T4",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin-conjugating enzyme E2 E3 (EC 2.3.2.23) (E2 ubiquitin-conjugating enzyme E3) (UbcH9) (Ubiquitin carrier protein E3) (Ubiquitin-conjugating enzyme E2-23 kDa) (Ubiquitin-protein ligase E3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AC004917.1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DOCK7",
+      "accession": "Q96N67",
+      "entry_type": "reviewed",
+      "protein_name": "Dedicator of cytokinesis protein 7",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DHFR",
+      "accession": "P00374",
+      "entry_type": "reviewed",
+      "protein_name": "Dihydrofolate reductase (EC 1.5.1.3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CACNA1C",
+      "accession": "Q13936",
+      "entry_type": "reviewed",
+      "protein_name": "Voltage-dependent L-type calcium channel subunit alpha-1C (Calcium channel, L type, alpha-1 polypeptide, isoform 1, cardiac muscle) (Voltage-gated calcium channel subunit alpha Cav1.2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATRX",
+      "accession": "P46100",
+      "entry_type": "reviewed",
+      "protein_name": "Chromatin remodeler ATRX (EC 3.6.4.-) (Transcriptional regulator ATRX) (X-linked helicase II) (X-linked nuclear protein) (XNP) (Znf-HX)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DDR2",
+      "accession": "Q16832",
+      "entry_type": "reviewed",
+      "protein_name": "Discoidin domain-containing receptor 2 (Discoidin domain receptor 2) (EC 2.7.10.1) (CD167 antigen-like family member B) (Discoidin domain-containing receptor tyrosine kinase 2) (Neurotrophic tyrosine kinase, receptor-related 3) (Receptor protein-tyrosine kinase TKT) (Tyrosine-protein kinase TYRO10) (CD antigen CD167b)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DGKI",
+      "accession": "O75912",
+      "entry_type": "reviewed",
+      "protein_name": "Diacylglycerol kinase iota (DAG kinase iota) (DGK-iota) (EC 2.7.1.107)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STXBP5",
+      "accession": "Q5T5C0",
+      "entry_type": "reviewed",
+      "protein_name": "Syntaxin-binding protein 5 (Lethal(2) giant larvae protein homolog 3) (Tomosyn-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AOPEP",
+      "accession": "Q8N6M6",
+      "entry_type": "reviewed",
+      "protein_name": "Aminopeptidase O (AP-O) (EC 3.4.11.-)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CEP170",
+      "accession": "Q5SW79",
+      "entry_type": "reviewed",
+      "protein_name": "Centrosomal protein of 170 kDa (Cep170) (KARP-1-binding protein) (KARP1-binding protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ANKRD12",
+      "accession": "Q6UB98",
+      "entry_type": "reviewed",
+      "protein_name": "Ankyrin repeat domain-containing protein 12 (Ankyrin repeat-containing cofactor 2) (GAC-1 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SH3BP4",
+      "accession": "Q9P0V3",
+      "entry_type": "reviewed",
+      "protein_name": "SH3 domain-binding protein 4 (EH-binding protein 10) (Transferrin receptor-trafficking protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KDM6A",
+      "accession": "O15550",
+      "entry_type": "reviewed",
+      "protein_name": "Lysine-specific demethylase 6A (EC 1.14.11.68) (Histone demethylase UTX) (Ubiquitously-transcribed TPR protein on the X chromosome) (Ubiquitously-transcribed X chromosome tetratricopeptide repeat protein) ([histone H3]-trimethyl-L-lysine(27) demethylase 6A)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SSBP2",
+      "accession": "P81877",
+      "entry_type": "reviewed",
+      "protein_name": "Single-stranded DNA-binding protein 2 (Sequence-specific single-stranded-DNA-binding protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UBR3",
+      "accession": "Q6ZT12",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase UBR3 (EC 2.3.2.27) (N-recognin-3) (RING-type E3 ubiquitin transferase UBR3) (Ubiquitin-protein ligase E3-alpha-3) (Ubiquitin-protein ligase E3-alpha-III) (Zinc finger protein 650)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TSPAN5",
+      "accession": "P62079",
+      "entry_type": "reviewed",
+      "protein_name": "Tetraspanin-5 (Tspan-5) (Tetraspan NET-4) (Transmembrane 4 superfamily member 9)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PPP2R3A",
+      "accession": "Q06190",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein phosphatase 2A regulatory subunit B'' subunit alpha (PP2A subunit B isoform PR72/PR130) (PP2A subunit B isoform R3 isoform) (PP2A subunit B isoforms B''-PR72/PR130) (PP2A subunit B isoforms B72/B130) (Serine/threonine-protein phosphatase 2A 72/130 kDa regulatory subunit B)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GNAQ",
+      "accession": "P50148",
+      "entry_type": "reviewed",
+      "protein_name": "Guanine nucleotide-binding protein G(q) subunit alpha (EC 3.6.5.-) (Guanine nucleotide-binding protein alpha-q)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CTNNA1",
+      "accession": "P35221",
+      "entry_type": "reviewed",
+      "protein_name": "Catenin alpha-1 (Alpha E-catenin) (Cadherin-associated protein) (Renal carcinoma antigen NY-REN-13)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAP3K5",
+      "accession": "Q99683",
+      "entry_type": "reviewed",
+      "protein_name": "Mitogen-activated protein kinase kinase kinase 5 (EC 2.7.11.25) (Apoptosis signal-regulating kinase 1) (ASK-1) (MAPK/ERK kinase kinase 5) (MEK kinase 5) (MEKK 5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAN1A2",
+      "accession": "O60476",
+      "entry_type": "reviewed",
+      "protein_name": "Mannosyl-oligosaccharide 1,2-alpha-mannosidase IB (EC 3.2.1.113) (Mannosidase alpha class 1A member 2) (Processing alpha-1,2-mannosidase IB) (Alpha-1,2-mannosidase IB)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MCC",
+      "accession": "P23508",
+      "entry_type": "reviewed",
+      "protein_name": "Colorectal mutant cancer protein (Protein MCC)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ARHGAP22",
+      "accession": "Q7Z5H3",
+      "entry_type": "reviewed",
+      "protein_name": "Rho GTPase-activating protein 22 (Rho-type GTPase-activating protein 22)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RAD51B",
+      "accession": "O15315",
+      "entry_type": "reviewed",
+      "protein_name": "DNA repair protein RAD51 homolog 2 (R51H2) (RAD51 homolog B) (Rad51B) (RAD51-like protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ROCK2",
+      "accession": "O75116",
+      "entry_type": "reviewed",
+      "protein_name": "Rho-associated protein kinase 2 (EC 2.7.11.39) (Rho kinase 2) (Rho-associated, coiled-coil-containing protein kinase 2) (Rho-associated, coiled-coil-containing protein kinase II) (ROCK-II) (p164 ROCK-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RFX7",
+      "accession": "Q2KHR2",
+      "entry_type": "reviewed",
+      "protein_name": "DNA-binding protein RFX7 (Regulatory factor X 7) (Regulatory factor X domain-containing protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RASGRF2",
+      "accession": "O14827",
+      "entry_type": "reviewed",
+      "protein_name": "Ras-specific guanine nucleotide-releasing factor 2 (Ras-GRF2) (Ras guanine nucleotide exchange factor 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KANSL1",
+      "accession": "Q7Z3B3",
+      "entry_type": "reviewed",
+      "protein_name": "KAT8 regulatory NSL complex subunit 1 (MLL1/MLL complex subunit KANSL1) (MSL1 homolog 1) (hMSL1v1) (NSL complex protein NSL1) (Non-specific lethal 1 homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PCDH9",
+      "accession": "Q9HC56",
+      "entry_type": "reviewed",
+      "protein_name": "Protocadherin-9",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "IL6ST",
+      "accession": "P40189",
+      "entry_type": "reviewed",
+      "protein_name": "Interleukin-6 receptor subunit beta (IL-6 receptor subunit beta) (IL-6R subunit beta) (IL-6R-beta) (IL-6RB) (CDw130) (Interleukin-6 signal transducer) (Membrane glycoprotein 130) (gp130) (Oncostatin-M receptor subunit alpha) (CD antigen CD130)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATXN2",
+      "accession": "Q99700",
+      "entry_type": "reviewed",
+      "protein_name": "Ataxin-2 (Spinocerebellar ataxia type 2 protein) (Trinucleotide repeat-containing gene 13 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UBE2H",
+      "accession": "P62256",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin-conjugating enzyme E2 H (EC 2.3.2.23) ((E3-independent) E2 ubiquitin-conjugating enzyme H) (EC 2.3.2.24) (E2 ubiquitin-conjugating enzyme H) (UbcH2) (Ubiquitin carrier protein H) (Ubiquitin-conjugating enzyme E2-20K) (Ubiquitin-protein ligase H)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GOLGA4",
+      "accession": "Q13439",
+      "entry_type": "reviewed",
+      "protein_name": "Golgin subfamily A member 4 (256 kDa golgin) (Golgin-245) (Protein 72.1) (Trans-Golgi p230)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KAT6B",
+      "accession": "Q8WYB5",
+      "entry_type": "reviewed",
+      "protein_name": "Histone acetyltransferase KAT6B (EC 2.3.1.48) (Histone acetyltransferase MOZ2) (MOZ, YBF2/SAS3, SAS2 and TIP60 protein 4) (MYST-4) (Monocytic leukemia zinc finger protein-related factor)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GULP1",
+      "accession": "Q9UBP9",
+      "entry_type": "reviewed",
+      "protein_name": "PTB domain-containing engulfment adapter protein 1 (Cell death protein 6 homolog) (PTB domain adapter protein CED-6) (Protein GULP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CTNND1",
+      "accession": "O60716",
+      "entry_type": "reviewed",
+      "protein_name": "Catenin delta-1 (Cadherin-associated Src substrate) (CAS) (p120 catenin) (p120(ctn)) (p120(cas))",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "WWC2",
+      "accession": "Q6AWC2",
+      "entry_type": "reviewed",
+      "protein_name": "Protein WWC2 (BH-3-only member B) (WW domain-containing protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STRN3",
+      "accession": "Q13033",
+      "entry_type": "reviewed",
+      "protein_name": "Striatin-3 (Cell cycle autoantigen SG2NA) (S/G2 antigen)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDH4",
+      "accession": "P55283",
+      "entry_type": "reviewed",
+      "protein_name": "Cadherin-4 (Retinal cadherin) (R-CAD) (R-cadherin)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TRIP12",
+      "accession": "Q14669",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase TRIP12 (EC 2.3.2.26) (E3 ubiquitin-protein ligase for Arf) (ULF) (HECT-type E3 ubiquitin transferase TRIP12) (Thyroid receptor-interacting protein 12) (TR-interacting protein 12) (TRIP-12)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CAMKMT",
+      "accession": "Q7Z624",
+      "entry_type": "reviewed",
+      "protein_name": "Calmodulin-lysine N-methyltransferase (CLNMT) (CaM KMT) (EC 2.1.1.60)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DCAF6",
+      "accession": "Q58WW2",
+      "entry_type": "reviewed",
+      "protein_name": "DDB1- and CUL4-associated factor 6 (Androgen receptor complex-associated protein) (ARCAP) (IQ motif and WD repeat-containing protein 1) (Nuclear receptor interaction protein) (NRIP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "UGGT2",
+      "accession": "Q9NYU1",
+      "entry_type": "reviewed",
+      "protein_name": "UDP-glucose:glycoprotein glucosyltransferase 2 (UGT2) (hUGT2) (EC 2.4.1.-) (UDP--Glc:glycoprotein glucosyltransferase 2) (UDP-glucose ceramide glucosyltransferase-like 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EPAS1",
+      "accession": "Q99814",
+      "entry_type": "reviewed",
+      "protein_name": "Endothelial PAS domain-containing protein 1 (EPAS-1) (Basic-helix-loop-helix-PAS protein MOP2) (Class E basic helix-loop-helix protein 73) (bHLHe73) (HIF-1-alpha-like factor) (HLF) (Hypoxia-inducible factor 2-alpha) (HIF-2-alpha) (HIF2-alpha) (Member of PAS protein 2) (PAS domain-containing protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TENM3",
+      "accession": "Q9P273",
+      "entry_type": "reviewed",
+      "protein_name": "Teneurin-3 (Ten-3) (Protein Odd Oz/ten-m homolog 3) (Tenascin-M3) (Ten-m3) (Teneurin transmembrane protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FAM126A",
+      "accession": "Q9BYI3",
+      "entry_type": "reviewed",
+      "protein_name": "Hyccin (Down-regulated by CTNNB1 protein A)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "WDFY3",
+      "accession": "Q8IZQ1",
+      "entry_type": "reviewed",
+      "protein_name": "WD repeat and FYVE domain-containing protein 3 (Autophagy-linked FYVE protein) (Alfy)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ATXN10",
+      "accession": "Q9UBB4",
+      "entry_type": "reviewed",
+      "protein_name": "Ataxin-10 (Brain protein E46 homolog) (Spinocerebellar ataxia type 10 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LOXL2",
+      "accession": "Q9Y4K0",
+      "entry_type": "reviewed",
+      "protein_name": "Lysyl oxidase homolog 2 (EC 1.4.3.13) (Lysyl oxidase-like protein 2) (Lysyl oxidase-related protein 2) (Lysyl oxidase-related protein WS9-14)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PCNX4",
+      "accession": "Q63HM2",
+      "entry_type": "reviewed",
+      "protein_name": "Pecanex-like protein 4 (Hepatitis C virus F protein-binding protein 2) (HCV F protein-binding protein 2) (Pecanex homolog protein 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PTEN",
+      "accession": "P60484",
+      "entry_type": "reviewed",
+      "protein_name": "Phosphatidylinositol 3,4,5-trisphosphate 3-phosphatase and dual-specificity protein phosphatase PTEN (EC 3.1.3.16) (EC 3.1.3.48) (EC 3.1.3.67) (Inositol polyphosphate 3-phosphatase) (EC 3.1.3.-) (Mutated in multiple advanced cancers 1) (Phosphatase and tensin homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "DLG1",
+      "accession": "Q12959",
+      "entry_type": "reviewed",
+      "protein_name": "Disks large homolog 1 (Synapse-associated protein 97) (SAP-97) (SAP97) (hDlg)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "EPS8",
+      "accession": "Q12929",
+      "entry_type": "reviewed",
+      "protein_name": "Epidermal growth factor receptor kinase substrate 8",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KIF13A",
+      "accession": "Q9H1H9",
+      "entry_type": "reviewed",
+      "protein_name": "Kinesin-like protein KIF13A (Kinesin-like protein RBKIN)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STK3",
+      "accession": "Q13188",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase 3 (EC 2.7.11.1) (Mammalian STE20-like protein kinase 2) (MST-2) (STE20-like kinase MST2) (Serine/threonine-protein kinase Krs-1) [Cleaved into: Serine/threonine-protein kinase 3 36kDa subunit (MST2/N); Serine/threonine-protein kinase 3 20kDa subunit (MST2/C)]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FTO",
+      "accession": "Q9C0B1",
+      "entry_type": "reviewed",
+      "protein_name": "Alpha-ketoglutarate-dependent dioxygenase FTO (Fat mass and obesity-associated protein) (U6 small nuclear RNA (2'-O-methyladenosine-N(6)-)-demethylase FTO) (EC 1.14.11.-) (U6 small nuclear RNA N(6)-methyladenosine-demethylase FTO) (EC 1.14.11.-) (mRNA (2'-O-methyladenosine-N(6)-)-demethylase FTO) (m6A(m)-demethylase FTO) (EC 1.14.11.-) (mRNA N(6)-methyladenosine demethylase FTO) (EC 1.14.11.53) (tRNA N1-methyl adenine demethylase FTO) (EC 1.14.11.-)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "USP47",
+      "accession": "Q96K76",
+      "entry_type": "reviewed",
+      "protein_name": "Ubiquitin carboxyl-terminal hydrolase 47 (EC 3.4.19.12) (Deubiquitinating enzyme 47) (Ubiquitin thioesterase 47) (Ubiquitin-specific-processing protease 47)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BBX",
+      "accession": "Q8WY36",
+      "entry_type": "reviewed",
+      "protein_name": "HMG box transcription factor BBX (Bobby sox homolog) (HMG box-containing protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SLC38A1",
+      "accession": "Q9H2H9",
+      "entry_type": "reviewed",
+      "protein_name": "Sodium-coupled neutral amino acid symporter 1 (Amino acid transporter A1) (N-system amino acid transporter 2) (Solute carrier family 38 member 1) (System A amino acid transporter 1) (System N amino acid transporter 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NBEAL1",
+      "accession": "Q6ZS30",
+      "entry_type": "reviewed",
+      "protein_name": "Neurobeachin-like protein 1 (Amyotrophic lateral sclerosis 2 chromosomal region candidate gene 16 protein) (Amyotrophic lateral sclerosis 2 chromosomal region candidate gene 17 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZNF609",
+      "accession": "O15014",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein 609",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "GALNT10",
+      "accession": "Q86SR1",
+      "entry_type": "reviewed",
+      "protein_name": "Polypeptide N-acetylgalactosaminyltransferase 10 (EC 2.4.1.41) (Polypeptide GalNAc transferase 10) (GalNAc-T10) (pp-GaNTase 10) (Protein-UDP acetylgalactosaminyltransferase 10) (UDP-GalNAc:polypeptide N-acetylgalactosaminyltransferase 10)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AKAP13",
+      "accession": "Q12802",
+      "entry_type": "reviewed",
+      "protein_name": "A-kinase anchor protein 13 (AKAP-13) (AKAP-Lbc) (Breast cancer nuclear receptor-binding auxiliary protein) (Guanine nucleotide exchange factor Lbc) (Human thyroid-anchoring protein 31) (Lymphoid blast crisis oncogene) (LBC oncogene) (Non-oncogenic Rho GTPase-specific GTP exchange factor) (Protein kinase A-anchoring protein 13) (PRKA13) (p47)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AP3B1",
+      "accession": "O00203",
+      "entry_type": "reviewed",
+      "protein_name": "AP-3 complex subunit beta-1 (Adaptor protein complex AP-3 subunit beta-1) (Adaptor-related protein complex 3 subunit beta-1) (Beta-3A-adaptin) (Clathrin assembly protein complex 3 beta-1 large chain)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RRAS2",
+      "accession": "P62070",
+      "entry_type": "reviewed",
+      "protein_name": "Ras-related protein R-Ras2 (EC 3.6.5.2) (Ras-like protein TC21) (Teratocarcinoma oncogene)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MGST1",
+      "accession": "P10620",
+      "entry_type": "reviewed",
+      "protein_name": "Microsomal glutathione S-transferase 1 (Microsomal GST-1) (EC 2.5.1.18) (Microsomal GST-I)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "VGLL3",
+      "accession": "A8MV65",
+      "entry_type": "reviewed",
+      "protein_name": "Transcription cofactor vestigial-like protein 3 (Vgl-3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "COG5",
+      "accession": "Q9UP83",
+      "entry_type": "reviewed",
+      "protein_name": "Conserved oligomeric Golgi complex subunit 5 (COG complex subunit 5) (13S Golgi transport complex 90 kDa subunit) (GTC-90) (Component of oligomeric Golgi complex 5) (Golgi transport complex 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "STK32B",
+      "accession": "Q9NY57",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase 32B (EC 2.7.11.1) (Yet another novel kinase 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "VIM",
+      "accession": "P08670",
+      "entry_type": "reviewed",
+      "protein_name": "Vimentin",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "YAP1",
+      "accession": "P46937",
+      "entry_type": "reviewed",
+      "protein_name": "Transcriptional coactivator YAP1 (Yes-associated protein 1) (Protein yorkie homolog) (Yes-associated protein YAP65 homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PLOD2",
+      "accession": "O00469",
+      "entry_type": "reviewed",
+      "protein_name": "Procollagen-lysine,2-oxoglutarate 5-dioxygenase 2 (EC 1.14.11.4) (Lysyl hydroxylase 2) (LH2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CDH2",
+      "accession": "P19022",
+      "entry_type": "reviewed",
+      "protein_name": "Cadherin-2 (CDw325) (Neural cadherin) (N-cadherin) (CD antigen CD325)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NR3C1",
+      "accession": "P04150",
+      "entry_type": "reviewed",
+      "protein_name": "Glucocorticoid receptor (GR) (Nuclear receptor subfamily 3 group C member 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CSNK1A1",
+      "accession": "P48729",
+      "entry_type": "reviewed",
+      "protein_name": "Casein kinase I isoform alpha (CKI-alpha) (EC 2.7.11.1) (CK1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TLK1",
+      "accession": "Q9UKI8",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase tousled-like 1 (EC 2.7.11.1) (PKU-beta) (Tousled-like kinase 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MYCBP2",
+      "accession": "O75592",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase MYCBP2 (EC 2.3.2.33) (Myc-binding protein 2) (Protein associated with Myc)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRICKLE2",
+      "accession": "Q7Z3G6",
+      "entry_type": "reviewed",
+      "protein_name": "Prickle-like protein 2",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "WDR70",
+      "accession": "Q9NW82",
+      "entry_type": "reviewed",
+      "protein_name": "WD repeat-containing protein 70",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FGF7",
+      "accession": "P21781",
+      "entry_type": "reviewed",
+      "protein_name": "Fibroblast growth factor 7 (FGF-7) (Heparin-binding growth factor 7) (HBGF-7) (Keratinocyte growth factor)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LRRFIP1",
+      "accession": "Q32MZ4",
+      "entry_type": "reviewed",
+      "protein_name": "Leucine-rich repeat flightless-interacting protein 1 (LRR FLII-interacting protein 1) (GC-binding factor 2) (TAR RNA-interacting protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZNF148",
+      "accession": "Q9UQR1",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger protein 148 (Transcription factor ZBP-89) (Zinc finger DNA-binding protein 89)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MAP4K5",
+      "accession": "Q9Y4K4",
+      "entry_type": "reviewed",
+      "protein_name": "Mitogen-activated protein kinase kinase kinase kinase 5 (EC 2.7.11.1) (Kinase homologous to SPS1/STE20) (KHS) (MAPK/ERK kinase kinase kinase 5) (MEK kinase kinase 5) (MEKKK 5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RNF115",
+      "accession": "Q9Y4L5",
+      "entry_type": "reviewed",
+      "protein_name": "E3 ubiquitin-protein ligase RNF115 (EC 2.3.2.27) (RING finger protein 115) (RING-type E3 ubiquitin transferase RNF115) (Rab7-interacting RING finger protein) (Rabring 7) (Zinc finger protein 364)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ABLIM3",
+      "accession": "O94929",
+      "entry_type": "reviewed",
+      "protein_name": "Actin-binding LIM protein 3 (abLIM-3) (Actin-binding LIM protein family member 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "APP",
+      "accession": "P05067",
+      "entry_type": "reviewed",
+      "protein_name": "Amyloid-beta precursor protein (APP) (ABPP) (APPI) (Alzheimer disease amyloid A4 protein homolog) (Alzheimer disease amyloid protein) (Amyloid precursor protein) (Amyloid-beta (A4) precursor protein) (Amyloid-beta A4 protein) (Cerebral vascular amyloid peptide) (CVAP) (PreA4) (Protease nexin-II) (PN-II) [Cleaved into: N-APP; Soluble APP-alpha (S-APP-alpha); Soluble APP-beta (S-APP-beta); C99 (Beta-secretase C-terminal fragment) (Beta-CTF); Amyloid-beta protein 42 (Abeta42) (Beta-APP42); Amyloid-beta protein 40 (Abeta40) (Beta-APP40); C83 (Alpha-secretase C-terminal fragment) (Alpha-CTF); P3(42); P3(40); C80; Gamma-secretase C-terminal fragment 59 (Gamma-CTF(59)) (Amyloid intracellular domain 59) (AICD-59) (AID(59)); Gamma-secretase C-terminal fragment 57 (Gamma-CTF(57)) (Amyloid intracellular domain 57) (AICD-57) (AID(57)); Gamma-secretase C-terminal fragment 50 (Gamma-CTF(50)) (Amyloid intracellular domain 50) (AICD-50) (AID(50)); C31]",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "N4BP2L2",
+      "accession": "Q92802",
+      "entry_type": "reviewed",
+      "protein_name": "NEDD4-binding protein 2-like 2 (Phosphonoformate immuno-associated protein 5)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ASAP2",
+      "accession": "O43150",
+      "entry_type": "reviewed",
+      "protein_name": "Arf-GAP with SH3 domain, ANK repeat and PH domain-containing protein 2 (Development and differentiation-enhancing factor 2) (Paxillin-associated protein with ARF GAP activity 3) (PAG3) (Pyk2 C-terminus-associated protein) (PAP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "VTI1A",
+      "accession": "Q96AJ9",
+      "entry_type": "reviewed",
+      "protein_name": "Vesicle transport through interaction with t-SNAREs homolog 1A (Vesicle transport v-SNARE protein Vti1-like 2) (Vti1-rp2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NCOA2",
+      "accession": "Q15596",
+      "entry_type": "reviewed",
+      "protein_name": "Nuclear receptor coactivator 2 (NCoA-2) (Class E basic helix-loop-helix protein 75) (bHLHe75) (Transcriptional intermediary factor 2) (hTIF2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TPST1",
+      "accession": "O60507",
+      "entry_type": "reviewed",
+      "protein_name": "Protein-tyrosine sulfotransferase 1 (EC 2.8.2.20) (Tyrosylprotein sulfotransferase 1) (TPST-1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NRIP1",
+      "accession": "P48552",
+      "entry_type": "reviewed",
+      "protein_name": "Nuclear receptor-interacting protein 1 (Nuclear factor RIP140) (Receptor-interacting protein 140)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TSC22D2",
+      "accession": "O75157",
+      "entry_type": "reviewed",
+      "protein_name": "TSC22 domain family protein 2 (TSC22-related-inducible leucine zipper protein 4)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CCNY",
+      "accession": "Q8ND76",
+      "entry_type": "reviewed",
+      "protein_name": "Cyclin-Y (Cyc-Y) (Cyclin box protein 1) (Cyclin fold protein 1) (cyclin-X)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "KCTD16",
+      "accession": "Q68DU8",
+      "entry_type": "reviewed",
+      "protein_name": "BTB/POZ domain-containing protein KCTD16 (Potassium channel tetramerization domain-containing protein 16)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FAM107B",
+      "accession": "Q9H098",
+      "entry_type": "reviewed",
+      "protein_name": "Protein FAM107B",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FOCAD",
+      "accession": "Q5VW36",
+      "entry_type": "reviewed",
+      "protein_name": "Focadhesin",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "RALGPS2",
+      "accession": "Q86X27",
+      "entry_type": "reviewed",
+      "protein_name": "Ras-specific guanine nucleotide-releasing factor RalGPS2 (Ral GEF with PH domain and SH3-binding motif 2) (RalA exchange factor RalGPS2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MLLT10",
+      "accession": "P55197",
+      "entry_type": "reviewed",
+      "protein_name": "Protein AF-10 (ALL1-fused gene from chromosome 10 protein)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEK10",
+      "accession": "Q6ZWH5",
+      "entry_type": "reviewed",
+      "protein_name": "Serine/threonine-protein kinase Nek10 (EC 2.7.11.1) (Never in mitosis A-related kinase 10) (NimA-related protein kinase 10)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ZMIZ1",
+      "accession": "Q9ULJ6",
+      "entry_type": "reviewed",
+      "protein_name": "Zinc finger MIZ domain-containing protein 1 (PIAS-like protein Zimp10) (Retinoic acid-induced protein 17)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "AAK1",
+      "accession": "Q2M2I8",
+      "entry_type": "reviewed",
+      "protein_name": "AP2-associated protein kinase 1 (EC 2.7.11.1) (Adaptor-associated kinase 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MT-ATP8",
+      "accession": "P03928",
+      "entry_type": "reviewed",
+      "protein_name": "ATP synthase F(0) complex subunit 8 (A6L) (F-ATPase subunit 8)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "NEAT1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PBX3",
+      "accession": "P40426",
+      "entry_type": "reviewed",
+      "protein_name": "Pre-B-cell leukemia transcription factor 3 (Homeobox protein PBX3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ADAMTS12",
+      "accession": "P58397",
+      "entry_type": "reviewed",
+      "protein_name": "A disintegrin and metalloproteinase with thrombospondin motifs 12 (ADAM-TS 12) (ADAM-TS12) (ADAMTS-12) (EC 3.4.24.-)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "LCOR",
+      "accession": "Q96JN0",
+      "entry_type": "reviewed",
+      "protein_name": "Ligand-dependent corepressor (LCoR) (Mblk1-related protein 2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PCDH7",
+      "accession": "O60245",
+      "entry_type": "reviewed",
+      "protein_name": "Protocadherin-7 (Brain-heart protocadherin) (BH-Pcdh)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "FNIP1",
+      "accession": "Q8TF40",
+      "entry_type": "reviewed",
+      "protein_name": "Folliculin-interacting protein 1",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "HSP90B1",
+      "accession": "P14625",
+      "entry_type": "reviewed",
+      "protein_name": "Endoplasmin (EC 3.6.4.-) (94 kDa glucose-regulated protein) (GRP-94) (Heat shock protein 90 kDa beta member 1) (Heat shock protein family C member 4) (Tumor rejection antigen 1) (gp96 homolog)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "TJP1",
+      "accession": "Q07157",
+      "entry_type": "reviewed",
+      "protein_name": "Tight junction protein 1 (Tight junction protein ZO-1) (Zona occludens protein 1) (Zonula occludens protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "ABCC1",
+      "accession": "P33527",
+      "entry_type": "reviewed",
+      "protein_name": "Multidrug resistance-associated protein 1 (EC 7.6.2.2) (ATP-binding cassette sub-family C member 1) (Glutathione-S-conjugate-translocating ATPase ABCC1) (EC 7.6.2.3) (Leukotriene C(4) transporter) (LTC4 transporter)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "BCAR3",
+      "accession": "O75815",
+      "entry_type": "reviewed",
+      "protein_name": "Breast cancer anti-estrogen resistance protein 3 (Novel SH2-containing protein 2) (SH2 domain-containing protein 3B)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "INVS",
+      "accession": "Q9Y283",
+      "entry_type": "reviewed",
+      "protein_name": "Inversin (Inversion of embryo turning homolog) (Nephrocystin-2)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "CLTC",
+      "accession": "Q00610",
+      "entry_type": "reviewed",
+      "protein_name": "Clathrin heavy chain 1 (Clathrin heavy chain on chromosome 17) (CLH-17)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "MLLT3",
+      "accession": "P42568",
+      "entry_type": "reviewed",
+      "protein_name": "Protein AF-9 (ALL1-fused gene from chromosome 9 protein) (Myeloid/lymphoid or mixed-lineage leukemia translocated to chromosome 3 protein) (YEATS domain-containing protein 3)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "PRICKLE1",
+      "accession": "Q96MT3",
+      "entry_type": "reviewed",
+      "protein_name": "Prickle-like protein 1 (REST/NRSF-interacting LIM domain protein 1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SDCCAG8",
+      "accession": "Q86SQ7",
+      "entry_type": "reviewed",
+      "protein_name": "Serologically defined colon cancer antigen 8 (Antigen NY-CO-8) (Centrosomal colon cancer autoantigen protein) (hCCCAP)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "HIP1",
+      "accession": "O00291",
+      "entry_type": "reviewed",
+      "protein_name": "Huntingtin-interacting protein 1 (HIP-1) (Huntingtin-interacting protein I) (HIP-I)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    },
+    {
+      "gene": "SERPINE1",
+      "accession": "P05121",
+      "entry_type": "reviewed",
+      "protein_name": "Plasminogen activator inhibitor 1 (PAI) (PAI-1) (Endothelial plasminogen activator inhibitor) (Serpin E1)",
+      "query_source": "data/artifacts/helf/uniprot_human_sequences.tsv"
+    }
+  ]
+}

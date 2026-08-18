@@ -1,0 +1,127 @@
+{
+  "artifact_blockers": 0,
+  "artifact_usefulness": {
+    "best_dense_matched_no_artifact_control": {
+      "node": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_chemberta_drug_encoder_dense_control",
+      "test_macro_f1": 0.39271438121795654,
+      "val_macro_f1": 0.4025525152683258
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion",
+      "test_macro_f1": 0.4116392433643341,
+      "val_macro_f1": 0.42144325375556946
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_mlp",
+      "test_macro_f1": 0.3975583612918854,
+      "val_macro_f1": 0.4011034667491913
+    },
+    "foundation_vs_dense_control_val_gain": 0.018890738487243652,
+    "foundation_vs_root_val_gain": 0.020339787006378174,
+    "interpretation": "artifact useful beyond capacity",
+    "paired_comparisons": [
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p17_foundation_rdkit_drug_fingerprint_fusion",
+        "artifact_incremental_val_gain": -0.005276918411254883,
+        "artifact_strategy": "foundation_rdkit_drug_fingerprint_fusion",
+        "artifact_test_macro_f1": 0.38641420006752014,
+        "artifact_val_macro_f1": 0.3924606740474701,
+        "control_child": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p17_foundation_rdkit_drug_fingerprint_fusion_dense_control",
+        "control_test_macro_f1": 0.39173558354377747,
+        "control_val_macro_f1": 0.397737592458725
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_chemberta_drug_encoder",
+        "artifact_incremental_val_gain": -0.007377535104751587,
+        "artifact_strategy": "foundation_chemberta_drug_encoder",
+        "artifact_test_macro_f1": 0.3888472616672516,
+        "artifact_val_macro_f1": 0.3951749801635742,
+        "control_child": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_chemberta_drug_encoder_dense_control",
+        "control_test_macro_f1": 0.39271438121795654,
+        "control_val_macro_f1": 0.4025525152683258
+      }
+    ],
+    "trained_dense_matched_controls": 2,
+    "trained_foundation_artifact_children": 6
+  },
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.42144325375556946,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.08,
+      "parent_val": 0.4011034667491913,
+      "priority": 1.03,
+      "rollout_feasibility_bonus": 0.08,
+      "score": 0.6641034667491912
+    },
+    "children": [
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p17_foundation_rdkit_drug_fingerprint_fusion",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p17_foundation_rdkit_drug_fingerprint_fusion_dense_control",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_chemberta_drug_encoder",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_chemberta_drug_encoder_dense_control",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p19_foundation_scgpt_cell_encoder",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p20_foundation_scgpt_adapter_finetune",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p21_low_rank_head",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p22_feature_dropout",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p23_temperature_calibration",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p24_weighted_ce"
+    ],
+    "config": "experiments/aivc_more_executable_nodes_smoke_v2/proposals/aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion.json",
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "metrics": "experiments/aivc_more_executable_nodes_smoke_v2/nodes/aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "aivc_helf_perturb_root_mlp",
+    "proposal": "experiments/aivc_more_executable_nodes_smoke_v2/proposals/aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion.proposal.json",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "esm2_gene_or_protein_embeddings"
+    ],
+    "status": "trained",
+    "strategy": "foundation_protein_embedding_fusion",
+    "test_macro_f1": 0.4116392433643341,
+    "value": 2.430812269449234,
+    "visits": 6
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.4011034667491913,
+    "children": [
+      "aivc_helf_perturb_root_mlp_p1_foundation_esm2_target_gene_head",
+      "aivc_helf_perturb_root_mlp_p1_foundation_esm2_target_gene_head_dense_control",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_dense_control",
+      "aivc_helf_perturb_root_mlp_p3_foundation_scgpt_cell_encoder",
+      "aivc_helf_perturb_root_mlp_p4_foundation_scgpt_adapter_finetune",
+      "aivc_helf_perturb_root_mlp_p5_low_rank_head",
+      "aivc_helf_perturb_root_mlp_p6_feature_dropout",
+      "aivc_helf_perturb_root_mlp_p7_temperature_calibration",
+      "aivc_helf_perturb_root_mlp_p8_weighted_ce"
+    ],
+    "config": "configs/aivc_helf_perturb_roots/root_mlp.json",
+    "metrics": "experiments/aivc_more_executable_nodes_smoke_v2/nodes/aivc_helf_perturb_root_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.3975583612918854,
+    "value": 3.6434549689292908,
+    "visits": 9
+  },
+  "blocked": 0,
+  "experiment": "aivc_more_executable_nodes_smoke_v2",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_artifact_usefulness_controls": 10,
+  "generated_proposals": 36,
+  "proxy_count": 0,
+  "pruned_not_selected": 38,
+  "requires_artifact_acquisition": 0,
+  "run_dir": "experiments/aivc_more_executable_nodes_smoke_v2",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (8/8)",
+  "trained_foundation_artifact_children": 6,
+  "trained_selected_rollouts": 8
+}

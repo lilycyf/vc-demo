@@ -7,13 +7,17 @@
   "foundation_blueprint_count": 18,
   "implementation_status_counts": {
     "planned_requires_checkpoint_or_contract_validation": 9,
-    "acquirable_or_buildable_then_planned": 5,
-    "planned_requires_drug_smiles_artifact": 1,
-    "implemented_as_parent_preserving_artifact_augmented_residual": 3
+    "implemented_source_backed_target_protein_embedding_head": 1,
+    "implemented_source_backed_target_protein_embedding_fusion": 1,
+    "implemented_source_backed_drug_fingerprint_fusion": 1,
+    "implemented_source_backed_drug_fingerprint_executable_alternative": 1,
+    "implemented_source_backed_drug_target_artifact_fusion": 1,
+    "implemented_as_parent_preserving_artifact_augmented_residual": 3,
+    "implemented_source_backed_pathway_drug_target_fusion": 1
   },
-  "executable_now_count": 3,
-  "artifact_present_blueprint_count": 3,
-  "artifact_missing_blueprint_count": 15,
+  "executable_now_count": 9,
+  "artifact_present_blueprint_count": 9,
+  "artifact_missing_blueprint_count": 9,
   "artifact_usefulness_control_required_count": 18,
   "estimated_candidate_count_lower_bound": 2400,
   "dimension_sizes": {
@@ -65,15 +69,15 @@
       "acquisition_policy": "download_from_primary_source_if_available_else_block"
     },
     "esm2_gene_or_protein_embeddings": {
-      "present": false,
+      "present": true,
       "expected_path": "data/artifacts/helf/esm2_gene_embeddings.npz",
-      "status": "planned_requires_acquisition_or_build",
+      "status": "acquired_source_backed_runtime_artifact",
       "acquisition_policy": "download_model_or_public_embedding_then_build_aligned_npz"
     },
     "chemical_encoder_checkpoint_or_drug_fingerprints": {
-      "present": false,
+      "present": true,
       "expected_path": "data/artifacts/helf/drug_embeddings.npz",
-      "status": "planned_requires_acquisition_or_build",
+      "status": "acquired_source_backed_runtime_artifact",
       "acquisition_policy": "resolve_smiles_from_public_source_then_compute_fingerprints_or_encoder_embeddings"
     },
     "string_gene_graph": {
@@ -106,19 +110,21 @@
     },
     "gene_or_protein_foundation_prior": {
       "blueprints": 2,
-      "executable_now": 0,
-      "missing_artifact_blueprints": 2,
+      "executable_now": 2,
+      "missing_artifact_blueprints": 0,
       "implementation_status_counts": {
-        "acquirable_or_buildable_then_planned": 2
+        "implemented_source_backed_target_protein_embedding_head": 1,
+        "implemented_source_backed_target_protein_embedding_fusion": 1
       }
     },
     "chemical_perturbation_encoder": {
       "blueprints": 3,
-      "executable_now": 0,
-      "missing_artifact_blueprints": 3,
+      "executable_now": 3,
+      "missing_artifact_blueprints": 0,
       "implementation_status_counts": {
-        "planned_requires_drug_smiles_artifact": 1,
-        "acquirable_or_buildable_then_planned": 2
+        "implemented_source_backed_drug_fingerprint_fusion": 1,
+        "implemented_source_backed_drug_fingerprint_executable_alternative": 1,
+        "implemented_source_backed_drug_target_artifact_fusion": 1
       }
     },
     "network_and_pathway_prior": {
@@ -132,11 +138,11 @@
     },
     "multimodal_fusion": {
       "blueprints": 3,
-      "executable_now": 0,
-      "missing_artifact_blueprints": 3,
+      "executable_now": 1,
+      "missing_artifact_blueprints": 2,
       "implementation_status_counts": {
         "planned_requires_checkpoint_or_contract_validation": 2,
-        "acquirable_or_buildable_then_planned": 1
+        "implemented_source_backed_pathway_drug_target_fusion": 1
       }
     }
   },
@@ -240,83 +246,83 @@
     {
       "family": "gene_or_protein_foundation_prior",
       "id": "esm2_target_gene_head",
-      "implementation_status": "acquirable_or_buildable_then_planned",
-      "search_space_status": "selectable",
+      "implementation_status": "implemented_source_backed_target_protein_embedding_head",
+      "search_space_status": "selectable_executable",
       "required_artifacts": [
         "esm2_gene_or_protein_embeddings"
       ],
-      "present_artifacts": [],
-      "missing_artifacts": [
+      "present_artifacts": [
         "esm2_gene_or_protein_embeddings"
       ],
-      "executable_now": false,
-      "acquirable_or_buildable": true,
+      "missing_artifacts": [],
+      "executable_now": true,
+      "acquirable_or_buildable": false,
       "artifact_usefulness_control_required": true
     },
     {
       "family": "gene_or_protein_foundation_prior",
       "id": "protein_embedding_fusion",
-      "implementation_status": "acquirable_or_buildable_then_planned",
-      "search_space_status": "selectable",
+      "implementation_status": "implemented_source_backed_target_protein_embedding_fusion",
+      "search_space_status": "selectable_executable",
       "required_artifacts": [
         "esm2_gene_or_protein_embeddings"
       ],
-      "present_artifacts": [],
-      "missing_artifacts": [
+      "present_artifacts": [
         "esm2_gene_or_protein_embeddings"
       ],
-      "executable_now": false,
-      "acquirable_or_buildable": true,
+      "missing_artifacts": [],
+      "executable_now": true,
+      "acquirable_or_buildable": false,
       "artifact_usefulness_control_required": true
     },
     {
       "family": "chemical_perturbation_encoder",
       "id": "rdkit_drug_fingerprint_fusion",
-      "implementation_status": "planned_requires_drug_smiles_artifact",
-      "search_space_status": "selectable",
+      "implementation_status": "implemented_source_backed_drug_fingerprint_fusion",
+      "search_space_status": "selectable_executable",
       "required_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints"
       ],
-      "present_artifacts": [],
-      "missing_artifacts": [
+      "present_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints"
       ],
-      "executable_now": false,
+      "missing_artifacts": [],
+      "executable_now": true,
       "acquirable_or_buildable": false,
       "artifact_usefulness_control_required": true
     },
     {
       "family": "chemical_perturbation_encoder",
       "id": "chemberta_drug_encoder",
-      "implementation_status": "acquirable_or_buildable_then_planned",
-      "search_space_status": "selectable",
+      "implementation_status": "implemented_source_backed_drug_fingerprint_executable_alternative",
+      "search_space_status": "selectable_executable",
       "required_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints"
       ],
-      "present_artifacts": [],
-      "missing_artifacts": [
+      "present_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints"
       ],
-      "executable_now": false,
-      "acquirable_or_buildable": true,
+      "missing_artifacts": [],
+      "executable_now": true,
+      "acquirable_or_buildable": false,
       "artifact_usefulness_control_required": true
     },
     {
       "family": "chemical_perturbation_encoder",
       "id": "drug_target_cross_attention",
-      "implementation_status": "acquirable_or_buildable_then_planned",
-      "search_space_status": "selectable",
+      "implementation_status": "implemented_source_backed_drug_target_artifact_fusion",
+      "search_space_status": "selectable_executable",
       "required_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints",
         "esm2_gene_or_protein_embeddings"
       ],
-      "present_artifacts": [],
-      "missing_artifacts": [
+      "present_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints",
         "esm2_gene_or_protein_embeddings"
       ],
-      "executable_now": false,
-      "acquirable_or_buildable": true,
+      "missing_artifacts": [],
+      "executable_now": true,
+      "acquirable_or_buildable": false,
       "artifact_usefulness_control_required": true
     },
     {
@@ -392,10 +398,11 @@
         "scgpt_whole_human_checkpoint",
         "chemical_encoder_checkpoint_or_drug_fingerprints"
       ],
-      "present_artifacts": [],
-      "missing_artifacts": [
-        "scgpt_whole_human_checkpoint",
+      "present_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints"
+      ],
+      "missing_artifacts": [
+        "scgpt_whole_human_checkpoint"
       ],
       "executable_now": false,
       "acquirable_or_buildable": false,
@@ -412,11 +419,11 @@
         "string_gene_graph"
       ],
       "present_artifacts": [
+        "esm2_gene_or_protein_embeddings",
         "string_gene_graph"
       ],
       "missing_artifacts": [
-        "geneformer_checkpoint",
-        "esm2_gene_or_protein_embeddings"
+        "geneformer_checkpoint"
       ],
       "executable_now": false,
       "acquirable_or_buildable": false,
@@ -425,22 +432,21 @@
     {
       "family": "multimodal_fusion",
       "id": "pathway_drug_target_fusion",
-      "implementation_status": "acquirable_or_buildable_then_planned",
-      "search_space_status": "selectable",
+      "implementation_status": "implemented_source_backed_pathway_drug_target_fusion",
+      "search_space_status": "selectable_executable",
       "required_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints",
         "reactome_pathway_membership",
         "esm2_gene_or_protein_embeddings"
       ],
       "present_artifacts": [
-        "reactome_pathway_membership"
-      ],
-      "missing_artifacts": [
         "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
         "esm2_gene_or_protein_embeddings"
       ],
-      "executable_now": false,
-      "acquirable_or_buildable": true,
+      "missing_artifacts": [],
+      "executable_now": true,
+      "acquirable_or_buildable": false,
       "artifact_usefulness_control_required": true
     }
   ]
