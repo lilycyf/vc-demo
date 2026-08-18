@@ -1,0 +1,178 @@
+{
+  "artifact_blockers": 0,
+  "artifact_usefulness": {
+    "best_dense_matched_no_artifact_control": {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h176f8c786e_p58_dense_matched_capacity_no_artifact_control_control",
+      "test_macro_f1": 0.4191301763057709,
+      "val_macro_f1": 0.4149172008037567
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p66_foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.41343602538108826,
+      "val_macro_f1": 0.4286476671695709
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_mlp",
+      "test_macro_f1": 0.4001896381378174,
+      "val_macro_f1": 0.4041658937931061
+    },
+    "foundation_vs_dense_control_val_gain": 0.013730466365814209,
+    "foundation_vs_root_val_gain": 0.024481773376464844,
+    "interpretation": "artifact useful beyond capacity",
+    "paired_comparisons": [
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p33_foundation_drug_target_cross_attention",
+        "artifact_incremental_val_gain": 0.007074177265167236,
+        "artifact_strategy": "foundation_drug_target_cross_attention",
+        "artifact_test_macro_f1": 0.41264262795448303,
+        "artifact_val_macro_f1": 0.4167056977748871,
+        "control_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_hbe505e5f20_p33_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.41525229811668396,
+        "control_val_macro_f1": 0.40963152050971985
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p34_foundation_string_graph_message_passing",
+        "artifact_incremental_val_gain": 0.0025620460510253906,
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "artifact_test_macro_f1": 0.40577399730682373,
+        "artifact_val_macro_f1": 0.4157048463821411,
+        "control_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p34_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.41163086891174316,
+        "control_val_macro_f1": 0.4131428003311157
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_hcfea836af8_p41_foundation_string_graph_message_passing",
+        "artifact_incremental_val_gain": 0.0021668672561645508,
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "artifact_test_macro_f1": 0.4088098108768463,
+        "artifact_val_macro_f1": 0.41326066851615906,
+        "control_child": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_h63eb2b3125_p41_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.4151662588119507,
+        "control_val_macro_f1": 0.4110938012599945
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_hcfea836af8_p42_foundation_graph_laplacian_head",
+        "artifact_incremental_val_gain": -0.006246060132980347,
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "artifact_test_macro_f1": 0.41154614090919495,
+        "artifact_val_macro_f1": 0.40656495094299316,
+        "control_child": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_hbd135ea3af_p42_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.4136931896209717,
+        "control_val_macro_f1": 0.4128110110759735
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8782aedba2_p49_foundation_graph_laplacian_head",
+        "artifact_incremental_val_gain": 0.00025138258934020996,
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "artifact_test_macro_f1": 0.41240695118904114,
+        "artifact_val_macro_f1": 0.41408810019493103,
+        "control_child": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8239c4eebf_p49_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.41729214787483215,
+        "control_val_macro_f1": 0.4138367176055908
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8782aedba2_p50_foundation_pathway_pooling_encoder",
+        "artifact_incremental_val_gain": -4.741549491882324e-05,
+        "artifact_strategy": "foundation_pathway_pooling_encoder",
+        "artifact_test_macro_f1": 0.41444262862205505,
+        "artifact_val_macro_f1": 0.4101537764072418,
+        "control_child": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h4f0ed908b8_p50_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.41411054134368896,
+        "control_val_macro_f1": 0.41020119190216064
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_hbe505e5f20_p57_foundation_graph_laplacian_head",
+        "artifact_incremental_val_gain": 0.007330060005187988,
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "artifact_test_macro_f1": 0.41050291061401367,
+        "artifact_val_macro_f1": 0.4168378412723541,
+        "control_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h0da2fcf5db_p57_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.4060782194137573,
+        "control_val_macro_f1": 0.40950778126716614
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_hbe505e5f20_p58_foundation_pathway_pooling_encoder",
+        "artifact_incremental_val_gain": 0.00042489171028137207,
+        "artifact_strategy": "foundation_pathway_pooling_encoder",
+        "artifact_test_macro_f1": 0.41603532433509827,
+        "artifact_val_macro_f1": 0.4153420925140381,
+        "control_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h176f8c786e_p58_dense_matched_capacity_no_artifact_control_control",
+        "control_test_macro_f1": 0.4191301763057709,
+        "control_val_macro_f1": 0.4149172008037567
+      }
+    ],
+    "trained_dense_matched_controls": 8,
+    "trained_foundation_artifact_children": 24
+  },
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.4286476671695709,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.08,
+      "parent_val": 0.4157048463821411,
+      "priority": 0.93,
+      "rollout_feasibility_bonus": 0.08,
+      "score": 0.668704846382141
+    },
+    "children": [],
+    "config": "experiments/aivc_helf_executable_foundation_full_run/proposals/aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p66_foundation_pathway_drug_target_fusion.json",
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "metrics": "experiments/aivc_helf_executable_foundation_full_run/nodes/aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p66_foundation_pathway_drug_target_fusion/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p34_foundation_string_graph_message_passing",
+    "proposal": "experiments/aivc_helf_executable_foundation_full_run/proposals/aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p66_foundation_pathway_drug_target_fusion.proposal.json",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "chemical_encoder_checkpoint_or_drug_fingerprints",
+      "reactome_pathway_membership",
+      "esm2_gene_or_protein_embeddings"
+    ],
+    "status": "trained",
+    "strategy": "foundation_pathway_drug_target_fusion",
+    "test_macro_f1": 0.41343602538108826,
+    "value": 0.8572953343391418,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.4041658937931061,
+    "children": [
+      "aivc_helf_perturb_root_mlp_h926f19760f_p1_foundation_esm2_target_gene_head",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p1_dense_matched_capacity_no_artifact_control_control",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p2_foundation_protein_embedding_fusion",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8782aedba2_p2_dense_matched_capacity_no_artifact_control_control",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p3_foundation_scgpt_cell_encoder",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p4_foundation_scgpt_adapter_finetune",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p5_low_rank_head",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p6_feature_dropout",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p7_temperature_calibration",
+      "aivc_helf_perturb_root_mlp_h926f19760f_p8_weighted_ce"
+    ],
+    "config": "configs/aivc_helf_perturb_roots/root_mlp.json",
+    "metrics": "experiments/aivc_helf_executable_foundation_full_run/nodes/aivc_helf_perturb_root_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.4001896381378174,
+    "value": 9.55871731042862,
+    "visits": 23
+  },
+  "blocked": 0,
+  "experiment": "aivc_helf_executable_foundation_full_run",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_artifact_usefulness_controls": 32,
+  "generated_proposals": 128,
+  "proxy_count": 0,
+  "pruned_not_selected": 128,
+  "requires_artifact_acquisition": 0,
+  "run_dir": "experiments/aivc_helf_executable_foundation_full_run",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (32/32)",
+  "trained_foundation_artifact_children": 24,
+  "trained_selected_rollouts": 32
+}

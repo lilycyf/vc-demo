@@ -1,0 +1,52 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_heldout_drug_perturb_response_demo",
+  "metadata": {
+    "artifact_usefulness_control": {
+      "control_type": "dense_matched_capacity_no_artifact",
+      "paired_source_strategy": "foundation_graph_laplacian_head",
+      "purpose": "estimate capacity/loss gain separately from artifact incremental gain"
+    },
+    "paired_artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_hbe505e5f20_p57_foundation_graph_laplacian_head",
+    "proposal_type": "artifact_usefulness_control",
+    "required_artifacts": [
+      "chemical_encoder_checkpoint_or_drug_fingerprints",
+      "esm2_gene_or_protein_embeddings"
+    ]
+  },
+  "model": {
+    "artifacts": {
+      "artifact_tables": [],
+      "drug_embedding_tables": [
+        {
+          "artifact_id": "chemical_encoder_checkpoint_or_drug_fingerprints",
+          "key": "drug_embeddings",
+          "path": "data/artifacts/helf/drug_embeddings.npz"
+        }
+      ],
+      "drug_onehot_dim": 10
+    },
+    "depth": 3,
+    "dropout": 0.15,
+    "hidden_dim": 512,
+    "input_dim": "auto",
+    "low_rank_dim": 64,
+    "model_type": "residual_mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h0da2fcf5db_p57_dense_matched_capacity_no_artifact_control_control",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "loss_type": "cross_entropy",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

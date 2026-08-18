@@ -1,0 +1,24 @@
+{
+  "blueprint_id": "esm2_target_gene_head",
+  "candidate_pool_size": 8,
+  "candidate_rank": 2,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": -0.04,
+    "parent_val": 0.40924766659736633,
+    "priority": 1.04,
+    "rollout_feasibility_bonus": 0.08,
+    "score": 0.5532476665973663
+  },
+  "child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h0052a55b84_p114_foundation_esm2_target_gene_head",
+  "codex_action": "align target genes to protein embeddings and implement target-aware bilinear/cross-attention head; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
+  "family": "gene_or_protein_foundation_prior",
+  "hypothesis": "Test foundation_esm2_target_gene_head for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p65_foundation_pathway_pooling_encoder",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "esm2_gene_or_protein_embeddings"
+  ],
+  "strategy": "foundation_esm2_target_gene_head"
+}

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 import math
 import random
@@ -50,6 +51,19 @@ def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
+def safe_node_name(parent: str, proposal_index: int, transform_id: str, suffix: str = "") -> str:
+    """Return a stable filesystem-safe child name without losing lineage.
+
+    Deep MCTS paths can otherwise exceed the per-component filename limit when
+    proposal/config JSON files are written. Keep the root hint, local transform,
+    and a hash of the full parent lineage.
+    """
+    digest = hashlib.sha1(parent.encode("utf-8")).hexdigest()[:10]
+    root_hint = parent[:48].rstrip("_")
+    transform_hint = "".join(ch if ch.isalnum() or ch == "_" else "_" for ch in transform_id)[:56].rstrip("_")
+    return f"{root_hint}_h{digest}_p{proposal_index}_{transform_hint}{suffix}"
+
+
 def run_config(config: dict[str, Any], run_dir: Path, max_epochs: int) -> dict[str, Any]:
     out = run_dir / "nodes" / str(config["node_name"])
     started = time.time()
@@ -89,6 +103,8 @@ def uct_select_parent(tree: dict[str, Any], max_children: int, exploration: floa
     total = sum(max(1, int(n.get("visits", 0))) for n in tree["nodes"].values() if n.get("status") == "trained")
     for name, node in tree["nodes"].items():
         if node.get("status") != "trained":
+            continue
+        if node.get("proposal_type") == "artifact_usefulness_control":
             continue
         if len(node.get("children", [])) >= max_children:
             continue
@@ -424,7 +440,11 @@ def main() -> None:
             stop_reason = f"trained-node budget exhausted ({trained_children}/{args.budget_trained_nodes})"
             break
         if generated < args.budget_proposals:
-            parent = uct_select_parent(tree, args.max_children, args.exploration)
+            try:
+                parent = uct_select_parent(tree, args.max_children, args.exploration)
+            except RuntimeError as exc:
+                stop_reason = str(exc)
+                break
             parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
             parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
             transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size, artifact_registry)
@@ -433,7 +453,7 @@ def main() -> None:
                 if generated >= args.budget_proposals:
                     break
                 generated += 1
-                child = f"{parent}_p{generated}_{transform['id']}"
+                child = safe_node_name(parent, generated, transform["id"])
                 missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
                 if transform.get("proposal_type") == "foundation_artifact_blueprint" and _is_executable_foundation_blueprint(transform, artifact_registry) and not missing_artifacts:
                     cfg = apply_foundation_augmentation(parent_cfg, transform, child)
@@ -470,7 +490,7 @@ def main() -> None:
                 tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
                 queued.append((proposal["cheap_screen_score"]["score"], child))
                 if proposal["proposal_type"] == "foundation_artifact_blueprint" and proposal["required_artifacts"] and _is_executable_foundation_blueprint(transform, artifact_registry) and not missing_artifacts:
-                    control_child = f"{child}_dense_control"
+                    control_child = safe_node_name(child, generated, "dense_matched_capacity_no_artifact_control", suffix="_control")
                     control_cfg = apply_artifact_matched_dense_control(parent_cfg, control_child, transform["id"])
                     control_score = {
                         "score": float(score_row["score"]) - 0.025,

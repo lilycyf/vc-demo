@@ -1,0 +1,25 @@
+{
+  "blueprint_id": "drug_target_cross_attention",
+  "candidate_pool_size": 8,
+  "candidate_rank": 2,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.08,
+    "parent_val": 0.3989487886428833,
+    "priority": 1.0,
+    "rollout_feasibility_bonus": 0.08,
+    "score": 0.6589487886428832
+  },
+  "child": "aivc_helf_perturb_root_residual_mlp_h50ad0a599e_p18_foundation_drug_target_cross_attention",
+  "codex_action": "cross-attend drug embedding to target-gene embedding table; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
+  "family": "chemical_perturbation_encoder",
+  "hypothesis": "Test foundation_drug_target_cross_attention for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "aivc_helf_perturb_root_residual_mlp",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "chemical_encoder_checkpoint_or_drug_fingerprints",
+    "esm2_gene_or_protein_embeddings"
+  ],
+  "strategy": "foundation_drug_target_cross_attention"
+}

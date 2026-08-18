@@ -1,0 +1,24 @@
+{
+  "blueprint_id": "pathway_pooling_encoder",
+  "candidate_pool_size": 8,
+  "candidate_rank": 2,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.08,
+    "parent_val": 0.4235776662826538,
+    "priority": 0.9700000000000001,
+    "rollout_feasibility_bonus": 0.08,
+    "score": 0.6805776662826537
+  },
+  "child": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8782aedba2_p50_foundation_pathway_pooling_encoder",
+  "codex_action": "pool target genes through Reactome membership matrix before class head",
+  "family": "network_and_pathway_prior",
+  "hypothesis": "Test foundation_pathway_pooling_encoder for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "aivc_helf_perturb_root_mlp_h926f19760f_p2_foundation_protein_embedding_fusion",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "reactome_pathway_membership"
+  ],
+  "strategy": "foundation_pathway_pooling_encoder"
+}

@@ -1,0 +1,32 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_heldout_drug_perturb_response_demo",
+  "metadata": {
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "scgpt_whole_human_checkpoint"
+    ]
+  },
+  "model": {
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "model_type": "mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_perturb_root_mlp_h926f19760f_p4_foundation_scgpt_adapter_finetune",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

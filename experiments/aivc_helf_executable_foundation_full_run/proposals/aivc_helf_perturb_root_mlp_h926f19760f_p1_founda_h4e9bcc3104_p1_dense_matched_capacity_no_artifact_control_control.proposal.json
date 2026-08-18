@@ -1,0 +1,22 @@
+{
+  "candidate_pool_size": 8,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.0,
+    "paired_control_for": "aivc_helf_perturb_root_mlp_h926f19760f_p1_foundation_esm2_target_gene_head",
+    "parent_val": 0.4041658937931061,
+    "priority": 1.04,
+    "score": 0.643165893793106
+  },
+  "child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p1_dense_matched_capacity_no_artifact_control_control",
+  "codex_action": "train a no-artifact dense matched-capacity control for artifact incremental gain attribution",
+  "hypothesis": "Control for capacity/loss gain paired with foundation_esm2_target_gene_head for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "paired_artifact_child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_foundation_esm2_target_gene_head",
+  "paired_source_strategy": "foundation_esm2_target_gene_head",
+  "parent": "aivc_helf_perturb_root_mlp",
+  "proposal_type": "artifact_usefulness_control",
+  "required_artifacts": [],
+  "strategy": "dense_matched_capacity_no_artifact_control"
+}

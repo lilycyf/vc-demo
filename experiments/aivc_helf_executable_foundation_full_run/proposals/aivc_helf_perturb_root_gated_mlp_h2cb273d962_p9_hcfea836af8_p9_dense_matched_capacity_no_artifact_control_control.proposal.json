@@ -1,0 +1,22 @@
+{
+  "candidate_pool_size": 8,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.0,
+    "paired_control_for": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_foundation_protein_embedding_fusion",
+    "parent_val": 0.4038660526275635,
+    "priority": 1.03,
+    "score": 0.6418660526275634
+  },
+  "child": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_hcfea836af8_p9_dense_matched_capacity_no_artifact_control_control",
+  "codex_action": "train a no-artifact dense matched-capacity control for artifact incremental gain attribution",
+  "hypothesis": "Control for capacity/loss gain paired with foundation_protein_embedding_fusion for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "paired_artifact_child": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_foundation_protein_embedding_fusion",
+  "paired_source_strategy": "foundation_protein_embedding_fusion",
+  "parent": "aivc_helf_perturb_root_gated_mlp",
+  "proposal_type": "artifact_usefulness_control",
+  "required_artifacts": [],
+  "strategy": "dense_matched_capacity_no_artifact_control"
+}

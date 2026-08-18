@@ -1,0 +1,48 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_heldout_drug_perturb_response_demo",
+  "metadata": {
+    "proposal_type": "lightweight_executable_transform",
+    "required_artifacts": []
+  },
+  "model": {
+    "artifacts": {
+      "artifact_tables": [
+        {
+          "artifact_id": "esm2_gene_or_protein_embeddings",
+          "key": "target_gene_embeddings",
+          "path": "data/artifacts/helf/esm2_gene_embeddings.npz"
+        }
+      ],
+      "drug_embedding_tables": []
+    },
+    "depth": 2,
+    "dropout": 0.15,
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "low_rank_dim": 64,
+    "model_type": "temperature_calibrated_mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p39_temperature_calibration",
+  "seed": 19,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "loss_type": "cross_entropy",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

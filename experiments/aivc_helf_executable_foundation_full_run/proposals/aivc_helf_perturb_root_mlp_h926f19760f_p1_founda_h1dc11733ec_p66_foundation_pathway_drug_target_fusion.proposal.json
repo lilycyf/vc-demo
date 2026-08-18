@@ -1,0 +1,26 @@
+{
+  "blueprint_id": "pathway_drug_target_fusion",
+  "candidate_pool_size": 8,
+  "candidate_rank": 2,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.08,
+    "parent_val": 0.4157048463821411,
+    "priority": 0.93,
+    "rollout_feasibility_bonus": 0.08,
+    "score": 0.668704846382141
+  },
+  "child": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p66_foundation_pathway_drug_target_fusion",
+  "codex_action": "drug-to-pathway-to-target hierarchical prediction; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
+  "family": "multimodal_fusion",
+  "hypothesis": "Test foundation_pathway_drug_target_fusion for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "parent": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p34_foundation_string_graph_message_passing",
+  "proposal_type": "foundation_artifact_blueprint",
+  "required_artifacts": [
+    "chemical_encoder_checkpoint_or_drug_fingerprints",
+    "reactome_pathway_membership",
+    "esm2_gene_or_protein_embeddings"
+  ],
+  "strategy": "foundation_pathway_drug_target_fusion"
+}

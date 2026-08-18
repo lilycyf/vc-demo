@@ -1,0 +1,263 @@
+{
+  "backend_anomaly_count": 0,
+  "backprop_nontrained_count": 0,
+  "blocked": 0,
+  "compact_proxy_count": 0,
+  "failed": 0,
+  "fallback_count": 0,
+  "foundation_trained_nodes": [
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p66_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.41343602538108826,
+      "val_macro_f1": 0.4286476671695709
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_foundation_esm2_target_gene_head",
+      "required_artifacts": [
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_esm2_target_gene_head",
+      "test_macro_f1": 0.41794025897979736,
+      "val_macro_f1": 0.4256371557712555
+    },
+    {
+      "node": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_foundation_protein_embedding_fusion",
+      "required_artifacts": [
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_protein_embedding_fusion",
+      "test_macro_f1": 0.4185957610607147,
+      "val_macro_f1": 0.4246632158756256
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h4f0ed908b8_p105_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.42464932799339294,
+      "val_macro_f1": 0.42393791675567627
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p2_foundation_protein_embedding_fusion",
+      "required_artifacts": [
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_protein_embedding_fusion",
+      "test_macro_f1": 0.41152599453926086,
+      "val_macro_f1": 0.4235776662826538
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8239c4eebf_p74_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.4223746359348297,
+      "val_macro_f1": 0.4233436584472656
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h0da2fcf5db_p89_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.4176749289035797,
+      "val_macro_f1": 0.418795108795166
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h0052a55b84_p113_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.42409226298332214,
+      "val_macro_f1": 0.4184587299823761
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_hbe505e5f20_p57_foundation_graph_laplacian_head",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "strategy": "foundation_graph_laplacian_head",
+      "test_macro_f1": 0.41050291061401367,
+      "val_macro_f1": 0.4168378412723541
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p33_foundation_drug_target_cross_attention",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_drug_target_cross_attention",
+      "test_macro_f1": 0.41264262795448303,
+      "val_macro_f1": 0.4167056977748871
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h176f8c786e_p97_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.41889461874961853,
+      "val_macro_f1": 0.4158824682235718
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h4e9bcc3104_p34_foundation_string_graph_message_passing",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "strategy": "foundation_string_graph_message_passing",
+      "test_macro_f1": 0.40577399730682373,
+      "val_macro_f1": 0.4157048463821411
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_hbe505e5f20_p58_foundation_pathway_pooling_encoder",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.41603532433509827,
+      "val_macro_f1": 0.4153420925140381
+    },
+    {
+      "node": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_h63eb2b3125_p81_foundation_pathway_drug_target_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "reactome_pathway_membership",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_pathway_drug_target_fusion",
+      "test_macro_f1": 0.4189485013484955,
+      "val_macro_f1": 0.41509124636650085
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8782aedba2_p49_foundation_graph_laplacian_head",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "strategy": "foundation_graph_laplacian_head",
+      "test_macro_f1": 0.41240695118904114,
+      "val_macro_f1": 0.41408810019493103
+    },
+    {
+      "node": "aivc_helf_perturb_root_residual_mlp_h50ad0a599e_p18_foundation_drug_target_cross_attention",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints",
+        "esm2_gene_or_protein_embeddings"
+      ],
+      "strategy": "foundation_drug_target_cross_attention",
+      "test_macro_f1": 0.4144785404205322,
+      "val_macro_f1": 0.414080411195755
+    },
+    {
+      "node": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_hcfea836af8_p41_foundation_string_graph_message_passing",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "strategy": "foundation_string_graph_message_passing",
+      "test_macro_f1": 0.4088098108768463,
+      "val_macro_f1": 0.41326066851615906
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8782aedba2_p50_foundation_pathway_pooling_encoder",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.41444262862205505,
+      "val_macro_f1": 0.4101537764072418
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p1_founda_h1dc11733ec_p65_foundation_pathway_pooling_encoder",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.4111384451389313,
+      "val_macro_f1": 0.40924766659736633
+    },
+    {
+      "node": "aivc_helf_perturb_root_mlp_h926f19760f_p2_founda_h8239c4eebf_p73_foundation_pathway_pooling_encoder",
+      "required_artifacts": [
+        "reactome_pathway_membership"
+      ],
+      "strategy": "foundation_pathway_pooling_encoder",
+      "test_macro_f1": 0.40794119238853455,
+      "val_macro_f1": 0.4069538116455078
+    },
+    {
+      "node": "aivc_helf_perturb_root_low_rank_mlp_hfb3d491643_p25_foundation_rdkit_drug_fingerprint_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints"
+      ],
+      "strategy": "foundation_rdkit_drug_fingerprint_fusion",
+      "test_macro_f1": 0.4136008322238922,
+      "val_macro_f1": 0.40661200881004333
+    },
+    {
+      "node": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p9_hcfea836af8_p42_foundation_graph_laplacian_head",
+      "required_artifacts": [
+        "string_gene_graph"
+      ],
+      "strategy": "foundation_graph_laplacian_head",
+      "test_macro_f1": 0.41154614090919495,
+      "val_macro_f1": 0.40656495094299316
+    },
+    {
+      "node": "aivc_helf_perturb_root_residual_mlp_h50ad0a599e_p17_foundation_rdkit_drug_fingerprint_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints"
+      ],
+      "strategy": "foundation_rdkit_drug_fingerprint_fusion",
+      "test_macro_f1": 0.4061422348022461,
+      "val_macro_f1": 0.40258297324180603
+    },
+    {
+      "node": "aivc_helf_perturb_root_gated_mlp_h2cb273d962_p10_foundation_rdkit_drug_fingerprint_fusion",
+      "required_artifacts": [
+        "chemical_encoder_checkpoint_or_drug_fingerprints"
+      ],
+      "strategy": "foundation_rdkit_drug_fingerprint_fusion",
+      "test_macro_f1": 0.40133604407310486,
+      "val_macro_f1": 0.39987912774086
+    }
+  ],
+  "generated_artifact_usefulness_controls": 32,
+  "generated_proposals": 128,
+  "notes": [
+    "Fallback/proxy/compact counts use explicit implementation/backend markers only; policy fields such as no_fallback_or_proxy are not counted as proxy usage.",
+    "This runner uses native vc_demo.train backend only; no external_static_node backend is invoked."
+  ],
+  "pending": 0,
+  "proxy_count": 0,
+  "pruned_node_training_count": 0,
+  "pruned_not_selected": 128,
+  "run_dir": "experiments/aivc_helf_executable_foundation_full_run",
+  "selected_events": 32,
+  "skipped": 0,
+  "status_counts": {
+    "pruned_not_selected": 128,
+    "trained": 36
+  },
+  "trained_and_backpropagated_events": 32,
+  "trained_dense_matched_controls": 8,
+  "trained_foundation_artifact_children": 24,
+  "trained_selected_rollouts": 32
+}
