@@ -80,3 +80,33 @@ Required audit fields for trained foundation children:
 - `foundation_augmentation_policy`
 - `fallback/proxy = 0`
 - best validation Macro-F1 and report-only test Macro-F1
+
+
+## Artifact Usefulness Controls
+
+Foundation-aware search must test whether a source-backed artifact adds information beyond a stronger dense model. When an artifact-present proposal is generated, the harness should, when budget allows, add a paired control:
+
+```text
+same parent + comparable dense capacity/loss choices + no artifact tables
+```
+
+The paired control is not a fallback. It is an attribution experiment. Its role is to answer whether the artifact branch contributes beyond capacity or optimization.
+
+Required report files:
+
+- `artifact_usefulness_report.json`
+- `artifact_usefulness_report.md`
+
+Required fields:
+
+- best root;
+- best generated child;
+- best foundation-artifact child;
+- best dense no-artifact child;
+- best dense matched no-artifact control;
+- foundation-vs-root validation gain;
+- foundation-vs-dense-control validation gain;
+- paired artifact/control comparisons.
+
+A biological artifact usefulness claim is valid only when source-backed artifact children beat the relevant dense no-artifact comparator under validation-only selection. Otherwise the result is a model-search win, not an artifact-evidence win.
+

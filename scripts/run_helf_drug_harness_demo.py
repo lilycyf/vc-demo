@@ -140,6 +140,32 @@ def apply_foundation_augmentation(parent: dict[str, Any], transform: dict[str, A
     return cfg
 
 
+
+def apply_artifact_matched_dense_control(parent: dict[str, Any], child_name: str, source_strategy: str) -> dict[str, Any]:
+    """Create a no-artifact capacity/loss control paired to a foundation child.
+
+    The control keeps the same parent and receives comparable dense capacity, but
+    no artifact tables. This lets reports estimate whether a source-backed
+    artifact added information beyond a stronger dense baseline.
+    """
+    cfg = copy.deepcopy(parent)
+    cfg["node_name"] = child_name
+    model = cfg.setdefault("model", {})
+    training = cfg.setdefault("training", {})
+    model["model_type"] = "residual_mlp"
+    model["hidden_dim"] = min(max(int(model.get("hidden_dim", 256)) * 2, 256), 1024)
+    model["depth"] = min(max(int(model.get("depth", 2)) + 1, 3), 5)
+    model["dropout"] = max(float(model.get("dropout", 0.15)), 0.15)
+    model.pop("foundation_augmentation_policy", None)
+    model.setdefault("artifacts", {})["artifact_tables"] = []
+    training.setdefault("loss_type", "cross_entropy")
+    cfg.setdefault("metadata", {})["artifact_usefulness_control"] = {
+        "control_type": "dense_matched_capacity_no_artifact",
+        "paired_source_strategy": source_strategy,
+        "purpose": "estimate capacity/loss gain separately from artifact incremental gain",
+    }
+    return cfg
+
 def apply_transform(parent: dict[str, Any], transform_id: str, child_name: str) -> dict[str, Any]:
     cfg = copy.deepcopy(parent)
     cfg["node_name"] = child_name
@@ -273,6 +299,64 @@ def best_rows(tree: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any] | No
     return best_root, best_child
 
 
+
+def _node_val(node: dict[str, Any]) -> float | None:
+    value = node.get("best_val_macro_f1")
+    return float(value) if value is not None else None
+
+
+def _node_test(node: dict[str, Any]) -> float | None:
+    value = node.get("test_macro_f1")
+    return float(value) if value is not None else None
+
+
+def build_artifact_usefulness_summary(tree: dict[str, Any]) -> dict[str, Any]:
+    nodes = tree.get("nodes", {})
+    trained = {name: node for name, node in nodes.items() if node.get("status") == "trained"}
+    roots = {name: node for name, node in trained.items() if not node.get("parent")}
+    foundation = {
+        name: node for name, node in trained.items()
+        if node.get("proposal_type") == "foundation_artifact_blueprint"
+        and node.get("required_artifacts")
+        and not node.get("missing_required_artifacts")
+    }
+    controls = {name: node for name, node in trained.items() if node.get("proposal_type") == "artifact_usefulness_control"}
+    best_root = max(roots.items(), key=lambda item: _node_val(item[1]) or -1.0, default=("", {}))
+    best_foundation = max(foundation.items(), key=lambda item: _node_val(item[1]) or -1.0, default=("", {}))
+    best_control = max(controls.items(), key=lambda item: _node_val(item[1]) or -1.0, default=("", {}))
+    paired_rows = []
+    for control_name, control in controls.items():
+        artifact_name = str(control.get("paired_artifact_child") or "")
+        artifact = trained.get(artifact_name)
+        if not artifact:
+            continue
+        c_val = _node_val(control)
+        a_val = _node_val(artifact)
+        paired_rows.append({
+            "artifact_child": artifact_name,
+            "control_child": control_name,
+            "artifact_strategy": artifact.get("strategy"),
+            "artifact_val_macro_f1": a_val,
+            "artifact_test_macro_f1": _node_test(artifact),
+            "control_val_macro_f1": c_val,
+            "control_test_macro_f1": _node_test(control),
+            "artifact_incremental_val_gain": (a_val - c_val) if a_val is not None and c_val is not None else None,
+        })
+    root_val = _node_val(best_root[1]) if best_root[1] else None
+    found_val = _node_val(best_foundation[1]) if best_foundation[1] else None
+    control_val = _node_val(best_control[1]) if best_control[1] else None
+    return {
+        "best_root": {"node": best_root[0], "val_macro_f1": root_val, "test_macro_f1": _node_test(best_root[1]) if best_root[1] else None},
+        "best_foundation_artifact_child": {"node": best_foundation[0], "val_macro_f1": found_val, "test_macro_f1": _node_test(best_foundation[1]) if best_foundation[1] else None},
+        "best_dense_matched_no_artifact_control": {"node": best_control[0], "val_macro_f1": control_val, "test_macro_f1": _node_test(best_control[1]) if best_control[1] else None},
+        "foundation_vs_root_val_gain": (found_val - root_val) if found_val is not None and root_val is not None else None,
+        "foundation_vs_dense_control_val_gain": (found_val - control_val) if found_val is not None and control_val is not None else None,
+        "paired_comparisons": paired_rows,
+        "trained_foundation_artifact_children": len(foundation),
+        "trained_dense_matched_controls": len(controls),
+        "interpretation": "artifact useful beyond capacity" if found_val is not None and control_val is not None and found_val > control_val else "artifact gain not proven beyond dense matched-capacity control",
+    }
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run a small VCHarness-style HELF demo over NPZ task data.")
     parser.add_argument("--root-configs", nargs="+", required=True)
@@ -316,6 +400,7 @@ def main() -> None:
         metrics = run_config(cfg, args.run_dir, args.max_epochs)
         add_node(tree, cfg["node_name"], cfg_path, "", "trained", metrics)
     generated = trained_children = failed = blocked = skipped = 0
+    artifact_usefulness_controls_generated = 0
     strategy_counts: dict[str, int] = {}
     queued: list[tuple[float, str]] = []
     stop_reason = "budget exhausted"
@@ -370,6 +455,46 @@ def main() -> None:
                 tree["nodes"][child]["required_artifacts"] = proposal["required_artifacts"]
                 tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
                 queued.append((proposal["cheap_screen_score"]["score"], child))
+                if proposal["proposal_type"] == "foundation_artifact_blueprint" and proposal["required_artifacts"] and not missing_artifacts:
+                    control_child = f"{child}_dense_control"
+                    control_cfg = apply_artifact_matched_dense_control(parent_cfg, control_child, transform["id"])
+                    control_score = {
+                        "score": float(score_row["score"]) + 0.015,
+                        "parent_val": parent_val,
+                        "priority": transform["priority"],
+                        "cost_bonus": 0.0,
+                        "novelty": 0.0,
+                        "paired_control_for": child,
+                    }
+                    control_proposal = {
+                        "strategy": "dense_matched_capacity_no_artifact_control",
+                        "parent": parent,
+                        "child": control_child,
+                        "candidate_rank": rank,
+                        "candidate_pool_size": args.candidate_pool_size,
+                        "proposal_type": "artifact_usefulness_control",
+                        "paired_artifact_child": child,
+                        "paired_source_strategy": transform["id"],
+                        "required_artifacts": [],
+                        "missing_required_artifacts": [],
+                        "codex_action": "train a no-artifact dense matched-capacity control for artifact incremental gain attribution",
+                        "cheap_screen_score": control_score,
+                        "hypothesis": f"Control for capacity/loss gain paired with {transform['id']} for {task_label}.",
+                    }
+                    control_cfg.setdefault("metadata", {})["proposal_type"] = control_proposal["proposal_type"]
+                    control_cfg["metadata"]["paired_artifact_child"] = child
+                    control_cfg_path = proposal_dir / f"{control_child}.json"
+                    control_prop_path = proposal_dir / f"{control_child}.proposal.json"
+                    write_json(control_cfg_path, control_cfg)
+                    write_json(control_prop_path, control_proposal)
+                    add_node(tree, control_child, control_cfg_path, parent, "candidate_queued", proposal=control_proposal)
+                    tree["nodes"][control_child]["proposal_type"] = control_proposal["proposal_type"]
+                    tree["nodes"][control_child]["required_artifacts"] = []
+                    tree["nodes"][control_child]["missing_required_artifacts"] = []
+                    tree["nodes"][control_child]["paired_artifact_child"] = child
+                    queued.append((control_score["score"], control_child))
+                    artifact_usefulness_controls_generated += 1
+                    write_trace(args.run_dir, {"event": "artifact_usefulness_control_generated", "artifact_child": child, "control_child": control_child, "source_strategy": transform["id"]})
             write_json(args.run_dir / "tree.json", tree)
         if not queued:
             stop_reason = f"proposal budget exhausted ({generated}/{args.budget_proposals})"
@@ -422,6 +547,7 @@ def main() -> None:
         "stop_reason": stop_reason,
         "generated_proposals": generated,
         "trained_selected_rollouts": trained_children,
+        "generated_artifact_usefulness_controls": artifact_usefulness_controls_generated,
         "pruned_not_selected": sum(1 for n in tree["nodes"].values() if n.get("status") == "pruned_not_selected"),
         "skipped": skipped,
         "blocked": blocked,
@@ -436,13 +562,30 @@ def main() -> None:
     }
     trained_foundation = sum(1 for n in tree["nodes"].values() if n.get("status") == "trained" and n.get("proposal_type") == "foundation_artifact_blueprint")
     summary["trained_foundation_artifact_children"] = trained_foundation
+    artifact_usefulness = build_artifact_usefulness_summary(tree)
+    summary["artifact_usefulness"] = artifact_usefulness
+    write_json(args.run_dir / "artifact_usefulness_report.json", artifact_usefulness)
     write_json(args.run_dir / "tree.json", tree)
     write_json(args.run_dir / "run_manifest.json", summary)
-    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Trained foundation-artifact children: `{trained_foundation}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority. If their required source-backed artifacts are present and aligned, they are materialized as parent-preserving gated residual augmentations: dense parent logits remain intact and the artifact branch adds a learnable correction. Missing or unaligned foundation model artifacts are acquired or blocked; no fallback/proxy is allowed.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
+    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Generated artifact-usefulness controls: `{artifact_usefulness_controls_generated}`", f"- Trained foundation-artifact children: `{trained_foundation}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority. If their required source-backed artifacts are present and aligned, they are materialized as parent-preserving gated residual augmentations: dense parent logits remain intact and the artifact branch adds a learnable correction. Missing or unaligned foundation model artifacts are acquired or blocked; no fallback/proxy is allowed.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
     if best_child:
         lines += [f"- Strategy: `{best_child.get('strategy')}`", f"- Val Macro-F1: `{best_child.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_child.get('test_macro_f1')}`"]
     else:
         lines.append("No generated child was trained.")
+    lines += ["", "## Artifact Usefulness", ""]
+    artifact_usefulness = summary.get("artifact_usefulness", {})
+    lines += [
+        f"- Best foundation-artifact child: `{artifact_usefulness.get('best_foundation_artifact_child', {}).get('node')}` val={artifact_usefulness.get('best_foundation_artifact_child', {}).get('val_macro_f1')}",
+        f"- Best dense matched no-artifact control: `{artifact_usefulness.get('best_dense_matched_no_artifact_control', {}).get('node')}` val={artifact_usefulness.get('best_dense_matched_no_artifact_control', {}).get('val_macro_f1')}",
+        f"- Foundation vs root val gain: `{artifact_usefulness.get('foundation_vs_root_val_gain')}`",
+        f"- Foundation vs dense-control val gain: `{artifact_usefulness.get('foundation_vs_dense_control_val_gain')}`",
+        f"- Interpretation: `{artifact_usefulness.get('interpretation')}`",
+    ]
+    paired = artifact_usefulness.get("paired_comparisons", [])
+    if paired:
+        lines += ["", "| Artifact child | Dense control | Artifact val | Control val | Incremental val gain |", "|---|---|---:|---:|---:|"]
+        for row in paired[:20]:
+            lines.append(f"| `{row.get('artifact_child')}` | `{row.get('control_child')}` | {row.get('artifact_val_macro_f1')} | {row.get('control_val_macro_f1')} | {row.get('artifact_incremental_val_gain')} |")
     if acquisition_queue["items"]:
         lines += ["", "## Acquisition / Blocker Summary", ""]
         for item in acquisition_queue["items"][:20]:

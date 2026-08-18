@@ -257,3 +257,16 @@ If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `no
 ## Full Run Queue Drain
 
 For `RUN_TYPE=full_cellline_run`, `pending implementation trained` is an intermediate state, not a terminal stop. The standard entrypoint must keep resuming the same `RUN_DIR` until a generated child both beats the best root and reaches the target validation Macro-F1, the trained-rollout budget is exhausted, no-improvement stopping fires, an acquisition/implementation queue requires same-session action, or no feasible queued candidate remains. If generated candidates remain queued and there is no blocker, the run must continue draining the global queue.
+
+
+## Artifact Usefulness Phase
+
+After any full artifact-aware run or ablation run, execute:
+
+```bash
+PYTHONPATH=src python scripts/write_artifact_usefulness_report.py --run-dir <run-dir>
+PYTHONPATH=src python scripts/write_framework_feedback.py --run-dir <run-dir> --target-val-macro-f1 <target-if-any>
+```
+
+The next run should use these outputs as framework feedback. If artifact incremental gain is not proven, do not simply increase search size. First bias the search space toward dense-parent-preserving artifact residuals, graph/pathway attention biases, target calibration priors, and paired dense controls.
+

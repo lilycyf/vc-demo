@@ -183,3 +183,21 @@ If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `no
 ## Full Run Queue Drain
 
 For `RUN_TYPE=full_cellline_run`, `pending implementation trained` is an intermediate state, not a terminal stop. The standard entrypoint must keep resuming the same `RUN_DIR` until a generated child both beats the best root and reaches the target validation Macro-F1, the trained-rollout budget is exhausted, no-improvement stopping fires, an acquisition/implementation queue requires same-session action, or no feasible queued candidate remains. If generated candidates remain queued and there is no blocker, the run must continue draining the global queue.
+
+
+## Artifact Usefulness Attribution
+
+A generated child beating the root is not enough to claim that a biological/foundation artifact was useful. The harness must separate three effects:
+
+- model capacity or optimization gain;
+- loss/calibration/regularization gain;
+- source-backed biological artifact incremental gain.
+
+For artifact-present foundation children, the default search policy should generate or preserve a dense no-artifact comparator when feasible. Reports must include:
+
+```text
+artifact_incremental_gain = best_source_backed_artifact_child_val - best_dense_matched_no_artifact_control_val
+```
+
+If the artifact child beats the root but does not beat the dense matched-capacity/no-artifact comparator, the run demonstrates a useful harness discovery but not a proven biological-artifact contribution. Codex should then continue with parent-preserving artifact residuals, attention biases, target calibration priors, or graph/pathway regularizers rather than replacing the dense branch.
+

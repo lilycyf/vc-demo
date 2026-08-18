@@ -156,6 +156,33 @@ def build_framework_feedback(run_dir: Path, tree: dict[str, Any] | None = None, 
 
     policy = _empty_policy()
     findings: list[str] = []
+    artifact_usefulness_path = run_dir / "artifact_usefulness_report.json"
+    artifact_usefulness: dict[str, Any] = {}
+    if artifact_usefulness_path.exists():
+        try:
+            artifact_usefulness = json.loads(artifact_usefulness_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            artifact_usefulness = {}
+    artifact_verdict = artifact_usefulness.get("verdict", {}) or {}
+    artifact_deltas = artifact_usefulness.get("deltas", {}) or {}
+    if artifact_usefulness:
+        if artifact_verdict.get("artifact_incremental_gain_proven"):
+            findings.append("artifact_incremental_gain: source-backed artifact child beats dense no-artifact comparator")
+            policy["ranking_boosts"].update({
+                "graph_laplacian_head": max(policy["ranking_boosts"].get("graph_laplacian_head", 0.0), 0.10),
+                "pathway_pooling_encoder": max(policy["ranking_boosts"].get("pathway_pooling_encoder", 0.0), 0.08),
+                "foundation_graph_residual": max(policy["ranking_boosts"].get("foundation_graph_residual", 0.0), 0.10),
+            })
+            policy["implementation_guidance"].append("Artifact incremental gain observed: keep paired dense controls and explore stronger artifact residual/gating variants around the winning dense branch.")
+        else:
+            findings.append("artifact_incremental_gain_not_proven: best artifact child does not beat dense matched-capacity/no-artifact comparator")
+            policy["ranking_boosts"].update({
+                "dense_matched_capacity_no_artifact_control": max(policy["ranking_boosts"].get("dense_matched_capacity_no_artifact_control", 0.0), 0.10),
+                "artifact_residual_gate": max(policy["ranking_boosts"].get("artifact_residual_gate", 0.0), 0.08),
+                "artifact_attention_bias": max(policy["ranking_boosts"].get("artifact_attention_bias", 0.0), 0.06),
+            })
+            policy["implementation_guidance"].append("Artifact gain is not proven beyond dense control: preserve the strong dense branch, add artifact only as a small gated residual/attention bias, and train a paired no-artifact control whenever possible.")
+            policy["validation_recommendations"].append("Require artifact-vs-dense-control attribution before claiming biological prior usefulness.")
     if best_root_val is not None and best_child_val is not None:
         delta = best_child_val - best_root_val
         if delta <= 0:
@@ -218,6 +245,7 @@ def build_framework_feedback(run_dir: Path, tree: dict[str, Any] | None = None, 
         "best_child": {"node": best_child[0], "val": best_child_val, "test": best_child_test},
         "strategy_stats": strategy_stats,
         "family_stats": family_stats,
+        "artifact_usefulness": artifact_usefulness,
         "findings": findings,
         "policy": policy,
     }
@@ -238,6 +266,12 @@ def write_framework_feedback(run_dir: Path, feedback: dict[str, Any]) -> Path:
     ]
     for item in feedback.get("findings", []) or ["none"]:
         lines.append(f"- {item}")
+    artifact_usefulness = feedback.get("artifact_usefulness", {}) or {}
+    if artifact_usefulness:
+        lines += ["", "## Artifact Usefulness", ""]
+        lines.append(f"- Artifact incremental gain proven: `{(artifact_usefulness.get('verdict', {}) or {}).get('artifact_incremental_gain_proven')}`")
+        for key, value in sorted((artifact_usefulness.get('deltas', {}) or {}).items()):
+            lines.append(f"- `{key}`: {value}")
     lines += ["", "## Policy", "", "### Ranking Boosts", ""]
     for key, value in sorted((feedback.get("policy", {}).get("ranking_boosts", {}) or {}).items()):
         lines.append(f"- `{key}`: {value}")

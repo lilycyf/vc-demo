@@ -141,3 +141,21 @@ For framework-development runs, acceptance includes a feedback artifact:
 - The next run's proposal ranking records any `feedback_boost` or `feedback_penalty` used for blueprint selection.
 
 A result that improves one cell line but does not update the search/implementation policy is an experiment result, not a framework improvement.
+
+
+## Artifact Usefulness Acceptance
+
+For foundation/artifact-aware demos, passing the mechanical harness test is separate from proving biological-artifact usefulness.
+
+Mechanical pass requires the existing guardrails: no fallback, no proxy, no non-trained backprop, no backend anomaly, and selected rollouts only.
+
+Artifact-usefulness evidence additionally requires:
+
+- `artifact_usefulness_report.json` exists;
+- at least one source-backed artifact child was trained, unless all artifact families were verified unavailable;
+- at least one dense no-artifact comparator or paired dense matched-capacity control was trained;
+- report includes `foundation_vs_dense_control_val_gain`;
+- conclusions distinguish “child beats root” from “artifact beats dense control”.
+
+If the best child beats root but artifact children do not beat dense controls, mark artifact contribution as `not_proven`, not failed. The next framework action should improve artifact integration rather than claiming the artifact is useless.
+
