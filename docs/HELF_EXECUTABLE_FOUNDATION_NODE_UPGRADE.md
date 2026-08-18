@@ -24,7 +24,6 @@ The larger `facebook/esm2_t33_650M_UR50D` checkpoint was verified downloadable o
 | `gene_or_protein_foundation_prior` | `esm2_target_gene_head` | esm2_gene_or_protein_embeddings | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
 | `gene_or_protein_foundation_prior` | `protein_embedding_fusion` | esm2_gene_or_protein_embeddings | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
 | `chemical_perturbation_encoder` | `rdkit_drug_fingerprint_fusion` | chemical_encoder_checkpoint_or_drug_fingerprints | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
-| `chemical_perturbation_encoder` | `chemberta_drug_encoder` | chemical_encoder_checkpoint_or_drug_fingerprints | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
 | `chemical_perturbation_encoder` | `drug_target_cross_attention` | chemical_encoder_checkpoint_or_drug_fingerprints, esm2_gene_or_protein_embeddings | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
 | `network_and_pathway_prior` | `string_graph_message_passing` | string_gene_graph | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
 | `network_and_pathway_prior` | `graph_laplacian_head` | string_gene_graph | materialized as parent-preserving `artifact_augmented_residual_mlp` with source-backed artifact tables |
@@ -41,6 +40,7 @@ The larger `facebook/esm2_t33_650M_UR50D` checkpoint was verified downloadable o
 | `single_cell_foundation_encoder` | `geneformer_adapter_head` | geneformer_checkpoint | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
 | `single_cell_foundation_encoder` | `scfoundation_cell_encoder` | scfoundation_checkpoint_or_service_output | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
 | `single_cell_foundation_encoder` | `uce_cell_embedding` | uce_checkpoint | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
+| `chemical_perturbation_encoder` | `chemberta_drug_encoder` | none | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
 | `network_and_pathway_prior` | `tf_regulatory_attention` | regulatory_network_prior | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
 | `multimodal_fusion` | `cell_foundation_plus_drug_fusion` | scgpt_whole_human_checkpoint | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
 | `multimodal_fusion` | `cell_gene_graph_tri_modal_fusion` | geneformer_checkpoint | checkpoint or vocabulary/order contract is not yet validated; strict mode must acquire or block, not fallback |
@@ -59,10 +59,10 @@ The larger `facebook/esm2_t33_650M_UR50D` checkpoint was verified downloadable o
 
 ## Smoke Result
 
-- Run dir: `experiments/aivc_more_executable_nodes_smoke_v2`.
-- Foundation blueprints executable now: `9 / 18`.
+- Run dir: `experiments/aivc_more_executable_nodes_smoke_v3`.
+- Foundation blueprints executable now: `8 / 18`.
 - Trained selected rollouts: `8`.
-- Trained foundation-artifact children: `6`.
+- Trained foundation-artifact children: `8`.
 - Blocked/acquisition: `0`.
 - Fallback/proxy/backprop-nontrained: `0`.
-- Best foundation artifact child beat root and dense control in this smoke, proving the new nodes are actually trainable rather than manifest-only.
+- Best foundation artifact child beat root in this smoke, proving the new nodes are actually trainable rather than manifest-only. Dense matched controls were generated but not selected within this 8-rollout budget after artifact-first queue ordering.

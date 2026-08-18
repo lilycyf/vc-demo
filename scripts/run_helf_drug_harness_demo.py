@@ -265,8 +265,15 @@ def load_foundation_blueprints(path: Path) -> list[dict[str, Any]]:
                 "proposal_type": "foundation_artifact_blueprint",
                 "required_artifacts": [str(x) for x in blueprint.get("required_artifacts", [])],
                 "codex_action": blueprint.get("codex_action", "source-backed implementation required"),
+                "implementation_status": blueprint.get("implementation_status", "unspecified"),
             })
     return blueprints
+
+
+def _is_executable_foundation_blueprint(transform: dict[str, Any], registry: dict[str, dict[str, Any]]) -> bool:
+    required = transform.get("required_artifacts", [])
+    status = str(transform.get("implementation_status", ""))
+    return bool(required) and status.startswith("implemented") and not missing_required_artifacts(required, registry)
 
 
 def _has_present_required_artifacts(transform: dict[str, Any], registry: dict[str, dict[str, Any]]) -> bool:
@@ -283,7 +290,7 @@ def choose_candidate_pool(transforms: list[dict[str, Any]], foundation: list[dic
     light = sorted(light, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
     found = sorted(found, key=lambda t: cheap_score(t, parent_val, strategy_counts.get(t["id"], 0))["score"], reverse=True)
 
-    present_foundation = [t for t in found if _has_present_required_artifacts(t, registry)]
+    present_foundation = [t for t in found if _is_executable_foundation_blueprint(t, registry)]
     other_foundation = [t for t in found if t not in present_foundation]
     foundation_slots = min(len(found), max(1, pool_size // 2)) if found else 0
     executable_slots = min(len(present_foundation), max(1, foundation_slots // 2)) if present_foundation else 0
@@ -421,14 +428,14 @@ def main() -> None:
             parent_cfg = read_json(Path(tree["nodes"][parent]["config"]))
             parent_val = float(tree["nodes"][parent].get("best_val_macro_f1", 0.0))
             transforms = choose_candidate_pool(SEARCH_TRANSFORMS, foundation_blueprints, parent_val, strategy_counts, rng, args.candidate_pool_size, artifact_registry)
-            write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint"), "materializable_foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint" and _has_present_required_artifacts(t, artifact_registry))})
+            write_trace(args.run_dir, {"event": "proposal_pool_generated", "parent": parent, "pool_size": len(transforms), "foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint"), "materializable_foundation_candidates": sum(1 for t in transforms if t.get("proposal_type") == "foundation_artifact_blueprint" and _is_executable_foundation_blueprint(t, artifact_registry))})
             for rank, transform in enumerate(transforms, start=1):
                 if generated >= args.budget_proposals:
                     break
                 generated += 1
                 child = f"{parent}_p{generated}_{transform['id']}"
                 missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
-                if transform.get("proposal_type") == "foundation_artifact_blueprint" and not missing_artifacts:
+                if transform.get("proposal_type") == "foundation_artifact_blueprint" and _is_executable_foundation_blueprint(transform, artifact_registry) and not missing_artifacts:
                     cfg = apply_foundation_augmentation(parent_cfg, transform, child)
                 else:
                     cfg = apply_transform(parent_cfg, transform["id"], child) if not transform.get("proposal_type") else copy.deepcopy(parent_cfg)
@@ -462,7 +469,7 @@ def main() -> None:
                 tree["nodes"][child]["required_artifacts"] = proposal["required_artifacts"]
                 tree["nodes"][child]["missing_required_artifacts"] = missing_artifacts
                 queued.append((proposal["cheap_screen_score"]["score"], child))
-                if proposal["proposal_type"] == "foundation_artifact_blueprint" and proposal["required_artifacts"] and not missing_artifacts:
+                if proposal["proposal_type"] == "foundation_artifact_blueprint" and proposal["required_artifacts"] and _is_executable_foundation_blueprint(transform, artifact_registry) and not missing_artifacts:
                     control_child = f"{child}_dense_control"
                     control_cfg = apply_artifact_matched_dense_control(parent_cfg, control_child, transform["id"])
                     control_score = {

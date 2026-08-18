@@ -1,0 +1,106 @@
+{
+  "artifact_blockers": 0,
+  "artifact_usefulness": {
+    "best_dense_matched_no_artifact_control": {
+      "node": "",
+      "test_macro_f1": null,
+      "val_macro_f1": null
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion",
+      "test_macro_f1": 0.4096287786960602,
+      "val_macro_f1": 0.42446669936180115
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_mlp",
+      "test_macro_f1": 0.400498628616333,
+      "val_macro_f1": 0.4123806655406952
+    },
+    "foundation_vs_dense_control_val_gain": null,
+    "foundation_vs_root_val_gain": 0.012086033821105957,
+    "interpretation": "artifact gain not proven beyond dense matched-capacity control",
+    "paired_comparisons": [],
+    "trained_dense_matched_controls": 0,
+    "trained_foundation_artifact_children": 8
+  },
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.42446669936180115,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.08,
+      "parent_val": 0.4123806655406952,
+      "priority": 1.03,
+      "rollout_feasibility_bonus": 0.08,
+      "score": 0.6753806655406951
+    },
+    "children": [
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p17_foundation_rdkit_drug_fingerprint_fusion",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p17_foundation_rdkit_drug_fingerprint_fusion_dense_control",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_drug_target_cross_attention",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p18_foundation_drug_target_cross_attention_dense_control",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p19_foundation_scgpt_cell_encoder",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p20_foundation_scgpt_adapter_finetune",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p21_low_rank_head",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p22_feature_dropout",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p23_temperature_calibration",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_p24_weighted_ce"
+    ],
+    "config": "experiments/aivc_more_executable_nodes_smoke_v3/proposals/aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion.json",
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "metrics": "experiments/aivc_more_executable_nodes_smoke_v3/nodes/aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "aivc_helf_perturb_root_mlp",
+    "proposal": "experiments/aivc_more_executable_nodes_smoke_v3/proposals/aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion.proposal.json",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "esm2_gene_or_protein_embeddings"
+    ],
+    "status": "trained",
+    "strategy": "foundation_protein_embedding_fusion",
+    "test_macro_f1": 0.4096287786960602,
+    "value": 2.482023000717163,
+    "visits": 6
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.4123806655406952,
+    "children": [
+      "aivc_helf_perturb_root_mlp_p1_foundation_esm2_target_gene_head",
+      "aivc_helf_perturb_root_mlp_p1_foundation_esm2_target_gene_head_dense_control",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion",
+      "aivc_helf_perturb_root_mlp_p2_foundation_protein_embedding_fusion_dense_control",
+      "aivc_helf_perturb_root_mlp_p3_foundation_scgpt_cell_encoder",
+      "aivc_helf_perturb_root_mlp_p4_foundation_scgpt_adapter_finetune",
+      "aivc_helf_perturb_root_mlp_p5_low_rank_head",
+      "aivc_helf_perturb_root_mlp_p6_feature_dropout",
+      "aivc_helf_perturb_root_mlp_p7_temperature_calibration",
+      "aivc_helf_perturb_root_mlp_p8_weighted_ce"
+    ],
+    "config": "configs/aivc_helf_perturb_roots/root_mlp.json",
+    "metrics": "experiments/aivc_more_executable_nodes_smoke_v3/nodes/aivc_helf_perturb_root_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.400498628616333,
+    "value": 3.7248733043670654,
+    "visits": 9
+  },
+  "blocked": 0,
+  "experiment": "aivc_more_executable_nodes_smoke_v3",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_artifact_usefulness_controls": 10,
+  "generated_proposals": 36,
+  "proxy_count": 0,
+  "pruned_not_selected": 38,
+  "requires_artifact_acquisition": 0,
+  "run_dir": "experiments/aivc_more_executable_nodes_smoke_v3",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (8/8)",
+  "trained_foundation_artifact_children": 8,
+  "trained_selected_rollouts": 8
+}

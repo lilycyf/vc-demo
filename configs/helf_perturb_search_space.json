@@ -266,21 +266,21 @@
             ]
           },
           "artifact_usefulness_control_required": true,
-          "codex_action": "download public chemical encoder if available, encode perturbing drug, train cross-attention head; executable via ArtifactAugmentedResidualMLP with parent-preserving dense branch and source-backed artifact tables",
+          "codex_action": "download and validate a real public ChemBERTa-compatible checkpoint/tokenizer, encode perturbing drug SMILES, then train cross-attention head; do not substitute RDKit fingerprints for ChemBERTa",
           "default_child_semantics": "parent_pipeline_plus_selected_modification",
           "forbidden_child_semantics": [
             "replace_strong_dense_parent_unless_explicit_ablation",
             "fallback_or_proxy_artifact"
           ],
           "id": "chemberta_drug_encoder",
-          "implementation_status": "implemented_source_backed_drug_fingerprint_executable_alternative",
+          "implementation_status": "planned_requires_chemberta_checkpoint_or_encoder_contract_validation",
           "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints"
           ],
-          "search_space_status": "selectable_executable",
+          "search_space_status": "selectable_requires_acquisition_or_codex_implementation",
           "implementation_notes": [
-            "Materialized by HELF executable artifact upgrade: drug fingerprints and/or ESM2 target protein embeddings are loaded as real artifacts, not fallback/proxy."
+            "RDKit drug fingerprint executable path is represented by rdkit_drug_fingerprint_fusion; ChemBERTa remains non-executable until a real encoder checkpoint/tokenizer contract is validated."
           ]
         },
         {

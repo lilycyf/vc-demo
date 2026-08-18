@@ -4,7 +4,7 @@
 - Registry: `configs/artifacts/helf_perturb_registry.json`
 - Search space id: `helf_perturb_foundation_artifact_search_space_v2`
 - Foundation blueprint count: `18`
-- Executable now: `9`
+- Executable now: `8`
 - Artifact-present blueprints: `9`
 - Artifact-missing blueprints: `9`
 - Estimated candidate lower bound: `2400`
@@ -13,19 +13,19 @@
 ## Implementation Status
 
 - `implemented_as_parent_preserving_artifact_augmented_residual`: 3
-- `implemented_source_backed_drug_fingerprint_executable_alternative`: 1
 - `implemented_source_backed_drug_fingerprint_fusion`: 1
 - `implemented_source_backed_drug_target_artifact_fusion`: 1
 - `implemented_source_backed_pathway_drug_target_fusion`: 1
 - `implemented_source_backed_target_protein_embedding_fusion`: 1
 - `implemented_source_backed_target_protein_embedding_head`: 1
 - `planned_requires_checkpoint_or_contract_validation`: 9
+- `planned_requires_chemberta_checkpoint_or_encoder_contract_validation`: 1
 
 ## Family Summary
 
 | Family | Blueprints | Executable now | Missing artifact blueprints |
 |---|---:|---:|---:|
-| `chemical_perturbation_encoder` | 3 | 3 | 0 |
+| `chemical_perturbation_encoder` | 3 | 2 | 0 |
 | `gene_or_protein_foundation_prior` | 2 | 2 | 0 |
 | `multimodal_fusion` | 3 | 1 | 2 |
 | `network_and_pathway_prior` | 4 | 3 | 1 |
@@ -44,7 +44,7 @@
 | `gene_or_protein_foundation_prior` | `esm2_target_gene_head` | `implemented_source_backed_target_protein_embedding_head` | esm2_gene_or_protein_embeddings | none | True |
 | `gene_or_protein_foundation_prior` | `protein_embedding_fusion` | `implemented_source_backed_target_protein_embedding_fusion` | esm2_gene_or_protein_embeddings | none | True |
 | `chemical_perturbation_encoder` | `rdkit_drug_fingerprint_fusion` | `implemented_source_backed_drug_fingerprint_fusion` | chemical_encoder_checkpoint_or_drug_fingerprints | none | True |
-| `chemical_perturbation_encoder` | `chemberta_drug_encoder` | `implemented_source_backed_drug_fingerprint_executable_alternative` | chemical_encoder_checkpoint_or_drug_fingerprints | none | True |
+| `chemical_perturbation_encoder` | `chemberta_drug_encoder` | `planned_requires_chemberta_checkpoint_or_encoder_contract_validation` | chemical_encoder_checkpoint_or_drug_fingerprints | none | False |
 | `chemical_perturbation_encoder` | `drug_target_cross_attention` | `implemented_source_backed_drug_target_artifact_fusion` | chemical_encoder_checkpoint_or_drug_fingerprints, esm2_gene_or_protein_embeddings | none | True |
 | `network_and_pathway_prior` | `string_graph_message_passing` | `implemented_as_parent_preserving_artifact_augmented_residual` | string_gene_graph | none | True |
 | `network_and_pathway_prior` | `graph_laplacian_head` | `implemented_as_parent_preserving_artifact_augmented_residual` | string_gene_graph | none | True |
