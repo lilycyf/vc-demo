@@ -13,164 +13,475 @@
     ],
     "purpose": "sanity check and lower bound, not the main scientific search space"
   },
+  "default_rollout_policy": {
+    "claim_artifact_usefulness_only_if_artifact_child_beats_dense_control": true,
+    "foundation_artifacts_are_augmentations_not_replacements": true,
+    "generate_dense_matched_no_artifact_control_for_artifact_present_blueprints": true,
+    "reward_metric": "validation_macro_f1",
+    "test_metric_policy": "report_only"
+  },
+  "estimated_candidate_count_detail": {
+    "formula": "families x blueprints x artifact_modes x fusion x target_heads x losses x optimizers x regularization, lower bound only",
+    "lower_bound": 2400,
+    "note": "The manifest is intentionally larger than currently implemented code; planned blueprints become executable through artifact acquisition and Codex implementation on selection."
+  },
   "estimated_candidate_count_lower_bound": 2400,
   "foundation_families": [
     {
       "blueprints": [
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "scgpt_whole_human_checkpoint"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "download checkpoint, tokenize HELF h5ad by scGPT vocab, implement frozen encoder + DEG head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "scgpt_cell_encoder",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "scgpt_whole_human_checkpoint"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "scgpt_whole_human_checkpoint"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "implement LoRA/adapter or top-layer tuning over scGPT with strict shape smoke",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "scgpt_adapter_finetune",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "scgpt_whole_human_checkpoint"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "geneformer_checkpoint"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "tokenize rank-value transcriptomes, extract perturb/control embeddings, train DEG head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "geneformer_cell_encoder",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "geneformer_checkpoint"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "geneformer_checkpoint"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "fine-tune controlled adapter/head with fixed split and val reward",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "geneformer_adapter_head",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "geneformer_checkpoint"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "scfoundation_checkpoint_or_service_output"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "acquire checkpoint or service embeddings, align vocabulary, train frozen embedding head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "scfoundation_cell_encoder",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "scfoundation_checkpoint_or_service_output"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "uce_checkpoint"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "generate UCE embeddings for treated/control cells, train delta embedding head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "uce_cell_embedding",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "uce_checkpoint"
-          ]
+          ],
+          "search_space_status": "selectable"
         }
       ],
-      "family": "single_cell_foundation_encoder"
+      "family": "single_cell_foundation_encoder",
+      "status": "manifest_defined"
     },
     {
       "blueprints": [
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "esm2_gene_or_protein_embeddings"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "align target genes to protein embeddings and implement target-aware bilinear/cross-attention head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "esm2_target_gene_head",
+          "implementation_status": "acquirable_or_buildable_then_planned",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "esm2_gene_or_protein_embeddings"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "esm2_gene_or_protein_embeddings"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "fuse expression delta context with target-gene protein embeddings",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "protein_embedding_fusion",
+          "implementation_status": "acquirable_or_buildable_then_planned",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "esm2_gene_or_protein_embeddings"
-          ]
+          ],
+          "search_space_status": "selectable"
         }
       ],
-      "family": "gene_or_protein_foundation_prior"
+      "family": "gene_or_protein_foundation_prior",
+      "status": "manifest_defined"
     },
     {
       "blueprints": [
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "chemical_encoder_checkpoint_or_drug_fingerprints"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "resolve drug names to SMILES, compute RDKit fingerprints, fuse with expression delta",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "rdkit_drug_fingerprint_fusion",
+          "implementation_status": "planned_requires_drug_smiles_artifact",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "chemical_encoder_checkpoint_or_drug_fingerprints"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "download public chemical encoder if available, encode perturbing drug, train cross-attention head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "chemberta_drug_encoder",
+          "implementation_status": "acquirable_or_buildable_then_planned",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "chemical_encoder_checkpoint_or_drug_fingerprints",
+              "esm2_gene_or_protein_embeddings"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "cross-attend drug embedding to target-gene embedding table",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "drug_target_cross_attention",
+          "implementation_status": "acquirable_or_buildable_then_planned",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints",
             "esm2_gene_or_protein_embeddings"
-          ]
+          ],
+          "search_space_status": "selectable"
         }
       ],
-      "family": "chemical_perturbation_encoder"
+      "family": "chemical_perturbation_encoder",
+      "status": "manifest_defined"
     },
     {
       "blueprints": [
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "string_gene_graph"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "build STRING graph aligned to feature/target genes and implement message passing head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "string_graph_message_passing",
+          "implementation_status": "implemented_as_parent_preserving_artifact_augmented_residual",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "string_gene_graph"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "string_gene_graph"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "regularize/smooth target logits over real STRING edges",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "graph_laplacian_head",
+          "implementation_status": "implemented_as_parent_preserving_artifact_augmented_residual",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "string_gene_graph"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "reactome_pathway_membership"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "pool target genes through Reactome membership matrix before class head",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "pathway_pooling_encoder",
+          "implementation_status": "implemented_as_parent_preserving_artifact_augmented_residual",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "reactome_pathway_membership"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "regulatory_network_prior"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "select source-backed regulatory graph and implement TF-target attention",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "tf_regulatory_attention",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "regulatory_network_prior"
-          ]
+          ],
+          "search_space_status": "selectable"
         }
       ],
-      "family": "network_and_pathway_prior"
+      "family": "network_and_pathway_prior",
+      "status": "manifest_defined"
     },
     {
       "blueprints": [
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "scgpt_whole_human_checkpoint",
+              "chemical_encoder_checkpoint_or_drug_fingerprints"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "fuse cell-state foundation embedding with drug embedding",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "cell_foundation_plus_drug_fusion",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "scgpt_whole_human_checkpoint",
             "chemical_encoder_checkpoint_or_drug_fingerprints"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "geneformer_checkpoint",
+              "esm2_gene_or_protein_embeddings",
+              "string_gene_graph"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "combine cell embedding, target embedding, and graph prior through gated/cross attention",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "cell_gene_graph_tri_modal_fusion",
+          "implementation_status": "planned_requires_checkpoint_or_contract_validation",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "geneformer_checkpoint",
             "esm2_gene_or_protein_embeddings",
             "string_gene_graph"
-          ]
+          ],
+          "search_space_status": "selectable"
         },
         {
+          "artifact_contract": {
+            "on_missing": "source_backed_acquisition_then_block_if_unverifiable",
+            "on_present": "implement_as_parent_preserving_augmentation_with_dense_control",
+            "required_artifacts": [
+              "chemical_encoder_checkpoint_or_drug_fingerprints",
+              "reactome_pathway_membership",
+              "esm2_gene_or_protein_embeddings"
+            ]
+          },
+          "artifact_usefulness_control_required": true,
           "codex_action": "drug-to-pathway-to-target hierarchical prediction",
+          "default_child_semantics": "parent_pipeline_plus_selected_modification",
+          "forbidden_child_semantics": [
+            "replace_strong_dense_parent_unless_explicit_ablation",
+            "fallback_or_proxy_artifact"
+          ],
           "id": "pathway_drug_target_fusion",
+          "implementation_status": "acquirable_or_buildable_then_planned",
+          "proposal_role": "research_hypothesis",
           "required_artifacts": [
             "chemical_encoder_checkpoint_or_drug_fingerprints",
             "reactome_pathway_membership",
             "esm2_gene_or_protein_embeddings"
-          ]
+          ],
+          "search_space_status": "selectable"
         }
       ],
-      "family": "multimodal_fusion"
+      "family": "multimodal_fusion",
+      "status": "manifest_defined"
     }
   ],
   "id": "helf_perturb_foundation_artifact_search_space_v2",
@@ -181,7 +492,65 @@
     "best baseline vs best foundation-artifact child",
     "no fallback/proxy audit"
   ],
+  "schema_version": "vc_demo_search_space_manifest.v2",
   "scope": "foundation-artifact-aware VCHarness-style perturbation response demo",
+  "search_dimensions": {
+    "artifact_branch": [
+      "none",
+      "string_graph_residual",
+      "reactome_pathway_residual",
+      "esm2_target_embedding",
+      "drug_embedding",
+      "cell_foundation_embedding"
+    ],
+    "artifact_mode": [
+      "frozen_embedding",
+      "adapter_finetune",
+      "top_layer_finetune",
+      "full_finetune_when_feasible"
+    ],
+    "dense_backbone": [
+      "mlp",
+      "residual_mlp",
+      "gated_mlp",
+      "film_residual_mlp",
+      "mixture_of_experts_mlp"
+    ],
+    "fusion": [
+      "concat",
+      "gated",
+      "bilinear",
+      "cross_attention",
+      "late_fusion",
+      "mixture_of_experts"
+    ],
+    "head": [
+      "dense",
+      "low_rank",
+      "target_specific",
+      "bilinear",
+      "pathway_hierarchical"
+    ],
+    "optimizer": [
+      "adamw",
+      "layerwise_lr",
+      "warmup_cosine",
+      "swa_or_checkpoint_ensemble"
+    ],
+    "regularization": [
+      "dropout",
+      "feature_dropout",
+      "weight_decay",
+      "label_smoothing"
+    ],
+    "training_loss": [
+      "cross_entropy",
+      "weighted_cross_entropy",
+      "focal_loss",
+      "class_balanced_loss"
+    ]
+  },
+  "search_space_kind": "artifact_usefulness_foundation_aware",
   "search_space_policy": {
     "forbidden": [
       "fallback foundation embeddings",

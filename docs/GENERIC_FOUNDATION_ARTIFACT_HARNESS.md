@@ -110,3 +110,24 @@ Required fields:
 
 A biological artifact usefulness claim is valid only when source-backed artifact children beat the relevant dense no-artifact comparator under validation-only selection. Otherwise the result is a model-search win, not an artifact-evidence win.
 
+
+## Search-Space Manifest Audit
+
+A foundation-aware harness should distinguish the declared search-space universe from the currently executable subset. Run:
+
+```bash
+PYTHONPATH=src python scripts/audit_helf_search_space.py
+```
+
+The audit reports:
+
+- total foundation blueprints;
+- executable-now blueprint count;
+- artifact-present blueprint count;
+- artifact-missing blueprint count;
+- implementation status counts;
+- family coverage;
+- combinatorial dimension product.
+
+Fast runs are expected when only a small executable subset is available or when epoch/rollout budgets are low. A run should not be described as full search-space coverage unless the audit shows that the relevant artifact families are present or explicitly blocked after source-backed acquisition.
+

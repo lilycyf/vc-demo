@@ -201,3 +201,15 @@ artifact_incremental_gain = best_source_backed_artifact_child_val - best_dense_m
 
 If the artifact child beats the root but does not beat the dense matched-capacity/no-artifact comparator, the run demonstrates a useful harness discovery but not a proven biological-artifact contribution. Codex should then continue with parent-preserving artifact residuals, attention biases, target calibration priors, or graph/pathway regularizers rather than replacing the dense branch.
 
+
+## Search-Space Coverage Language
+
+Do not call the current run “complete search-space coverage” unless a search-space audit has been generated and cited. Use precise language:
+
+- `declared search space`: all families/blueprints in the manifest;
+- `executable subset`: blueprints whose required artifacts are present and whose implementation path is available;
+- `planned/acquirable subset`: blueprints that require checkpoint/download/build work before selection can train;
+- `blocked subset`: blueprints whose public source, tensor contract, vocabulary/order, license, or compute/storage feasibility cannot be verified.
+
+When explaining why a run is fast, check the audit first. Fast usually means the run trained the executable subset under a small budget, not that the declared search space is small.
+
