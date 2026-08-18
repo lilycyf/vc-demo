@@ -1,0 +1,123 @@
+{
+  "format": "vc_demo_framework_feedback.v1",
+  "created_at": "2026-08-18T07:32:08.889169+00:00",
+  "run_dir": "experiments/aivc_helf_generic_foundation_runner_smoke",
+  "target_val_macro_f1": 0.42,
+  "best_root": {
+    "node": "aivc_helf_perturb_root_gated_mlp",
+    "val": 0.4011065661907196,
+    "test": 0.4000442326068878
+  },
+  "best_child": {
+    "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213",
+    "val": 0.41547608375549316,
+    "test": 0.41339072585105896
+  },
+  "strategy_stats": {
+    "foundation_string_graph_message_passing": {
+      "n": 1,
+      "family": "graph_prior",
+      "mean_val": 0.413553923368454,
+      "std_val": 0.0,
+      "mean_test": 0.40908482670783997,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": 0.012447357177734375,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_35507d48"
+    },
+    "foundation_graph_laplacian_head": {
+      "n": 1,
+      "family": "graph_prior",
+      "mean_val": 0.41547608375549316,
+      "std_val": 0.0,
+      "mean_test": 0.41339072585105896,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": 0.014576822519302368,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213"
+    }
+  },
+  "family_stats": {
+    "graph_prior": {
+      "n": 2,
+      "mean_val": 0.41451500356197357,
+      "std_val": 0.0013591726442035662,
+      "mean_delta_vs_parent": 0.013512089848518372,
+      "std_delta_vs_parent": 0.0015057593833244557,
+      "win_rate_vs_parent": 1.0
+    }
+  },
+  "artifact_usefulness": {
+    "format": "vc_demo_artifact_usefulness_report.v1",
+    "run_dir": "experiments/aivc_helf_generic_foundation_runner_smoke",
+    "counts": {
+      "trained_roots": 4,
+      "trained_children": 2,
+      "trained_foundation_artifact_children": 2,
+      "trained_dense_no_artifact_children": 0,
+      "trained_dense_matched_controls": 0
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_gated_mlp",
+      "val_macro_f1": 0.4011065661907196,
+      "test_macro_f1": 0.4000442326068878
+    },
+    "best_generated_child": {
+      "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213",
+      "val_macro_f1": 0.41547608375549316,
+      "test_macro_f1": 0.41339072585105896
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213",
+      "val_macro_f1": 0.41547608375549316,
+      "test_macro_f1": 0.41339072585105896
+    },
+    "best_dense_no_artifact_child": {
+      "node": "",
+      "val_macro_f1": null,
+      "test_macro_f1": null
+    },
+    "best_dense_matched_no_artifact_control": {
+      "node": "",
+      "val_macro_f1": null,
+      "test_macro_f1": null
+    },
+    "deltas": {
+      "best_child_vs_root_val": 0.01436951756477356,
+      "foundation_vs_root_val": 0.01436951756477356,
+      "foundation_vs_best_dense_no_artifact_val": null,
+      "foundation_vs_dense_matched_control_val": null
+    },
+    "paired_comparisons": [],
+    "verdict": {
+      "child_beats_root": true,
+      "foundation_artifact_beats_root": true,
+      "foundation_artifact_beats_dense_control": false,
+      "artifact_incremental_gain_proven": false
+    }
+  },
+  "findings": [
+    "artifact_incremental_gain_not_proven: best artifact child does not beat dense matched-capacity/no-artifact comparator",
+    "best_child_lift: best generated child beats best root by 0.0144 validation Macro-F1",
+    "target_gap: best child is 0.0045 below target validation Macro-F1"
+  ],
+  "policy": {
+    "ranking_boosts": {
+      "dense_matched_capacity_no_artifact_control": 0.1,
+      "artifact_residual_gate": 0.08,
+      "artifact_attention_bias": 0.06
+    },
+    "ranking_penalties": {},
+    "implementation_guidance": [
+      "Artifact gain is not proven beyond dense control: preserve the strong dense branch, add artifact only as a small gated residual/attention bias, and train a paired no-artifact control whenever possible.",
+      "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search.",
+      "Target gap remains: favor competitive compositions that retain root performance and test one clear additional mechanism per rollout."
+    ],
+    "validation_recommendations": [
+      "Require artifact-vs-dense-control attribution before claiming biological prior usefulness."
+    ],
+    "suppressed_families": []
+  }
+}

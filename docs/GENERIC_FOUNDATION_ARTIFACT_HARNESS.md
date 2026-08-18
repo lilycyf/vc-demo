@@ -110,3 +110,34 @@ Required fields:
 
 A biological artifact usefulness claim is valid only when source-backed artifact children beat the relevant dense no-artifact comparator under validation-only selection. Otherwise the result is a model-search win, not an artifact-evidence win.
 
+## Generic Entrypoint Contract
+
+The reusable entrypoint is:
+
+```bash
+PYTHONPATH=src python scripts/run_generic_foundation_artifact_harness.py \
+  --task-config configs/foundation_artifact_harness/<task>.json \
+  --run-dir experiments/<run_name> \
+  --experiment <run_name> \
+  --budget-proposals <N> \
+  --budget-trained-nodes <M> \
+  --max-epochs <E> \
+  --reset
+```
+
+A task config is the cell-line adapter. It supplies roots, search-space config, artifact registry, and aligned artifact-table bindings. The runner owns control-flow semantics: proposal pool generation, pruning, strict artifact block/acquisition, selected-rollout training, trained-only backpropagation, and artifact usefulness controls.
+
+To add a second cell line or perturbation task, create one new config under `configs/foundation_artifact_harness/` with:
+
+- `cell_line_id`, `task_id`, and `task_type`;
+- `dataset_manifest` pointing to the prepared train/val/test task manifest;
+- `root_configs` for that task;
+- `search_space_config`;
+- `artifact_registry`;
+- `artifact_table_bindings` mapping artifact ids to source-backed, target/order-aligned feature tables.
+
+Do not encode cell-line paths inside the runner. If an artifact id has no binding or is not present in the registry, dependent proposals must be blocked/acquired rather than materialized as a fake artifact child.
+
+Current reference task config:
+
+- `configs/foundation_artifact_harness/aivc_helf_perturb_deg.json`

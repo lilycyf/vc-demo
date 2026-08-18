@@ -1,0 +1,92 @@
+{
+  "artifact_blockers": 0,
+  "artifact_usefulness": {
+    "best_dense_matched_no_artifact_control": {
+      "node": "",
+      "test_macro_f1": null,
+      "val_macro_f1": null
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213",
+      "test_macro_f1": 0.41339072585105896,
+      "val_macro_f1": 0.41547608375549316
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_gated_mlp",
+      "test_macro_f1": 0.4000442326068878,
+      "val_macro_f1": 0.4011065661907196
+    },
+    "foundation_vs_dense_control_val_gain": null,
+    "foundation_vs_root_val_gain": 0.01436951756477356,
+    "interpretation": "artifact gain not proven beyond dense matched-capacity control",
+    "paired_comparisons": [],
+    "trained_dense_matched_controls": 0,
+    "trained_foundation_artifact_children": 2
+  },
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.41547608375549316,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.08,
+      "parent_val": 0.4008992612361908,
+      "priority": 0.9800000000000001,
+      "rollout_feasibility_bonus": 0.08,
+      "score": 0.6588992612361908
+    },
+    "children": [],
+    "config": "experiments/aivc_helf_generic_foundation_runner_smoke/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213.json",
+    "foundation_augmentation_policy": {
+      "artifact_branch_initial_scale": "sigmoid(-2.5)",
+      "mode": "parent_dense_logits_plus_gated_artifact_residual",
+      "no_fallback_or_proxy": true,
+      "preserve_parent_dense_path": true
+    },
+    "metrics": "experiments/aivc_helf_generic_foundation_runner_smoke/nodes/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213/metrics.json",
+    "missing_required_artifacts": [],
+    "parent": "aivc_helf_perturb_root_mlp",
+    "proposal": "experiments/aivc_helf_generic_foundation_runner_smoke/proposals/aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213.proposal.json",
+    "proposal_type": "foundation_artifact_blueprint",
+    "required_artifacts": [
+      "string_gene_graph"
+    ],
+    "status": "trained",
+    "strategy": "foundation_graph_laplacian_head",
+    "test_macro_f1": 0.41339072585105896,
+    "value": 0.8309521675109863,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.4011065661907196,
+    "children": [
+      "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_35507d48",
+      "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_3_p1_dense_matched_capacity_no_artifact_control_control_dec4d480",
+      "aivc_helf_perturb_root_gated_mlp_p2_foundation_scgpt_cell_encoder_a0e65655",
+      "aivc_helf_perturb_root_gated_mlp_p3_low_rank_head_6655aa03",
+      "aivc_helf_perturb_root_gated_mlp_p4_feature_dropout_97ac1919"
+    ],
+    "config": "configs/aivc_helf_perturb_roots/root_gated_mlp.json",
+    "metrics": "experiments/aivc_helf_generic_foundation_runner_smoke/nodes/aivc_helf_perturb_root_gated_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.4000442326068878,
+    "value": 0.8146604895591736,
+    "visits": 2
+  },
+  "blocked": 0,
+  "cell_line_id": "HELF",
+  "experiment": "aivc_helf_generic_foundation_runner_smoke",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_artifact_usefulness_controls": 2,
+  "generated_proposals": 8,
+  "proxy_count": 0,
+  "pruned_not_selected": 8,
+  "requires_artifact_acquisition": 0,
+  "run_dir": "experiments/aivc_helf_generic_foundation_runner_smoke",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (2/2)",
+  "task_config": "configs/foundation_artifact_harness/aivc_helf_perturb_deg.json",
+  "trained_foundation_artifact_children": 2,
+  "trained_selected_rollouts": 2
+}

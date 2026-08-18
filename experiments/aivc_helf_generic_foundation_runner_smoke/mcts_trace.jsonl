@@ -1,0 +1,16 @@
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "materializable_foundation_candidates": 1, "parent": "aivc_helf_perturb_root_gated_mlp", "pool_size": 4}
+{"artifact_child": "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_35507d48", "control_child": "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_3_p1_dense_matched_capacity_no_artifact_control_control_dec4d480", "event": "artifact_usefulness_control_generated", "source_strategy": "foundation_string_graph_message_passing"}
+{"event": "selected_for_training", "node": "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_35507d48", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_string_graph_message_passing"}
+{"event": "trained_and_backpropagated", "node": "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_35507d48", "reward": 0.413553923368454}
+{"event": "proposal_pool_generated", "foundation_candidates": 2, "materializable_foundation_candidates": 1, "parent": "aivc_helf_perturb_root_mlp", "pool_size": 4}
+{"artifact_child": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213", "control_child": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213_p5_dense_matched_capacity_no_artifact_control_control_d216cd5d", "event": "artifact_usefulness_control_generated", "source_strategy": "foundation_graph_laplacian_head"}
+{"event": "selected_for_training", "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213", "proposal_type": "foundation_artifact_blueprint", "strategy": "foundation_graph_laplacian_head"}
+{"event": "trained_and_backpropagated", "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213", "reward": 0.41547608375549316}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_gated_mlp_p1_foundation_string_graph_message_passing_3_p1_dense_matched_capacity_no_artifact_control_control_dec4d480", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213_p5_dense_matched_capacity_no_artifact_control_control_d216cd5d", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_gated_mlp_p3_low_rank_head_6655aa03", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_mlp_p7_low_rank_head_66966337", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_gated_mlp_p4_feature_dropout_97ac1919", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_mlp_p8_feature_dropout_d7ef89ce", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_gated_mlp_p2_foundation_scgpt_cell_encoder_a0e65655", "reason": "not selected before trained-node budget/stop condition"}
+{"event": "proposal_pruned", "node": "aivc_helf_perturb_root_mlp_p6_foundation_scgpt_cell_encoder_4e479301", "reason": "not selected before trained-node budget/stop condition"}

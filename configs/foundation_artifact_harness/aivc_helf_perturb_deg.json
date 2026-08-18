@@ -1,0 +1,35 @@
+{
+  "format": "vc_demo.foundation_artifact_harness_task.v1",
+  "cell_line_id": "HELF",
+  "task_id": "HELF_PERTURB_DEG",
+  "task_type": "drug_perturbation_target_gene_deg_direction_prediction",
+  "dataset_manifest": "data/cell_lines/aivc_helf_perturb_deg_cls/manifest.json",
+  "root_configs": [
+    "configs/aivc_helf_perturb_roots/root_mlp.json",
+    "configs/aivc_helf_perturb_roots/root_residual_mlp.json",
+    "configs/aivc_helf_perturb_roots/root_gated_mlp.json",
+    "configs/aivc_helf_perturb_roots/root_low_rank_mlp.json"
+  ],
+  "search_space_config": "configs/helf_perturb_search_space.json",
+  "artifact_registry": "configs/artifacts/helf_perturb_registry.json",
+  "artifact_table_bindings": {
+    "reactome_pathway_membership": {
+      "path": "data/artifacts/helf/reactome_pathway_membership.npz",
+      "key": "target_gene_embeddings",
+      "description": "HELF target-gene-aligned Reactome membership features"
+    },
+    "string_gene_graph": {
+      "path": "data/artifacts/helf/string_gene_graph_features.npz",
+      "key": "target_gene_embeddings",
+      "description": "HELF target-gene-aligned STRING graph-derived features"
+    }
+  },
+  "guardrails": {
+    "reward": "validation Macro-F1",
+    "test_metric_policy": "report-only",
+    "fallback_allowed": false,
+    "proxy_allowed": false,
+    "train_pruned_proposals": false,
+    "backprop_only_trained_nodes": true
+  }
+}

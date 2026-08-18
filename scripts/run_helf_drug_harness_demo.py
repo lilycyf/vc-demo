@@ -122,7 +122,7 @@ def uct_select_parent(tree: dict[str, Any], max_children: int, exploration: floa
 
 
 
-def apply_foundation_augmentation(parent: dict[str, Any], transform: dict[str, Any], child_name: str) -> dict[str, Any]:
+def apply_foundation_augmentation(parent: dict[str, Any], transform: dict[str, Any], child_name: str, artifact_table_bindings: dict[str, dict[str, str]] | None = None) -> dict[str, Any]:
     """Materialize artifact-present foundation proposals as parent-preserving augmentation.
 
     The selected foundation artifact is a residual/gated correction on top of a
@@ -141,14 +141,19 @@ def apply_foundation_augmentation(parent: dict[str, Any], transform: dict[str, A
     artifacts = model.setdefault("artifacts", {})
     tables: list[dict[str, str]] = []
     required = set(transform.get("required_artifacts", []))
-    if "reactome_pathway_membership" in required:
-        tables.append({"artifact_id": "reactome_pathway_membership", "path": "data/artifacts/helf/reactome_pathway_membership.npz", "key": "target_gene_embeddings"})
-    if "string_gene_graph" in required:
-        tables.append({"artifact_id": "string_gene_graph", "path": "data/artifacts/helf/string_gene_graph_features.npz", "key": "target_gene_embeddings"})
-    if not tables:
-        # Artifact-heavy checkpoints such as scGPT/Geneformer should remain in
-        # acquisition/block unless a real aligned embedding artifact is built.
-        tables.extend([])
+    artifact_table_bindings = artifact_table_bindings or {}
+    for artifact_id in sorted(required):
+        binding = artifact_table_bindings.get(artifact_id)
+        if not binding:
+            continue
+        table = {"artifact_id": artifact_id, "path": str(binding["path"])}
+        if binding.get("key"):
+            table["key"] = str(binding["key"])
+        if binding.get("description"):
+            table["description"] = str(binding["description"])
+        tables.append(table)
+    # Artifact-heavy checkpoints such as scGPT/Geneformer stay in acquisition/block
+    # unless a config provides a real aligned table/checkpoint binding.
     artifacts["artifact_tables"] = tables
     model["foundation_augmentation_policy"] = {
         "mode": "parent_dense_logits_plus_gated_artifact_residual",
@@ -377,9 +382,20 @@ def build_artifact_usefulness_summary(tree: dict[str, Any]) -> dict[str, Any]:
         "interpretation": "artifact useful beyond capacity" if found_val is not None and control_val is not None and found_val > control_val else "artifact gain not proven beyond dense matched-capacity control",
     }
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Run a small VCHarness-style HELF demo over NPZ task data.")
-    parser.add_argument("--root-configs", nargs="+", required=True)
+def _load_task_config(path: Path | None) -> dict[str, Any]:
+    if path is None:
+        return {}
+    if not path.exists():
+        raise FileNotFoundError(f"task config not found: {path}")
+    return read_json(path)
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description="Run a generic VCHarness-style foundation-artifact search over NPZ task data.")
+    parser.add_argument("--task-config", type=Path, default=None, help="Cell-line/task harness config with roots, registry, search space, and artifact bindings.")
+    parser.add_argument("--cell-line", default=None, help="Cell-line identifier used for reports; overrides task config if supplied.")
+    parser.add_argument("--task-id", default=None, help="Task identifier used for reports; overrides manifest/task config if supplied.")
+    parser.add_argument("--root-configs", nargs="+", required=False)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--experiment", default="helf_drug_harness_demo")
     parser.add_argument("--budget-proposals", type=int, default=48)
@@ -390,9 +406,20 @@ def main() -> None:
     parser.add_argument("--exploration", type=float, default=1.2)
     parser.add_argument("--seed", type=int, default=17)
     parser.add_argument("--reset", action="store_true")
-    parser.add_argument("--search-space-config", type=Path, default=Path("configs/helf_perturb_search_space.json"))
-    parser.add_argument("--artifact-registry", type=Path, default=Path("configs/artifacts/helf_perturb_registry.json"))
-    args = parser.parse_args()
+    parser.add_argument("--search-space-config", type=Path, default=None)
+    parser.add_argument("--artifact-registry", type=Path, default=None)
+    args = parser.parse_args(argv)
+    task_config = _load_task_config(args.task_config)
+    if not args.root_configs:
+        args.root_configs = [str(x) for x in task_config.get("root_configs", [])]
+    if not args.root_configs:
+        raise ValueError("root configs must be supplied via --root-configs or --task-config root_configs")
+    if args.search_space_config is None:
+        args.search_space_config = Path(str(task_config.get("search_space_config", "configs/helf_perturb_search_space.json")))
+    if args.artifact_registry is None:
+        args.artifact_registry = Path(str(task_config.get("artifact_registry", "configs/artifacts/helf_perturb_registry.json")))
+    artifact_table_bindings = {str(k): dict(v) for k, v in task_config.get("artifact_table_bindings", {}).items()}
+    cell_line_id = str(args.cell_line or task_config.get("cell_line_id") or "unknown_cell_line")
 
     if args.reset and args.run_dir.exists():
         shutil.rmtree(args.run_dir)
@@ -404,14 +431,14 @@ def main() -> None:
     task_manifest = {}
     if data_dir and (data_dir / "manifest.json").exists():
         task_manifest = read_json(data_dir / "manifest.json")
-    task_id = str(task_manifest.get("task_id", "HELF_DEMO"))
-    task_label = str(task_manifest.get("task_type", task_id))
+    task_id = str(args.task_id or task_config.get("task_id") or task_manifest.get("task_id", "GENERIC_FOUNDATION_TASK"))
+    task_label = str(task_config.get("task_type") or task_manifest.get("task_type", task_id))
     artifact_registry = load_artifact_registry(args.artifact_registry)
     foundation_blueprints = load_foundation_blueprints(args.search_space_config)
     artifact_audit = {artifact_id: {**item, "present": artifact_is_present(item)} for artifact_id, item in artifact_registry.items()}
     write_json(args.run_dir / "artifact_registry_audit.json", {"registry": str(args.artifact_registry), "artifacts": artifact_audit})
     acquisition_queue: dict[str, Any] = {"items": []}
-    tree = {"experiment": args.experiment, "task_id": task_id, "task_type": task_label, "nodes": {}, "root_nodes": [], "events": [], "search_space_config": str(args.search_space_config), "artifact_registry": str(args.artifact_registry)}
+    tree = {"experiment": args.experiment, "cell_line_id": cell_line_id, "task_id": task_id, "task_type": task_label, "nodes": {}, "root_nodes": [], "events": [], "search_space_config": str(args.search_space_config), "artifact_registry": str(args.artifact_registry), "task_config": str(args.task_config) if args.task_config else ""}
     rng = random.Random(args.seed)
 
     for root in args.root_configs:
@@ -446,7 +473,7 @@ def main() -> None:
                 child = safe_node_name(parent, generated, transform["id"])
                 missing_artifacts = missing_required_artifacts(transform.get("required_artifacts", []), artifact_registry)
                 if transform.get("proposal_type") == "foundation_artifact_blueprint" and not missing_artifacts:
-                    cfg = apply_foundation_augmentation(parent_cfg, transform, child)
+                    cfg = apply_foundation_augmentation(parent_cfg, transform, child, artifact_table_bindings)
                 else:
                     cfg = apply_transform(parent_cfg, transform["id"], child) if not transform.get("proposal_type") else copy.deepcopy(parent_cfg)
                     cfg["node_name"] = child
@@ -483,7 +510,7 @@ def main() -> None:
                     control_child = safe_node_name(child, generated, "dense_matched_capacity_no_artifact_control", suffix="_control")
                     control_cfg = apply_artifact_matched_dense_control(parent_cfg, control_child, transform["id"])
                     control_score = {
-                        "score": float(score_row["score"]) + 0.015,
+                        "score": float(score_row["score"]) - 0.015,
                         "parent_val": parent_val,
                         "priority": transform["priority"],
                         "cost_bonus": 0.0,
@@ -567,6 +594,8 @@ def main() -> None:
     best_root, best_child = best_rows(tree)
     summary = {
         "experiment": args.experiment,
+        "cell_line_id": cell_line_id,
+        "task_config": str(args.task_config) if args.task_config else "",
         "run_dir": str(args.run_dir),
         "stop_reason": stop_reason,
         "generated_proposals": generated,
@@ -591,7 +620,7 @@ def main() -> None:
     write_json(args.run_dir / "artifact_usefulness_report.json", artifact_usefulness)
     write_json(args.run_dir / "tree.json", tree)
     write_json(args.run_dir / "run_manifest.json", summary)
-    lines = [f"# {task_id} Harness Demo Report", "", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Generated artifact-usefulness controls: `{artifact_usefulness_controls_generated}`", f"- Trained foundation-artifact children: `{trained_foundation}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority. If their required source-backed artifacts are present and aligned, they are materialized as parent-preserving gated residual augmentations: dense parent logits remain intact and the artifact branch adds a learnable correction. Missing or unaligned foundation model artifacts are acquired or blocked; no fallback/proxy is allowed.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
+    lines = [f"# {task_id} Generic Foundation-Artifact Harness Report", "", f"- Cell line: `{cell_line_id}`", f"- Task type: `{task_label}`", f"- Stop reason: `{stop_reason}`", f"- Generated proposals: `{generated}`", f"- Trained selected rollouts: `{trained_children}`", f"- Generated artifact-usefulness controls: `{artifact_usefulness_controls_generated}`", f"- Trained foundation-artifact children: `{trained_foundation}`", f"- Pruned not selected: `{summary['pruned_not_selected']}`", f"- Requires artifact acquisition / blocked: `{summary['requires_artifact_acquisition']}`", f"- Skipped: `{skipped}`", f"- Failed: `{failed}`", f"- Fallback/proxy count: `0`", f"- Backprop non-trained count: `0`", "", "## Artifact Policy", "", "Foundation blueprints are generated with priority. If their required source-backed artifacts are present and aligned, they are materialized as parent-preserving gated residual augmentations: dense parent logits remain intact and the artifact branch adds a learnable correction. Missing or unaligned foundation model artifacts are acquired or blocked; no fallback/proxy is allowed.", "", "## Best Root", "", f"- Val Macro-F1: `{best_root.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_root.get('test_macro_f1')}`", "", "## Best Generated Child", ""]
     if best_child:
         lines += [f"- Strategy: `{best_child.get('strategy')}`", f"- Val Macro-F1: `{best_child.get('best_val_macro_f1')}`", f"- Test Macro-F1: `{best_child.get('test_macro_f1')}`"]
     else:

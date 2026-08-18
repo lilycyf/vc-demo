@@ -1,0 +1,49 @@
+{
+  "format": "vc_demo_artifact_usefulness_report.v1",
+  "run_dir": "experiments/aivc_helf_generic_foundation_runner_smoke",
+  "counts": {
+    "trained_roots": 4,
+    "trained_children": 2,
+    "trained_foundation_artifact_children": 2,
+    "trained_dense_no_artifact_children": 0,
+    "trained_dense_matched_controls": 0
+  },
+  "best_root": {
+    "node": "aivc_helf_perturb_root_gated_mlp",
+    "val_macro_f1": 0.4011065661907196,
+    "test_macro_f1": 0.4000442326068878
+  },
+  "best_generated_child": {
+    "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213",
+    "val_macro_f1": 0.41547608375549316,
+    "test_macro_f1": 0.41339072585105896
+  },
+  "best_foundation_artifact_child": {
+    "node": "aivc_helf_perturb_root_mlp_p5_foundation_graph_laplacian_head_457c4213",
+    "val_macro_f1": 0.41547608375549316,
+    "test_macro_f1": 0.41339072585105896
+  },
+  "best_dense_no_artifact_child": {
+    "node": "",
+    "val_macro_f1": null,
+    "test_macro_f1": null
+  },
+  "best_dense_matched_no_artifact_control": {
+    "node": "",
+    "val_macro_f1": null,
+    "test_macro_f1": null
+  },
+  "deltas": {
+    "best_child_vs_root_val": 0.01436951756477356,
+    "foundation_vs_root_val": 0.01436951756477356,
+    "foundation_vs_best_dense_no_artifact_val": null,
+    "foundation_vs_dense_matched_control_val": null
+  },
+  "paired_comparisons": [],
+  "verdict": {
+    "child_beats_root": true,
+    "foundation_artifact_beats_root": true,
+    "foundation_artifact_beats_dense_control": false,
+    "artifact_incremental_gain_proven": false
+  }
+}
