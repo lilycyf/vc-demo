@@ -1,0 +1,19 @@
+{
+  "backend_anomaly_count": 0,
+  "backprop_nontrained_count": 0,
+  "blocked": 0,
+  "failed": 0,
+  "fallback_count": 0,
+  "forbidden_outputs_in_git_allowed": false,
+  "graph_only_proxy_created": false,
+  "nodes_dir_created_but_not_for_commit": "experiments/aivc_helf_best_child_ablation_v1/nodes",
+  "pending": 0,
+  "proxy_count": 0,
+  "pruned_node_training_count": 0,
+  "required_artifacts_present": {
+    "data/artifacts/helf/string_gene_graph_features.npz": true
+  },
+  "strict_artifacts": true,
+  "test_guided_selection": false,
+  "trained_declared_ablation_nodes": 30
+}

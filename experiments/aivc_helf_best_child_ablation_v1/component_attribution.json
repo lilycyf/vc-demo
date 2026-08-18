@@ -1,0 +1,102 @@
+{
+  "component_attribution": {
+    "ablation_deltas_vs_full_test_mean": {
+      "ablate_graph_no_loss_tricks": 0.004762440919876099,
+      "ablate_no_graph_keep_focal": 0.006089431047439586,
+      "ablate_no_graph_no_loss_tricks": 0.009404802322387718,
+      "best_root_residual_mlp": 0.009404802322387718,
+      "dense_capacity_no_artifact_focal": -0.010044628381729093
+    },
+    "ablation_deltas_vs_full_val_mean": {
+      "ablate_graph_no_loss_tricks": 0.010518866777420088,
+      "ablate_no_graph_keep_focal": 0.004009675979614269,
+      "ablate_no_graph_no_loss_tricks": 0.013569062948226962,
+      "best_root_residual_mlp": 0.013569062948226962,
+      "dense_capacity_no_artifact_focal": -0.003946477174758878
+    },
+    "artifact_contribution_estimate": 0.004009675979614269,
+    "best_root": {
+      "description": "Best root baseline from previous search",
+      "n": 5,
+      "test_mean": 0.42737581133842467,
+      "test_std": 0.0017495704073362843,
+      "val_mean": 0.42836578488349913,
+      "val_std": 0.0020726565849884327
+    },
+    "child_beats_root_on_average": true,
+    "child_reaches_target_on_average": true,
+    "dense_capacity_control_delta_val_mean": -0.003946477174758878,
+    "epochs_per_run": 8,
+    "full_best_child": {
+      "description": "Full discovered child: parent dense path plus STRING graph residual and focal loss",
+      "n": 5,
+      "test_mean": 0.4367806136608124,
+      "test_std": 0.0014572874538634254,
+      "val_mean": 0.4419348478317261,
+      "val_std": 0.0012422536263831596
+    },
+    "graph_only_note": "Current model library supports parent-preserving dense+graph residual augmentation, not a standalone graph-only response predictor. No proxy graph-only model was created.",
+    "graph_only_supported": false,
+    "loss_contribution_estimate": 0.010518866777420088,
+    "root_vs_child_delta_test_mean": 0.009404802322387718,
+    "root_vs_child_delta_val_mean": 0.013569062948226962,
+    "seeds": [
+      3,
+      7,
+      11,
+      17,
+      23
+    ],
+    "target_val_macro_f1": 0.42
+  },
+  "variant_summary": {
+    "ablate_graph_no_loss_tricks": {
+      "description": "Ablation without weighted CE / focal loss, keeping STRING graph residual",
+      "n": 5,
+      "test_mean": 0.4320181727409363,
+      "test_std": 0.005229367328753583,
+      "val_mean": 0.431415981054306,
+      "val_std": 0.0034456399386376584
+    },
+    "ablate_no_graph_keep_focal": {
+      "description": "Ablation without graph_laplacian_head / STRING artifact, keeping focal loss",
+      "n": 5,
+      "test_mean": 0.4306911826133728,
+      "test_std": 0.0023097721804399376,
+      "val_mean": 0.4379251718521118,
+      "val_std": 0.0020801420986409466
+    },
+    "ablate_no_graph_no_loss_tricks": {
+      "description": "Ablation without graph artifact and without weighted/focal loss",
+      "n": 5,
+      "test_mean": 0.42737581133842467,
+      "test_std": 0.0017495704073362843,
+      "val_mean": 0.42836578488349913,
+      "val_std": 0.0020726565849884327
+    },
+    "best_root_residual_mlp": {
+      "description": "Best root baseline from previous search",
+      "n": 5,
+      "test_mean": 0.42737581133842467,
+      "test_std": 0.0017495704073362843,
+      "val_mean": 0.42836578488349913,
+      "val_std": 0.0020726565849884327
+    },
+    "dense_capacity_no_artifact_focal": {
+      "description": "Dense matched-capacity child without biological artifacts, keeping focal loss",
+      "n": 5,
+      "test_mean": 0.4468252420425415,
+      "test_std": 0.005210966663924269,
+      "val_mean": 0.445881325006485,
+      "val_std": 0.004570824836709527
+    },
+    "full_best_child_graph_focal": {
+      "description": "Full discovered child: parent dense path plus STRING graph residual and focal loss",
+      "n": 5,
+      "test_mean": 0.4367806136608124,
+      "test_std": 0.0014572874538634254,
+      "val_mean": 0.4419348478317261,
+      "val_std": 0.0012422536263831596
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_best_child_multiseed_ablation",
+  "metadata": {
+    "ablation_role": "without_graph_and_loss_tricks",
+    "declared_ablation_node": true,
+    "description": "Ablation without graph artifact and without weighted/focal loss",
+    "fallback": false,
+    "proxy": false,
+    "removed_components": [
+      "string_graph_features",
+      "weighted_ce",
+      "focal_loss"
+    ],
+    "test_macro_f1_report_only": true
+  },
+  "model": {
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "model_type": "residual_mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_ablation_ablate_no_graph_no_loss_tricks_seed11",
+  "seed": 11,
+  "training": {
+    "batch_size": 32,
+    "device": "cpu",
+    "loss_type": "cross_entropy",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}

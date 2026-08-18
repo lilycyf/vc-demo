@@ -1,0 +1,34 @@
+{
+  "dataset": {
+    "data_dir": "data/cell_lines/aivc_helf_perturb_deg_cls",
+    "dataset_type": "real_npz"
+  },
+  "experiment_scope": "aivc_helf_best_child_multiseed_ablation",
+  "metadata": {
+    "ablation_role": "best_root",
+    "declared_ablation_node": true,
+    "description": "Best root baseline from previous search",
+    "fallback": false,
+    "proxy": false,
+    "test_macro_f1_report_only": true
+  },
+  "model": {
+    "depth": 2,
+    "dropout": 0.15,
+    "hidden_dim": 256,
+    "input_dim": "auto",
+    "model_type": "residual_mlp",
+    "n_classes": 3,
+    "n_targets": "auto"
+  },
+  "node_name": "aivc_helf_ablation_best_root_residual_mlp_seed3",
+  "seed": 3,
+  "training": {
+    "batch_size": 32,
+    "device": "auto",
+    "lr": 0.0005,
+    "num_workers": 0,
+    "patience": 4,
+    "weight_decay": 0.0001
+  }
+}
