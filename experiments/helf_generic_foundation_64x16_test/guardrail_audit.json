@@ -1,0 +1,29 @@
+{
+  "format": "vc_demo_guardrail_audit.v1",
+  "run_dir": "experiments/helf_generic_foundation_64x16_test",
+  "status_counts": {
+    "trained": 20,
+    "pruned_not_selected": 60,
+    "requires_artifact_acquisition": 4
+  },
+  "generated_proposals": 64,
+  "trained_selected_rollouts": 16,
+  "pruned_not_selected": 60,
+  "blocked": 4,
+  "failed": 0,
+  "pending": 0,
+  "fallback_count": 0,
+  "proxy_count": 0,
+  "compact_proxy_count": 0,
+  "backprop_nontrained_count": 0,
+  "backend_anomaly_count": 0,
+  "pruned_node_training_count": 0,
+  "verdict": {
+    "generic_entrypoint_64x16_passed": true,
+    "no_fallback": true,
+    "no_proxy": true,
+    "no_nontrained_backprop": true,
+    "no_backend_anomaly": true,
+    "no_pruned_training": true
+  }
+}

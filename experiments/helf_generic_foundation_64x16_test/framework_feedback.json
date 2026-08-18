@@ -1,0 +1,262 @@
+{
+  "format": "vc_demo_framework_feedback.v1",
+  "created_at": "2026-08-18T07:39:31.758506+00:00",
+  "run_dir": "experiments/helf_generic_foundation_64x16_test",
+  "target_val_macro_f1": 0.42,
+  "best_root": {
+    "node": "aivc_helf_perturb_root_residual_mlp",
+    "val": 0.4117428958415985,
+    "test": 0.4180757999420166
+  },
+  "best_child": {
+    "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+    "val": 0.4213203191757202,
+    "test": 0.42448005080223083
+  },
+  "strategy_stats": {
+    "foundation_graph_laplacian_head": {
+      "n": 1,
+      "family": "graph_prior",
+      "mean_val": 0.41671648621559143,
+      "std_val": 0.0,
+      "mean_test": 0.4102531969547272,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": 0.009409189224243164,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66"
+    },
+    "feature_dropout": {
+      "n": 4,
+      "family": "stability_regularization",
+      "mean_val": 0.4063953161239624,
+      "std_val": 0.001519223450302166,
+      "mean_test": 0.4054476246237755,
+      "std_test": 0.0035481548247130864,
+      "mean_delta_vs_parent": -0.011016860604286194,
+      "std_delta_vs_parent": 0.001971227820370382,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p35_feature_dropout_70b4156b"
+    },
+    "temperature_calibration": {
+      "n": 3,
+      "family": "calibration",
+      "mean_val": 0.40863853693008423,
+      "std_val": 0.002385944463437773,
+      "mean_test": 0.4079582790533702,
+      "std_test": 0.0004707807170081669,
+      "mean_delta_vs_parent": -0.0074011484781901045,
+      "std_delta_vs_parent": 0.0030708458368740757,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p32_temperature_calibration_fc304c1a"
+    },
+    "dense_matched_capacity_no_artifact_control": {
+      "n": 3,
+      "family": "dense_matched_capacity_no_artifact_control",
+      "mean_val": 0.4182482560475667,
+      "std_val": 0.0027063796253469644,
+      "mean_test": 0.4194290240605672,
+      "std_test": 0.0045734654914749385,
+      "mean_delta_vs_parent": 0.009972065687179565,
+      "std_delta_vs_parent": 0.0013062604175636658,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9"
+    },
+    "foundation_pathway_pooling_encoder": {
+      "n": 1,
+      "family": "pathway_prior",
+      "mean_val": 0.41468608379364014,
+      "std_val": 0.0,
+      "mean_test": 0.4211268723011017,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": 0.008907705545425415,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3"
+    },
+    "foundation_string_graph_message_passing": {
+      "n": 1,
+      "family": "graph_prior",
+      "mean_val": 0.41810786724090576,
+      "std_val": 0.0,
+      "mean_test": 0.41262853145599365,
+      "std_test": 0.0,
+      "mean_delta_vs_parent": 0.006364971399307251,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0,
+      "best_node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e"
+    },
+    "low_rank_head": {
+      "n": 3,
+      "family": "low_rank_head",
+      "mean_val": 0.39681605497996014,
+      "std_val": 0.0011380185214039,
+      "mean_test": 0.3980962137381236,
+      "std_test": 0.00043000270124999033,
+      "mean_delta_vs_parent": -0.01917015512784322,
+      "std_delta_vs_parent": 0.0025530321151912274,
+      "win_rate_vs_parent": 0.0,
+      "best_node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_3_p23_low_rank_head_c757d892"
+    }
+  },
+  "family_stats": {
+    "graph_prior": {
+      "n": 2,
+      "mean_val": 0.4174121767282486,
+      "std_val": 0.000983854958214055,
+      "mean_delta_vs_parent": 0.007887080311775208,
+      "std_delta_vs_parent": 0.0021525870674211464,
+      "win_rate_vs_parent": 1.0
+    },
+    "stability_regularization": {
+      "n": 4,
+      "mean_val": 0.4063953161239624,
+      "std_val": 0.001519223450302166,
+      "mean_delta_vs_parent": -0.011016860604286194,
+      "std_delta_vs_parent": 0.001971227820370382,
+      "win_rate_vs_parent": 0.0
+    },
+    "calibration": {
+      "n": 3,
+      "mean_val": 0.40863853693008423,
+      "std_val": 0.002385944463437773,
+      "mean_delta_vs_parent": -0.0074011484781901045,
+      "std_delta_vs_parent": 0.0030708458368740757,
+      "win_rate_vs_parent": 0.0
+    },
+    "dense_matched_capacity_no_artifact_control": {
+      "n": 3,
+      "mean_val": 0.4182482560475667,
+      "std_val": 0.0027063796253469644,
+      "mean_delta_vs_parent": 0.009972065687179565,
+      "std_delta_vs_parent": 0.0013062604175636658,
+      "win_rate_vs_parent": 1.0
+    },
+    "pathway_prior": {
+      "n": 1,
+      "mean_val": 0.41468608379364014,
+      "std_val": 0.0,
+      "mean_delta_vs_parent": 0.008907705545425415,
+      "std_delta_vs_parent": 0.0,
+      "win_rate_vs_parent": 1.0
+    },
+    "low_rank_head": {
+      "n": 3,
+      "mean_val": 0.39681605497996014,
+      "std_val": 0.0011380185214039,
+      "mean_delta_vs_parent": -0.01917015512784322,
+      "std_delta_vs_parent": 0.0025530321151912274,
+      "win_rate_vs_parent": 0.0
+    }
+  },
+  "artifact_usefulness": {
+    "format": "vc_demo_artifact_usefulness_report.v1",
+    "run_dir": "experiments/helf_generic_foundation_64x16_test",
+    "counts": {
+      "trained_roots": 4,
+      "trained_children": 16,
+      "trained_foundation_artifact_children": 3,
+      "trained_dense_no_artifact_children": 13,
+      "trained_dense_matched_controls": 3
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_residual_mlp",
+      "val_macro_f1": 0.4117428958415985,
+      "test_macro_f1": 0.4180757999420166
+    },
+    "best_generated_child": {
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+      "val_macro_f1": 0.4213203191757202,
+      "test_macro_f1": 0.42448005080223083
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+      "val_macro_f1": 0.41810786724090576,
+      "test_macro_f1": 0.41262853145599365
+    },
+    "best_dense_no_artifact_child": {
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+      "val_macro_f1": 0.4213203191757202,
+      "test_macro_f1": 0.42448005080223083
+    },
+    "best_dense_matched_no_artifact_control": {
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+      "val_macro_f1": 0.4213203191757202,
+      "test_macro_f1": 0.42448005080223083
+    },
+    "deltas": {
+      "best_child_vs_root_val": 0.009577423334121704,
+      "foundation_vs_root_val": 0.006364971399307251,
+      "foundation_vs_best_dense_no_artifact_val": -0.003212451934814453,
+      "foundation_vs_dense_matched_control_val": -0.003212451934814453
+    },
+    "paired_comparisons": [
+      {
+        "artifact_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66",
+        "control_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p5_dense_matched_capacity_no_artifact_control_control_bceb59cb",
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.41671648621559143,
+        "artifact_test_macro_f1": 0.4102531969547272,
+        "control_val_macro_f1": 0.4162159264087677,
+        "control_test_macro_f1": 0.41556861996650696,
+        "artifact_incremental_val_gain": 0.0005005598068237305
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3",
+        "control_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3_p9_dense_matched_capacity_no_artifact_control_control_2fd2fbc4",
+        "artifact_strategy": "foundation_pathway_pooling_encoder",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.41468608379364014,
+        "artifact_test_macro_f1": 0.4211268723011017,
+        "control_val_macro_f1": 0.4172085225582123,
+        "control_test_macro_f1": 0.41823840141296387,
+        "artifact_incremental_val_gain": -0.0025224387645721436
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+        "control_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "control_strategy": "dense_matched_capacity_no_artifact_control",
+        "artifact_val_macro_f1": 0.41810786724090576,
+        "artifact_test_macro_f1": 0.41262853145599365,
+        "control_val_macro_f1": 0.4213203191757202,
+        "control_test_macro_f1": 0.42448005080223083,
+        "artifact_incremental_val_gain": -0.003212451934814453
+      }
+    ],
+    "verdict": {
+      "child_beats_root": true,
+      "foundation_artifact_beats_root": true,
+      "foundation_artifact_beats_dense_control": false,
+      "artifact_incremental_gain_proven": false
+    }
+  },
+  "findings": [
+    "artifact_incremental_gain_not_proven: best artifact child does not beat dense matched-capacity/no-artifact comparator",
+    "best_child_lift: best generated child beats best root by 0.0096 validation Macro-F1",
+    "discouraged_family:stability_regularization: repeated negative delta",
+    "discouraged_family:calibration: repeated negative delta",
+    "discouraged_family:low_rank_head: repeated negative delta"
+  ],
+  "policy": {
+    "ranking_boosts": {
+      "dense_matched_capacity_no_artifact_control": 0.1,
+      "artifact_residual_gate": 0.08,
+      "artifact_attention_bias": 0.06
+    },
+    "ranking_penalties": {
+      "stability_regularization": 0.08,
+      "calibration": 0.08,
+      "low_rank_head": 0.08
+    },
+    "implementation_guidance": [
+      "Artifact gain is not proven beyond dense control: preserve the strong dense branch, add artifact only as a small gated residual/attention bias, and train a paired no-artifact control whenever possible.",
+      "A child beat the root: reuse its structural motif as a parent-preserving motif before broadening the search."
+    ],
+    "validation_recommendations": [
+      "Require artifact-vs-dense-control attribution before claiming biological prior usefulness."
+    ],
+    "suppressed_families": []
+  }
+}

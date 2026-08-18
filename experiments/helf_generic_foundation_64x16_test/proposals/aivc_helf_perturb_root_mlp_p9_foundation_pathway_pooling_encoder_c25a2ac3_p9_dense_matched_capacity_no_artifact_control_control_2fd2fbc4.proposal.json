@@ -1,0 +1,22 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.0,
+    "paired_control_for": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3",
+    "parent_val": 0.4057783782482147,
+    "priority": 0.9700000000000001,
+    "score": 0.6477783782482146
+  },
+  "child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3_p9_dense_matched_capacity_no_artifact_control_control_2fd2fbc4",
+  "codex_action": "train a no-artifact dense matched-capacity control for artifact incremental gain attribution",
+  "hypothesis": "Control for capacity/loss gain paired with foundation_pathway_pooling_encoder for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "paired_artifact_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3",
+  "paired_source_strategy": "foundation_pathway_pooling_encoder",
+  "parent": "aivc_helf_perturb_root_mlp",
+  "proposal_type": "artifact_usefulness_control",
+  "required_artifacts": [],
+  "strategy": "dense_matched_capacity_no_artifact_control"
+}

@@ -1,0 +1,22 @@
+{
+  "candidate_pool_size": 4,
+  "candidate_rank": 1,
+  "cheap_screen_score": {
+    "cost_bonus": 0.0,
+    "novelty": 0.0,
+    "paired_control_for": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p35_p45_foundation_string_graph_message_passing_dbebeb1e",
+    "parent_val": 0.4083823263645172,
+    "priority": 0.9900000000000001,
+    "score": 0.5323823263645172
+  },
+  "child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p45_dense_matched_capacity_no_artifact_control_control_c331fbec",
+  "codex_action": "train a no-artifact dense matched-capacity control for artifact incremental gain attribution",
+  "hypothesis": "Control for capacity/loss gain paired with foundation_string_graph_message_passing for drug_perturbation_target_gene_deg_direction_prediction.",
+  "missing_required_artifacts": [],
+  "paired_artifact_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p35_p45_foundation_string_graph_message_passing_dbebeb1e",
+  "paired_source_strategy": "foundation_string_graph_message_passing",
+  "parent": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p35_feature_dropout_70b4156b",
+  "proposal_type": "artifact_usefulness_control",
+  "required_artifacts": [],
+  "strategy": "dense_matched_capacity_no_artifact_control"
+}

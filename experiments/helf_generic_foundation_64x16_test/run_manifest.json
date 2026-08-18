@@ -1,0 +1,116 @@
+{
+  "artifact_blockers": 4,
+  "artifact_usefulness": {
+    "best_dense_matched_no_artifact_control": {
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+      "test_macro_f1": 0.42448005080223083,
+      "val_macro_f1": 0.4213203191757202
+    },
+    "best_foundation_artifact_child": {
+      "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+      "test_macro_f1": 0.41262853145599365,
+      "val_macro_f1": 0.41810786724090576
+    },
+    "best_root": {
+      "node": "aivc_helf_perturb_root_residual_mlp",
+      "test_macro_f1": 0.4180757999420166,
+      "val_macro_f1": 0.4117428958415985
+    },
+    "foundation_vs_dense_control_val_gain": -0.003212451934814453,
+    "foundation_vs_root_val_gain": 0.006364971399307251,
+    "interpretation": "artifact gain not proven beyond dense matched-capacity control",
+    "paired_comparisons": [
+      {
+        "artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+        "artifact_incremental_val_gain": -0.003212451934814453,
+        "artifact_strategy": "foundation_string_graph_message_passing",
+        "artifact_test_macro_f1": 0.41262853145599365,
+        "artifact_val_macro_f1": 0.41810786724090576,
+        "control_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+        "control_test_macro_f1": 0.42448005080223083,
+        "control_val_macro_f1": 0.4213203191757202
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66",
+        "artifact_incremental_val_gain": 0.0005005598068237305,
+        "artifact_strategy": "foundation_graph_laplacian_head",
+        "artifact_test_macro_f1": 0.4102531969547272,
+        "artifact_val_macro_f1": 0.41671648621559143,
+        "control_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p5_dense_matched_capacity_no_artifact_control_control_bceb59cb",
+        "control_test_macro_f1": 0.41556861996650696,
+        "control_val_macro_f1": 0.4162159264087677
+      },
+      {
+        "artifact_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3",
+        "artifact_incremental_val_gain": -0.0025224387645721436,
+        "artifact_strategy": "foundation_pathway_pooling_encoder",
+        "artifact_test_macro_f1": 0.4211268723011017,
+        "artifact_val_macro_f1": 0.41468608379364014,
+        "control_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3_p9_dense_matched_capacity_no_artifact_control_control_2fd2fbc4",
+        "control_test_macro_f1": 0.41823840141296387,
+        "control_val_macro_f1": 0.4172085225582123
+      }
+    ],
+    "trained_dense_matched_controls": 3,
+    "trained_foundation_artifact_children": 3
+  },
+  "backprop_nontrained_count": 0,
+  "best_generated_child": {
+    "best_val_macro_f1": 0.4213203191757202,
+    "cheap_screen_score": {
+      "cost_bonus": 0.0,
+      "novelty": 0.0,
+      "paired_control_for": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+      "parent_val": 0.4117428958415985,
+      "priority": 0.9900000000000001,
+      "score": 0.6557428958415984
+    },
+    "children": [],
+    "config": "experiments/helf_generic_foundation_64x16_test/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9.json",
+    "metrics": "experiments/helf_generic_foundation_64x16_test/nodes/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9/metrics.json",
+    "missing_required_artifacts": [],
+    "paired_artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+    "parent": "aivc_helf_perturb_root_residual_mlp",
+    "proposal": "experiments/helf_generic_foundation_64x16_test/proposals/aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9.proposal.json",
+    "proposal_type": "artifact_usefulness_control",
+    "required_artifacts": [],
+    "status": "trained",
+    "strategy": "dense_matched_capacity_no_artifact_control",
+    "test_macro_f1": 0.42448005080223083,
+    "value": 0.8426406383514404,
+    "visits": 2
+  },
+  "best_root": {
+    "best_val_macro_f1": 0.4117428958415985,
+    "children": [
+      "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+      "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+      "aivc_helf_perturb_root_residual_mlp_p2_foundation_scgpt_cell_encoder_f1fe4162",
+      "aivc_helf_perturb_root_residual_mlp_p3_low_rank_head_26689f9b",
+      "aivc_helf_perturb_root_residual_mlp_p4_feature_dropout_6e7262bb"
+    ],
+    "config": "configs/aivc_helf_perturb_roots/root_residual_mlp.json",
+    "metrics": "experiments/helf_generic_foundation_64x16_test/nodes/aivc_helf_perturb_root_residual_mlp/metrics.json",
+    "parent": "",
+    "status": "trained",
+    "test_macro_f1": 0.4180757999420166,
+    "value": 3.2534047067165375,
+    "visits": 8
+  },
+  "blocked": 4,
+  "cell_line_id": "HELF",
+  "experiment": "helf_generic_foundation_64x16_test",
+  "failed": 0,
+  "fallback_count": 0,
+  "generated_artifact_usefulness_controls": 16,
+  "generated_proposals": 64,
+  "proxy_count": 0,
+  "pruned_not_selected": 60,
+  "requires_artifact_acquisition": 4,
+  "run_dir": "experiments/helf_generic_foundation_64x16_test",
+  "skipped": 0,
+  "stop_reason": "trained-node budget exhausted (16/16)",
+  "task_config": "configs/foundation_artifact_harness/aivc_helf_perturb_deg.json",
+  "trained_foundation_artifact_children": 3,
+  "trained_selected_rollouts": 16
+}

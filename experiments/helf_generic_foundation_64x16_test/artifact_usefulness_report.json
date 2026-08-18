@@ -1,0 +1,83 @@
+{
+  "format": "vc_demo_artifact_usefulness_report.v1",
+  "run_dir": "experiments/helf_generic_foundation_64x16_test",
+  "counts": {
+    "trained_roots": 4,
+    "trained_children": 16,
+    "trained_foundation_artifact_children": 3,
+    "trained_dense_no_artifact_children": 13,
+    "trained_dense_matched_controls": 3
+  },
+  "best_root": {
+    "node": "aivc_helf_perturb_root_residual_mlp",
+    "val_macro_f1": 0.4117428958415985,
+    "test_macro_f1": 0.4180757999420166
+  },
+  "best_generated_child": {
+    "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+    "val_macro_f1": 0.4213203191757202,
+    "test_macro_f1": 0.42448005080223083
+  },
+  "best_foundation_artifact_child": {
+    "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+    "val_macro_f1": 0.41810786724090576,
+    "test_macro_f1": 0.41262853145599365
+  },
+  "best_dense_no_artifact_child": {
+    "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+    "val_macro_f1": 0.4213203191757202,
+    "test_macro_f1": 0.42448005080223083
+  },
+  "best_dense_matched_no_artifact_control": {
+    "node": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+    "val_macro_f1": 0.4213203191757202,
+    "test_macro_f1": 0.42448005080223083
+  },
+  "deltas": {
+    "best_child_vs_root_val": 0.009577423334121704,
+    "foundation_vs_root_val": 0.006364971399307251,
+    "foundation_vs_best_dense_no_artifact_val": -0.003212451934814453,
+    "foundation_vs_dense_matched_control_val": -0.003212451934814453
+  },
+  "paired_comparisons": [
+    {
+      "artifact_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66",
+      "control_child": "aivc_helf_perturb_root_gated_mlp_p5_foundation_graph_laplacian_head_be22df66_p5_dense_matched_capacity_no_artifact_control_control_bceb59cb",
+      "artifact_strategy": "foundation_graph_laplacian_head",
+      "control_strategy": "dense_matched_capacity_no_artifact_control",
+      "artifact_val_macro_f1": 0.41671648621559143,
+      "artifact_test_macro_f1": 0.4102531969547272,
+      "control_val_macro_f1": 0.4162159264087677,
+      "control_test_macro_f1": 0.41556861996650696,
+      "artifact_incremental_val_gain": 0.0005005598068237305
+    },
+    {
+      "artifact_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3",
+      "control_child": "aivc_helf_perturb_root_mlp_p9_foundation_pathway_pooling_encoder_c25a2ac3_p9_dense_matched_capacity_no_artifact_control_control_2fd2fbc4",
+      "artifact_strategy": "foundation_pathway_pooling_encoder",
+      "control_strategy": "dense_matched_capacity_no_artifact_control",
+      "artifact_val_macro_f1": 0.41468608379364014,
+      "artifact_test_macro_f1": 0.4211268723011017,
+      "control_val_macro_f1": 0.4172085225582123,
+      "control_test_macro_f1": 0.41823840141296387,
+      "artifact_incremental_val_gain": -0.0025224387645721436
+    },
+    {
+      "artifact_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passing_35285b7e",
+      "control_child": "aivc_helf_perturb_root_residual_mlp_p1_foundation_string_graph_message_passin_p1_dense_matched_capacity_no_artifact_control_control_ec39ace9",
+      "artifact_strategy": "foundation_string_graph_message_passing",
+      "control_strategy": "dense_matched_capacity_no_artifact_control",
+      "artifact_val_macro_f1": 0.41810786724090576,
+      "artifact_test_macro_f1": 0.41262853145599365,
+      "control_val_macro_f1": 0.4213203191757202,
+      "control_test_macro_f1": 0.42448005080223083,
+      "artifact_incremental_val_gain": -0.003212451934814453
+    }
+  ],
+  "verdict": {
+    "child_beats_root": true,
+    "foundation_artifact_beats_root": true,
+    "foundation_artifact_beats_dense_control": false,
+    "artifact_incremental_gain_proven": false
+  }
+}
