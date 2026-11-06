@@ -1,5 +1,12 @@
 # T47D Lineage Resistance Harness
 
+> Archived pilot runbook. The current request is the complete original study,
+> not the executable first-stage subset below. Follow
+> [T47D_FULL_STUDY_RUNBOOK.md](T47D_FULL_STUDY_RUNBOOK.md) and run
+> `scripts/t47d/full_demo.py --phase all` for the full reference, search,
+> evaluation and eight-ablation workflow. Do not present `demo.py` or a pilot
+> smoke as completion of the original task document.
+
 ## Scope And Status
 
 This is a new task plugin, not a continuation of the K562/HELF classification experiments. The first approved stage is one RTX 3090, 100 GB persistent network volume, at most 24 hours, and at most $20 including a conservative $7 storage reservation. A 20-hour search ceiling leaves setup and shutdown margin. Do not interpret the ceiling as permission to leave the GPU idle.
