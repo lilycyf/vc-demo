@@ -104,11 +104,14 @@ manifest is not completion.
 - [x] Generalization/uncertainty/root-dominance attribution
 - [x] Actual cost/time/GPU/package versions
 - [x] Whole-study completion matrix; no unexecuted requirement marked complete
-- [ ] Allowed-files-only commit and verified push on the current branch
+- [x] Allowed-files-only commit and verified push on the current branch
 
 Execution evidence: `experiments/t47d_lineage_resistance_full_v2/completion_matrix.json` and
 `complete_study_acceptance_audit.json` both passed. Scientific superiority is
 not implied: historical Ridge and snapshot/abundance controls remain stronger.
+The complete source/results commit `7c6590e9` was pushed successfully to
+`origin/t47d-lineage-resistance-demo`; the submission guard excluded all large
+data, weights and private keys. This checklist is updated only after that push.
 
 ## Reference Versus Prediction Tracks
 
