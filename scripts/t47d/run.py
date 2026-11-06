@@ -3,12 +3,14 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import math
 import subprocess
 import sys
 import time
 import traceback
+import warnings
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -19,7 +21,7 @@ from scipy.stats import spearmanr
 
 from vc_demo.harness.mcts import backpropagate, select_parent
 from vc_demo.t47d_lineage.data import CV_SEEDS, TREATMENTS, dump, load_bundle
-from vc_demo.t47d_lineage.models import Candidate
+from vc_demo.t47d_lineage.composition import build_candidate as Candidate, inherit_mutation, move_to_cpu
 
 
 def correlation(y, pred):
@@ -34,7 +36,8 @@ def metrics(y, pred):
     return {"spearman": correlation(y, pred), "mae": float(np.mean(np.abs(y - pred)))}
 
 
-def cross_validate(bundle, config):
+def cross_validate(bundle, config, build_model=None):
+    build_model = build_model or Candidate
     meta = bundle["meta"]
     dev = np.flatnonzero(meta.split.eq("development"))
     seed_predictions, fold_records = {}, []
@@ -43,10 +46,13 @@ def cross_validate(bundle, config):
         valid = np.flatnonzero(meta.clone_id.isin(split["validation_clones"]))
         assert not set(meta.iloc[train].clone_id) & set(meta.iloc[valid].clone_id)
         assert not meta.iloc[train].split.eq("test").any()
-        candidate = Candidate(config).fit(bundle, train, split["seed"])
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            candidate = build_model(config).fit(bundle, train, split["seed"])
         pred = candidate.predict(bundle, valid)
         result = metrics(meta.iloc[valid].label.to_numpy(), pred)
-        fold_records.append({"seed": split["seed"], "fold": split["fold"], **result})
+        fold_records.append({"seed": split["seed"], "fold": split["fold"], **result,
+                             "warnings": [{"category":w.category.__name__,"message":str(w.message)} for w in caught]})
         seed_predictions.setdefault(split["seed"], {}).update(zip(valid.tolist(), pred.tolist()))
     scores, maes, records = [], [], []
     for seed in CV_SEEDS:
@@ -83,6 +89,9 @@ def search_space():
                 for loss in losses:
                     cfg = {"model": model, "representation": representation, "alpha": alpha,
                            "loss": loss, "genes": 128, "epochs": 80}
+                    if model == "pls":
+                        cfg.pop("alpha")
+                        cfg["components"] = {1.:2,10.:3,100.:5}[alpha]
                     implemented.append(cfg)
     planned = [
         {"id": "scvi_state_encoder", "required_artifact": "train-fold scVI latent", "source": "https://github.com/scverse/scvi-tools"},
@@ -93,6 +102,7 @@ def search_space():
         {"id": "cross_treatment_attention", "required_artifact": "aligned early clone-treatment tensor", "source": "https://pytorch.org/"},
     ]
     return {"implemented_candidates": implemented, "implemented_candidate_count": len(implemented),
+            "space_semantics": "120 mutation templates; parent-composed complete pipeline count depends on lineage depth",
             "planned_families": planned, "planned_status": "declared_not_yet_executable_or_evaluated",
             "scope": "No foundation checkpoint proxy. Planned families are not counted as executable coverage."}
 
@@ -107,33 +117,56 @@ def node_id(parent, config):
     return f"{parent[:28]}__{config['model']}__{key}"
 
 
+def load_program(path):
+    path = Path(path)
+    identity = path.parent.name.encode() + path.read_bytes()
+    module_name = "t47d_program_" + hashlib.sha256(identity).hexdigest()[:12]
+    spec = importlib.util.spec_from_file_location(module_name, path)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    if not callable(getattr(module, "build_model", None)):
+        raise ValueError("Node-local model.py must export build_model(config)")
+    return module.build_model
+
+
 def materialize(run, node):
     dest = run / "programs" / node["id"]
     dest.mkdir(parents=True, exist_ok=True)
+    cursor = node["config"]
+    uses_pathway = False
+    while cursor:
+        uses_pathway |= cursor["representation"] in {"pathway", "both"}
+        cursor = cursor.get("parent_config")
     dump(dest / "pipeline.json", {"config": node["config"], "parent": node.get("parent"),
-                                  "backend": "native_regression", "mutation": "explicit estimator/representation research variant",
-                                  "artifact_usage": "real Hallmark memberships" if node["config"]["representation"] in {"pathway", "both"} else "GEO expression",
+                                  "backend": "native_regression", "mutation": node["config"].get("composition", "explicit replacement control"),
+                                  "artifact_usage": "GEO expression and real Hallmark memberships in current or inherited pipeline" if uses_pathway else "GEO expression",
                                   "fallback": False, "proxy": False})
-    dump(dest / "artifact_contract.json", {"required": ["GSE260703", "verified clone mapping", "frozen group splits"],
+    required = ["GSE260703", "verified clone mapping", "frozen group splits"]
+    if uses_pathway:
+        required.append("Hallmark 2025.1.Hs gene memberships")
+    dump(dest / "artifact_contract.json", {"required": required,
                                            "missing": [], "checkpoint_substitution": "forbidden"})
-    (dest / "model.py").write_text(
-        "from vc_demo.t47d_lineage.models import Candidate\n"
-        "\ndef build_model(config):\n    return Candidate(config)\n")
+    if not (dest / "model.py").exists():
+        (dest / "model.py").write_text(
+            "from vc_demo.t47d_lineage.composition import build_candidate\n"
+            "\ndef build_model(config):\n    return build_candidate(config)\n")
     subprocess.run([sys.executable, "-m", "py_compile", str(dest / "model.py")], check=True)
+    return load_program(dest / "model.py")
 
 
 def evaluate(run, tree, node, bundle):
     node["status"] = "selected"
-    materialize(run, node)
+    build_model = materialize(run, node)
     start = time.monotonic()
     train_clones = bundle["splits"]["folds"][0]["train_clones"]
     sample = np.flatnonzero(bundle["meta"].clone_id.isin(train_clones))[:9]
-    smoke_model = Candidate(node["config"]).fit(bundle, sample[:6], 3)
+    smoke_model = build_model(node["config"]).fit(bundle, sample[:6], 3)
     pred = smoke_model.predict(bundle, sample[6:8])
     if pred.shape != (2,) or not np.isfinite(pred).all():
         raise ValueError("Native fit/predict smoke failed")
     dump(run / "programs" / node["id"] / "smoke.json", {"passed": True, "shape": [2], "scientific_result": False})
-    result = cross_validate(bundle, node["config"])
+    result = cross_validate(bundle, node["config"], build_model=build_model)
     node.update(result, status="trained", duration_seconds=time.monotonic() - start)
     if node["status"] != "trained":
         raise ValueError("Only trained rollout rewards may backpropagate")
@@ -144,18 +177,24 @@ def evaluate(run, tree, node, bundle):
                       "duration_seconds": node["duration_seconds"]}), flush=True)
 
 
-def propose(run, tree, space, count=4):
+def propose(run, tree, space, count=4, parent_policy="preserve"):
     parent, components = select_parent(tree, math.sqrt(2), 8, policy="uct")
+    for row in components:
+        row.pop("best_val_macro_f1", None)
+        row["validation_spearman"] = tree["nodes"][row["node"]]["validation_reward"]
+    tree["mcts"]["public_artifact_alignment"] = "UCT core reuse; no claim to reproduce a private paper orchestrator"
     log(run, "parent_selection", parent=parent, components=components)
-    used = {json.dumps(n["config"], sort_keys=True) for n in tree["nodes"].values() if n.get("parent") == parent}
+    used = {json.dumps(n.get("mutation_config", n["config"]), sort_keys=True) for n in tree["nodes"].values() if n.get("parent") == parent}
     choices = [c for c in space["implemented_candidates"] if json.dumps(c, sort_keys=True) not in used]
     key = int(hashlib.sha256((parent + str(len(used))).encode()).hexdigest()[:8], 16)
     np.random.default_rng(key).shuffle(choices)
     for cfg in choices[:count]:
+        mutation = cfg
+        cfg = inherit_mutation(tree["nodes"][parent]["config"], mutation) if parent_policy == "preserve" else cfg
         name = node_id(parent, cfg)
         if name in tree["nodes"]:
             continue
-        tree["nodes"][name] = {"id": name, "parent": parent, "config": cfg,
+        tree["nodes"][name] = {"id": name, "parent": parent, "config": cfg, "mutation_config": mutation,
                                "status": "candidate_queued", "children": [], "visits": 0, "value": 0.,
                                "depth": tree["nodes"][parent].get("depth", 0) + 1}
         tree["nodes"][parent]["children"].append(name)
@@ -207,16 +246,14 @@ def finalize(run, tree, bundle, stop_reason):
         if not node:
             continue
         predictions, seed_metrics = [], []
+        build_model = load_program(run / "programs" / node["id"] / "model.py")
         for seed in CV_SEEDS:
-            model = Candidate(node["config"]).fit(bundle, dev, seed)
+            model = build_model(node["config"]).fit(bundle, dev, seed)
             p = model.predict(bundle, test)
             predictions.append(p)
             seed_metrics.append({"seed": seed, **metrics(test_meta.label.to_numpy(), p)})
             if seed == CV_SEEDS[0]:
-                if hasattr(model, "network"):
-                    model.network = model.network.cpu()
-                    import torch
-                    model.device = torch.device("cpu")
+                move_to_cpu(model)
                 dest = run / "nodes" / node["id"]
                 dest.mkdir(parents=True, exist_ok=True)
                 joblib.dump(model, dest / "frozen_model.joblib")
@@ -298,8 +335,13 @@ def main():
     parser.add_argument("--pathways", default="data/t47d_lineage/pathways/h.all.v2025.1.Hs.symbols.gmt")
     parser.add_argument("--selected-rollouts", type=int, default=24)
     parser.add_argument("--max-runtime-hours", type=float, default=20)
+    parser.add_argument("--parent-policy", choices=("preserve", "replace"), default="preserve")
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
+    if not 20 <= args.selected_rollouts <= 40:
+        raise SystemExit("The registered first-stage range is 20-40 selected rollouts")
+    if not 0 < args.max_runtime_hours <= 20:
+        raise SystemExit("The approved first-stage search ceiling is 20 hours")
     run = Path(args.run_dir)
     run.mkdir(parents=True, exist_ok=True)
     if (run / "frozen_selection.json").exists():
@@ -314,6 +356,7 @@ def main():
     provenance = {"base_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
                   "source_hashes": source_hashes, "selected_rollout_budget": args.selected_rollouts,
                   "wall_budget_hours": args.max_runtime_hours, "started_at_unix": time.time(),
+                  "parent_policy": args.parent_policy,
                   "python_version": sys.version, "gpu": subprocess.check_output(["nvidia-smi", "--query-gpu=name,driver_version", "--format=csv,noheader"], text=True).strip()}
     manifest_path = run / "run_manifest.json"
     if args.resume:
@@ -344,7 +387,7 @@ def main():
         if time.time() - start > args.max_runtime_hours * 3600:
             stop = "approved compute time reached; partial search"
             break
-        propose(run, tree, space)
+        propose(run, tree, space, parent_policy=args.parent_policy)
         queue = rank_queue(tree)
         if not queue:
             stop = "no executable queued candidate remains"

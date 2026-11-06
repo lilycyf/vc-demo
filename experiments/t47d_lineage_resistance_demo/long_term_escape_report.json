@@ -1,4 +1,58 @@
 {
-  "status": "not_yet_evaluated",
-  "reason": "Requires separate frozen day26-to-Month6 transport analysis; no early forecasting claim is inferred from observation alone"
+  "protocol": "frozen day26 predictions compared with Month6 observations; no refit or selection on Month6",
+  "positive_definition": "at least 3 QC-passing single-barcode Month6 cells, not proof of drug resistance",
+  "evaluations": {
+    "root_2_ridge/all_eligible_clones": {
+      "clones": 46,
+      "persistent_clones": [
+        "GFPBC_libB_92196"
+      ],
+      "top5_recall": 1.0,
+      "interpretation": "out-of-horizon transport, not calibrated 6-month forecast"
+    },
+    "root_2_ridge/heldout_clones": {
+      "clones": 10,
+      "persistent_clones": [],
+      "top5_recall": null,
+      "interpretation": "out-of-horizon transport, not calibrated 6-month forecast"
+    },
+    "root_4_pls__pls__ef4e4c0da8/all_eligible_clones": {
+      "clones": 46,
+      "persistent_clones": [
+        "GFPBC_libB_92196"
+      ],
+      "top5_recall": 1.0,
+      "interpretation": "out-of-horizon transport, not calibrated 6-month forecast"
+    },
+    "root_4_pls__pls__ef4e4c0da8/heldout_clones": {
+      "clones": 10,
+      "persistent_clones": [],
+      "top5_recall": null,
+      "interpretation": "out-of-horizon transport, not calibrated 6-month forecast"
+    }
+  },
+  "all_observed_month6_barcodes": 4,
+  "month6_population_cells": 5932,
+  "observed_month6_barcode_records": [
+    {
+      "clone_id": "GFPBC_libB_20186",
+      "cell_count": 3,
+      "in_primary_eligible_cohort": false
+    },
+    {
+      "clone_id": "GFPBC_libB_77443",
+      "cell_count": 1,
+      "in_primary_eligible_cohort": false
+    },
+    {
+      "clone_id": "GFPBC_libB_79970",
+      "cell_count": 1,
+      "in_primary_eligible_cohort": false
+    },
+    {
+      "clone_id": "GFPBC_libB_92196",
+      "cell_count": 5927,
+      "in_primary_eligible_cohort": true
+    }
+  ]
 }

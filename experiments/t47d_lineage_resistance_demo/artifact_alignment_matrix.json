@@ -1,0 +1,203 @@
+{
+  "artifacts": [
+    {
+      "id": "GSE260703_count_barcodes.csv.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_count_barcodes.csv.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_count_barcodes.csv.gz",
+      "status": "original_public",
+      "size_bytes": 976199,
+      "sha256": "03adcf9bb8e1c553bb1267cf345b6285f106ca138e6d2ab3411be048e25ece26",
+      "checked_at": "2026-11-06T08:38:13.491468+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "GSE260703_count_features.csv.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_count_features.csv.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_count_features.csv.gz",
+      "status": "original_public",
+      "size_bytes": 444200,
+      "sha256": "142b2a6197a6a7208b8280838864c5ff808ce66387774b445ee2860be456c12b",
+      "checked_at": "2026-11-06T08:38:13.497514+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "GSE260703_count_matrix.mtx.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_count_matrix.mtx.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_count_matrix.mtx.gz",
+      "status": "original_public",
+      "size_bytes": 1182743535,
+      "sha256": "284bb1e8ff874775e9336ad2b4569d49eccd2228a4c33615fafcf1d9e077a413",
+      "checked_at": "2026-11-06T08:38:14.406010+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "GSE260703_gfp_barcodes.csv.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_gfp_barcodes.csv.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_gfp_barcodes.csv.gz",
+      "status": "original_public",
+      "size_bytes": 976197,
+      "sha256": "f18a080c3bb452f3371682410cb6f079fc946595b34cfeacc311f4afcbd56f25",
+      "checked_at": "2026-11-06T08:38:14.412437+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "GSE260703_gfp_features.csv.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_gfp_features.csv.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_gfp_features.csv.gz",
+      "status": "original_public",
+      "size_bytes": 435214,
+      "sha256": "1f7443c2979e1a90f362ba71dc86030ce618fe53c61e2adcfa43c8842bb41fb3",
+      "checked_at": "2026-11-06T08:38:14.418654+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "GSE260703_gfp_matrix.mtx.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_gfp_matrix.mtx.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_gfp_matrix.mtx.gz",
+      "status": "original_public",
+      "size_bytes": 330844,
+      "sha256": "1ad4a0019ad0774e042844946d3ffb8269254c69fb26f9c06548923da43d06bb",
+      "checked_at": "2026-11-06T08:38:14.426128+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "GSE260703_family.soft.gz",
+      "path": "data/t47d_lineage/raw/GSE260703_family.soft.gz",
+      "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/soft/GSE260703_family.soft.gz",
+      "status": "original_public",
+      "size_bytes": 3460,
+      "sha256": "27a105e43e14200aedf3aa052e0a860f5a2bfa1963b1ddd0879be36315cd4d31",
+      "checked_at": "2026-11-06T08:38:14.431048+00:00",
+      "state": "present",
+      "provider": "NCBI GEO",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "required_by": [
+        "lineage task preparation"
+      ]
+    },
+    {
+      "id": "hallmark_2025_1_human",
+      "path": "data/t47d_lineage/pathways/h.all.v2025.1.Hs.symbols.gmt",
+      "state": "present",
+      "status": "original_public",
+      "sha256": "f22066af72e215ccb7b89d88e492c07e1eef17534c2ca7b0f9902cfecbbdd8e9",
+      "size_bytes": 48689,
+      "source_url": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2025.1.Hs/h.all.v2025.1.Hs.symbols.gmt",
+      "provider": "MSigDB/Broad",
+      "version": "2025.1.Hs",
+      "scope": "human",
+      "reusable": true,
+      "required_by": [
+        "pathway roots",
+        "pathway candidates",
+        "matched membership controls"
+      ]
+    },
+    {
+      "id": "qc_counts.h5ad",
+      "path": "data/t47d_lineage/prepared/qc_counts.h5ad",
+      "state": "present",
+      "status": "derived",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "size_bytes": 454900546,
+      "sha256": "f9798a559b83649b368365a6e3fbf83e8ddc6c0864d0fcea3030d6d08e060c7a",
+      "build_command": "python scripts/t47d/prepare.py"
+    },
+    {
+      "id": "clone_mean_log_expression.npz",
+      "path": "data/t47d_lineage/prepared/clone_mean_log_expression.npz",
+      "state": "present",
+      "status": "derived",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "size_bytes": 52054437,
+      "sha256": "e1c5358b4c82e12912eecd98791ad41c687b449a79d4934001911f2b32f08f52",
+      "build_command": "python scripts/t47d/prepare.py"
+    },
+    {
+      "id": "clone_pseudobulk_counts.npz",
+      "path": "data/t47d_lineage/prepared/clone_pseudobulk_counts.npz",
+      "state": "present",
+      "status": "derived",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "size_bytes": 22154865,
+      "sha256": "087e3da306956925d51be1ca647ed80d734e8b5ba7f4fde3159c3799fde919a0",
+      "build_command": "python scripts/t47d/prepare.py"
+    },
+    {
+      "id": "clone_expression_rows.csv",
+      "path": "data/t47d_lineage/prepared/clone_expression_rows.csv",
+      "state": "present",
+      "status": "derived",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "size_bytes": 19266,
+      "sha256": "1111bfc5cc6ab0e3b658f8141791e6fb2a1d29bfa1f27944226b4478309eaae9",
+      "build_command": "python scripts/t47d/prepare.py"
+    },
+    {
+      "id": "gene_order.csv",
+      "path": "data/t47d_lineage/prepared/gene_order.csv",
+      "state": "present",
+      "status": "derived",
+      "scope": "T47D GSE260703",
+      "reusable": false,
+      "size_bytes": 1443571,
+      "sha256": "78f70fb5e693583ea1fca05f8260414b729f039b0d27653d8d6a05cdfe69fff7",
+      "build_command": "python scripts/t47d/prepare.py"
+    },
+    {
+      "id": "tracsed_author_code",
+      "path": "/workspace/_external/TraCSED",
+      "state": "present",
+      "status": "original_public",
+      "source_url": "https://github.com/Genentech/TraCSED",
+      "revision": "dc5a750ef6fc6adf50e362ba5c2d38bee6083289",
+      "license": "MIT",
+      "reusable": true,
+      "runtime_ready": false,
+      "integration_gap": "Author R scripts depend on internal gp.sa.core/gstore objects and curated inputs; rebuild from public data, do not substitute a proxy"
+    }
+  ],
+  "missing_required_first_stage": [],
+  "download_again": "python scripts/t47d/acquire.py; verified existing files are retained and altered checksums are rejected"
+}

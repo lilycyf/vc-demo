@@ -1,0 +1,34 @@
+{
+  "no_clone_barcode": {
+    "status": "not_identifiable",
+    "reason": "Clone identity is absent from model features; removing outcome mapping destroys the endpoint, not a valid model ablation"
+  },
+  "baseline_only": {
+    "status": "evaluated",
+    "evidence": "ablation_metrics.json"
+  },
+  "no_temporal_dynamics": {
+    "status": "evaluated",
+    "evidence": "matched_artifact_controls.json pooled_time"
+  },
+  "no_pathway": {
+    "status": "evaluated",
+    "evidence": "ablation_metrics.json"
+  },
+  "shuffled_pathway_membership": {
+    "status": "evaluated",
+    "evidence": "matched_artifact_controls.json; global gene-identity permutation, not pathway renaming"
+  },
+  "matched_capacity_no_artifact": {
+    "status": "evaluated",
+    "evidence": "same PLS components and 50-dimensional projection, train-only genes/scalers"
+  },
+  "no_treatment_interaction": {
+    "status": "not_applicable_to_selected_model",
+    "reason": "Selected PLS has no explicit cross-treatment interaction module; no-treatment-indicator control is separately reported"
+  },
+  "no_dense_parent": {
+    "status": "not_applicable_to_selected_model",
+    "reason": "Selected PLS is not a parent-plus-dense residual model"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "source_commit": "7547097dc297ec84f2a44652b17c2a0e3cc68130",
+  "analysis_script_sha256": "14ae3794ee3c3115b82bf09a442fbdd256a518add89c1c07ca9f18ed725604ec",
+  "protected_search_hashes": {
+    "tree.json": "0dde094b06865f32d16872a8ee8bb7c62d56f56b1609b80845677f3e91f2d40d",
+    "mcts_trace.jsonl": "71fc0b3fb072856c8549b1dc84186c94545db195c2e06862059ea7d3ffe988df",
+    "frozen_selection.json": "24f3e5223a3eed3f18f5e216b18ee4e108b73c8e8e6f7cc1868fd43a8660ceec"
+  },
+  "search_or_selection_changed": false,
+  "controls_not_promoted_by_test": true
+}

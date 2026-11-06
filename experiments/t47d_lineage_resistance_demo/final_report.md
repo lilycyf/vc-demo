@@ -16,7 +16,7 @@ Reward: five-seed mean grouped OOF Spearman; test was opened after frozen select
 - Endpoint non-detection is not proof of extinction. Cohort uses baseline-only eligibility.
 - Validation-based search is subject to selection optimism; test has only ten independent clone groups.
 - Hallmark scoring is mean log expression, not an exact replication of the paper's R workflow.
-- Exact TraCSED, scVI, CellRank, full ablations, and long-term transport remain uncompleted; no proxy is counted as their implementation.
+- At search freeze, paper-reference extensions and follow-up analyses were not complete. The follow-up below records which analyses were subsequently added; no proxy is counted as a paper method.
 - Framework completion and scientific superiority are separate outcomes.
 
 ## Search Tree
@@ -76,3 +76,13 @@ flowchart TD
 - https://github.com/Genentech/TraCSED
 - https://pmc.ncbi.nlm.nih.gov/articles/PMC11723929/
 - https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2025.1.Hs/h.all.v2025.1.Hs.symbols.gmt
+
+## Frozen-Pipeline Follow-Up
+
+![Validation and matched controls](first_stage_summary.png)
+
+No search was resumed and no candidate was promoted using test or Month-6 observations.
+See matched_artifact_controls.json, pseudocount_sensitivity.json, long_term_escape_report.json, combination_suppression.csv, and root_dominance_audit.json.
+Five frozen Ridge/PLS seed refits are deterministic, not independent biological replications.
+A separate exploratory denominator-coupling diagnostic shuffles endpoint fractions while retaining baseline abundance. Relative-selection predictability must not be equated with independent future-fate prediction.
+Eight-ablation applicability is explicitly recorded, including three controls that do not apply to the selected model/task.

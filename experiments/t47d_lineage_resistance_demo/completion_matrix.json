@@ -1,0 +1,21 @@
+{
+  "server_and_github": "completed",
+  "public_data_acquisition": "completed",
+  "qc_and_clone_mapping": "completed",
+  "frozen_grouped_task_contract": "completed",
+  "five_roots": "completed",
+  "twenty_selected_rollouts": "completed",
+  "locked_test_for_frozen_models": "completed",
+  "matched_and_shuffled_pathway_controls": "completed",
+  "eight_ablation_applicability_accounting": "completed_with_inapplicable_items_explicit",
+  "combination_suppression_descriptive": "completed",
+  "month6_transport": "completed_with_no_heldout_positive",
+  "pseudocount_and_denominator_diagnostics": "completed",
+  "root_dominance_audit": "completed",
+  "parent_preserving_upgrade": "implemented_and_smoked_not_formally_evaluated",
+  "node_local_execution_authority_upgrade": "implemented_and_unit_tested_not_retroactively_claimed",
+  "exact_tracsed_reference": "not_completed",
+  "scvi_cellrank_pertpy_hazard_extensions": "not_completed",
+  "original_gene_program_method_replication": "not_completed",
+  "whole_study_complete": false
+}

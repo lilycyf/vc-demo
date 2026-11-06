@@ -1,0 +1,24 @@
+{
+  "root_2_ridge": {
+    "observed_spearman": 0.4894871539912125,
+    "null_mean": -0.04565157314163287,
+    "null_interval95": [
+      -0.36463950259518046,
+      0.28679644048943265
+    ],
+    "null_definition": "shuffle endpoint fractions within treatment, retain baseline denominator and frozen predictions",
+    "status": "post-hoc diagnostic of mathematical coupling, not a confirmatory p-value",
+    "test_rows_with_nondetected_endpoint": 3
+  },
+  "root_4_pls__pls__ef4e4c0da8": {
+    "observed_spearman": 0.33908110121936713,
+    "null_mean": -0.12672444721265388,
+    "null_interval95": [
+      -0.32087461991829136,
+      0.0941370152679029
+    ],
+    "null_definition": "shuffle endpoint fractions within treatment, retain baseline denominator and frozen predictions",
+    "status": "post-hoc diagnostic of mathematical coupling, not a confirmatory p-value",
+    "test_rows_with_nondetected_endpoint": 3
+  }
+}

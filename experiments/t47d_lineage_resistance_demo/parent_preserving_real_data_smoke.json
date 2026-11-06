@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "scientific_result": false,
+  "shape": [
+    2
+  ],
+  "parent_config_preserved": true,
+  "original_labels_unchanged": true,
+  "cpu_serialization_roundtrip": true,
+  "consumed_heldout_test": false,
+  "backpropagated": false
+}

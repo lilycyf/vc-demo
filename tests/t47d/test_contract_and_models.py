@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+import runpy
 from scipy import sparse
 
 from vc_demo.t47d_lineage.data import make_split
 from vc_demo.t47d_lineage.models import Candidate, View
+from vc_demo.t47d_lineage.composition import build_candidate, inherit_mutation
 
 
 def bundle():
@@ -59,3 +61,39 @@ def test_real_temporal_model_forward_backward_fit_predict():
         assert pred.shape == (8,)
         assert np.isfinite(pred).all()
         assert len(candidate.losses) == 2
+
+
+def test_parent_preservation_and_no_label_mutation():
+    data = bundle()
+    original_labels = data["meta"].label.copy()
+    parent = {"model": "ridge", "representation": "pathway", "baseline_only": True, "alpha": 100.}
+    config = inherit_mutation(parent, {"model": "gru", "representation": "expression", "genes": 8, "epochs": 2})
+    assert config["parent_config"] == parent
+    assert config["baseline_only"] is False
+    config["residual_weight"] = 0.
+    fitted = build_candidate(config).fit(data, np.arange(16), seed=3)
+    np.testing.assert_allclose(fitted.predict(data, np.arange(16,24)), fitted.parent.predict(data, np.arange(16,24)))
+    pd.testing.assert_series_equal(original_labels, data["meta"].label)
+
+
+def test_node_local_program_is_the_execution_authority(tmp_path):
+    namespace = runpy.run_path("scripts/t47d/run.py")
+    path = tmp_path / "model.py"
+    path.write_text("class NodeLocal: pass\ndef build_model(config): return NodeLocal()\n")
+    factory = namespace["load_program"](path)
+    assert factory({}).__class__.__name__ == "NodeLocal"
+
+
+def test_cv_calls_selected_node_factory_for_every_fold():
+    namespace = runpy.run_path("scripts/t47d/run.py")
+    data = bundle()
+    data["meta"]["clone_id"] = np.repeat([f"c{i}" for i in range(8)],3)
+    data["splits"] = make_split(data["meta"].clone_id.unique())
+    data["meta"]["split"] = np.where(data["meta"].clone_id.isin(data["splits"]["test_clones"]),"test","development")
+    calls = []
+    def factory(config):
+        calls.append(dict(config))
+        return Candidate(config)
+    result = namespace["cross_validate"](data,{"model":"ridge","representation":"expression","genes":8},build_model=factory)
+    assert len(calls)==15
+    assert result["formal_fold_fits"]==15

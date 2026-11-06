@@ -24,6 +24,9 @@ def main():
     args = parser.parse_args()
     dest = Path(args.output_dir)
     dest.mkdir(parents=True, exist_ok=True)
+    previous = dest / "download_manifest.json"
+    prior = json.loads(previous.read_text()) if previous.exists() else {"artifacts": []}
+    expected = {item["id"]:item["sha256"] for item in prior["artifacts"]}
     manifest = {"accession": "GSE260703", "source": BASE, "artifacts": []}
     for name, folder in FILES.items():
         path = dest / name
@@ -38,6 +41,8 @@ def main():
             subprocess.run(["gzip", "--test", str(partial)], check=True)
             partial.replace(path)
         digest = hashlib.file_digest(path.open("rb"), "sha256").hexdigest()
+        if name in expected and expected[name] != digest:
+            raise ValueError(f"Existing source input checksum changed: {name}. Do not silently renotarize it.")
         item = {
             "id": name, "path": str(path), "source_url": url, "status": "original_public",
             "size_bytes": path.stat().st_size, "sha256": digest,

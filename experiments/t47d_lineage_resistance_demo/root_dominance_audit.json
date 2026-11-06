@@ -1,0 +1,10 @@
+{
+  "root_minus_child_validation": 0.043031233060627394,
+  "sample_size": "46 clones; 36 development and 10 heldout; 138 treatment rows are not independent",
+  "implementation_issue": "First-stage replacement-policy proposals did not inherit a useful parent",
+  "model_space_issue": "Original replacement grammar did not preserve baseline_only; subsequent code adds parent-preserving composition without rewriting old results",
+  "regularization_issue": "Fixed 128-gene and 80-epoch settings are narrower than a flexible small-n search grammar",
+  "coverage": "7 estimator families exercised; scVI/CellRank/TraCSED extensions remain unevaluated",
+  "statistical_caveat": "Repeated CV seeds change partitions; deterministic frozen Ridge/PLS refits give identical predictions and are not five independent replications",
+  "causal_caveat": "No causal resistant-to-sensitive state conversion established by this relative-abundance study"
+}
