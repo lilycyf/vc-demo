@@ -1,0 +1,29 @@
+{
+  "config": {
+    "model": "gated_pathway",
+    "representation": "pathway",
+    "loss": "weighted_bce",
+    "head": "positive_selected",
+    "epochs": 80,
+    "parent_config": {
+      "model": "moe",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80,
+      "parent_config": {
+        "model": "pls",
+        "representation": "pathway",
+        "baseline_only": true,
+        "components": 3
+      },
+      "composition": "parent prediction + .25 train-residual mutation"
+    },
+    "composition": "parent prediction + .25 train-residual mutation"
+  },
+  "parent": "n39_moe_6e215ac5",
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

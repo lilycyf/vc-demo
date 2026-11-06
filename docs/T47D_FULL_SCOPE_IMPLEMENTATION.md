@@ -27,84 +27,88 @@ manifest is not completion.
 
 ### Representations
 
-- [ ] Clone pseudobulk counts, distinct from mean per-cell log expression
-- [ ] Train-fold PCA
-- [ ] Train-fold scVI with frozen out-of-sample encoder
-- [ ] Source-backed Hallmark/ER/E2F/EMT programs
-- [ ] pertpy distribution distances: energy/MMD/Wasserstein
-- [ ] Train-only pseudotime/trajectory representation
+- [x] Clone pseudobulk counts, distinct from mean per-cell log expression
+- [x] Train-fold PCA
+- [x] Train-fold scVI with frozen out-of-sample encoder
+- [x] Source-backed Hallmark/ER/E2F/EMT programs
+- [x] pertpy distribution distances: energy/MMD/Wasserstein
+- [x] Train-only pseudotime/trajectory representation
 
 ### Dynamic Models And Author References
 
-- [ ] Early day-1/4 Elastic Net
-- [ ] GRU trajectory
-- [ ] Temporal Transformer
-- [ ] Actual author TraCSED functions, source-hashed, not a generic replacement
-- [ ] Rebuilt author R PLSR/Slingshot/selection-JSON inputs
-- [ ] CellRank time-directed kernel using real transport couplings
-- [ ] Censoring-aware survival/hazard model, explicitly about persistent sampling
+- [x] Early day-1/4 Elastic Net
+- [x] GRU trajectory
+- [x] Temporal Transformer
+- [x] Actual author TraCSED functions, source-hashed, not a generic replacement
+- [x] Rebuilt author R PLSR/Slingshot/selection-JSON inputs
+- [x] CellRank time-directed kernel using real transport couplings
+- [x] Censoring-aware survival/hazard model, explicitly about persistent sampling
       non-detection rather than proven biological extinction
 
 ### Combination Interactions
 
-- [ ] Additive monotherapy null, with exact response scale declared
-- [ ] Bilinear drug interaction
-- [ ] Parent-preserving gated pathway residual
-- [ ] Cross-treatment attention
-- [ ] Mixture of resistance experts
+- [x] Additive monotherapy null, with exact response scale declared
+- [x] Bilinear drug interaction
+- [x] Parent-preserving gated pathway residual
+- [x] Cross-treatment attention
+- [x] Mixture of resistance experts
 
 ### Prediction Heads And Losses
 
-- [ ] Continuous selection regression
-- [ ] Positive-selection classification
-- [ ] Monotherapy-resistant/combination-sensitive classification
-- [ ] Early-warning ranking
-- [ ] Huber
-- [ ] Weighted BCE
-- [ ] Focal loss
-- [ ] Pairwise ranking loss
-- [ ] Selection plus pathway multitask loss
+- [x] Continuous selection regression
+- [x] Positive-selection classification
+- [x] Monotherapy-resistant/combination-sensitive classification
+- [x] Early-warning ranking
+- [x] Huber
+- [x] Weighted BCE
+- [x] Focal loss
+- [x] Pairwise ranking loss
+- [x] Selection plus pathway multitask loss
 
 ### Formal Execution And Evaluation
 
-- [ ] Five real roots
-- [ ] Full manifest covering all named modules, not only implemented early models
-- [ ] 20-40 selected formal rollouts with module/family coverage
-- [ ] Node-local code is actually called for training, not merely compiled
-- [ ] Parent-preserving composition formally evaluated
-- [ ] Five-seed repeated clone-grouped CV
-- [ ] Leave-one-clone-out
-- [ ] Late-interval holdout
-- [ ] Monotherapies-to-combination extrapolation
-- [ ] Frozen Month-6 transport, with coverage and unavailable metrics explicit
-- [ ] Spearman, MAE, clone-bootstrap 95% CI
-- [ ] AUPRC, AUROC, NDCG, early warning, suppression accuracy, calibration
-- [ ] Exploratory Resistance Attractor Score, never substituted for an observed
+- [x] Five real roots
+- [x] Full manifest covering all named modules, not only implemented early models
+- [x] 20-40 selected formal rollouts with module/family coverage
+- [x] Node-local code is actually called for training, not merely compiled
+- [x] Parent-preserving composition formally evaluated
+- [x] Five-seed repeated clone-grouped CV
+- [x] Leave-one-clone-out
+- [x] Late-interval holdout
+- [x] Monotherapies-to-combination extrapolation
+- [x] Frozen Month-6 transport, with coverage and unavailable metrics explicit
+- [x] Spearman, MAE, clone-bootstrap 95% CI
+- [x] AUPRC, AUROC, NDCG, early warning, suppression accuracy, calibration
+- [x] Exploratory Resistance Attractor Score, never substituted for an observed
       endpoint or optimized on test labels
 
 ### All Eight Ablations
 
-- [ ] No barcode-informed predictive inputs (ground-truth labels and group
+- [x] No barcode-informed predictive inputs (ground-truth labels and group
       integrity necessarily still use the observed clone mapping)
-- [ ] Baseline only
-- [ ] No temporal ordering
-- [ ] No pathway prior
-- [ ] Shuffled biological memberships, not renamed pathway columns
-- [ ] Matched-capacity no-artifact control
-- [ ] No treatment interaction
-- [ ] No dense parent route
+- [x] Baseline only
+- [x] No temporal ordering
+- [x] No pathway prior
+- [x] Shuffled biological memberships, not renamed pathway columns
+- [x] Matched-capacity no-artifact control
+- [x] No treatment interaction
+- [x] No dense parent route
 
 ### Final Deliverables
 
-- [ ] Source/provenance and download/build instructions
-- [ ] QC, clone assignment, sample/replicate confounding audit
-- [ ] Reference-method alignment with every reconstruction difference disclosed
-- [ ] Full search tree, selection/proposal/backprop trace, selected-rollout table
-- [ ] Biological program and combination-suppression interpretation
-- [ ] Generalization/uncertainty/root-dominance attribution
-- [ ] Actual cost/time/GPU/package versions
-- [ ] Whole-study completion matrix; no unexecuted requirement marked complete
+- [x] Source/provenance and download/build instructions
+- [x] QC, clone assignment, sample/replicate confounding audit
+- [x] Reference-method alignment with every reconstruction difference disclosed
+- [x] Full search tree, selection/proposal/backprop trace, selected-rollout table
+- [x] Biological program and combination-suppression interpretation
+- [x] Generalization/uncertainty/root-dominance attribution
+- [x] Actual cost/time/GPU/package versions
+- [x] Whole-study completion matrix; no unexecuted requirement marked complete
 - [ ] Allowed-files-only commit and verified push on the current branch
+
+Execution evidence: `experiments/t47d_lineage_resistance_full_v2/completion_matrix.json` and
+`complete_study_acceptance_audit.json` both passed. Scientific superiority is
+not implied: historical Ridge and snapshot/abundance controls remain stronger.
 
 ## Reference Versus Prediction Tracks
 

@@ -5,6 +5,8 @@ import pytest
 import torch
 from vc_demo.t47d_full.models import FullView,FullCandidate,Network,secondary_labels
 from vc_demo.t47d_full.study import manifest,required_choices
+from vc_demo.t47d_full.evaluation import altered,secondary
+from vc_demo.t47d_full.study import evaluate
 
 
 def synthetic():
@@ -95,3 +97,42 @@ def test_no_dense_gated_branch_is_actually_absent():
     a=net(s,torch.randn(4,158),cross)[0]
     z=net(s,torch.randn(4,158)*1e6,cross)[0]
     torch.testing.assert_close(a,z)
+
+
+def test_no_pathway_control_preserves_independent_representations():
+    c={'model':'early_elastic','representation':'distance','parent_config':{'model':'ridge','representation':'pathway'}}
+    result=altered(c,{'remove_pathway':True,'no_pathway_supervision':True})
+    assert result['representation']=='distance'
+    assert result['parent_config']['representation']=='expression'
+
+
+def test_raw_ratio_metric_inverts_the_registered_pseudocount():
+    meta=synthetic()['meta'].copy()
+    meta['fraction_baseline']=np.repeat([.001,.01,.05,.1],3)
+    gains=np.tile([2.,.5,.1],4)*np.repeat([1.,2.,3.,.4],3)
+    meta['fraction_day26']=meta.fraction_baseline.to_numpy()*gains
+    meta['label']=np.log2((meta.fraction_day26+1e-5)/(meta.fraction_baseline+1e-5))
+    pred=meta.label.to_numpy()
+    result,_=secondary(meta,pred,meta,pred)
+    assert result['raw_ratio_suppression']['mae']<1e-12
+
+
+def test_changed_config_cannot_silently_reuse_formal_folds(tmp_path):
+    import json
+    d=tmp_path/'programs/n';d.mkdir(parents=True)
+    (d/'pipeline.json').write_text(json.dumps({'config':{'a':1}}))
+    (d/'fold_results.json').write_text('[]')
+    with pytest.raises(ValueError,match='another config'):
+        evaluate(tmp_path,{'id':'n','config':{'a':2}},None)
+
+
+def test_early_warning_preserves_baseline_only_parents():
+    from vc_demo.t47d_full.evaluation import restricted_horizon
+    c={'model':'early_elastic','representation':'pathway','parent_config':{
+        'model':'frequency','representation':'pathway','baseline_only':True}}
+    for day in (0,1,4):
+        limited=restricted_horizon(c,day)
+        assert limited['parent_config']['baseline_only'] is True
+        assert limited['input_cutoff_day']==day
+        assert limited['parent_config']['input_cutoff_day']==day
+        assert 'baseline_only' not in limited

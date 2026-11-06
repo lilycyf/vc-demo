@@ -1,0 +1,32 @@
+{
+  "base_commit": "7586e97081361c37717e0fb2f47d4ff2c8e44baf",
+  "recorded_utc": "2026-11-06T10:31:04.476842+00:00",
+  "selected_rollout_budget": 40,
+  "cv_seeds": [
+    3,
+    7,
+    11,
+    17,
+    23
+  ],
+  "cv_folds_per_seed": 3,
+  "reward": "mean seed-level clone OOF Spearman",
+  "proposal_pool": 4,
+  "global_queue_capacity": 48,
+  "parent_selection": "UCT",
+  "exploration": 1.4142135623730951,
+  "max_parent_depth": 1,
+  "max_proposals_per_parent": 20,
+  "no_improvement_stop": "disabled until complete predeclared module coverage; formal budget 40",
+  "data_contract_sha256": "4bfda2548e919e1da6294aed357bdff899c703ec824c1f31eb730bbbc967fc8a",
+  "split_sha256": "092e91e86ec6e38e1ad26355196228d986640efccd5a7421643783f26c397bf8",
+  "test_exposure": "Prior pilot exposed the same test clones and Month6 observations; no new-blind claim",
+  "implementation_repairs": "API/dependency corrections and mathematically equivalent reference-statistic caching are retained in logs; no test-driven architecture changes",
+  "node_entrypoint": "node-local build_model(config), used for all 15 fold fits",
+  "authorized_initial_limits": {
+    "hours": 24,
+    "usd": 20,
+    "no_automatic_extension": true
+  },
+  "gpu": "NVIDIA GeForce RTX 3090, 595.91.07"
+}

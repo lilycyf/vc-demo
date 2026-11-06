@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "checks": {
+    "five_roots_forty_children": true,
+    "all_675_primary_fits_and_unique_seed_folds": true,
+    "exactly_once_trained_only_backprop": true,
+    "regeneration_after_every_nonfinal_rollout": true,
+    "primary_clone_disjoint": true,
+    "original_task_hash_unchanged": true,
+    "original_split_hash_unchanged": true,
+    "loco_exactly_46_unique_clones_each": true,
+    "all_29_author_trajectories_16_fits_each": true,
+    "all_464_reference_fits_with_four_variants": true,
+    "eight_ablations_120_formal_fits": true,
+    "no_pathway_control_preserves_unrelated_modules": true,
+    "all_twenty_denominator_diagnostics": true,
+    "all_three_early_warning_cutoffs": true,
+    "early_warning_keeps_frozen_parent_input_policy": true,
+    "no_unidentified_escape_recall_claim": true,
+    "guardrails": true,
+    "whole_original_completion_matrix": true,
+    "strong_historical_reference_retained": true
+  },
+  "scientific_objectives": {
+    "child_beats_current_five_roots": true,
+    "child_beats_historical_strong_root": false,
+    "child_beats_early_abundance_only": false,
+    "child_beats_day4_snapshot": false,
+    "combined_suppression_observed_descriptively": true,
+    "long_term_unseen_clone_forecast_identifiable": false
+  },
+  "interpretation": "Completed implementation is not equivalent to achieving every scientific hypothesis. No test-driven reselection.",
+  "logging_caveat": {
+    "explicit_rollout_completed_events": 37,
+    "trained_child_backprop_events": 40,
+    "regeneration_verified_from_actual_next_proposal_events": 39,
+    "note": "Three interruption-resumed rollouts lacked the redundant completion event; actual train/backprop and subsequent regeneration are present. Historical trace is not fabricated or rewritten."
+  },
+  "formal_counts": {
+    "primary": 675,
+    "ablations": 120,
+    "loco": 92,
+    "author_reference": 464,
+    "endpoint_permutation": 300,
+    "additional_snapshot_and_abundance": 30
+  }
+}

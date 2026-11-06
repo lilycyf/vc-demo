@@ -21,7 +21,7 @@ from scipy.stats import spearmanr
 
 from vc_demo.harness.mcts import backpropagate,select_parent
 from vc_demo.t47d_lineage.data import dump,load_bundle,CV_SEEDS
-from vc_demo.t47d_full.models import ComposedCandidate
+from vc_demo.t47d_full.models import ComposedCandidate,effective_objective
 
 RUN=Path('experiments/t47d_lineage_resistance_full_v2')
 PREPARED=Path('data/t47d_lineage/prepared')
@@ -78,6 +78,7 @@ def roots():
 def materialize(run,node):
     dest=run/'programs'/node['id'];dest.mkdir(parents=True,exist_ok=True)
     dump(dest/'pipeline.json',{'config':node['config'],'parent':node.get('parent'),'fallback':False,'proxy':False,
+        'effective_training_objective':effective_objective(node['config']),
         'backend':'full_t47d_native_or_author_tf','train_contract':'5 seeds x 3 clone folds; labels confined to training clones'})
     path=dest/'model.py'
     if not path.exists():
@@ -90,6 +91,10 @@ def materialize(run,node):
 
 
 def evaluate(run,node,b,only_splits=None):
+    prior=run/'programs'/node['id']/'pipeline.json'
+    progress=run/'programs'/node['id']/'fold_results.json'
+    if progress.exists() and prior.exists() and json.loads(prior.read_text())['config']!=node['config']:
+        raise ValueError('Cached formal folds belong to another config; use a new explicitly registered control/node ID')
     build=materialize(run,node)
     dest=run/'programs'/node['id'];progress=dest/'fold_results.json'
     folds=json.loads(progress.read_text()) if progress.exists() else []
@@ -155,6 +160,7 @@ def checkpoint(run,tree):
 
 def run_search(run=RUN,budget=40):
     b=bundle(run);space=manifest();dump(run/'search_space.json',{'candidates':space,'count':len(space),'all_implemented':True,
+        'effective_objectives':[{'config':c,'objective':effective_objective(c)} for c in space],
         'task_specific_claim':'public-data functional reconstruction; no private orchestrator equivalence claim'})
     if not (run/'run_manifest.json').exists():
         dump(run/'run_manifest.json',{'base_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
@@ -185,6 +191,8 @@ def run_search(run=RUN,budget=40):
         for node in interrupted:
             node.update(evaluate(run,node,b));backpropagate(tree,node['id'],node['validation_reward'])
             event(run,'backpropagation',node=node['id'],status='trained',reward=node['validation_reward'],resumed_selected=True)
+            event(run,'rollout_completed_regenerate_next',node=node['id'],resumed_selected=True,
+                  trained_rollout_count=sum(n['status']=='trained' and n.get('parent') is not None for n in tree['nodes'].values()))
             checkpoint(run,tree)
         if sum(n['status']=='trained' and n.get('parent') is not None for n in tree['nodes'].values())>=budget:break
         trained=[n for n in tree['nodes'].values() if n['status']=='trained']

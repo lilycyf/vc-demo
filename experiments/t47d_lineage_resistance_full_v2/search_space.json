@@ -1,0 +1,756 @@
+{
+  "candidates": [
+    {
+      "model": "early_elastic",
+      "representation": "pseudobulk",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudobulk",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudobulk",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudobulk",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudobulk",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudobulk",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudobulk",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudobulk",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudobulk",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudobulk",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudobulk",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "early_elastic",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pca",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pca",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pca",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pca",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "early_elastic",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "scvi",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "scvi",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "scvi",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "scvi",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "scvi",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "scvi",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "scvi",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "scvi",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "early_elastic",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pathway",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pathway",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pathway",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pathway",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "early_elastic",
+      "representation": "distance",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "distance",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "distance",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "distance",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "distance",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "distance",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "distance",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "distance",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "distance",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "distance",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "distance",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "early_elastic",
+      "representation": "pseudotime",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudotime",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudotime",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudotime",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudotime",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pseudotime",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudotime",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudotime",
+      "loss": "weighted_bce",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudotime",
+      "loss": "focal",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudotime",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80
+    },
+    {
+      "model": "temporal_transformer",
+      "representation": "pseudotime",
+      "loss": "multitask",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "additive_null",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "additive_null",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "additive_null",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "bilinear",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "bilinear",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "bilinear",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "cross_attention",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "cross_attention",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "cross_attention",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "hazard",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "hazard",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "hazard",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "tracsed",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "tracsed",
+      "representation": "scvi",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "tracsed",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "cellrank",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "cellrank",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "early_elastic",
+      "representation": "cellrank",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "pathway",
+      "loss": "weighted_bce",
+      "head": "positive_selected",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "pathway",
+      "loss": "focal",
+      "head": "positive_selected",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "pathway",
+      "loss": "weighted_bce",
+      "head": "positive_selected",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "pathway",
+      "loss": "focal",
+      "head": "positive_selected",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "pathway",
+      "loss": "weighted_bce",
+      "head": "mono_resistant_combo_sensitive",
+      "epochs": 80
+    },
+    {
+      "model": "gated_pathway",
+      "representation": "pathway",
+      "loss": "focal",
+      "head": "mono_resistant_combo_sensitive",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "pathway",
+      "loss": "weighted_bce",
+      "head": "mono_resistant_combo_sensitive",
+      "epochs": 80
+    },
+    {
+      "model": "moe",
+      "representation": "pathway",
+      "loss": "focal",
+      "head": "mono_resistant_combo_sensitive",
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pseudobulk",
+      "alpha": 1,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pathway",
+      "alpha": 1,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pca",
+      "alpha": 1,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pseudobulk",
+      "alpha": 10,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pathway",
+      "alpha": 10,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pca",
+      "alpha": 10,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pseudobulk",
+      "alpha": 100,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pathway",
+      "alpha": 100,
+      "head": "regression",
+      "loss": "huber"
+    },
+    {
+      "model": "ridge",
+      "representation": "pca",
+      "alpha": 100,
+      "head": "regression",
+      "loss": "huber"
+    }
+  ],
+  "count": 107,
+  "all_implemented": true,
+  "task_specific_claim": "public-data functional reconstruction; no private orchestrator equivalence claim"
+}

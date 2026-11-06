@@ -1,0 +1,32 @@
+{
+  "config": {
+    "model": "early_elastic",
+    "representation": "distance",
+    "loss": "huber",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "temporal_transformer",
+      "representation": "pathway",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80,
+      "parent_config": {
+        "model": "frequency",
+        "representation": "pathway",
+        "baseline_only": true,
+        "no_treatment_interaction": true
+      },
+      "composition": "parent prediction + .25 train-residual mutation",
+      "no_treatment_interaction": true
+    },
+    "composition": "parent prediction + .25 train-residual mutation",
+    "no_treatment_interaction": true
+  },
+  "parent": null,
+  "fallback": false,
+  "proxy": false,
+  "effective_training_objective": "squared error + ElasticNet penalty",
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

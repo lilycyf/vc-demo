@@ -1,0 +1,367 @@
+{
+  "validation_delta": 0.07196605177664073,
+  "paired_seed_deltas": [
+    0.1504006949616164,
+    0.0513633643368791,
+    -0.005097398260955843,
+    0.08016559936115508,
+    0.0829979984845085
+  ],
+  "test_not_used_to_reselect": true,
+  "context": "Repeated OOF winner is selection-optimistic; prior pilot test exposure prohibits a new-blind confirmation claim",
+  "controls": {
+    "no_barcode_informed_inputs": 0.36492870212612,
+    "baseline_only": 0.5803675940627555,
+    "no_temporal_order": 0.5746793877573296,
+    "no_pathway": 0.47682413613485986,
+    "shuffled_gene_memberships": 0.459965321667824,
+    "matched_capacity_no_artifact": 0.4898345979607542,
+    "no_treatment_interaction": 0.3868008871640819,
+    "no_dense_parent_branch": 0.5562732287274779
+  },
+  "denominator_null_diagnostic": {
+    "draws": [
+      {
+        "draw": 0,
+        "reward": 0.4092234014356887,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 1,
+        "reward": 0.36865798938846506,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 2,
+        "reward": 0.37136741689157693,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 3,
+        "reward": 0.521910738910558,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 4,
+        "reward": 0.5418412592147404,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 5,
+        "reward": 0.376856169277538,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 6,
+        "reward": 0.38978334151539423,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 7,
+        "reward": 0.41484408162966135,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 8,
+        "reward": 0.34009868702346446,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 9,
+        "reward": 0.4475591013366409,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 10,
+        "reward": 0.34721999173319473,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 11,
+        "reward": 0.4938064536560656,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 12,
+        "reward": 0.5197638338408981,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 13,
+        "reward": 0.5506841868476435,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 14,
+        "reward": 0.46742037823542004,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 15,
+        "reward": 0.49389659809786746,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 16,
+        "reward": 0.46059657191013975,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 17,
+        "reward": 0.3178156787417947,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 18,
+        "reward": 0.3703876453500905,
+        "formal_fold_fits": 15
+      },
+      {
+        "draw": 19,
+        "reward": 0.4966847390026879,
+        "formal_fold_fits": 15
+      }
+    ],
+    "observed_root_reward": 0.47649041907316325,
+    "null_mean": 0.43502091320197656,
+    "null_quantiles": [
+      0.32840010767558786,
+      0.4312015914831511,
+      0.5464837962220145
+    ],
+    "mechanism": "Permute day26 fractions within treatment among development clones, retain each clone baseline fraction, then recompute log-ratio target; refit fixed root on grouped CV",
+    "purpose": "Diagnose denominator coupling/regression-to-the-mean. Not a new search or confirmatory permutation p value; root was already selected.",
+    "test_labels_used": false
+  },
+  "early_abundance_only_control": {
+    "validation_reward": 0.5609152624159257,
+    "validation_std": 0.039156255870806886,
+    "validation_mae": 2.2801995438701725,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.49520742800368484,
+        "mae": 2.35618531987448
+      },
+      {
+        "seed": 7,
+        "spearman": 0.5622225017879598,
+        "mae": 2.300650146806683
+      },
+      {
+        "seed": 11,
+        "spearman": 0.5874240188362869,
+        "mae": 2.2256564881006375
+      },
+      {
+        "seed": 17,
+        "spearman": 0.5938792278344879,
+        "mae": 2.259521668251449
+      },
+      {
+        "seed": 23,
+        "spearman": 0.5658431356172092,
+        "mae": 2.2589840963176133
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 0.5918305739760399,
+    "predictive_inputs": "Only day0/1/4 abundance, observation flags and chemical indicators; pathway columns are not passed to the estimator"
+  },
+  "last_snapshot_control": {
+    "validation_reward": 0.5980963134471872,
+    "validation_std": 0.022512028114382934,
+    "validation_mae": 2.2241232897062995,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.5691255260229365,
+        "mae": 2.236366325974396
+      },
+      {
+        "seed": 7,
+        "spearman": 0.6130924070889119,
+        "mae": 2.2217819426862975
+      },
+      {
+        "seed": 11,
+        "spearman": 0.6028927004725664,
+        "mae": 2.1907505668037146
+      },
+      {
+        "seed": 17,
+        "spearman": 0.6238733207146896,
+        "mae": 2.2007099515111608
+      },
+      {
+        "seed": 23,
+        "spearman": 0.5814976129368317,
+        "mae": 2.271007661555927
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 11.39075210574083,
+    "interpretation": "Additional endpoint-snapshot control: day4 state and abundance only, no explicit temporal order; CellRank uses a stationary graph. Day26 inputs remain forbidden."
+  },
+  "stronger_historical_reference": {
+    "purpose": "Replay stronger previously frozen reference; never eligible for post-test reselection of formal winner",
+    "config": {
+      "model": "ridge",
+      "representation": "pathway",
+      "baseline_only": true,
+      "alpha": 100.0
+    },
+    "validation": {
+      "validation_reward": 0.5714798908103247,
+      "reward_metric": "validation_spearman",
+      "validation_std": 0.029345384773695297,
+      "validation_mae": 2.362093532763012,
+      "seed_metrics": [
+        {
+          "seed": 3,
+          "spearman": 0.6064418744236066,
+          "mae": 2.23668707501815
+        },
+        {
+          "seed": 7,
+          "spearman": 0.5601311093523805,
+          "mae": 2.3811273232878825
+        },
+        {
+          "seed": 11,
+          "spearman": 0.5320330852406542,
+          "mae": 2.5443166959310153
+        },
+        {
+          "seed": 17,
+          "spearman": 0.593750600053712,
+          "mae": 2.3670870459410955
+        },
+        {
+          "seed": 23,
+          "spearman": 0.5650427849812699,
+          "mae": 2.2812495236369186
+        }
+      ],
+      "fold_metrics": [
+        {
+          "seed": 3,
+          "fold": 0,
+          "spearman": 0.6682120753646678,
+          "mae": 2.2764462771879717,
+          "warnings": []
+        },
+        {
+          "seed": 3,
+          "fold": 1,
+          "spearman": 0.6569681704936849,
+          "mae": 2.3302432062889618,
+          "warnings": []
+        },
+        {
+          "seed": 3,
+          "fold": 2,
+          "spearman": 0.5111669014642393,
+          "mae": 2.1033717415775164,
+          "warnings": []
+        },
+        {
+          "seed": 7,
+          "fold": 0,
+          "spearman": 0.5708216054624343,
+          "mae": 2.803373802597209,
+          "warnings": []
+        },
+        {
+          "seed": 7,
+          "fold": 1,
+          "spearman": 0.6591992251735661,
+          "mae": 2.093558021535434,
+          "warnings": []
+        },
+        {
+          "seed": 7,
+          "fold": 2,
+          "spearman": 0.48502813379091453,
+          "mae": 2.2464501457310053,
+          "warnings": []
+        },
+        {
+          "seed": 11,
+          "fold": 0,
+          "spearman": 0.7790151674813419,
+          "mae": 1.8101803709305955,
+          "warnings": []
+        },
+        {
+          "seed": 11,
+          "fold": 1,
+          "spearman": 0.34234584760478765,
+          "mae": 2.632533189843233,
+          "warnings": []
+        },
+        {
+          "seed": 11,
+          "fold": 2,
+          "spearman": 0.4922721717259559,
+          "mae": 3.1902365270192137,
+          "warnings": []
+        },
+        {
+          "seed": 17,
+          "fold": 0,
+          "spearman": 0.6043548687894277,
+          "mae": 2.310903124798001,
+          "warnings": []
+        },
+        {
+          "seed": 17,
+          "fold": 1,
+          "spearman": 0.6033339882052101,
+          "mae": 2.347678896892374,
+          "warnings": []
+        },
+        {
+          "seed": 17,
+          "fold": 2,
+          "spearman": 0.6412568452972982,
+          "mae": 2.4426791161329127,
+          "warnings": []
+        },
+        {
+          "seed": 23,
+          "fold": 0,
+          "spearman": 0.6036060491535838,
+          "mae": 2.435480209430315,
+          "warnings": []
+        },
+        {
+          "seed": 23,
+          "fold": 1,
+          "spearman": 0.6495880750833148,
+          "mae": 2.278379980221663,
+          "warnings": []
+        },
+        {
+          "seed": 23,
+          "fold": 2,
+          "spearman": 0.4830920129254478,
+          "mae": 2.1298883812587786,
+          "warnings": []
+        }
+      ],
+      "formal_fold_fits": 15
+    },
+    "heldout": {
+      "spearman": 0.4894871539912125,
+      "mae": 2.200447772394724
+    },
+    "previously_exposed_test": true,
+    "preprocessing_difference": "Pilot baseline uses standardized 3-category treatment covariates; new full-study plugin uses 2 chemical-presence indicators. Regularized baselines are not preprocessing-equivalent.",
+    "interpretation": "Beating only the current 5 roots does not establish improvement over the previously validated stronger root. Preserve this comparison rather than tune the test.",
+    "recommendation": "Future framework revisions must freeze baseline input encoding/scaling as well as split/labels; retain strong historical roots as fixed benchmarks."
+  },
+  "assessment": "Scientific superiority is assessed independently from framework completion; neither smoke nor mandatory family coverage proves superiority"
+}

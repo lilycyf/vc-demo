@@ -59,11 +59,13 @@ def secondary(meta,p,train_meta,train_oof):
         result['mono_positive_combo_negative_accuracy']=float((((pmono>0)&(pcombo<0))==y).mean())
         result['suppression_sign_accuracy']=float(((pp>0)==((mono-combo)>0)).mean())
         result['log2_suppression']=score(mono-combo,pp)
-        raw=np.power(2,truth)
-        rawp=np.power(2,predicted.clip(-20,20))
+        raw=meta.assign(raw_ratio=meta.fraction_day26/meta.fraction_baseline).pivot(index='clone_id',columns='treatment',values='raw_ratio')
+        f0=meta.fraction_baseline.to_numpy()
+        inverted=(np.exp2(np.clip(p,-20,20))*(f0+1e-5)-1e-5).clip(0,1)/f0
+        rawp=meta.assign(raw_ratio=inverted).pivot(index='clone_id',columns='treatment',values='raw_ratio')
         result['raw_ratio_suppression']=score(raw[list(TREATMENTS[:2])].max(axis=1)-raw.combination,
                                              rawp[list(TREATMENTS[:2])].max(axis=1)-rawp.combination)
-        result['suppression_scale_note']='Both original raw-ratio difference and transformed log2 difference reported separately; not interchangeable'
+        result['suppression_scale_note']='Observed raw ratio is f26/f0, NOT exp2(smoothed log label). Predictions invert the registered eps transform and clip predicted fractions to [0,1]. Raw and log2 differences are separate.'
         clone_y=truth.max(axis=1).to_numpy();clone_p=predicted.max(axis=1).to_numpy()
         result['clonewise_ndcg_at5']=float(ndcg_score([clone_y-clone_y.min()],[clone_p],k=min(5,len(clone_y))))
         result['clonewise_ndcg_at10']=float(ndcg_score([clone_y-clone_y.min()],[clone_p],k=min(10,len(clone_y))))
@@ -72,11 +74,18 @@ def secondary(meta,p,train_meta,train_oof):
 
 def altered(config,changes):
     c=copy.deepcopy(config);c.update(changes)
+    if changes.get('remove_pathway') and config.get('representation') in {'pathway','both'}:
+        c['representation']='expression'
     if changes.get('representation')=='matched_no_artifact':
         c['matched_width']={'pathway':50,'scvi':16,'pca':16,'distance':4,'pseudotime':2,'cellrank':4,
             'expression':config.get('genes',128),'pseudobulk':config.get('genes',128),'both':config.get('genes',128)+50}[config.get('representation','pathway')]
     if c.get('parent_config'):c['parent_config']=altered(c['parent_config'],changes)
     return c
+
+
+def restricted_horizon(config,day):
+    # Restrict the observation window without expanding baseline-only parents.
+    return altered(config,{'input_cutoff_day':day})
 
 
 def ablate(run,b,chosen):
@@ -85,13 +94,16 @@ def ablate(run,b,chosen):
         'no_barcode_informed_inputs':{'no_barcode_inputs':True,'no_clone_abundance':True},
         'baseline_only':{'baseline_only':True},
         'no_temporal_order':{'no_temporal_order':True},
-        'no_pathway':{'representation':'expression','no_pathway_supervision':True},
+        'no_pathway':{'remove_pathway':True,'no_pathway_supervision':True},
         'shuffled_gene_memberships':{},
-        'matched_capacity_no_artifact':{'representation':'matched_no_artifact','no_pathway_supervision':True},
+        'matched_capacity_no_artifact':{'representation':'matched_no_artifact','auxiliary_no_artifact':True},
         'no_treatment_interaction':{'no_treatment_interaction':True},
         'no_dense_parent_branch':{'no_dense_parent':True}}
     for name,changes in controls.items():
-        if name in results:continue
+        if name in results:
+            if name!='no_pathway' or results[name].get('ablation_contract_version')==2:continue
+            archive=run/'ablation_protocol_diagnostics';archive.mkdir(exist_ok=True)
+            dump(archive/'no_pathway_legacy.json',results[name])
         modified=b
         if name=='shuffled_gene_memberships':
             modified=dict(b)
@@ -103,16 +115,29 @@ def ablate(run,b,chosen):
                 if len(ids)>=5:membership.append(perm[ids])
             modified['ablation_pathway']=np.stack([b['expression'][:,:,ids].mean(2) for ids in membership],axis=-1)
         config=altered(chosen,changes)
-        n={'id':'ablation_'+name,'config':config,'parent':None}
+        n={'id':'ablation_'+name+('_v2' if name=='no_pathway' else ''),'config':config,'parent':None}
         results[name]=evaluate(run,n,modified)
+        if name=='no_pathway':results[name]['ablation_contract_version']=2
         results[name]['interpretation']={
             'no_barcode_informed_inputs':'True barcode kept for endpoint labels/group splitting only; predictive state pooled across TRAIN clones per condition; abundance removed',
-            'no_pathway':'All pipeline levels use expression instead of curated pathway representation',
+            'no_pathway':'Only pathway/both views and curated pathway supervision removed; independent scVI/CellRank/PCA components preserved',
             'shuffled_gene_memberships':'One fixed global gene permutation preserves all pathway sizes and overlaps; NOT pathway-column permutation',
             'matched_capacity_no_artifact':'Each pipeline level retains original representation width using fixed random gene projection; gene selection/scalers training-only',
             'no_dense_parent_branch':'Removes inherited prediction branch AND neural internal dense branch; readout itself remains necessary',
             'no_treatment_interaction':'Removes drug covariates at every inherited level; cross-attention/bilinear condition interaction disabled'}.get(name,name)
         dump(path,results)
+    snapshot=run/'temporal_snapshot_control.json'
+    if not snapshot.exists():
+        config=altered(chosen,{'last_snapshot_only':True,'baseline_only':False})
+        result=evaluate(run,{'id':'ablation_last_day4_snapshot','config':config,'parent':None},b)
+        result['interpretation']='Additional endpoint-snapshot control: day4 state and abundance only, no explicit temporal order; CellRank uses a stationary graph. Day26 inputs remain forbidden.'
+        dump(snapshot,result)
+    abundance=run/'early_abundance_baseline.json'
+    if not abundance.exists():
+        config={'model':'frequency','representation':'pathway','baseline_only':False,'alpha':10}
+        result=evaluate(run,{'id':'diagnostic_early_abundance_only','config':config,'parent':None},b)
+        result['predictive_inputs']='Only day0/1/4 abundance, observation flags and chemical indicators; pathway columns are not passed to the estimator'
+        dump(abundance,result)
     return results
 
 
@@ -121,7 +146,12 @@ def frozen_test(run,b,selection):
     dev=np.flatnonzero(b['meta'].split.eq('development'));test=np.flatnonzero(b['meta'].split.eq('test'))
     for kind in ('root','child'):
         name=selection[kind]
-        if name in results:continue
+        if name in results:
+            saved=pd.read_csv(run/(name+'_heldout_predictions.csv'))
+            oof=pd.read_csv(run/'programs'/name/'oof_predictions.csv').groupby('row').prediction.mean().reindex(dev).to_numpy()
+            results[name]['secondary_metrics']=secondary(b['meta'].iloc[test],saved.prediction.to_numpy(),b['meta'].iloc[dev],oof)[0]
+            dump(path,results)
+            continue
         config=selection['configurations'][name];build=materialize(run,{'id':name,'config':config})
         predictions=[];byseed=[]
         for seed in CV_SEEDS:
@@ -189,16 +219,20 @@ def challenges(run,b,selection):
             'training_day26_labels':0,'hazard_event_censoring_cutoff':8,
             'interpretation':'Direct day8-to-day26 response transport; not calibrated horizon-conditioned survival extrapolation',**score(b['meta'].iloc[test].label,p)}
         dump(path,out)
-    if 'early_warning' not in out:
+    if 'early_warning' not in out or out['early_warning'].get('horizon_contract_version')!=2:
+        if 'early_warning' in out:
+            archive=run/'evaluation_protocol_diagnostics';archive.mkdir(exist_ok=True)
+            dump(archive/'early_warning_expanded_parent_legacy.json',out['early_warning'])
         byday={}
         for day in (0,1,4):
-            cfg=altered(config,{'input_cutoff_day':day,'baseline_only':day==0})
+            cfg=restricted_horizon(config,day)
             build=materialize(run,{'id':'early_warning_day'+str(day),'config':cfg});pred=[]
             for seed in CV_SEEDS:
                 model=build(cfg).fit(b,dev,seed);pred.append(model.predict(b,test));model.close()
             p=np.mean(pred,0);byday[str(day)]={'lead_days':26-day,**score(b['meta'].iloc[test].label,p),
                 'classification':classification_metrics(b['meta'].iloc[test].label.to_numpy()>0,p)}
-        out['early_warning']={'frozen_architecture_refit_per_horizon':True,'results':byday,
+        out['early_warning']={'frozen_architecture_refit_per_horizon':True,'horizon_contract_version':2,
+            'parent_policy':'Preserve every original baseline_only flag; restrict cutoff only. No expanded-parent feature access.', 'results':byday,
             'criterion':'Descriptive earliest observed cutoff with positive heldout Spearman; not clinical decision threshold'}
         dump(path,out)
     return out

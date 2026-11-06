@@ -1,0 +1,28 @@
+{
+  "config": {
+    "model": "early_elastic",
+    "representation": "pseudotime",
+    "loss": "huber",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "early_elastic",
+      "representation": "distance",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80,
+      "parent_config": {
+        "model": "early_elastic",
+        "representation": "pseudobulk",
+        "baseline_only": true
+      },
+      "composition": "parent prediction + .25 train-residual mutation"
+    },
+    "composition": "parent prediction + .25 train-residual mutation"
+  },
+  "parent": "n13_early_elastic_ab46c494",
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

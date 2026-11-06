@@ -1,0 +1,6 @@
+{
+  "archived_utc": "2026-11-06T11:32:14.656813+00:00",
+  "completed_diagnostic_fits": 29,
+  "reason": "Modern Keras auto-XLA differed from original pre-Keras3 compile default; preserve diagnostic trials, rerun all formal retrospective models with explicit jit_compile=False. Architecture, Adam, MSE, epochs20, batch32 unchanged.",
+  "not_used_for_harness_rewards": true
+}

@@ -1,0 +1,20 @@
+{
+  "config": {
+    "model": "temporal_transformer",
+    "representation": "pathway",
+    "loss": "huber",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "frequency",
+      "representation": "pathway",
+      "baseline_only": true
+    },
+    "composition": "parent prediction + .25 train-residual mutation"
+  },
+  "parent": "root_0_frequency",
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

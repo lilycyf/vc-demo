@@ -1,0 +1,48 @@
+{
+  "frozen_architecture_refit_per_horizon": true,
+  "results": {
+    "0": {
+      "lead_days": 26,
+      "spearman": 0.17977528201131804,
+      "mae": 2.4082922470733346,
+      "classification": {
+        "positive_count": 7,
+        "n": 30,
+        "auroc": 0.47826086956521735,
+        "auprc": 0.25201229986944274,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "undefined_reason": null
+      }
+    },
+    "1": {
+      "lead_days": 25,
+      "spearman": 0.4983869204274163,
+      "mae": 2.2706267580955233,
+      "classification": {
+        "positive_count": 7,
+        "n": 30,
+        "auroc": 0.6645962732919255,
+        "auprc": 0.33723989595838333,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "undefined_reason": null
+      }
+    },
+    "4": {
+      "lead_days": 22,
+      "spearman": 0.36177550563168703,
+      "mae": 2.32480380143414,
+      "classification": {
+        "positive_count": 7,
+        "n": 30,
+        "auroc": 0.5652173913043478,
+        "auprc": 0.2928767660910518,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "undefined_reason": null
+      }
+    }
+  },
+  "criterion": "Descriptive earliest observed cutoff with positive heldout Spearman; not clinical decision threshold"
+}

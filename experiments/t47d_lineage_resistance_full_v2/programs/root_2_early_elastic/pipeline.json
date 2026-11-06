@@ -1,0 +1,12 @@
+{
+  "config": {
+    "model": "early_elastic",
+    "representation": "pseudobulk",
+    "baseline_only": true
+  },
+  "parent": null,
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

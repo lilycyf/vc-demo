@@ -1,0 +1,36 @@
+{
+  "validation_reward": 0.5980963134471872,
+  "validation_std": 0.022512028114382934,
+  "validation_mae": 2.2241232897062995,
+  "seed_metrics": [
+    {
+      "seed": 3,
+      "spearman": 0.5691255260229365,
+      "mae": 2.236366325974396
+    },
+    {
+      "seed": 7,
+      "spearman": 0.6130924070889119,
+      "mae": 2.2217819426862975
+    },
+    {
+      "seed": 11,
+      "spearman": 0.6028927004725664,
+      "mae": 2.1907505668037146
+    },
+    {
+      "seed": 17,
+      "spearman": 0.6238733207146896,
+      "mae": 2.2007099515111608
+    },
+    {
+      "seed": 23,
+      "spearman": 0.5814976129368317,
+      "mae": 2.271007661555927
+    }
+  ],
+  "formal_fold_fits": 15,
+  "status": "trained",
+  "duration_seconds": 11.39075210574083,
+  "interpretation": "Additional endpoint-snapshot control: day4 state and abundance only, no explicit temporal order; CellRank uses a stationary graph. Day26 inputs remain forbidden."
+}

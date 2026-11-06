@@ -1,0 +1,13 @@
+{
+  "gpu": "RTX 3090 24GB",
+  "allocation_start_utc": "2026-11-06T07:53:00+00:00",
+  "report_time_utc": "2026-11-06T12:57:14.417100+00:00",
+  "gpu_and_container_rate_usd_per_hour": 0.507,
+  "network_volume_monthly_usd": 7,
+  "initial_authorization_usd": 20,
+  "compute_hours_to_report": 5.070671422499999,
+  "server_still_running_per_user_request": true,
+  "automatic_stop_deadline_utc": "2026-11-07T07:30:00+00:00",
+  "billing_note": "Allocation-time estimate, not an invoice or sum of CUDA kernel times",
+  "estimated_initial_allocation_cost_including_full_volume_month_usd": 9.570830411207499
+}

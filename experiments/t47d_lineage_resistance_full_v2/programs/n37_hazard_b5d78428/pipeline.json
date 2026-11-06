@@ -1,0 +1,21 @@
+{
+  "config": {
+    "model": "hazard",
+    "representation": "pca",
+    "loss": "huber",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "pls",
+      "representation": "pathway",
+      "baseline_only": true,
+      "components": 3
+    },
+    "composition": "parent prediction + .25 train-residual mutation"
+  },
+  "parent": "root_3_pls",
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

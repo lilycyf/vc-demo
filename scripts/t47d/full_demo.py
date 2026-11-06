@@ -73,7 +73,7 @@ def main():
     (RUN/'requirements_full.lock.txt').write_text(versions)
     tfversions=subprocess.check_output(['/workspace/t47d_tf_venv/bin/python','-m','pip','freeze'],text=True)
     (RUN/'requirements_tensorflow.lock.txt').write_text(tfversions)
-    source={str(p):hashlib.file_digest(p.open('rb'),'sha256').hexdigest() for base in ('src/vc_demo/t47d_full','scripts/t47d') for p in Path(base).glob('*.py')}
+    source={str(p):hashlib.file_digest(p.open('rb'),'sha256').hexdigest() for base in ('src/vc_demo/t47d_full','scripts/t47d') for p in Path(base).iterdir() if p.suffix in {'.py','.R'}}
     (RUN/'implementation_snapshot.json').write_text(json.dumps({'source_sha256':source,'git_head':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
         'created_utc':datetime.now(timezone.utc).isoformat(),'scope':'original complete T47D document, not pilot subset',
         'prior_test_exposure':True,'approved_initial_limits':{'hours':24,'usd':20,'no_automatic_extension':True}},indent=2))
@@ -86,6 +86,8 @@ def main():
         elif phase=='evaluate':run([sys.executable,'-m','vc_demo.t47d_full.evaluation','--run-dir',str(RUN)])
         elif phase=='biology':run([sys.executable,'-m','vc_demo.t47d_full.biology','--run-dir',str(RUN)])
         else:run([sys.executable,'-m','vc_demo.t47d_full.report','--run-dir',str(RUN)])
+    if args.phase=='all':
+        run([sys.executable,'scripts/t47d/full_completion_audit.py','--run-dir',str(RUN)])
 
 
 if __name__=='__main__':main()

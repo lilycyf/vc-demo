@@ -1,0 +1,14 @@
+{
+  "config": {
+    "model": "frequency",
+    "representation": "pathway",
+    "baseline_only": false,
+    "alpha": 10
+  },
+  "parent": null,
+  "fallback": false,
+  "proxy": false,
+  "effective_training_objective": "squared error + L2",
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

@@ -1,0 +1,36 @@
+{
+  "source_sha256": {
+    "src/vc_demo/t47d_full/report.py": "df7461a6f7da92ff0103eb86ef36f53f89e0ab11751ac1a92ff2ed3a4d2655f7",
+    "src/vc_demo/t47d_full/biology.py": "b0e36b8e98b0cb37a9c67370709a8864c706e5940d17e5f3e8ec13240ce010da",
+    "src/vc_demo/t47d_full/evaluation.py": "884dcd67e797b3151c99bc2ccf87e56c62ed6d2141185169ca2826c66774fc09",
+    "src/vc_demo/t47d_full/study.py": "8811d1c408a7ba9ec3fcc73c4e18549a2d1acc3b30d0bb29320db01e66a066f3",
+    "src/vc_demo/t47d_full/__init__.py": "713dc258ec9d9b9be0ab0c184cc0aa90d8aca863ef804915be939ea292e48e78",
+    "src/vc_demo/t47d_full/models.py": "6d1a5f804e5def8e6b8d9661f3471bbeb85e0bfdec087efddc3238339aab23b2",
+    "src/vc_demo/t47d_full/features.py": "0d017a126bf3dadc29a4292973bdbabf6e20cafaf6d0d9af5d2b6f68ab05fb07",
+    "scripts/t47d/full_completion_audit.py": "eaf006cd54d55c9f09ac7908cba08b1c0445eed92e693e901faa55b5dadbad0d",
+    "scripts/t47d/baseline_reference_audit.py": "5aa2fd6120869a9c10d7e34e6342d2d553591a1254b1095557434a9f74a04e0a",
+    "scripts/t47d/full_reference_stream.py": "7de423a2a3cc7d8544c5715f8000329635a2d5d5b677442b1b032d2ea1da9868",
+    "scripts/t47d/test_ot_backend.py": "d19e10832d3df2acb5314723e56eb6d75a6ea48beb58811cb2d2bf9908417ae4",
+    "scripts/t47d/full_precompute.py": "db35cb22df159b9390559997e5cf3e58d4146f06390326954bb19b45fcad99f7",
+    "scripts/t47d/full_demo.py": "2a98c5a63c579b2bcbda5647b31ded80b54e2ee4799e133fa9bf2812e0de12ad",
+    "scripts/t47d/full_reference.R": "6dc9d9d275a8b3445da2b48f0ec799f0601d1d753dee94ff791fc72122af0e0a",
+    "scripts/t47d/full_prepare.py": "1a9162369e73c9181fa7647e72a639b0e47314df353077a498113a378697b88a",
+    "scripts/t47d/full_tf_worker.py": "7030cc0ceccac2be6f09e73dc0e000209806bfb9f17f0dccedde21d2aad2de8a",
+    "scripts/t47d/budget_guard.py": "e5bc1cf1388d57f1ed0fa84200a578872dff7086306226090e06cb24b7d34516",
+    "scripts/t47d/write_status.py": "c5f40d0b784872eaa4de73db190992833685d08c32eb75f2e7b7a08b5d939b42",
+    "scripts/t47d/demo.py": "5657d5ba181f9ab755a7bb01010dc12226838eed9465b44ec6e9d2218b725936",
+    "scripts/t47d/analyze.py": "b5dd07953245c70affd24a530feb29c3f247ebbe3ccd6cab8a8dbdf77e6d99b3",
+    "scripts/t47d/run.py": "4356fd126a20969ba6911d80a2e8ae82b426767ea35053b84ae65a3e605c297b",
+    "scripts/t47d/prepare.py": "ef40c6011c057337777802a3261575e652f4fd4144375cd2e6ce4e0c7a89dcd0",
+    "scripts/t47d/acquire.py": "69b92d20a007dcfc8eb86c1dbc36a855bc15ba8bc84869cc05c2b4167e442aa0"
+  },
+  "git_head": "d362993aa91e6b0f34c42617a19e6bd6f952540d",
+  "created_utc": "2026-11-06T12:56:57.962804+00:00",
+  "scope": "original complete T47D document, not pilot subset",
+  "prior_test_exposure": true,
+  "approved_initial_limits": {
+    "hours": 24,
+    "usd": 20,
+    "no_automatic_extension": true
+  }
+}

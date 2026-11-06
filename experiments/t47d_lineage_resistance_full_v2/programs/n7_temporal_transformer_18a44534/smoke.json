@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "compile": true,
+  "fit_forward_backward": true,
+  "prediction_shape": [
+    36
+  ],
+  "scientific_smoke_score_used_as_reward": false,
+  "validation_fold_complete": true
+}

@@ -1,0 +1,46 @@
+node,parent,model,representation,head,loss,validation_spearman,validation_seed_std,validation_mae,seconds
+root_0_frequency,,frequency,pathway,regression,squared error + L2,0.47649041907316325,0.045384690692574746,2.5227468453034416,0.6638632437679917
+root_1_ridge,,ridge,pathway,regression,squared error + L2,0.4149751351458977,0.045497671803147045,2.591490243401087,0.5593044655397534
+root_2_early_elastic,,early_elastic,pseudobulk,regression,squared error + ElasticNet penalty,0.43258284913656253,0.06952021665843255,2.666344028881835,1.99184072134085
+root_3_pls,,pls,pathway,regression,PLS covariance projection and least-squares regression,0.3869247509529773,0.04097501725752391,2.6189873375946005,0.6130250110290945
+root_4_xgboost,,xgboost,pca,regression,reg:squarederror,0.35130628925854973,0.06060706928973651,2.6012030211830144,2.233179103815928
+n5_early_elastic_5a747318,root_0_frequency,early_elastic,pseudobulk,regression,squared error + ElasticNet penalty,0.4416896960155004,0.06959844386796002,2.553746999365882,2.3344598992262036
+n7_temporal_transformer_18a44534,root_0_frequency,temporal_transformer,pathway,regression,Huber regression,0.5168330927464401,0.03817590191149431,2.421553399332162,9.846305334707722
+n8_ridge_401f9d90,root_0_frequency,ridge,pseudobulk,regression,squared error + L2,0.4707900640189031,0.04071900862679807,2.5457027626206212,2.014625882729888
+n9_early_elastic_39ff0977,n5_early_elastic_5a747318,early_elastic,scvi,regression,squared error + ElasticNet penalty,0.42688035085549486,0.08472663814505672,2.556073408028168,422.0758574118372
+n13_early_elastic_ab46c494,root_2_early_elastic,early_elastic,distance,regression,squared error + ElasticNet penalty,0.43086400086604515,0.06993213955467471,2.6729820709838075,690.8258076768834
+n17_early_elastic_f66cf79a,n13_early_elastic_ab46c494,early_elastic,pseudotime,regression,squared error + ElasticNet penalty,0.05485164971474994,0.11473373924347872,17895251.409248825,360.74642500584014
+n21_gated_pathway_86f606fb,root_1_ridge,gated_pathway,cellrank,regression,Huber regression,0.5074937630637294,0.03539571124367859,2.410361588745842,2103.6512065571733
+n25_gru_57a8c944,n21_gated_pathway_86f606fb,gru,pathway,regression,Huber regression,0.5105007947387585,0.05937984123687391,2.3609450669260164,9.339883039705455
+n26_additive_null_f8ab2ea0,n21_gated_pathway_86f606fb,additive_null,pathway,regression,monotherapy squared error + L2,0.4610219750669392,0.03758432992984258,2.465028139482571,9.262300844537094
+n27_bilinear_9de46dd0,n21_gated_pathway_86f606fb,bilinear,pca,regression,Huber regression,0.5176439241645167,0.036702882799287434,2.3743688554293647,16.207424107706174
+n28_gated_pathway_5ed35dca,n21_gated_pathway_86f606fb,gated_pathway,pathway,positive_selected,Huber regression + focal auxiliary objective,0.5158621912011756,0.05250595538904003,2.3466133648339005,9.626908307196572
+n33_tracsed_2d6e32b4,n7_temporal_transformer_18a44534,tracsed,pathway,regression,author TensorFlow mean_squared_error,0.49618023514570153,0.04277856682256883,2.4211860333972224,812.3929120549001
+n34_gru_8e6fcdc6,n7_temporal_transformer_18a44534,gru,pseudotime,regression,Huber regression + multitask auxiliary objective,-0.02060807607706102,0.12485993354379654,37818644.90318397,13.720651133684441
+n35_temporal_transformer_5fea497a,n7_temporal_transformer_18a44534,temporal_transformer,pathway,regression,Huber regression,0.5088953294749992,0.06549097302682197,2.39016494144239,17.254625441739336
+n36_temporal_transformer_b3e44e98,n7_temporal_transformer_18a44534,temporal_transformer,pseudotime,regression,Huber regression + multitask auxiliary objective,-0.04136097750729202,0.06669086582765965,43724526.28641012,17.755621545715258
+n37_hazard_b5d78428,root_3_pls,hazard,pca,regression,interval-censored lognormal likelihood and ridge selection calibration,0.4550298260795317,0.03303709586688951,2.4986183986656445,10.250637460965663
+n39_moe_6e215ac5,root_3_pls,moe,pathway,regression,Huber regression,0.42707376892584686,0.0605206320050609,2.500838342940896,6.135187105508521
+n44_gated_pathway_9cbf2add,n37_hazard_b5d78428,gated_pathway,pathway,regression,Huber regression,0.479872138140062,0.0471842628424152,2.4358115258546307,13.5194322259631
+n45_bilinear_36554dc9,n37_hazard_b5d78428,bilinear,pathway,regression,Huber regression,0.47446405455721496,0.04613840317294856,2.45242750721875,20.233473878819495
+n48_cross_attention_eca08fa7,n37_hazard_b5d78428,cross_attention,pathway,regression,Huber regression,0.4852201954252136,0.045146744753717084,2.434107730395857,15.532367631793022
+n60_gated_pathway_264fba13,n39_moe_6e215ac5,gated_pathway,pathway,positive_selected,Huber regression + weighted_bce auxiliary objective,0.4506393311623788,0.06980201451307645,2.4709223420127335,11.272200832841918
+n68_gru_8fd5a262,root_4_xgboost,gru,pathway,ranking,Huber regression + pairwise auxiliary objective,0.366710180605253,0.07101136212872959,2.55269511787856,7.643541048280895
+n72_gru_9401f6e6,n68_gru_8fd5a262,gru,pathway,regression,Huber regression + multitask auxiliary objective,0.3698506040529387,0.07932298465170254,2.5331659904762938,12.04250137298368
+n76_moe_a7eccf5c,n7_temporal_transformer_18a44534,moe,pathway,positive_selected,Huber regression + weighted_bce auxiliary objective,0.4999047239979477,0.05196320534999622,2.3786032610419827,16.9758738768287
+n77_gru_48ccb89d,n7_temporal_transformer_18a44534,gru,distance,regression,Huber regression + weighted_bce auxiliary objective,0.5395630508071164,0.03799088055695019,2.330388812681762,14.879957826109603
+n78_gru_9d3ffe05,n7_temporal_transformer_18a44534,gru,distance,regression,Huber regression + multitask auxiliary objective,0.539389641502663,0.03838950959026263,2.3238109624848082,13.871467319084331
+n79_early_elastic_8cdddb50,n7_temporal_transformer_18a44534,early_elastic,distance,regression,squared error + ElasticNet penalty,0.548456470849804,0.036818309232777534,2.3253742398347286,10.61041126679629
+n80_moe_c8b709ed,n39_moe_6e215ac5,moe,pathway,positive_selected,Huber regression + focal auxiliary objective,0.4455399542533941,0.07249702898314796,2.4724133116595626,13.861711238045245
+n84_gated_pathway_58ef2933,n5_early_elastic_5a747318,gated_pathway,pathway,mono_resistant_combo_sensitive,Huber regression + weighted_bce auxiliary objective,0.4635640411344227,0.05750524174856302,2.4764565849618014,14.839646914741024
+n88_gated_pathway_5a8a4a56,n68_gru_8fd5a262,gated_pathway,pathway,mono_resistant_combo_sensitive,Huber regression + focal auxiliary objective,0.37121596412591606,0.07510009833180128,2.5273928609130474,12.143403160618618
+n92_moe_10391fab,n13_early_elastic_ab46c494,moe,pathway,mono_resistant_combo_sensitive,Huber regression + weighted_bce auxiliary objective,0.4235550845228423,0.06359722705100139,2.6683650274455264,9.509745904011652
+n96_moe_5dbfb8fd,n7_temporal_transformer_18a44534,moe,pathway,mono_resistant_combo_sensitive,Huber regression + focal auxiliary objective,0.4961630847749314,0.05217666925466973,2.374490673568707,15.312105592573062
+n97_ridge_332f8471,n7_temporal_transformer_18a44534,ridge,pathway,regression,squared error + L2,0.5130180880484627,0.04897718448943479,2.4010934601808573,9.999794895062223
+n98_cross_attention_08bdfa41,n7_temporal_transformer_18a44534,cross_attention,pca,regression,Huber regression,0.5014444461737547,0.0384305876625893,2.4059159487284965,15.01420416799374
+n99_temporal_transformer_87ccc00f,n7_temporal_transformer_18a44534,temporal_transformer,scvi,regression,Huber regression,0.5067124683953124,0.06979124329605987,2.415710657609594,18.970662280684337
+n132_additive_null_21bd657f,n8_ridge_401f9d90,additive_null,scvi,regression,monotherapy squared error + L2,0.40891914866729023,0.05413600167715637,2.6208823494408917,6.800065561197698
+n133_cross_attention_07f8a9e5,n8_ridge_401f9d90,cross_attention,pca,regression,Huber regression,0.450043832177305,0.050340890128154854,2.5182559400325775,8.14150352962315
+n135_ridge_c4368205,n8_ridge_401f9d90,ridge,pathway,regression,squared error + L2,0.49023382048034775,0.03633465532250197,2.497374702848195,3.3126414173748344
+n145_bilinear_919f5081,n8_ridge_401f9d90,bilinear,pathway,regression,Huber regression,0.47819426019971784,0.029363371558120396,2.4888795567032718,13.382214058190584
+n151_tracsed_83068075,n8_ridge_401f9d90,tracsed,scvi,regression,author TensorFlow mean_squared_error,0.4616613027773145,0.0477370315328151,2.558714921308699,736.7797175447922

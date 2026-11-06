@@ -1,0 +1,10 @@
+{
+  "scanpy": "1.12.5",
+  "scvi-tools": "1.5.2",
+  "cellrank": "2.3.3",
+  "pertpy": "1.4.0",
+  "POT": "0.9.7.post1",
+  "lifelines": "0.30.3",
+  "torch": "2.8.0+cu129",
+  "xgboost": "3.4.1"
+}

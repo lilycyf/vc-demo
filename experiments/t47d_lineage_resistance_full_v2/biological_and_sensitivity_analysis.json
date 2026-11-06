@@ -1,0 +1,367 @@
+{
+  "pathway_pairs": {
+    "HALLMARK_E2F_TARGETS__day1__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": -0.09435558762994291,
+      "median": -0.09757101885629321,
+      "clone_bootstrap_mean_ci95": [
+        -0.11124188233998746,
+        -0.07840628325862144
+      ],
+      "wilcoxon_descriptive_p": 4.942535269947257e-11
+    },
+    "HALLMARK_E2F_TARGETS__day1__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": -0.0057244209365319735,
+      "median": -0.013689644168493706,
+      "clone_bootstrap_mean_ci95": [
+        -0.015814672008116214,
+        0.0049269346687152845
+      ],
+      "wilcoxon_descriptive_p": 0.14740098861048523
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day1__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": -0.008164043537562875,
+      "median": -0.008582146097987006,
+      "clone_bootstrap_mean_ci95": [
+        -0.012420771192923277,
+        -0.004110652812747762
+      ],
+      "wilcoxon_descriptive_p": 0.00024298125833865925
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day1__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": 0.0053825978553953555,
+      "median": 0.0026701533443313635,
+      "clone_bootstrap_mean_ci95": [
+        0.00101471967245843,
+        0.01010044184364938
+      ],
+      "wilcoxon_descriptive_p": 0.055344132321863526
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day1__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": -0.00043561631907671654,
+      "median": -0.000543265161854739,
+      "clone_bootstrap_mean_ci95": [
+        -0.0054171315140947775,
+        0.004758778784413079
+      ],
+      "wilcoxon_descriptive_p": 0.7209575267852415
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day1__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": -0.023150182580596347,
+      "median": -0.026620507926242848,
+      "clone_bootstrap_mean_ci95": [
+        -0.029222309856760952,
+        -0.017145562862049712
+      ],
+      "wilcoxon_descriptive_p": 1.886135692075186e-08
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day1__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": -0.0061344042235039545,
+      "median": -0.008065226273425236,
+      "clone_bootstrap_mean_ci95": [
+        -0.012769783077083733,
+        0.0018856248793411709
+      ],
+      "wilcoxon_descriptive_p": 0.0002313246082792375
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day1__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": -0.008216423377498925,
+      "median": -0.008982088824980555,
+      "clone_bootstrap_mean_ci95": [
+        -0.01402709835058754,
+        -0.0022905666075285175
+      ],
+      "wilcoxon_descriptive_p": 0.0029282629495810397
+    },
+    "HALLMARK_E2F_TARGETS__day4__combo_minus_giredestrant": {
+      "n_clones": 45,
+      "mean": -0.09102784896309901,
+      "median": -0.09426420268340296,
+      "clone_bootstrap_mean_ci95": [
+        -0.10394190602213939,
+        -0.07790937991986771
+      ],
+      "wilcoxon_descriptive_p": 3.979039320256561e-13
+    },
+    "HALLMARK_E2F_TARGETS__day4__combo_minus_palbociclib": {
+      "n_clones": 45,
+      "mean": -0.06955969115729735,
+      "median": -0.0692690475034568,
+      "clone_bootstrap_mean_ci95": [
+        -0.08108304898283566,
+        -0.05836615184114418
+      ],
+      "wilcoxon_descriptive_p": 7.958078640513122e-13
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day4__combo_minus_giredestrant": {
+      "n_clones": 45,
+      "mean": -0.0008157441300013332,
+      "median": -0.0020573030203647202,
+      "clone_bootstrap_mean_ci95": [
+        -0.0047696184591883755,
+        0.0031158829297018406
+      ],
+      "wilcoxon_descriptive_p": 0.286581761398395
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day4__combo_minus_palbociclib": {
+      "n_clones": 45,
+      "mean": -0.016287917740663203,
+      "median": -0.014050597541288817,
+      "clone_bootstrap_mean_ci95": [
+        -0.021639314020431726,
+        -0.011124808474623224
+      ],
+      "wilcoxon_descriptive_p": 1.793997057575325e-07
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day4__combo_minus_giredestrant": {
+      "n_clones": 45,
+      "mean": -0.0117126618256885,
+      "median": -0.011519927412181497,
+      "clone_bootstrap_mean_ci95": [
+        -0.01607977119569203,
+        -0.007587242270186816
+      ],
+      "wilcoxon_descriptive_p": 8.011676300156978e-08
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day4__combo_minus_palbociclib": {
+      "n_clones": 45,
+      "mean": -0.07093470193851616,
+      "median": -0.07078922729442927,
+      "clone_bootstrap_mean_ci95": [
+        -0.08159773457668848,
+        -0.06051647078631162
+      ],
+      "wilcoxon_descriptive_p": 2.8421709430404007e-13
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day4__combo_minus_giredestrant": {
+      "n_clones": 45,
+      "mean": -0.029498965463908178,
+      "median": -0.030076724132962696,
+      "clone_bootstrap_mean_ci95": [
+        -0.035657962780153686,
+        -0.02263950614061363
+      ],
+      "wilcoxon_descriptive_p": 1.586727194080595e-09
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day4__combo_minus_palbociclib": {
+      "n_clones": 45,
+      "mean": -0.06763066625800847,
+      "median": -0.06904307925071856,
+      "clone_bootstrap_mean_ci95": [
+        -0.07981123592836338,
+        -0.05531526010308924
+      ],
+      "wilcoxon_descriptive_p": 3.126388037344441e-12
+    },
+    "HALLMARK_E2F_TARGETS__day8__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": -0.05777870146381404,
+      "median": -0.058072429781724166,
+      "clone_bootstrap_mean_ci95": [
+        -0.07131663806263357,
+        -0.04531623241492832
+      ],
+      "wilcoxon_descriptive_p": 4.214939508528914e-11
+    },
+    "HALLMARK_E2F_TARGETS__day8__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": -0.06050473369553856,
+      "median": -0.05377277978370701,
+      "clone_bootstrap_mean_ci95": [
+        -0.0742599561707824,
+        -0.04706028165830801
+      ],
+      "wilcoxon_descriptive_p": 3.126388037344441e-12
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day8__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": 0.021203002100601036,
+      "median": 0.020805288276580236,
+      "clone_bootstrap_mean_ci95": [
+        0.018243945822742507,
+        0.024155557240266988
+      ],
+      "wilcoxon_descriptive_p": 5.684341886080802e-14
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day8__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": 0.00933460028092449,
+      "median": 0.013036543051169414,
+      "clone_bootstrap_mean_ci95": [
+        0.005216904217796932,
+        0.013218668653095093
+      ],
+      "wilcoxon_descriptive_p": 2.8618401898938828e-05
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day8__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": 0.014081562646096824,
+      "median": 0.016092744096144862,
+      "clone_bootstrap_mean_ci95": [
+        0.010839325406931907,
+        0.016979064933091124
+      ],
+      "wilcoxon_descriptive_p": 4.021956101496471e-09
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day8__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": -0.037182111427735316,
+      "median": -0.04025327064332332,
+      "clone_bootstrap_mean_ci95": [
+        -0.04437783972630921,
+        -0.029698512709445242
+      ],
+      "wilcoxon_descriptive_p": 2.5693225325085223e-11
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day8__combo_minus_giredestrant": {
+      "n_clones": 46,
+      "mean": 0.007310346594746414,
+      "median": 0.005779501895443767,
+      "clone_bootstrap_mean_ci95": [
+        0.004242675965464107,
+        0.01036359506750327
+      ],
+      "wilcoxon_descriptive_p": 2.400383141321072e-05
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day8__combo_minus_palbociclib": {
+      "n_clones": 46,
+      "mean": -0.03141333861987513,
+      "median": -0.029256635022002264,
+      "clone_bootstrap_mean_ci95": [
+        -0.03771118235221383,
+        -0.025138736280565954
+      ],
+      "wilcoxon_descriptive_p": 2.1657342585967854e-11
+    },
+    "HALLMARK_E2F_TARGETS__day26__combo_minus_giredestrant": {
+      "n_clones": 31,
+      "mean": -0.07395972856743327,
+      "median": -0.0753702269059135,
+      "clone_bootstrap_mean_ci95": [
+        -0.09359522219433587,
+        -0.055706577635856507
+      ],
+      "wilcoxon_descriptive_p": 1.5739351511001587e-07
+    },
+    "HALLMARK_E2F_TARGETS__day26__combo_minus_palbociclib": {
+      "n_clones": 31,
+      "mean": -0.11947153678346763,
+      "median": -0.1118594129024581,
+      "clone_bootstrap_mean_ci95": [
+        -0.14545859392215363,
+        -0.09517248003456244
+      ],
+      "wilcoxon_descriptive_p": 6.51925802230835e-09
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day26__combo_minus_giredestrant": {
+      "n_clones": 31,
+      "mean": -0.006556420302515232,
+      "median": -0.0018242145827297995,
+      "clone_bootstrap_mean_ci95": [
+        -0.014568639832411766,
+        0.0003610846275705492
+      ],
+      "wilcoxon_descriptive_p": 0.23169402685016394
+    },
+    "HALLMARK_EPITHELIAL_MESENCHYMAL_TRANSITION__day26__combo_minus_palbociclib": {
+      "n_clones": 31,
+      "mean": -0.019432196970872017,
+      "median": -0.014842917307897552,
+      "clone_bootstrap_mean_ci95": [
+        -0.027321631451545134,
+        -0.012327219247391517
+      ],
+      "wilcoxon_descriptive_p": 1.6195699572563171e-06
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day26__combo_minus_giredestrant": {
+      "n_clones": 31,
+      "mean": 0.003094598843598558,
+      "median": 0.006463974023621644,
+      "clone_bootstrap_mean_ci95": [
+        -0.006979831469495398,
+        0.01196348280438174
+      ],
+      "wilcoxon_descriptive_p": 0.1756664952263236
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_EARLY__day26__combo_minus_palbociclib": {
+      "n_clones": 31,
+      "mean": -0.06470618962635227,
+      "median": -0.06086847668204032,
+      "clone_bootstrap_mean_ci95": [
+        -0.07766715702041645,
+        -0.05199733328918142
+      ],
+      "wilcoxon_descriptive_p": 9.313225746154785e-10
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day26__combo_minus_giredestrant": {
+      "n_clones": 31,
+      "mean": -0.011259051497588046,
+      "median": -0.0071087059655161045,
+      "clone_bootstrap_mean_ci95": [
+        -0.019603639499464216,
+        -0.0030990541484875833
+      ],
+      "wilcoxon_descriptive_p": 0.006217258051037788
+    },
+    "HALLMARK_ESTROGEN_RESPONSE_LATE__day26__combo_minus_palbociclib": {
+      "n_clones": 31,
+      "mean": -0.062726977957716,
+      "median": -0.05504432479136362,
+      "clone_bootstrap_mean_ci95": [
+        -0.07438770679043896,
+        -0.05104658272840394
+      ],
+      "wilcoxon_descriptive_p": 9.313225746154785e-10
+    }
+  },
+  "epsilon_sensitivity": {
+    "1e-06": {
+      "selection_median": -1.4928095653295195,
+      "positive_count": 25,
+      "correlation_with_registered_label": 0.9999954330496498
+    },
+    "1e-05": {
+      "selection_median": -1.4919692975803218,
+      "positive_count": 25,
+      "correlation_with_registered_label": 1.0
+    },
+    "0.0001": {
+      "selection_median": -1.4825071486231605,
+      "positive_count": 25,
+      "correlation_with_registered_label": 0.9959080124860424
+    }
+  },
+  "selection_by_treatment": {
+    "giredestrant": {
+      "positive_clones": 7,
+      "median_log2_selection": -1.7503070256046005,
+      "endpoint_nondetected": 15
+    },
+    "palbociclib": {
+      "positive_clones": 6,
+      "median_log2_selection": -3.4378149201476043,
+      "endpoint_nondetected": 15
+    },
+    "combination": {
+      "positive_clones": 12,
+      "median_log2_selection": -0.3633958426752699,
+      "endpoint_nondetected": 2
+    }
+  },
+  "mono_positive_combo_negative_count": 5,
+  "mono_positive_count": 9,
+  "caveats": [
+    "Pathway comparisons condition on observed cells, so survivorship/attrition can change cohort composition",
+    "No absolute cell numbers or reculturing/rechallenge => cannot prove restored sensitivity or state reversal",
+    "Libraries are not independently verified biological replicates; clone bootstrap is not donor-level inference",
+    "Many descriptive pathway comparisons; nominal p values uncorrected and not confirmatory evidence"
+  ],
+  "paper_alignment": "Hallmark ER/E2F/EMT signatures reconstructed from public memberships, not unavailable private custom ER signature"
+}

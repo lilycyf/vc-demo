@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 
 from vc_demo.t47d_full.study import RUN,bundle
 from vc_demo.t47d_lineage.data import dump
+from vc_demo.t47d_full.models import effective_objective
 
 
 def read(path,default=None):
@@ -29,11 +30,25 @@ def number(value):
 def report(run=RUN):
     b=bundle(run);tree=read(run/'tree.json',{'nodes':{}});nodes=list(tree['nodes'].values())
     trained=[n for n in nodes if n['status']=='trained'];children=[n for n in trained if n.get('parent')]
+    space=read(run/'search_space.json',{})
+    space['effective_objectives']=[{'config':c,'objective':effective_objective(c)} for c in space.get('candidates',[])]
+    dump(run/'search_space_manifest.json',space)
+    dump(run/'effective_training_policies.json',{
+        'scvi':{'max_epochs':50,'early_stopping_patience':10,'batch_size':256,'latent':16,'hidden':128,'layers':2,'likelihood':'negative binomial','fit':'train clone cells only'},
+        'pytorch_dynamics':{'epochs':80,'batch':'all training clone-treatment rows','optimizer':'AdamW','learning_rate':.001,'weight_decay':.02,'hidden':32,'dropout':.15,'gradient_clip':1},
+        'tracsed_forecast':{'epochs':20,'batch_size':32,'sequence_length':3,'jit_compile':True,'architecture':'source-extracted author functions; horizon adapter'},
+        'tracsed_reference':{'epochs':20,'batch_size':32,'sequence_length':8,'jit_compile':False,'prefixes':[.25,.5,.75,1.],'variants':['full','no_attention','no_feedforward','linear_reference']},
+        'classical':{'frequency_ridge_default_alpha':10,'pathway_ridge_root_alpha':100,'elastic_alpha':.01,'elastic_l1_ratio':.5,'elastic_max_iter':10000,'PLS_root_components':3,'XGBoost_estimators':160,'XGBoost_max_depth':2},
+        'hazard':{'distribution':'lognormal','likelihood':'interval/right-censored','penalizer':1,'selection_calibration':'ridge alpha10'},
+        'metadata_note':'Generic manifest loss/epoch fields do not override family-specific mathematical objectives. Effective objectives and actual policies are authoritative, not unused config placeholders.'})
     selection=read(run/'frozen_selection.json',{});tests=read(run/'frozen_test_metrics.json',{})
     abl=read(run/'eight_ablations.json',{});loco=read(run/'loco_results.json',{})
     challenges=read(run/'challenge_metrics.json',{});biology=read(run/'biological_and_sensitivity_analysis.json',{})
     ras=read(run/'resistance_attractor_and_month6.json',{})
     denominator=read(run/'denominator_null_diagnostic.json',{})
+    abundance=read(run/'early_abundance_baseline.json',{})
+    snapshot=read(run/'temporal_snapshot_control.json',{})
+    historical=read(run/'historical_baseline_reference_audit.json',{})
     trace=[json.loads(line) for line in (run/'mcts_trace.jsonl').read_text().splitlines()] if (run/'mcts_trace.jsonl').exists() else []
     references=[]
     ref=run/'reference';source_ref=read(ref/'reference_preprocessing_provenance.json',{})
@@ -67,10 +82,12 @@ def report(run=RUN):
         'four_prediction_heads':{'regression','positive_selected','mono_resistant_combo_sensitive','ranking'}<={n['config'].get('head','regression') for n in children},
         'five_training_losses':{'huber','weighted_bce','focal','pairwise','multitask'}<={n['config'].get('loss','huber') for n in children},
         'author_R_reference_all_treatments':bool(source_ref) and all((ref/(t+'_reference.json')).exists() for t in ('giredestrant','palbociclib','combination')),
-        'author_TF_reference_and_ablation_models':all(modes[m]>0 for m in ('full','no_attention','no_feedforward','linear_reference')),
+        'author_TF_reference_and_ablation_models':all(any(r['variant']==m and r['barcode'].split('::')[0]==t for r in references)
+            for m in ('full','no_attention','no_feedforward','linear_reference') for t in ('giredestrant','palbociclib','combination')),
         'five_seed_primary_CV':bool(trained) and all(n.get('formal_fold_fits')==15 for n in trained),
         'frozen_test_root_child':bool(selection) and all(selection.get(k) in tests for k in ('root','child')),
         'all_eight_formal_ablations':len(abl)==8 and all(v.get('formal_fold_fits')==15 for v in abl.values()),
+        'temporal_order_and_last_snapshot_both_checked':(run/'temporal_snapshot_control.json').exists(),
         'complete_46_clone_LOCO':bool(selection) and all(len(loco.get(selection[k],{}).get('folds',[]))==46 for k in ('root','child')),
         'late_time_challenge':'late_interval_holdout' in challenges,
         'monotherapy_transfer_challenge':'monotherapy_to_combination' in challenges,
@@ -82,7 +99,7 @@ def report(run=RUN):
     table=[]
     for n in trained:
         table.append({'node':n['id'],'parent':n.get('parent'),'model':n['config']['model'],'representation':n['config']['representation'],
-            'head':n['config'].get('head','regression'),'loss':n['config'].get('loss','huber'),'validation_spearman':n['validation_reward'],
+            'head':n['config'].get('head','regression'),'loss':effective_objective(n['config']),'validation_spearman':n['validation_reward'],
             'validation_seed_std':n['validation_std'],'validation_mae':n['validation_mae'],'seconds':n['duration_seconds']})
     pd.DataFrame(table).to_csv(run/'trained_node_catalog.csv',index=False)
     with (run/'selected_rollouts.jsonl').open('w') as f:
@@ -95,6 +112,8 @@ def report(run=RUN):
         'formal_ablation_fold_fits':sum(n.get('formal_fold_fits',0) for n in abl.values()),
         'LOCO_fits':sum(len(r.get('folds',[])) for r in loco.values()),'retrospective_reference_fits':len(references),
         'formal_denominator_diagnostic_fits':sum(d.get('formal_fold_fits',0) for d in denominator.get('draws',[])),
+        'additional_snapshot_and_abundance_control_fits':snapshot.get('formal_fold_fits',0)+abundance.get('formal_fold_fits',0),
+        'historical_reference_replay':historical,
         'whole_original_document_complete':whole,'test_exposure_caveat':True,'guardrails':guards}
     if selection:
         r,c=[tree['nodes'][selection[k]] for k in ('root','child')]
@@ -106,6 +125,8 @@ def report(run=RUN):
             'test_not_used_to_reselect':True,'context':'Repeated OOF winner is selection-optimistic; prior pilot test exposure prohibits a new-blind confirmation claim',
             'controls':{k:v['validation_reward'] for k,v in abl.items()},
             'denominator_null_diagnostic':denominator,
+            'early_abundance_only_control':abundance,
+            'last_snapshot_control':snapshot,'stronger_historical_reference':historical,
             'assessment':'Scientific superiority is assessed independently from framework completion; neither smoke nor mandatory family coverage proves superiority'})
     dump(run/'full_study_results.json',stats)
     figdir=run/'figures';figdir.mkdir(exist_ok=True)
@@ -128,6 +149,25 @@ def report(run=RUN):
         if importance:pd.DataFrame(importance).to_csv(ref/'pathway_permutation_importance.csv',index=False)
     if biology:
         pd.DataFrame([{'comparison':k,**v} for k,v in biology['pathway_pairs'].items()]).to_csv(run/'paired_pathway_comparisons.csv',index=False)
+    if selection and abundance and snapshot:
+        control_names=['Current best root','Frozen child','Baseline-only child','No temporal order','Day4 snapshot','Early abundance only','Historical Ridge']
+        control_values=[tree['nodes'][selection['root']]['validation_reward'],tree['nodes'][selection['child']]['validation_reward'],abl['baseline_only']['validation_reward'],
+            abl['no_temporal_order']['validation_reward'],snapshot['validation_reward'],abundance['validation_reward'],
+            historical.get('validation',{}).get('validation_reward',np.nan)]
+        fig,ax=plt.subplots(figsize=(10,5));ax.barh(control_names,control_values,color=['#666666','#16887d']+['#557fc0']*5)
+        ax.set(xlabel='Repeated clone-group OOF Spearman',title='Strong controls: no post-test model reselection')
+        fig.tight_layout();fig.savefig(figdir/'strong_baseline_controls.png',dpi=160);plt.close(fig)
+    if denominator:
+        fig,ax=plt.subplots(figsize=(8,5));ax.hist([d['reward'] for d in denominator['draws']],bins=10,color='#557fc0',edgecolor='white')
+        ax.axvline(denominator['observed_root_reward'],color='#c63843',label='Observed frequency-root reward')
+        ax.set(xlabel='Endpoint-permuted OOF Spearman (baseline retained)',ylabel='Draw count',title='Denominator coupling diagnostic; not a confirmatory p-value');ax.legend()
+        fig.tight_layout();fig.savefig(figdir/'denominator_diagnostic.png',dpi=160);plt.close(fig)
+    if challenges.get('early_warning'):
+        horizons=challenges['early_warning']['results'];fig,axes=plt.subplots(1,2,figsize=(10,4))
+        days=list(horizons);axes[0].plot(days,[horizons[d]['spearman'] for d in days],marker='o',color='#16887d')
+        axes[1].plot(days,[horizons[d]['classification']['auprc'] for d in days],marker='o',color='#557fc0')
+        axes[0].set(xlabel='Last observed day',ylabel='Heldout clone Spearman');axes[1].set(xlabel='Last observed day',ylabel='Positive-selection AUPRC')
+        fig.suptitle('Frozen architecture, separately refitted per horizon; descriptive only');fig.tight_layout();fig.savefig(figdir/'early_warning.png',dpi=160);plt.close(fig)
     manifest=read(Path('data/t47d_lineage/prepared/dataset_manifest.json'),{})
     artifact={'GSE260703_processed_counts':{'status':'original_public','source':'https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE260703','path':'data/t47d_lineage/raw','checksums':'initial acquisition manifest + source file manifest'},
         'raw_and_QC_AnnData':{'status':'derived_public_data','raw':'data/t47d_lineage/prepared/raw_counts.h5ad','QC':'data/t47d_lineage/prepared/qc_counts.h5ad'},
@@ -182,12 +222,22 @@ def report(run=RUN):
             lines.append(f"| {n['id']} | {n['validation_reward']:.4f} | {n['validation_std']:.4f} | {number(t.get('spearman'))} | {number(t.get('mae'))} |")
     if selection:
         lines.extend(['',f"Child-root validation 差值：{stats['validation_child_minus_root']:+.4f}；5 个配对 seed 中超过 root：{stats['child_beats_root_seeds']}/5。",
-        '95% CI 以 clone block bootstrap 计算，保留同一克隆的全部处理。分类 AUPRC/AUROC、NDCG、Brier/ECE 和联合抑制正确率详见 `frozen_test_metrics.json`；概率校准仅拟合开发 OOF。'])
+        '95% CI 以 clone block bootstrap 计算，保留同一克隆的全部处理。分类 AUPRC/AUROC、NDCG、Brier/ECE 和联合抑制正确率详见 `frozen_test_metrics.json`；概率校准仅拟合开发 OOF。',
+        f"Root test Spearman 95% CI：{tests.get(selection['root'],{}).get('bootstrap',{}).get('spearman_ci95')}；child：{tests.get(selection['child'],{}).get('bootstrap',{}).get('spearman_ci95')}。区间均跨零，不能依据点估计声称可靠的未见克隆预测。"])
+    if historical:
+        lines+=['','### 更强历史基线复测','',
+            f"先前冻结的 pilot Ridge 在相同克隆合同上复测：OOF Spearman {historical['validation']['validation_reward']:.4f}、test Spearman {historical['heldout']['spearman']:.4f}。它仍强于本轮 frozen child，不能被本轮五个较弱 roots 的比较掩盖。",
+            '差异追踪到 treatment 编码及标准化：pilot 使用标准化三类处理 covariates，本轮为组合外推采用两个化学存在指示量。正则化基线对此敏感，因此仅超过本轮 roots 不等于改进了历史最强基线。',
+            '这项复测只作冻结后的诊断，不回填 MCTS、不改变胜出模型。下一版框架必须把强基线输入编码/缩放也作为不可悄然更改的比较合同。']
     lines+=['','## 八项消融','','![八项正式消融](figures/eight_ablations.png)','',
         '| 消融 | 重复 OOF Spearman | 相对原 child |','|---|---:|---:|']
     for name,v in abl.items():
         baseline=tree['nodes'][selection['child']]['validation_reward']
         lines.append(f"| {name} | {v['validation_reward']:.4f} | {v['validation_reward']-baseline:+.4f} |")
+    if abundance and snapshot:
+        lines+=['','![强对照比较](figures/strong_baseline_controls.png)','',
+            f"额外对照均正式做 15 折：day4 单快照 {snapshot['validation_reward']:.4f}；仅早期丰度 {abundance['validation_reward']:.4f}。两者都高于完整 child。",
+            '因此“动态模型优于单快照”和“早期表达模型优于丰度”的预期未获支持。真实通路相较打乱或同宽随机投影的增益，只能解读为局部结构贡献，不能推出整体模型优越性。']
     lines+=['','无条码输入消融仍保留真实条码作为标签与分组依据，但预测特征只用训练克隆的处理条件均值，删除克隆丰度；不是破坏 ground truth。打乱通路用全局基因置换，保持集合大小与重叠；不是简单换列名。matched-capacity control 保持各层表示宽度。去 dense parent 同时移除继承预测及神经内部 dense 分支。','',
         '## 五层评估','','1. 开发集 repeated clone-group CV：每个正式候选 15 fits。',
         '2. 冻结模型选择后的 46-clone LOCO：完整数据的次级跨拟合，不代替主保留组评估。',
@@ -195,10 +245,22 @@ def report(run=RUN):
         '4. monotherapy→combination：训练不读取联合监督标签；用独立化学指示量 [1,1] 表达组合。',
         '5. Month6：冻结早期预测、AFT persistence 与探索性吸引子评分后，核对所有已观察到的长期克隆。',
         '早期预警按 day0/day1/day4 分别重拟合，报告 lead time 与 AUPRC，而非用 day4 模型伪称 day1 预警。','',
+        '![按输入时间分别重拟合](figures/early_warning.png)','',
+        'LOCO 和挑战任务的完整指标见 `loco_results.json` 与 `challenge_metrics.json`。LOCO 使用全部 46 个克隆作次级跨拟合，不能冒充从未使用 test 克隆训练的主协议；early-warning 各 horizon 均为五 seed 均值。','',
+        '| 冻结后的评估 | Spearman | MAE |','|---|---:|---:|',
+        f"| Root：46-clone LOCO | {number(loco.get(selection.get('root'),{}).get('pooled',{}).get('spearman'))} | {number(loco.get(selection.get('root'),{}).get('pooled',{}).get('mae'))} |",
+        f"| Child：46-clone LOCO | {number(loco.get(selection.get('child'),{}).get('pooled',{}).get('spearman'))} | {number(loco.get(selection.get('child'),{}).get('pooled',{}).get('mae'))} |",
+        f"| Child：day8 supervision → day26 | {number(challenges.get('late_interval_holdout',{}).get('spearman'))} | {number(challenges.get('late_interval_holdout',{}).get('mae'))} |",
+        f"| Child：单药训练 → 联合 query | {number(challenges.get('monotherapy_to_combination',{}).get('spearman'))} | {number(challenges.get('monotherapy_to_combination',{}).get('mae'))} |",'',
         '## 联合抑制与生物学解释','',
         f"观测到单药正选择、联合负选择的克隆：{biology.get('mono_positive_combo_negative_count','未完成')} / {biology.get('mono_positive_count','未完成')} 个单药正选择克隆。",
+        f"本预注册 46-clone 队列中正选择克隆数：giredestrant={biology.get('selection_by_treatment',{}).get('giredestrant',{}).get('positive_clones')}、palbociclib={biology.get('selection_by_treatment',{}).get('palbociclib',{}).get('positive_clones')}、combination={biology.get('selection_by_treatment',{}).get('combination',{}).get('positive_clones')}。联合组并不更少，因此不能宣称在此队列复现了‘联合普遍降低相对选择’。",
+        '这一 baseline-qualified 队列及全体 QC 单条码细胞分母不同于作者 trajectory/selection 筛选后的克隆集合；相对选择也不等于总细胞杀伤。保留差异，不为靠近论文方向而更改资格或分母。',
         'ER／E2F／EMT 的 clone-paired 动态差异及 bootstrap CI 见 `paired_pathway_comparisons.csv`。所有比较为描述性、存在幸存者偏倚与多重比较，不把 nominal p 值当作临床机制证明。',
         '原文 raw-ratio suppression 与变换后的 log2 差值分开计算，不混淆两种量纲。eps=1e-6/1e-5/1e-4 与 endpoint 未检出敏感性已记录。','',
+        '## 分母耦合诊断','',
+        '![频率分母耦合](figures/denominator_diagnostic.png)','',
+        f"保留基线频率、在处理内置换终点频率的 20 次诊断（300 次正式折拟合）：均值 {number(denominator.get('null_mean'))}；原频率 root {number(denominator.get('observed_root_reward'))}。基线同时进入输入与 log-ratio 分母，会产生可预测相关，不能把相关系数全部解释为耐药机制。该后选择诊断不是确认性 p 值。",'',
         '## 长期逃逸与吸引子评分','',
         'RAS 权重预先固定为 .40/.25/.20/.15，标准化及负选择克隆参照仅来自开发集；query 不读取自己的未来标签或未来表达。persistence 为真实区间删失 AFT 从训练终点拟合后的 day180 尾部外推，只能探索。',
         f"保留组可评估长期阳性克隆数：{ras.get('locked_test_positive_count','未完成')}；未见克隆逃逸 recall：{ras.get('unseen_clone_escape_recall')}。",
@@ -218,6 +280,8 @@ def report(run=RUN):
         '/workspace/t47d_full_venv/bin/python scripts/t47d/full_demo.py --phase all','```','',
         '已完成折、冻结选择和参考拟合按文件恢复，不会把 smoke 奖励冒充正式结果。若更改冻结 task/split/科学协议，必须使用新注册运行；修复记录和 source hash 需保留。','',
         '## 结论','',
+        '原文档的实现和正式比较可以完成，但预期科学优势不保证成立。本轮 child 优于本轮 root，却未超过历史强基线；baseline-only、无时序和 day4 快照对照更强，不支持时间动态结构具有稳定增益。',
+        '9 个单药正选择克隆中 5 个在联合中负选择，但联合组总体正选择克隆更多；因此总体联合抑制假设未在本资格队列得到支持。部分 ER/E2F 程序下降，EMT 并非各时间点一致下降。Month6 仅一个满足早期资格的长期优势克隆，且不在保留组，未见克隆长期预警 recall 不可识别。',
         '流程完整性、预测优越性和生物学因果性是三个不同问题。只有完成矩阵全部有证据，才称原文档 demo 完成；child 没有超过 root 时输出 root-dominance audit，不通过减少比较、改变 split 或查看 test 来追分。',
         '即使预测改善，独立生物学重复、外部 ER+ 模型和功能性再挑战仍缺失，因此不能推断患者疗效或真正状态逆转。','',
         '## 原始来源','',

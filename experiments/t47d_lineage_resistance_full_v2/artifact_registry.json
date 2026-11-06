@@ -1,0 +1,123 @@
+{
+  "GSE260703_processed_counts": {
+    "status": "original_public",
+    "source": "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE260703",
+    "path": "data/t47d_lineage/raw",
+    "checksums": "initial acquisition manifest + source file manifest"
+  },
+  "raw_and_QC_AnnData": {
+    "status": "derived_public_data",
+    "raw": "data/t47d_lineage/prepared/raw_counts.h5ad",
+    "QC": "data/t47d_lineage/prepared/qc_counts.h5ad"
+  },
+  "Hallmark": {
+    "status": "original_public",
+    "release": "2025.1.Hs",
+    "sha256": "f22066af72e215ccb7b89d88e492c07e1eef17534c2ca7b0f9902cfecbbdd8e9",
+    "license": "MSigDB terms; source memberships not silently relicensed",
+    "source": "https://data.broadinstitute.org/gsea-msigdb/msigdb/release/2025.1.Hs/h.all.v2025.1.Hs.symbols.gmt"
+  },
+  "scVI": {
+    "status": "trained_from_public_counts_per_fold",
+    "path": "data/t47d_lineage/full_fold_artifacts/*/scvi_model",
+    "query_adaptation_steps": 0
+  },
+  "CellRank": {
+    "status": "derived_real_time_OT_kernel",
+    "path": "data/t47d_lineage/full_fold_artifacts/*/cellrank_*.npz",
+    "query_method": "train-kernel descriptors projected from train cells only"
+  },
+  "TraCSED_source": {
+    "status": "original_public_code",
+    "commit": "dc5a750ef6fc6adf50e362ba5c2d38bee6083289",
+    "license": "MIT",
+    "path": "/workspace/_external/TraCSED",
+    "source": "https://github.com/Genentech/TraCSED"
+  },
+  "TraCSED_private_preprocessed_SCE_and_custom_signature": {
+    "status": "not_publicly_reproduced_numerically",
+    "resolution": "reconstruct from public counts and public memberships, report differences, not a placeholder model"
+  },
+  "persistence_model": {
+    "status": "fitted_interval_censored_AFT",
+    "endpoint": "persistent sampled non-detection, not biological death"
+  },
+  "raw_download_manifest": {
+    "accession": "GSE260703",
+    "source": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/",
+    "artifacts": [
+      {
+        "id": "GSE260703_count_barcodes.csv.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_count_barcodes.csv.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_count_barcodes.csv.gz",
+        "status": "original_public",
+        "size_bytes": 976199,
+        "sha256": "03adcf9bb8e1c553bb1267cf345b6285f106ca138e6d2ab3411be048e25ece26",
+        "checked_at": "2026-11-06T08:38:13.491468+00:00"
+      },
+      {
+        "id": "GSE260703_count_features.csv.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_count_features.csv.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_count_features.csv.gz",
+        "status": "original_public",
+        "size_bytes": 444200,
+        "sha256": "142b2a6197a6a7208b8280838864c5ff808ce66387774b445ee2860be456c12b",
+        "checked_at": "2026-11-06T08:38:13.497514+00:00"
+      },
+      {
+        "id": "GSE260703_count_matrix.mtx.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_count_matrix.mtx.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_count_matrix.mtx.gz",
+        "status": "original_public",
+        "size_bytes": 1182743535,
+        "sha256": "284bb1e8ff874775e9336ad2b4569d49eccd2228a4c33615fafcf1d9e077a413",
+        "checked_at": "2026-11-06T08:38:14.406010+00:00"
+      },
+      {
+        "id": "GSE260703_gfp_barcodes.csv.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_gfp_barcodes.csv.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_gfp_barcodes.csv.gz",
+        "status": "original_public",
+        "size_bytes": 976197,
+        "sha256": "f18a080c3bb452f3371682410cb6f079fc946595b34cfeacc311f4afcbd56f25",
+        "checked_at": "2026-11-06T08:38:14.412437+00:00"
+      },
+      {
+        "id": "GSE260703_gfp_features.csv.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_gfp_features.csv.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_gfp_features.csv.gz",
+        "status": "original_public",
+        "size_bytes": 435214,
+        "sha256": "1f7443c2979e1a90f362ba71dc86030ce618fe53c61e2adcfa43c8842bb41fb3",
+        "checked_at": "2026-11-06T08:38:14.418654+00:00"
+      },
+      {
+        "id": "GSE260703_gfp_matrix.mtx.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_gfp_matrix.mtx.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/suppl/GSE260703_gfp_matrix.mtx.gz",
+        "status": "original_public",
+        "size_bytes": 330844,
+        "sha256": "1ad4a0019ad0774e042844946d3ffb8269254c69fb26f9c06548923da43d06bb",
+        "checked_at": "2026-11-06T08:38:14.426128+00:00"
+      },
+      {
+        "id": "GSE260703_family.soft.gz",
+        "path": "data/t47d_lineage/raw/GSE260703_family.soft.gz",
+        "source_url": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE260nnn/GSE260703/soft/GSE260703_family.soft.gz",
+        "status": "original_public",
+        "size_bytes": 3460,
+        "sha256": "27a105e43e14200aedf3aa052e0a860f5a2bfa1963b1ddd0879be36315cd4d31",
+        "checked_at": "2026-11-06T08:38:14.431048+00:00"
+      }
+    ]
+  },
+  "unfiltered_archive": {
+    "shape": [
+      200429,
+      58302
+    ],
+    "cells_before_qc": 200429,
+    "filtered_archive_is_separate": true,
+    "sha256": "2e8ce046117f1ac2425d80d8ff6fdd12548f8d2f48c3127300d8b13615f9b641"
+  }
+}

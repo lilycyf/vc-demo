@@ -38,11 +38,11 @@ def author_namespace():
     return ns,extracted
 
 
-def model(ns,shape,attention=10,feedforward=10):
+def model(ns,shape,attention=10,feedforward=10,jit_compile=False):
     result=ns['build_model'](input_shape=shape,head_size=5,num_heads=40,ff_dim=5,
         num_attention_blocks=attention,num_transformer_blocks=feedforward,
         mlp_units=[256],dropout=.14,mlp_dropout=.4)
-    result.compile(optimizer=keras.optimizers.Adam(learning_rate=.001),loss='mean_squared_error')
+    result.compile(optimizer=keras.optimizers.Adam(learning_rate=.001),loss='mean_squared_error',jit_compile=jit_compile)
     return result
 
 
@@ -64,7 +64,7 @@ def forecast(action,dest):
     ns,hashes=author_namespace()
     keras.utils.set_random_seed(42)
     if action=='fit':
-        a=np.load(dest/'train.npz');net=model(ns,a['s'].shape[1:]);losses=fit_batches(net,a['s'],a['y'])
+        a=np.load(dest/'train.npz');net=model(ns,a['s'].shape[1:],jit_compile=True);losses=fit_batches(net,a['s'],a['y'])
         net.save(dest/'model.keras')
         (dest/'provenance.json').write_text(json.dumps({'author_notebook_sha256':hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
             'extracted_function_sha256':hashes,'mode':'author architecture early-forecast adapter, not retrospective reference',
@@ -131,6 +131,7 @@ def retrospective(dest):
         'functions':hashes,'seed':42,'sequence_length':8,'epochs':20,'batch_size':32,
         'known_source_quirks':['Repeated blocks use original input; retained unchanged','Last dataframe column discarded by author splitter; retained unchanged',
         'MinMaxScaler fitted on full interval prefix before last5% split; retrospective only'],
+        'keras_execution':'jit_compile=False restores author pre-Keras3 default; unchanged architecture/Adam/MSE/20epochs/batch32',
         'gpus':[str(x) for x in tf.config.list_physical_devices('GPU')]},indent=2))
 
 

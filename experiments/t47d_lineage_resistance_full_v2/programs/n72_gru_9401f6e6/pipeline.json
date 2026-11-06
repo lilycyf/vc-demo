@@ -1,0 +1,27 @@
+{
+  "config": {
+    "model": "gru",
+    "representation": "pathway",
+    "loss": "multitask",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "gru",
+      "representation": "pathway",
+      "loss": "pairwise",
+      "head": "ranking",
+      "epochs": 80,
+      "parent_config": {
+        "model": "xgboost",
+        "representation": "pca"
+      },
+      "composition": "parent prediction + .25 train-residual mutation"
+    },
+    "composition": "parent prediction + .25 train-residual mutation"
+  },
+  "parent": "n68_gru_8fd5a262",
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

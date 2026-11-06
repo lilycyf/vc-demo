@@ -1,0 +1,26 @@
+{
+  "whole_original_document_complete": true,
+  "requirements": {
+    "raw_unfiltered_archive": true,
+    "five_formal_roots": true,
+    "forty_formal_selected_rollouts": true,
+    "all_six_representations": true,
+    "all_dynamics_including_cellrank": true,
+    "all_five_interactions": true,
+    "four_prediction_heads": true,
+    "five_training_losses": true,
+    "author_R_reference_all_treatments": true,
+    "author_TF_reference_and_ablation_models": true,
+    "five_seed_primary_CV": true,
+    "frozen_test_root_child": true,
+    "all_eight_formal_ablations": true,
+    "temporal_order_and_last_snapshot_both_checked": true,
+    "complete_46_clone_LOCO": true,
+    "late_time_challenge": true,
+    "monotherapy_transfer_challenge": true,
+    "early_warning_per_cutoff": true,
+    "long_term_escape_evaluated_with_identifiability_limits": true,
+    "ER_E2F_EMT_and_label_sensitivity": true,
+    "guardrails": true
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "draws": [
+    {
+      "draw": 0,
+      "reward": 0.4092234014356887,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 1,
+      "reward": 0.36865798938846506,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 2,
+      "reward": 0.37136741689157693,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 3,
+      "reward": 0.521910738910558,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 4,
+      "reward": 0.5418412592147404,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 5,
+      "reward": 0.376856169277538,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 6,
+      "reward": 0.38978334151539423,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 7,
+      "reward": 0.41484408162966135,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 8,
+      "reward": 0.34009868702346446,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 9,
+      "reward": 0.4475591013366409,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 10,
+      "reward": 0.34721999173319473,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 11,
+      "reward": 0.4938064536560656,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 12,
+      "reward": 0.5197638338408981,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 13,
+      "reward": 0.5506841868476435,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 14,
+      "reward": 0.46742037823542004,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 15,
+      "reward": 0.49389659809786746,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 16,
+      "reward": 0.46059657191013975,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 17,
+      "reward": 0.3178156787417947,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 18,
+      "reward": 0.3703876453500905,
+      "formal_fold_fits": 15
+    },
+    {
+      "draw": 19,
+      "reward": 0.4966847390026879,
+      "formal_fold_fits": 15
+    }
+  ],
+  "observed_root_reward": 0.47649041907316325,
+  "null_mean": 0.43502091320197656,
+  "null_quantiles": [
+    0.32840010767558786,
+    0.4312015914831511,
+    0.5464837962220145
+  ],
+  "mechanism": "Permute day26 fractions within treatment among development clones, retain each clone baseline fraction, then recompute log-ratio target; refit fixed root on grouped CV",
+  "purpose": "Diagnose denominator coupling/regression-to-the-mean. Not a new search or confirmatory permutation p value; root was already selected.",
+  "test_labels_used": false
+}

@@ -1,0 +1,64 @@
+{
+  "scvi": {
+    "max_epochs": 50,
+    "early_stopping_patience": 10,
+    "batch_size": 256,
+    "latent": 16,
+    "hidden": 128,
+    "layers": 2,
+    "likelihood": "negative binomial",
+    "fit": "train clone cells only"
+  },
+  "pytorch_dynamics": {
+    "epochs": 80,
+    "batch": "all training clone-treatment rows",
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.02,
+    "hidden": 32,
+    "dropout": 0.15,
+    "gradient_clip": 1
+  },
+  "tracsed_forecast": {
+    "epochs": 20,
+    "batch_size": 32,
+    "sequence_length": 3,
+    "jit_compile": true,
+    "architecture": "source-extracted author functions; horizon adapter"
+  },
+  "tracsed_reference": {
+    "epochs": 20,
+    "batch_size": 32,
+    "sequence_length": 8,
+    "jit_compile": false,
+    "prefixes": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "variants": [
+      "full",
+      "no_attention",
+      "no_feedforward",
+      "linear_reference"
+    ]
+  },
+  "classical": {
+    "frequency_ridge_default_alpha": 10,
+    "pathway_ridge_root_alpha": 100,
+    "elastic_alpha": 0.01,
+    "elastic_l1_ratio": 0.5,
+    "elastic_max_iter": 10000,
+    "PLS_root_components": 3,
+    "XGBoost_estimators": 160,
+    "XGBoost_max_depth": 2
+  },
+  "hazard": {
+    "distribution": "lognormal",
+    "likelihood": "interval/right-censored",
+    "penalizer": 1,
+    "selection_calibration": "ridge alpha10"
+  },
+  "metadata_note": "Generic manifest loss/epoch fields do not override family-specific mathematical objectives. Effective objectives and actual policies are authoritative, not unused config placeholders."
+}

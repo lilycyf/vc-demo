@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "forbidden": [],
+  "reviewed_staged_file_count": 483,
+  "reviewed_staged_bytes": 6120146,
+  "policy": "Explicit source list plus lightweight metrics/contracts/plots. Data matrices, cell-level reference exports, fitted models and secrets excluded.",
+  "excluded_artifact_file_count": 847,
+  "observed_unit_test_output": ".........................                                                [100%]\n25 passed in 7.56s",
+  "whitespace_exemption": "Original task MD preserved byte-for-byte, including deliberate Markdown hard-break spaces and a trailing blank line; all other staged files pass diff --check."
+}

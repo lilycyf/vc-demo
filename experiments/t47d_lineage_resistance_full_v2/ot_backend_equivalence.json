@@ -1,0 +1,13 @@
+{
+  "algorithm": "POT stabilized Sinkhorn, same float64 cost/masses/reg=.1/1000 iterations/tolerance1e-6",
+  "max_absolute_transport_difference": 9.875761032058882e-23,
+  "transport_L1_difference": 9.133229634515033e-20,
+  "cpu_seconds": 16.794673725031316,
+  "gpu_seconds": 1.8961819410324097,
+  "shape": [
+    1000,
+    1400
+  ],
+  "seed": 3,
+  "data": "synthetic numerical implementation test, not biological result"
+}

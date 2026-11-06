@@ -23,6 +23,18 @@ from vc_demo.t47d_lineage.data import TREATMENTS
 from vc_demo.t47d_full.features import build_fold
 
 
+def effective_objective(config):
+    family=config['model']
+    classical={'early_elastic':'squared error + ElasticNet penalty','ridge':'squared error + L2',
+        'frequency':'squared error + L2','pls':'PLS covariance projection and least-squares regression',
+        'xgboost':'reg:squarederror','additive_null':'monotherapy squared error + L2',
+        'hazard':'interval-censored lognormal likelihood and ridge selection calibration',
+        'tracsed':'author TensorFlow mean_squared_error'}
+    if family in classical:return classical[family]
+    extra=config.get('loss','huber')
+    return 'Huber regression' if extra=='huber' else 'Huber regression + '+extra+' auxiliary objective'
+
+
 def sequence_counts(bundle):
     if "pseudobulk" in bundle:
         return bundle["pseudobulk"]
@@ -54,7 +66,7 @@ class FullView:
         if rep in {"scvi","pseudotime","distance","cellrank"}:
             allowed=[t for t in TREATMENTS if t!=c['heldout_treatment']] if c.get('heldout_treatment') else None
             arrays,meta,dest=build_fold(bundle,idx,seed,modules=(rep,),max_fit_day=cutoff,fit_treatments=allowed,
-                no_time_direction=rep=='cellrank' and bool(c.get('no_temporal_order')))
+                no_time_direction=rep=='cellrank' and bool(c.get('no_temporal_order') or c.get('last_snapshot_only')))
             self.source=arrays[rep]
             self.artifact={"path":str(dest),"method":meta["stages"][rep],"train_only":True}
         elif rep in {"pseudobulk","pca","expression","both","matched_no_artifact"}:
@@ -93,12 +105,14 @@ class FullView:
         if self.c.get("baseline_only"): s=np.repeat(s[:,:1],3,axis=1)
         if self.time_steps<3:s[:,self.time_steps:]=s[:,self.time_steps-1:self.time_steps]
         if self.c.get("no_temporal_order"): s=np.repeat(s[:,:self.time_steps].mean(1,keepdims=True),3,axis=1)
+        if self.c.get('last_snapshot_only'):s=np.repeat(s[:,2:3],3,axis=1)
         aux=self.aux_scaler.transform(bundle["aux"][idx,:6])
         if self.c.get("baseline_only"): aux[:,[1,2,4,5]]=0
         for j in range(self.time_steps,3):
             aux[:,j]=0;aux[:,j+3]=0
         if self.c.get("no_clone_abundance"): aux[:]=0
         if self.c.get('no_barcode_inputs'):aux[:]=0
+        if self.c.get('last_snapshot_only'):aux[:,[0,1,3,4]]=0
         if self.c.get('no_temporal_order') and self.time_steps>1:
             aux[:,:self.time_steps]=aux[:,:self.time_steps].mean(1,keepdims=True)
             aux[:,3:3+self.time_steps]=aux[:,3:3+self.time_steps].mean(1,keepdims=True)
@@ -116,6 +130,7 @@ class FullView:
             if self.c.get("baseline_only"):values=np.repeat(values[:,:1],3,axis=1)
             if self.time_steps<3:values[:,self.time_steps:]=values[:,self.time_steps-1:self.time_steps]
             if self.c.get("no_temporal_order"):values=np.repeat(values[:,:self.time_steps].mean(1,keepdims=True),3,axis=1)
+            if self.c.get('last_snapshot_only'):values=np.repeat(values[:,2:3],3,axis=1)
             if self.c.get('heldout_treatment'):
                 values=values.copy();values[list(TREATMENTS).index(self.c['heldout_treatment'])]=0
             values=self.scaler.transform(values.reshape(-1,values.shape[-1])).reshape(3,3,-1)
@@ -241,7 +256,12 @@ class FullCandidate:
             class_mask=torch.tensor(mask,dtype=torch.float32,device=self.device)
             positives=(classes*class_mask).sum(0).clamp(min=1);weight=(class_mask.sum(0)-positives).clamp(min=1)/positives
             optimizer=torch.optim.AdamW(self.network.parameters(),lr=.001,weight_decay=.02)
-            path=torch.tensor(bundle.get('ablation_pathway',bundle['pathway'])[idx].mean(1),device=self.device)
+            auxiliary=bundle.get('ablation_pathway',bundle['pathway'])[idx].mean(1)
+            if c.get('auxiliary_no_artifact'):
+                genes=self.view.genes
+                projection=np.random.default_rng(seed+19).normal(size=(len(genes),50))/np.sqrt(len(genes))
+                auxiliary=bundle['expression'][idx][:,:,genes].mean(1)@projection
+            path=torch.tensor(auxiliary,dtype=torch.float32,device=self.device)
             path=(path-path.mean(0))/path.std(0).clamp(min=.1)
             self.losses=[]
             self.network.train()

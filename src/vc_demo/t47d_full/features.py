@@ -5,6 +5,7 @@ import hashlib
 import importlib.metadata
 import json
 import time
+from functools import lru_cache
 from pathlib import Path
 
 import anndata as ad
@@ -20,6 +21,13 @@ from vc_demo.t47d_lineage.data import dump
 CACHE_ROOT = Path("data/t47d_lineage/full_fold_artifacts")
 SOURCE = Path("data/t47d_lineage/prepared/qc_counts.h5ad")
 ALGORITHM = "full-features-v2.1"
+
+
+@lru_cache(maxsize=1)
+def _wasserstein_solver():
+    import pertpy as pt
+    # Cache only stateless compiled code, never cells, transport plans or labels.
+    return pt.tl.Distance('wasserstein').metric_fct.solver
 
 
 def _aggregate(bundle, obs, values, treatment=None):
@@ -153,8 +161,7 @@ def build_fold(bundle, train_idx, seed, modules=("scvi", "pseudotime", "distance
         import jax.numpy as jnp
         from ott.geometry.pointcloud import PointCloud
         from ott.problems.linear.linear_problem import LinearProblem
-        wasserstein = pt.tl.Distance("wasserstein").metric_fct
-        solve_transport=wasserstein.solver
+        solve_transport=_wasserstein_solver()
         energy=pt.tl.Distance('edistance').metric_fct
         energy_reference=energy.compute_within_distance(reference)
         mmd=pt.tl.Distance('mmd').metric_fct

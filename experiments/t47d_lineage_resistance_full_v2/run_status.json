@@ -1,0 +1,11 @@
+{
+  "counts": {
+    "trained": 45,
+    "pruned_budget_exhausted": 47,
+    "pruned_not_selected": 72
+  },
+  "trained_rollouts": 40,
+  "prior_test_exposure": "Same clone split was reported in pilot; no claim of new blind confirmation",
+  "budget_trained_rollouts": 40,
+  "reward": "5 seed repeated 3-fold clone OOF Spearman"
+}

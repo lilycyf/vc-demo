@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "fallback": 0,
+    "proxy": 0,
+    "nontrained_backprop": 0,
+    "pruned_training": 0,
+    "test_clone_training_in_primary_cv": 0,
+    "wrong_external_backend": 0
+  },
+  "passed": true,
+  "evidence": "tree, fold results, fixed splits, node contracts and MCTS trace"
+}

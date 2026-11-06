@@ -55,7 +55,7 @@ def analyze(run=RUN):
         eps[str(e)]={'selection_median':float(np.median(labels)),'positive_count':int((labels>0).sum()),
             'correlation_with_registered_label':float(spearmanr(labels,b['meta'].label).statistic)}
     table=b['meta'].pivot(index='clone_id',columns='treatment',values='label')
-    raw=np.power(2,table)
+    raw=b['meta'].assign(raw_ratio=b['meta'].fraction_day26/b['meta'].fraction_baseline).pivot(index='clone_id',columns='treatment',values='raw_ratio')
     suppression=pd.DataFrame({'clone_id':table.index,'log2_difference':table[list(TREATMENTS[:2])].max(axis=1)-table.combination,
         'raw_ratio_difference':raw[list(TREATMENTS[:2])].max(axis=1)-raw.combination,
         'mono_positive_combo_negative':((table[list(TREATMENTS[:2])].max(axis=1)>0)&(table.combination<0)).astype(int)})

@@ -1,0 +1,158 @@
+{
+  "purpose": "Replay stronger previously frozen reference; never eligible for post-test reselection of formal winner",
+  "config": {
+    "model": "ridge",
+    "representation": "pathway",
+    "baseline_only": true,
+    "alpha": 100.0
+  },
+  "validation": {
+    "validation_reward": 0.5714798908103247,
+    "reward_metric": "validation_spearman",
+    "validation_std": 0.029345384773695297,
+    "validation_mae": 2.362093532763012,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.6064418744236066,
+        "mae": 2.23668707501815
+      },
+      {
+        "seed": 7,
+        "spearman": 0.5601311093523805,
+        "mae": 2.3811273232878825
+      },
+      {
+        "seed": 11,
+        "spearman": 0.5320330852406542,
+        "mae": 2.5443166959310153
+      },
+      {
+        "seed": 17,
+        "spearman": 0.593750600053712,
+        "mae": 2.3670870459410955
+      },
+      {
+        "seed": 23,
+        "spearman": 0.5650427849812699,
+        "mae": 2.2812495236369186
+      }
+    ],
+    "fold_metrics": [
+      {
+        "seed": 3,
+        "fold": 0,
+        "spearman": 0.6682120753646678,
+        "mae": 2.2764462771879717,
+        "warnings": []
+      },
+      {
+        "seed": 3,
+        "fold": 1,
+        "spearman": 0.6569681704936849,
+        "mae": 2.3302432062889618,
+        "warnings": []
+      },
+      {
+        "seed": 3,
+        "fold": 2,
+        "spearman": 0.5111669014642393,
+        "mae": 2.1033717415775164,
+        "warnings": []
+      },
+      {
+        "seed": 7,
+        "fold": 0,
+        "spearman": 0.5708216054624343,
+        "mae": 2.803373802597209,
+        "warnings": []
+      },
+      {
+        "seed": 7,
+        "fold": 1,
+        "spearman": 0.6591992251735661,
+        "mae": 2.093558021535434,
+        "warnings": []
+      },
+      {
+        "seed": 7,
+        "fold": 2,
+        "spearman": 0.48502813379091453,
+        "mae": 2.2464501457310053,
+        "warnings": []
+      },
+      {
+        "seed": 11,
+        "fold": 0,
+        "spearman": 0.7790151674813419,
+        "mae": 1.8101803709305955,
+        "warnings": []
+      },
+      {
+        "seed": 11,
+        "fold": 1,
+        "spearman": 0.34234584760478765,
+        "mae": 2.632533189843233,
+        "warnings": []
+      },
+      {
+        "seed": 11,
+        "fold": 2,
+        "spearman": 0.4922721717259559,
+        "mae": 3.1902365270192137,
+        "warnings": []
+      },
+      {
+        "seed": 17,
+        "fold": 0,
+        "spearman": 0.6043548687894277,
+        "mae": 2.310903124798001,
+        "warnings": []
+      },
+      {
+        "seed": 17,
+        "fold": 1,
+        "spearman": 0.6033339882052101,
+        "mae": 2.347678896892374,
+        "warnings": []
+      },
+      {
+        "seed": 17,
+        "fold": 2,
+        "spearman": 0.6412568452972982,
+        "mae": 2.4426791161329127,
+        "warnings": []
+      },
+      {
+        "seed": 23,
+        "fold": 0,
+        "spearman": 0.6036060491535838,
+        "mae": 2.435480209430315,
+        "warnings": []
+      },
+      {
+        "seed": 23,
+        "fold": 1,
+        "spearman": 0.6495880750833148,
+        "mae": 2.278379980221663,
+        "warnings": []
+      },
+      {
+        "seed": 23,
+        "fold": 2,
+        "spearman": 0.4830920129254478,
+        "mae": 2.1298883812587786,
+        "warnings": []
+      }
+    ],
+    "formal_fold_fits": 15
+  },
+  "heldout": {
+    "spearman": 0.4894871539912125,
+    "mae": 2.200447772394724
+  },
+  "previously_exposed_test": true,
+  "preprocessing_difference": "Pilot baseline uses standardized 3-category treatment covariates; new full-study plugin uses 2 chemical-presence indicators. Regularized baselines are not preprocessing-equivalent.",
+  "interpretation": "Beating only the current 5 roots does not establish improvement over the previously validated stronger root. Preserve this comparison rather than tune the test.",
+  "recommendation": "Future framework revisions must freeze baseline input encoding/scaling as well as split/labels; retain strong historical roots as fixed benchmarks."
+}

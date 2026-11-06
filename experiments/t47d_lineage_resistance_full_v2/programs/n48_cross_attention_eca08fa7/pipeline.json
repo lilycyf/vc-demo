@@ -1,0 +1,29 @@
+{
+  "config": {
+    "model": "cross_attention",
+    "representation": "pathway",
+    "loss": "huber",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "hazard",
+      "representation": "pca",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80,
+      "parent_config": {
+        "model": "pls",
+        "representation": "pathway",
+        "baseline_only": true,
+        "components": 3
+      },
+      "composition": "parent prediction + .25 train-residual mutation"
+    },
+    "composition": "parent prediction + .25 train-residual mutation"
+  },
+  "parent": "n37_hazard_b5d78428",
+  "fallback": false,
+  "proxy": false,
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

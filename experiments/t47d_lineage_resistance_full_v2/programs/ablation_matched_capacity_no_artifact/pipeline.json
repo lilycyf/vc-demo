@@ -1,0 +1,35 @@
+{
+  "config": {
+    "model": "early_elastic",
+    "representation": "matched_no_artifact",
+    "loss": "huber",
+    "head": "regression",
+    "epochs": 80,
+    "parent_config": {
+      "model": "temporal_transformer",
+      "representation": "matched_no_artifact",
+      "loss": "huber",
+      "head": "regression",
+      "epochs": 80,
+      "parent_config": {
+        "model": "frequency",
+        "representation": "matched_no_artifact",
+        "baseline_only": true,
+        "auxiliary_no_artifact": true,
+        "matched_width": 50
+      },
+      "composition": "parent prediction + .25 train-residual mutation",
+      "auxiliary_no_artifact": true,
+      "matched_width": 50
+    },
+    "composition": "parent prediction + .25 train-residual mutation",
+    "auxiliary_no_artifact": true,
+    "matched_width": 4
+  },
+  "parent": null,
+  "fallback": false,
+  "proxy": false,
+  "effective_training_objective": "squared error + ElasticNet penalty",
+  "backend": "full_t47d_native_or_author_tf",
+  "train_contract": "5 seeds x 3 clone folds; labels confined to training clones"
+}

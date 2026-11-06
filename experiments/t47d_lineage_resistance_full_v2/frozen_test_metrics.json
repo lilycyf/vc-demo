@@ -1,0 +1,190 @@
+{
+  "root_0_frequency": {
+    "kind": "root",
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.15774836008171347,
+        "mae": 2.5596713980985135
+      },
+      {
+        "seed": 7,
+        "spearman": 0.15774836008171347,
+        "mae": 2.5596713980985135
+      },
+      {
+        "seed": 11,
+        "spearman": 0.15774836008171347,
+        "mae": 2.5596713980985135
+      },
+      {
+        "seed": 17,
+        "spearman": 0.15774836008171347,
+        "mae": 2.5596713980985135
+      },
+      {
+        "seed": 23,
+        "spearman": 0.15774836008171347,
+        "mae": 2.5596713980985135
+      }
+    ],
+    "ensemble": {
+      "spearman": 0.15774836008171347,
+      "mae": 2.5596714020721563
+    },
+    "bootstrap": {
+      "unit": "clone block, all treatments kept together",
+      "draws": 2000,
+      "valid_draws": 2000,
+      "spearman_ci95": [
+        -0.22637554035951327,
+        0.5523257050266663
+      ]
+    },
+    "secondary_metrics": {
+      "positive_selection": {
+        "positive_count": 7,
+        "n": 30,
+        "auroc": 0.42857142857142855,
+        "auprc": 0.22842202655867253,
+        "brier_score": 0.19918186206994715,
+        "ece_fixed_10_bins": 0.12382877081554594,
+        "undefined_reason": null
+      },
+      "calibration_fit": "development OOF predictions and development labels only; never test",
+      "ndcg": 0.8561177379754753,
+      "mono_resistant_combo_sensitive": {
+        "positive_count": 4,
+        "n": 10,
+        "auroc": 0.8333333333333334,
+        "auprc": 0.875,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "undefined_reason": null,
+        "score_definition": "maximum predicted monotherapy log2 selection minus predicted combination log2 selection; margin ranking, not calibrated joint probability"
+      },
+      "mono_positive_combo_negative_accuracy": 0.6,
+      "suppression_sign_accuracy": 0.5,
+      "log2_suppression": {
+        "spearman": 0.06666666666666665,
+        "mae": 2.9343086945344905
+      },
+      "raw_ratio_suppression": {
+        "spearman": 0.07878787878787878,
+        "mae": 1.4852729276697922
+      },
+      "suppression_scale_note": "Observed raw ratio is f26/f0, NOT exp2(smoothed log label). Predictions invert the registered eps transform and clip predicted fractions to [0,1]. Raw and log2 differences are separate.",
+      "clonewise_ndcg_at5": 0.48456136431781377,
+      "clonewise_ndcg_at10": 0.7315722643193037
+    },
+    "within_treatment": {
+      "giredestrant": {
+        "spearman": 0.2121212121212121,
+        "mae": 3.1391967737029076
+      },
+      "palbociclib": {
+        "spearman": -0.06666666666666665,
+        "mae": 3.1525132543833307
+      },
+      "combination": {
+        "spearman": 0.006060606060606061,
+        "mae": 1.387304178130229
+      }
+    },
+    "caveat": "These heldout clone IDs were exposed in earlier pilot. This is a frozen new-run comparison, not fresh blind external confirmation."
+  },
+  "n79_early_elastic_8cdddb50": {
+    "kind": "child",
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.25208588430547446,
+        "mae": 2.468488363978168
+      },
+      {
+        "seed": 7,
+        "spearman": 0.218934254330615,
+        "mae": 2.49528492396762
+      },
+      {
+        "seed": 11,
+        "spearman": 0.2654355339597802,
+        "mae": 2.4536740119823817
+      },
+      {
+        "seed": 17,
+        "spearman": 0.2727778412696484,
+        "mae": 2.4260525093047822
+      },
+      {
+        "seed": 23,
+        "spearman": 0.2387362346511686,
+        "mae": 2.4374130903387123
+      }
+    ],
+    "ensemble": {
+      "spearman": 0.26232061570710885,
+      "mae": 2.4516510124573117
+    },
+    "bootstrap": {
+      "unit": "clone block, all treatments kept together",
+      "draws": 2000,
+      "valid_draws": 2000,
+      "spearman_ci95": [
+        -0.07528939959989212,
+        0.5609125606227982
+      ]
+    },
+    "secondary_metrics": {
+      "positive_selection": {
+        "positive_count": 7,
+        "n": 30,
+        "auroc": 0.5217391304347826,
+        "auprc": 0.2703427524856096,
+        "brier_score": 0.1986566298113869,
+        "ece_fixed_10_bins": 0.16774041159519745,
+        "undefined_reason": null
+      },
+      "calibration_fit": "development OOF predictions and development labels only; never test",
+      "ndcg": 0.8651693601089331,
+      "mono_resistant_combo_sensitive": {
+        "positive_count": 4,
+        "n": 10,
+        "auroc": 0.75,
+        "auprc": 0.6220238095238095,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "undefined_reason": null,
+        "score_definition": "maximum predicted monotherapy log2 selection minus predicted combination log2 selection; margin ranking, not calibrated joint probability"
+      },
+      "mono_positive_combo_negative_accuracy": 0.6,
+      "suppression_sign_accuracy": 0.5,
+      "log2_suppression": {
+        "spearman": 0.10303030303030303,
+        "mae": 3.271542186034491
+      },
+      "raw_ratio_suppression": {
+        "spearman": -0.33333333333333326,
+        "mae": 1.6005529230218816
+      },
+      "suppression_scale_note": "Observed raw ratio is f26/f0, NOT exp2(smoothed log label). Predictions invert the registered eps transform and clip predicted fractions to [0,1]. Raw and log2 differences are separate.",
+      "clonewise_ndcg_at5": 0.5772834006346179,
+      "clonewise_ndcg_at10": 0.7581835945312623
+    },
+    "within_treatment": {
+      "giredestrant": {
+        "spearman": 0.1515151515151515,
+        "mae": 2.9110338532279014
+      },
+      "palbociclib": {
+        "spearman": 0.12727272727272726,
+        "mae": 3.0841218836100155
+      },
+      "combination": {
+        "spearman": 0.17575757575757575,
+        "mae": 1.3597973005340187
+      }
+    },
+    "caveat": "These heldout clone IDs were exposed in earlier pilot. This is a frozen new-run comparison, not fresh blind external confirmation."
+  }
+}
