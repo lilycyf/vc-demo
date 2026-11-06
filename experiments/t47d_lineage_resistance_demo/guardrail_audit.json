@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "backprop_nontrained": 0,
+    "pruned_training": 0,
+    "test_overlap": 0,
+    "fallback": 0,
+    "proxy": 0
+  },
+  "passed": true,
+  "evidence": "tree, MCTS trace, frozen splits, program contracts"
+}

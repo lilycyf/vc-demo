@@ -1,0 +1,999 @@
+{
+  "implemented_candidates": [
+    {
+      "model": "ridge",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "ridge",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "elastic",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "pls",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "xgboost",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gru",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "transformer",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "expression",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "expression",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "expression",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pathway",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pathway",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "both",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "both",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "both",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pca",
+      "alpha": 1.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pca",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "huber",
+      "genes": 128,
+      "epochs": 80
+    },
+    {
+      "model": "gated_residual",
+      "representation": "pca",
+      "alpha": 100.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    }
+  ],
+  "implemented_candidate_count": 120,
+  "planned_families": [
+    {
+      "id": "scvi_state_encoder",
+      "required_artifact": "train-fold scVI latent",
+      "source": "https://github.com/scverse/scvi-tools"
+    },
+    {
+      "id": "cellrank_time_kernel",
+      "required_artifact": "train-clone temporal transition kernel",
+      "source": "https://github.com/theislab/cellrank"
+    },
+    {
+      "id": "tracsed_reference_backend",
+      "required_artifact": "rebuilt Slingshot/selection JSON and exact author model",
+      "source": "https://github.com/Genentech/TraCSED"
+    },
+    {
+      "id": "distribution_distance_encoder",
+      "required_artifact": "train-reference early-cell distributions",
+      "source": "https://github.com/scverse/pertpy"
+    },
+    {
+      "id": "survival_or_hazard_head",
+      "required_artifact": "explicit censoring and event definition",
+      "source": "https://github.com/sebp/scikit-survival"
+    },
+    {
+      "id": "cross_treatment_attention",
+      "required_artifact": "aligned early clone-treatment tensor",
+      "source": "https://pytorch.org/"
+    }
+  ],
+  "planned_status": "declared_not_yet_executable_or_evaluated",
+  "scope": "No foundation checkpoint proxy. Planned families are not counted as executable coverage."
+}

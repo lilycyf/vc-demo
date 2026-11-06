@@ -1,0 +1,9 @@
+{
+  "required": [
+    "GSE260703",
+    "verified clone mapping",
+    "frozen group splits"
+  ],
+  "missing": [],
+  "checkpoint_substitution": "forbidden"
+}

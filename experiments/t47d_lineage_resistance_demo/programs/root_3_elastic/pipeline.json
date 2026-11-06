@@ -1,0 +1,14 @@
+{
+  "config": {
+    "model": "elastic",
+    "representation": "expression",
+    "baseline_only": true,
+    "alpha": 10.0
+  },
+  "parent": null,
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "GEO expression",
+  "fallback": false,
+  "proxy": false
+}

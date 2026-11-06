@@ -1,0 +1,16 @@
+{
+  "config": {
+    "model": "pls",
+    "representation": "pathway",
+    "alpha": 10.0,
+    "loss": "mse",
+    "genes": 128,
+    "epochs": 80
+  },
+  "parent": "root_4_pls",
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "real Hallmark memberships",
+  "fallback": false,
+  "proxy": false
+}

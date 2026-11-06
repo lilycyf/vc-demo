@@ -1,0 +1,22 @@
+{
+  "selected_at": "2026-11-06T08:18:03.271833+00:00",
+  "root": "root_2_ridge",
+  "child": "root_4_pls__pls__ef4e4c0da8",
+  "selection_basis": "validation only; no test metric read",
+  "configurations": {
+    "root_2_ridge": {
+      "model": "ridge",
+      "representation": "pathway",
+      "baseline_only": true,
+      "alpha": 100.0
+    },
+    "root_4_pls__pls__ef4e4c0da8": {
+      "model": "pls",
+      "representation": "pathway",
+      "alpha": 10.0,
+      "loss": "mse",
+      "genes": 128,
+      "epochs": 80
+    }
+  }
+}

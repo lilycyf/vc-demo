@@ -1,0 +1,14 @@
+{
+  "config": {
+    "model": "pls",
+    "representation": "pathway",
+    "baseline_only": true,
+    "components": 3
+  },
+  "parent": null,
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "real Hallmark memberships",
+  "fallback": false,
+  "proxy": false
+}

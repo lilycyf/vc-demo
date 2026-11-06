@@ -1,0 +1,16 @@
+{
+  "config": {
+    "model": "pls",
+    "representation": "expression",
+    "alpha": 100.0,
+    "loss": "mse",
+    "genes": 128,
+    "epochs": 80
+  },
+  "parent": "root_4_pls__pls__ef4e4c0da8",
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "GEO expression",
+  "fallback": false,
+  "proxy": false
+}

@@ -1,0 +1,15 @@
+{
+  "config": {
+    "model": "xgboost",
+    "representation": "expression",
+    "baseline_only": false,
+    "alpha": 10.0,
+    "depth": 2
+  },
+  "parent": null,
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "GEO expression",
+  "fallback": false,
+  "proxy": false
+}

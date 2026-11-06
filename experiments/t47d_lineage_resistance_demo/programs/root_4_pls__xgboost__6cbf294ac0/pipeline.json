@@ -1,0 +1,16 @@
+{
+  "config": {
+    "model": "xgboost",
+    "representation": "pca",
+    "alpha": 100.0,
+    "loss": "mse",
+    "genes": 128,
+    "epochs": 80
+  },
+  "parent": "root_4_pls",
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "GEO expression",
+  "fallback": false,
+  "proxy": false
+}

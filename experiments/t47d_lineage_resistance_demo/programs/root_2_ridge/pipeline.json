@@ -1,0 +1,14 @@
+{
+  "config": {
+    "model": "ridge",
+    "representation": "pathway",
+    "baseline_only": true,
+    "alpha": 100.0
+  },
+  "parent": null,
+  "backend": "native_regression",
+  "mutation": "explicit estimator/representation research variant",
+  "artifact_usage": "real Hallmark memberships",
+  "fallback": false,
+  "proxy": false
+}

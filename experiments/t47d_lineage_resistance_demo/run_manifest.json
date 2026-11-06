@@ -1,0 +1,13 @@
+{
+  "base_commit": "18fcaa7d3a87f183e0d1faa0f0c42e13b286c7f5",
+  "source_hashes": {
+    "/workspace/vc-demo/scripts/t47d/run.py": "a2a324be8831a0d0f1ff4e85acef9068528cdbbc1323f0d5154b26439cd12b65",
+    "src/vc_demo/t47d_lineage/models.py": "d318fbc6151d5cb09b4bfc9a0605f46234d08fe4796e9257253cb02f60bc79d2",
+    "src/vc_demo/t47d_lineage/data.py": "ef8e9a2fd3672c3ffaf020c480ca79b29ba886ff5bd6be4e8b9ac45b80b888a8"
+  },
+  "selected_rollout_budget": 24,
+  "wall_budget_hours": 20.0,
+  "started_at_unix": 1793952999.0677614,
+  "python_version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "gpu": "NVIDIA GeForce RTX 3090, 595.91.07"
+}

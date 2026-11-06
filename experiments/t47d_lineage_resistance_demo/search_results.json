@@ -1,0 +1,141 @@
+{
+  "stop_reason": "no improvement for 12 selected rollouts after minimum 20",
+  "trained_roots": 5,
+  "trained_selected_rollouts": 20,
+  "generated_proposals": 79,
+  "pruned": 59,
+  "failed": 0,
+  "best_root": {
+    "id": "root_2_ridge",
+    "validation": 0.5714798908103247,
+    "test": {
+      "seed_metrics": [
+        {
+          "seed": 3,
+          "spearman": 0.4894871539912125,
+          "mae": 2.2004478975644783
+        },
+        {
+          "seed": 7,
+          "spearman": 0.4894871539912125,
+          "mae": 2.2004478975644783
+        },
+        {
+          "seed": 11,
+          "spearman": 0.4894871539912125,
+          "mae": 2.2004478975644783
+        },
+        {
+          "seed": 17,
+          "spearman": 0.4894871539912125,
+          "mae": 2.2004478975644783
+        },
+        {
+          "seed": 23,
+          "spearman": 0.4894871539912125,
+          "mae": 2.2004478975644783
+        }
+      ],
+      "ensemble": {
+        "spearman": 0.4894871539912125,
+        "mae": 2.200447903524943
+      },
+      "bootstrap": {
+        "unit": "clone block, all treatments together",
+        "valid_draws": 2000,
+        "spearman_ci95": [
+          0.02567135137534747,
+          0.8055399900847738
+        ]
+      },
+      "within_treatment": {
+        "giredestrant": {
+          "spearman": 0.6969696969696969,
+          "mae": 2.491377770407943
+        },
+        "palbociclib": {
+          "spearman": 0.7818181818181817,
+          "mae": 2.0624537541302597
+        },
+        "combination": {
+          "spearman": -0.0303030303030303,
+          "mae": 2.047512186036626
+        }
+      }
+    }
+  },
+  "best_child": {
+    "id": "root_4_pls__pls__ef4e4c0da8",
+    "validation": 0.5284486577496973,
+    "test": {
+      "seed_metrics": [
+        {
+          "seed": 3,
+          "spearman": 0.33908110121936713,
+          "mae": 2.410975596309913
+        },
+        {
+          "seed": 7,
+          "spearman": 0.33908110121936713,
+          "mae": 2.410975596309913
+        },
+        {
+          "seed": 11,
+          "spearman": 0.33908110121936713,
+          "mae": 2.410975596309913
+        },
+        {
+          "seed": 17,
+          "spearman": 0.33908110121936713,
+          "mae": 2.410975596309913
+        },
+        {
+          "seed": 23,
+          "spearman": 0.33908110121936713,
+          "mae": 2.410975596309913
+        }
+      ],
+      "ensemble": {
+        "spearman": 0.33908110121936713,
+        "mae": 2.410975596309913
+      },
+      "bootstrap": {
+        "unit": "clone block, all treatments together",
+        "valid_draws": 2000,
+        "spearman_ci95": [
+          -0.06116071428571429,
+          0.6606713484561658
+        ]
+      },
+      "within_treatment": {
+        "giredestrant": {
+          "spearman": 0.7696969696969697,
+          "mae": 2.7357298099412333
+        },
+        "palbociclib": {
+          "spearman": -0.05454545454545454,
+          "mae": 3.118129066211917
+        },
+        "combination": {
+          "spearman": 0.34545454545454546,
+          "mae": 1.3790679127765886
+        }
+      }
+    }
+  },
+  "child_beats_root": false,
+  "guardrails": {
+    "backprop_nontrained": 0,
+    "pruned_training": 0,
+    "test_overlap": 0,
+    "fallback": 0,
+    "proxy": 0
+  },
+  "incomplete_components": [
+    "exact TraCSED reference rebuild",
+    "scVI/CellRank/pertpy/hazard planned families",
+    "long-term transport",
+    "full eight-ablation panel"
+  ],
+  "claim": "completed early-endpoint executable-subset search, not complete paper-method replication"
+}
