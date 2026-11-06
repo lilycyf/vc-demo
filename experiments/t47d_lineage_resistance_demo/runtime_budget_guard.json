@@ -1,0 +1,10 @@
+{
+  "pod_id": "u0qtgg3i94nllw",
+  "deadline_utc": "2026-11-07T07:30:00+00:00",
+  "deadline_beijing": "2026-11-07T15:30:00+08:00",
+  "pid": 23225,
+  "api_self_check": "passed",
+  "mode": "armed",
+  "credential_storage": "existing container environment only; never logged or persisted to volume",
+  "action": "stop current Pod, never delete Pod or Network Volume"
+}
