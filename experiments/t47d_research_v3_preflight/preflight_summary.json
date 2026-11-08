@@ -1,0 +1,51 @@
+{
+  "regression_tests": 82,
+  "regression_result": "passed",
+  "test_command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=src:. python -m pytest tests/harness/test_research_framework.py tests/t47d -q",
+  "r_packages": {
+    "jsonlite": "2.0.0",
+    "pls": "2.9.0",
+    "slingshot": "2.18.0",
+    "scran": "1.38.1",
+    "igraph": "2.3.4",
+    "BiocNeighbors": "2.4.0",
+    "BiocParallel": "1.44.0"
+  },
+  "scope": {
+    "roots": 6,
+    "coverage_rollouts": 26,
+    "optimization_rollouts": 40,
+    "cv_seeds": [
+      3,
+      7,
+      11,
+      17,
+      23
+    ],
+    "folds_per_seed": 3,
+    "heldout_primary_refits": 0,
+    "required_ablations": 8,
+    "additional_controls": [
+      "day4_snapshot",
+      "early_abundance",
+      "denominator_null"
+    ],
+    "secondary": [
+      "LOCO",
+      "treatment_transfer",
+      "horizon_transfer",
+      "early_warning",
+      "public_R_TF_reference",
+      "long_term_biology"
+    ]
+  },
+  "pod_id": "2rz5r62ak701jl",
+  "gpu_hourly_usd": 0.24,
+  "container_hourly_usd_approx": 0.007,
+  "new_volume_monthly_usd": 7,
+  "approved_total_limit_usd": 20,
+  "stop_deadline_utc": "2026-11-09T17:15:00+00:00",
+  "old_copy_pod": "stopped; verified in RunPod console",
+  "run_status": "preflight_only; not scientific experiment results",
+  "prior_test_exposure": true
+}

@@ -1,0 +1,28 @@
+{
+  "metadata_rows": 138,
+  "clones": 46,
+  "clones_by_split": {
+    "development": 36,
+    "test": 10
+  },
+  "source_files": {
+    "data/t47d_lineage/prepared/dataset_manifest.json": 2136,
+    "data/t47d_lineage/prepared/clone_condition_counts.csv": 37688,
+    "data/t47d_lineage/prepared/clone_expression_rows.csv": 19266,
+    "data/t47d_lineage/prepared/clone_mean_log_expression.npz": 52054437,
+    "data/t47d_lineage/prepared/clone_pseudobulk_counts.npz": 22154865,
+    "data/t47d_lineage/prepared/gene_order.csv": 1443571,
+    "data/t47d_lineage/prepared/qc_counts.h5ad": 454900546,
+    "data/t47d_lineage/pathways/h.all.v2025.1.Hs.symbols.gmt": 48689
+  },
+  "roots": [
+    "root_0_frequency",
+    "root_1_ridge",
+    "root_2_early_elastic",
+    "root_3_pls",
+    "root_4_xgboost",
+    "root_historical_exact_ridge"
+  ],
+  "candidate_manifest_count": 107,
+  "coverage_count": 26
+}

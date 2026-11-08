@@ -1,0 +1,22 @@
+{
+  "archive_sha256": "b7509b246a2f130912d0b327ef8d65df2c69b8811f707ba0fe2eba9eeb49bdd2",
+  "bytes": 8345196342,
+  "destination_pod": "2rz5r62ak701jl",
+  "destination_volume_name": "t47d-research-formal-eu-ro",
+  "excludes": [
+    "SSH private keys",
+    "API keys",
+    "prior experiment trees and model checkpoints"
+  ],
+  "includes": [
+    "public GSE260703 preparation/raw counts",
+    "public Hallmark",
+    "pinned public author source",
+    "R/Python/TF environments"
+  ],
+  "source_and_destination_checksum_match": true,
+  "source_gzip_integrity": "passed",
+  "source_pod": "u0qtgg3i94nllw",
+  "source_volume": "j3e2rlypr7",
+  "transfer": "authenticated HTTPS directly between user-owned RunPod resources; credential not persisted in this record"
+}
