@@ -60,6 +60,15 @@ MODEL_BLUEPRINTS: list[dict[str, Any]] = [
     {"id": "multi_task_cellline_conditioning", "status": "planned", "category": "multi_cellline", "paper_family": "multi_context_conditioning", "change_level": 4, "role": "Condition predictions on cell-line identity for multi-cell-line experiments.", "requires": ["multiple_cell_lines"], "implementation_notes": "Requires multiple cell lines and a cell-line id field; not suitable for a one-cell-line run unless used as a no-op ablation.", "acceptance": ["Documents cell-line metadata", "Preserves per-cell-line splits"]},
 ]
 
+MODEL_BLUEPRINTS.append({
+    'id': 'agent_defined_candidate', 'status': 'planned', 'category': 'research_hypothesis',
+    'paper_family': 'agent_defined', 'change_level': 5, 'requires': [],
+    'role': 'Implement a new falsifiable model or training hypothesis from development evidence beyond the predefined templates.',
+    'fallback_allowed': False, 'cost_class': 'medium',
+    'implementation_notes': 'The active Codex chooses the full architecture, composition, actual artifacts and training policy. Update research_hypothesis.json and all consumed artifact contracts. No required dense branch or fixed mixing coefficient.',
+    'acceptance': ['Uses the frozen task tensor contract', 'Records evidence and a falsification condition', 'Formal training and development evaluation precede reward'],
+})
+
 OFFICIAL_K562_BLUEPRINT_IDS = {
     item["id"] for item in MODEL_BLUEPRINTS if item.get("official_k562")
 }

@@ -9,6 +9,7 @@ from typing import Any
 from vc_demo.harness.feedback import build_framework_feedback, write_framework_feedback
 from vc_demo.harness.model_blueprints import blueprint_by_id
 from vc_demo.harness.pipeline_grammar import program_for_blueprint
+from vc_demo.harness.research_contract import selection_context
 
 
 def _now() -> str:
@@ -40,7 +41,7 @@ def write_memory(run_dir: Path, memory: dict[str, Any]) -> None:
     memory["updated_at"] = _now()
     path = run_dir / "search_memory.json"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(memory, indent=2), encoding="utf-8")
+    path.write_text(json.dumps(selection_context(memory), indent=2), encoding="utf-8")
 
 
 def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list[dict[str, Any]] | None = None) -> dict[str, Any]:
@@ -53,6 +54,8 @@ def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list
     blocked: list[dict[str, Any]] = []
     replicate_nodes: list[dict[str, Any]] = []
     for name, node in tree.get("nodes", {}).items():
+        if node.get('evidence_phase') == 'confirmation':
+            continue
         strategy = str(node.get("strategy") or "root")
         parent = str(node.get("parent") or "")
         family = family_for_strategy(strategy) if strategy != "root" else "root"
@@ -67,7 +70,7 @@ def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list
         if node.get("structural_relation") == "replicate":
             replicate_nodes.append({"node": name, "strategy": strategy, "family": family, "parent": parent})
         if node.get("status") == "trained" and strategy != "root":
-            successes.append({"node": name, "strategy": strategy, "family": family, "structural_relation": node.get("structural_relation"), "val": node.get("best_val_macro_f1"), "test": node.get("test_macro_f1"), "parent": parent})
+            successes.append({"node": name, "strategy": strategy, "family": family, "structural_relation": node.get("structural_relation"), "val": node.get("best_val_macro_f1"), "parent": parent})
         if node.get("status") in {"requires_artifact_acquisition", "blocked_missing_artifact"}:
             blocked.append({"node": name, "strategy": strategy, "family": family, "missing": node.get("missing_required_artifacts", [])})
     memory["blueprint_counts"] = dict(counts)
@@ -83,7 +86,7 @@ def rebuild_memory_from_tree(run_dir: Path, tree: dict[str, Any], failures: list
     memory["framework_feedback"] = feedback
     write_framework_feedback(run_dir, feedback)
     write_memory(run_dir, memory)
-    return memory
+    return selection_context(memory)
 
 
 def family_for_strategy(strategy: str) -> str:
@@ -147,5 +150,5 @@ def is_duplicate_proposal(memory: dict[str, Any], parent: str, strategy: str, ma
 
 def record_event(run_dir: Path, kind: str, payload: dict[str, Any]) -> None:
     memory = load_memory(run_dir)
-    memory.setdefault("events", []).append({"time": _now(), "kind": kind, **payload})
+    memory.setdefault("events", []).append({"time": _now(), "kind": kind, **selection_context(payload)})
     write_memory(run_dir, memory)

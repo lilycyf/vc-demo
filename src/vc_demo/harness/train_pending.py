@@ -12,6 +12,7 @@ from vc_demo.harness.paper_level_guardrails import assert_no_formal_proxy
 from vc_demo.harness.report import write_summary
 from vc_demo.harness.search_memory import rebuild_memory_from_tree
 from vc_demo.harness.state import read_json, write_json
+from vc_demo.harness.research_contract import assert_search_open
 
 
 def reward(metrics: dict[str, Any]) -> float:
@@ -91,6 +92,7 @@ def missing_artifacts_for_pending(node: dict[str, Any], proposal: dict[str, Any]
 
 
 def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, summary: Path | None = None, allow_missing_artifact_fallbacks: bool = False) -> dict[str, Any]:
+    assert_search_open(run_dir)
     tree_path = run_dir / "tree.json"
     if not tree_path.exists():
         raise FileNotFoundError(f"missing tree file: {tree_path}")
@@ -104,11 +106,11 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
 
     config = read_json(Path(node["config"]))
     model_path = Path(str(config.get("model", {}).get("custom_model_path", node.get("program_model_path", ""))))
-    if not model_path.exists():
+    if not model_path.is_file():
         raise FileNotFoundError(f"pending node has no implemented model.py yet: {model_path}")
 
     proposal_path = Path(str(node.get("proposal", "")))
-    proposal = read_json(proposal_path) if proposal_path.exists() else None
+    proposal = read_json(proposal_path) if proposal_path.is_file() else None
     missing = missing_artifacts_for_pending(node, proposal, config)
     if missing and not allow_missing_artifact_fallbacks:
         raise RuntimeError(
@@ -124,8 +126,9 @@ def train_pending_node(run_dir: Path, node_name: str, max_epochs: int | None, su
             "metrics": str(run_dir / "nodes" / node_name / "metrics.json"),
             "best_val_macro_f1": metrics["best_val_macro_f1"],
             "test_macro_f1": metrics["test_macro_f1"],
-            "visits": 1,
-            "value": reward(metrics),
+            "visits": 0,
+            "value": 0.0,
+            "evidence_phase": metrics.get('evidence_phase', 'search'),
             "requires_implementation": False,
             "duration_seconds": metrics.get("duration_seconds"),
             "pipeline": metrics.get("pipeline", {}),

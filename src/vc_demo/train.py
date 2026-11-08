@@ -13,6 +13,7 @@ from tqdm import tqdm
 from vc_demo.data import build_datasets
 from vc_demo.metrics import macro_f1
 from vc_demo.models import build_model
+from vc_demo.harness.research_contract import evaluation_policy, task_data_config, file_digest, ResearchContractError, capture_execution_recipe
 
 
 def load_config(path: Path) -> dict:
@@ -91,6 +92,14 @@ def resolve_model_dimensions(config: dict, sample: dict[str, torch.Tensor]) -> d
 
 
 def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict:
+    task_data_config(config)
+    phase, evaluate_test = evaluation_policy(config)
+    if phase == 'confirmation':
+        lock_path = Path(config['evaluation']['confirmation_lock_path'])
+        lock = json.loads(lock_path.read_text())
+        current = capture_execution_recipe(config, lock_path.parent, max_epochs=max_epochs)
+        if current['fingerprint'] != lock['recipe_fingerprints'][config['node_name']]:
+            raise ResearchContractError('Direct confirmation changed the frozen executable recipe')
     output_dir.mkdir(parents=True, exist_ok=True)
     batch_size = int(config.get("training", {}).get("batch_size", 16))
     epochs = int(max_epochs or config.get("training", {}).get("epochs", 8))
@@ -101,7 +110,8 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     config = resolve_model_dimensions(config, train_dataset[0])
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=batch_size)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size)
+    test_loader = DataLoader(test_dataset, batch_size=batch_size) if evaluate_test else None
+    (output_dir / 'effective_config.json').write_text(json.dumps(config, indent=2))
 
     requested_device = str(config.get("training", {}).get("device", "auto")).lower()
     force_cpu = os.environ.get("VC_DEMO_FORCE_CPU", "").lower() in {"1", "true", "yes"} or requested_device == "cpu"
@@ -116,12 +126,12 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
         raise RuntimeError("training.device='cuda' was requested, but CUDA is unavailable or unsupported by this PyTorch build")
     device = torch.device("cuda" if cuda_usable else "cpu")
     model = build_model(config).to(device)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=weight_decay) if phase != 'confirmation' else None
     loss_fn = build_loss(config, device)
 
     best_val = -1.0
     history: list[dict] = []
-    for epoch in range(1, epochs + 1):
+    for epoch in range(1, epochs + 1) if phase != 'confirmation' else ():
         model.train()
         running = 0.0
         for batch in tqdm(train_loader, desc=f"epoch {epoch}/{epochs}", leave=False):
@@ -140,16 +150,27 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
             best_val = val["macro_f1"]
             torch.save({"model": model.state_dict(), "config": config, "val": val}, output_dir / "best.pt")
 
-    best = torch.load(output_dir / "best.pt", map_location=device)
+    checkpoint_path = output_dir / 'best.pt'
+    if phase == 'confirmation':
+        lock = json.loads(Path(config['evaluation']['confirmation_lock_path']).read_text())
+        receipt = lock.get('checkpoints', {}).get(config.get('node_name'))
+        if not receipt or file_digest(Path(receipt['path'])) != receipt['sha256']:
+            raise ResearchContractError('Confirmation requires the unchanged selected checkpoint; retraining is forbidden')
+        checkpoint_path = Path(receipt['path'])
+    best = torch.load(checkpoint_path, map_location=device)
+    best_val = float(best['val']['macro_f1'])
     model.load_state_dict(best["model"])
-    test = evaluate(model, test_loader, device, config)
+    test = evaluate(model, test_loader, device, config) if evaluate_test else None
     result = {
         "node_name": config.get("node_name", output_dir.name),
         "dataset_type": (config.get("data") or config.get("dataset", {})).get("dataset_type", "synthetic"),
         "device": str(device),
         "best_val_macro_f1": best_val,
-        "test_macro_f1": test["macro_f1"],
-        "test_loss": test["loss"],
+        "test_macro_f1": test["macro_f1"] if test else None,
+        "test_loss": test["loss"] if test else None,
+        "evidence_phase": phase,
+        "epochs_trained_this_invocation": epochs if phase != 'confirmation' else 0,
+        "test_metric_source": "frozen_confirmation" if test else "withheld_until_confirmation",
         "history": history,
         "training": {"epochs": epochs, "batch_size": batch_size, "lr": lr, "weight_decay": weight_decay, "loss_type": config.get("training", {}).get("loss_type", "cross_entropy")},
     }
@@ -157,7 +178,7 @@ def train(config: dict, output_dir: Path, max_epochs: int | None = None) -> dict
     memory = (
         f"# Node Memory: {result['node_name']}\n\n"
         f"- Best validation Macro-F1: {best_val:.4f}\n"
-        f"- Test Macro-F1: {test['macro_f1']:.4f}\n"
+        f"- Test Macro-F1: {test['macro_f1'] if test else 'withheld until confirmation'}\n"
         f"- Device: {device}\n"
     )
     (output_dir / "memory.md").write_text(memory, encoding="utf-8")

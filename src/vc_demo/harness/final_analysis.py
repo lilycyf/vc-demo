@@ -42,10 +42,10 @@ def build_analysis(run_dir: Path) -> str:
         f"- Failed nodes: {len(failures)}",
     ]
     if best[0]:
-        lines.append(f"- Best overall: `{best[0]}` val={float(best[1].get('best_val_macro_f1', 0)):.4f} test={float(best[1].get('test_macro_f1', 0)):.4f}")
+        lines.append(f"- Best overall: `{best[0]}` val={float(best[1].get('best_val_macro_f1', 0)):.4f} test={best[1].get('test_macro_f1') if best[1].get('test_macro_f1') is not None else 'withheld'}")
     if best_root[0]:
         improvement = float(best[1].get("best_val_macro_f1", 0)) - float(best_root[1].get("best_val_macro_f1", 0))
-        lines.append(f"- Best root: `{best_root[0]}` val={float(best_root[1].get('best_val_macro_f1', 0)):.4f} test={float(best_root[1].get('test_macro_f1', 0)):.4f}")
+        lines.append(f"- Best root: `{best_root[0]}` val={float(best_root[1].get('best_val_macro_f1', 0)):.4f} test={best_root[1].get('test_macro_f1') if best_root[1].get('test_macro_f1') is not None else 'withheld'}")
         lines.append(f"- Improvement over best root: {improvement:.4f} validation Macro-F1")
     lines += ["", "## Benchmark Alignment", ""]
     if benchmark:
@@ -67,7 +67,8 @@ def build_analysis(run_dir: Path) -> str:
     for strategy, rows in sorted(by_strategy.items()):
         best_row = max(rows, key=lambda row: float(row.get("val") or -1))
         program = best_row.get("program", {})
-        lines.append(f"| `{strategy}` | {len(rows)} | {float(best_row.get('val') or 0):.4f} | {float(best_row.get('test') or 0):.4f} | {program.get('paper_alignment', '')} |")
+        test_text = f"{float(best_row['test']):.4f}" if best_row.get('test') is not None else 'withheld'
+        lines.append(f"| `{strategy}` | {len(rows)} | {float(best_row.get('val') or 0):.4f} | {test_text} | {program.get('paper_alignment', '')} |")
     lines += ["", "## Artifact Interpretation", ""]
     artifacts = manifest.get("artifacts", {})
     lines.append(f"- Present artifacts: {', '.join(artifacts.get('present_artifacts', [])) or 'none'}")

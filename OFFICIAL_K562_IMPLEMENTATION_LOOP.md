@@ -1,5 +1,9 @@
 # Official K562 Automatic Implementation Loop
 
+This is a classification-task adapter, not the universal research policy.
+`docs/RESEARCH_PROTOCOL.md` and `CODEX_AGENT_COOKBOOK.md` define the shared
+boundaries and take precedence over historical experiment instructions.
+
 This repo now supports a stricter paper-aligned loop for selected planned nodes:
 
 1. MCTS selects a parent.
@@ -19,7 +23,8 @@ This is the preferred mode for official K562 paper-aligned runs. Do not manually
 - Missing required artifacts must block/acquire; they must not be replaced by random or tabular stand-ins.
 - Failed implementation attempts do not backpropagate reward.
 - `candidate_queued` proposals remain eligible for later global selection; `pruned_not_selected` proposals are never trained.
-- Test metrics are reported only after training; they must not guide implementation or repair.
+- Test metrics are withheld during search. Only the frozen selected checkpoint(s)
+  may be evaluated during confirmation, after which this run is closed to search.
 - Generated native children must not inherit `external_static_node` backend from public static parents.
 - Generated native children must use stable official K562 cached embeddings when a public static parent lacks native feature config.
 
@@ -178,17 +183,17 @@ Formal K562 runs must treat a missing required artifact as an acquisition task b
 The negative missing-artifact smoke is the only case where stopping immediately after queue creation is acceptable; formal scale runs must perform the acquisition pass.
 
 
-## Parent-Preserving Implementation Semantics
+## Open Composition Semantics
 
-For official K562 full runs, a selected blueprint is a delta on the selected parent. Codex must preserve useful parent routes by default:
+For official K562 full runs, a selected blueprint is a research hypothesis, not a compulsory architectural delta:
 
-- keep parent dense/context trunks and dense target-logit branches unless the node explicitly tests replacement;
-- attach graph/pathway/target/fusion modules as residual, gated, additive, bilinear, or attention branches;
-- use search memory to reuse motifs that have approached or beaten the root;
-- record whether the implementation is parent-preserving, replacement, or ablation in `pipeline.json`;
+- replacement, independent branches, feature fusion, joint training, cross-fitted residuals, stacking and ablations are allowed;
+- select composition using development evidence, not a blanket requirement to keep dense logits;
+- use development-only search memory, with a falsifiable hypothesis and paired comparison;
+- record the chosen composition and training policy in `research_hypothesis.json` and `pipeline.json`;
 - never call a simplified proxy a full implementation.
 
-This policy is intended to keep the search competitive while retaining strict artifact and audit guardrails.
+Fixed residual weights or parent preservation are experiment choices, never framework defaults.
 
 ## Experiment Codex Handoff Semantics
 

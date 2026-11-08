@@ -67,10 +67,8 @@ def resolve_level_and_epochs(args: argparse.Namespace) -> tuple[str, TransferLev
     if args.run_type == "loop_self_test" and level.run_type == "full_cellline_run":
         raise SystemExit("--level full_cellline_run requires --run-type full_cellline_run.")
     max_epochs = args.max_epochs if args.max_epochs is not None else level.default_max_epochs
-    if level.run_type == "full_cellline_run" and max_epochs < 8:
-        raise SystemExit("full_cellline_run requires --max-epochs >= 8; 1-epoch smoke budgets are forbidden.")
-    if level.run_type == "full_cellline_run" and args.target_val_macro_f1 is None:
-        raise SystemExit("full_cellline_run requires --target-val-macro-f1; define the minimum acceptable validation Macro-F1.")
+    if max_epochs < 1:
+        raise SystemExit('Training budget must be positive; each model family must justify its effective training policy.')
     return level_name, level, max_epochs
 
 
@@ -118,11 +116,23 @@ def _count_status(run_dir: Path, status: str) -> int:
 
 
 def full_run_continue_reason(run_dir: Path, target_val_macro_f1: float | None, trained_budget: int) -> tuple[bool, str]:
+    if (run_dir / 'confirmation_lock.json').exists():
+        return False, 'confirmation opened; further search is forbidden'
     manifest = _read_json(run_dir / "run_manifest.json")
     search = manifest.get("search", {})
     stop_reason = str(search.get("stop_reason", "")) if isinstance(search, dict) else ""
     implementation_items = _queue_len(run_dir, "implementation_queue.json")
-    acquisition_items = _queue_len(run_dir, "acquisition_queue.json")
+    queue_items = _read_json(run_dir / 'acquisition_queue.json').get('items', [])
+    receipts = _read_json(run_dir / 'artifact_acquisition' / 'verified_blockers.json').get('items', [])
+    terminal = set()
+    for receipt in receipts:
+        evidence = receipt.get('evidence_files', {})
+        if receipt.get('status') != 'blocked_unavailable_primary_artifact' or not receipt.get('sources_checked') or not evidence:
+            continue
+        from vc_demo.harness.research_contract import file_digest
+        if all(Path(path).is_file() and file_digest(Path(path)) == checksum for path, checksum in evidence.items()):
+            terminal.add(receipt.get('artifact_id'))
+    acquisition_items = sum(item.get('artifact_id') not in terminal for item in queue_items)
     if implementation_items:
         return False, f"implementation queue requires realtime Codex action ({implementation_items})"
     if acquisition_items:
@@ -197,6 +207,11 @@ def build_command(args: argparse.Namespace, roots: list[str], run_dir: Path, exp
         str(level.budget_proposals),
         "--budget-trained-nodes",
         str(level.budget_trained_nodes),
+        '--coverage-rollouts',
+        str(getattr(args, 'coverage_rollouts', 0)),
+        '--confirmation-models',
+        str(getattr(args, 'confirmation_models', 2)),
+        '--enable-acquisition-loop',
         "--candidate-pool-size",
         str(level.candidate_pool_size),
         "--proposal-selection-mode",
@@ -279,7 +294,9 @@ def main() -> None:
     parser.add_argument("--experiment", default=None)
     parser.add_argument("--root-configs", nargs="*", default=None)
     parser.add_argument("--max-epochs", type=int, default=None)
-    parser.add_argument("--target-val-macro-f1", type=float, default=None, help="Required for full_cellline_run: minimum acceptable best generated child validation Macro-F1.")
+    parser.add_argument("--target-val-macro-f1", type=float, default=None, help="Optional registered scientific target; not a universal framework pass threshold.")
+    parser.add_argument('--coverage-rollouts', type=int, default=0)
+    parser.add_argument('--confirmation-models', type=int, default=2)
     parser.add_argument("--implementation-repair-attempts", type=int, default=3)
     parser.add_argument("--resume", action="store_true", help="Resume the existing run instead of adding --reset.")
     parser.add_argument("--execute", action="store_true", help="Run the generated command after writing the invocation files.")
@@ -328,9 +345,9 @@ def main() -> None:
             "strict_artifacts": True,
             "validation_macro_f1_reward": True,
             "test_metric_report_only": True,
-            "full_run_forbids_one_epoch": level.run_type == "full_cellline_run",
+            "training_policy_must_be_declared_and_audited": True,
             "artifact_constrained_blueprint_filter_required": level.artifact_constrained_required,
-            "primary_objective": "best_generated_child_beats_best_root_and_reaches_target_score" if level.run_type == "full_cellline_run" else "loop_mechanics",
+            "primary_objective": "registered_scientific_objective_separate_from_framework_completion" if level.run_type == "full_cellline_run" else "loop_mechanics",
             "target_val_macro_f1": args.target_val_macro_f1,
         },
     }

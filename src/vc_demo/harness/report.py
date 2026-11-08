@@ -9,6 +9,10 @@ from vc_demo.harness.artifact_registry import artifact_usage_from_config
 from vc_demo.harness.state import read_json
 
 
+def _score(value):
+    return 'withheld' if value is None else f'{float(value):.4f}'
+
+
 def _config_for(node: dict[str, Any]) -> dict[str, Any]:
     return read_json(Path(node["config"]))
 
@@ -129,7 +133,7 @@ def trained_rows(tree: dict[str, Any]) -> list[dict[str, Any]]:
                 "lr": training_cfg.get("lr"),
                 "weight_decay": training_cfg.get("weight_decay"),
                 "val": float(node["best_val_macro_f1"]),
-                "test": float(node["test_macro_f1"]),
+                "test": float(node["test_macro_f1"]) if node.get('test_macro_f1') is not None else None,
                 "note": cfg.get("proposal_note", "root"),
             }
         )
@@ -145,7 +149,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
     best_root = max(roots, key=lambda row: row["val"]) if roots else None
 
     lines = [
-        "# VCHarness-Style K562 Search Summary",
+        "# VCHarness-Style Search Summary",
         "",
         "This run separates the search loop into MCTS parent selection, proposal-pool generation, cheap screening/pruning, selected rollout execution, and reward backpropagation.",
         "In paper-aligned mode, a node may be proposed, queued, pruned, blocked for artifact acquisition, selected for training, skipped when realtime implementation cannot safely produce a real model, failed, or trained. Only trained rollout nodes backpropagate reward to MCTS.",
@@ -163,9 +167,9 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         f"- Failure/acquisition records: {len(failures)}",
     ]
     if best:
-        lines.append(f"- Best node: `{best['node']}` val={best['val']:.4f} test={best['test']:.4f}")
+        lines.append(f"- Best node: `{best['node']}` val={best['val']:.4f} test={_score(best['test'])}")
     if best and best_root:
-        lines.append(f"- Best root: `{best_root['node']}` val={best_root['val']:.4f} test={best_root['test']:.4f}")
+        lines.append(f"- Best root: `{best_root['node']}` val={best_root['val']:.4f} test={_score(best_root['test'])}")
         lines.append(f"- Improvement over best root: {best['val'] - best_root['val']:.4f} validation Macro-F1")
 
     impl = implementation_loop_summary(summary_path.parent)
@@ -203,7 +207,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
 
     lines.extend(["", "## Root Baselines", "", "| Node | Data dir | Model | Val Macro-F1 | Test Macro-F1 |", "|---|---|---|---:|---:|"])
     for row in roots:
-        lines.append(f"| `{row['node']}` | `{row['data_dir']}` | {row['model_type']} | {row['val']:.4f} | {row['test']:.4f} |")
+        lines.append(f"| `{row['node']}` | `{row['data_dir']}` | {row['model_type']} | {row['val']:.4f} | {_score(row['test'])} |")
 
     lines.extend([
         "",
@@ -217,7 +221,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         missing = row["missing_required_artifacts"] or ""
         sides = row["artifact_sides"] or "none"
         lines.append(
-            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['strategy']} | {row['execution_backend']} | {row['pipeline_kind']} | {row['loss_type']} | {sides} | {missing} | {sec} | {row['model_type']} | {row['val']:.4f} | {row['test']:.4f} |"
+            f"| {row['iteration']} | `{row['node']}` | `{row['parent']}` | {row['node_kind']} | {row['strategy']} | {row['execution_backend']} | {row['pipeline_kind']} | {row['loss_type']} | {sides} | {missing} | {sec} | {row['model_type']} | {row['val']:.4f} | {_score(row['test'])} |"
         )
 
     lines.extend(["", "## Artifact And Pipeline Audit", "", "| Node | Uses artifact | Artifact sides | Required artifacts | Missing required | Manifest | Loss | Test metric source |", "|---|---:|---|---|---|---|---|---|"])
@@ -237,7 +241,7 @@ def write_summary(tree: dict[str, Any], summary_path: Path, failures: list[dict[
         node = tree["nodes"][name]
         label = f"{'  ' * depth}- `{name}` status={node.get('status')} visits={node.get('visits')}"
         if node.get("status") == "trained":
-            label += f" val={node['best_val_macro_f1']:.4f} test={node['test_macro_f1']:.4f}"
+            label += f" val={node['best_val_macro_f1']:.4f} test={_score(node.get('test_macro_f1'))}"
         if node.get("strategy"):
             label += f" strategy={node['strategy']}"
         if node.get("program_model_path"):

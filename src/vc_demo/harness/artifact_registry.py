@@ -44,14 +44,19 @@ def artifact_path(row: dict[str, Any]) -> Path:
 
 
 def path_is_present(path: Path, artifact: dict[str, Any] | None = None) -> bool:
-    if not str(path):
+    if not str(path) or str(path) == '.':
         return False
     if not path.exists():
         return False
     if path.is_dir():
+        for name in (artifact or {}).get('required_files', []):
+            required = path / name
+            if not required.is_file() or required.stat().st_size == 0:
+                return False
         # Model/checkpoint directories must contain real files; an empty marker
         # directory is not a present foundation artifact.
-        return any(child.is_file() for child in path.rglob("*"))
+        return any(child.is_file() and child.stat().st_size > 0
+                   and child.name not in {'.gitattributes', '.gitkeep'} for child in path.rglob("*"))
     return path.is_file() and path.stat().st_size > 0
 
 

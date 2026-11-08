@@ -31,6 +31,9 @@ def _generic_program_source(blueprint_id: str) -> str:
 
 def materialize_model(program_dir: Path, strategy: str, allow_skip: bool = False) -> dict[str, Any]:
     model_path = program_dir / "model.py"
+    if model_path.exists():
+        py_compile.compile(str(model_path), doraise=True)
+        return {'status': 'implemented', 'strategy': strategy, 'source_kind': 'preserved_agent_program', 'model_path': str(model_path)}
     try:
         source = render_program_source(strategy)
         source_kind = "harness_implemented_template"
@@ -66,12 +69,12 @@ def render_codex_task(strategy: str, request_path: Path) -> str:
     return "\n".join([
         f"# Codex Implementation Task: `{strategy}`",
         "",
-        "Implement the pending node-local `model.py` for this blueprint as a parent-preserving child when possible.",
-        "Treat the blueprint as a research delta, not as permission to discard the parent pipeline by default.",
+        "Implement a complete node-local model for this hypothesis. Choose its architecture and composition from development evidence.",
+        "The parent is a frozen comparator, not a mandatory computation branch. Replacement and simplification are valid research actions.",
         "Do not modify data splits, labels, metrics, or artifact files.",
         "Do not fabricate missing artifacts. If the model requires a missing artifact, stop and update acquisition queue instead.",
         "Do not implement a compact/proxy/simplified stand-in. Formal search requires a real artifact-backed implementation, but Codex may preserve parent dense/residual routes and compose the selected module competitively.",
-        "Use parent_summary.json and search_memory motifs from the original request to retain useful branches unless replacement is explicitly requested.",
+        "Use parent_summary.json and development-only feedback; record falsification criteria and update research_hypothesis.json.",
         "Do not import vc_demo.official_k562.native_models.OfficialK562NativeModel; that helper is smoke-only and forbidden for formal runs.",
         "",
         "## Blueprint",

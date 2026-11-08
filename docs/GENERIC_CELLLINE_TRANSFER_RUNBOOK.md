@@ -1,272 +1,98 @@
 # Generic Cell-Line Transfer Runbook
 
-This runbook is the canonical procedure for running a VCHarness-style generic cell-line transfer test. A prompt should only specify run variables; all executable rules below are part of the repo contract.
+Read CODEX_AGENT_COOKBOOK.md and docs/RESEARCH_PROTOCOL.md first. This document
+describes the cell-line classification adapter, not a universal model/dataset
+template. A regression, lineage or survival task uses its own source-backed
+adapter and tensor/metric contract, while reusing the shared research safeguards.
 
-## Purpose
+## Short Handoff
 
-Validate that the harness can move from one source-backed cell-line task to another without leaking K562-specific data, artifacts, or assumptions. K562 is a validation example, not a runtime template.
+Use BASE_BRANCH, RUN_BRANCH, CELL_LINE_ID (or TASK_ID), RUN_TYPE, TEST_LEVEL,
+RUN_DIR and the approved resource limit. TARGET_VAL_MACRO_F1 is an optional
+classification objective unless the user explicitly requires a threshold.
+Do not copy long historical rules into prompts. Do not infer another cell line
+or its target universe, split, labels or artifact vocabulary from an example.
 
-## Prompt Variables Contract
+## Preparation
 
-Prompts are variable handoffs only. They must not copy cookbook/runbook guardrails. The receiving Codex must read the repo docs and execute the current rules from the files.
+1. Work in the specified remote repo; preserve the user's work and current branch
+   unless a separate run branch was requested.
+2. Read primary task/data sources. Identify the independent group, available
+   observation window, endpoint, metric/direction, sampling and batch limits.
+3. Acquire data/artifacts from verifiable sources. Lack of a resolver requires
+   same-session Codex investigation, not immediate termination.
+4. Register research_protocol.json and exact benchmark recipes, including known
+   strong historical recipes. Record encoding, scaling and actual source hashes.
+5. Declare independent coverage/optimization/confirmation budgets, effective
+   per-family training policy, stopping rules and optional scientific targets.
+6. A from-scratch scientific run uses a fresh RUN_DIR. Never reset a directory
+   with executed recipes or a confirmation lock. Resume only an open protocol.
 
-Required prompt fields:
+## Execution Profiles
 
-| Field | Meaning |
-|---|---|
-| `BASE_BRANCH` | Branch to start from |
-| `RUN_BRANCH` | New branch for this run |
-| `CELL_LINE_ID` | Cell line to run |
-| `RUN_TYPE` | `loop_self_test` or `full_cellline_run` |
-| `TEST_LEVEL` | One of the supported levels below |
-| `RUN_DIR` | Fresh experiment directory |
-| `TARGET_VAL_MACRO_F1` | Required for `full_cellline_run`; optional for loop tests |
-
-The prompt should say: read `CODEX_AGENT_COOKBOOK.md`, this runbook, `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md`, and `ARTIFACT_ACQUISITION_RUNBOOK.md`. If `CELL_LINE_ID=K562`, also read `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`.
-
-Do not paste detailed runtime rules into the prompt. If a rule needs to change, update the cookbook/runbook first.
-
-
-## Run Types Are Mandatory
-
-Every handoff must distinguish run type from cell line. Do not infer run type from `TEST_LEVEL`.
-
-| Run type | Purpose | Allowed levels | Default epochs | Quality interpretation |
-|---|---|---|---:|---|
-| `loop_self_test` | Validate runner wiring, proposal-pool pruning, strict artifact gates, implementation loop, and report counters | `preflight`, `transfer_64x16`, `transfer_150x40` | 1 | May not be used to claim model superiority |
-| `full_cellline_run` | Run a real cell-line experiment whose primary objective is to beat the best root | `full_cellline_run` | 8 | Must report whether best generated child beats best root |
-
-Hard rules:
-
-- `full_cellline_run` must use `--level full_cellline_run`.
-- `full_cellline_run` must use `--max-epochs >= 8`.
-- `full_cellline_run` must explicitly set `--target-val-macro-f1 <score>`; the target cannot be implied.
-- `transfer_64x16` and `transfer_150x40` are loop/self-test levels even if they generate many proposals.
-- If the user asks to "完整跑" or "真实跑" a cell line, use `RUN_TYPE=full_cellline_run`, not `transfer_64x16`.
-- Full runs require an artifact-constrained blueprint filter before training: exclude unresolved/blocked artifact-dependent blueprints from the main run and report exclusions separately.
-- Known-unavailable artifacts must not stop the main full run. After source-backed acquisition proves unavailability, record the blocker, suppress/filter dependent blueprint families, and continue searching other feasible paths.
-
-## Test Levels
-
-Use `scripts/run_generic_cellline_transfer_test.py` to expand a short request into the standard invocation.
-
-| Level | Proposals | Trained rollouts | Use |
-|---|---:|---:|---|
-| `preflight` | 8 | 2 | wiring and artifact readiness smoke |
-| `transfer_64x16` | 64 | 16 | default transfer test |
-| `transfer_150x40` | 150 | 40 | loop/self-test pressure test after 64x16 passes |
-| `full_cellline_run` | 300 | 100 | root-beating full cell-line run; default 8 epochs |
-
-## Standard Invocation
+`scripts/run_generic_cellline_transfer_test.py` provides named classification
+profiles: preflight, transfer_64x16, transfer_150x40 and full_cellline_run.
+The first three validate execution mechanics; their scores are not scientific
+model evidence. The full profile's300/100/8 settings are defaults for that
+adapter, not universal scientific minima or valid settings for every model.
+Formal adequacy comes from the registered task/training/validation plan.
 
 ```bash
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-line ${CELL_LINE_ID}   --run-type ${RUN_TYPE}   --level ${TEST_LEVEL}   --execute
+PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py \
+  --cell-line "$CELL_LINE_ID" --run-type "$RUN_TYPE" --level "$TEST_LEVEL" \
+  --run-dir "$RUN_DIR" --execute
 ```
 
-For resume:
-
-```bash
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py   --cell-line ${CELL_LINE_ID}   --run-type ${RUN_TYPE}   --level ${TEST_LEVEL}   --resume   --execute
-```
-
-The script writes `transfer_invocation.json` and `transfer_invocation.md` into the run directory before execution.
-
-### Root-Beating Objective For Full Runs
-
-A `full_cellline_run` is not complete merely because it generates proposals or trains roots. Its primary objective is to find a generated child that both beats the best root and reaches the user-specified target validation Macro-F1. The final report must include:
-
-- best root val/test Macro-F1
-- best generated child val/test Macro-F1
-- delta child vs root
-- target validation Macro-F1
-- delta child vs target
-- whether both primary objectives were achieved
-- if not achieved, root-dominance attribution covering artifact limits, training budget, model-space limits, implementation limits, and optimization stability
-
-If no child beats root or no child reaches the target score, the run can be considered mechanically complete but scientifically not successful for the full-run objective.
-
-## Source-Backed Task Contract
-
-Before running a non-K562 cell line, create or verify:
-
-```text
-data/cell_lines/official_<slug>_cls/manifest.json
-data/cell_lines/official_<slug>_cls/train.tsv
-data/cell_lines/official_<slug>_cls/val.tsv
-data/cell_lines/official_<slug>_cls/test.tsv
-data/cell_lines/official_<slug>_cls/target_genes.tsv
-```
-
-The task contract must define:
-
-- cell-line id
-- split sizes
-- target gene count
-- target gene order
-- label semantics
-- reward metric: validation Macro-F1
-- test metric: final report only
-- source URL, source file, checksum, and build script when available
-
-If these cannot be verified, stop with a blocker. Do not reuse K562 task files.
-
-## Artifact Registry
-
-Each transfer needs:
-
-```text
-configs/artifacts/<slug>_registry.json
-configs/official_<slug>_roots/*.json
-```
-
-Artifacts must be labeled as `present`, `missing`, `acquired`, `reusable`, `cell_line_specific`, or `blocked`, with source/provenance notes. Missing artifacts enter acquisition first. If source, shape, row order, vocabulary, or provenance cannot be verified, block. Do not fallback.
-
-### Codex Research Acquisition
-
-`requires_codex_research_download_or_build` is not a final stop and is not a reason to wait for a later Codex by default. The current experiment Codex must perform the research/download/build/audit attempt immediately, then resume the same run if successful.
-
-When `acquisition_queue.json` or `artifact_acquisition/ACQUIRE_<artifact>.md` appears:
-
-1. Generate the short acquisition handoff:
-
-```bash
-PYTHONPATH=src python scripts/generate_artifact_acquisition_prompt.py   --run-dir <run-dir>   --cell-line ${CELL_LINE_ID}   --branch <run-branch>
-```
-
-2. The same experiment Codex must search official/primary public sources, inspect expected loader/tensor contracts, and either acquire/build the exact source-backed artifact or write a blocker report.
-3. A final `blocked` decision is allowed only after this research step records checked sources and a concrete reason: no verifiable source, unavailable weights, inaccessible license/manual approval, incomplete public files, incomplete tensor contract, incompatible vocabulary, non-equivalent reconstruction, row/order mismatch, or leakage risk.
-4. If acquired, update the registry/provenance, rerun artifact audit, then resume the same transfer run with `scripts/run_generic_cellline_transfer_test.py --resume --execute`.
-   On resume, previously blocked nodes whose required artifacts now audit as present must be reactivated into the global queue instead of remaining blockers.
-5. If not acquired for one of the verified blocker reasons above, keep the artifact missing/blocked, suppress/filter dependent blueprint families, and continue searching other feasible paths. Do not train substitute nodes.
-
-For `official_string_gnn_model_dir`, the Codex acquisition step must not treat `official_string_gnn_keep20_graph` or `string_k562_gene_graph` as the model directory. It must find the real `/home/Models/STRING_GNN` checkpoint/model layout or explicitly prove that no public equivalent is available.
-
-## Root Configs
-
-Root configs must point to the selected cell line's task and artifacts. They may not point to K562 data unless `CELL_LINE_ID=K562`.
-
-Expected root families, subject to source-backed availability:
-
-- AIDO embedding MLP
-- AIDO+GNN embedding MLP
-- optional public static wrapper for the selected cell line
-
-## Realtime Implementation Loop
-
-### Codex Autonomy During Implementation
-
-A selected blueprint is a mutation request, not a command to discard the parent model. Unless the proposal explicitly says `replace_parent`, Codex must implement the child as:
-
-```text
-child = parent pipeline + selected blueprint delta
-```
-
-Default implementation behavior:
-
-- Preserve parent dense/context trunk and dense target-logit branch when they exist.
-- Add target/graph/pathway/fusion/loss changes as residual, gated, additive, bilinear, attention, calibration, or training-strategy deltas.
-- Keep the strongest validated parent signal available as a competitive route; biological priors should augment it, not erase it.
-- Read `search_memory.json` and parent metrics before choosing the concrete architecture.
-- Reuse motifs that have already beaten or approached the root, unless the selected blueprint explicitly tests a different hypothesis.
-- If the selected blueprint is low-rank/graph/pathway/fusion, include a dense residual branch by default so the node tests whether the new module improves the parent rather than whether the new module can replace the parent from scratch.
-
-This is not fallback. The artifact-backed selected module must be real when claimed; the dense/residual parent branch is the competitive baseline path preserved inside the child.
-
-When `implementation_queue.json` contains a selected planned node, the experiment Codex must handle it immediately, not leave it for a later run:
-
-1. Read node-local `IMPLEMENTATION_REQUEST.md`, `CODEX_IMPLEMENTATION_TASK.md` if present, `artifact_contract.json`, `smoke_contract.json`, `base_config.json`, and `pipeline.json`.
-2. If required artifacts are missing, run acquisition or block. Do not write `model.py`.
-3. If required artifacts are present, implement only node-local `model.py` and node-local pipeline metadata. Tiny helpers may live under `src/vc_demo/official_<slug>/` only when necessary.
-4. Run compile, native smoke, and `train_pending`.
-5. In `loop_self_test`, if no safe real implementation can be produced, mark the node `implementation_skipped`, clear it from `implementation_queue.json`, and continue global search. In `full_cellline_run`, do not passively auto-skip an artifact-present selected node. Treat `requires_realtime_implementation` as an immediate same-session task: implement node-local `model.py`, smoke/train it, and resume. If a real implementation cannot be produced after documented attempts, mark that selected candidate as implementation-infeasible/skipped with a precise reason, clear the queue item, and continue the global queue. Only documented artifact/source/contract blockers may prevent implementation.
-6. Resume or continue the same run without `--reset`.
-
-Allowed edits during pending implementation:
-
-```text
-<run>/programs/<node>/model.py
-<run>/programs/<node>/pipeline.json
-src/vc_demo/official_<slug>/  # tiny helpers only when necessary
-```
-
-Forbidden edits:
-
-- split files
-- labels
-- target gene order
-- reward metric
-- test labels
-- artifact provenance
-- unrelated cell-line files
-- public wrapper code unless the task is explicitly public-wrapper compatibility
-- raw data/artifact files as part of a model workaround
-
-## Hard Guardrails
-
-- no fallback model
-- no compact/proxy model in formal tests
-- no K562 data or artifact leakage into another cell line
-- no test-set tuning
-- unselected proposals are pruned, not trained
-- selected rollout must train before backprop
-- generated child must not route to `external_static_node` unless it is explicitly a public static wrapper candidate
-
-## Full-Run Completion Gate
-
-For `RUN_TYPE=full_cellline_run`, proposal exhaustion alone is not a valid completion condition. The run is invalid if:
-
-- no generated child was trained;
-- selected artifact-present planned nodes were converted directly to `implementation_skipped`;
-- the trained-rollout budget was not reached and feasible queued candidates remain;
-- best generated child cannot be compared to best root.
-
-Such a run must be reported as `framework_failed_no_generated_child_trained` or `requires_realtime_implementation_action_needed`, not as a completed full experiment. `requires_realtime_implementation` is not a final state unless the same-session implementation attempt was not performed.
-
-## Reports
-
-Each transfer run must produce a final report under the run root, conventionally:
-
-```text
-experiments/official_<slug>_generic_transfer_v1/final_generic_transfer_report.md
-```
-
-It must summarize task contract, artifacts, acquisition attempts, root baselines, proposal pool, selected/pruned rollouts, trained/pending/failed/blocked counts, best root, best child, and acceptance metrics.
-
-## Framework Feedback Phase
-
-A run does not only produce a best model; it should produce search-policy feedback. After a run, generate or refresh:
-
-```bash
-PYTHONPATH=src python scripts/write_framework_feedback.py --run-dir <run-dir> --target-val-macro-f1 <target-if-any>
-```
-
-The feedback layer converts outcomes into next-run policy:
-
-- root dominance -> stronger parent-preserving delta requirement;
-- unstable positive family -> multi-seed validation recommendation and stability/regularization boosts;
-- validation/test divergence -> calibration and robustness boosts;
-- repeated artifact blocker -> suppress/filter dependent family after acquisition proof;
-- target gap -> favor competitive compositions that preserve root signal and add one clear mechanism.
-
-For `full_cellline_run`, do not interpret a one-seed win as a stable framework improvement. If the selected child exceeds the root or target, schedule multi-seed validation before treating that architecture as a promoted motif.
-
-## Existing Run Directory Guard
-
-If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `nodes/`, or queues, Codex must use `--resume` to continue. A from-scratch run must use a fresh directory. The runner refuses to overwrite existing run state because doing so can erase selected rollout implementations and invalidate MCTS/backprop audit trails.
-
-## Full Run Queue Drain
-
-For `RUN_TYPE=full_cellline_run`, `pending implementation trained` is an intermediate state, not a terminal stop. The standard entrypoint must keep resuming the same `RUN_DIR` until a generated child both beats the best root and reaches the target validation Macro-F1, the trained-rollout budget is exhausted, no-improvement stopping fires, an acquisition/implementation queue requires same-session action, or no feasible queued candidate remains. If generated candidates remain queued and there is no blocker, the run must continue draining the global queue.
-
-
-## Artifact Usefulness Phase
-
-After any full artifact-aware run or ablation run, execute:
-
-```bash
-PYTHONPATH=src python scripts/write_artifact_usefulness_report.py --run-dir <run-dir>
-PYTHONPATH=src python scripts/write_framework_feedback.py --run-dir <run-dir> --target-val-macro-f1 <target-if-any>
-```
-
-The next run should use these outputs as framework feedback. If artifact incremental gain is not proven, do not simply increase search size. First bias the search space toward dense-parent-preserving artifact residuals, graph/pathway attention biases, target calibration priors, and paired dense controls.
+Use --resume for an existing open run. The wrapper writes an invocation plan.
+Other task adapters must use their actual entrypoints; never run a regression
+through the classification adapter's n_targets/n_classes contract. Missing
+backend registration is implementation work, not justification for synthetic
+data or another cell line's backend.
+
+## Active Codex Loop
+
+Inspect development-only feedback, select a trained parent, generate multiple
+hypotheses, re-rank the retained global queue and train the best next rollout.
+Availability is a subsequent acquisition gate, not a ranking bonus. Pruned and
+unselected proposals do not train. Only successful formal development results
+backpropagate, exactly once.
+
+For selected planned nodes, handle the request now: acquire actual dependencies,
+choose the full model/composition, update research_hypothesis.json, implement,
+compile, native-smoke, train_pending and resume. Codex may replace or simplify
+the parent. Do not rewrite an existing custom model with a template. After real
+unsuccessful attempts, record infeasibility/skip and continue other candidates;
+do not leave an unprocessed queue as the final product.
+
+Use explicit coverage allocation to inventory methods; spend optimization
+allocation on development evidence. Do not force named foundation families to
+the top because they are large, complex, available or paper-branded. Replenish
+and re-rank after every completed rollout, including resumed implementations.
+
+## Evaluation And Closure
+
+Evaluate strongest references, mechanical/null controls, group-aware uncertainty
+and task-relevant strata during development. Residuals/stackers need inner OOF;
+uniform epoch counts are not evidence of fair optimization opportunity.
+
+Stop at the registered budget/stopping condition or an explicit validity/resource
+boundary, not because one queue item was handled. An optional target does not
+override the spending limit. A null model result can still be an executed study.
+
+Freeze selected executable fingerprints using research_contract --freeze-selection.
+Only then perform confirmation. Search cannot resume after that lock; exposed
+test groups stay exposed even in another branch. Static scripts that evaluate
+test are confirmation/reference tracks, not adaptive proposal parents.
+
+## Delivery
+
+Report separate execution, protocol, scientific, artifact-attribution and transfer
+verdicts. Include exact root/child recipes, independent sample counts, primary and
+conditional metrics, paired uncertainty, budgets/costs, acquisition and repair,
+negative findings and prior exposure. Do not claim framework superiority from
+one task or one positive seed. Use docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md.
+
+Commit only allowed source/config/metadata/tests/reports. Keep datasets, fitted
+models, arrays, environments and credentials off GitHub; verify staged paths and
+secrets. Preserve the approved stop timer and do not extend cloud spending.
 

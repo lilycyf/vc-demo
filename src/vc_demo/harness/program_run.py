@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from vc_demo.harness.artifact_acquisition import resolve_item, source_map
-from vc_demo.harness.artifact_registry import audit_registry, load_registry, requirements_for_blueprint, summarize_missing_requirements
+from vc_demo.harness.artifact_registry import audit_registry, load_registry, requirements_for_blueprint, summarize_missing_requirements, default_registry_path
 from vc_demo.harness.executor import run_node
 from vc_demo.harness.implementation_agent import implement_pending
 from vc_demo.harness.mcts import backpropagate, select_parent
@@ -17,6 +17,9 @@ from vc_demo.harness.report import write_summary
 from vc_demo.harness.run_manifest import write_run_manifest
 from vc_demo.harness.search_memory import is_duplicate_proposal, rebuild_memory_from_tree, record_event
 from vc_demo.harness.state import empty_tree, read_json, reset_run_dir, write_json
+from vc_demo.harness.research_contract import assert_search_open, verify_benchmarks, freeze_record, verify_protocol, ResearchContractError
+from vc_demo.harness.research_feedback import ResearchBudget
+from vc_demo.harness.program_agent import scientific_score
 
 
 def reward(metrics: dict[str, Any]) -> float:
@@ -43,6 +46,7 @@ def enrich_node_from_proposal(node: dict[str, Any], proposal: dict[str, Any], co
     node["structural_signature"] = proposal.get("structural_signature", "")
     node["parent_structural_signature"] = proposal.get("parent_structural_signature", "")
     node["structural_relation"] = proposal.get("structural_relation", "")
+    node['budget_phase'] = proposal.get('scientific_selection', {}).get('budget_phase', 'optimization')
 
 
 def link_child(tree: dict[str, Any], parent: str, child: str) -> None:
@@ -94,6 +98,7 @@ def add_trained_node(tree: dict[str, Any], name: str, config_path: Path, parent:
         "stage": "draft" if not parent else "improve",
         "best_reward": reward(metrics) if not parent else 0.0,
         "duration_seconds": metrics.get("duration_seconds"),
+        "evidence_phase": metrics.get('evidence_phase', 'search'),
         "pipeline": metrics.get("pipeline", {}),
         "execution_backend": metrics.get("execution_backend") or "native_train",
         "external_script": metrics.get("external_script"),
@@ -147,7 +152,7 @@ def attempt_realtime_artifact_acquisition(
     output_dir.mkdir(parents=True, exist_ok=True)
     cell_line = getattr(args, "cell_line", "K562")
     registry_path = args.artifact_registry or default_registry_path(cell_line)
-    registry = load_registry(registry_path, "K562")
+    registry = load_registry(registry_path, cell_line)
     sources_path = Path("configs/artifacts/acquisition_sources.json")
     if args.artifact_registry:
         sibling_sources = Path(args.artifact_registry).parent / "acquisition_sources.json"
@@ -166,7 +171,8 @@ def attempt_realtime_artifact_acquisition(
             "expected_path": missing_paths[idx] if idx < len(missing_paths) else "",
             "source": missing_sources[idx] if idx < len(missing_sources) else "",
         }
-        results.append(resolve_item(item, sources, registry, output_dir, execute_known=True))
+        results.append(resolve_item(item, sources, registry, output_dir,
+                                    execute_known=True, cell_line=cell_line, registry_path=Path(registry_path)))
     report = {
         "node": child_name,
         "strategy": proposal.get("strategy"),
@@ -178,7 +184,7 @@ def attempt_realtime_artifact_acquisition(
         import json as _json
 
         f.write(_json.dumps(report) + "\n")
-    refreshed_audit = audit_registry(load_registry(registry_path, "K562"))
+    refreshed_audit = audit_registry(load_registry(registry_path, cell_line))
     return results, refreshed_audit
 
 
@@ -292,10 +298,10 @@ def cheap_screen_score(proposal: dict[str, Any], missing_summary: dict[str, Any]
     cost_class = str(blueprint.get("cost_class", "medium"))
     cost_bonus = {"cheap": 0.08, "medium": 0.0, "expensive": -0.08}.get(cost_class, 0.0)
     missing = list(missing_summary.get("missing_required_artifacts", []) or [])
-    missing_penalty = 1.25 if missing else 0.0
+    missing_penalty = 0.0
     duplicate_penalty = 0.75 if duplicate_reason else 0.0
-    implementation_penalty = 0.06 if proposal.get("requires_implementation") else 0.0
-    structural_bonus = 0.05 if proposal.get("structural_relation") == "structural_variant" else -0.05
+    implementation_penalty = 0.0
+    structural_bonus = 0.0
     base = float(scientific.get("score", 0.0) or 0.0)
     score = base + cost_bonus + structural_bonus - missing_penalty - duplicate_penalty - implementation_penalty
     return {
@@ -466,9 +472,56 @@ def structural_variant_count(tree: dict[str, Any]) -> int:
     return sum(1 for node in tree.get("nodes", {}).values() if node.get("structural_relation") == "structural_variant")
 
 
+def development_progress(tree, min_delta):
+    nodes = list(tree.get('nodes', {}).values())
+    trained = [n for n in nodes if n.get('status') == 'trained'
+               and n.get('evidence_phase') != 'confirmation']
+    best = max((float(n['best_val_macro_f1']) for n in trained if not n.get('parent')), default=-1.0)
+    stagnant = 0
+    for node in sorted((n for n in trained if n.get('parent')), key=lambda n: n.get('iteration', 0)):
+        value = float(node['best_val_macro_f1'])
+        if node.get('budget_phase') == 'coverage':
+            best = max(best, value)
+            continue
+        if value > best + min_delta:
+            best, stagnant = value, 0
+        else:
+            stagnant += 1
+    return best, stagnant
+
+
+def sync_research_budget(run_dir, args, tree, memory):
+    total = args.budget_trained_nodes if args.budget_trained_nodes is not None else args.budget_nodes
+    coverage = int(getattr(args, 'coverage_rollouts', 0))
+    if coverage < 0 or coverage > total:raise ValueError('Coverage budget must fit the total selected-rollout budget')
+    plan = {'coverage_limit': coverage, 'optimization_limit': total-coverage,
+            'confirmation_limit': int(getattr(args, 'confirmation_models', 2))}
+    freeze_record(run_dir/'research_budget_plan.json',plan)
+    budget = ResearchBudget(**plan)
+    for node in tree.get('nodes',{}).values():
+        if node.get('parent') and node.get('status')=='trained':
+            phase=node.get('budget_phase','optimization')
+            if phase not in {'coverage','optimization'}:raise ValueError('Invalid completed rollout phase')
+            setattr(budget,phase+'_used',getattr(budget,phase+'_used')+1)
+    write_json(run_dir/'research_budget.json',budget.to_dict())
+    memory['research_phase']='coverage' if budget.coverage_used<budget.coverage_limit else 'optimization'
+    memory['research_budget']=budget.to_dict()
+    return budget
+
+
 def run_search(args: argparse.Namespace) -> dict[str, Any]:
     run_dir = args.run_dir
     run_dir.mkdir(parents=True, exist_ok=True)
+    assert_search_open(run_dir)
+    protocol_path = run_dir / 'research_protocol.json'
+    if not protocol_path.is_file():
+        raise ResearchContractError('Register research_protocol.json before search; see docs/RESEARCH_PROTOCOL.md')
+    protocol = verify_protocol(run_dir)
+    if protocol['metric'].get('name') not in {'macro_f1', 'validation_macro_f1'} or protocol['metric']['direction'] != 'maximize':
+        raise ResearchContractError('This executor is a Macro-F1 classification adapter; use a task adapter for other objectives')
+    if args.reset and (run_dir / 'tree.json').exists():
+        raise ResearchContractError('Reset cannot erase a registered search; use a fresh run directory')
+    verify_benchmarks(run_dir)
     if args.reset:
         reset_run_dir(run_dir)
     program_root = run_dir / "programs"
@@ -486,7 +539,9 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     rng = random.Random(args.seed + len(tree.get("events", [])))
     proposal_dir = run_dir / "proposals"
     proposal_dir.mkdir(parents=True, exist_ok=True)
-    registry_audit = audit_registry(load_registry(args.artifact_registry, "K562"))
+    cell_line = getattr(args, 'cell_line', 'K562')
+    registry_path = args.artifact_registry or default_registry_path(cell_line)
+    registry_audit = audit_registry(load_registry(registry_path, cell_line))
     write_json(run_dir / "artifact_registry_audit.json", registry_audit)
     tree["artifact_registry"] = registry_audit
     if resume:
@@ -536,6 +591,21 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
     start_iteration = max([0, *[int(node.get("iteration", 0)) for node in tree["nodes"].values()]]) + 1
     end_iteration = start_iteration + max_iterations - 1
     for iteration in range(start_iteration, end_iteration + 1):
+        sync_research_budget(run_dir, args, tree, memory)
+        best_val, no_improve = development_progress(tree, args.min_delta)
+        if args.stop_no_improve and no_improve >= args.stop_no_improve and memory['research_phase'] != 'coverage':
+            stop_reason = f'no improvement for {no_improve} trained optimization rollouts'
+            break
+        # Re-rank retained proposals after every completed rollout, not once at creation.
+        for candidate in tree.get('nodes', {}).values():
+            if candidate.get('status') == 'candidate_queued' and candidate.get('strategy'):
+                scientific = scientific_score(candidate['strategy'], memory, iteration)
+                candidate['scientific_selection'] = scientific
+                previous = candidate.get('cheap_screen_score') or {}
+                candidate['global_priority'] = cheap_screen_score({
+                    'scientific_selection': scientific,
+                    'blueprint': {'cost_class': previous.get('cost_class', 'medium')},
+                }, {})['score']
         queue = queued_candidates(tree)
         if generated_proposals >= proposal_budget and not queue:
             stop_reason = f"proposal budget exhausted ({generated_proposals}/{proposal_budget})"
@@ -664,6 +734,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 proposal_path = proposal_dir / f"{child_name}.proposal.json"
                 child_config = read_json(child_config_path)
                 proposal = read_json(proposal_path)
+                proposal['scientific_selection'] = scientific_score(proposal['strategy'], memory, iteration)
                 proposal["candidate_pool_selected"] = True
                 proposal["global_queue_selected"] = True
                 proposal["global_queue_priority"] = selected_row["score"]
@@ -676,7 +747,6 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
 
         if child_config is None or proposal is None:
             tree["events"].append({"iteration": iteration, "selected_parent": parent_name, "event": "no_candidate_selected_after_proposal_screen", "skips": duplicate_skips})
-            no_improve += 1
             write_tree_and_failures(run_dir, tree, failures)
             continue
         child_name = str(child_config["node_name"])
@@ -731,7 +801,6 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                     "missing_required_artifact_paths": proposal["missing_required_artifact_paths"],
                     "acquisition_results": acquisition_results,
                 })
-                no_improve += 1
                 memory = rebuild_memory_from_tree(run_dir, tree, failures)
                 append_mcts_trace(run_dir, {
                     "event": "artifact_acquisition_block_continued",
@@ -772,7 +841,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                 append_mcts_trace(run_dir, {"event": "implementation_loop_result", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "status": item.get("status"), "training": item.get("training"), "attempt_count": len(item.get("attempts", [])), "repair_log": implementation_report.get("repair_log"), "agent_decision_trace": implementation_report.get("agent_decision_trace")})
                 if item.get("status") == "trained":
                     trained_rollouts += 1
-                    val = float((item.get("training") or {}).get("best_val_macro_f1", -1.0) or -1.0)
+                    val = float((item.get("training") or {}).get("best_val_macro_f1", -1.0))
                     if val > best_val + args.min_delta:
                         best_val = val
                         no_improve = 0
@@ -784,7 +853,6 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                         break
                     continue
                 if item.get("status") == "failed":
-                    no_improve += 1
                     write_tree_and_failures(run_dir, tree, failures)
                     continue
                 if item.get("status") == "requires_realtime_implementation":
@@ -793,7 +861,6 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
                     write_tree_and_failures(run_dir, tree, failures)
                     break
                 if item.get("status") == "implementation_skipped":
-                    no_improve += 1
                     append_mcts_trace(run_dir, {"event": "implementation_skipped_continued", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "task_path": item.get("task_path"), "skip_reason": item.get("skip_reason"), "policy": "skip_unimplemented_candidate_and_continue_global_queue_without_fallback"})
                     write_tree_and_failures(run_dir, tree, failures)
                     if args.proposal_selection_mode == "global_queue":
@@ -829,7 +896,6 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             tree["nodes"][child_name] = {"config": str(child_config_path), "parent": parent_name, "children": [], "status": "failed", "iteration": iteration, "agent_type": proposal.get("agent_type"), "node_kind": proposal.get("node_kind"), "strategy": proposal.get("strategy"), "program_dir": proposal.get("program_dir"), "program_model_path": proposal.get("program_model_path"), "pipeline_manifest_path": proposal.get("pipeline_manifest_path"), "pipeline_kind": proposal.get("pipeline_kind"), "artifact_requirements": proposal.get("artifact_requirements", []), "artifact_usage_claims": proposal.get("artifact_usage_claims", []), "scientific_selection": proposal.get("scientific_selection", {}), "structural_signature": proposal.get("structural_signature", ""), "parent_structural_signature": proposal.get("parent_structural_signature", ""), "structural_relation": proposal.get("structural_relation", ""), "error": error, "visits": 0, "value": 0.0, "Q_v": 0.0, "Exploitation": 0.0, "stage": "improve"}
             failures.append({"node": child_name, "parent": parent_name, "error": error, "strategy": proposal.get("strategy")})
             append_mcts_trace(run_dir, {"event": "failure", "iteration": iteration, "selected_parent": parent_name, "child": child_name, "chosen_blueprint": proposal.get("strategy"), "error": error})
-            no_improve += 1
 
         memory = rebuild_memory_from_tree(run_dir, tree, failures)
         write_tree_and_failures(run_dir, tree, failures)
@@ -838,7 +904,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
             break
         if args.stop_no_improve and no_improve >= args.stop_no_improve:
             coverage = family_coverage(tree)
-            if coverage >= args.min_family_coverage_before_stop:
+            if memory.get('research_phase') != 'coverage':
                 stop_reason = f"no improvement for {no_improve} nodes"
                 break
             append_mcts_trace(run_dir, {"event": "early_stop_suppressed_for_family_coverage", "iteration": iteration, "no_improve": no_improve, "family_coverage": coverage, "min_family_coverage_before_stop": args.min_family_coverage_before_stop})
@@ -847,6 +913,7 @@ def run_search(args: argparse.Namespace) -> dict[str, Any]:
         if str(stop_reason).startswith("proposal budget exhausted"):
             stop_reason = "framework_failed_no_generated_child_trained: proposal budget exhausted before any generated rollout trained"
     memory = rebuild_memory_from_tree(run_dir, tree, failures)
+    sync_research_budget(run_dir, args, tree, memory)
     write_tree_and_failures(run_dir, tree, failures)
     write_summary(tree, args.summary, failures, stop_reason)
     run_manifest_path = write_run_manifest(run_dir, args, tree, failures, stop_reason, registry_audit)
@@ -865,6 +932,8 @@ def main() -> None:
     parser.add_argument("--budget-nodes", type=int, default=12, help="Legacy rollout-iteration budget. In paper-aligned mode prefer --budget-proposals and --budget-trained-nodes.")
     parser.add_argument("--budget-proposals", type=int, default=None, help="Maximum generated proposal candidates, including pruned/blocked/pending/trained candidates.")
     parser.add_argument("--budget-trained-nodes", type=int, default=None, help="Maximum rollout candidates allowed to finish training and backpropagate reward.")
+    parser.add_argument('--coverage-rollouts', type=int, default=0, help='Explicit coverage allocation inside the rollout budget; not an optimization score bonus.')
+    parser.add_argument('--confirmation-models', type=int, default=2, help='Maximum frozen model recipes allowed into confirmation.')
     parser.add_argument("--max-epochs", type=int, default=None)
     parser.add_argument("--max-children", type=int, default=3)
     parser.add_argument("--exploration", type=float, default=1.4142135623730951)
@@ -883,7 +952,7 @@ def main() -> None:
     parser.add_argument("--artifact-registry", type=Path, default=None)
     parser.add_argument("--cell-line", default="K562")
     parser.add_argument("--acquisition-sources", type=Path, default=Path("configs/artifacts/acquisition_sources.json"))
-    parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=True, help="Prefer executable blueprints whose required artifacts are already present before blueprints that would trigger acquisition.")
+    parser.add_argument("--artifact-aware-blueprint-policy", action=argparse.BooleanOptionalAction, default=False, help="Legacy interface only; artifact presence never changes scientific priority.")
     parser.add_argument("--allow-missing-artifact-fallbacks", action="store_true", help="Allow planned artifact blueprints to train explicit fallback models when required artifacts are missing. Default is strict: block and stop.")
     parser.add_argument("--official-blueprint-space", action="store_true", help="Restrict child proposals to official K562 paper-level blueprints.")
     parser.add_argument("--max-blueprint-repeats", type=int, default=2, help="Global repeat limit per blueprint; -1 disables the global duplicate guard.")

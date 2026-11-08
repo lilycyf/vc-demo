@@ -1,215 +1,146 @@
-# Codex Agent Cookbook For VCHarness-Style Runs
+# Codex Agent Cookbook
 
-This repo does not call the Codex API internally. The Codex agent is the external executor launched by the user in a Codex window. The repo's job is to provide search state, queues, prompts, guardrails, runnable commands, and audit artifacts. The Codex agent's job is to operate the repo end to end on RunPod.
+## Purpose And Ownership
 
-## Document Ownership
+Build a reusable, auditable research harness through tasks, not a model tuned to
+one cell line. The active Codex is the researcher and implementer; this repository
+must not call a Codex/OpenAI API internally. The harness supplies executable
+contracts, state, evidence, proposals, acquisition and validation tools.
 
-Rules live in the repo documents, not in copied chat prompts.
+This file owns universal rules. `docs/RESEARCH_PROTOCOL.md` owns the shared
+scientific protocol and APIs. Task runbooks own datasets, prediction units,
+tensors, metrics, reference methods and model-specific training policies.
+`ARTIFACT_ACQUISITION_RUNBOOK.md` owns public-resource acquisition.
+The generic cell-line runbook describes the classification adapter only; it is
+not a universal regression, trajectory or survival implementation.
 
-- `CODEX_AGENT_COOKBOOK.md` is the canonical source for universal agent rules, guardrails, git hygiene, artifact acquisition semantics, and realtime implementation semantics.
-- `docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md` is the canonical source for how to execute a generic cell-line run.
-- `docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md` is the canonical source for pass/fail checks.
-- `ARTIFACT_ACQUISITION_RUNBOOK.md` is the canonical source for source-backed artifact acquisition.
-- K562-specific details belong in `OFFICIAL_K562_IMPLEMENTATION_LOOP.md`, not in generic prompts.
+Prompts should name the base/run branch, task or cell line, requested test type,
+fresh run directory, and approved resource budget. Read repository rules rather
+than copying historical instructions into every prompt. Reuse the current
+development branch unless the user requests an isolated experiment branch.
 
-Experiment prompts must be variable-only handoffs. They should name the branch, cell line, run type, target score, run directory, and output branch, then instruct Codex to read the repo docs. Do not duplicate long cookbook/runbook rules in prompts; duplicated rules drift and become stale.
+## Hard Scientific Boundaries
 
+- Freeze source data, eligibility, labels, group/split semantics, prediction
+  horizon, target order, primary metric/direction and confirmation policy.
+- No test/heldout/confirmation scores, labels, errors or feature importance may
+  drive proposals, training, calibration, ranking, stopping or repair choices.
+- Search and coverage produce development-only results. Native training defers
+  test evaluation. Confirmation requires selected executable recipe fingerprints
+  and closes that run to further search, including `train_pending`.
+- Preserve the complete strongest reference recipe, not only its model name.
+  Encoding, scaling, preprocessing, optimizer/regularization, effective budget,
+  code, input content and artifact versions belong to its identity.
+- No fabricated artifacts, proxy checkpoints, disguised substitute models,
+  implicit synthetic task, nonfinite rewards, pruned training or untrained reward.
+- A trained development rollout backpropagates exactly once. Replication is a
+  separately identified experiment, not another application of the same reward.
+- Smoke verifies interfaces/gradients. It is never formal scientific evidence.
 
-## Generic Foundation Artifact Harness
+## Codex Research Freedom
 
-The reusable framework is described in `docs/GENERIC_FOUNDATION_ARTIFACT_HARNESS.md`. Treat cell-line registries and task docs as configuration. Do not hard-code K562/HELF assumptions into generic orchestration, artifact acquisition, implementation-agent status handling, or queue draining.
+The blueprint is a hypothesis, not a complete architecture or a compulsory
+mutation. Codex may design new architectures and public modules beyond the
+manifest, use `agent_defined_candidate`, simplify a model, or choose replacement,
+feature fusion, joint training, grouped cross-fitted residual, stacking or ablation.
 
-## Mental Model
+The parent is an unchanged benchmark and source of evidence, NOT a mandatory
+dense branch. There is no universal parent-preserving topology, fixed .25 mixing,
+hidden-size cap, epoch minimum, or preference for a named foundation model.
+Choose a faithful design within the task and approved resource contracts.
+Existing agent-written `model.py` must be compiled and preserved, not overwritten
+by an automatic template. Small models are legitimate when actually proposed as
+small models; they cannot impersonate a required pretrained model.
 
-```text
-repo harness = orchestrator, state machine, queue writer, evaluator, auditor
-Codex window = coding agent, artifact researcher, implementation fixer, experiment runner
-```
+Codex may change node-local model/config/helper code and declare a new effective
+training policy. During a frozen experiment it may not change the scientific
+task or silently rewrite baseline code. Framework bugs are repaired with a
+versioned execution change and invalidation of affected results, not by mixing
+old and new fold rewards under one identity.
 
-Do not add code that tries to call Codex/OpenAI APIs from inside this repo for the formal run. If a selected node needs implementation, the harness writes `IMPLEMENTATION_REQUEST.md` or `CODEX_IMPLEMENTATION_TASK.md`; the active Codex agent must handle that task during the current run. For loop/self-tests, an unimplemented node may be marked `implementation_skipped` and the global queue may continue. For `full_cellline_run`, artifact-present selected nodes must not be passively auto-skipped or left for a later Codex. `requires_realtime_implementation` is an action point for the current Codex session: inspect the task, implement node-local `model.py`, smoke/train it, and resume. If a real implementation cannot be produced after documented attempts, mark the candidate as implementation-infeasible/skipped with a precise reason and continue the global queue; do not leave a pending queue for later.
+## Research Loop
 
+1. Read task sources, inspect independent group counts, sampling, missingness,
+   potential label/input coupling and available budget. Register the protocol.
+2. Register and replay exact strong/historical benchmark recipes. An unavailable
+   historical artifact is an explicit comparison gap, never a weaker renamed root.
+3. Declare separate coverage, optimization and confirmation budgets. Coverage is
+   a method inventory exercise, not an optimization-score bonus.
+4. Select a trained parent with MCTS; inspect development evidence and generate
+   multiple falsifiable proposals. Replenish and re-rank the global queue after
+   every completed rollout. Unselected/pruned proposals are not trained.
+5. For the selected proposal, research/acquire any real missing artifact now.
+   Implement and repair in the active Codex session. If infeasible after actual
+   attempts, record the precise reason, skip that candidate and continue feasible
+   queue entries. A queue file alone is not completion or a scientific blocker.
+6. Record `research_hypothesis.json`: hypothesis, evidence references, expected
+   change, falsification, composition and effective training policy. Compile,
+   native-smoke, formally fit/evaluate and verify recipe provenance.
+7. Train residual/stacking modules and combination weights using inner grouped
+   OOF predictions. Never fit a residual from the parent's training predictions
+   and call it cross-fitted. Do not use outer validation labels for a combiner.
+8. Only then mark trained and backpropagate. Write development feedback with
+   paired group-level gains, uncertainty, strata, convergence and resource cost.
+   Let Codex use that evidence to propose the next experiment, including removal
+   of an unhelpful complex component.
+9. Stop only for the registered budget, stopping rule, reached optional target,
+   exhausted feasible queue, true validity failure or approved resource boundary.
+10. Freeze selected recipe fingerprints, open confirmation once, run registered
+    confirmatory analyses and report. Do not resume search after seeing test.
 
-## Codex Autonomy Policy
+## Evidence And Resource Policy
 
-The guardrails protect scientific validity; they do not define the entire model. Codex is expected to act as an active model engineer inside those boundaries.
+Independent samples are the declared groups, not cells, repeated folds or seeds.
+Repeated CV is not independent confirmation. Pooled metrics must be accompanied
+by task-appropriate within-condition diagnostics and mechanical/null controls.
+Correlation with a ratio denominator, treatment identity or library is not proof
+of the desired biological mechanism. Choose controls before interpreting gains.
 
-Hard constraints:
+Model families may use different training algorithms and budgets. Record the
+actual solver, loss, epochs/iterations, stopping criterion and convergence, not
+unused generic config fields. Comparable optimization opportunity does not mean
+identical epoch counts. No global rule requires eight epochs or 100 rollouts.
+Named run profiles are defaults; the task's registered plan determines adequacy.
 
-- Do not change split semantics, label construction, target-gene order, reward metric, test-label usage, or artifact provenance.
-- Do not fabricate artifacts, train fallback models, or call compact/proxy/simplified stand-ins real implementations.
-- Do not backpropagate reward for untrained, skipped, blocked, failed, or pruned proposals.
-
-Autonomous choices Codex should make during selected-node implementation:
-
-- Treat the selected blueprint as a research hypothesis or mutation, not as the full model specification.
-- Implement child nodes as `parent pipeline + selected modification` by default.
-- Preserve useful parent structure, especially dense/context trunks, dense target-logit branches, residual routes, and proven artifact branches, unless the request explicitly says to replace them.
-- Add biological/target/graph modules as residual, gated, additive, bilinear, or attention branches that can compete with the parent baseline instead of deleting the parent signal.
-- Use `search_memory.json`, `parent_summary.json`, previous successful motifs, and failure/blocker records to decide the concrete implementation.
-- If a faithful implementation has multiple valid designs, choose the most competitive artifact-backed design that fits the current GPU and documents the choice.
-- If an artifact/source/contract is impossible to verify, suppress or block that family and continue the global queue; do not let one unavailable family end the search when feasible families remain.
-
-A full run should therefore produce competitive, auditable children, not a sequence of isolated minimal blueprint demos.
-
-## What Codex May Change
-
-- Node-local `model.py` under a selected `experiments/<run>/programs/<node>/` directory.
-- Small node-local docs that explain the implementation choice.
-- Harness code when the task is explicitly framework development rather than a formal frozen experiment.
-- Artifact registry metadata after a real artifact has been acquired or built from a documented public source.
-- Small experiment metadata: `tree.json`, `search_summary.md`, `final_conclusion.md`, `run_manifest.json`, `search_memory.json`, queues, proposals, audit JSON, and acquisition summaries.
-- Scripts that build documented artifacts, if source, version, and filtering/coverage are recorded.
-
-## What Codex Must Not Change During A Formal Experiment
-
-- Train/validation/test split semantics.
-- Label construction or metric semantics.
-- Test labels for tuning or selection.
-- Existing root baseline configs, unless the task explicitly says to create a new root config branch.
-- Raw data files as a way to improve metrics.
-- `data/` contents in git commits, unless the user explicitly asks to commit a small source-backed artifact summary.
-- Checkpoints, `nodes/`, cache files, pycache, egg-info, secrets, SSH keys, tokens.
-- Artifact registry entries from missing to present unless the expected file exists and provenance is documented.
-
-## What Requires Search Or External Source Verification
-
-Codex should search official or primary sources before proceeding when any of these appears in `acquisition_queue.json` or a task file:
-
-- `scfoundation_cell_embeddings`
-- `aido_gene_or_cell_embeddings`
-- `pathway_membership_matrix`
-- `pretrained_encoder`
-- Any new foundation model checkpoint or embedding table
-- Any graph/pathway prior not already present in the registry
-
-Rules for searched artifacts:
-
-- Prefer official model/project pages, paper author repositories, HuggingFace datasets from the authors, STRING/Reactome/GO/MSigDB official releases, or documented checkpoints.
-- Record URL, version/date, file size or checksum when feasible, filtering rules, alignment procedure, and gene/cell coverage.
-- Stop with a blocker only when the source cannot be verified, the public files are incomplete/non-equivalent, the tensor contract cannot be proven, the source is license-gated/manual-approval-only, or the artifact is infeasible for the current approved compute/storage budget. Otherwise acquire/build it immediately, audit it, and resume the same run. Do not fabricate a substitute.
-
-## What Does Not Require Search
-
-- Running `preflight`.
-- Running `program_run` or `autonomous_run`.
-- Training an already executable node.
-- Implementing a selected node using only existing tensors, config fields, and registered present artifacts.
-- Using `string_k562_gene_graph` when the registry audit reports it present.
-- Using the already built ESM2 target manifest when the registry audit reports it present.
-
-## Formal Run Procedure
-
-1. Start from the branch named by the user.
-2. Create a new run branch.
-3. Run `python -m vc_demo.harness.preflight`.
-4. If preflight is not ready, fix only the reported setup issue or stop with a blocker.
-5. Run `python -m vc_demo.harness.autonomous_run` with the task budget.
-6. If `implementation_queue.json` is non-empty, handle the selected node immediately. In `full_cellline_run`, artifact-present selected nodes must be implemented, compiled, native-smoked, trained, and backpropagated before the run can be considered valid. `implementation_skipped` is allowed only for loop/self-tests or after a documented artifact/contract blocker; it is not a substitute for writing `model.py` in a full run.
-7. If `acquisition_queue.json` is non-empty, handle it in the same Codex session: run `artifact_acquisition`, execute any known resolver, and if it emits `ACQUIRE_<artifact>.md`, immediately search/download/build the real source-backed artifact, audit it, update registry, and resume. Do not hand it off or stop at queue creation. Stop with a blocker only after the acquisition attempt proves no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified.
-8. Resume or continue the same run directory without changing data/splits/metrics.
-9. Write `final_conclusion.md` with best root, best overall, improvement, artifact use, failures/blockers, and whether the result supports the research question.
-10. Commit only allowed files and push the run branch.
-
-## Stop Conditions
-
-Stop the formal run when one of these is true:
-
-- Budget is exhausted.
-- No-improvement criterion is reached.
-- A missing artifact requires source research and cannot be acquired safely.
-- No queued executable candidate remains after skipped implementations and documented artifact blockers.
-- Repeated implementation repair attempts fail and the failure is recorded. In `full_cellline_run`, this is a real failure unless an artifact/source/contract blocker is documented.
+Artifacts are feasibility gates, never a scientific-quality or ranking bonus.
+Prefer primary sources; download/build when feasible, verify license/source,
+content checksum, vocabulary/order, dimensions and actual model consumption.
+Lack of a prewritten resolver is a Codex research task, not proof of unavailability.
+If files are unpublished/incomplete, access-gated, unverifiable or beyond the
+approved budget, record that exact limit and continue other valid hypotheses.
 
 ## Required Records
 
-Every formal run should preserve:
+- `research_protocol.json`, full benchmark recipes and input/source fingerprints.
+- Separate research budget plan/usage and effective per-model training policies.
+- Tree, candidate hypotheses, selection/ranking reasons and trained-only trace.
+- Development-only feedback, matched controls and group-aware uncertainty.
+- Acquisition sources, checksums, alignment and license/feasibility decisions.
+- Frozen selection/confirmation lock, confirmation report and exposure history.
+- Independent execution, scientific, artifact-attribution and transfer verdicts.
 
-- `preflight.json`
-- `tree.json`
-- `search_memory.json`
-- `run_manifest.json`
-- `search_summary.md`
-- `implementation_queue.json`
-- `acquisition_queue.json`
-- `failures.json`
-- `proposals/*.json`
-- `final_conclusion.md`
+Existing exposed test groups stay exposed, including after a new branch or seed.
+A correctly executed null result is not an engineering failure. Conversely,
+zero guardrail counters alone do not establish model superiority, fair baseline
+comparison, artifact usefulness, or a broadly better framework.
 
-## Paper Alignment Layers 1-4
+## Validation And Delivery
 
-See `PAPER_ALIGNMENT_LAYERS_1_4.md` for the current alignment of the Codex execution layer, MCTS/proposal policy, model-space grammar, and artifact readiness layer.
+Framework changes need static checks, negative/invariance tests and task-neutral
+CPU integration tests before another scientific run. Check that poisoning test
+values cannot change search context; code/data/scaling changes invalidate cached
+results; composition preserves group boundaries; confirmation forbids reselection;
+agent code survives materialization; unavailable artifacts are not ranked lower
+merely for being unavailable; and resume cannot duplicate a completed reward.
 
-## Paper Alignment Layers 5-8
+Validate framework usefulness later on tasks not used to develop the framework,
+against fixed strong baselines and equal-resource random search. Do not keep
+retuning the current demonstration until it becomes positive.
 
-See `PAPER_ALIGNMENT_LAYERS_5_8.md` for benchmark audit, search scale planning, failure repair workflow, and paper-style final analysis.
-
-
-## Foundation Artifact Augmentation Policy
-
-Foundation artifacts are scientific priors and context, not automatic replacements for a strong parent model. For formal runs, artifact-present foundation children should default to a parent-preserving augmentation design:
-
-```text
-final logits = parent/dense logits + learned gate(context) * artifact residual
-```
-
-Rules:
-
-- Preserve the useful parent dense/context path unless the blueprint explicitly declares an ablation or replacement experiment.
-- Use source-backed artifacts as residual, gated, bilinear, attention, smoothing, calibration, or target-geometry signals.
-- Initialize artifact residual strength conservatively so a weak or incomplete prior cannot dominate the parent branch at step 0.
-- Record the augmentation policy in the proposal/tree/report.
-- If required artifacts are present and aligned, the candidate is executable and should not be marked `requires_external_codex` only because it is a foundation blueprint.
-- If required artifacts are missing, run acquisition; block only after source/provenance/shape/vocabulary/order cannot be verified.
-- Do not use compact/proxy/fallback artifacts. A small model is acceptable only as the trainable head around real artifacts and preserved parent features, not as a fake foundation model.
-
-Queue selection may include a rollout-feasibility bonus for artifact-present foundation candidates. This is not a scientific score claiming the artifact is better; it prevents verifiable, executable foundation proposals from being repeatedly pruned behind missing-checkpoint families or tie-break artifacts.
-
-## Framework Feedback Loop
-
-The objective is to improve the automatic modeling framework through tasks, not to hand-tune one task. After any search or validation run, Codex must treat the result as feedback for the next search policy:
-
-- If a child beats the root once but fails multi-seed validation, record an instability finding rather than declaring a stable model win.
-- If validation improves but test drops, record a generalization warning; do not tune on test labels.
-- If roots dominate children, prefer parent-preserving delta implementations and avoid replacing strong parent routes with isolated minimal modules.
-- If a family repeatedly blocks on unavailable artifacts, suppress/filter that family after source-backed acquisition proves unavailability, then continue feasible families.
-- If a motif shows positive but unstable lift, prioritize stability proposals such as residual gates, calibration, gene dropout, SWA/ensemble, and multi-seed validation before promotion.
-
-The repo records this as `framework_feedback.json` and `framework_feedback.md`. Search memory includes `framework_feedback`, and proposal ranking may use its ranking boosts/penalties. This feedback is a framework policy signal, not permission to change splits, labels, metrics, target order, or artifact provenance.
-
-## Existing Run Directory Guard
-
-If `RUN_DIR` already contains `tree.json`, `run_manifest.json`, `programs/`, `nodes/`, or queues, Codex must use `--resume` to continue. A from-scratch run must use a fresh directory. The runner refuses to overwrite existing run state because doing so can erase selected rollout implementations and invalidate MCTS/backprop audit trails.
-
-## Full Run Queue Drain
-
-For `RUN_TYPE=full_cellline_run`, `pending implementation trained` is an intermediate state, not a terminal stop. The standard entrypoint must keep resuming the same `RUN_DIR` until a generated child both beats the best root and reaches the target validation Macro-F1, the trained-rollout budget is exhausted, no-improvement stopping fires, an acquisition/implementation queue requires same-session action, or no feasible queued candidate remains. If generated candidates remain queued and there is no blocker, the run must continue draining the global queue.
-
-
-## Artifact Usefulness Attribution
-
-A generated child beating the root is not enough to claim that a biological/foundation artifact was useful. The harness must separate three effects:
-
-- model capacity or optimization gain;
-- loss/calibration/regularization gain;
-- source-backed biological artifact incremental gain.
-
-For artifact-present foundation children, the default search policy should generate or preserve a dense no-artifact comparator when feasible. Reports must include:
-
-```text
-artifact_incremental_gain = best_source_backed_artifact_child_val - best_dense_matched_no_artifact_control_val
-```
-
-If the artifact child beats the root but does not beat the dense matched-capacity/no-artifact comparator, the run demonstrates a useful harness discovery but not a proven biological-artifact contribution. Codex should then continue with parent-preserving artifact residuals, attention biases, target calibration priors, or graph/pathway regularizers rather than replacing the dense branch.
-
-
-## Search-Space Coverage Language
-
-Do not call the current run “complete search-space coverage” unless a search-space audit has been generated and cited. Use precise language:
-
-- `declared search space`: all families/blueprints in the manifest;
-- `executable subset`: blueprints whose required artifacts are present and whose implementation path is available;
-- `planned/acquirable subset`: blueprints that require checkpoint/download/build work before selection can train;
-- `blocked subset`: blueprints whose public source, tensor contract, vocabulary/order, license, or compute/storage feasibility cannot be verified.
-
-When explaining why a run is fast, check the audit first. Fast usually means the run trained the executable subset under a small budget, not that the declared search space is small.
+Only commit source, task/config contracts, small metrics, tests, audit and reports.
+Never commit data/, nodes/, weights, checkpoints, raw cell exports, model/cache
+arrays, environments, private keys or tokens. Keep credentials container-local,
+not on a permissive shared volume. Inspect actual staged paths and secrets before
+commit/push. Preserve user changes and historical outputs. Do not extend the
+approved cloud deadline or launch another resource without authorization.
 

@@ -1,5 +1,10 @@
 # Artifact Acquisition Runbook
 
+Shared scientific boundaries are defined in `docs/RESEARCH_PROTOCOL.md` and
+`CODEX_AGENT_COOKBOOK.md`. Artifact presence is a feasibility gate, not evidence
+of scientific merit. Acquisition does not authorize changing the task contract,
+extending the approved cost budget, or reopening a run after confirmation.
+
 Formal searches run in strict artifact mode. If a selected blueprint needs a missing artifact, the search must pause and create:
 
 ```text
@@ -35,7 +40,7 @@ When `acquisition_queue.json` is non-empty, the Codex agent must not simply repo
 5. Write the artifact under the expected `data/artifacts/...` path.
 6. Update the active cell-line registry only with source-backed metadata.
 7. Run `python -m vc_demo.harness.artifact_registry --cell-line <CELL_LINE_ID> --registry <active registry>` and save/update audit output.
-8. Resume the search from the same run dir or restart a clean run, still without fallback.
+8. Resume the same run without reset only while its search phase is open. A changed task/data contract needs a new registered run; never silently restart to erase failures or held-out exposure.
 9. If and only if acquisition fails because no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified, write a blocker report that lists the sources checked, why each source is insufficient, and what approval/file would be needed next.
 
 
@@ -76,12 +81,21 @@ This section is K562-specific. For other cell lines, use the active registry and
 
 ## Resume Rule
 
-After acquisition, rerun the same strict search command without `--allow-missing-artifact-fallbacks`. If the artifact is now present, MCTS can implement/train the selected node. If another artifact is missing, produce the next acquisition queue item.
+After researching an unavailable primary artifact, record an auditable terminal
+receipt under `artifact_acquisition/verified_blockers.json` with `items` entries:
+`artifact_id`, `status=blocked_unavailable_primary_artifact`, `sources_checked`,
+and `evidence_files: {absolute_report_path: sha256}`. The report must document
+the actual source checks, incompatibility and reason; the receipt is not a
+self-certification substitute for research. The classification full-run wrapper
+keeps those dependent nodes blocked but can drain other queued candidates.
+Missing, changed or empty evidence does not qualify and requires realtime action.
+
+After acquisition, rerun the same strict search command without reset or fallback, provided no confirmation lock exists. If the artifact is now present, MCTS can implement/train the selected node. If another artifact is missing, produce the next acquisition queue item. A documented unavailable artifact blocks its dependent candidates, not unrelated scientific hypotheses.
 
 ## Pre-Test Hardening
 
 - `program_run` now writes `run_manifest.json` with commit, search parameters, artifact audit, queue paths, MCTS state, and best-node summary.
-- Blueprint choice is artifact-aware by default: executable blueprints whose required artifacts are present are ranked before blueprints that would immediately require acquisition. Use `--no-artifact-aware-blueprint-policy` only for ablation.
+- Scientific priority uses development evidence, uncertainty and cost. Missing artifacts trigger acquisition after selection; artifact presence, planned status and model brand do not earn ranking bonuses.
 - `ppi_graph_message_passing` is an implemented STRING/PPI graph smoother when `string_k562_gene_graph` is present. It reads `data/artifacts/string/k562_target_graph_edges.tsv` through `spec.artifacts` and does not fabricate edges.
 
 ## Autonomous Agent Loop

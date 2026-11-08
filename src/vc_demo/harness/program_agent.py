@@ -12,6 +12,7 @@ from vc_demo.harness.model_blueprints import blueprint_by_id, selectable_bluepri
 from vc_demo.harness.pipeline import default_pipeline_manifest, write_pipeline_manifest
 from vc_demo.harness.pipeline_grammar import program_for_blueprint
 from vc_demo.harness.state import write_json
+from vc_demo.harness.research_contract import selection_context
 
 
 def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, Any], child_index: int, rng: random.Random, program_root: Path, include_planned: bool = False, force_blueprint: str | None = None, registry_audit: dict[str, Any] | None = None, artifact_aware: bool = True, official_k562_only: bool = False, search_memory: dict[str, Any] | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -54,9 +55,8 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
             ]
             model_cfg["input_dim"] = "auto"
     model_cfg["program_blueprint"] = blueprint_id
-    model_cfg["hidden_dim"] = _bounded_hidden(model_cfg.get("hidden_dim", 256), blueprint_id)
-    model_cfg["depth"] = min(max(int(model_cfg.get("depth", 2) or 2), 1), 3)
-    model_cfg["dropout"] = float(model_cfg.get("dropout", 0.1) if model_cfg.get("dropout") is not None else 0.1)
+    # Resource and tensor contracts constrain designs; inherited hyperparameters
+    # are not silently clamped to one universal architecture/training recipe.
     if blueprint_id in {"dual_path_gated_low_rank", "target_factor_router", "target_gene_embedding_bilinear"}:
         model_cfg["low_rank_dim"] = min(max(int(model_cfg.get("low_rank_dim", 64) or 64), 32), 128)
     if blueprint_id == "esm2_gene_projection":
@@ -96,8 +96,6 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
             "args": ["--debug-max-step", "1", "--micro-batch-size", "1", "--global-batch-size", "1", "--num-workers", "0", "--max-epochs", "1"],
             "artifact_usage": {"AIDO.Cell-100M": "/home/Models/AIDO.Cell-100M", "STRING_GNN": "/home/Models/STRING_GNN"},
         }
-    train_cfg["lr"] = min(float(train_cfg.get("lr", 3e-4) or 3e-4), 3e-4)
-    train_cfg["weight_decay"] = min(float(train_cfg.get("weight_decay", 1e-4) or 1e-4), 1e-4)
 
     pipeline_path = child_dir / "pipeline.json"
     child["pipeline_manifest_path"] = str(pipeline_path)
@@ -112,6 +110,15 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
     artifact_contract = render_artifact_contract(child_name, blueprint, child, registry_audit)
     smoke_contract = render_smoke_contract(child_name, child)
     parent_summary = render_parent_summary(parent_name, parent_node, parent_config, search_memory)
+    hypothesis_path = child_dir / 'research_hypothesis.json'
+    if not hypothesis_path.exists():
+        write_json(hypothesis_path, {
+            'hypothesis': blueprint['role'], 'evidence_refs': [str(parent_summary_path)],
+            'expected_change': 'Evaluate the declared mechanism against the unchanged parent benchmark on matched development folds',
+            'falsification': 'No paired development gain over the strong reference, or the matched control explains the apparent gain',
+            'composition': 'replace', 'training_policy': copy.deepcopy(train_cfg),
+            'design_note': 'Codex may replace this initial design with feature_fusion, joint, crossfit_residual, crossfit_stack or ablation; no mandatory parent branch',
+        })
     write_json(artifact_contract_path, artifact_contract)
     write_json(smoke_contract_path, smoke_contract)
     write_json(parent_summary_path, parent_summary)
@@ -144,6 +151,7 @@ def propose_program_child(parent_config: dict[str, Any], parent_node: dict[str, 
         "blueprint": blueprint,
         "requires_implementation": requires_implementation,
         "hypothesis": hypothesis_for(blueprint_id, blueprint),
+        "research_hypothesis_path": str(hypothesis_path),
         "changes": changes,
         "program_dir": str(child_dir),
         "program_model_path": str(child_dir / "model.py") if not (config_only or external_static) else "",
@@ -200,35 +208,6 @@ def render_pipeline_manifest(child_config: dict[str, Any], proposal_blueprint: d
     return manifest
 
 
-SCIENTIFIC_PRIORS: dict[str, float] = {
-    "official_aido_string_fusion": 1.00,
-    "official_aido_string_cross_attention": 0.98,
-    "official_string_gnn_attention": 0.96,
-    "official_string_neighborhood_attention": 0.94,
-    "official_aido_lora_adapter": 0.92,
-    "official_target_gene_head": 0.88,
-    "official_target_graph_conditioned_head": 0.86,
-    "official_pathway_pooling_reactome": 0.84,
-    "official_regulatory_network_prior": 0.82,
-    "official_class_imbalance_training": 0.74,
-    "official_focal_loss_training": 0.72,
-    "official_weighted_ce_training": 0.70,
-    "official_public_best_node": 0.62,
-    "official_public_static_node_family_wrapper": 0.60,
-    "official_native_public_best_reimplementation": 0.45,
-}
-
-REQUIRED_EARLY_FAMILIES = [
-    "official_aido_string_fusion",
-    "official_string_gnn_attention",
-    "official_aido_lora_adapter",
-    "official_target_gene_head",
-    "official_class_imbalance_training",
-    "official_pathway_pooling_reactome",
-    "official_public_best_node",
-]
-
-
 def _choose_blueprint(
     parent_name: str,
     parent_node: dict[str, Any],
@@ -270,24 +249,21 @@ def rank_blueprint_choices(choices: list[str], registry_audit: dict[str, Any]) -
 
 def scientific_score(blueprint_id: str, memory: dict[str, Any], child_index: int) -> dict[str, Any]:
     blueprint = blueprint_by_id(blueprint_id)
-    counts = memory.get("blueprint_counts", {}) or {}
-    family_counts = memory.get("family_counts", {}) or {}
-    count = int(counts.get(blueprint_id, 0) or 0)
     family = str(blueprint.get("paper_family") or blueprint.get("category") or blueprint_id)
-    family_count = int(family_counts.get(family, 0) or 0)
-    base = SCIENTIFIC_PRIORS.get(blueprint_id, 0.50 + 0.04 * int(blueprint.get("change_level", 0) or 0))
-    coverage_bonus = 0.35 if count == 0 else 0.0
-    family_bonus = 0.25 if family_count == 0 else 0.0
-    early_bonus = 0.20 if child_index <= len(REQUIRED_EARLY_FAMILIES) and blueprint_id in REQUIRED_EARLY_FAMILIES else 0.0
-    repeat_penalty = min(0.12 * count, 0.60)
-    native_repeat_penalty = 0.45 if blueprint_id == "official_native_public_best_reimplementation" and count > 0 else 0.0
-    feedback_policy = (memory.get("framework_feedback", {}) or {}).get("policy", {}) or {}
-    boosts = feedback_policy.get("ranking_boosts", {}) or {}
-    penalties = feedback_policy.get("ranking_penalties", {}) or {}
-    feedback_boost = float(boosts.get(blueprint_id, 0.0) or boosts.get(family, 0.0) or 0.0)
-    feedback_penalty = float(penalties.get(blueprint_id, 0.0) or penalties.get(family, 0.0) or 0.0)
-    score = base + coverage_bonus + family_bonus + early_bonus + feedback_boost - repeat_penalty - native_repeat_penalty - feedback_penalty
-    return {"score": score, "base": base, "coverage_bonus": coverage_bonus, "family_bonus": family_bonus, "early_bonus": early_bonus, "feedback_boost": feedback_boost, "repeat_penalty": repeat_penalty, "native_repeat_penalty": native_repeat_penalty, "feedback_penalty": feedback_penalty, "count": count, "family": family, "family_count": family_count}
+    feedback = memory.get('framework_feedback', {}) or {}
+    stats = feedback.get('strategy_stats', {}).get(blueprint_id, {}) if feedback.get('evidence_phase') == 'development' else {}
+    count = int(stats.get('n', 0))
+    gain = float(stats.get('mean_delta_vs_parent') or 0.0) * count / (count + 3)
+    uncertainty = float(stats.get('std_delta_vs_parent') or memory.get('prior_uncertainty', .1)) / (count + 1)**.5
+    coverage = memory.get('research_phase') == 'coverage'
+    bonus = float(count == 0) if coverage else 0.0
+    return {'score': bonus if coverage else gain + uncertainty, 'base': gain,
+        'estimated_gain': gain, 'uncertainty': uncertainty, 'count': count, 'family': family,
+        'family_count': int(memory.get('family_counts', {}).get(family, 0)),
+        'coverage_bonus': bonus, 'family_bonus': 0.0, 'early_bonus': 0.0,
+        'feedback_boost': 0.0, 'feedback_penalty': 0.0, 'repeat_penalty': 0.0,
+        'native_repeat_penalty': 0.0, 'budget_phase': 'coverage' if coverage else 'optimization',
+        'evidence_note': 'Descriptive development prior, not a confidence interval or confirmation'}
 
 
 def rank_scientific_blueprint_choices(choices: list[str], memory: dict[str, Any], parent_node: dict[str, Any], child_index: int) -> list[str]:
@@ -297,7 +273,7 @@ def rank_scientific_blueprint_choices(choices: list[str], memory: dict[str, Any]
         index, blueprint_id = item
         score = scientific_score(blueprint_id, memory, child_index)
         blueprint = blueprint_by_id(blueprint_id)
-        return (score["score"], int(blueprint.get("change_level", 0) or 0), -score["count"], -index)
+        return (score["score"], 0, -score["count"], -index)
 
     return [blueprint_id for _, blueprint_id in sorted(indexed, key=key, reverse=True)]
 
@@ -314,13 +290,6 @@ def structural_signature(config: dict[str, Any]) -> str:
         model.pop(key, None)
     payload = {"data": data, "model": model, "training": training, "execution": config.get("execution", {})}
     return hashlib.sha1(json.dumps(payload, sort_keys=True, default=str).encode("utf-8")).hexdigest()
-
-
-def _bounded_hidden(current: Any, blueprint_id: str) -> int:
-    value = int(current or 256)
-    if blueprint_id == "mixture_of_experts":
-        return min(max(value, 256), 384)
-    return min(max(value, 192), 384)
 
 
 def render_artifact_contract(child_name: str, blueprint: dict[str, Any], child_config: dict[str, Any], registry_audit: dict[str, Any] | None) -> dict[str, Any]:
@@ -363,13 +332,12 @@ def render_smoke_contract(child_name: str, child_config: dict[str, Any]) -> dict
 
 
 def render_parent_summary(parent_name: str, parent_node: dict[str, Any], parent_config: dict[str, Any], search_memory: dict[str, Any] | None = None) -> dict[str, Any]:
-    memory = search_memory or {}
+    memory = selection_context(search_memory or {})
     return {
         "format": "vc_demo_parent_summary.v1",
         "parent": parent_name,
         "parent_status": parent_node.get("status"),
         "parent_best_val_macro_f1": parent_node.get("best_val_macro_f1"),
-        "parent_test_macro_f1": parent_node.get("test_macro_f1"),
         "parent_strategy": parent_node.get("strategy", "root"),
         "parent_config_model": parent_config.get("model", {}),
         "parent_config_training": parent_config.get("training", {}),
@@ -387,7 +355,7 @@ def render_implementation_request(child_name: str, blueprint: dict[str, Any], pa
     missing = ", ".join(artifact_contract.get("missing_required_artifacts", [])) or "none"
     lines = [
         f"# Implementation Request: {child_name}", "",
-        "## Research Task", "", "K562 CRISPR perturbation DEG three-class classification on the official task contract. The node must predict logits for all 6,640 target genes and 3 DEG classes.", "",
+        "## Research Task", "", str(child_config.get('research', {}).get('task_description') or f"Use the frozen task contract for {(child_config.get('data') or child_config.get('dataset', {})).get('cell_line', 'the requested task')}; infer exact tensors from that task, never from another cell line."), "",
         "## Parent", "", f"`{parent_name}`", f"- parent val Macro-F1: `{parent_summary.get('parent_best_val_macro_f1')}`", f"- parent strategy: `{parent_summary.get('parent_strategy')}`", "",
         "## Search Memory", "", "Promising motifs from previous trained children:", *(f"- {item}" for item in parent_summary.get("search_memory_promising_motifs", [])[:8]), "", "Discouraged motifs/families:", *(f"- {item}" for item in parent_summary.get("search_memory_discouraged_motifs", [])[:8]), "",
         "## Blueprint", "",
@@ -396,17 +364,17 @@ def render_implementation_request(child_name: str, blueprint: dict[str, Any], pa
         "## Implementation Notes", "", blueprint.get("implementation_notes", ""), "",
         "## Codex Autonomy / Architecture Policy", "",
         "The selected blueprint is a research delta, not the entire child model specification.",
-        "Implement `child = parent pipeline + selected blueprint modification` unless this request explicitly says to replace the parent.",
-        "Preserve useful parent dense/context trunks, dense target-logit branches, residual routes, and validated artifact branches by default.",
-        "Add target/graph/pathway/fusion modules as residual, gated, additive, bilinear, or attention branches that can improve the parent signal.",
-        "Use search-memory motifs and parent metrics to choose a competitive artifact-backed design; do not write the most minimal isolated module if it discards known useful parent structure.",
-        "Record in `pipeline.json` whether the implementation is parent_preserving_delta, replacement, or ablation.", "",
+        "Choose replacement, feature fusion, joint training, grouped cross-fitted residual, stacking or ablation from development evidence.",
+        "Keep the strongest parent recipe as a comparator, not a mandatory computation branch; fixed global .25 mixing is not a framework rule.",
+        "Update research_hypothesis.json with rationale, evidence references, falsification, chosen composition and effective training policy.",
+        "For residual/stacking designs use inner group cross-fitting; fit combination weights without any outer validation or test labels.",
+        "You may design a new architecture or public module beyond the declared templates, within source, tensor, resource and evaluation constraints.", "",
         "## Framework Feedback", "",
         *(f"- {item}" for item in ((parent_summary.get("framework_feedback", {}).get("policy", {}) or {}).get("implementation_guidance", [])[:8])),
         *(f"- Validation: {item}" for item in ((parent_summary.get("framework_feedback", {}).get("policy", {}) or {}).get("validation_recommendations", [])[:5])), "",
         "## Pipeline Grammar", "", json_dumps_program(blueprint["id"]), "",
         "## Required File", "", "Create this file:", "", "```text", child_config["model"]["custom_model_path"], "```", "",
-        "It must define `class GeneratedModel(nn.Module)` with `__init__(self, spec)` and `forward(self, x)`. The forward pass must return `[batch, n_targets, n_classes]` logits, which is `[batch, 6640, 3]` for official K562.", "",
+        "This classification adapter requires `GeneratedModel(spec)` and `[batch, n_targets, n_classes]` logits. Other task adapters must declare their own tensor and estimator contracts; do not inherit classification shapes into regression.", "",
         "## Acceptance Criteria", "", acceptance, "",
         "## Guardrails", "", "Allowed files: node-local `model.py`, node-local config/pipeline metadata, and small helper modules under `src/vc_demo/official_k562/` when genuinely reusable.", "Forbidden changes: official split files, labels, target-gene order, metric semantics, and artifact provenance.", "Strict artifact rule: if a required artifact is missing, acquire the real artifact or block; do not train a fallback.", "Formal implementation rule: do not create compact/proxy/simplified stand-ins; use exact public static execution or a real artifact-backed full blueprint implementation.", "Forbidden import: `vc_demo.official_k562.native_models.OfficialK562NativeModel` is smoke-only and must not appear in formal node-local `model.py`.", "Smoke gate: run the commands in `smoke_contract.json` before training.", "If the faithful implementation cannot fit the current RunPod GPU, block with a compute/artifact requirement instead of downgrading the model.",
     ]

@@ -25,6 +25,8 @@ def main() -> None:
     parser.add_argument("--budget-nodes", type=int, default=2, help="Legacy rollout-iteration budget. Prefer --budget-proposals and --budget-trained-nodes for paper-aligned runs.")
     parser.add_argument("--budget-proposals", type=int, default=None, help="Maximum generated proposal candidates, including pruned/blocked/pending/trained candidates.")
     parser.add_argument("--budget-trained-nodes", type=int, default=None, help="Maximum rollout candidates allowed to finish training and backpropagate reward.")
+    parser.add_argument('--coverage-rollouts', type=int, default=0)
+    parser.add_argument('--confirmation-models', type=int, default=2)
     parser.add_argument("--max-epochs", type=int, default=1)
     parser.add_argument("--max-children", type=int, default=2)
     parser.add_argument("--stop-no-improve", type=int, default=2)
@@ -87,6 +89,9 @@ def main() -> None:
         budget_nodes=args.budget_nodes,
         budget_proposals=args.budget_proposals,
         budget_trained_nodes=args.budget_trained_nodes,
+        coverage_rollouts=args.coverage_rollouts,
+        confirmation_models=args.confirmation_models,
+        enable_acquisition_loop=args.enable_acquisition_loop,
         max_epochs=args.max_epochs,
         max_children=args.max_children,
         exploration=args.exploration,

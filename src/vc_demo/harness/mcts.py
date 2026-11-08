@@ -173,13 +173,22 @@ def _update_rollout_stats(node: dict[str, Any], reward: float) -> None:
 
 def backpropagate(tree: dict[str, Any], node_name: str, reward: float) -> None:
     """Backpropagate one completed rollout reward from leaf to root."""
+    leaf = tree['nodes'][node_name]
+    if leaf.get('status') != 'trained' or leaf.get('evidence_phase') == 'confirmation':
+        raise ValueError('Only trained development rollouts may backpropagate')
+    if not math.isfinite(reward):raise ValueError('Reward must be finite')
+    if leaf.get('rollout_backpropagated'):
+        raise ValueError('This completed rollout was already backpropagated; use a new ID for a registered replicate')
     current = node_name
     path: list[str] = []
     while current:
+        if current in path or current not in tree['nodes']:
+            raise ValueError('Invalid ancestor path; reward was not applied')
         path.append(current)
         node = tree["nodes"][current]
-        _update_rollout_stats(node, reward)
         current = node.get("parent", "")
+    for current in path:
+        _update_rollout_stats(tree['nodes'][current], reward)
     tree.setdefault("mcts", {})
     tree["mcts"]["last_backpropagation"] = {
         "leaf": node_name,
@@ -187,3 +196,4 @@ def backpropagate(tree: dict[str, Any], node_name: str, reward: float) -> None:
         "path": path,
         "path_length": len(path),
     }
+    leaf['rollout_backpropagated'] = True
