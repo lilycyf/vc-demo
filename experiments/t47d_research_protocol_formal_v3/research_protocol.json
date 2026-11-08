@@ -1,0 +1,22 @@
+{
+  "dataset_sha256": "b6a88b236caaf05e36f2bc196e0ecac9f2fff50ffd3fb06bcd4ce33d59aa2b6b",
+  "group_key": "clone_id",
+  "input_policy": "days0/1/4 only; every representation and combiner fitted within training clones",
+  "interpretation": "Retrospective rerun, never fresh blind confirmation",
+  "label_semantics": "log2((fraction_day26 + 1e-5)/(fraction_baseline + 1e-5))",
+  "metric": {
+    "direction": "maximize",
+    "name": "spearman"
+  },
+  "prior_test_exposure": true,
+  "required_benchmarks": {
+    "root_0_frequency": "2b1fdeed13d470f0f07db6d1e4dd23dad6a2698c63b7e803af7f900962d01127",
+    "root_1_ridge": "b9df53b8088e2251fed14bfa7ba88b9358ec00bf190c7912495d968d4f0a4428",
+    "root_2_early_elastic": "4e8918bcb4492d64da24a784b26f753b5a0693b3856803413407299f0c25e843",
+    "root_3_pls": "7f4e292c8a7c3dee5f1a40a3a94aa8cecb06649b237ef9891ee5b4e5087c1840",
+    "root_4_xgboost": "fd0232b15daf92ec7d15ff4e007dca5de8d3744784803704726a94f5c47c8d06",
+    "root_historical_exact_ridge": "f91790fe37ae8ae2578c339492f0b0d862a062d7e5dda4e64ab540592af8f9ba"
+  },
+  "split_sha256": "092e91e86ec6e38e1ad26355196228d986640efccd5a7421643783f26c397bf8",
+  "task_id": "T47D_lineage_research_v3"
+}

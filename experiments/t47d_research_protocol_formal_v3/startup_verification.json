@@ -1,0 +1,19 @@
+{
+  "formal_process_pid": 3415,
+  "active_phase": "search",
+  "formal_root_cv_folds": {
+    "root_0_frequency": 15,
+    "root_1_ridge": 15,
+    "root_2_early_elastic": 15,
+    "root_3_pls": 15,
+    "root_4_xgboost": 15,
+    "root_historical_exact_ridge": 15
+  },
+  "trained_nodes_at_verification": 7,
+  "failed_nodes_at_verification": 0,
+  "confirmation_opened": false,
+  "budget_guard_pid": 1595,
+  "budget_guard_running": true,
+  "deadline_utc": "2026-11-09T17:15:00+00:00",
+  "full_experiment_complete": false
+}

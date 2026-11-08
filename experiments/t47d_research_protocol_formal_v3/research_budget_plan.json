@@ -1,0 +1,7 @@
+{
+  "attribution_policy": "all original eight ablations, LOCO, horizon/combination/long-term challenges",
+  "confirmation_limit": 2,
+  "coverage_limit": 26,
+  "no_automatic_budget_extension": true,
+  "optimization_limit": 40
+}

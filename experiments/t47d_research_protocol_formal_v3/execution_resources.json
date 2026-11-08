@@ -1,0 +1,12 @@
+{
+  "approved_incremental_total_limit_usd": 20,
+  "container_disk_rate_usd_per_hour_approx": 0.007,
+  "gpu": "NVIDIA RTX 2000 Ada Generation, 16380 MiB",
+  "gpu_rate_usd_per_hour": 0.24,
+  "maximum_allocation_hours": 24,
+  "new_network_volume_monthly_usd": 7,
+  "old_copy_compute_stopped": true,
+  "pod_id": "2rz5r62ak701jl",
+  "start_utc": "2026-11-08T18:31:56.426523+00:00",
+  "stop_deadline_utc": "2026-11-09T17:15:00+00:00"
+}

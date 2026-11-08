@@ -1,0 +1,22 @@
+{
+  "pid": 3415,
+  "command": [
+    "/workspace/t47d_full_venv/bin/python",
+    "-u",
+    "scripts/t47d/research_demo.py",
+    "--run-dir",
+    "experiments/t47d_research_protocol_formal_v3",
+    "--optimization-rollouts",
+    "40",
+    "--phase",
+    "all"
+  ],
+  "branch": "t47d-lineage-resistance-demo",
+  "commit": "e5c0b4224d5333fb7a2431eba19c5ab8b89017fe",
+  "run_dir": "experiments/t47d_research_protocol_formal_v3",
+  "log_path": "/workspace/t47d_research_formal_v3.log",
+  "started_utc": "2026-11-08T18:31:29.038465+00:00",
+  "budget_stop_deadline_utc": "2026-11-09T17:15:00+00:00",
+  "no_scope_reduction": true,
+  "status": "launched; verify active training separately"
+}
