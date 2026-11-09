@@ -1,80 +1,73 @@
-# Generic Research And Cell-Line Acceptance
+# Generic Research And Cell-Line Acceptance v2
 
-Canonical constraints live in CODEX_AGENT_COOKBOOK.md and RESEARCH_PROTOCOL.md.
-These checks apply to fresh runs under the current protocol. Historical runs
-retain their original results and limitations; they are not retroactively passed.
+Universal policy: CODEX_AGENT_COOKBOOK.md. Executable contracts: RESEARCH_PROTOCOL.md.
+Workflow: GENERIC_RESEARCH_RUNBOOK.md. Historical studies retain original limitations;
+new APIs and passing unit tests do not retroactively certify them.
 
-## Execution
+## Execution And Protocol
 
-- Requested task, adapter, run type, directory and resource budget are explicit.
-- Real data and tensor/label/order contracts are validated; no implicit synthetic
-  data, other-cell-line backend, proxy checkpoint or fabricated artifact.
-- Selected nodes are actually implemented and trained. Compile/native smoke is
-  interface validation only. Existing agent code is not overwritten by templates.
-- Acquisition and repair receive same-session attempts; proven unavailable or
-  infeasible candidates are logged/skipped without halting other feasible work.
-- Only trained development rollouts backpropagate, exactly once; pruned, skipped,
-  failed, pending and confirmation nodes do not.
-- Resume replenishes and re-ranks the queue. Handling one pending item is not a
-  valid terminal condition while the registered search remains open and funded.
+- Task/provider, scope, branch/run directory and authorized resource limits explicit.
+- Real source, labels, group/split/time/target/vocabulary contracts frozen and checked.
+- Exact strongest references replayed; names alone do not establish recipe equality.
+- Actual shared v2 CLI/provider path used, not a standalone task runner with a v2 label.
+- Same MetricSpec identity/aggregation for reward, paired evidence and scheduling.
+- Checkpoint, source/input/artifact/environment identities persisted and unchanged.
+- Real implementation, forward/backward validation where applicable, actual fitting
+  and diagnostics; no synthetic task substitution, fallback or impersonated model.
+- Selected work handled now; failures have actual repair/acquisition attempts and
+  transparent skip/continuation. A queue file alone is not completion.
+- Only trained optimization measurements backpropagate once. Coverage and benchmarks
+  have separate comparison associations and do not spend optimization credit/slots.
+- Pruned/unselected nodes do not execute; duplicates do not retrain or reapply reward.
+- Replenishment and global reranking occur after completed optimization, including
+  resume. Real registered exhaustion does not abandon remaining feasible queue items.
+- Independent hard resource shutdown remains active; source code cannot promise a
+  hard cloud limit merely because it checks a deadline between calls.
 
-## Protocol And References
+## Research Freedom And Actual Capabilities
 
-- Protocol identifies data/split content, label semantics, independent group,
-  time access, primary metric/direction and confirmation rules.
-- All required strong/historical benchmark recipes are included and replayable.
-  Same model names with different preprocessing are different comparisons.
-- Effective training config, source, data, artifact and environment fingerprints
-  are recorded. Changed scaling, code, data or actual epoch budget invalidates
-  affected cached results instead of silently mixing folds.
-- Coverage/optimization/confirmation plans and consumption are separate. Named
-  profile defaults are not universal epoch or rollout requirements.
-- Residuals and meta-weights use inner grouped OOF. Replacement/simplification is
-  permitted; a strong parent benchmark does not require a retained dense branch.
+- Parent evidence affects hypothesis/design; replacement need not preserve root code.
+- Agent-defined, simplified, fused, joint and valid grouped OOF compositions are
+  reachable without arbitrary family lists, iteration modulo or hidden size limits.
+- Actual exercised/unexercised capabilities reported. Do not force every capability
+  in every task merely to make a coverage counter positive.
+- Evidence snapshots are immutable; measured gain and uncertainty reference the
+  actual same-metric record. Research assumptions are labeled and justified.
+- Queued estimate revisions are logged; no fake family-level independence or
+  artifact-present/model-brand scientific bonus. Increasing pure cost cannot improve
+  the same candidate's utility score through a sign inversion.
 
-## Information Boundaries
+## Information And Confirmation
 
-- Search training does not iterate/evaluate test data; metrics show withheld,
-  not invented zeros or validation fallbacks.
-- Test poisoning leaves feedback, parent summaries and candidate ranking unchanged.
-- Feedback artifacts declare development provenance; legacy test-derived policies
-  are not imported into new search memory.
-- Confirmation requires actual selected recipe fingerprints, unchanged code/data,
-  a frozen-selection lock and the declared confirmation budget.
-- Opening confirmation closes search and train_pending. Test cannot tune another
-  seed, epoch, architecture, calibration, acquisition choice or stopping rule.
-- Prior exposure and unidentifiable metrics remain explicitly disclosed.
+- Actual task-provider poisoning/invariance tests protect search data access; generic
+  fixtures do not certify arbitrary Python or provide an OS sandbox.
+- Confirmed metrics/labels/errors do not enter subsequent research context or repair.
+- Confirmation freezes actual fitted artifacts and calls predict-only, with zero
+  fit/calibration updates. Provider tests verify behavior, not only a boolean claim.
+- Opening confirmation closes selection, implementation and reward updates.
+- Exposure history persists across versions, branches and seeds; unidentifiable
+  endpoints remain undefined rather than invented100% success.
 
-## Scientific And Attribution Verdicts
+## Scientific, Attribution And Transfer Verdicts
 
-Execution success and scientific superiority are separate. Report the registered
-objective status, matched paired gains/uncertainty, per-condition diagnostics,
-simple/mechanical controls, convergence and effective sample size. A threshold
-is required only if the task/user registered one; framework success is not
-defined as making every complex model beat every simple baseline.
+- Independent sample counts are groups, not cells/folds/seeds. Conditional OOF
+  bootstrap and adaptive winner uncertainty are not independent confirmation.
+- Separate best observed candidate, finalist and supported replacement; keeping
+  the strongest baseline after a null result is legitimate.
+- Record actual solver/budget/convergence and task-appropriate strata/negative
+  controls. Do not diagnose undertraining or overfitting without relevant evidence.
+- Artifact use is not benefit. Unused-component removal is not_applicable; used
+  component controls require a real dependency change and fair matched comparison.
+- Coverage, unique semantic configurations and registered replicates are separate.
+- Framework superiority requires equal-resource random/simple-policy comparisons
+  and independently specified tasks not used to develop the framework.
 
-Artifact availability/use does not establish usefulness. Distinguish capacity,
-training and actual artifact contribution with prespecified matched controls.
-No temporal benefit may be claimed merely because a real temporal module ran.
-No-positive-heldout recall is undefined, not100%. Repeated CV and an adaptive
-development winner are not fresh independent confirmation.
+## Delivery And Git
 
-## Framework Transfer Verdict
+Preserve protocol, immutable evidence, semantic recipes, budgets, implementation/
+acquisition/repair attempts, real predictions/diagnostics and layered conclusions.
+No implicit scientific pass from execution completion or a target score alone.
 
-Use new tasks not used for framework development and equal-resource baselines
-and random search before claiming a generally improved framework. Task-specific
-scientific details remain adapters, not hardcoded cookbook choices. Test changes
-with both regression and classification fixtures and adversarial negative cases.
-
-## Required Outputs And Git Guard
-
-Preserve protocol, recipe locks, budget usage, hypotheses, tree/trace, development
-feedback, acquisition/repair evidence, frozen selection and a layered report.
-Required invariant counters are zero: fallback/proxy, pruned training,
-nontrained/duplicate/confirmation reward, unintended backend and forbidden files.
-
-Never commit data/, nodes/, weights/checkpoints, *.pt/*.pth/*.ckpt/*.bin,
-*.npz/*.h5ad, raw cell exports, environments, caches, private keys or tokens.
-Review actual staged paths and secret patterns; a directory named in a harmless
-model strategy is not itself a checkpoint artifact. Preserve user changes.
-
+Commit source/contracts/tests/small reports only. No data/, nodes/, weights,
+checkpoints, raw arrays/cell exports, environments, keys or tokens. Inspect actual
+staged paths and secrets. Do not modify historical frozen outputs to pass a new audit.

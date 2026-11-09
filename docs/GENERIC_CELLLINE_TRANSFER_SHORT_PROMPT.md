@@ -1,44 +1,25 @@
-# Short Prompt: Generic Cell-Line Runs
-
-## Full cell-line run
-
-Copy this when the user asks to truly/fully run a cell line:
+# Short Research Prompt Format
 
 ```text
-Run official generic cell-line full run on RunPod `/workspace/vc-demo`.
-Branch: generic-cellline-runner-fix
-CELL_LINE_ID: <CELL_LINE_ID>
-RUN_TYPE: full_cellline_run
-TARGET_VAL_MACRO_F1: <TARGET_SCORE>
+Work only on RunPod in /workspace/vc-demo. Do not read or run the local repo.
 
-Use repo instructions only:
-- docs/GENERIC_CELLLINE_TRANSFER_RUNBOOK.md
-- docs/GENERIC_CELLLINE_TRANSFER_ACCEPTANCE.md
+BASE_BRANCH: <current framework branch>
+RUN_BRANCH: <same branch, or an explicitly requested isolated run branch>
+TASK_ID: <requested task/cell line>
+RUN_TYPE: <framework_cpu_validation | formal_research>
+RUN_DIR: <fresh directory for formal research; temporary fixtures for CPU tests>
+TASK_SOURCE: <task document/data contract>
+RESOURCE_LIMIT: <explicit user authorization, deadline and cost limit>
+OPTIONAL_SCIENTIFIC_TARGET: <only if required; register before confirmation>
 
-Use the standard entrypoint:
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --run-type full_cellline_run --level full_cellline_run --target-val-macro-f1 <TARGET_SCORE> --execute
-
-This is not a smoke test. Do not use transfer_64x16. Do not use 1 epoch. The primary objective is to find a generated child that beats the best root and reaches TARGET_VAL_MACRO_F1 on validation Macro-F1. Before training, apply the artifact-constrained blueprint rule from the runbook: acquire public source-backed artifacts when possible; if an artifact is proven unavailable, exclude dependent blueprints from the main full run and report them separately. No fallback, no compact/proxy, no test-set tuning, and no forbidden files.
-
-Push results to:
-<cell_line_slug>-full-official-run
-
-Final reply must include commit hash, generated/trained/pruned/blocked counts, best root val/test, best generated child val/test, delta child-vs-root, delta child-vs-target, whether the score target and root-beating objective were achieved, artifact exclusions/blockers, fallback/proxy/backprop/backend anomaly counts, and forbidden staged check result.
+Read CODEX_AGENT_COOKBOOK.md, docs/RESEARCH_PROTOCOL.md,
+docs/GENERIC_RESEARCH_RUNBOOK.md and the applicable task/acquisition docs.
+Use the shared research_v2 entrypoint, implement missing task-provider work in this
+Codex session, complete the requested authorized scope, and report layered verdicts.
+Push only approved source/contracts/tests/small results and give branch/commit/report.
 ```
 
-## Loop self-test
-
-Copy this only when the user asks to test the runner mechanics:
-
-```text
-Run generic cell-line loop self-test on RunPod `/workspace/vc-demo`.
-Branch: generic-cellline-runner-fix
-CELL_LINE_ID: <CELL_LINE_ID>
-RUN_TYPE: loop_self_test
-TEST_LEVEL: transfer_64x16
-
-Use the standard entrypoint:
-PYTHONPATH=src python scripts/run_generic_cellline_transfer_test.py --cell-line <CELL_LINE_ID> --run-type loop_self_test --level transfer_64x16 --execute
-
-This is a loop/runner validation only; do not use the result to judge model superiority.
-```
+Do not paste universal rules into each prompt, preselect an example second task,
+require a demo-specific score/epoch count, or authorize cloud spending implicitly.
+CPU validation is not permission to start a scientific run. Legacy 64x16/150x40/full
+classification profiles do not define universal research adequacy.

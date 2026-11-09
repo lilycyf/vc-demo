@@ -285,6 +285,23 @@ def write_plan(path: Path, payload: dict[str, object], command: list[str]) -> No
     (path / "transfer_invocation.md").write_text("\n".join(md) + "\n", encoding="utf-8")
 
 
+def validate_legacy_execution(args) -> None:
+    if not args.execute:
+        return
+    if not getattr(args, 'legacy_protocol', False) or not args.resume or args.run_dir is None:
+        raise SystemExit(
+            'Fresh research uses scripts/run_research_harness.py (research_v2). '
+            'This historical classification entrypoint may execute only an explicitly '
+            'requested --legacy-protocol --resume --run-dir <existing open v1 run>.'
+        )
+    if (args.run_dir / 'research_protocol_v2.json').exists():
+        raise SystemExit('Do not route a research_v2 session through the legacy classification runner.')
+    if not run_dir_has_state(args.run_dir):
+        raise SystemExit('Legacy resume requires actual existing run state, not a fresh directory.')
+    if (args.run_dir / 'confirmation_lock.json').exists():
+        raise SystemExit('Confirmation already closed this historical run to further search.')
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Standard entrypoint for generic cell-line transfer tests and full runs.")
     parser.add_argument("--cell-line", required=True, help="Cell line id, for example K562 or a source-backed second cell line.")
@@ -300,8 +317,10 @@ def main() -> None:
     parser.add_argument("--implementation-repair-attempts", type=int, default=3)
     parser.add_argument("--resume", action="store_true", help="Resume the existing run instead of adding --reset.")
     parser.add_argument("--execute", action="store_true", help="Run the generated command after writing the invocation files.")
+    parser.add_argument('--legacy-protocol', action='store_true', help='Explicit historical open-run resume only; fresh research uses research_v2.')
     parser.add_argument("--print-command", action="store_true", help="Print the generated command and exit unless --execute is also set.")
     args = parser.parse_args()
+    validate_legacy_execution(args)
 
     level_name, level, max_epochs = resolve_level_and_epochs(args)
     slug = slugify(args.cell_line)

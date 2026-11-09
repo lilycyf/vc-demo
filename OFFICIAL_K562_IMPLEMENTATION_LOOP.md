@@ -1,5 +1,10 @@
 # Official K562 Automatic Implementation Loop
 
+> Historical v1 classification integration notes. Fresh research uses
+> `scripts/run_research_harness.py` and `docs/GENERIC_RESEARCH_RUNBOOK.md`.
+> Reuse faithful task/data/model helpers through a validated v2 provider; these
+> legacy flags and implementation templates do not certify v2 research freedom.
+
 This is a classification-task adapter, not the universal research policy.
 `docs/RESEARCH_PROTOCOL.md` and `CODEX_AGENT_COOKBOOK.md` define the shared
 boundaries and take precedence over historical experiment instructions.
@@ -15,7 +20,8 @@ This repo now supports a stricter paper-aligned loop for selected planned nodes:
 7. Only a smoke-passing node is trained with `train_pending`.
 8. Only a trained node backpropagates reward into MCTS.
 
-This is the preferred mode for official K562 paper-aligned runs. Do not manually train every proposal.
+This describes the historical v1 mode, not the default for a fresh research_v2 run.
+Do not train every proposal or silently resume a closed historical experiment.
 
 ## Strict Rules
 

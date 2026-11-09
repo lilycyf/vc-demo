@@ -1,107 +1,87 @@
 # Artifact Acquisition Runbook
 
-Shared scientific boundaries are defined in `docs/RESEARCH_PROTOCOL.md` and
-`CODEX_AGENT_COOKBOOK.md`. Artifact presence is a feasibility gate, not evidence
-of scientific merit. Acquisition does not authorize changing the task contract,
-extending the approved cost budget, or reopening a run after confirmation.
+## Ownership And Trigger
 
-Formal searches run in strict artifact mode. If a selected blueprint needs a missing artifact, the search must pause and create:
+Read CODEX_AGENT_COOKBOOK.md, RESEARCH_PROTOCOL.md and GENERIC_RESEARCH_RUNBOOK.md.
+Availability is a feasibility gate after scientific selection, never a model-quality
+bonus. Acquisition cannot change the task, expand spending or reopen confirmation.
 
-```text
-<run_dir>/acquisition_queue.json
-```
+When a selected candidate requires missing resources, the active Codex handles the
+work now: inspect its required_artifacts contract, use existing source-backed tools,
+search primary sources, download/build, validate and register. A task/queue file is
+not completion, a terminal requires_external_codex state or proof of unavailability.
 
-This is not a final scientific failure and it is not permission to end the experiment. It is the handoff into active artifact acquisition. The next Codex action is to try to search, download, build, audit, and register the real artifact; only then may the agent resume the run or declare a source-backed blocker.
+## Required Investigation
 
-## Resolver Command
+1. Identify the actual module type and required contents: graph, vocabulary, aligned
+   embedding, pretrained encoder/checkpoint, code or derived representation. A graph
+   or cached vector table cannot impersonate missing pretrained model weights.
+2. Search the module's official project/model/data sources and appropriate public
+   hosts. Do not prefer a provider brand regardless of the task. Record source,
+   revision/license/access conditions, expected format and content checksums.
+3. Check current files and provenance, not directory existence. Empty directories or
+   repositories containing only model cards/.gitattributes are not usable artifacts.
+4. If a real public encoder exists but aligned outputs do not, investigate a faithful
+   encoder-output build: input normalization, supported vocabulary, dimensions, row/
+   target order, training/query access and resource cost. Missing preprocessing or
+   a resolver requires implementation/research, not an automatic scientific blocker.
+5. Download/build within authorization. Preserve an auditable reproduction recipe
+   and reusable manifest; weights/data/environments stay off GitHub.
+6. Verify actual task alignment and authentic loading/forward use. Record original_public,
+   derived or reconstructed_compatibility; never call an unverified reconstruction
+   numerically identical to the original. Honor the proposal's allowed provenance.
+7. Seal the content-backed resource and execute only after real validation. If a
+   genuinely different module is proposed instead, name a new explicit hypothesis;
+   do not keep the required foundation-model claim while silently omitting it.
 
-Before doing manual research, run the acquisition resolver. It verifies already-present artifacts, executes known deterministic builders when allowed, and creates a strict Codex research task for artifacts whose public source must be investigated.
+## Existing Resolver Tools
+
+The legacy cell-line helper remains available for its supported registry schema:
 
 ```bash
-python -m vc_demo.harness.artifact_acquisition \
-  --queue <run_dir>/acquisition_queue.json \
-  --registry <configs/artifacts/<cell_line>_registry.json> \
+PYTHONPATH=src python -m vc_demo.harness.artifact_acquisition \
+  --queue <queue.json> --registry <explicit active registry.json> \
   --sources configs/artifacts/acquisition_sources.json \
-  --cell-line <CELL_LINE_ID> \
-  --output-dir <run_dir>/artifact_acquisition \
-  --execute-known
+  --cell-line <explicit source-backed cell-line/task scope supported by registry> \
+  --output-dir <run_dir>/artifact_acquisition --execute-known
 ```
 
-If this writes `ACQUIRE_<artifact>.md`, the same experiment Codex must follow the generated task immediately. The correct behavior is active source-backed acquisition plus resume, not waiting passively, not handing off by default, and not training a fallback.
+Its historical default scope is not a generic task inference. Never omit the active
+scope/registry or silently apply a classification/cell-line resolver to another task.
+Use a faithful task resolver or current Codex research/build tools when that schema
+does not apply. Read generated ACQUIRE_<artifact>.md and act in this session.
 
-## Required Behavior
+In research_v2, required roles remain on the selected candidate until handled.
+Seal verifies actual file/directory content identity, required contents and module
+type, source/status and alignment. Providers must load/consume the declared resource;
+reported role names alone do not prove authenticity or usefulness. Native loader,
+vocabulary/order and source tests are task-provider obligations.
 
-When `acquisition_queue.json` is non-empty, the Codex agent must not simply report that the run stopped. It must:
+## Failure, Local Skip And Continuation
 
-1. Read the queue item: artifact id, expected path, source hint, and triggering blueprint.
-2. Search for the real artifact from official or primary sources.
-3. Prefer existing public GenBio/HuggingFace artifacts when available.
-4. For graph/pathway artifacts, build an aligned artifact from a public source only if source, version, filtering, and gene coverage can be documented.
-5. Write the artifact under the expected `data/artifacts/...` path.
-6. Update the active cell-line registry only with source-backed metadata.
-7. Run `python -m vc_demo.harness.artifact_registry --cell-line <CELL_LINE_ID> --registry <active registry>` and save/update audit output.
-8. Resume the same run without reset only while its search phase is open. A changed task/data contract needs a new registered run; never silently restart to erase failures or held-out exposure.
-9. If and only if acquisition fails because no verifiable source exists, public files are incomplete/non-equivalent, or source/provenance/shape/row-order/vocabulary cannot be verified, write a blocker report that lists the sources checked, why each source is insufficient, and what approval/file would be needed next.
+After actual attempts, source not verifiable, unpublished/incomplete/non-equivalent
+files, access/license restrictions, unresolved order/shape/leakage risk or approved
+resource limits may make this candidate infeasible. Record exactly which boundary
+applies, sources/actions checked, evidence files/checksums and any human action needed.
 
+Use the shared skip action with reason and concrete attempts, then continue other
+feasible queued candidates. Missing Python packages, helpers, disk preparation,
+encoder wrappers or an uncalled resolver are repair/acquisition work, not proof of
+an unavailable primary artifact. Do not fabricate resources to keep counters zero.
 
-## Blocker Threshold
+Historical classification wrappers may require verified_blockers.json receipts to
+continue. Those are historical execution details, not an instruction to resume a
+closed run or to train every proposal. New v2 work follows the shared session state.
 
-A missing artifact may remain blocked only after a realtime acquisition attempt has been made in the same experiment session. A valid blocker must include:
+## Forbidden Claims
 
-- artifact id and triggering blueprint/node;
-- sources searched, including official/project repositories and public model/data hosts when relevant;
-- why no source-backed artifact can be used safely;
-- whether the issue is unavailable weights, license/manual approval, missing tensor contract, vocabulary mismatch, row/order mismatch, or leakage risk;
-- exact next human action needed.
+- Random embeddings or fabricated edges labeled as a real biological artifact.
+- A small model/proxy presented as a named pretrained model or authentic checkpoint.
+- Marking present from an empty path/directory or a downloadable README only.
+- Calling acquired/consumed resources useful without applicable matched controls.
+- Treating unavailable artifacts as lower scientific merit before research selection.
+- Committing private keys, access tokens, model weights, raw arrays/data or environments.
 
-For `scfoundation_cell_embeddings`, do not block immediately after the strict search stops. First run the resolver, read the generated `ACQUIRE_scfoundation_cell_embeddings.md`, search for public scFoundation checkpoints/embeddings, and attempt a K562-aligned build only if the source and tensor contract are defensible.
-
-## Forbidden In Formal Tests
-
-- Do not train a fallback model for a missing artifact.
-- Do not create random embeddings and call them AIDO, scFoundation, ESM2, STRING, pathway, or pretrained artifacts.
-- Do not fabricate graph edges, pathway memberships, or pretrained checkpoints.
-- Do not mark an artifact as present unless the expected file exists and the source is recorded.
-
-## Current K562 Priorities
-
-This section is K562-specific. For other cell lines, use the active registry and generated `ACQUIRE_<artifact>.md` task instead of copying K562 artifact assumptions.
-
-1. `pretrained_encoder`
-   - Needed by `selective_adapter_finetune`.
-   - Must be a real checkpoint or clearly defined pretraining output, not a random frozen base.
-2. `string_k562_gene_graph`
-   - Needed by `ppi_graph_message_passing` and `string_gnn_perturbation_propagator`.
-   - Should be aligned to K562 perturbation genes and target genes.
-3. `pathway_membership_matrix`
-   - Needed by `pathway_pooling_encoder`.
-   - Should be aligned to the exact target gene list.
-4. `aido_gene_or_cell_embeddings` / `scfoundation_cell_embeddings`
-   - Use only if a real downloadable artifact or approved encoder output exists.
-
-## Resume Rule
-
-After researching an unavailable primary artifact, record an auditable terminal
-receipt under `artifact_acquisition/verified_blockers.json` with `items` entries:
-`artifact_id`, `status=blocked_unavailable_primary_artifact`, `sources_checked`,
-and `evidence_files: {absolute_report_path: sha256}`. The report must document
-the actual source checks, incompatibility and reason; the receipt is not a
-self-certification substitute for research. The classification full-run wrapper
-keeps those dependent nodes blocked but can drain other queued candidates.
-Missing, changed or empty evidence does not qualify and requires realtime action.
-
-After acquisition, rerun the same strict search command without reset or fallback, provided no confirmation lock exists. If the artifact is now present, MCTS can implement/train the selected node. If another artifact is missing, produce the next acquisition queue item. A documented unavailable artifact blocks its dependent candidates, not unrelated scientific hypotheses.
-
-## Pre-Test Hardening
-
-- `program_run` now writes `run_manifest.json` with commit, search parameters, artifact audit, queue paths, MCTS state, and best-node summary.
-- Scientific priority uses development evidence, uncertainty and cost. Missing artifacts trigger acquisition after selection; artifact presence, planned status and model brand do not earn ranking bonuses.
-- `ppi_graph_message_passing` is an implemented STRING/PPI graph smoother when `string_k562_gene_graph` is present. It reads `data/artifacts/string/k562_target_graph_edges.tsv` through `spec.artifacts` and does not fabricate edges.
-
-## Autonomous Agent Loop
-
-See `AUTONOMOUS_AGENT_LOOP_UPGRADE.md`. The framework now includes `preflight`, `autonomous_run`, `implementation_agent`, duplicate/memory guards, `search_memory.json`, and bounded automatic implementation/training cycles for safe node-local model templates.
-
-## Codex Agent Cookbook
-
-Formal runs use the user-launched Codex window as the coding/research agent. The repo must not call Codex/OpenAI APIs internally. See `CODEX_AGENT_COOKBOOK.md` for what Codex may change, must not change, and when official-source search is required.
+Task-specific artifact priorities and examples belong in task documentation, not
+this universal acquisition policy. Missing source-backed resources block their own
+candidate, not unrelated hypotheses or the whole framework by default.

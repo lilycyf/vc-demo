@@ -2,145 +2,119 @@
 
 ## Purpose And Ownership
 
-Build a reusable, auditable research harness through tasks, not a model tuned to
-one cell line. The active Codex is the researcher and implementer; this repository
-must not call a Codex/OpenAI API internally. The harness supplies executable
-contracts, state, evidence, proposals, acquisition and validation tools.
+Improve a reusable research framework through tasks, not a demo score. The active
+Codex is the researcher and implementer. Do not call a Codex/OpenAI API internally.
 
-This file owns universal rules. `docs/RESEARCH_PROTOCOL.md` owns the shared
-scientific protocol and APIs. Task runbooks own datasets, prediction units,
-tensors, metrics, reference methods and model-specific training policies.
-`ARTIFACT_ACQUISITION_RUNBOOK.md` owns public-resource acquisition.
-The generic cell-line runbook describes the classification adapter only; it is
-not a universal regression, trajectory or survival implementation.
+This file owns universal boundaries and researcher freedom. `docs/RESEARCH_PROTOCOL.md`
+owns executable contracts; `docs/GENERIC_RESEARCH_RUNBOOK.md` owns the shared loop;
+task runbooks own data, models and scientific meaning. The artifact runbook owns
+source-backed acquisition. Prompts reference these docs instead of copying rules.
 
-Prompts should name the base/run branch, task or cell line, requested test type,
-fresh run directory, and approved resource budget. Read repository rules rather
-than copying historical instructions into every prompt. Reuse the current
-development branch unless the user requests an isolated experiment branch.
+Fresh research uses `scripts/run_research_harness.py` and `harness/research_v2/`.
+Legacy classification and task runners remain historical implementations, not
+evidence that their behavior satisfies v2. A new task must implement a faithful
+provider; no registration is permission to silently use another task or synthetic data.
 
-## Hard Scientific Boundaries
+## Immutable Scientific Boundaries
 
-- Freeze source data, eligibility, labels, group/split semantics, prediction
-  horizon, target order, primary metric/direction and confirmation policy.
-- No test/heldout/confirmation scores, labels, errors or feature importance may
-  drive proposals, training, calibration, ranking, stopping or repair choices.
-- Search and coverage produce development-only results. Native training defers
-  test evaluation. Confirmation requires selected executable recipe fingerprints
-  and closes that run to further search, including `train_pending`.
-- Preserve the complete strongest reference recipe, not only its model name.
-  Encoding, scaling, preprocessing, optimizer/regularization, effective budget,
-  code, input content and artifact versions belong to its identity.
-- No fabricated artifacts, proxy checkpoints, disguised substitute models,
-  implicit synthetic task, nonfinite rewards, pruned training or untrained reward.
-- A trained development rollout backpropagates exactly once. Replication is a
-  separately identified experiment, not another application of the same reward.
-- Smoke verifies interfaces/gradients. It is never formal scientific evidence.
+- Freeze source content, eligibility, labels, independent groups/splits, time access,
+  target order, the complete primary MetricSpec and confirmation/exposure policy.
+- Freeze exact strongest benchmark recipes, including encoding, scaling, solver,
+  actual training settings, code and dependency/input/artifact content identities.
+- Search, feedback, selection, calibration and repair use development evidence only.
+  Test/confirmation labels, scores or errors cannot rank hypotheses or tune training.
+- A recipe/source change is a new scientific identity. Do not mix old and new folds.
+  Exposed groups remain exposed after a branch, seed or protocol version changes.
+- No fabricated artifacts, disguised small-model substitutes, implicit synthetic task,
+  nonfinite reward, pruned training, in-sample residual called OOF, or untrained reward.
+- A validated optimization measurement backpropagates once. Coverage and benchmark
+  observations never consume optimization credit or expansion slots.
+- Confirmation only loads frozen fitted checkpoints/calibrators. It closes selection;
+  its results never enter research context. Smoke verifies interfaces, not superiority.
+- Respect user-approved resources and existing shutdown protection. Never start a
+  scientific run, create cloud resources or extend spending without authorization.
 
-## Codex Research Freedom
+## Researcher Freedom
 
-The blueprint is a hypothesis, not a complete architecture or a compulsory
-mutation. Codex may design new architectures and public modules beyond the
-manifest, use `agent_defined_candidate`, simplify a model, or choose replacement,
-feature fusion, joint training, grouped cross-fitted residual, stacking or ablation.
+Blueprints and manifests are hypotheses and inventories, not architecture ceilings.
+Codex may implement agent-defined candidates, use public modules beyond the inventory,
+change effective training policies, simplify a model, replace it, fuse features,
+jointly train components, or use valid grouped OOF residual/stacking.
 
-The parent is an unchanged benchmark and source of evidence, NOT a mandatory
-dense branch. There is no universal parent-preserving topology, fixed .25 mixing,
-hidden-size cap, epoch minimum, or preference for a named foundation model.
-Choose a faithful design within the task and approved resource contracts.
-Existing agent-written `model.py` must be compiled and preserved, not overwritten
-by an automatic template. Small models are legitimate when actually proposed as
-small models; they cannot impersonate a required pretrained model.
+The parent supplies unchanged benchmark evidence, not a compulsory dense branch.
+No universal fixed mixing weight, hidden-size cap, epoch minimum, family whitelist,
+mandatory foundation model or requirement that complex models beat simple baselines.
+An intentional change from a selected design is allowed with a recorded reason and
+sealed actual recipe. Preserve agent code; never overwrite it with a proxy template.
 
-Codex may change node-local model/config/helper code and declare a new effective
-training policy. During a frozen experiment it may not change the scientific
-task or silently rewrite baseline code. Framework bugs are repaired with a
-versioned execution change and invalidation of affected results, not by mixing
-old and new fold rewards under one identity.
+Use node-local code and appropriate task-provider helpers. A training-policy change
+belongs in the recipe/provider, not in edits to labels, splits or the evaluation
+metric. Core changes during an executed run require versioning and explicit result
+invalidation, not silent compatibility edits.
 
-## Research Loop
+## Active Research Loop
 
-1. Read task sources, inspect independent group counts, sampling, missingness,
-   potential label/input coupling and available budget. Register the protocol.
-2. Register and replay exact strong/historical benchmark recipes. An unavailable
-   historical artifact is an explicit comparison gap, never a weaker renamed root.
-3. Declare separate coverage, optimization and confirmation budgets. Coverage is
-   a method inventory exercise, not an optimization-score bonus.
-4. Select a trained parent with MCTS; inspect development evidence and generate
-   multiple falsifiable proposals. Replenish and re-rank the global queue after
-   every completed rollout. Unselected/pruned proposals are not trained.
-5. For the selected proposal, research/acquire any real missing artifact now.
-   Implement and repair in the active Codex session. If infeasible after actual
-   attempts, record the precise reason, skip that candidate and continue feasible
-   queue entries. A queue file alone is not completion or a scientific blocker.
-6. Record `research_hypothesis.json`: hypothesis, evidence references, expected
-   change, falsification, composition and effective training policy. Compile,
-   native-smoke, formally fit/evaluate and verify recipe provenance.
-7. Train residual/stacking modules and combination weights using inner grouped
-   OOF predictions. Never fit a residual from the parent's training predictions
-   and call it cross-fitted. Do not use outer validation labels for a combiner.
-8. Only then mark trained and backpropagate. Write development feedback with
-   paired group-level gains, uncertainty, strata, convergence and resource cost.
-   Let Codex use that evidence to propose the next experiment, including removal
-   of an unhelpful complex component.
-9. Stop only for the registered budget, stopping rule, reached optional target,
-   exhausted feasible queue, true validity failure or approved resource boundary.
-10. Freeze selected recipe fingerprints, open confirmation once, run registered
-    confirmatory analyses and report. Do not resume search after seeing test.
+1. Inspect source data, independent sample counts, sampling/confounding, label-input
+   coupling, usable observation windows, artifacts and approved resources.
+2. Implement/validate the task provider and register TaskSpec, MetricSpec, exact strong
+   benchmarks, separate coverage/optimization/confirmation budgets and stopping policy.
+3. Replay required baselines. Coverage inventories methods; it is not optimization
+   success and does not change optimization visits/Q or exhaust parent expansion.
+4. Read an immutable development snapshot and actual OOF errors/diagnostics. Explain
+   the parent-conditioned hypothesis, predicted increment, falsification and cost.
+   UCT is a parent recommendation; an intentional override needs a research reason.
+   Do not call a flat scheduler full paper-equivalent tree-descent MCTS.
+5. Submit multiple proposals, retain/re-rank the global pool, and train only the
+   selected next rollout. Replenish after each completed optimization measurement.
+   Existing queued estimates can be revised using a new snapshot and logged rationale.
+6. Handle selected work now: search/acquire missing public resources, implement,
+   compile, native-smoke, seal actual contents and formally execute. No internal
+   `requires_external_codex` terminal condition: this active Codex does the work.
+7. If real implementation/acquisition attempts fail, document evidence and skip that
+   candidate, then continue the feasible queue. A missing resolver or uncalled agent
+   is not proof that an artifact/model is scientifically unavailable.
+8. Validate OOF rows, groups, seeds, metric identity, actual fits, checkpoint contents,
+   consumed artifact roles and diagnostics. Only then commit the reward once.
+9. Distinguish measured paired evidence from numeric assumptions. Different model,
+   representation, composition and loss contexts cannot be pooled into fake independent
+   replicates. Artifact availability is feasibility, never a scientific-quality bonus.
+10. Stop at the registered allocation, approved boundary or documented permissible
+    feasible-space exhaustion. Handling one node is not completion. Freeze finalists
+    before confirmation; an unsupported gain can correctly retain the strong baseline.
 
-## Evidence And Resource Policy
+## Evidence And Validation
 
-Independent samples are the declared groups, not cells, repeated folds or seeds.
-Repeated CV is not independent confirmation. Pooled metrics must be accompanied
-by task-appropriate within-condition diagnostics and mechanical/null controls.
-Correlation with a ratio denominator, treatment identity or library is not proof
-of the desired biological mechanism. Choose controls before interpreting gains.
+Reward, paired delta, ranking and promotion must share an executable metric identity,
+including seed/fold aggregation order. A separately named ensemble metric is allowed;
+it cannot silently substitute for the primary estimand.
 
-Model families may use different training algorithms and budgets. Record the
-actual solver, loss, epochs/iterations, stopping criterion and convergence, not
-unused generic config fields. Comparable optimization opportunity does not mean
-identical epoch counts. No global rule requires eight epochs or 100 rollouts.
-Named run profiles are defaults; the task's registered plan determines adequacy.
+Independent samples are groups, not cells, repeated folds or training seeds. Fixed-OOF
+bootstrap is conditional descriptive evidence, not independent confirmation or a
+correction for adaptive winner selection. Record convergence and actual effective
+training settings; equal epoch counts are not equal optimization opportunity.
 
-Artifacts are feasibility gates, never a scientific-quality or ranking bonus.
-Prefer primary sources; download/build when feasible, verify license/source,
-content checksum, vocabulary/order, dimensions and actual model consumption.
-Lack of a prewritten resolver is a Codex research task, not proof of unavailability.
-If files are unpublished/incomplete, access-gated, unverifiable or beyond the
-approved budget, record that exact limit and continue other valid hypotheses.
+Separate execution, protocol, capability reachability, artifact consumption,
+applicable attribution, scientific promotion and transfer verdicts. Removing an
+unused module is `not_applicable`, not proof that the module is useful. Availability
+or large parameter count does not establish scientific value.
 
-## Required Records
+Changes need CPU contract/negative/integration tests through the actual shared CLI:
+aggregation reversal, coverage isolation, cost monotonicity, semantic duplicates,
+replenishment, skip/repair, exactly-once resume, exposure poisoning and frozen-only
+confirmation. Test both positive incremental signal and legitimate null results.
+Fixtures are engineering tests, never scientific task results.
 
-- `research_protocol.json`, full benchmark recipes and input/source fingerprints.
-- Separate research budget plan/usage and effective per-model training policies.
-- Tree, candidate hypotheses, selection/ranking reasons and trained-only trace.
-- Development-only feedback, matched controls and group-aware uncertainty.
-- Acquisition sources, checksums, alignment and license/feasibility decisions.
-- Frozen selection/confirmation lock, confirmation report and exposure history.
-- Independent execution, scientific, artifact-attribution and transfer verdicts.
+Before claiming framework benefit, compare with equal-resource random/simple search
+and evaluate on independently specified tasks not used for framework development.
+Do not repeatedly tune the same exposed demo until it becomes positive.
 
-Existing exposed test groups stay exposed, including after a new branch or seed.
-A correctly executed null result is not an engineering failure. Conversely,
-zero guardrail counters alone do not establish model superiority, fair baseline
-comparison, artifact usefulness, or a broadly better framework.
+## Delivery
 
-## Validation And Delivery
+Report actual capabilities exercised and unexercised, baseline and finalist recipes,
+paired evidence, applicable controls, costs/attempts, exposure and negative findings.
+Code/API presence is not evidence that the running adapter exercised it.
 
-Framework changes need static checks, negative/invariance tests and task-neutral
-CPU integration tests before another scientific run. Check that poisoning test
-values cannot change search context; code/data/scaling changes invalidate cached
-results; composition preserves group boundaries; confirmation forbids reselection;
-agent code survives materialization; unavailable artifacts are not ranked lower
-merely for being unavailable; and resume cannot duplicate a completed reward.
-
-Validate framework usefulness later on tasks not used to develop the framework,
-against fixed strong baselines and equal-resource random search. Do not keep
-retuning the current demonstration until it becomes positive.
-
-Only commit source, task/config contracts, small metrics, tests, audit and reports.
-Never commit data/, nodes/, weights, checkpoints, raw cell exports, model/cache
-arrays, environments, private keys or tokens. Keep credentials container-local,
-not on a permissive shared volume. Inspect actual staged paths and secrets before
-commit/push. Preserve user changes and historical outputs. Do not extend the
-approved cloud deadline or launch another resource without authorization.
-
+Only commit source/contracts/tests/small metrics/reports. Never commit data/, nodes/,
+weights/checkpoints, raw arrays/exports, environments, private keys or tokens. Inspect
+actual staged paths and secrets; preserve user work, historical outputs and old code
+that is content-bound by frozen recipes. Keep credentials off shared volumes.

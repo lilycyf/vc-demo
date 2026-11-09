@@ -1,5 +1,10 @@
 # 通用研究 Harness 升级复盘
 
+> 历史 v1 升级记录，不是当前执行手册。后续正式运行以 Cookbook、
+> `docs/RESEARCH_PROTOCOL.md`、`docs/GENERIC_RESEARCH_RUNBOOK.md` 与
+> `docs/RESEARCH_FRAMEWORK_V2_UPGRADE.md` 为准。本文件保留当时实现和验证边界，
+> 不表示历史任务已自动接入 v2，也不追认后续实验具有科研收益。
+
 ## 目标与边界
 
 本次把 T47D 复盘揭示的问题转成通用研究机制，而不是给某个任务添加
