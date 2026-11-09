@@ -1,0 +1,27 @@
+{
+  "backend": "t47d_research_v3",
+  "composition": "replace",
+  "config": {
+    "auxiliary_weight": 0.2,
+    "composition": "replace",
+    "dropout": 0.15,
+    "epochs": 80,
+    "gradient_clip": 1,
+    "head": "positive_selected",
+    "hidden": 32,
+    "loss": "weighted_bce",
+    "lr": 0.001,
+    "model": "gated_pathway",
+    "optimizer": "adamw",
+    "pathway_weight": 0.1,
+    "ranking_weight": 0.1,
+    "representation": "pathway",
+    "weight_decay": 0.02
+  },
+  "effective_training_objective": "Huber regression + weighted_bce auxiliary objective",
+  "fallback": false,
+  "parent": "root_historical_exact_ridge",
+  "proxy": false,
+  "test_evaluation": "withheld_until_frozen_confirmation",
+  "training_policy": "native direct-target model; OOF-only learned combination when explicitly selected"
+}

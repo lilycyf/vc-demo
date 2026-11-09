@@ -1,0 +1,66 @@
+{
+  "best_optimization_child": "n_2da1e4c4e4579270",
+  "checkpoint_files": {
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/coverage_4_05c9490e55/development_calibrator.joblib": "69dbca95f656d6d5f7da66136bb051e70e80e1ccaf95536b7bd406a218538f60",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/coverage_4_05c9490e55/seed11_frozen_model.joblib": "bdb68e960ee9b391d8b820669f9ae7c920efca15c74749c83493d10f9c941e61",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/coverage_4_05c9490e55/seed17_frozen_model.joblib": "af62f80ee7b86e867591c949eabb4565cf3a471d04a68f40e65e517849ca9a7a",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/coverage_4_05c9490e55/seed23_frozen_model.joblib": "9ab5db295e9464be02a26bc3fc211420519b66fe3015227677daf7e66c2acc82",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/coverage_4_05c9490e55/seed3_frozen_model.joblib": "a96ea1c931bbb277625a569def34dd60eac7c88b1f4e3e7967b0afdb084afac8",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/coverage_4_05c9490e55/seed7_frozen_model.joblib": "c7f6cddf29a9ff6a73ffc056c38b913c8fc09e810fbd9a7c3ed283f7fe32aa0e",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/root_historical_exact_ridge/development_calibrator.joblib": "94a64f6e0b945e55bb762fbce1032b0db2e7d1c40bae22f6b84da4e6ad5a2622",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/root_historical_exact_ridge/seed11_frozen_model.joblib": "6fdf0d16395b26cf1927d08e2a2bf001d9ff5f4707d93d32ad0a834aed81c0e2",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/root_historical_exact_ridge/seed17_frozen_model.joblib": "6fdf0d16395b26cf1927d08e2a2bf001d9ff5f4707d93d32ad0a834aed81c0e2",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/root_historical_exact_ridge/seed23_frozen_model.joblib": "6fdf0d16395b26cf1927d08e2a2bf001d9ff5f4707d93d32ad0a834aed81c0e2",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/root_historical_exact_ridge/seed3_frozen_model.joblib": "6fdf0d16395b26cf1927d08e2a2bf001d9ff5f4707d93d32ad0a834aed81c0e2",
+    "/workspace/vc-demo/experiments/t47d_research_protocol_formal_v3/nodes/root_historical_exact_ridge/seed7_frozen_model.joblib": "6fdf0d16395b26cf1927d08e2a2bf001d9ff5f4707d93d32ad0a834aed81c0e2"
+  },
+  "child": "coverage_4_05c9490e55",
+  "configurations": {
+    "coverage_4_05c9490e55": {
+      "auxiliary_weight": 0.2,
+      "composition": "replace",
+      "dropout": 0.15,
+      "epochs": 80,
+      "gradient_clip": 1,
+      "head": "regression",
+      "hidden": 32,
+      "loss": "huber",
+      "lr": 0.001,
+      "model": "gated_pathway",
+      "optimizer": "adamw",
+      "pathway_weight": 0.1,
+      "ranking_weight": 0.1,
+      "representation": "cellrank",
+      "weight_decay": 0.02
+    },
+    "root_historical_exact_ridge": {
+      "composition": "replace",
+      "historical_recipe": {
+        "alpha": 100.0,
+        "baseline_only": true,
+        "model": "ridge",
+        "representation": "pathway"
+      },
+      "model": "historical_ridge",
+      "representation": "pathway"
+    }
+  },
+  "prior_test_exposure": true,
+  "recipe_fingerprints": {
+    "coverage_4_05c9490e55": "fa5dc95c083a76b95df67df065d82a9c619544831a80f7ebf584b4d3e9916ba8",
+    "root_historical_exact_ridge": "f91790fe37ae8ae2578c339492f0b0d862a062d7e5dda4e64ab540592af8f9ba"
+  },
+  "root": "root_historical_exact_ridge",
+  "secondary_analysis_plan": [
+    "eight registered development ablations",
+    "LOCO",
+    "monotherapy to combination",
+    "day8 to day26",
+    "day0/1/4 warning",
+    "public R/TF reference",
+    "long-term biology"
+  ],
+  "selected_by": "development OOF only",
+  "selected_child_phase": "coverage",
+  "stop_reason": "separate registered coverage and optimization budgets exhausted"
+}

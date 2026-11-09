@@ -1,0 +1,11 @@
+{
+  "status": "evaluated",
+  "representation": "PLSR",
+  "resolution": 0.2,
+  "clusters": 3,
+  "start_cluster": "1",
+  "end_cluster": "2",
+  "finite_cells": 17102,
+  "excluded_cells": 0,
+  "ks_sum": 1.9909
+}

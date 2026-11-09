@@ -1,0 +1,36 @@
+{
+  "bootstrap_unit": "whole group blocks",
+  "delta_ci95": [
+    -0.4139015457551883,
+    -0.04946939440103856
+  ],
+  "evidence_phase": "development",
+  "format": "vc_demo_paired_development_feedback.v1",
+  "independent_groups": 36,
+  "paired_delta": -0.22932427715601428,
+  "promotion_supported": false,
+  "residual_summary": {
+    "candidate_mae": 2.6970394983527406,
+    "reference_mae": 2.3129294146980697
+  },
+  "rows": 108,
+  "selection_optimism_caveat": "Development winner and adaptive reuse are not independent confirmation",
+  "strata": {
+    "combination": {
+      "delta": -0.34249308263211503,
+      "groups": 36,
+      "n": 36
+    },
+    "giredestrant": {
+      "delta": -0.45525946488549407,
+      "groups": 36,
+      "n": 36
+    },
+    "palbociclib": {
+      "delta": -0.361681617876506,
+      "groups": 36,
+      "n": 36
+    }
+  },
+  "valid_bootstrap_draws": 500
+}

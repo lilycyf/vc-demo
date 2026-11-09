@@ -1,0 +1,4195 @@
+{
+  "created_utc": "2026-11-09T02:30:46.314940+00:00",
+  "run_complete": true,
+  "github_policy": "lightweight reports, scientific summaries, contracts, code, predictions and plots only; no source data, fitted weights or environments",
+  "retained_on_network_volume": [
+    {
+      "path": "benchmarks/root_0_frequency.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "benchmarks/root_1_ridge.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "benchmarks/root_2_early_elastic.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "benchmarks/root_3_pls.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "benchmarks/root_4_xgboost.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "benchmarks/root_historical_exact_ridge.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "confirmation_lock.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_baseline_only.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_last_day4_snapshot.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_matched_capacity_no_artifact.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_no_barcode_informed_inputs.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_no_dense_parent_branch.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_no_pathway_v2.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_no_temporal_order.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_no_treatment_interaction.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/ablation_shuffled_gene_memberships.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_0_a75acf4aed.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_10_392d4e98d4.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_11_a9c90856c4.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_12_ab2b3d3ee2.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_13_f74f795220.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_14_c7a2519601.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_15_d090537212.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_16_bde7eba1c9.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_17_d32c14074b.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_18_c7a2519601.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_19_d090537212.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_1_e91df979c4.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_20_9ec77264ae.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_21_359bde779a.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_22_36652a3211.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_23_d92026585f.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_24_ea9096ba59.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_25_c923268b07.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_2_e140b16612.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_3_a0dd3f0dda.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_4_05c9490e55.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_5_34c3c7fa86.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_6_c384d4082a.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_7_b732d3b411.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_8_86df89050d.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/coverage_9_c6751c5858.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_early_abundance_only.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_0.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_1.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_10.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_11.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_12.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_13.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_14.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_15.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_16.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_17.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_18.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_19.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_2.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_3.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_4.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_5.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_6.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_7.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_8.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/diagnostic_endpoint_permutation_9.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_2da1e4c4e4579270.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_3141e039a01d59ce.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_328eb2bd80ff1d0c.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_347aac6215a10729.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_475c5700b2c386fe.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_495487a7d5b6b7d2.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_526057062aae9ec3.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_564503f8f3cc4fb3.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_614fd06a27ecff21.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_6a3961a7e1635b9b.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_6aa42017b184f9c0.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_6b519f3566c8adf8.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_73daba860681f2f9.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_85630b337a035f46.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_86df89050d68e723.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_8e40e65359d5a5b1.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_a4545db3d12e1537.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_a75acf4aed742ff0.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_a8415155e1c1c602.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_b434537ed71e4b5c.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_b4cacb06259250e5.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_b732d3b4114f06ee.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_be8dbe63b4667946.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_cb092a1d006c189e.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_ce1c54baf507ff48.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_ce9028d9bf28dc23.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_d595e5cc31edd1ef.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_dea6cf381a665cdd.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_e2b5e6eafa6ddd48.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_e35ff5b54f207d00.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_e3acc92904b6a6cd.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_e44b9bc5d705d5bd.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_e58fa2235f4d103e.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_e91df979c437cfa8.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_ed0b6daddd646d20.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_f54db1b0c6a87484.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_f6d176207764ee04.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_fd61db6af5eb57b3.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_fede140eefb30bf4.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/n_ffb2f210de61f5bc.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/root_0_frequency.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/root_1_ridge.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/root_2_early_elastic.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/root_3_pls.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/root_4_xgboost.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "execution_recipes/root_historical_exact_ridge.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "frozen_selection.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/coverage_4_05c9490e55/development_calibrator.joblib",
+      "size_bytes": 863,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/coverage_4_05c9490e55/seed11_frozen_model.joblib",
+      "size_bytes": 39936,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/coverage_4_05c9490e55/seed17_frozen_model.joblib",
+      "size_bytes": 39936,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/coverage_4_05c9490e55/seed23_frozen_model.joblib",
+      "size_bytes": 39936,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/coverage_4_05c9490e55/seed3_frozen_model.joblib",
+      "size_bytes": 39936,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/coverage_4_05c9490e55/seed7_frozen_model.joblib",
+      "size_bytes": 39936,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/root_historical_exact_ridge/development_calibrator.joblib",
+      "size_bytes": 863,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/root_historical_exact_ridge/seed11_frozen_model.joblib",
+      "size_bytes": 8011,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/root_historical_exact_ridge/seed17_frozen_model.joblib",
+      "size_bytes": 8011,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/root_historical_exact_ridge/seed23_frozen_model.joblib",
+      "size_bytes": 8011,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/root_historical_exact_ridge/seed3_frozen_model.joblib",
+      "size_bytes": 8011,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "nodes/root_historical_exact_ridge/seed7_frozen_model.joblib",
+      "size_bytes": 8011,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.25_full_pred.npz",
+      "size_bytes": 796,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.25_no_attention_pred.npz",
+      "size_bytes": 796,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.25_no_feedforward_pred.npz",
+      "size_bytes": 797,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.5_full_pred.npz",
+      "size_bytes": 805,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.5_no_attention_pred.npz",
+      "size_bytes": 804,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.5_no_feedforward_pred.npz",
+      "size_bytes": 806,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.75_full_pred.npz",
+      "size_bytes": 807,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.75_no_attention_pred.npz",
+      "size_bytes": 806,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_0.75_no_feedforward_pred.npz",
+      "size_bytes": 805,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_1.0_full_pred.npz",
+      "size_bytes": 798,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_1.0_no_attention_pred.npz",
+      "size_bytes": 797,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10678_1.0_no_feedforward_pred.npz",
+      "size_bytes": 800,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.25_full_pred.npz",
+      "size_bytes": 428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.25_no_attention_pred.npz",
+      "size_bytes": 428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.25_no_feedforward_pred.npz",
+      "size_bytes": 428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.5_full_pred.npz",
+      "size_bytes": 424,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.5_no_attention_pred.npz",
+      "size_bytes": 424,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.5_no_feedforward_pred.npz",
+      "size_bytes": 424,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.75_full_pred.npz",
+      "size_bytes": 428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.75_no_attention_pred.npz",
+      "size_bytes": 427,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_0.75_no_feedforward_pred.npz",
+      "size_bytes": 428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_1.0_full_pred.npz",
+      "size_bytes": 424,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_1.0_no_attention_pred.npz",
+      "size_bytes": 424,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_10737_1.0_no_feedforward_pred.npz",
+      "size_bytes": 424,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.25_full_pred.npz",
+      "size_bytes": 1533,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.25_no_attention_pred.npz",
+      "size_bytes": 1532,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1527,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.5_full_pred.npz",
+      "size_bytes": 1551,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.5_no_attention_pred.npz",
+      "size_bytes": 1550,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1550,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.75_full_pred.npz",
+      "size_bytes": 1486,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.75_no_attention_pred.npz",
+      "size_bytes": 1480,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1489,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_1.0_full_pred.npz",
+      "size_bytes": 1623,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_1.0_no_attention_pred.npz",
+      "size_bytes": 1623,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_20182_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1613,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.25_full_pred.npz",
+      "size_bytes": 645,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.25_no_attention_pred.npz",
+      "size_bytes": 644,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.25_no_feedforward_pred.npz",
+      "size_bytes": 645,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.5_full_pred.npz",
+      "size_bytes": 638,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.5_no_attention_pred.npz",
+      "size_bytes": 638,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.5_no_feedforward_pred.npz",
+      "size_bytes": 638,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.75_full_pred.npz",
+      "size_bytes": 640,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.75_no_attention_pred.npz",
+      "size_bytes": 641,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_0.75_no_feedforward_pred.npz",
+      "size_bytes": 640,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_1.0_full_pred.npz",
+      "size_bytes": 640,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_1.0_no_attention_pred.npz",
+      "size_bytes": 640,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_31581_1.0_no_feedforward_pred.npz",
+      "size_bytes": 641,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.25_full_pred.npz",
+      "size_bytes": 1772,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.25_no_attention_pred.npz",
+      "size_bytes": 1764,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1761,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.5_full_pred.npz",
+      "size_bytes": 1773,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.5_no_attention_pred.npz",
+      "size_bytes": 1785,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1774,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.75_full_pred.npz",
+      "size_bytes": 1784,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.75_no_attention_pred.npz",
+      "size_bytes": 1781,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1787,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_1.0_full_pred.npz",
+      "size_bytes": 1821,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_1.0_no_attention_pred.npz",
+      "size_bytes": 1817,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_37798_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1816,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.25_full_pred.npz",
+      "size_bytes": 605,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.25_no_attention_pred.npz",
+      "size_bytes": 605,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.25_no_feedforward_pred.npz",
+      "size_bytes": 605,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.5_full_pred.npz",
+      "size_bytes": 601,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.5_no_attention_pred.npz",
+      "size_bytes": 601,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.5_no_feedforward_pred.npz",
+      "size_bytes": 601,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.75_full_pred.npz",
+      "size_bytes": 608,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.75_no_attention_pred.npz",
+      "size_bytes": 607,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_0.75_no_feedforward_pred.npz",
+      "size_bytes": 607,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_1.0_full_pred.npz",
+      "size_bytes": 605,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_1.0_no_attention_pred.npz",
+      "size_bytes": 604,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_40758_1.0_no_feedforward_pred.npz",
+      "size_bytes": 604,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.25_full_pred.npz",
+      "size_bytes": 750,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.25_no_attention_pred.npz",
+      "size_bytes": 753,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.25_no_feedforward_pred.npz",
+      "size_bytes": 750,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.5_full_pred.npz",
+      "size_bytes": 771,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.5_no_attention_pred.npz",
+      "size_bytes": 771,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.5_no_feedforward_pred.npz",
+      "size_bytes": 772,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.75_full_pred.npz",
+      "size_bytes": 786,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.75_no_attention_pred.npz",
+      "size_bytes": 787,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_0.75_no_feedforward_pred.npz",
+      "size_bytes": 785,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_1.0_full_pred.npz",
+      "size_bytes": 774,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_1.0_no_attention_pred.npz",
+      "size_bytes": 772,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_83026_1.0_no_feedforward_pred.npz",
+      "size_bytes": 772,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.25_full_pred.npz",
+      "size_bytes": 828,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.25_no_attention_pred.npz",
+      "size_bytes": 829,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.25_no_feedforward_pred.npz",
+      "size_bytes": 829,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.5_full_pred.npz",
+      "size_bytes": 938,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.5_no_attention_pred.npz",
+      "size_bytes": 937,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.5_no_feedforward_pred.npz",
+      "size_bytes": 937,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.75_full_pred.npz",
+      "size_bytes": 967,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.75_no_attention_pred.npz",
+      "size_bytes": 967,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_0.75_no_feedforward_pred.npz",
+      "size_bytes": 969,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_1.0_full_pred.npz",
+      "size_bytes": 963,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_1.0_no_attention_pred.npz",
+      "size_bytes": 965,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_90850_1.0_no_feedforward_pred.npz",
+      "size_bytes": 963,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.25_full_pred.npz",
+      "size_bytes": 2123,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.25_no_attention_pred.npz",
+      "size_bytes": 2131,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.25_no_feedforward_pred.npz",
+      "size_bytes": 2119,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.5_full_pred.npz",
+      "size_bytes": 2050,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.5_no_attention_pred.npz",
+      "size_bytes": 2049,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.5_no_feedforward_pred.npz",
+      "size_bytes": 2059,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.75_full_pred.npz",
+      "size_bytes": 2067,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.75_no_attention_pred.npz",
+      "size_bytes": 2069,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_0.75_no_feedforward_pred.npz",
+      "size_bytes": 2070,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_1.0_full_pred.npz",
+      "size_bytes": 2248,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_1.0_no_attention_pred.npz",
+      "size_bytes": 2237,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_92196_1.0_no_feedforward_pred.npz",
+      "size_bytes": 2253,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.25_full_pred.npz",
+      "size_bytes": 724,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.25_no_attention_pred.npz",
+      "size_bytes": 724,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.25_no_feedforward_pred.npz",
+      "size_bytes": 724,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.5_full_pred.npz",
+      "size_bytes": 735,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.5_no_attention_pred.npz",
+      "size_bytes": 736,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.5_no_feedforward_pred.npz",
+      "size_bytes": 736,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.75_full_pred.npz",
+      "size_bytes": 737,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.75_no_attention_pred.npz",
+      "size_bytes": 737,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_0.75_no_feedforward_pred.npz",
+      "size_bytes": 737,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_1.0_full_pred.npz",
+      "size_bytes": 734,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_1.0_no_attention_pred.npz",
+      "size_bytes": 733,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination::GFPBC_libB_94397_1.0_no_feedforward_pred.npz",
+      "size_bytes": 733,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination_grid_checkpoint_v2.rds",
+      "size_bytes": 302610,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination_innate_plsr.rds",
+      "size_bytes": 31721086,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination_pseudotime_selection.csv",
+      "size_bytes": 1815514,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination_reference.json",
+      "size_bytes": 28534572,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/combination_time_plsr.rds",
+      "size_bytes": 143101839,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.25_full_pred.npz",
+      "size_bytes": 922,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.25_no_attention_pred.npz",
+      "size_bytes": 924,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.25_no_feedforward_pred.npz",
+      "size_bytes": 924,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.5_full_pred.npz",
+      "size_bytes": 982,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.5_no_attention_pred.npz",
+      "size_bytes": 981,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.5_no_feedforward_pred.npz",
+      "size_bytes": 983,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.75_full_pred.npz",
+      "size_bytes": 952,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.75_no_attention_pred.npz",
+      "size_bytes": 952,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_0.75_no_feedforward_pred.npz",
+      "size_bytes": 953,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_1.0_full_pred.npz",
+      "size_bytes": 987,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_1.0_no_attention_pred.npz",
+      "size_bytes": 987,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_10678_1.0_no_feedforward_pred.npz",
+      "size_bytes": 989,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.25_full_pred.npz",
+      "size_bytes": 1285,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.25_no_attention_pred.npz",
+      "size_bytes": 1283,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1288,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.5_full_pred.npz",
+      "size_bytes": 1378,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.5_no_attention_pred.npz",
+      "size_bytes": 1379,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1379,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.75_full_pred.npz",
+      "size_bytes": 1372,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.75_no_attention_pred.npz",
+      "size_bytes": 1372,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1368,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_1.0_full_pred.npz",
+      "size_bytes": 1393,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_1.0_no_attention_pred.npz",
+      "size_bytes": 1399,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_20182_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1397,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.25_full_pred.npz",
+      "size_bytes": 546,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.25_no_attention_pred.npz",
+      "size_bytes": 544,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.25_no_feedforward_pred.npz",
+      "size_bytes": 545,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.5_full_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.5_no_attention_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.5_no_feedforward_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.75_full_pred.npz",
+      "size_bytes": 558,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.75_no_attention_pred.npz",
+      "size_bytes": 559,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_0.75_no_feedforward_pred.npz",
+      "size_bytes": 558,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_1.0_full_pred.npz",
+      "size_bytes": 556,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_1.0_no_attention_pred.npz",
+      "size_bytes": 556,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_31581_1.0_no_feedforward_pred.npz",
+      "size_bytes": 556,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.25_full_pred.npz",
+      "size_bytes": 1428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.25_no_attention_pred.npz",
+      "size_bytes": 1428,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1431,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.5_full_pred.npz",
+      "size_bytes": 1502,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.5_no_attention_pred.npz",
+      "size_bytes": 1506,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1499,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.75_full_pred.npz",
+      "size_bytes": 1526,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.75_no_attention_pred.npz",
+      "size_bytes": 1517,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1525,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_1.0_full_pred.npz",
+      "size_bytes": 1521,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_1.0_no_attention_pred.npz",
+      "size_bytes": 1526,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_37798_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1520,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.25_full_pred.npz",
+      "size_bytes": 587,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.25_no_attention_pred.npz",
+      "size_bytes": 588,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.25_no_feedforward_pred.npz",
+      "size_bytes": 588,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.5_full_pred.npz",
+      "size_bytes": 608,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.5_no_attention_pred.npz",
+      "size_bytes": 608,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.5_no_feedforward_pred.npz",
+      "size_bytes": 610,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.75_full_pred.npz",
+      "size_bytes": 599,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.75_no_attention_pred.npz",
+      "size_bytes": 600,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_0.75_no_feedforward_pred.npz",
+      "size_bytes": 600,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_1.0_full_pred.npz",
+      "size_bytes": 602,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_1.0_no_attention_pred.npz",
+      "size_bytes": 601,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_40758_1.0_no_feedforward_pred.npz",
+      "size_bytes": 603,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.25_full_pred.npz",
+      "size_bytes": 709,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.25_no_attention_pred.npz",
+      "size_bytes": 710,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.25_no_feedforward_pred.npz",
+      "size_bytes": 710,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.5_full_pred.npz",
+      "size_bytes": 721,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.5_no_attention_pred.npz",
+      "size_bytes": 719,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.5_no_feedforward_pred.npz",
+      "size_bytes": 721,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.75_full_pred.npz",
+      "size_bytes": 727,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.75_no_attention_pred.npz",
+      "size_bytes": 726,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_0.75_no_feedforward_pred.npz",
+      "size_bytes": 725,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_1.0_full_pred.npz",
+      "size_bytes": 716,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_1.0_no_attention_pred.npz",
+      "size_bytes": 716,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_83026_1.0_no_feedforward_pred.npz",
+      "size_bytes": 717,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.25_full_pred.npz",
+      "size_bytes": 1653,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.25_no_attention_pred.npz",
+      "size_bytes": 1650,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1660,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.5_full_pred.npz",
+      "size_bytes": 1664,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.5_no_attention_pred.npz",
+      "size_bytes": 1663,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1658,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.75_full_pred.npz",
+      "size_bytes": 1530,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.75_no_attention_pred.npz",
+      "size_bytes": 1537,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1525,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_1.0_full_pred.npz",
+      "size_bytes": 1690,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_1.0_no_attention_pred.npz",
+      "size_bytes": 1693,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_90850_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1703,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.25_full_pred.npz",
+      "size_bytes": 1940,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.25_no_attention_pred.npz",
+      "size_bytes": 1933,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1941,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.5_full_pred.npz",
+      "size_bytes": 2002,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.5_no_attention_pred.npz",
+      "size_bytes": 1988,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.5_no_feedforward_pred.npz",
+      "size_bytes": 2004,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.75_full_pred.npz",
+      "size_bytes": 2091,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.75_no_attention_pred.npz",
+      "size_bytes": 2096,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_0.75_no_feedforward_pred.npz",
+      "size_bytes": 2091,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_1.0_full_pred.npz",
+      "size_bytes": 1936,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_1.0_no_attention_pred.npz",
+      "size_bytes": 1949,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_92196_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1946,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.25_full_pred.npz",
+      "size_bytes": 518,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.25_no_attention_pred.npz",
+      "size_bytes": 518,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.25_no_feedforward_pred.npz",
+      "size_bytes": 518,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.5_full_pred.npz",
+      "size_bytes": 513,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.5_no_attention_pred.npz",
+      "size_bytes": 513,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.5_no_feedforward_pred.npz",
+      "size_bytes": 514,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.75_full_pred.npz",
+      "size_bytes": 516,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.75_no_attention_pred.npz",
+      "size_bytes": 516,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_0.75_no_feedforward_pred.npz",
+      "size_bytes": 516,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_1.0_full_pred.npz",
+      "size_bytes": 520,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_1.0_no_attention_pred.npz",
+      "size_bytes": 519,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant::GFPBC_libB_94397_1.0_no_feedforward_pred.npz",
+      "size_bytes": 520,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant_grid_checkpoint_v2.rds",
+      "size_bytes": 253834,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant_innate_plsr.rds",
+      "size_bytes": 31759403,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant_pseudotime_selection.csv",
+      "size_bytes": 1680059,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant_reference.json",
+      "size_bytes": 27455172,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/giredestrant_time_plsr.rds",
+      "size_bytes": 145874856,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.25_full_pred.npz",
+      "size_bytes": 773,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.25_no_attention_pred.npz",
+      "size_bytes": 773,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.25_no_feedforward_pred.npz",
+      "size_bytes": 772,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.5_full_pred.npz",
+      "size_bytes": 728,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.5_no_attention_pred.npz",
+      "size_bytes": 729,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.5_no_feedforward_pred.npz",
+      "size_bytes": 728,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.75_full_pred.npz",
+      "size_bytes": 775,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.75_no_attention_pred.npz",
+      "size_bytes": 774,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_0.75_no_feedforward_pred.npz",
+      "size_bytes": 774,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_1.0_full_pred.npz",
+      "size_bytes": 779,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_1.0_no_attention_pred.npz",
+      "size_bytes": 776,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10678_1.0_no_feedforward_pred.npz",
+      "size_bytes": 780,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.25_full_pred.npz",
+      "size_bytes": 397,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.25_no_attention_pred.npz",
+      "size_bytes": 397,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.25_no_feedforward_pred.npz",
+      "size_bytes": 397,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.5_full_pred.npz",
+      "size_bytes": 395,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.5_no_attention_pred.npz",
+      "size_bytes": 395,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.5_no_feedforward_pred.npz",
+      "size_bytes": 394,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.75_full_pred.npz",
+      "size_bytes": 398,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.75_no_attention_pred.npz",
+      "size_bytes": 399,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_0.75_no_feedforward_pred.npz",
+      "size_bytes": 398,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_1.0_full_pred.npz",
+      "size_bytes": 398,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_1.0_no_attention_pred.npz",
+      "size_bytes": 398,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_10737_1.0_no_feedforward_pred.npz",
+      "size_bytes": 398,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.25_full_pred.npz",
+      "size_bytes": 1286,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.25_no_attention_pred.npz",
+      "size_bytes": 1287,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1285,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.5_full_pred.npz",
+      "size_bytes": 1302,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.5_no_attention_pred.npz",
+      "size_bytes": 1297,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1302,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.75_full_pred.npz",
+      "size_bytes": 1311,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.75_no_attention_pred.npz",
+      "size_bytes": 1310,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1306,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_1.0_full_pred.npz",
+      "size_bytes": 1353,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_1.0_no_attention_pred.npz",
+      "size_bytes": 1354,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_20182_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1353,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.25_full_pred.npz",
+      "size_bytes": 542,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.25_no_attention_pred.npz",
+      "size_bytes": 542,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.25_no_feedforward_pred.npz",
+      "size_bytes": 542,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.5_full_pred.npz",
+      "size_bytes": 543,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.5_no_attention_pred.npz",
+      "size_bytes": 543,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.5_no_feedforward_pred.npz",
+      "size_bytes": 542,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.75_full_pred.npz",
+      "size_bytes": 540,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.75_no_attention_pred.npz",
+      "size_bytes": 540,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_0.75_no_feedforward_pred.npz",
+      "size_bytes": 539,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_1.0_full_pred.npz",
+      "size_bytes": 541,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_1.0_no_attention_pred.npz",
+      "size_bytes": 541,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_31581_1.0_no_feedforward_pred.npz",
+      "size_bytes": 542,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.25_full_pred.npz",
+      "size_bytes": 1363,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.25_no_attention_pred.npz",
+      "size_bytes": 1369,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.25_no_feedforward_pred.npz",
+      "size_bytes": 1357,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.5_full_pred.npz",
+      "size_bytes": 1309,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.5_no_attention_pred.npz",
+      "size_bytes": 1306,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1310,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.75_full_pred.npz",
+      "size_bytes": 1381,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.75_no_attention_pred.npz",
+      "size_bytes": 1386,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1385,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_1.0_full_pred.npz",
+      "size_bytes": 1419,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_1.0_no_attention_pred.npz",
+      "size_bytes": 1417,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_37798_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1418,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.25_full_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.25_no_attention_pred.npz",
+      "size_bytes": 552,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.25_no_feedforward_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.5_full_pred.npz",
+      "size_bytes": 541,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.5_no_attention_pred.npz",
+      "size_bytes": 540,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.5_no_feedforward_pred.npz",
+      "size_bytes": 541,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.75_full_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.75_no_attention_pred.npz",
+      "size_bytes": 555,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_0.75_no_feedforward_pred.npz",
+      "size_bytes": 554,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_1.0_full_pred.npz",
+      "size_bytes": 560,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_1.0_no_attention_pred.npz",
+      "size_bytes": 559,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_40758_1.0_no_feedforward_pred.npz",
+      "size_bytes": 558,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.25_full_pred.npz",
+      "size_bytes": 744,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.25_no_attention_pred.npz",
+      "size_bytes": 747,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.25_no_feedforward_pred.npz",
+      "size_bytes": 744,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.5_full_pred.npz",
+      "size_bytes": 719,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.5_no_attention_pred.npz",
+      "size_bytes": 721,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.5_no_feedforward_pred.npz",
+      "size_bytes": 719,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.75_full_pred.npz",
+      "size_bytes": 750,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.75_no_attention_pred.npz",
+      "size_bytes": 749,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_0.75_no_feedforward_pred.npz",
+      "size_bytes": 750,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_1.0_full_pred.npz",
+      "size_bytes": 756,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_1.0_no_attention_pred.npz",
+      "size_bytes": 755,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_83026_1.0_no_feedforward_pred.npz",
+      "size_bytes": 756,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.25_full_pred.npz",
+      "size_bytes": 963,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.25_no_attention_pred.npz",
+      "size_bytes": 960,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.25_no_feedforward_pred.npz",
+      "size_bytes": 962,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.5_full_pred.npz",
+      "size_bytes": 1304,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.5_no_attention_pred.npz",
+      "size_bytes": 1304,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.5_no_feedforward_pred.npz",
+      "size_bytes": 1304,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.75_full_pred.npz",
+      "size_bytes": 1379,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.75_no_attention_pred.npz",
+      "size_bytes": 1373,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_0.75_no_feedforward_pred.npz",
+      "size_bytes": 1376,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_1.0_full_pred.npz",
+      "size_bytes": 1371,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_1.0_no_attention_pred.npz",
+      "size_bytes": 1370,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_90850_1.0_no_feedforward_pred.npz",
+      "size_bytes": 1371,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.25_full_pred.npz",
+      "size_bytes": 2331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.25_no_attention_pred.npz",
+      "size_bytes": 2350,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.25_no_feedforward_pred.npz",
+      "size_bytes": 2329,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.5_full_pred.npz",
+      "size_bytes": 2532,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.5_no_attention_pred.npz",
+      "size_bytes": 2545,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.5_no_feedforward_pred.npz",
+      "size_bytes": 2518,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.75_full_pred.npz",
+      "size_bytes": 2807,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.75_no_attention_pred.npz",
+      "size_bytes": 2818,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_0.75_no_feedforward_pred.npz",
+      "size_bytes": 2818,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_1.0_full_pred.npz",
+      "size_bytes": 2952,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_1.0_no_attention_pred.npz",
+      "size_bytes": 2949,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_92196_1.0_no_feedforward_pred.npz",
+      "size_bytes": 2944,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.25_full_pred.npz",
+      "size_bytes": 632,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.25_no_attention_pred.npz",
+      "size_bytes": 631,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.25_no_feedforward_pred.npz",
+      "size_bytes": 632,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.5_full_pred.npz",
+      "size_bytes": 617,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.5_no_attention_pred.npz",
+      "size_bytes": 616,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.5_no_feedforward_pred.npz",
+      "size_bytes": 617,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.75_full_pred.npz",
+      "size_bytes": 636,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.75_no_attention_pred.npz",
+      "size_bytes": 634,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_0.75_no_feedforward_pred.npz",
+      "size_bytes": 635,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_1.0_full_pred.npz",
+      "size_bytes": 625,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_1.0_no_attention_pred.npz",
+      "size_bytes": 624,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib::GFPBC_libB_94397_1.0_no_feedforward_pred.npz",
+      "size_bytes": 625,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib_grid_checkpoint_v2.rds",
+      "size_bytes": 260686,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib_innate_plsr.rds",
+      "size_bytes": 31762440,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib_pseudotime_selection.csv",
+      "size_bytes": 1685437,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib_reference.json",
+      "size_bytes": 28885476,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/palbociclib_time_plsr.rds",
+      "size_bytes": 162251565,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/reference_data.json",
+      "size_bytes": 89018956,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10678/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_10737/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_20182/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_31581/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_37798/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_40758/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_83026/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_90850/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_92196/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/combination__GFPBC_libB_94397/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_10678/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_20182/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_31581/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_37798/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_40758/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_83026/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_90850/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_92196/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/giredestrant__GFPBC_libB_94397/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10678/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_10737/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_20182/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_31581/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_37798/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_40758/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_83026/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_90850/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_92196/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.25_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.25_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.25_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.5_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.5_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.5_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.75_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.75_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/0.75_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/1.0_full.keras",
+      "size_bytes": 596976,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/1.0_no_attention.keras",
+      "size_bytes": 85331,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "reference/weights/palbociclib__GFPBC_libB_94397/1.0_no_feedforward.keras",
+      "size_bytes": 570051,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "research_budget_plan.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "research_protocol.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    },
+    {
+      "path": "research_protocol_identity.json.lock",
+      "size_bytes": 0,
+      "storage": "RunPod Network Volume only"
+    }
+  ],
+  "runtime_environment_backup": "/workspace/t47d_public_migration.tar.gz",
+  "selected_checkpoint_checksums": "frozen_selection.json / checkpoint_files",
+  "pod_action": "Keep running per explicit user response; existing budget deadline unchanged"
+}

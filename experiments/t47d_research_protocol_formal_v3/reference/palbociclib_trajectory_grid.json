@@ -1,0 +1,200 @@
+{
+  "PLSR_0.2": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.2,
+    "clusters": 3,
+    "start_cluster": "1",
+    "end_cluster": "2",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.9909
+  },
+  "PLSR_0.25": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.25,
+    "clusters": 3,
+    "start_cluster": "1",
+    "end_cluster": "2",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.8242
+  },
+  "PLSR_0.3": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.3,
+    "clusters": 3,
+    "start_cluster": "1",
+    "end_cluster": "3",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.6104
+  },
+  "PLSR_0.35": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.35,
+    "clusters": 6,
+    "start_cluster": "2",
+    "end_cluster": "4",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.569
+  },
+  "PLSR_0.4": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.4,
+    "clusters": 7,
+    "start_cluster": "2",
+    "end_cluster": "5",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.7971
+  },
+  "PLSR_0.45": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.45,
+    "clusters": 7,
+    "start_cluster": "2",
+    "end_cluster": "5",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.7871
+  },
+  "PLSR_0.5": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.5,
+    "clusters": 8,
+    "start_cluster": "2",
+    "end_cluster": "8",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.7237
+  },
+  "PLSR_0.75": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 0.75,
+    "clusters": 8,
+    "start_cluster": "2",
+    "end_cluster": "8",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.6115
+  },
+  "PLSR_1": {
+    "status": "evaluated",
+    "representation": "PLSR",
+    "resolution": 1,
+    "clusters": 10,
+    "start_cluster": "2",
+    "end_cluster": "10",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.5538
+  },
+  "PCA_0.2": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.2,
+    "clusters": 5,
+    "start_cluster": "2",
+    "end_cluster": "3",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.1208
+  },
+  "PCA_0.25": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.25,
+    "clusters": 5,
+    "start_cluster": "1",
+    "end_cluster": "5",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.2333
+  },
+  "PCA_0.3": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.3,
+    "clusters": 6,
+    "start_cluster": "1",
+    "end_cluster": "6",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.2528
+  },
+  "PCA_0.35": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.35,
+    "clusters": 6,
+    "start_cluster": "1",
+    "end_cluster": "6",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.2518
+  },
+  "PCA_0.4": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.4,
+    "clusters": 7,
+    "start_cluster": "2",
+    "end_cluster": "7",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.2875
+  },
+  "PCA_0.45": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.45,
+    "clusters": 7,
+    "start_cluster": "2",
+    "end_cluster": "7",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.291
+  },
+  "PCA_0.5": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.5,
+    "clusters": 7,
+    "start_cluster": "2",
+    "end_cluster": "6",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.3048
+  },
+  "PCA_0.75": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 0.75,
+    "clusters": 9,
+    "start_cluster": "2",
+    "end_cluster": "6",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.2676
+  },
+  "PCA_1": {
+    "status": "evaluated",
+    "representation": "PCA",
+    "resolution": 1,
+    "clusters": 13,
+    "start_cluster": "2",
+    "end_cluster": "11",
+    "finite_cells": 17102,
+    "excluded_cells": 0,
+    "ks_sum": 1.3295
+  }
+}

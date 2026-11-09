@@ -1,0 +1,21 @@
+{
+  "composition": "replace",
+  "evidence_refs": [
+    "experiments/t47d_research_protocol_formal_v3/development_feedback.json"
+  ],
+  "expected_change": "Improve clone-grouped development prediction versus the unchanged exact historical recipe",
+  "falsification": "No positive paired gain, or matched control explains the apparent gain",
+  "hypothesis": "Test {'model': 'tracsed', 'representation': 'pathway', 'loss': 'huber', 'head': 'regression', 'epochs': 20, 'composition': 'replace', 'batch_size': 32, 'optimizer': 'author_Adam_0.001_MSE', 'author_seed': 42}",
+  "selection_evidence": "Development only; family estimates are descriptive, not confirmed effects",
+  "training_policy": {
+    "author_seed": 42,
+    "batch_size": 32,
+    "composition": "replace",
+    "epochs": 20,
+    "head": "regression",
+    "loss": "huber",
+    "model": "tracsed",
+    "optimizer": "author_Adam_0.001_MSE",
+    "representation": "pathway"
+  }
+}

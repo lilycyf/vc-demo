@@ -1,0 +1,8 @@
+{
+  "status": "complete",
+  "resolutions": [0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.75, 1],
+  "implementation": "Actual R pls::plsr, scran SNN, igraph Leiden, Slingshot; no private IO dependency",
+  "deliberate_alignment_differences": ["Public Hallmark release replaces private GMTY42/custom signature", "Cluster IDs selected by minimum/maximum mean real time rather than nonportable author IDs", "Full-data retrospective reference is never used as prospective forecast feature", "PCA recreated from public filtered normalized matrix; internal PCA object unavailable"],
+  "source": "https://github.com/Genentech/TraCSED",
+  "author_commit": "dc5a750ef6fc6adf50e362ba5c2d38bee6083289"
+}

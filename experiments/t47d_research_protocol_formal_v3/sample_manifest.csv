@@ -1,0 +1,19 @@
+gsm,title,sample_id,replicate_label,tissue,cell line,treatment,time point,treatment_id,time_day,long_term
+GSM8122800,"SAM24412236, replicate 1, scRNASeq",SAM24412236,1,Breast,T-47D,Baseline,Day 0,baseline,0,False
+GSM8122801,"SAM24412236, replicate 2, scRNASeq",SAM24412236,2,Breast,T-47D,Baseline,Day 0,baseline,0,False
+GSM8122802,"SAM24412237, replicate 1, scRNASeq",SAM24412237,1,Breast,T-47D,Palbociclib 200nm,Day 1,palbociclib,1,False
+GSM8122803,"SAM24412238, replicate 1, scRNASeq",SAM24412238,1,Breast,T-47D,Giredestrant 200nm,Day 1,giredestrant,1,False
+GSM8122804,"SAM24412239, replicate 1, scRNASeq",SAM24412239,1,Breast,T-47D,Giredestrant + Palbociclib,Day 1,combination,1,False
+GSM8122805,"SAM24412240, replicate 1, scRNASeq",SAM24412240,1,Breast,T-47D,Palbociclib 200nm,Day 4,palbociclib,4,False
+GSM8122806,"SAM24412241, replicate 1, scRNASeq",SAM24412241,1,Breast,T-47D,Giredestrant 200nm,Day 4,giredestrant,4,False
+GSM8122807,"SAM24412242, replicate 1, scRNASeq",SAM24412242,1,Breast,T-47D,Giredestrant + Palbociclib,Day 4,combination,4,False
+GSM8122808,"SAM24412243, replicate 1, scRNASeq",SAM24412243,1,Breast,T-47D,Palbociclib 200nm,Day 8,palbociclib,8,False
+GSM8122809,"SAM24412243, replicate 2, scRNASeq",SAM24412243,2,Breast,T-47D,Palbociclib 200nm,Day 8,palbociclib,8,False
+GSM8122810,"SAM24412244, replicate 1, scRNASeq",SAM24412244,1,Breast,T-47D,Giredestrant 200nm,Day 8,giredestrant,8,False
+GSM8122811,"SAM24412244, replicate 2, scRNASeq",SAM24412244,2,Breast,T-47D,Giredestrant 200nm,Day 8,giredestrant,8,False
+GSM8122812,"SAM24412245, replicate 1, scRNASeq",SAM24412245,1,Breast,T-47D,Giredestrant + Palbociclib,Day 8,combination,8,False
+GSM8122813,"SAM24412245, replicate 2, scRNASeq",SAM24412245,2,Breast,T-47D,Giredestrant + Palbociclib,Day 8,combination,8,False
+GSM8122814,"SAM24412246, replicate 1, scRNASeq",SAM24412246,1,Breast,T-47D,Palbociclib 200nm,Day 26,palbociclib,26,False
+GSM8122815,"SAM24412247, replicate 1, scRNASeq",SAM24412247,1,Breast,T-47D,Giredestrant 200nm,Day 26,giredestrant,26,False
+GSM8122816,"SAM24412248, replicate 1, scRNASeq",SAM24412248,1,Breast,T-47D,Giredestrant + Palbociclib,Day 26,combination,26,False
+GSM8122817,"SAM24419056, replicate 1, scRNASeq",SAM24419056,1,Breast,T-47D,Giredestrant + Palbociclib,Month 6,combination,180,True

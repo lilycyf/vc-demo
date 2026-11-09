@@ -1,0 +1,15 @@
+{
+  "budget_by_phase": {
+    "coverage": 26,
+    "optimization": 40
+  },
+  "budget_trained_rollouts": 66,
+  "counts": {
+    "candidate_queued": 47,
+    "pruned_not_selected": 73,
+    "trained": 72
+  },
+  "prior_test_exposure": true,
+  "reward": "5 seeds x 3 clone-fold OOF Spearman",
+  "trained_rollouts": 66
+}

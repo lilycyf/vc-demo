@@ -1,0 +1,27 @@
+{
+  "composition": "replace",
+  "evidence_refs": [
+    "experiments/t47d_research_protocol_formal_v3/development_feedback.json"
+  ],
+  "expected_change": "Improve clone-grouped development prediction versus the unchanged exact historical recipe",
+  "falsification": "No positive paired gain, or matched control explains the apparent gain",
+  "hypothesis": "Test {'model': 'cross_attention', 'representation': 'pathway', 'loss': 'huber', 'head': 'regression', 'epochs': 80, 'composition': 'replace', 'hidden': 64, 'lr': 0.0003, 'weight_decay': 0.02, 'optimizer': 'adamw', 'dropout': 0.15, 'gradient_clip': 1, 'auxiliary_weight': 0.2, 'ranking_weight': 0.1, 'pathway_weight': 0.1}",
+  "selection_evidence": "Development only; family estimates are descriptive, not confirmed effects",
+  "training_policy": {
+    "auxiliary_weight": 0.2,
+    "composition": "replace",
+    "dropout": 0.15,
+    "epochs": 80,
+    "gradient_clip": 1,
+    "head": "regression",
+    "hidden": 64,
+    "loss": "huber",
+    "lr": 0.0003,
+    "model": "cross_attention",
+    "optimizer": "adamw",
+    "pathway_weight": 0.1,
+    "ranking_weight": 0.1,
+    "representation": "pathway",
+    "weight_decay": 0.02
+  }
+}

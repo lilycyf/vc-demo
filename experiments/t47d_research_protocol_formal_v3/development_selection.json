@@ -1,0 +1,39 @@
+{
+  "best_optimization_child": "n_2da1e4c4e4579270",
+  "child": "coverage_4_05c9490e55",
+  "configurations": {
+    "coverage_4_05c9490e55": {
+      "auxiliary_weight": 0.2,
+      "composition": "replace",
+      "dropout": 0.15,
+      "epochs": 80,
+      "gradient_clip": 1,
+      "head": "regression",
+      "hidden": 32,
+      "loss": "huber",
+      "lr": 0.001,
+      "model": "gated_pathway",
+      "optimizer": "adamw",
+      "pathway_weight": 0.1,
+      "ranking_weight": 0.1,
+      "representation": "cellrank",
+      "weight_decay": 0.02
+    },
+    "root_historical_exact_ridge": {
+      "composition": "replace",
+      "historical_recipe": {
+        "alpha": 100.0,
+        "baseline_only": true,
+        "model": "ridge",
+        "representation": "pathway"
+      },
+      "model": "historical_ridge",
+      "representation": "pathway"
+    }
+  },
+  "prior_test_exposure": true,
+  "root": "root_historical_exact_ridge",
+  "selected_by": "development OOF only",
+  "selected_child_phase": "coverage",
+  "stop_reason": "separate registered coverage and optimization budgets exhausted"
+}

@@ -1,0 +1,307 @@
+{
+  "no_barcode_informed_inputs": {
+    "validation_reward": 0.3875692142721496,
+    "validation_std": 0.06138397660353563,
+    "validation_mae": 2.5159653380916938,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.31947511295489905,
+        "mae": 2.5403631288575674
+      },
+      {
+        "seed": 7,
+        "spearman": 0.4731153770352979,
+        "mae": 2.4700379109413975
+      },
+      {
+        "seed": 11,
+        "spearman": 0.33770946851966377,
+        "mae": 2.6170813050303927
+      },
+      {
+        "seed": 17,
+        "spearman": 0.3964965706874539,
+        "mae": 2.4915713286849406
+      },
+      {
+        "seed": 23,
+        "spearman": 0.41104954216343326,
+        "mae": 2.4607730169441715
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 9.496518398169428,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "c0cc6c871c358b180d9cb9f1296273602da8e0dcdcd29ea0885c81d239b9b6e4",
+    "interpretation": "True barcode kept for endpoint labels/group splitting only; predictive state pooled across TRAIN clones per condition; abundance removed"
+  },
+  "baseline_only": {
+    "validation_reward": 0.20568630224289733,
+    "validation_std": 0.18152927071661407,
+    "validation_mae": 3.4559270721652466,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.30888770555376643,
+        "mae": 2.9844755199720994
+      },
+      {
+        "seed": 7,
+        "spearman": 0.2515197153276883,
+        "mae": 3.0405940147741886
+      },
+      {
+        "seed": 11,
+        "spearman": 0.40135678795603996,
+        "mae": 3.1442943798122434
+      },
+      {
+        "seed": 17,
+        "spearman": -0.07001638866904757,
+        "mae": 4.87067297630772
+      },
+      {
+        "seed": 23,
+        "spearman": 0.13668369104603956,
+        "mae": 3.2395984699599847
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 137.51194323576055,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "daff1f151521673ef7b6b7a9273f519317c44413e1920abde4fd59c18f62a170",
+    "interpretation": "baseline_only"
+  },
+  "no_temporal_order": {
+    "validation_reward": 0.4286849509798628,
+    "validation_std": 0.06913146006272125,
+    "validation_mae": 2.6217088464956477,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.4857651960963532,
+        "mae": 2.4030986429985526
+      },
+      {
+        "seed": 7,
+        "spearman": 0.40489166993143855,
+        "mae": 2.5662543063885295
+      },
+      {
+        "seed": 11,
+        "spearman": 0.5129247138076032,
+        "mae": 2.370208868354257
+      },
+      {
+        "seed": 17,
+        "spearman": 0.3953160462514504,
+        "mae": 2.7589389495775722
+      },
+      {
+        "seed": 23,
+        "spearman": 0.3445271288124686,
+        "mae": 3.0100434651593275
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 176.24580991826952,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "1e25c10c2892b25b4000766f923ad5d84f27619e3c65cce19e0dfdb1c8b4a386",
+    "interpretation": "no_temporal_order"
+  },
+  "no_pathway": {
+    "validation_reward": 0.5918059385680546,
+    "validation_std": 0.029861763334193117,
+    "validation_mae": 2.2188705160336766,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.547182579420934,
+        "mae": 2.342385415486932
+      },
+      {
+        "seed": 7,
+        "spearman": 0.5760571342091966,
+        "mae": 2.2532122599061215
+      },
+      {
+        "seed": 11,
+        "spearman": 0.603269055831133,
+        "mae": 2.2681502617463423
+      },
+      {
+        "seed": 17,
+        "spearman": 0.6159603302010277,
+        "mae": 2.134593878649379
+      },
+      {
+        "seed": 23,
+        "spearman": 0.6165605931779823,
+        "mae": 2.0960107643796078
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 8.87709169369191,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "e22eb243cc9e29c86f4e3ec0cb58df27747bbf8335990da9c311db656464d3ac",
+    "ablation_contract_version": 2,
+    "interpretation": "Only pathway/both views and curated pathway supervision removed; independent scVI/CellRank/PCA components preserved"
+  },
+  "shuffled_gene_memberships": {
+    "validation_reward": 0.5918059385680546,
+    "validation_std": 0.029861763334193117,
+    "validation_mae": 2.2188705160336766,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.547182579420934,
+        "mae": 2.342385415486932
+      },
+      {
+        "seed": 7,
+        "spearman": 0.5760571342091966,
+        "mae": 2.2532122599061215
+      },
+      {
+        "seed": 11,
+        "spearman": 0.603269055831133,
+        "mae": 2.2681502617463423
+      },
+      {
+        "seed": 17,
+        "spearman": 0.6159603302010277,
+        "mae": 2.134593878649379
+      },
+      {
+        "seed": 23,
+        "spearman": 0.6165605931779823,
+        "mae": 2.0960107643796078
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 9.067280149785802,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "3079da62fbf6f60750ce6b7a945e4a54eedc953de59de55ca2a9351e67418f27",
+    "interpretation": "One fixed global gene permutation preserves all pathway sizes and overlaps; NOT pathway-column permutation"
+  },
+  "matched_capacity_no_artifact": {
+    "validation_reward": 0.4150618397981244,
+    "validation_std": 0.1286405627427355,
+    "validation_mae": 2.5469835665729192,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.45246012885914083,
+        "mae": 2.4904041608869103
+      },
+      {
+        "seed": 7,
+        "spearman": 0.21718562584426815,
+        "mae": 2.7669801609594606
+      },
+      {
+        "seed": 11,
+        "spearman": 0.433909144476119,
+        "mae": 2.6333316562860287
+      },
+      {
+        "seed": 17,
+        "spearman": 0.3985412687546106,
+        "mae": 2.496887919203855
+      },
+      {
+        "seed": 23,
+        "spearman": 0.5732130310564836,
+        "mae": 2.3473139355283417
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 7.202008753083646,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "722443a347d8a16dd41d9ecbdcffdef8b0c2cf45fe4f01e4c2ddc717f4c716cd",
+    "interpretation": "Each pipeline level retains original representation width using fixed random gene projection; gene selection/scalers training-only"
+  },
+  "no_treatment_interaction": {
+    "validation_reward": 0.5887245886196883,
+    "validation_std": 0.03681797688731486,
+    "validation_mae": 2.2300950886037922,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.5324618445099074,
+        "mae": 2.396698638068434
+      },
+      {
+        "seed": 7,
+        "spearman": 0.57882501349182,
+        "mae": 2.251720655876091
+      },
+      {
+        "seed": 11,
+        "spearman": 0.5915591637886402,
+        "mae": 2.2653616628556845
+      },
+      {
+        "seed": 17,
+        "spearman": 0.6289183881162356,
+        "mae": 2.12983726776274
+      },
+      {
+        "seed": 23,
+        "spearman": 0.6118585331918388,
+        "mae": 2.1068572184560144
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 9.080146489897743,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "76044471eeded7dd5ede233333502c28d3e91068f6bc181fe77704e3a87f9a54",
+    "interpretation": "Removes drug covariates at every inherited level; cross-attention/bilinear condition interaction disabled"
+  },
+  "no_dense_parent_branch": {
+    "validation_reward": 0.5107437583246686,
+    "validation_std": 0.06117934282066641,
+    "validation_mae": 2.4388338050275387,
+    "seed_metrics": [
+      {
+        "seed": 3,
+        "spearman": 0.41850715872616795,
+        "mae": 2.5163566681379628
+      },
+      {
+        "seed": 7,
+        "spearman": 0.5778150472131347,
+        "mae": 2.3488306142235897
+      },
+      {
+        "seed": 11,
+        "spearman": 0.4913343026047643,
+        "mae": 2.421682981572596
+      },
+      {
+        "seed": 17,
+        "spearman": 0.5502839381351986,
+        "mae": 2.409132485310068
+      },
+      {
+        "seed": 23,
+        "spearman": 0.5157783449440773,
+        "mae": 2.498166275893476
+      }
+    ],
+    "formal_fold_fits": 15,
+    "status": "trained",
+    "duration_seconds": 7.54242804273963,
+    "evidence_phase": "search",
+    "executable_recipe_fingerprint": "2a7435a195db7d35bb58d9669c19a938a9e1ce0c46edeaeb68b398b4d8a5269c",
+    "interpretation": "Removes inherited prediction branch AND neural internal dense branch; readout itself remains necessary"
+  }
+}

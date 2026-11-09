@@ -1,0 +1,192 @@
+{
+  "coverage_4_05c9490e55": {
+    "bootstrap": {
+      "draws": 2000,
+      "spearman_ci95": [
+        -0.05184115141128587,
+        0.5975125092616499
+      ],
+      "unit": "clone block, all treatments kept together",
+      "valid_draws": 2000
+    },
+    "calibration_refits": 0,
+    "caveat": "Historically exposed test clone IDs; retrospective frozen comparison, not a fresh blind test.",
+    "ensemble": {
+      "mae": 2.3972265765220913,
+      "spearman": 0.2830125726712828
+    },
+    "evidence_phase": "confirmation",
+    "kind": "child",
+    "model_refits": 0,
+    "secondary_metrics": {
+      "calibration_fit": "frozen development OOF calibrator; zero confirmation fitting steps",
+      "clonewise_ndcg_at10": 0.7663934376541665,
+      "clonewise_ndcg_at5": 0.669998161725151,
+      "log2_suppression": {
+        "mae": 3.548857683661475,
+        "spearman": -0.1515151515151515
+      },
+      "mono_positive_combo_negative_accuracy": 0.6,
+      "mono_resistant_combo_sensitive": {
+        "auprc": 0.5527777777777778,
+        "auroc": 0.625,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "n": 10,
+        "positive_count": 4,
+        "undefined_reason": null
+      },
+      "ndcg_at10": 0.8647267412632643,
+      "positive_selection": {
+        "auprc": 0.28975405546834115,
+        "auroc": 0.5341614906832297,
+        "brier_score": 0.19038730953533325,
+        "ece_fixed_10_bins": 0.08173440544287199,
+        "n": 30,
+        "positive_count": 7,
+        "undefined_reason": null
+      },
+      "raw_ratio_suppression": {
+        "mae": 1.7176627736279049,
+        "spearman": -0.07878787878787878
+      },
+      "suppression_sign_accuracy": 0.5
+    },
+    "seed_metrics": [
+      {
+        "mae": 2.428059412595531,
+        "seed": 3,
+        "spearman": 0.24051618793840937
+      },
+      {
+        "mae": 2.4471088069330644,
+        "seed": 7,
+        "spearman": 0.2276115266059138
+      },
+      {
+        "mae": 2.3830201005507514,
+        "seed": 11,
+        "spearman": 0.3212815683469595
+      },
+      {
+        "mae": 2.38248616234968,
+        "seed": 17,
+        "spearman": 0.24963844853551836
+      },
+      {
+        "mae": 2.3883739002533777,
+        "seed": 23,
+        "spearman": 0.23005896237586984
+      }
+    ],
+    "within_treatment": {
+      "combination": {
+        "mae": 1.14987946538783,
+        "spearman": 0.34545454545454546
+      },
+      "giredestrant": {
+        "mae": 2.908988752300549,
+        "spearman": 0.41818181818181815
+      },
+      "palbociclib": {
+        "mae": 3.1328115118778954,
+        "spearman": 0.006060606060606061
+      }
+    }
+  },
+  "root_historical_exact_ridge": {
+    "bootstrap": {
+      "draws": 2000,
+      "spearman_ci95": [
+        0.02567135137534747,
+        0.8055399900847738
+      ],
+      "unit": "clone block, all treatments kept together",
+      "valid_draws": 2000
+    },
+    "calibration_refits": 0,
+    "caveat": "Historically exposed test clone IDs; retrospective frozen comparison, not a fresh blind test.",
+    "ensemble": {
+      "mae": 2.200447903524943,
+      "spearman": 0.4894871539912125
+    },
+    "evidence_phase": "confirmation",
+    "kind": "root",
+    "model_refits": 0,
+    "secondary_metrics": {
+      "calibration_fit": "frozen development OOF calibrator; zero confirmation fitting steps",
+      "clonewise_ndcg_at10": 0.8373157887637349,
+      "clonewise_ndcg_at5": 0.7953207968709313,
+      "log2_suppression": {
+        "mae": 3.166708607199683,
+        "spearman": -0.38276198087941543
+      },
+      "mono_positive_combo_negative_accuracy": 0.6,
+      "mono_resistant_combo_sensitive": {
+        "auprc": 0.6104166666666666,
+        "auroc": 0.6041666666666667,
+        "brier_score": null,
+        "ece_fixed_10_bins": null,
+        "n": 10,
+        "positive_count": 4,
+        "undefined_reason": null
+      },
+      "ndcg_at10": 0.8429975004840231,
+      "positive_selection": {
+        "auprc": 0.4355006105006105,
+        "auroc": 0.7329192546583851,
+        "brier_score": 0.2144496164451489,
+        "ece_fixed_10_bins": 0.2518556199716963,
+        "n": 30,
+        "positive_count": 7,
+        "undefined_reason": null
+      },
+      "raw_ratio_suppression": {
+        "mae": 3.2011869836880606,
+        "spearman": -0.6969696969696969
+      },
+      "suppression_sign_accuracy": 0.5
+    },
+    "seed_metrics": [
+      {
+        "mae": 2.2004478975644783,
+        "seed": 3,
+        "spearman": 0.4894871539912125
+      },
+      {
+        "mae": 2.2004478975644783,
+        "seed": 7,
+        "spearman": 0.4894871539912125
+      },
+      {
+        "mae": 2.2004478975644783,
+        "seed": 11,
+        "spearman": 0.4894871539912125
+      },
+      {
+        "mae": 2.2004478975644783,
+        "seed": 17,
+        "spearman": 0.4894871539912125
+      },
+      {
+        "mae": 2.2004478975644783,
+        "seed": 23,
+        "spearman": 0.4894871539912125
+      }
+    ],
+    "within_treatment": {
+      "combination": {
+        "mae": 2.047512186036626,
+        "spearman": -0.0303030303030303
+      },
+      "giredestrant": {
+        "mae": 2.491377770407943,
+        "spearman": 0.6969696969696969
+      },
+      "palbociclib": {
+        "mae": 2.0624537541302597,
+        "spearman": 0.7818181818181817
+      }
+    }
+  }
+}

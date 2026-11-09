@@ -1,0 +1,14 @@
+{
+  "complete_scope": true,
+  "counts": {
+    "candidate_queued": 47,
+    "pruned_not_selected": 73,
+    "trained": 72
+  },
+  "fallback": 0,
+  "missing_outputs": [],
+  "nontrained_backprop": 0,
+  "primary_confirmation_refits": 0,
+  "proxy": 0,
+  "scientific_superiority_not_assumed": true
+}

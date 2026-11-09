@@ -1,0 +1,49 @@
+{
+  "fallback": false,
+  "foundation_checkpoints_required": false,
+  "inputs": {
+    "data/t47d_lineage/pathways/h.all.v2025.1.Hs.symbols.gmt": {
+      "sha256": "f22066af72e215ccb7b89d88e492c07e1eef17534c2ca7b0f9902cfecbbdd8e9",
+      "size_bytes": 48689,
+      "status": "original_public"
+    },
+    "data/t47d_lineage/prepared/clone_condition_counts.csv": {
+      "sha256": "3a5ea9a832e2e58c7ce801b1e06bb51f099d210ebcf5b8f12c8ebcde63f301ed",
+      "size_bytes": 37688,
+      "status": "derived"
+    },
+    "data/t47d_lineage/prepared/clone_expression_rows.csv": {
+      "sha256": "1111bfc5cc6ab0e3b658f8141791e6fb2a1d29bfa1f27944226b4478309eaae9",
+      "size_bytes": 19266,
+      "status": "derived"
+    },
+    "data/t47d_lineage/prepared/clone_mean_log_expression.npz": {
+      "sha256": "e1c5358b4c82e12912eecd98791ad41c687b449a79d4934001911f2b32f08f52",
+      "size_bytes": 52054437,
+      "status": "derived"
+    },
+    "data/t47d_lineage/prepared/clone_pseudobulk_counts.npz": {
+      "sha256": "087e3da306956925d51be1ca647ed80d734e8b5ba7f4fde3159c3799fde919a0",
+      "size_bytes": 22154865,
+      "status": "derived"
+    },
+    "data/t47d_lineage/prepared/dataset_manifest.json": {
+      "sha256": "982735183b7e485397a458a17e58a9faaba8858563e8e4c4df25873160093b5b",
+      "size_bytes": 2136,
+      "status": "derived"
+    },
+    "data/t47d_lineage/prepared/gene_order.csv": {
+      "sha256": "78f70fb5e693583ea1fca05f8260414b729f039b0d27653d8d6a05cdfe69fff7",
+      "size_bytes": 1443571,
+      "status": "derived"
+    },
+    "data/t47d_lineage/prepared/qc_counts.h5ad": {
+      "sha256": "f9798a559b83649b368365a6e3fbf83e8ddc6c0864d0fcea3030d6d08e060c7a",
+      "size_bytes": 454900546,
+      "status": "derived"
+    }
+  },
+  "representation_policy": "fresh content-addressed train-fold-only scVI, distance, pseudotime and CellRank artifacts",
+  "source": "GSE260703 / Hallmark / pinned public TraCSED",
+  "task": "T47D"
+}

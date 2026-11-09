@@ -1,0 +1,8 @@
+{
+  "libraries": 18,
+  "replicate_independence_verified": false,
+  "caveat": "GEO replicate tags and library prefixes are recorded; do not treat cell counts as biological replication",
+  "libraries_per_condition": "{('baseline', 0): 2, ('combination', 1): 1, ('combination', 4): 1, ('combination', 8): 2, ('combination', 26): 1, ('combination', 180): 1, ('giredestrant', 1): 1, ('giredestrant', 4): 1, ('giredestrant', 8): 2, ('giredestrant', 26): 1, ('palbociclib', 1): 1, ('palbociclib', 4): 1, ('palbociclib', 8): 2, ('palbociclib', 26): 1}",
+  "barcode_assignment": "exactly one nonzero barcode; multibarcode and zero-barcode excluded from clone endpoints",
+  "barcode_collision_risk": "shared observed sequence defines operational lineage; actual molecular collision not identifiable from processed matrices"
+}

@@ -1,0 +1,17 @@
+{
+  "composition": "replace",
+  "evidence_refs": [
+    "experiments/t47d_research_protocol_formal_v3/development_feedback.json"
+  ],
+  "expected_change": "Improve clone-grouped development prediction versus the unchanged exact historical recipe",
+  "falsification": "No positive paired gain, or matched control explains the apparent gain",
+  "hypothesis": "Test {'model': 'hazard', 'representation': 'scvi', 'loss': 'huber', 'head': 'regression', 'composition': 'replace'}",
+  "selection_evidence": "Development only; family estimates are descriptive, not confirmed effects",
+  "training_policy": {
+    "composition": "replace",
+    "head": "regression",
+    "loss": "huber",
+    "model": "hazard",
+    "representation": "scvi"
+  }
+}

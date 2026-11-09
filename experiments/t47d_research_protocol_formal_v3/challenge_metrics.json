@@ -1,0 +1,73 @@
+{
+  "monotherapy_to_combination": {
+    "training_combo_labels": 0,
+    "test_unseen_clone_groups": true,
+    "combo_early_expression_allowed_at_query_only": true,
+    "combo_cells_in_representation_training": 0,
+    "scvi_unseen_batch_policy": "fixed-encoder reference-baseline-batch mapping, no query adaptation",
+    "cross_treatment_training_policy": "withheld combination K/V token masked; never read combination state during training",
+    "drug_encoding": "two chemical-presence indicators; combination=[1,1]",
+    "spearman": 0.18787878787878787,
+    "mae": 2.3928643405983743
+  },
+  "late_interval_holdout": {
+    "training_endpoint": 8,
+    "unseen_endpoint": 26,
+    "max_input_day": 4,
+    "training_day26_labels": 0,
+    "hazard_event_censoring_cutoff": 8,
+    "interpretation": "Direct day8-to-day26 response transport; not calibrated horizon-conditioned survival extrapolation",
+    "spearman": 0.21337190030798764,
+    "mae": 1.8947655907465333
+  },
+  "early_warning": {
+    "frozen_architecture_refit_per_horizon": true,
+    "horizon_contract_version": 2,
+    "parent_policy": "Preserve every original baseline_only flag; restrict cutoff only. No expanded-parent feature access.",
+    "results": {
+      "0": {
+        "lead_days": 26,
+        "spearman": 0.10123484321181894,
+        "mae": 2.351394310880949,
+        "classification": {
+          "positive_count": 7,
+          "n": 30,
+          "auroc": 0.4782608695652174,
+          "auprc": 0.24467288489844882,
+          "brier_score": null,
+          "ece_fixed_10_bins": null,
+          "undefined_reason": null
+        }
+      },
+      "1": {
+        "lead_days": 25,
+        "spearman": 0.2732228295914586,
+        "mae": 2.231830363528828,
+        "classification": {
+          "positive_count": 7,
+          "n": 30,
+          "auroc": 0.515527950310559,
+          "auprc": 0.2516749123891981,
+          "brier_score": null,
+          "ece_fixed_10_bins": null,
+          "undefined_reason": null
+        }
+      },
+      "4": {
+        "lead_days": 22,
+        "spearman": 0.2830125726712828,
+        "mae": 2.397226580868263,
+        "classification": {
+          "positive_count": 7,
+          "n": 30,
+          "auroc": 0.5341614906832297,
+          "auprc": 0.28975405546834115,
+          "brier_score": null,
+          "ece_fixed_10_bins": null,
+          "undefined_reason": null
+        }
+      }
+    },
+    "criterion": "Descriptive earliest observed cutoff with positive heldout Spearman; not clinical decision threshold"
+  }
+}

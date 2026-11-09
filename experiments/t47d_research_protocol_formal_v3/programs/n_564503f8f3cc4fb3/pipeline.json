@@ -1,0 +1,21 @@
+{
+  "backend": "t47d_research_v3",
+  "composition": "replace",
+  "config": {
+    "author_seed": 42,
+    "batch_size": 32,
+    "composition": "replace",
+    "epochs": 20,
+    "head": "regression",
+    "loss": "huber",
+    "model": "tracsed",
+    "optimizer": "author_Adam_0.001_MSE",
+    "representation": "pca"
+  },
+  "effective_training_objective": "author TensorFlow mean_squared_error",
+  "fallback": false,
+  "parent": "n_ce9028d9bf28dc23",
+  "proxy": false,
+  "test_evaluation": "withheld_until_frozen_confirmation",
+  "training_policy": "native direct-target model; OOF-only learned combination when explicitly selected"
+}

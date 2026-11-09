@@ -1,0 +1,37 @@
+{
+  "duration_seconds": 0.6820945194922388,
+  "evidence_phase": "search",
+  "executable_recipe_fingerprint": "76ec6307042aa88c64f347c8c074d42d67af921b4f5a667a201cce1635d24516",
+  "formal_fold_fits": 15,
+  "seed_metrics": [
+    {
+      "mae": 4.1671632599541235,
+      "seed": 3,
+      "spearman": 0.11727408526218325
+    },
+    {
+      "mae": 4.244798552206449,
+      "seed": 7,
+      "spearman": -0.004668478493660718
+    },
+    {
+      "mae": 4.550828942724945,
+      "seed": 11,
+      "spearman": -0.04602738694464272
+    },
+    {
+      "mae": 4.096540399333336,
+      "seed": 17,
+      "spearman": 0.08726243780293577
+    },
+    {
+      "mae": 4.159999637645967,
+      "seed": 23,
+      "spearman": 0.06345319748526611
+    }
+  ],
+  "status": "trained",
+  "validation_mae": 4.243866158372964,
+  "validation_reward": 0.04345877102241634,
+  "validation_std": 0.06725184670884661
+}

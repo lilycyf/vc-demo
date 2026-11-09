@@ -1,0 +1,43 @@
+{
+  "evidence_phase": "development",
+  "independent_development_clones": 36,
+  "latest_node": "n_e44b9bc5d705d5bd",
+  "note": "Adaptive development evidence is not independent confirmation",
+  "paired": {
+    "bootstrap_unit": "whole group blocks",
+    "delta_ci95": [
+      -0.3822115110522656,
+      -0.022008734112847855
+    ],
+    "evidence_phase": "development",
+    "format": "vc_demo_paired_development_feedback.v1",
+    "independent_groups": 36,
+    "paired_delta": -0.21181660699484195,
+    "promotion_supported": false,
+    "residual_summary": {
+      "candidate_mae": 2.5944427957674048,
+      "reference_mae": 2.3129294146980697
+    },
+    "rows": 108,
+    "selection_optimism_caveat": "Development winner and adaptive reuse are not independent confirmation",
+    "strata": {
+      "combination": {
+        "delta": -0.38535298361538983,
+        "groups": 36,
+        "n": 36
+      },
+      "giredestrant": {
+        "delta": -0.5388181166701902,
+        "groups": 36,
+        "n": 36
+      },
+      "palbociclib": {
+        "delta": -0.3041267288801378,
+        "groups": 36,
+        "n": 36
+      }
+    },
+    "valid_bootstrap_draws": 500
+  },
+  "reference": "root_historical_exact_ridge"
+}

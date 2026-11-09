@@ -1,0 +1,23 @@
+{
+  "author_notebook_sha256": "23749e5dbf667584107bae01565a5d7cebad753cd0d9cb76180b833bedb79309",
+  "functions": {
+    "transformer_train_test_split_dayiter": "f285f35744a641431f95dd62a62a94ad171b2547c2965aba222d245bda593924",
+    "regr_train_test_split_dayiter": "ca0f825c072478e63b82e05cd6f24bff8d4f69b1981c3c9ed5d54d96a996aac6",
+    "transformer_encoder": "ce0bf73ad27d002eb98cfefd1eafdff06c30e01a4d8a491acacb081de558f82f",
+    "build_model": "ca5738f3f6ecac4b74772dadda447c7bc37eb722f202148f99ed87b3449a46fb",
+    "lr_scheduler": "d3121ac8617326164ff7d75e5ec7a01da6c10e1367fbcee34dc7af8139467611"
+  },
+  "seed": 42,
+  "sequence_length": 8,
+  "epochs": 20,
+  "batch_size": 32,
+  "known_source_quirks": [
+    "Repeated blocks use original input; retained unchanged",
+    "Last dataframe column discarded by author splitter; retained unchanged",
+    "MinMaxScaler fitted on full interval prefix before last5% split; retrospective only"
+  ],
+  "keras_execution": "jit_compile=False restores author pre-Keras3 default; unchanged architecture/Adam/MSE/20epochs/batch32",
+  "gpus": [
+    "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "backend": "t47d_research_v3",
+  "composition": "replace",
+  "config": {
+    "composition": "replace",
+    "head": "regression",
+    "loss": "huber",
+    "model": "early_elastic",
+    "representation": "scvi"
+  },
+  "effective_training_objective": "squared error + ElasticNet penalty",
+  "fallback": false,
+  "parent": "coverage_22_36652a3211",
+  "proxy": false,
+  "test_evaluation": "withheld_until_frozen_confirmation",
+  "training_policy": "native direct-target model; OOF-only learned combination when explicitly selected"
+}
