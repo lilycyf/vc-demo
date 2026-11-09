@@ -1,0 +1,80 @@
+{
+  "kind": "T47D_task_adapter_engineering_acceptance_not_formal_experiment",
+  "created_utc": "2026-11-09T05:28:03.836748+00:00",
+  "framework": "research_v2",
+  "actual_shared_entrypoint": "scripts/run_research_harness.py",
+  "tests": {
+    "passed": 141,
+    "failed": 0,
+    "existing_regression": 115,
+    "new_adapter": 26,
+    "wall_seconds": 339.11,
+    "log_sha256": "db0f3d052ef0f6b5927027217b1e978b183d91a2b8d83740fc50437a6b94fa0a",
+    "command": "CUDA_VISIBLE_DEVICES='' VC_DEMO_FORCE_CPU=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 PYTHONPATH=src:. OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 python -m pytest tests/harness tests/t47d -q"
+  },
+  "real_source_preflight": {
+    "kind": "real_source_adapter_preflight_not_scientific_experiment",
+    "counts": {
+      "confirmation_clones": 10,
+      "confirmation_rows": 30,
+      "development_clones": 36,
+      "development_rows": 108,
+      "outer_folds": 15,
+      "seeds": 5
+    },
+    "metric_id": "9bf829f86cbb3ec9d4d97eb6ac6e07e04b8486e6ee3396f11793c990ccf5851c",
+    "exact_baseline_count": 6,
+    "historical_exact_ridge_recipe_preserved": true,
+    "independent_label_formula_check": "passed",
+    "early_input_row_group_and_shape_checks": "passed",
+    "development_confirmation_groups_disjoint": true,
+    "endpoint_metadata_in_model_inputs": false,
+    "historical_test_exposure_preserved": true,
+    "models_fitted_on_real_data": 0,
+    "real_data_session_initialized": false,
+    "historical_selection_recipe_checkpoint_checksums": "verified unchanged",
+    "budget_guard_pid_preserved": 1595,
+    "original_deadline_utc": "2026-11-09T17:15:00+00:00",
+    "scientific_search_started": false
+  },
+  "verified_cpu_fixture_paths": [
+    "exact historical Ridge fold predictions versus old implementation",
+    "all six native baseline solver paths",
+    "six standalone neural families, real CPU backward",
+    "portable PCA/expression/pathway/both/pseudobulk/matched-control query transforms",
+    "real grouped OOF stack and nested residual, actual inner audits",
+    "separate residual targets and training-only true auxiliary labels",
+    "agent-defined native model and feature fusion, not catalog replacement",
+    "actual sealed artifact path injection and serialized use",
+    "real shared CLI init/context/propose/select/seal/execute/freeze/confirm/report",
+    "fresh-process provider execution and frozen checkpoint loading",
+    "exactly-once execution/reward and cached confirmation",
+    "validation/confirmation target poisoning and no-refit scaler/PCA checks",
+    "row order/content/artifact-source mismatch rejection",
+    "unused-pathway controls do not claim artifact consumption"
+  ],
+  "unexercised_or_not_certified": [
+    "real-data fifteen-fold baseline/model replay",
+    "new scientific search or confirmation",
+    "portable real scVI/CellRank/distance/pseudotime builders",
+    "TraCSED external runtime and hazard training-access contract under v2",
+    "automatic migration of old challenge/sensitivity workflows",
+    "scientific superiority, biological attribution or unseen-task transfer",
+    "OS-level confinement of arbitrary trusted agent code"
+  ],
+  "scientific_runs_started": 0,
+  "real_T47D_models_fitted": 0,
+  "new_cloud_resources": 0,
+  "old_scientific_and_shared_engine_files_changed": [],
+  "source_sha256": {
+    "scripts/t47d/audit_provider_v2.py": "2d1db78e2cc9e86de9264ec5964cb706577fae49dc1f2c1222a8d41a101ba5f7",
+    "scripts/t47d/prepare_research_v2.py": "f5f1ebfeb16e2eb3f4d12cd5825bb576e4e2cda636ddedc92f3d38a101d29969",
+    "src/vc_demo/t47d_provider_v2/__init__.py": "20fd2b9512e14143c5b6e2676e826b7499b62dbbaefae97eedc686fdd14804b4",
+    "src/vc_demo/t47d_provider_v2/data.py": "ba2d69d8b83e2e71f69822ce189b4362385707a7908f13c9859dbf752fd659d1",
+    "src/vc_demo/t47d_provider_v2/provider.py": "dabb30d212ab0ce1bdc1d7ca96167589e1e65e874921db47ddab11299d923e04",
+    "src/vc_demo/t47d_provider_v2/registration.py": "3ad395b9a0a6fa5cb2b5f06aa43c9b73a2d6cb26acd261a6e247926fb8bb5c8f",
+    "tests/t47d/test_provider_v2.py": "73180cbc244b2935d0f51c816639d600f3ad89cc4fab84a3d9a9a1550c47f1d8"
+  },
+  "data_retention": "source-backed development/confirmation export remains in ignored data/ on the existing volume",
+  "budget_protection": "existing independent watchdog and original deadline preserved, not extended"
+}

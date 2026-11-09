@@ -12,6 +12,14 @@ next_action is a work instruction, not permission to end a full run after one no
 No internal Codex API is needed or permitted. This runbook does not itself authorize
 cloud spend or a new scientific experiment.
 
+## Task Provider Guides
+
+Task-specific adapters do not change this loop or become an implicit default.
+For the T47D source/split, portable model interface and engineering-only acceptance,
+read `docs/T47D_RESEARCH_V2_RUNBOOK.md`. Its preparation command does not initialize
+a Session or authorize a scientific run; unvalidated legacy modules remain explicit
+implementation/acceptance work rather than being certified by registration alone.
+
 ## Prepare And Register
 
 1. Confirm repository, branch, fresh run directory, requested scope and resource
