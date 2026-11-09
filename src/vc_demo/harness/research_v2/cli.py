@@ -20,6 +20,8 @@ def main(argv=None):
     control=commands.add_parser('control');control.add_argument('--file',type=Path,required=True)
     freeze=commands.add_parser('freeze');freeze.add_argument('--nodes',nargs='+',required=True)
     confirm=commands.add_parser('confirm');confirm.add_argument('--node',required=True)
+    analyze=commands.add_parser('analyze');analyze.add_argument('--node',required=True);analyze.add_argument('--analysis',required=True)
+    plan=commands.add_parser('plan-analysis');plan.add_argument('--id',required=True);plan.add_argument('--file',type=Path,required=True)
     a=p.parse_args(argv);session=Session(a.run_dir)
     if a.action=='init':
         session=Session.initialize(a.run_dir,json.loads(a.spec.read_text()));result=session.context()
@@ -40,6 +42,9 @@ def main(argv=None):
     elif a.action=='control':result=session.record_control(**json.loads(a.file.read_text()))
     elif a.action=='freeze':result=session.freeze(a.nodes)
     elif a.action=='confirm':result=session.confirm(a.node)
+    elif a.action=='analyze':result=session.analyze(a.node,a.analysis)
+    elif a.action=='plan-analysis':
+        value=json.loads(a.file.read_text());result=session.plan_analysis(a.id,**value)
     else:result=session.verdict()
     print(json.dumps(result,indent=2,sort_keys=True))
 

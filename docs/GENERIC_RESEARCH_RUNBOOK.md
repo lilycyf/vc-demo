@@ -113,6 +113,21 @@ PYTHONPATH=src python scripts/run_research_harness.py --run-dir "$RUN_DIR" repor
 Only previously fitted checkpoints/calibrators may be loaded. Confirmation closes
 selection. Existing exposed groups are not fresh blind evidence after restart/versioning.
 
+When the task includes challenges or sensitivity analyses, register their actual
+providers, data/exposure scopes, target finalists and separate model/calibration fit
+budgets before freezing. Initial TaskSpec registration or `plan-analysis` from the
+current development evidence is allowed. Do not add questions after viewing outcomes
+and label them predeclared. No task-specific analysis family belongs in the shared loop.
+
+After freeze, follow `next_action`: finish frozen confirmation, then each required
+registered analysis using `analyze --node <finalist> --analysis <id>`. The optional
+analysis protocol in RESEARCH_PROTOCOL.md supports explicitly budgeted refits for
+LOCO/temporal/matched-control work; main confirmation remains predict-only. Analysis
+outputs never feed ranking or trigger new candidates. Resume reads durable receipts
+and verifies actual contents, rather than rerunning completed work. Report missing
+analyses separately from primary-search completion; do not stop at a single receipt
+when registered scope remains. This engineering work itself grants no experiment budget.
+
 Deliver layered execution/protocol/capability/artifact/attribution/scientific/transfer
 verdicts. Include phase counts, unique semantic candidates, replicates, actual policies,
 paired uncertainty, applicable controls, attempts/costs, exposure and limitations.

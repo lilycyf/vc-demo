@@ -34,6 +34,9 @@ def artifacts_for(config, preparation):
 
 def implementation(config, preparation, *, training=None, model_builder=None, extra_code=None, artifacts=None):
     """Seal effective research choices, not a proxy family template."""
+    from .effective import canonical
+    original = config
+    config = canonical(config)
     files = execution_files()
     if model_builder is not None:
         files['model_builder'] = str(Path(model_builder).resolve())
@@ -46,13 +49,22 @@ def implementation(config, preparation, *, training=None, model_builder=None, ex
     resources = artifacts_for(config, preparation) if artifacts is None else copy.deepcopy(artifacts)
     environment = {p: importlib.metadata.version(p) for p in
                    ('torch', 'pandas', 'joblib', 'xgboost', 'anndata')}
+    configs = [config, *([config['parent_config']] if config.get('parent_config') else [])]
+    if any(c.get('representation') in {'scvi', 'cellrank', 'pseudotime', 'distance'} for c in configs):
+        environment.update({p: importlib.metadata.version(p) for p in
+            ('scanpy', 'scvi-tools', 'cellrank', 'pertpy', 'POT', 'jax', 'jaxlib', 'ott-jax')})
+    if any(c.get('model') == 'hazard' for c in configs):
+        environment['lifelines'] = importlib.metadata.version('lifelines')
     recipe = {'parameters': {'model_config': copy.deepcopy(config)},
         'training': copy.deepcopy(TRAINING if training is None else training),
         'code_sha256': {r: file_digest(Path(p)) for r, p in files.items()},
         'input_sha256': {r: v['sha256'] for r, v in preparation['development_inputs'].items()},
         'artifact_sha256': {r: artifact_identity(v['path']) for r, v in resources.items()},
         'environment': environment}
-    return {'execution': {'code_files': files, 'artifact_files': resources}, 'recipe': recipe}
+    execution = {'code_files': files, 'artifact_files': resources}
+    if config != original:
+        execution['design_revision_reason'] = 'Imported legacy descriptive author_Adam_0.001_MSE into the actual Adam / 0.001 / MSE settings; source architecture unchanged'
+    return {'execution': execution, 'recipe': recipe}
 
 
 def make_task_spec(preparation, *, budget, policy, resources, minimum_effect):
@@ -76,7 +88,7 @@ def make_task_spec(preparation, *, budget, policy, resources, minimum_effect):
     return {'schema_version': 'research_v2', 'task_id': 'T47D_GSE260703_clone_selection',
         'dataset_sha256': p['dataset_sha256'], 'split_sha256': p['split_sha256'],
         'label_semantics': p['task_contract']['label'] + '; sampling non-detection is not extinction; relative not absolute growth',
-        'input_policy': 'clone-heldout; days 0/1/4 only; endpoint metadata excluded; all learned transformations train-fold-only',
+        'input_policy': 'clone-heldout; predictor observations days 0/1/4 only; auxiliary event outcomes at days1/4/8/26 restricted to actual fitting rows; validation/query outcomes excluded; all learned transformations train-fold-only',
         'prior_test_exposure': True,
         'metric': {'name': 'spearman', 'direction': 'maximize', 'aggregation': 'mean_seed',
                    'prediction_unit': 'clone_x_treatment', 'group_key': 'clone_id'},

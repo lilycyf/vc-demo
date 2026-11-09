@@ -47,6 +47,9 @@ Register JSON with:
 - Optional `confirmation_contract`: {path,sha256}. Its data is opened only after
   freezing; it contains source-backed heldout rows/groups/targets/seeds and the
   provider's prediction-input description. Groups must not overlap development.
+- Optional `analyses`: id -> source-bound `postselection_v1` plan. See the separate
+  report-only analysis contract below. Omitting analyses does not silently certify
+  the original task's challenge scope.
 
 Datasets, fold construction, biological interpretation and real model implementation
 are task/provider responsibilities, not implicit classification defaults.
@@ -233,3 +236,50 @@ No return to search after confirmation. New versions/tasks must preserve exposur
 history; new blind evidence requires independent groups, not a fresh directory.
 The exposure flag records audited researcher knowledge; it does not automatically
 discover disclosures or evaluations performed outside the registered repository.
+
+## Optional Report-Only Analyses
+
+The shared optional extension accepts `mode=predict_only|registered_refits`,
+`data_scope=development|confirmation|all_exposed_secondary`,
+`fit_unit=task_pipeline_fit`, `fit_budget={model: int, calibration: int}`,
+`fit_budget_scope=per_finalist`,
+`target_policy=any_finalist|each_finalist`, and immutable `{path,sha256}` references
+for `contract`, `provider` and optional `code_files`. Exposed-secondary scope requires
+`prior_test_exposure=true`. Overlapping training/query groups require an explicit
+retrospective `allow_training_query_group_overlap=true`; they are not unseen-group
+evidence. Predict-only budgets must be zero. Task providers define the actual
+analysis methods, independent groups, source access and component-fit diagnostics.
+
+Plans can be registered in TaskSpec or added with `plan-analysis --id <id> --file
+<{plan,reason,evidence_id}>` while selection is open. This preserves researcher agency:
+new questions may follow development evidence, not confirmation results. Adding a
+plan does not fit models or read confirmation labels. `freeze` binds the complete
+plan inventory before outcomes are opened. Changes after freezing require a separately
+labelled follow-up; they cannot masquerade as preregistration or reopen selection.
+
+`analyze --node <frozen_finalist> --analysis <id>` calls trusted task code's
+`evaluate_analysis(request)`. It receives frozen recipe/checkpoints, development OOF
+receipt, registered sources, separate fitting allocation and private output directory.
+It returns metrics, actual model_refits/calibration_refits, one group-access audit
+per task-pipeline fit, component-fit diagnostics and explicit output files. The task
+provider must enforce the budget before fitting. Shared validation detects contract
+violations after the call; it is not an OS fit-preemption sandbox. Cloud watchdogs
+remain necessary. Failed attempts and elapsed time are recorded, not hidden.
+
+Analysis fitting may be appropriate for a registered LOCO, temporal transport or
+matched control. It is not main confirmation fitting, not an optimization measurement
+and not an additional chance to select the winner. No model fits, predictions or
+analysis metrics alter nodes, visits/Q, primary budgets or development evidence.
+`next_action` names pending frozen confirmation/analyses before final reporting.
+`report` distinguishes primary execution completion and postselection scope completion.
+
+Actual fitted artifacts/predictions stay under ignored nodes/.../analyses. Durable
+receipts and output hashes support exactly-once recovery after receipt creation;
+a crash before a receipt exists is a failed attempt, not proof of zero prior compute.
+Reviewed aggregate summaries live separately under run/analyses. Repeated calls
+verify/reuse them without another fit. Input/source/frozen-checkpoint drift is rejected.
+Never commit private contracts, clone IDs or arrays as a purported lightweight report.
+
+Engine content is frozen per session. This optional extension does not rehash old
+sessions or make them resumable under changed code: use the matching frozen checkout,
+or explicitly version a new authorized study. Preserve old receipts and exposure.

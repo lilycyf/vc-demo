@@ -53,6 +53,8 @@ class Session:
         if limit is not None and (type(limit)!=int or limit<1):raise ValueError('Invalid active proposal limit')
         if spec['minimum_effect']<0:raise ValueError('Minimum practical effect cannot be negative')
         self._deadline(spec)
+        from .postselection import validate_plans
+        validate_plans(spec)
         contract=Path(spec['development_contract']).resolve()
         self._validate_contract(json.loads(contract.read_text()),metric)
         spec['development_contract']=str(contract)
@@ -153,6 +155,23 @@ class Session:
         spec,state=self._load()
         return self._context(spec,state)
 
+    def plan_analysis(self, analysis_id, plan, reason, evidence_id):
+        self._name(analysis_id)
+        if not reason:
+            raise ValueError('Explain the development-conditioned analysis question')
+        from .postselection import plans_for, validate_plans
+        with self._transaction() as (spec,state):
+            if self._context(spec,state)['evidence_id']!=evidence_id:
+                raise ValueError('Use the current development-only evidence snapshot')
+            if analysis_id in plans_for(spec,state):
+                raise ValueError('Version a new analysis ID rather than replacing a registered question')
+            self._development_only(plan)
+            validate_plans({**spec,'analyses':{analysis_id:plan}})
+            state.setdefault('analysis_plan_additions',{})[analysis_id]={'plan':copy.deepcopy(plan),
+                'reason':reason,'evidence_id':evidence_id,'evidence_phase':'development'}
+            self._event(state,'analysis_planned_before_freeze',analysis_id=analysis_id)
+        return {'registered_analysis':analysis_id,'phase':'development','opens_confirmation':False}
+
     def _context(self,spec,state):
         metric=MetricSpec.from_dict(spec['metric'])
         nodes=state['nodes']
@@ -171,6 +190,8 @@ class Session:
             'allowed_compositions':sorted(COMPOSITIONS),'agent_defined_candidates_allowed':True,
             'parent_ranking':parent_ranking(nodes,metric,spec['policy']),
             'policy_identity':spec['policy']['parent_policy'],'next_action':self._action(spec,state)}
+        from .postselection import plans_for
+        result['registered_analysis_ids']=sorted(plans_for(spec,state))
         self._development_only(result)
         identity=digest(result)
         freeze_record(self.run/'evidence'/f'{identity}.json',result)
@@ -188,7 +209,17 @@ class Session:
             for item in value:Session._development_only(item)
 
     def _action(self,spec,state):
-        if state['selection_closed']:return 'confirmation_or_report_only'
+        if state['selection_closed']:
+            lock=json.loads((self.run/'confirmation_lock_v2.json').read_text())
+            finalists=list(lock['selected'])
+            if any(name not in state.get('confirmation_reports',{}) for name in finalists):
+                return 'predict_frozen_confirmation_without_refitting'
+            from .postselection import plans_for
+            reports=state.get('analysis_reports',{})
+            for aid,plan in plans_for(spec,state).items():
+                done=all(aid+'::'+name in reports for name in finalists) if plan['target_policy']=='each_finalist' else any(k.startswith(aid+'::') for k in reports)
+                if not done:return 'execute_registered_report_only_analyses'
+            return 'write_final_report_selection_remains_closed'
         active=[n for n in state['nodes'].values() if n['status'] in {'selected','repair_needed'}]
         if active:return 'implement_repair_acquire_or_execute_selected_now'
         for name in spec['benchmarks']:
@@ -554,6 +585,9 @@ class Session:
 
     def freeze(self,names):
         with self._transaction() as (spec,state):
+            from .postselection import plans_for, validate_plans
+            analysis_plans=plans_for(spec,state)
+            validate_plans({**spec,'analyses':analysis_plans})
             if not names or len(set(names))!=len(names) or len(names)>spec['budget']['confirmation']:
                 raise ValueError('Finalists exceed the declared confirmation allocation')
             if any(n['status'] in {'selected','repair_needed'} for n in state['nodes'].values()):raise ValueError('Handle active work before closing search')
@@ -574,6 +608,7 @@ class Session:
                 selected[name]={'measurement_id':n['measurement_id'],'checkpoint_files':n['receipt']['checkpoint_files']}
             lock={'schema_version':'research_v2','metric_id':MetricSpec.from_dict(spec['metric']).identity,
                 'selected':selected,'further_search_allowed':False,'prior_test_exposure':spec['prior_test_exposure']}
+            lock['analysis_plan_sha256']=digest(analysis_plans)
             freeze_record(self.run/'confirmation_lock_v2.json',lock)
             state['selection_closed']=True
             self._event(state,'selection_frozen',nodes=names)
@@ -625,6 +660,10 @@ class Session:
             self._event(state,'confirmation_reported_no_feedback',node=name)
             return report
 
+    def analyze(self, name, analysis_id):
+        from .postselection import run
+        return run(self, name, analysis_id)
+
     def verdict(self):
         spec,state=self._load();nodes=state['nodes']
         trained=[n for n in nodes.values() if n['status']=='trained']
@@ -633,6 +672,14 @@ class Session:
         exhausted=bool(state.get('proposal_exhaustion')) and not any(n['status']=='candidate_queued' and n['phase']=='optimization' for n in nodes.values())
         complete=all(self._resolved(nodes,name) is not None for name in spec['benchmarks']) and self._coverage_handled(state)>=spec['budget']['coverage'] and (state['budget_used']['optimization']>=spec['budget']['optimization'] or exhausted)
         complete=complete and not any(n['status'] in {'selected','repair_needed'} for n in nodes.values())
+        reports=state.get('analysis_reports',{})
+        lock_path=self.run/'confirmation_lock_v2.json'
+        finalists=list(json.loads(lock_path.read_text())['selected']) if lock_path.is_file() else []
+        from .postselection import plans_for
+        plans=plans_for(spec,state)
+        analysis_complete=all((all(aid+'::'+name in reports for name in finalists) if plan['target_policy']=='each_finalist'
+            else any(k.startswith(aid+'::') for k in reports)) for aid,plan in plans.items())
+        if plans and not finalists:analysis_complete=False
         return {'execution_complete':complete,'proposal_exhaustion':state.get('proposal_exhaustion'),
             'protocol_version':'research_v2','declared_compositions_exercised':sorted({n['hypothesis']['composition'] for n in trained}),
             'combination_fits_with_validated_inner_group_audits':sum(bool(n['receipt'].get('inner_group_audit_validated')) for n in trained),
@@ -649,6 +696,9 @@ class Session:
             'scientific_superiority':'not established by execution completion or adaptive development evidence',
             'artifact_attribution':'requires applicable matched controls; availability/use is not benefit',
             'control_results':state.get('controls',{}),
+            'postselection_analysis_scope_complete':analysis_complete,
+            'postselection_analysis_completed':sorted(reports),
+            'postselection_analysis_attempts':len(state.get('analysis_attempts',[])),
             'missing_registered_controls':sorted(set(spec.get('required_controls',[]))-set(state.get('controls',{}))),
             'transfer_verdict':'not established; requires unseen tasks and equal-resource policy comparisons',
             'candidate_status_counts':{s:sum(n['status']==s for n in nodes.values()) for s in {n['status'] for n in nodes.values()}},

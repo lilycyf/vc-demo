@@ -1,0 +1,25 @@
+{
+  "kind": "real_source_adapter_preflight_not_scientific_experiment",
+  "counts": {
+    "confirmation_clones": 10,
+    "confirmation_rows": 30,
+    "development_clones": 36,
+    "development_rows": 108,
+    "outer_folds": 15,
+    "seeds": 5
+  },
+  "metric_id": "9bf829f86cbb3ec9d4d97eb6ac6e07e04b8486e6ee3396f11793c990ccf5851c",
+  "exact_baseline_count": 6,
+  "historical_exact_ridge_recipe_preserved": true,
+  "independent_label_formula_check": "passed",
+  "early_input_row_group_and_shape_checks": "passed",
+  "development_confirmation_groups_disjoint": true,
+  "endpoint_metadata_in_model_inputs": false,
+  "historical_test_exposure_preserved": true,
+  "models_fitted_on_real_data": 0,
+  "real_data_session_initialized": false,
+  "historical_selection_recipe_checkpoint_checksums": "verified unchanged",
+  "budget_guard_pid_preserved": 1595,
+  "original_deadline_utc": "2026-11-09T17:15:00+00:00",
+  "scientific_search_started": false
+}

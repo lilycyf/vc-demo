@@ -73,7 +73,8 @@ def development_contract(bundle, indices):
                 if f['seed'] == seed and group in f['validation_groups']) for seed in seeds] for group in groups]}
 
 
-def prepare(prepared, pathways, historical_run, baseline_tree, output_dir):
+def prepare(prepared, pathways, historical_run, baseline_tree, output_dir, *, heavy_sources=False,
+            tracsed_notebook=None, tensorflow_python=None):
     """Export the exact existing task/split, without fitting or initializing a run."""
     prepared, pathways, historical_run, baseline_tree, out = map(Path,
         (prepared, pathways, historical_run, baseline_tree, output_dir))
@@ -125,6 +126,11 @@ def prepare(prepared, pathways, historical_run, baseline_tree, output_dir):
           'groups': meta.clone_id.astype(str).tolist(), 'targets': meta.label.astype(float).tolist(),
           'seeds': dc['seeds'], 'early_observations': heldout_input,
           'prior_test_exposure': True}
+    extra = None
+    if heavy_sources:
+        from .cell_sources import export
+        extra = export(prepared, out, set(dc['groups']), set(cc['groups']))
+        cc.update(early_cells=extra['confirmation'], gene_order=extra['gene_order'])
     freeze_record(out / 'confirmation_contract.json', cc)
     manifest = {'schema_version': 't47d_provider_v2', 'accession': 'GSE260703',
         'dataset_sha256': digest(provenance), 'split_sha256': file_digest(historical_run / 'grouped_splits.json'),
@@ -143,5 +149,30 @@ def prepare(prepared, pathways, historical_run, baseline_tree, output_dir):
                    'confirmation_rows': len(heldout), 'confirmation_clones': len(set(cc['groups'])),
                    'seeds': len(dc['seeds']), 'outer_folds': len(dc['folds'])},
         'prior_test_exposure': True, 'models_fitted': 0, 'scientific_run_started': False}
+    if extra:
+        from .cell_sources import info
+        manifest['development_inputs'].update(early_cells=extra['development'],
+            training_events=extra['training_events'], gene_order=extra['gene_order'])
+        manifest['heavy_source_counts'] = {phase: extra[phase + '_cells'] for phase in ('development', 'confirmation')}
+        manifest['postselection_sources'] = {name: info(prepared / name) for name in
+            ('clone_condition_counts.csv', 'clone_expression_rows.csv', 'clone_mean_log_expression.npz', 'gene_order.csv')}
+        manifest['postselection_sources']['development_label_metadata.json'] = extra['development_label_metadata']
+        manifest['preparation_capabilities'] = ['portable_early_cells', 'training_only_event_counts', 'postselection_analysis_sources']
+        manifest['scope_groups'] = {'development': sorted(set(dc['groups'])), 'confirmation': sorted(set(cc['groups']))}
+    if tracsed_notebook is not None or tensorflow_python is not None:
+        if tracsed_notebook is None or tensorflow_python is None:
+            raise ValueError('Both pinned author notebook and isolated TensorFlow runtime are required')
+        import subprocess
+        from .cell_sources import info
+        code = 'import sys,json,importlib.metadata as m;print(json.dumps({"python_version":sys.version.split()[0],"packages":{p:m.version(p) for p in ["tensorflow","keras","numpy","pandas","scikit-learn","scipy"]}}))'
+        env = dict(__import__('os').environ, CUDA_VISIBLE_DEVICES='')
+        identity = json.loads(subprocess.check_output([str(tensorflow_python), '-c', code], env=env, text=True))
+        runtime_path = out / 'tensorflow_runtime_identity.json'
+        freeze_record(runtime_path, identity)
+        manifest['tracsed_notebook'] = dict(info(tracsed_notebook), source='https://github.com/Genentech/TraCSED; pinned author notebook',
+            status='original_public', kind='author_source', alignment='source-extracted architecture; early forecast and retrospective tasks distinguished')
+        manifest['tensorflow_runtime'] = dict(info(runtime_path), python=str(Path(tensorflow_python).absolute()),
+            source='installed isolated TensorFlow runtime, exact version identity checked per invocation',
+            status='derived', kind='environment_lock', alignment='author NumPy/Keras/scikit-learn runtime isolated from metric stack')
     freeze_record(out / 'preparation_manifest.json', manifest)
     return manifest

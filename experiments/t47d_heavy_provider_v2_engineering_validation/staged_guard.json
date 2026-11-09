@@ -1,0 +1,7 @@
+{
+  "forbidden_paths": [],
+  "secret_patterns": [],
+  "inspected_allowlist_count": 35,
+  "raw_data_weights_arrays_old_runs_staged": false,
+  "scope": "source, docs, tests and reviewed aggregate engineering evidence only"
+}

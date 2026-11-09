@@ -31,12 +31,16 @@ def configurations(parameters, training):
         raise ValueError('Declare final development fits before confirmation; never fit during confirmation')
     if training.get('seed_policy') != 'registered_seed_or_explicit_replicate':
         raise ValueError('Declare and apply the registered training-seed policy')
-    return config
+    from vc_demo.t47d_provider_v2.effective import canonical
+    return canonical(config)
 
 
-def _query_view(model, bundle):
+def _query_view(model, bundle, *, skip_portable=False):
     """Rebuild row-aligned early queries using fitted genes/projections/scalers only."""
     view = model.view
+    if not skip_portable and hasattr(view, 'refresh_query'):
+        view.refresh_query(bundle)
+        return
     if isinstance(view, HistoricalView):
         return
     if not isinstance(view, FullView):
@@ -68,7 +72,8 @@ def native_roles(config):
     artifact = set()
     modules = set()
     for c in [config, *([config['parent_config']] if config.get('parent_config') else [])]:
-        rep = c.get('historical_recipe', c).get('representation', 'pathway')
+        base = c.get('historical_recipe', c)
+        rep = base.get('representation', 'pathway')
         if c.get('historical_recipe') and (c.get('remove_pathway') or c.get('representation') == 'matched_no_artifact'):
             rep = 'expression'
         if c['model'] == 'frequency':
@@ -78,35 +83,77 @@ def native_roles(config):
             artifact.add('hallmark')
         modules.add('model:' + c['model'])
         modules.add('representation:' + rep)
+        if c['model'] == 'tracsed':
+            artifact.update({'tracsed_notebook', 'tensorflow_runtime'})
+        if c['model'] in NEURAL and not c.get('no_dense_parent'):
+            modules.add('branch:dense')
+        family = c['model']
+        no_dense = bool(c.get('no_dense_parent'))
+        has_aux_input = family != 'tracsed' and (family not in NEURAL or not no_dense)
+        if has_aux_input and not c.get('no_clone_abundance', base.get('no_clone_abundance', False)) and not c.get('no_barcode_inputs'):
+            modules.add('input:early_abundance')
+        if not c.get('no_barcode_inputs') and c['model'] != 'frequency':
+            modules.add('input:barcode_state')
+        if not c.get('baseline_only', base.get('baseline_only', False)) and not c.get('no_temporal_order', base.get('no_temporal_order', False)) and c.get('input_cutoff_day', base.get('input_cutoff_day', 4)) > 0:
+            modules.add('input:temporal_order')
+        has_explicit_condition_input = family != 'tracsed' and (family not in NEURAL or not no_dense or family in {'cross_attention', 'bilinear'})
+        if has_explicit_condition_input and not c.get('no_treatment_interaction') and not (c.get('historical_recipe') and base.get('no_treatment')):
+            modules.add('input:treatment_interaction')
+    if config.get('parent_config'):
+        modules.add('branch:parent')
     return sorted(artifact), sorted(modules)
 
 
 class PortableNative:
-    def __init__(self, config):
-        self.config = copy.deepcopy(config)
+    def __init__(self, config, *, artifact_files=None, output_root=None, training_seed_override=None):
+        from vc_demo.t47d_provider_v2.effective import canonical
+        self.config = canonical(config)
+        self.artifact_files, self.output_root = artifact_files or {}, output_root
+        self.training_seed_override = training_seed_override
 
     def fit(self, bundle, idx, seed):
-        c = self.config
+        c = copy.deepcopy(self.config)
+        if c['model'] == 'tracsed' and self.training_seed_override is not None:
+            c['author_seed'] = self.training_seed_override
         rep = c.get('historical_recipe', c).get('representation', 'pathway')
-        if rep not in {'pathway', 'pseudobulk', 'pca', 'expression', 'both', 'matched_no_artifact'}:
+        from vc_demo.t47d_provider_v2.representations import HEAVY
+        self.extended = rep in HEAVY or c['model'] in {'hazard', 'tracsed'}
+        if rep in HEAVY and 'cell_source' not in bundle:
+            raise ValueError('Prepare portable train-only early cell inputs; a legacy row cache is not a query encoder')
+        if rep not in HEAVY | {'pathway', 'pseudobulk', 'pca', 'expression', 'both', 'matched_no_artifact'}:
             raise ValueError('Implement a portable train-only representation model_builder; do not reuse a legacy row cache')
-        if c['model'] not in NEURAL | {'historical_ridge', 'frequency', 'ridge', 'early_elastic', 'pls', 'xgboost', 'additive_null'}:
+        if c['model'] not in NEURAL | {'historical_ridge', 'frequency', 'ridge', 'early_elastic', 'pls', 'xgboost', 'additive_null', 'hazard', 'tracsed'}:
             raise ValueError('Implement the actual model_builder; do not let an unknown model become a generic network')
         if c['model'] == 'historical_ridge' and c.get('historical_recipe', {}).get('model') != 'ridge':
             raise ValueError('Exact historical Ridge requires its complete genuine recipe')
         if c.get('composition', 'replace') != 'replace' or c.get('parent_config'):
             raise ValueError('Native component must be standalone; shared grouped OOF owns explicit composition')
-        self.model = ResearchCandidate(c).fit(bundle, idx, seed)
-        core = self.model.model
-        if isinstance(getattr(core, 'view', None), FullView) and c.get('no_barcode_inputs'):
+        if self.extended:
+            from vc_demo.t47d_provider_v2.heavy_models import HeavyCandidate
+            import uuid
+            if self.output_root is None:
+                raise ValueError('Register a node output directory for real fitted encoder artifacts')
+            self.model = HeavyCandidate(c, artifacts=self.artifact_files,
+                directory=Path(self.output_root) / 'components' / uuid.uuid4().hex).fit(bundle, idx, seed)
+            core = self.model
+        else:
+            self.model = ResearchCandidate(c).fit(bundle, idx, seed)
+            core = self.model.model
+        if not self.extended and isinstance(getattr(core, 'view', None), FullView) and c.get('no_barcode_inputs'):
             source = core.view.source
             core.query_treatment_means = {t: source[[i for i in idx if bundle['meta'].iloc[i].treatment == t]].mean(0)
                                           for t in bundle['meta'].treatment.unique()}
         self.artifact_roles, self.module_roles = native_roles(c)
         self.losses = list(getattr(core, 'losses', []))
+        self.checkpoint_files = list(getattr(core, 'checkpoint_files', []))
+        self.representation_audit = getattr(core, 'representation_audit', None)
+        self.hazard_audit = getattr(core, 'hazard_audit', None)
+        self.actual_model_seed = getattr(core, 'actual_model_seed', seed)
         return self
 
     def predict(self, bundle, idx):
+        if self.extended:
+            return self.model.predict(bundle, idx)
         _query_view(self.model.model, bundle)
         return self.model.predict(bundle, idx)
 
@@ -117,7 +164,8 @@ class PortableNative:
 def _builder(request):
     info = request['execution']['code_files']
     if 'model_builder' not in info:
-        return PortableNative
+        return partial(PortableNative, artifact_files=request['execution'].get('artifact_files', {}), output_root=request.get('output_dir'),
+            training_seed_override=(request.get('replicate') or {}).get('training_seed'))
     path = Path(info['model_builder'])
     if file_digest(path) != request['recipe']['code_sha256']['model_builder']:
         raise ValueError('Agent model_builder source changed')
@@ -140,6 +188,10 @@ def _safe_bundle(bundle, indices, targets):
     # Residual responses and true auxiliary-task responses have different semantics.
     result['truth_meta'] = bundle.get('truth_meta', result['meta']).copy()
     result['truth_meta'].loc[~result['truth_meta'].index.isin(indices), 'label'] = np.nan
+    if 'training_events' in bundle:
+        keys = set(zip(result['meta'].iloc[indices].clone_id, result['meta'].iloc[indices].treatment))
+        events = bundle['training_events']
+        result['training_events'] = events.loc[[(g, t) in keys for g, t in zip(events.clone_id, events.treatment)]].copy()
     # No n_day26, fraction_day26 or raw source files enter a model.
     return result
 
@@ -152,6 +204,8 @@ class IndexEstimator:
     def fit(self, x, y, groups=None):
         idx = np.asarray(x, dtype=int).ravel()
         b = _safe_bundle(self.bundle, idx, y)
+        from vc_demo.t47d_provider_v2.cell_sources import fitting_resources
+        b = fitting_resources(b, self.config)
         self.model = self.builder(copy.deepcopy(self.config)).fit(b, idx, self.seed)
         roles = getattr(self.model, 'artifact_roles', None)
         modules = getattr(self.model, 'module_roles', None)
@@ -162,7 +216,11 @@ class IndexEstimator:
         self.records.append({'group_count': len(fit_groups), 'groups_sha256': digest(fit_groups),
             'artifact_roles': list(roles), 'module_roles': list(modules),
             'last_train_loss': float(losses[-1]) if losses else None,
-            'training_steps': len(losses) if losses else None})
+            'training_steps': len(losses) if losses else None,
+            'declared_fit_seed': self.seed, 'actual_model_seed': getattr(self.model, 'actual_model_seed', self.seed),
+            'fitted_sidecars': list(getattr(self.model, 'checkpoint_files', [])),
+            'representation_audit': {k: v for k, v in (getattr(self.model, 'representation_audit', None) or {}).items() if k != 'train_groups'},
+            'hazard_audit': getattr(self.model, 'hazard_audit', None)})
         self.bundle = b
         if hasattr(self.model, 'close'):
             self.model.close()
@@ -174,10 +232,16 @@ class IndexEstimator:
             raise ValueError('Invalid native task predictions')
         return pred
 
+    def rebind_query(self, bundle):
+        # This method survives content-addressed module imports and deserialization.
+        self.bundle = {k: v for k, v in bundle.items() if k not in {'training_events', 'truth_meta'}}
+        self.bundle['meta'] = bundle['meta'].copy()
+        self.bundle['meta']['label'] = np.nan
+
 
 def _rebind(model, bundle):
-    if isinstance(model, IndexEstimator):
-        model.bundle = bundle
+    if callable(getattr(model, 'rebind_query', None)):
+        model.rebind_query(bundle)
         return
     for attr in ('core_', 'parent_', 'mutation_'):
         if hasattr(model, attr):
@@ -237,6 +301,8 @@ def evaluate_development(request):
         raise ValueError('Wrong provider phase')
     contract = request['development_contract']
     b, rows = read_inputs(request['inputs']['early_observations'])
+    from vc_demo.t47d_provider_v2.cell_sources import attach_development
+    b = attach_development(b, request['inputs'])
     if rows != contract['row_ids'] or b['meta'].clone_id.tolist() != contract['groups']:
         raise ValueError('Early features disagree with registered row/group order')
     y = np.asarray(contract['targets'], dtype=float)
@@ -293,6 +359,7 @@ def evaluate_development(request):
                      'development_row_ids': rows}, path, compress=3)
         joblib.load(path)
         checkpoint_files.append(str(path))
+    checkpoint_files.extend(sorted({path for item in records for path in item.get('fitted_sidecars', [])}))
     artifacts = sorted({r for item in records for r in item['artifact_roles']})
     declared = set(request['recipe']['artifact_sha256'])
     if set(artifacts) != declared:
@@ -319,6 +386,8 @@ def predict_confirmation(request):
     _builder(request)
     contract = request['confirmation_contract']
     b, rows = read_inputs(contract['early_observations'])
+    from vc_demo.t47d_provider_v2.cell_sources import attach_query
+    b = attach_query(b, contract)
     if rows != contract['row_ids'] or b['meta'].clone_id.tolist() != contract['groups']:
         raise ValueError('Frozen query row/group order changed')
     checkpoints = [Path(p) for p in request['checkpoint_files'] if str(p).endswith('.joblib')]

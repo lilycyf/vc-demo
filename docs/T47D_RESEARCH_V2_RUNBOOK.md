@@ -88,7 +88,7 @@ historical Ridge 的类别编码、缩放、baseline-only 和 alpha 来自原始
 - 冻结预测只加载已保存模型、基因选择、投影和 scaler，按新 query 行重建早期特征。
   禁止 `fit`、scaler/PCA refit、校准 refit 或使用确认标签。
 
-## Codex 的研究自由与未验收路径
+## Codex 的研究自由与重型路径
 
 可使用 `implementation(..., model_builder=path, extra_code=..., artifacts=...)`。
 `model_builder` 提供 `build_model(config, *, artifact_files)`；运行时路径从已封存的
@@ -107,12 +107,12 @@ predict(bundle, query_indices)      # 接受独立 query bundle，不拟合
 不是能证明任意 Python 不越权读取数据的 OS 沙箱。
 
 默认桥接可直接处理原有 pathway/expression/both/pseudobulk/PCA 等冻结可变换路径。
-**旧 scVI/CellRank/distance/pseudotime 缓存不能冒充 frozen query encoder**：
-它们绑定旧全体行且部分缺少可独立加载的 query 变换接口。TraCSED 外部运行时、
-hazard 的额外训练终点访问也需要单独审核。这些不是“公开模型不可获得”的结论，
-而是尚未通过新 provider 验收的能力；选中时 Codex 应当场实现忠实 portable builder、
-补齐源支持和测试，再执行。真正尝试失败才透明 skip 并继续其他队列。
-不要把旧缓存拷贝、弱代理、降低模型规格或行号复用写成接入成功。
+**旧 scVI/CellRank/distance/pseudotime 缓存不能冒充 frozen query encoder**。
+新版默认桥接为这些路径提供真实训练折编码器、独立 query 变换、拟合 sidecar 和
+内容核验。TraCSED 使用隔离 TensorFlow、固定作者 notebook 源码提取；hazard 使用
+训练行限定的真实区间删失 AFT。没有用旧全行缓存、弱代理或随机输出替代。
+专项配置、原文差异、挑战分析登记和验收边界见
+`docs/T47D_HEAVY_PROVIDER_V2.md`。CPU 工程验收不等于 GPU 大规模运行或数值复现。
 
 ## 工程验收与交付
 

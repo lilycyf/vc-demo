@@ -31,6 +31,9 @@ provider; no registration is permission to silently use another task or syntheti
   observations never consume optimization credit or expansion slots.
 - Confirmation only loads frozen fitted checkpoints/calibrators. It closes selection;
   its results never enter research context. Smoke verifies interfaces, not superiority.
+- Optional postselection challenges use separate source-bound plans and fitting budgets.
+  Declare them initially or from development evidence before freezing. Their refits,
+  calibration and exposed-cohort results are report-only, never optimization credit.
 - Respect user-approved resources and existing shutdown protection. Never start a
   scientific run, create cloud resources or extend spending without authorization.
 
@@ -103,6 +106,13 @@ aggregation reversal, coverage isolation, cost monotonicity, semantic duplicates
 replenishment, skip/repair, exactly-once resume, exposure poisoning and frozen-only
 confirmation. Test both positive incremental signal and legitimate null results.
 Fixtures are engineering tests, never scientific task results.
+
+Heavy representations need real train-fold-only encoders, source/vocabulary checks,
+persisted fitted state and independent-query tests with fitting disabled. A whole-dataset
+row cache is not a frozen encoder. Do not call graph/pathway priors pretrained foundation
+models, or call a source-extracted architecture a numerical replication of its paper.
+Task adapters own raw counts, temporal/censoring semantics and faithful isolated runtimes;
+the shared engine owns lifecycle, immutable plans, credit and exactly-once receipts.
 
 Before claiming framework benefit, compare with equal-resource random/simple search
 and evaluate on independently specified tasks not used for framework development.

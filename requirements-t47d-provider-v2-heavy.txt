@@ -1,0 +1,22 @@
+# Validated main runtime, Python 3.12.3; use a fresh environment, never a frozen active session.
+# Audited RunPod build: torch 2.8.0+cu129. Review the CUDA wheel/build separately.
+torch==2.8.0
+numpy==2.5.2
+scipy==1.16.3
+pandas==2.3.3
+scikit-learn==1.9.1
+joblib==1.6.0
+xgboost==3.4.1
+h5py==3.16.0
+anndata==0.13.4
+scanpy==1.12.5
+scikit-misc==0.5.3
+scvi-tools==1.5.2
+cellrank==2.3.3
+pertpy==1.4.0
+POT==0.9.7.post1
+jax==0.12.0.1
+jaxlib==0.12.0.1
+ott-jax==0.6.0
+lifelines==0.30.3
+pytest==9.2.0
