@@ -1,0 +1,154 @@
+{
+  "child": "coverage_4_05c9490e55",
+  "configured_parent_child_limit": 20,
+  "development_original_feedback_estimand": {
+    "child": 0.6056272318120256,
+    "definition": "Spearman after averaging OOF predictions over seeds",
+    "paired_delta": -0.01548297361192108,
+    "root": 0.6211102054239467
+  },
+  "development_primary_metric": {
+    "conditional_cluster_bootstrap_ci95": [
+      -0.14814685367799393,
+      0.18907679762237709
+    ],
+    "definition": "mean over seeds of complete OOF Spearman",
+    "draws": 2000,
+    "independent_clone_groups": 36,
+    "paired_delta": 0.02032604775773004,
+    "per_seed": {
+      "11": {
+        "child": 0.603269055831133,
+        "delta": 0.07123597059047881,
+        "root": 0.5320330852406542
+      },
+      "17": {
+        "child": 0.6159603302010277,
+        "delta": 0.022209730147315643,
+        "root": 0.593750600053712
+      },
+      "23": {
+        "child": 0.6165605931779823,
+        "delta": 0.05151780819671237,
+        "root": 0.5650427849812699
+      },
+      "3": {
+        "child": 0.547182579420934,
+        "delta": -0.059259295002672685,
+        "root": 0.6064418744236066
+      },
+      "7": {
+        "child": 0.5760571342091966,
+        "delta": 0.015926024856816046,
+        "root": 0.5601311093523805
+      }
+    }
+  },
+  "duplicate_configuration_groups": [
+    [
+      "coverage_0_a75acf4aed",
+      "n_a75acf4aed742ff0"
+    ],
+    [
+      "coverage_14_c7a2519601",
+      "coverage_18_c7a2519601"
+    ],
+    [
+      "coverage_15_d090537212",
+      "coverage_19_d090537212"
+    ],
+    [
+      "coverage_1_e91df979c4",
+      "n_e91df979c437cfa8"
+    ],
+    [
+      "coverage_7_b732d3b411",
+      "n_b732d3b4114f06ee"
+    ],
+    [
+      "coverage_8_86df89050d",
+      "n_86df89050d68e723"
+    ]
+  ],
+  "evidence_phase": "posthoc_retrospective",
+  "first_selection_strong_root_eligible": false,
+  "frozen_confirmation_descriptive_comparison": {
+    "child": 0.2830125726712828,
+    "conditional_paired_clone_bootstrap_ci95": [
+      -0.5222899705507851,
+      0.14834710743801632
+    ],
+    "delta": -0.20647458131992968,
+    "historical_test_exposure": true,
+    "independent_clone_groups": 10,
+    "root": 0.4894871539912125
+  },
+  "negative_priority_selected_rollouts": 34,
+  "optimization_representations_by_status": {
+    "candidate_queued": {
+      "distance": 5,
+      "pathway": 9,
+      "pca": 5,
+      "pseudobulk": 9,
+      "pseudotime": 7,
+      "scvi": 12
+    },
+    "pruned_not_selected": {
+      "cellrank": 4,
+      "distance": 9,
+      "pathway": 17,
+      "pca": 10,
+      "pseudobulk": 14,
+      "pseudotime": 4,
+      "scvi": 15
+    },
+    "trained": {
+      "distance": 4,
+      "pathway": 12,
+      "pca": 10,
+      "pseudobulk": 6,
+      "pseudotime": 1,
+      "scvi": 7
+    }
+  },
+  "parent_selection_counts": {
+    "coverage_11_a9c90856c4": 2,
+    "coverage_12_ab2b3d3ee2": 1,
+    "coverage_13_f74f795220": 2,
+    "coverage_14_c7a2519601": 1,
+    "coverage_15_d090537212": 1,
+    "coverage_16_bde7eba1c9": 1,
+    "coverage_17_d32c14074b": 2,
+    "coverage_18_c7a2519601": 1,
+    "coverage_19_d090537212": 1,
+    "coverage_20_9ec77264ae": 1,
+    "coverage_21_359bde779a": 1,
+    "coverage_22_36652a3211": 1,
+    "coverage_23_d92026585f": 2,
+    "coverage_24_ea9096ba59": 1,
+    "coverage_25_c923268b07": 2,
+    "coverage_2_e140b16612": 1,
+    "coverage_4_05c9490e55": 1,
+    "coverage_5_34c3c7fa86": 2,
+    "coverage_6_c384d4082a": 1,
+    "n_2da1e4c4e4579270": 4,
+    "n_328eb2bd80ff1d0c": 1,
+    "n_ce9028d9bf28dc23": 1,
+    "n_dea6cf381a665cdd": 2,
+    "n_fd61db6af5eb57b3": 1,
+    "n_fede140eefb30bf4": 4,
+    "root_0_frequency": 2
+  },
+  "primary_run_and_original_feedback_modified": false,
+  "proposal_compositions": {
+    "replace": 160
+  },
+  "refitted_models": 0,
+  "root": "root_historical_exact_ridge",
+  "selection_feedback_allowed": false,
+  "strong_root_children": 26,
+  "strong_root_optimization_parent_selections": 0,
+  "trained_nodes": 72,
+  "uncertainty_caveat": "Bootstrap resamples whole clone blocks with predictions fixed. It does not refit the pipeline, correct adaptive model selection, create fresh heldout data, or establish significance of framework superiority.",
+  "unique_declared_configurations": 66
+}
